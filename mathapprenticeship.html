@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lodha Genius Math Apprenticeship | Akshat Bhaskar</title>
+  <meta name="description" content="Akshat Bhaskar served as Teaching Assistant & Research Apprentice at the Lodha Genius–Ashoka University Programme (LG-AUP), conducting number theory research under Professor Shanta Laishram" />
+  <meta name="keywords" content="Lodha Genius Programme, Ashoka University, mathematics apprenticeship, number theory research, Akshat Bhaskar, LG-AUP, Shanta Laishram" />
+  <meta name="author" content="Akshat Bhaskar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/lg-apprenticeship.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Lodha Genius Math Apprenticeship | Akshat Bhaskar" />
+  <meta property="og:description" content="Teaching Assistant & Research Apprentice at Ashoka University, conducting number theory research." />
+  <meta property="og:url" content="https://akshatbhaskar.ninja/lg-apprenticeship.html" />
+  <meta property="og:image" content="https://akshatbhaskar.ninja/akshat.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@aksbhaskar" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", "@type": "Article",
+    "headline": "Lodha Genius Math Apprenticeship",
+    "author": {"@type": "Person", "name": "Akshat Bhaskar"},
+    "datePublished": "2026-05-15",
+    "publisher": {"@type": "Organization", "name": "Ashoka University"},
+    "articleSection": "Education"
+  }
+  </script>
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:        #fffff8;
+      --ink:          #111110;
+      --ink-med:      #333330;
+      --ink-soft:     #666660;
+      --ink-faint:    #999990;
+      --ink-ghost:    #ccccbb;
+      --rule:         #d0d0c0;
+      --rule-light:   #e4e4d8;
+      --accent:       #111110;
+      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:         'Inconsolata', 'Courier New', monospace;
+      --col-width:    520px;
+      --margin-width: 80px;
+      --gutter:       32px;
+      --outer:        48px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT GRID ───────────────────────────────────────── */
+    .document {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--margin-width) var(--gutter) var(--col-width) var(--gutter) 1fr;
+    }
+
+    .doc-full,
+    .titlepage,
+    .section-head,
+    .doc-footer { grid-column: 1 / -1; }
+
+    .content-col { grid-column: 3 / 4; }
+
+    .sidenotes-col { grid-column: 5 / 6; }
+
+    /* ─── HEADER / TITLE PAGE ──────────────────────────────── */
+    .titlepage {
+      grid-column: 1 / -1;
+      padding-top: 80px;
+      padding-bottom: 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      margin-bottom: 0;
+    }
+
+    .doc-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+    }
+
+    .title-center {
+      text-align: center;
+      padding-bottom: 1.8rem;
+    }
+
+    h1.doc-title {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .doc-subtitle {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--ink-med);
+      margin-bottom: 0.3rem;
+    }
+
+    .doc-meta-line {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.07em;
+      margin-bottom: 0.15rem;
+    }
+
+    .doc-date {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── RULES ─────────────────────────────────────────────── */
+    .rule-heavy { border: none; border-top: 2px solid var(--ink); margin: 0; }
+    .rule-thin  { border: none; border-top: 0.5px solid var(--ink); margin: 0; }
+
+    /* ─── SECTION HEADS ─────────────────────────────────────── */
+    .section-head {
+      grid-column: 1 / -1;
+      padding-top: 2.2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 0.5px solid var(--ink);
+      margin-bottom: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── CONTENT COLUMN ────────────────────────────────────── */
+    .content-col {
+      grid-column: 3 / 4;
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .page-meta {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-top: 2rem;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      font-family: var(--serif);
+      font-size: 0.96rem;
+      color: var(--ink-med);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    p strong { font-weight: 600; color: var(--ink); }
+    p em     { font-style: italic; }
+
+    /* ─── STAT ROW ──────────────────────────────────────────── */
+    .stat-row {
+      display: flex;
+      gap: 2.2rem;
+      margin: 1.8rem 0 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 1.6rem;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 0.25rem; min-width: 140px; }
+
+    .stat-number {
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--serif);
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+      font-style: italic;
+    }
+
+    /* ─── HIGHLIGHT BOX ─────────────────────────────────────── */
+    .highlight-box {
+      border-left: 0.5px solid var(--ink);
+      padding: 1.2rem 1.4rem;
+      margin: 1.8rem 0;
+    }
+
+    .highlight-box p {
+      font-size: 0.92rem !important;
+      color: var(--ink-med) !important;
+      margin-bottom: 0 !important;
+      text-align: left;
+    }
+
+    .highlight-box p strong { color: var(--ink); }
+
+    /* ─── FACULTY CARD ──────────────────────────────────────── */
+    .faculty-card {
+      border: 0.5px solid var(--rule-light);
+      padding: 1.3rem 1.5rem;
+      margin: 1.4rem 0;
+    }
+
+    .faculty-card h3 {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.01em;
+    }
+
+    .faculty-card .faculty-role {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.7rem;
+      line-height: 1.5;
+    }
+
+    .faculty-card p {
+      font-size: 0.88rem !important;
+      color: var(--ink-soft) !important;
+      line-height: 1.7 !important;
+      margin-bottom: 0 !important;
+      text-align: justify;
+    }
+
+    /* ─── COURSE LIST ───────────────────────────────────────── */
+    .course-list {
+      margin: 1.6rem 0 2.2rem;
+      border-top: 0.5px solid var(--rule-light);
+    }
+
+    .course-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 1.4rem;
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      align-items: start;
+    }
+
+    .course-week {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 0.18rem;
+    }
+
+    .course-name {
+      font-family: var(--serif);
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .course-track {
+      font-family: var(--mono);
+      font-size: 0.57rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-top: 0.22rem;
+      display: block;
+    }
+
+    /* ─── LECTURE LIST ──────────────────────────────────────── */
+    .lecture-list {
+      margin: 1.6rem 0 2.2rem;
+      border-top: 0.5px solid var(--rule-light);
+    }
+
+    .lecture-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0 1.4rem;
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      align-items: start;
+    }
+
+    .lecture-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      padding-top: 0.18rem;
+    }
+
+    .lecture-title {
+      font-family: var(--serif);
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    /* ─── FIGURES ───────────────────────────────────────────── */
+    .doc-figure { margin: 2.2rem 0 1.8rem; }
+
+    .doc-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 0.5px solid var(--rule-light);
+    }
+
+    .doc-figure figcaption {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      margin-top: 0.5rem;
+      line-height: 1.55;
+      text-transform: uppercase;
+    }
+
+    /* ─── FIGURE PAIR ───────────────────────────────────────── */
+    .figure-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 2.2rem 0 1.8rem;
+    }
+
+    .figure-pair .doc-figure { margin: 0; }
+
+    /* ─── BACK LINK ─────────────────────────────────────────── */
+    .back-link {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2.2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ─── SIDENOTES COLUMN ──────────────────────────────────── */
+    .sidenotes-col {
+      grid-column: 5 / 6;
+      padding-top: 2rem;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.8rem;
+    }
+
+    .sidenote {
+      font-family: var(--serif);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .sidenote.visible { opacity: 1; }
+
+    .sidenote sup {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      margin-right: 0.2rem;
+    }
+
+    .sidenote strong { font-weight: 600; color: var(--ink-med); font-style: normal; }
+    .sidenote em     { font-style: italic; }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      pointer-events: none;
+      background: rgba(255, 255, 248, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209, 208, 192, 0.3);
+    }
+
+    .topbar-logo {
+      pointer-events: all;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      pointer-events: all; background: none; border: none;
+      cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px; background: var(--ink-faint);
+      transition: all 0.3s ease; transform-origin: center;
+    }
+
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span  { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17, 17, 16, 0.94);
+      backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+
+    .nav-overlay a.nav-link {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22);
+      line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1) { transition-delay: 0.03s }
+    .nav-overlay.open a.nav-link:nth-child(2) { transition-delay: 0.06s }
+    .nav-overlay.open a.nav-link:nth-child(3) { transition-delay: 0.09s }
+    .nav-overlay.open a.nav-link:nth-child(4) { transition-delay: 0.12s }
+    .nav-overlay.open a.nav-link:nth-child(5) { transition-delay: 0.15s }
+    .nav-overlay.open a.nav-link:nth-child(6) { transition-delay: 0.18s }
+    .nav-overlay.open a.nav-link:nth-child(7) { transition-delay: 0.21s }
+    .nav-overlay.open a.nav-link:hover { color: rgba(255,255,248,0.9); }
+
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0;
+      opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+
+    .nav-overlay.open .nav-hr { opacity: 1; }
+
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+
+    .nav-socials-row a {
+      font-size: 0.82rem; color: rgba(255,255,248,0.25);
+      transition: color 0.2s; text-decoration: none;
+    }
+
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── PROGRESS BAR ──────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .doc-footer {
+      grid-column: 1 / -1;
+      border-top: 0.5px solid var(--ink);
+      padding: 1.2rem 0 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-socials { display: flex; gap: 1.1rem; }
+
+    .footer-socials a {
+      font-size: 0.78rem;
+      color: var(--ink-ghost);
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 740px) {
+      :root { --outer: 20px; }
+
+      .document { grid-template-columns: 1fr; max-width: 100%; }
+      .content-col { grid-column: 1 / -1; }
+      .sidenotes-col { display: none; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.doc-title { font-size: 1.7rem; }
+      .stat-row { gap: 1.2rem; }
+
+      .figure-pair {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .course-item { grid-template-columns: 48px 1fr; }
+      .lecture-item { grid-template-columns: 36px 1fr; }
+    }
+
+    @media (min-width: 741px) and (max-width: 1000px) {
+      :root {
+        --col-width: 400px;
+        --margin-width: 60px;
+        --gutter: 20px;
+        --outer: 32px;
+      }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- TITLE PAGE -->
+  <div class="titlepage">
+    <div class="doc-meta-top">
+      <span>I love math!</span>
+      <span>Ashoka University, Sonipat &nbsp;·&nbsp; 2026</span>
+    </div>
+    <div class="title-center">
+      <h1 class="doc-title">Lodha Genius Math Apprenticeship</h1>
+      <p class="doc-subtitle">Teaching Assistant &amp; Research Apprentice</p>
+      <p class="doc-meta-line">Ashoka University, Sonipat</p>
+      <p class="doc-meta-line">Lodha Genius Programme, Ashoka University Programme (LG-AUP)</p>
+      <p class="doc-date">May 15th – June 20th, 2026 &nbsp;·&nbsp; Concluded</p>
+    </div>
+  </div>
+
+  <div class="doc-full"><hr class="rule-heavy" /></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- §1 APPRENTICESHIP DETAILS                             -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="section-head" id="apprenticeship">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Apprenticeship Details</span>
+  </div>
+
+  <div class="content-col">
+
+    <p class="page-meta">
+      May 15 – June 20, 2026 · Ashoka University, Sonipat · Teaching Assistant &amp; Research Apprentice
+    </p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-number">LG-AUP</span>
+        <span class="stat-label">Lodha Genius Programme</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">₹10K</span>
+        <span class="stat-label">Research stipend</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">Undergraduate Programme</span>
+        <span class="stat-label">Exception made to eligibility</span>
+      </div>
+    </div>
+
+    <h2>What it is</h2>
+    <p>
+      The Lodha Genius – Ashoka University Programme (LG-AUP) is a joint initiative between the Lodha Foundation and Ashoka University, offering a small cohort of exceptional undergraduate students studying mathematics across India a paid research and teaching position within one of India's finest mathematics departments. The programme draws faculty from IIT Delhi, IIT Kharagpur, Chennai Mathematical Institute (CMI), ISI Kolkata, ISI Delhi, Ashoka University, IIT Kanpur, IIIT Delhi, Iowa State University, Fordham University, and UC Davis, among many others.
+    </p>
+    <p>
+      This is an undergraduate-level research position. The programme made an explicit exception to its eligibility criteria to include me, as I had not yet begun my undergraduate studies when the programme ran. I was fully housed on the Ashoka campus for all six weeks.
+    </p>
+
+    <div class="highlight-box">
+      <p>The programme made an <strong>explicit exception to its eligibility criteria</strong> to include me as a pre-undergraduate applicant, recognising the work I had already done at the Lodha Genius Programme 2025 and in mathematics more broadly.</p>
+    </div>
+
+    <h2>My role</h2>
+    <p>
+      As Teaching Assistant, I supported mathematics and science instruction for gifted secondary school students working through undergraduate-level courses across four weeks and four disciplines. As Research Apprentice, I conducted original number theory research under direct faculty mentorship for the full duration of the programme, concluding with the submission of a formal research report.
+    </p>
+
+    <h2>Research placement</h2>
+    <p>
+      I conducted original research in <strong>number theory</strong> under the mentorship of Professor Shanta Laishram throughout the programme. The work culminated in a formal research report submitted to Professor Laishram at the programme's close.
+    </p>
+
+    <div class="faculty-card">
+      <h3>Professor Shanta Laishram</h3>
+      <p class="faculty-role">Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), New Delhi</p>
+      <p>
+        Professor Laishram is a distinguished mathematician widely recognised for his significant research contributions to number theory. His rigorous academic background and published work are highly respected in the mathematical community.
+      </p>
+    </div>
+
+    <p>
+      Working under Professor Shanta allowed me to engage seriously with number-theoretic problems before beginning an undergraduate degree, an opportunity I could not have anticipated when I first walked into the Lodha Genius Programme as a student in 2025.
+    </p>
+
+    <figure class="doc-figure">
+      <img decoding="async" src="mathapprentice2.jpg" alt="Graduate-level number theory textbook, research material at LG-AUP 2026" loading="lazy" />
+      <figcaption>Graduate-level number theory, the mathematical territory of the apprenticeship</figcaption>
+    </figure>
+
+  </div>
+
+  <!-- §1 SIDENOTES -->
+  <div class="sidenotes-col" aria-hidden="true">
+    <div class="sidenote">
+      <sup>†</sup>
+      The <strong>Lodha Genius Programme</strong> is a fully funded residential programme at Ashoka University for India's most mathematically talented students. Acceptance rate: 3.2%.
+    </div>
+    <div class="sidenote">
+      <sup>‡</sup>
+      <strong>Indian Statistical Institute (ISI), New Delhi</strong> is one of the foremost institutes for mathematics research and academia in the entire country.
+    </div>
+    <div class="sidenote">
+      <sup>§</sup>
+      <strong>Number theory</strong> is a branch of mathematics devoted primarily to the study of the integers and arithmetic functions, one of the oldest and deepest areas of pure mathematics.
+    </div>
+    <div class="sidenote">
+      <sup>¶</sup>
+      The <strong>Lodha Foundation</strong> is a philanthropic organisation supporting education, research, and innovation in India, particularly in mathematics and the sciences.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- §2 TEACHING                                           -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="section-head" id="teaching">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Teaching</span>
+  </div>
+
+  <div class="content-col">
+
+    <p>
+      Over four weeks, I served as Teaching Assistant for courses spanning abstract algebra, classical mechanics, geometry, and personal finance, a range that reflects the programme's deliberate ambition. The student cohort was divided into tracks: Junior Track students were newer to formal mathematics; the Senior Science Track demanded genuine subject fluency and moved accordingly.
+    </p>
+
+    <div class="course-list">
+      <div class="course-item">
+        <span class="course-week">Wk 1</span>
+        <div>
+          <span class="course-name">Financial Independence: Fundamentals of Investing</span>
+          <span class="course-track">Junior Track</span>
+        </div>
+      </div>
+      <div class="course-item">
+        <span class="course-week">Wk 2</span>
+        <div>
+          <span class="course-name">Rubik's Cube and Group Theory</span>
+          <span class="course-track">Senior Science Track</span>
+        </div>
+      </div>
+      <div class="course-item">
+        <span class="course-week">Wk 3</span>
+        <div>
+          <span class="course-name">Basic but Essential Mechanics</span>
+          <span class="course-track">Senior Science Track</span>
+        </div>
+      </div>
+      <div class="course-item">
+        <span class="course-week">Wk 4</span>
+        <div>
+          <span class="course-name">Origami with Advanced Geometry</span>
+          <span class="course-track">Senior Science Track</span>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      The fourth course, Origami with Advanced Geometry, made the most direct demands on mathematical knowledge. The course examines the rigorous structure underlying paper folding: crease patterns, flat-foldability, and the algebraic geometry that governs what can and cannot be constructed from a single uncut sheet. What looks decorative is, in practice, serious geometry.
+    </p>
+
+    <div class="figure-pair">
+      <figure class="doc-figure">
+        <img decoding="async" src="mathapprentice4.jpg" alt="Origami with Advanced Geometry course at LG-AUP 2026" loading="lazy" />
+        <figcaption>Origami with Advanced Geometry, Senior Science Track, Week 4</figcaption>
+      </figure>
+      <figure class="doc-figure">
+        <img decoding="async" src="mathapprentice5.jpg" alt="A unicorn pegasus made by a student during the Origami with Advanced Geometry course" loading="lazy" />
+        <figcaption>A unicorn pegasus, made in class by a student</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- §2 SIDENOTES -->
+  <div class="sidenotes-col" aria-hidden="true">
+    <div class="sidenote">
+      <sup>†</sup>
+      A Rubik's Cube has <strong>43,252,003,274,489,856,000</strong> possible states. Any of them can be solved in at most 20 moves, a result known as God's Number, proved computationally in 2010. The cube's symmetries form a finite group, making it a natural entry point into abstract algebra.
+    </div>
+    <div class="sidenote">
+      <sup>‡</sup>
+      Origami can <strong>trisect an angle</strong> and extract cube roots, operations provably impossible with straightedge and compass alone. The Huzita-Hatori axioms describe a geometry strictly more powerful than Euclid's.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- §3 APPRENTICESHIP LECTURES                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="section-head" id="lectures">
+    <span class="sec-num">§3</span>
+    <span class="sec-title">Apprenticeship Lectures</span>
+  </div>
+
+  <div class="content-col">
+
+    <p>
+      Alongside the TA work, I attended a series of lectures designed specifically for the undergraduate apprentices, graduate-adjacent seminars that assumed real mathematical maturity and moved accordingly. Each was delivered by a specialist and treated as a self-contained mathematical event rather than a survey.
+    </p>
+
+    <div class="lecture-list">
+      <div class="lecture-item">
+        <span class="lecture-num">L.01</span>
+        <span class="lecture-title">Modular Forms: An Introduction to "Non-Abelian" Symmetry</span>
+      </div>
+      <div class="lecture-item">
+        <span class="lecture-num">L.02</span>
+        <span class="lecture-title">Statistical Modeling, the Foundation of Generative AI</span>
+      </div>
+      <div class="lecture-item">
+        <span class="lecture-num">L.03</span>
+        <span class="lecture-title">Modern Cryptography</span>
+      </div>
+    </div>
+
+    <p>
+      The third lecture, Modern Cryptography, was a direct intersection with the number theory I was pursuing in research. The mathematics of encryption and the questions I was working through under Professor Shanta occupy the same territory: primality, modular arithmetic, the deep behaviour of integers. Sitting in that seminar with an active research context made it land differently than it otherwise would have.
+    </p>
+
+    <figure class="doc-figure">
+      <img decoding="async" src="mathapprentice1.jpg" alt="Modern Cryptography lecture at LG-AUP 2026, Ashoka University" loading="lazy" />
+      <figcaption>Modern Cryptography, Apprenticeship Lecture L.03, LG-AUP 2026</figcaption>
+    </figure>
+
+  </div>
+
+  <!-- §3 SIDENOTES -->
+  <div class="sidenotes-col" aria-hidden="true">
+    <div class="sidenote">
+      <sup>†</sup>
+      <strong>Modular forms</strong> are complex analytic functions satisfying deep symmetry conditions under the modular group. They appear in the proof of Fermat's Last Theorem and sit at the centre of the Langlands Programme, one of the most ambitious research programmes in modern mathematics.
+    </div>
+    <div class="sidenote">
+      <sup>‡</sup>
+      The three seminars spanned number theory, probability, and computing, not by accident. Modular forms, statistical foundations, and cryptography are in deep mathematical conversation. The programme was designed to make that visible.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- §4 LIFE AT THE PROGRAMME                              -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="section-head" id="life">
+    <span class="sec-num">§4</span>
+    <span class="sec-title">Life at the Programme</span>
+  </div>
+
+  <div class="content-col">
+
+    <p>
+      Six weeks is long enough to build something. The programme housed everyone on campus, faculty, teaching assistants, students, which meant the work did not stop at the classroom door. The schedule was dense, the company was good, and the evenings had their own kind of curriculum.
+    </p>
+
+    <div class="figure-pair">
+      <figure class="doc-figure">
+        <img decoding="async" src="mathapprentice3.jpg" alt="Programme schedule during LG-AUP 2026 at Ashoka University" loading="lazy" />
+        <figcaption>Programme schedule, six weeks at Ashoka University</figcaption>
+      </figure>
+      <figure class="doc-figure">
+        <img decoding="async" src="mathapprentice6.jpg" alt="Screening of Project Hail Mary during the Lodha Genius Programme 2026" loading="lazy" />
+        <figcaption>Screening of Project Hail Mary, LG-AUP 2026</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      The screening of <em>Project Hail Mary</em> felt right, a room full of people who had spent their days thinking seriously about mathematics, watching a story about a scientist who has to think his way home from deep space with nothing but physics and arithmetic. It was a well-chosen evening.
+    </p>
+
+    <a href="education.html" class="back-link">← Back to Education</a>
+
+  </div>
+
+  <!-- §4 SIDENOTES -->
+  <div class="sidenotes-col" aria-hidden="true">
+    <div class="sidenote">
+      <sup>†</sup>
+      <strong>LG-AUP is fully residential.</strong> Participants live, eat, and work on the Ashoka campus for the entire duration, a deliberate structure that creates the conditions for intellectual community outside formal hours.
+    </div>
+    <div class="sidenote">
+      <sup>‡</sup>
+      <em>Project Hail Mary</em>, by Andy Weir, follows a scientist who wakes up alone, billions of miles from home, with no memory and no crew, and has only mathematics and physics to work with. A fitting choice for this particular audience.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+<!-- ══════════════════════════════════════════════════════ -->
+
+<script>
+  // Progress bar
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  // Scroll reveal, sidenotes
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.sidenote').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

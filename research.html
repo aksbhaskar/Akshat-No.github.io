@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research | Akshat Bhaskar</title>
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:      #faf8f3;
+      --ink:        #1a1916;
+      --ink-med:    #3a3832;
+      --ink-soft:   #6b6860;
+      --ink-faint:  #9e9b94;
+      --ink-ghost:  #cac8bf;
+      --rule:       #d4d1c6;
+      --rule-light: #e2dfd5;
+      --accent:     #8b5e3c;   /* warm brown, a different flavour from index */
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+      --outer:      clamp(22px, 4vw, 60px);
+      --col-main:   500px;
+      --col-gutter: 32px;
+      --max-doc:    900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.74;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── PROGRESS BAR ──────────────────────────────────────── */
+    #prog {
+      position: fixed; top: 0; left: 0; height: 1px;
+      width: 0%; background: var(--accent); z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ─── TOPBAR ────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(250,248,243,0.93);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(212,209,198,0.4);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    /* ─── NAV OVERLAY ───────────────────────────────────────── */
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(26,25,22,0.95); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(250,248,243,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(250,248,243,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(250,248,243,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(250,248,243,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(250,248,243,0.85); }
+
+    /* ─── DOCUMENT GRID ─────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--col-main) var(--col-gutter) 1fr;
+    }
+
+    /* Full-width spans */
+    .doc-full,
+    .page-header,
+    .section-rule,
+    .doc-footer { grid-column: 1 / -1; }
+
+    /* Main column */
+    .papers-col { grid-column: 1 / 2; }
+
+    /* Margin column */
+    .margin-col { grid-column: 3 / 4; }
+
+    /* ─── PAGE HEADER ───────────────────────────────────────── */
+    .page-header {
+      padding-top: 100px;
+      padding-bottom: 2.8rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .doc-crumbs {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      margin-bottom: 2.4rem;
+      display: flex; gap: 0.6rem; align-items: center;
+    }
+    .doc-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .doc-crumbs a:hover { color: var(--ink); }
+    .doc-crumbs .sep { color: var(--ink-ghost); }
+
+    .page-title-row {
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    h1.page-title {
+      font-family: var(--serif); font-size: 2.2rem;
+      font-weight: 400; letter-spacing: 0.01em;
+      color: var(--ink); line-height: 1.1;
+    }
+
+    .page-meta {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      text-align: right; flex-shrink: 0;
+      line-height: 1.9;
+    }
+
+    .page-interest-line {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.96rem; color: var(--ink-soft);
+      margin-top: 1.1rem; line-height: 1.6;
+    }
+    .page-interest-line em { font-style: normal; color: var(--ink-med); }
+
+    /* ─── SECTION RULE ──────────────────────────────────────── */
+    .section-rule {
+      padding-top: 2.8rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .sec-glyph {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--ink-faint); flex-shrink: 0;
+    }
+    .sec-name {
+      font-family: var(--serif); font-size: 1.15rem;
+      font-weight: 400; color: var(--ink);
+    }
+    .sec-count {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-ghost); margin-left: auto;
+    }
+
+    /* ─── PAPERS LIST ───────────────────────────────────────── */
+    .papers-col { padding-top: 1.8rem; }
+
+    .paper {
+      padding: 1.8rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0 1rem;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .paper:last-child { border-bottom: none; }
+    .paper.visible { opacity: 1; transform: translateY(0); }
+
+    .paper-num {
+      font-family: var(--mono); font-size: 0.66rem;
+      color: var(--ink-faint); padding-top: 0.28rem;
+      text-align: right; flex-shrink: 0;
+    }
+
+    .paper-body {}
+
+    .paper-status-row {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 0.45rem; flex-wrap: wrap;
+    }
+
+    /* Status chips */
+    .chip {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.15rem 0.55rem; border-radius: 2px;
+      font-weight: 600; flex-shrink: 0;
+    }
+    .chip-published { background: rgba(80,120,80,0.1); color: #4a7a52; border: 0.5px solid rgba(80,120,80,0.3); }
+    .chip-ongoing   { background: rgba(139,94,60,0.1); color: var(--accent); border: 0.5px solid rgba(139,94,60,0.3); }
+    .chip-upcoming  { background: rgba(100,100,170,0.08); color: #5a5aaa; border: 0.5px solid rgba(100,100,170,0.25); }
+    .chip-completed { background: rgba(60,60,60,0.07); color: var(--ink-soft); border: 0.5px solid var(--rule); }
+
+    .paper-year {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-ghost); letter-spacing: 0.04em;
+    }
+
+    .paper-title {
+      font-family: var(--serif); font-size: 1.08rem;
+      font-weight: 400; color: var(--ink); line-height: 1.35;
+      text-decoration: none; display: block;
+    }
+    .paper-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 0.5px; }
+
+    .paper-title em { font-style: italic; }
+
+    .paper-venue {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.04em;
+      margin-top: 0.35rem; margin-bottom: 0.45rem;
+      display: block;
+    }
+
+    .paper-desc {
+      font-family: var(--serif); font-size: 0.88rem;
+      color: var(--ink-soft); line-height: 1.75;
+      text-align: justify; hyphens: auto;
+    }
+
+    .paper-link {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--accent); letter-spacing: 0.06em;
+      text-decoration: none; margin-top: 0.6rem; display: inline-block;
+      border-bottom: 0.5px solid rgba(139,94,60,0.3);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .paper-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
+
+    /* ─── MARGIN COLUMN ─────────────────────────────────────── */
+    .margin-col {
+      padding-top: 1.8rem;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.8rem;
+    }
+
+    .margin-note {
+      font-family: var(--serif); font-size: 0.75rem;
+      line-height: 1.65; color: var(--ink-soft);
+      margin-bottom: 2.4rem;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .margin-note.visible { opacity: 1; }
+
+    .margin-note .mn-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.07em; color: var(--ink-ghost);
+      text-transform: uppercase; display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .margin-note strong { font-weight: 600; color: var(--ink-med); }
+    .margin-note a { color: var(--ink-med); text-underline-offset: 2px; }
+
+    /* Interest statement in margin */
+    .margin-interests {
+      font-family: var(--serif); font-size: 0.75rem;
+      color: var(--ink-soft); line-height: 1.7;
+      padding: 1rem 1rem 1rem 0.9rem;
+      border-left: 1.5px solid var(--rule);
+      margin-bottom: 2rem;
+      opacity: 0; transition: opacity 0.6s ease 0.1s;
+    }
+    .margin-interests.visible { opacity: 1; }
+    .margin-interests .mi-head {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.08em; color: var(--ink-faint);
+      text-transform: uppercase; display: block; margin-bottom: 0.5rem;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      :root { --outer: 20px; }
+      .document { grid-template-columns: 1fr; }
+      .papers-col { grid-column: 1 / -1; }
+      .margin-col { display: none; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.page-title { font-size: 1.75rem; }
+      .page-title-row { flex-direction: column; gap: 0.6rem; }
+      .page-meta { text-align: left; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="doc-crumbs">
+      <a href="index.html">Akshat Bhaskar</a>
+      <span class="sep">/</span>
+      <span>Research</span>
+    </div>
+    <div class="page-title-row">
+      <h1 class="page-title">Research</h1>
+      <div class="page-meta">
+        New Delhi, India<br>
+        Updated 2026
+      </div>
+    </div>
+    <p class="page-interest-line">
+      Interests: <em>Economic Policy</em> &ensp;·&ensp; <em>Mathematical Economics</em> &ensp;·&ensp; <em>International Economics</em>
+    </p>
+  </div>
+
+  <!-- §1, PAPERS & PUBLICATIONS -->
+  <div class="section-rule">
+    <span class="sec-glyph">§1</span>
+    <span class="sec-name">Papers &amp; Publications</span>
+    <span class="sec-count">4 entries</span>
+  </div>
+
+  <div class="papers-col">
+
+    <!-- P1 -->
+    <div class="paper">
+      <span class="paper-num">[1]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-published">Published</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <a href="aipolicy.html" class="paper-title"><em>The Two Faces of Progress:</em> A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</a>
+        <span class="paper-venue">IJRASET · Vol. 13, Issue 7, 2025 · Peer-reviewed</span>
+        <p class="paper-desc">Research conducted under Professor Surbhi Goel (University of Pennsylvania) on AI policy and existential risk, examining the dual nature of transformative technology through an economic and governance lens. Presented at the NYC STEM Research Conference; I was the only high school student in the room.</p>
+        <a href="aipolicy.html" class="paper-link">Full paper →</a>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="paper">
+      <span class="paper-num">[2]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-published">Published</span>
+          <span class="paper-year">2024</span>
+        </div>
+        <a href="#" class="paper-title"><em>How Economics Runs the World</em></a>
+        <span class="paper-venue">Arbitrage · Finance &amp; Investment Journal, IIM Rohtak</span>
+        <p class="paper-desc">Analysis of global economic structures, monetary policy transmission, regulatory architecture, and capital market dynamics, with proposed improvements to international financial governance. I was the only high school student published in the journal.</p>
+      </div>
+    </div>
+
+    <!-- P3 -->
+    <div class="paper">
+      <span class="paper-num">[3]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-completed">Completed</span>
+        </div>
+        <span class="paper-title">Black Swan Research</span>
+        <span class="paper-venue">Indian School of Business and Finance · Under Prof. Kritika Soni</span>
+        <p class="paper-desc">Investigation into the effects of multi-dimensional low-probability, high-impact risk events on global financial markets, drawing on historical crises and tail-risk modelling frameworks.</p>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="paper">
+      <span class="paper-num">[4]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-ongoing">Ongoing</span>
+        </div>
+        <span class="paper-title">NEP 2020 Impact Research</span>
+        <span class="paper-venue">Independent · India</span>
+        <p class="paper-desc">Studying the effect of India's National Education Policy 2020 on graduate employability, skill development, and the structural transition of the labour market, with a focus on vocational and higher education pathways.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MARGIN: Papers -->
+  <div class="margin-col" id="margin-papers">
+    <div class="margin-interests">
+      <span class="mi-head">Research statement</span>
+      Akshat is interested in the economics of information and governance, how institutions encode knowledge, how policy alters incentive structures, and where rigorous mathematical tools can illuminate questions that prose alone cannot.
+    </div>
+
+    <div class="margin-note">
+      <span class="mn-label">Note [1]</span>
+      <strong>Prof. Surbhi Goel</strong> is a faculty member at the University of Pennsylvania. The paper appears in IJRASET (Vol. 13, Issue 7, 2025) and was presented in New York.
+    </div>
+
+    <div class="margin-note">
+      <span class="mn-label">Note [2]</span>
+      <strong>Arbitrage</strong> is the Finance &amp; Investment Journal of IIM Rohtak, one of India's premier management schools.
+    </div>
+
+    <div class="margin-note">
+      <span class="mn-label">Note [3]</span>
+      Research mentored by <strong>Prof. Kritika Soni</strong> at the India School of Business and Finance.
+    </div>
+  </div>
+
+  <!-- §2, PROGRAMMES & FELLOWSHIPS -->
+  <div class="section-rule">
+    <span class="sec-glyph">§2</span>
+    <span class="sec-name">Programmes &amp; Fellowships</span>
+    <span class="sec-count">3 entries</span>
+  </div>
+
+  <div class="papers-col">
+
+    <!-- F1 -->
+    <div class="paper">
+      <span class="paper-num">[5]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-upcoming">Concluded · 15th May – 20th Jun 2026</span>
+        </div>
+        <a href="mathapprenticeship.html" class="paper-title">Number Theory Research, Lodha Genius Undergraduate Research Mathematics Apprenticeship</a>
+        <span class="paper-venue">Ashoka University · LG-AUP · Paid research programme</span>
+        <p class="paper-desc">Original research in algebraic number theory under Professor Shanta Laishram (Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi).</p>
+        <a href="mathapprenticeship.html" class="paper-link">Programme details →</a>
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="paper">
+      <span class="paper-num">[6]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-completed">Completed Fall 2025</span>
+        </div>
+        <a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" target="_blank" rel="noopener" class="paper-title">New York Academy of Sciences, Junior Academy</a>
+        <span class="paper-venue">NYAS Junior Academy · Fall 2025 Challenge · Energy Infrastructure</span>
+        <p class="paper-desc">Selected into the NYAS Junior Academy in August 2025. Completed the Fall 2025 Challenge on Energy Infrastructure in collaboration with a global cohort of secondary students, developing science-backed policy and engineering solutions.</p>
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="paper">
+      <span class="paper-num">[7]</span>
+      <div class="paper-body">
+        <div class="paper-status-row">
+          <span class="chip chip-completed">Completed</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <a href="lgp.html" class="paper-title">Lodha Genius Programme, Pure Mathematics</a>
+        <span class="paper-venue">Ashoka University · ≈3.2% acceptance · Fully funded residential</span>
+        <p class="paper-desc">Completed university-level pure mathematics, Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates. One of fewer than 30 students admitted nationwide.</p>
+        <a href="lgp.html" class="paper-link">Read more →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MARGIN: Programmes -->
+  <div class="margin-col">
+
+    <div class="margin-note" style="margin-top:1.8rem;">
+      <span class="mn-label">Note [5]</span>
+      <strong>Prof. Shanta Laishram</strong> is the Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi, working in algebraic number theory.
+    </div>
+
+    <div class="margin-note">
+      <span class="mn-label">Note [6]</span>
+      The <strong>NYAS Junior Academy</strong> is a global STEM research programme for exceptional secondary students. <a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" target="_blank">nyas.org ↗</a>
+    </div>
+
+    <div class="margin-note">
+      <span class="mn-label">Note [7]</span>
+      The <strong>Lodha Genius Programme</strong> at Ashoka University is India's most selective mathematics enrichment programme for school students.
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* Progress */
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* Nav */
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  /* Scroll-in animations */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.paper, .margin-note, .margin-interests').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

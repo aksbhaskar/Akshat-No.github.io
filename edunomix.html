@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edunomix India Chapter | Akshat Bhaskar</title>
+  <meta name="description" content="Akshat Bhaskar founded the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit, running financial literacy workshops, an essay competition across 19 states, and international outreach." />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:        #fffff8;
+      --ink:          #111110;
+      --ink-med:      #333330;
+      --ink-soft:     #666660;
+      --ink-faint:    #999990;
+      --ink-ghost:    #ccccbb;
+      --rule:         #d0d0c0;
+      --rule-light:   #e4e4d8;
+      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:         'Inconsolata', 'Courier New', monospace;
+      --col-width:    460px;
+      --gutter:       28px;
+      --outer:        clamp(24px, 4vw, 56px);
+      --max-doc:      860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--col-width) var(--gutter) 1fr;
+    }
+
+    .doc-full,
+    .titlepage,
+    .section-head,
+    .doc-footer { grid-column: 1 / -1; }
+
+    .body-col   { grid-column: 1 / 2; }
+    .margin-col { grid-column: 3 / 4; }
+
+    /* ─── PROGRESS ──────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── TITLE PAGE ────────────────────────────────────────── */
+    .titlepage {
+      padding-top: 90px;
+      padding-bottom: 0;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+
+    .doc-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
+    }
+
+    .title-block {
+      padding-bottom: 2.6rem;
+    }
+
+    .back-mono {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; display: inline-block;
+      margin-bottom: 1.5rem; transition: color 0.2s;
+    }
+    .back-mono:hover { color: var(--ink); }
+    .back-mono::before { content: '← '; }
+
+    .page-label {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.09em;
+      text-transform: uppercase; display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    h1.page-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────────────── */
+    .section-head {
+      padding-top: 3rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .sec-num  { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title{ font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+
+    /* ─── BODY COLUMN ───────────────────────────────────────── */
+    .body-col {
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    /* prose paragraphs */
+    .prose {
+      font-family: var(--serif);
+      font-size: 0.97rem;
+      line-height: 1.82;
+      color: var(--ink-med);
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 1.5rem;
+    }
+    .prose:last-child { margin-bottom: 0; }
+    .prose a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 3px;
+    }
+    .prose a:hover { color: var(--ink-soft); }
+    .prose strong { font-weight: 600; color: var(--ink-med); }
+
+    /* sub-heading within body */
+    .body-subhead {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-top: 2.4rem;
+      margin-bottom: 0.7rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+
+    /* article list */
+    .article-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .article-list li {
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .article-list li:first-child { border-top: 0.5px solid var(--rule-light); }
+    .article-list li.visible { opacity: 1; transform: translateY(0); }
+
+    .article-num {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.05em;
+      display: block; margin-bottom: 0.2rem;
+    }
+    .article-link {
+      font-family: var(--serif); font-size: 0.95rem;
+      color: var(--ink); text-decoration: none; display: block;
+      line-height: 1.3;
+    }
+    .article-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .article-desc {
+      font-family: var(--serif); font-size: 0.82rem;
+      color: var(--ink-soft); margin-top: 0.15rem;
+      line-height: 1.6;
+    }
+
+    /* stat pills */
+    .stat-row {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0 0.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .stat-row.visible { opacity: 1; transform: translateY(0); }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: var(--serif); font-size: 1.6rem;
+      font-weight: 400; color: var(--ink); line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-transform: uppercase; margin-top: 0.25rem;
+    }
+
+    /* ─── MARGIN COLUMN ─────────────────────────────────────── */
+    .margin-col {
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.6rem;
+    }
+
+    .marginal {
+      font-family: var(--serif);
+      font-size: 0.76rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .marginal.visible { opacity: 1; }
+    .marginal sup {
+      font-family: var(--mono); font-size: 0.58rem;
+      color: var(--ink-faint); margin-right: 0.2rem;
+    }
+    .marginal strong { font-weight: 600; color: var(--ink-med); }
+    .marginal a {
+      color: var(--ink-soft);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 3px;
+    }
+    .marginal a:hover { color: var(--ink); }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      :root { --outer: 20px; }
+      .document { grid-template-columns: 1fr; }
+      .body-col  { grid-column: 1 / -1; }
+      .margin-col{ display: none; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.page-title { font-size: 1.65rem; }
+      .stat-row { gap: 1.4rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- TITLE PAGE -->
+  <div class="titlepage">
+    <div class="doc-meta-top">
+      <span>Experience &nbsp;·&nbsp; Since 2023</span>
+      <span>New Delhi &nbsp;·&nbsp; India</span>
+    </div>
+    <div class="title-block">
+      <a href="experience.html" class="back-mono">Back to Experience</a>
+      <span class="page-label">Nonprofit Leadership &nbsp;·&nbsp; Financial Literacy</span>
+      <h1 class="page-title">Founder &amp; President<br>Edunomix India Chapter</h1>
+      <p class="page-subtitle">US 501(c)(3) · First South Asia Chapter · Since 2023</p>
+    </div>
+  </div>
+
+  <!-- §1 ORIGIN -->
+  <div class="section-head" id="origin">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Origin</span>
+  </div>
+
+  <div class="body-col" id="body-origin">
+    <p class="prose reveal">
+      I joined <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">Edunomix</a>, a fiscally-sponsored <strong>501(c)(3) nonprofit</strong> based in the United States, in 10th grade as a researcher, exploring financial literacy and its measurable impact on young learners. The work raised a larger question: could this model be adapted meaningfully for India, where access to practical financial education remains thin across most school systems?
+    </p>
+    <p class="prose reveal">
+      That question led to the founding of the <strong>India Chapter of the Edunomix Institute</strong>, the organisation's first presence in South Asia. What began as a research role grew into a leadership-driven effort to scale financial literacy through education, outreach, and institutional reach.
+    </p>
+
+    <!-- stats -->
+    <div class="stat-row" id="stats">
+      <div class="stat-item">
+        <span class="stat-num">19</span>
+        <span class="stat-label">States reached</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">54</span>
+        <span class="stat-label">Schools</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2023</span>
+        <span class="stat-label">Chapter founded</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="margin-col" id="margin-origin">
+    <div class="marginal reveal-m">
+      <sup>†</sup>
+      <strong>Edunomix Institute</strong> is a US 501(c)(3) nonprofit dedicated to making economics and financial literacy accessible to students worldwide, through courses, articles, games, and competitions. <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com ↗</a>
+    </div>
+    <div class="marginal reveal-m">
+      <sup>‡</sup>
+      The India Chapter is the first Edunomix chapter established in South Asia, conceived and built from the ground up by Akshat during 10th grade.
+    </div>
+  </div>
+
+  <!-- §2 WORK -->
+  <div class="section-head" id="work">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Work &amp; Impact</span>
+  </div>
+
+  <div class="body-col" id="body-work">
+    <p class="prose reveal">
+      As President of the India Chapter, the work has spanned three distinct streams: direct education, international outreach, and competitive programming. Financial literacy workshops and seminars were designed and delivered for students across diverse socioeconomic backgrounds, translating macroeconomic concepts into practical, real-world understanding.
+    </p>
+    <p class="prose reveal">
+      This work has also extended beyond India. Displaced Ukrainian students were taught as part of an international outreach effort, reinforcing the view that financial literacy is a tool for resilience in conditions of instability, not merely a classroom subject for comfortable circumstances.
+    </p>
+
+    <div class="body-subhead">Essay Competition, 2025</div>
+    <p class="prose reveal">
+      In 2025, the <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">Edunomix India Economics Essay Competition</a> was launched, open to high school students across the country. The goal was direct: get young Indians thinking seriously about money, systems, and the economy around them. Entries came in on topics spanning personal finance, economic policy, and financial inclusion, drawing participation from <strong>over 19 states and 54 schools</strong>.
+    </p>
+  </div>
+
+  <div class="margin-col" id="margin-work">
+    <div class="marginal reveal-m">
+      <sup>§</sup>
+      Workshops were designed to simplify concepts like taxation, investment vehicles, and budgeting, not as abstract theory, but as tools students could apply within their own lives.
+    </div>
+    <div class="marginal reveal-m">
+      <sup>¶</sup>
+      Teaching displaced Ukrainian students reflected a conviction that economic education is most urgent precisely when normal structures have broken down.
+    </div>
+    <div class="marginal reveal-m">
+      <sup>‖</sup>
+      The <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">Essay Competition</a> was India's first economics writing competition of this kind targeting secondary students at national scale.
+    </div>
+  </div>
+
+  <!-- §3 RESEARCH -->
+  <div class="section-head" id="research">
+    <span class="sec-num">§3</span>
+    <span class="sec-title">Research &amp; Articles</span>
+  </div>
+
+  <div class="body-col" id="body-research">
+    <p class="prose reveal">
+      Alongside leadership, the role involved producing research and analysis published on the Edunomix platform, covering economic events and policy developments relevant to Indian and global audiences.
+    </p>
+
+    <ul class="article-list">
+      <li>
+        <span class="article-num">[i]</span>
+        <a class="article-link" href="https://edunomixinstitute.com/articles/e0df22f5821c4dfcb041a24c8ccc34c8" target="_blank" rel="noopener">India Budget 2024</a>
+        <span class="article-desc">Analysis of key allocations in the Union Budget and their macroeconomic implications for India.</span>
+      </li>
+      <li>
+        <span class="article-num">[ii]</span>
+        <a class="article-link" href="https://edunomixinstitute.com/articles/dbbd24e43cb14148abf6742409c1d1c2" target="_blank" rel="noopener">Unveiling ONDC: Transforming Indian E-Commerce</a>
+        <span class="article-desc">How the Open Network for Digital Commerce is reshaping retail access and market structure across India.</span>
+      </li>
+      <li>
+        <span class="article-num">[iii]</span>
+        <a class="article-link" href="https://edunomixinstitute.com/articles/d84ccc6f9da14da0b2a3aab6564f1a31" target="_blank" rel="noopener">Bangladesh in 2024: What's Next?</a>
+        <span class="article-desc">Examining the political and economic fallout of the 2024 Bangladesh crisis and its regional implications.</span>
+      </li>
+      <li>
+        <span class="article-num">[iv]</span>
+        <a class="article-link" href="https://edunomixinstitute.com/articles/f241ff497568435da8ba5ce9f138289d" target="_blank" rel="noopener">Private Jets and the World Economy</a>
+        <span class="article-desc">The economics of private aviation: wealth concentration, market dynamics, and environmental cost.</span>
+      </li>
+      <li>
+        <span class="article-num">[v]</span>
+        <a class="article-link" href="https://edunomixinstitute.com/articles/8160334a84f645a892058d8e61077bb8" target="_blank" rel="noopener">The Rise of Sustainable Finance</a>
+        <span class="article-desc">Growth of ESG investing and green finance frameworks, and what they mean in practice.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="margin-col" id="margin-research">
+    <div class="marginal reveal-m">
+      <sup>**</sup>
+      All five articles were published on the <strong>Edunomix platform</strong> and represent original research and writing conducted as part of the India Chapter role.
+    </div>
+    <div class="marginal reveal-m" style="margin-top: 9rem;">
+      <sup>††</sup>
+      Topics were chosen deliberately for their relevance to Indian student readers, national budget, domestic digital infrastructure, regional geopolitics, and emerging global finance trends.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* progress bar */
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  /* intersection observer, prose + article items */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+
+  document.querySelectorAll('.article-list li, .stat-row').forEach(el => obs.observe(el));
+
+  /* prose fade-in */
+  const obsP = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        obsP.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.prose.reveal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(8px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    obsP.observe(el);
+  });
+
+  /* marginal notes fade */
+  const obsM = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obsM.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.marginal').forEach(el => obsM.observe(el));
+</script>
+</body>
+</html>

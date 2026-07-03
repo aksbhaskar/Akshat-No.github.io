@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404, Page Not Found | Akshat Bhaskar</title>
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper:      #fffff8;
+      --ink:        #111110;
+      --ink-med:    #333330;
+      --ink-soft:   #666660;
+      --ink-faint:  #999990;
+      --ink-ghost:  #ccccbb;
+      --rule:       #d0d0c0;
+      --rule-light: #e4e4d8;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── 404 BODY ──────────────────────────────────────────── */
+    .error-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 clamp(24px, 6vw, 80px);
+      padding-top: 56px; /* topbar height */
+    }
+
+    .error-num {
+      font-family: var(--serif);
+      font-size: clamp(6rem, 18vw, 11rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--ink-ghost);
+      opacity: 0;
+      animation: rise 0.7s ease 0.05s forwards;
+    }
+
+    .error-rule {
+      width: 40px;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 1.5rem auto;
+      opacity: 0;
+      animation: rise 0.6s ease 0.2s forwards;
+    }
+
+    .error-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-med);
+      margin-bottom: 0.6rem;
+      opacity: 0;
+      animation: rise 0.6s ease 0.3s forwards;
+    }
+
+    .error-desc {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.78;
+      max-width: 360px;
+      margin: 0 auto 2.8rem;
+      opacity: 0;
+      animation: rise 0.6s ease 0.42s forwards;
+    }
+
+    /* nav link grid */
+    .error-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      max-width: 480px;
+      border: 0.5px solid var(--rule);
+      opacity: 0;
+      animation: rise 0.6s ease 0.55s forwards;
+    }
+
+    .error-nav a {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 0.65rem 1.3rem;
+      border-right: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+      transition: color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .error-nav a:hover {
+      color: var(--ink);
+      background: rgba(17,17,16,0.03);
+    }
+    .error-nav a.primary {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    /* remove right border on last in a row, handled by wrapping naturally */
+    .error-nav a:last-child { border-right: none; }
+
+    .error-foot {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-ghost);
+      letter-spacing: 0.07em;
+      margin-top: 3rem;
+      opacity: 0;
+      animation: rise 0.6s ease 0.68s forwards;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      .error-nav a { padding: 0.6rem 1rem; font-size: 0.6rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- 404 -->
+<div class="error-wrap">
+  <div class="error-num">404</div>
+  <div class="error-rule"></div>
+  <p class="error-title">This page doesn't exist.</p>
+  <p class="error-desc">You may have followed a broken link, or the page has moved. Here's where you probably want to go.</p>
+
+  <div class="error-nav">
+    <a href="index.html" class="primary">← Home</a>
+    <a href="education.html">Education</a>
+    <a href="experience.html">Experience</a>
+    <a href="awards.html">Awards</a>
+    <a href="research.html">Research</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="bookshelf.html">Bookshelf</a>
+  </div>
+
+  <p class="error-foot">akshatbhaskar.ninja &nbsp;·&nbsp; 2026</p>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+</script>
+</body>
+</html>

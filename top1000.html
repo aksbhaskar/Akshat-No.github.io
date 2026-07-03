@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 1000 in the World, 40 Cool Pursuits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --border: #e8e3d9;
+  --border-dark: #c8c2b4;
+  --text: #1c1a16;
+  --muted: #8a8070;
+  --faint: #b8b0a0;
+  --green: #1a6645;
+  --green-bg: #e4f2eb;
+  --green-border: #a0d4b8;
+  --blue: #1a4a8a;
+  --blue-bg: #e6eef8;
+  --blue-border: #92b4e0;
+  --amber: #7a4a0a;
+  --amber-bg: #fdf0d8;
+  --amber-border: #e8c070;
+  --red: #7a1a1a;
+  --red-bg: #fde8e8;
+  --red-border: #e09090;
+  --tag-high: #1c1a16;
+  --tag-high-bg: #e8e3d9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+/* HERO */
+.hero { margin-bottom: 2.5rem; }
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; color: var(--text); margin-bottom: 12px; }
+.hero h1 span { color: var(--muted); }
+.hero p { font-size: 14px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 1.5rem; }
+
+/* PROGRESS */
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+.prog-track { width: 240px; height: 3px; background: var(--border); border-radius: 999px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--text); border-radius: 999px; transition: width 0.4s; }
+.prog-label { font-size: 12px; color: var(--muted); }
+
+/* CONTROLS */
+.controls-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 400;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 0.5px solid var(--border-dark);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.pill:hover { background: var(--border); color: var(--text); }
+.pill.active { background: var(--text); color: #fff; border-color: var(--text); }
+.sort-row { display: flex; gap: 6px; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.sort-label { font-size: 11px; color: var(--faint); letter-spacing: 0.05em; }
+.sort-row .pill.active { background: var(--border); color: var(--text); border-color: var(--border-dark); }
+.meta-line { font-size: 12px; color: var(--faint); margin-bottom: 1rem; }
+
+/* GRID */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 10px; }
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card:hover { border-color: var(--border-dark); }
+.card.open { border-color: #aaa8a0; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.card.done { opacity: 0.4; }
+
+.card-head {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 1.1rem 1.2rem;
+  cursor: pointer;
+  user-select: none;
+}
+.card-head:hover, .card.open .card-head { background: #faf9f6; }
+
+.check {
+  width: 18px; height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--border-dark);
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.check.on { background: var(--text); border-color: var(--text); }
+.check.on::after {
+  content: '';
+  display: block;
+  width: 5px; height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(40deg) translateY(-1px);
+}
+
+.card-main { flex: 1; min-width: 0; }
+.card-title { font-size: 13.5px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.card-tags { display: flex; gap: 5px; margin-top: 7px; flex-wrap: wrap; }
+.tag {
+  font-size: 10.5px; padding: 2px 8px;
+  border-radius: 999px; border: 0.5px solid;
+  white-space: nowrap; font-weight: 400;
+}
+.t-cat { background: #f4f2ec; color: #555040; border-color: #d0ccbc; }
+.t-free { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+.t-low { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+.t-easy { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+.t-med { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+.t-hard { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+.t-wow { background: var(--tag-high-bg); color: var(--tag-high); border-color: var(--border-dark); font-weight: 500; }
+
+.chev { font-size: 10px; color: var(--faint); transition: transform 0.2s; flex-shrink: 0; margin-top: 4px; }
+.card.open .chev { transform: rotate(180deg); }
+
+/* BODY */
+.card-body { display: none; padding: 0 1.2rem 1.2rem; border-top: 0.5px solid var(--border); }
+.card.open .card-body { display: block; }
+
+.sec-label {
+  font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--faint);
+  margin: 1rem 0 6px;
+}
+.sec-label:first-child { margin-top: 1rem; }
+
+.desc { font-size: 13px; color: #555; line-height: 1.7; }
+
+.steps { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.steps li { display: flex; gap: 8px; font-size: 13px; color: #555; line-height: 1.6; }
+.step-n { font-size: 11px; color: var(--faint); min-width: 16px; margin-top: 2px; flex-shrink: 0; font-weight: 500; }
+
+.rank-box {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.tl-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.tl-track { flex: 1; height: 3px; background: var(--border); border-radius: 999px; overflow: hidden; }
+.tl-fill { height: 100%; background: var(--border-dark); border-radius: 999px; }
+.tl-label { font-size: 11px; color: var(--muted); min-width: 90px; text-align: right; white-space: nowrap; }
+
+.res-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; color: var(--blue);
+  text-decoration: none;
+  padding: 5px 11px;
+  border: 0.5px solid var(--blue-border);
+  border-radius: 8px;
+  margin-top: 4px;
+  transition: background 0.1s;
+}
+.res-btn:hover { background: var(--blue-bg); }
+
+.empty { grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--faint); font-size: 14px; }
+</style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-eyebrow">Official · Verified · Minimal cost</div>
+  <h1>Top 1000 <span>in the world.</span></h1>
+  <p>40 pursuits a 17-year-old can genuinely reach an official global top 1000 ranking in, curated for the ones that actually sound incredible when you say them out loud.</p>
+  <div class="prog-row">
+    <div class="prog-track"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+    <span class="prog-label" id="plbl">0 / 40 done</span>
+  </div>
+</div>
+
+<div class="controls-row" id="catbar"></div>
+<div class="sort-row">
+  <span class="sort-label">SORT</span>
+  <button class="pill active" data-s="def">Default</button>
+  <button class="pill" data-s="cost">Cost</button>
+  <button class="pill" data-s="diff">Difficulty</button>
+  <button class="pill" data-s="time">Time to top 1000</button>
+</div>
+<div class="meta-line" id="mlbl">40 pursuits</div>
+<div class="grid" id="grid"></div>
+</div>
+
+<script>
+const DATA = [
+
+/* ─── PHYSICAL ─── */
+{id:1,cat:"Physical",wow:"Extremely cool",
+title:"Rubik's cube, one-handed solving, WCA world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:2,yrM:4,time:"2–3 years",
+desc:"The WCA tracks one-handed solving as its own official event with a fully public global ranking. Top 1000 in the world is around 15–17 seconds average. When you solve a Rubik's cube one-handed in front of someone, the reaction is immediate. Being able to add 'and I'm world top 1000' makes it extraordinary.",
+steps:[
+"Learn to solve two-handed using the CFOP method first, this is a mandatory prerequisite. Takes 2–4 weeks of daily practice",
+"Transfer to one hand: hold the cube with thumb on bottom face, index and middle fingers on the opposite side, ring finger on the third face. The grip changes everything",
+"Learn one-handed regrips: the cube must reorient in your hand between algorithm steps. Practise slow regrip rotations before adding speed",
+"Learn one-handed fingertricks for OLL and PLL algorithms, SpeedSolving wiki documents the one-handed version of every algorithm",
+"Focus training on F2L (First Two Layers), this is the largest time component. Build muscle memory for inserting pairs into the bottom layer with one hand only",
+"Attend a WCA competition and submit a 5-solve average. Your average immediately appears in the official live world ranking"
+],
+rank:"WCA one-handed world ranking is fully public and updates after every sanctioned competition. Top 1000 globally is approximately 15–17 seconds average, a very different target from 3×3 two-handed.",
+res:{l:"WCA one-handed world ranking",u:"https://www.worldcubeassociation.org/results/rankings/333oh/average"}},
+
+{id:2,cat:"Physical",wow:"Very cool",
+title:"Speedcubing, Pyraminx, WCA world top 1000",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"A Pyraminx is the triangular pyramid-shaped puzzle with WCA official rankings. Top 1000 globally is ~3.5 seconds average, far more reachable than the 3×3 (~9 seconds for top 1000). 'World top 1000 speedcuber' is something anyone understands instantly and almost no one has ever met.",
+steps:[
+"Buy a MoYu or QiYi Pyraminx (~₹400), both are competition-legal and fast enough to reach top 1000",
+"Learn the beginner method: solve the three tips first (trivial one-move fixes), then orient the three edges, then permute them, total of 4 stages",
+"Move to the L4E method (Last Four Edges): learn all 8 algorithms. This drops your average from ~15 seconds to sub-8 seconds",
+"Practice recognising all cases instantly without needing to think, it becomes pattern recognition, not algorithm retrieval",
+"Target sub-5 seconds through lookahead: plan the next step while executing the current one",
+"Attend any WCA competition, Pyraminx is included in almost every event. Your official average is published live on the world ranking"
+],
+rank:"WCA Pyraminx rankings update live after every sanctioned event worldwide. Top 1000 globally is approximately 3.5 seconds average, far more reachable than 3×3.",
+res:{l:"WCA Pyraminx world ranking",u:"https://www.worldcubeassociation.org/results/rankings/pyram/average"}},
+
+{id:3,cat:"Physical",wow:"Extremely cool",
+title:"Rubik's cube blindfolded solve, WCA 3BLD world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"Memorise a scrambled Rubik's cube, put on a blindfold, and solve it perfectly from memory. WCA tracks this as a completely separate official event with its own global ranking. Nothing combines memory and motor skill more dramatically, it looks like a magic trick.",
+steps:[
+"Learn to solve a standard Rubik's cube to sub-2 minutes two-handed first, mandatory foundation",
+"Learn the M2/OP (Old Pochmann) blindfold method: memorise every piece's position using letter pairs, then execute fixed algorithms that cycle pieces into place without disturbing the solved ones",
+"Build a letter-pair image system: assign a vivid unique image to every 2-letter combination that appears in your memorisation sequence (AA = archer, AB = Abraham Lincoln, etc.)",
+"Memorisation phase first: look at the cube, generate your full letter-pair sequence, set it down, close your eyes and recall the full sequence from memory before touching it",
+"Execution phase: run each algorithm slowly with eyes open, then with eyes closed. Build muscle memory for each algorithm independently until it requires no conscious thought",
+"Enter WCA competitions with the 3BLD event, even one successful solve at any speed enters you into the official global ranking"
+],
+rank:"WCA 3BLD world ranking is fully public. Any successful competition solve at any speed enters you into the official global ranking, separate from speed events.",
+res:{l:"WCA 3BLD world ranking",u:"https://www.worldcubeassociation.org/results/rankings/333bf/single"}},
+
+{id:4,cat:"Physical",wow:"Extremely cool",
+title:"Competitive juggling, IJA world championship ranking",
+cost:"l",cL:"<₹500",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"The International Juggling Association runs official world championships with public global rankings. Five-ball juggling and freestyle routines look extraordinary. It is one of the few skills that makes people physically stop walking. Practice balls can be made from socks.",
+steps:[
+"Master 3-ball juggling to 200+ unbroken catches before touching anything else. Use rolled socks for practice, no cost",
+"Learn the cascade pattern precisely: every throw arcs to the opposite hand at the same consistent height. Uniformity is everything",
+"Move to 4-ball juggling (fountain pattern, both hands throw simultaneously, not alternately). Spend 4–6 weeks here before attempting 5",
+"5-ball juggling requires significantly higher and narrower throws than 3-ball. Drill the correct throw height and trajectory separately before adding the fifth ball",
+"Practice 10 minutes daily minimum, juggling is a motor learning skill that requires frequency more than long sessions",
+"Build a 2-minute freestyle routine combining patterns and transitions. Enter IJA-sanctioned competitions, results feed directly into official world rankings"
+],
+rank:"IJA official world rankings are maintained per discipline. The global juggling field is smaller than most sports, top 1000 is reachable with 2–4 years of consistent daily practice.",
+res:{l:"International Juggling Association",u:"https://www.juggle.org"}},
+
+{id:5,cat:"Physical",wow:"Very cool",
+title:"Competitive beatboxing, Grand Beatbox Battle world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"The Grand Beatbox Battle and Beatbox Battle World Championship maintain official global rankings. You can demonstrate this skill on the spot with zero props. 'World top 1000 beatboxer' is a thing you can prove right there in the conversation, few skills have this double power.",
+steps:[
+"Learn 3 core sounds entirely in isolation, never combine until each is clean: kick drum (lips together, 'b' sound, burst of air), hi-hat ('ts' sound behind teeth), snare ('pf' through lips or K-snare from the throat)",
+"Lock each sound at 80 BPM for 2 uninterrupted minutes without dropping quality. Bad fundamentals built fast are the main reason people plateau",
+"Combine kick + hi-hat only: b-ts-b-ts at a steady tempo. Practice this until it requires zero conscious thought",
+"Add snare on beats 2 and 4: b-ts-PF-ts. This is the standard groove and the base of most competition routines",
+"Learn the inward bass drum (IBD): produce the kick sound while inhaling, this allows continuous performance without breath breaks and separates performers from hobbyists",
+"Enter regional and national beatbox battles, judged on originality, technique, and crowd response. Results are tracked and feed into the Grand Beatbox Battle global circuit"
+],
+rank:"Grand Beatbox Battle and BBBWC maintain official global rankings via competition results. The field is large enough that top 1000 is a meaningful global milestone.",
+res:{l:"Humanbeatbox.com fundamentals",u:"https://humanbeatbox.com/articles/learn-how-to-beatbox/"}},
+
+{id:6,cat:"Physical",wow:"Very cool",
+title:"Competitive yo-yo, WYYF official world ranking",
+cost:"l",cL:"<₹2,000",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The World Yo-Yo Federation maintains official global rankings for freestyle competitions judged on technical difficulty and execution. Competitive yo-yo at top level looks like nothing people have ever seen, string tricks that appear physically impossible. The global field is small.",
+steps:[
+"Start with a responsive yo-yo (~₹600), learn the basic throw, sleeper, trapeze mount, and bind (to return the yo-yo without it automatically coming back)",
+"Move to an unresponsive yo-yo (~₹1,500), requires a bind to return, enabling far more complex string manipulations",
+"Learn intermediate string tricks in sequence: Trapeze → Double-or-Nothing → Houdini Mount → Buddha's Revenge → Wormhole. Each has multiple YouTube tutorials",
+"Study the competition format: 3-minute freestyle routine judged on technical difficulty and execution cleanliness. Every trick must land cleanly",
+"Build a full routine: choose music, choreograph transitions between tricks, rehearse the entire routine with music daily",
+"Enter WYYF India nationals, results feed into WYYF global world ranking. Video submissions are accepted if in-person attendance is not possible"
+],
+rank:"WYYF maintains official world rankings per division and age category. The global field is small, top 1000 is achievable with 2–3 years of dedicated training and competition entry.",
+res:{l:"World Yo-Yo Federation",u:"https://www.worldyoyo.org"}},
+
+{id:7,cat:"Physical",wow:"Very cool",
+title:"Competitive jump rope, IJRU world ranking",
+cost:"l",cL:"<₹1,500",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The International Jump Rope Union maintains official world rankings across speed, freestyle, and double dutch events. Competitive jump rope, triple unders, power moves, elaborate footwork, is visually extraordinary. Youth divisions have their own global rankings.",
+steps:[
+"Buy a quality bearing speed rope under ₹800, it rotates faster than cheaper ropes and is the competition standard",
+"Master basic bounce, alternate foot step, then double unders (rope passes twice per jump), in that exact order. Do not skip steps",
+"For speed events: train turnover rate using tabata intervals, 20 seconds max speed, 10 seconds rest, 8 rounds. Target 180+ jumps per 30 seconds",
+"For freestyle: learn triple unders (3 rope passes per jump), crossed-arm jumps, and leg-over variations, these are the visual moments that win competitions",
+"Combine skills into a 75-second music-synchronised routine, timing moves to music beats dramatically improves competition scores",
+"Enter IJRU-sanctioned events through the Indian rope skipping federation, results feed directly into IJRU youth world rankings"
+],
+rank:"IJRU official world rankings are maintained per event and age/division. Youth division rankings have separate top 1000 cutoffs more accessible than adult divisions.",
+res:{l:"International Jump Rope Union",u:"https://www.ijru.sport"}},
+
+{id:8,cat:"Physical",wow:"Very cool",
+title:"Competitive pen spinning, PSPC world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"The Pen Spinning World Cup maintains documented global rankings for freestyle pen spinning. Doing a clean combo during a meeting or lecture and making it look effortless is a specific kind of impressive with no equivalent. Equipment cost: zero.",
+steps:[
+"Build a mod pen: press two heavier pen caps (from any click-pen) onto each end of a Pilot G2 barrel, this gives the weight distribution required for controlled spinning. No cost",
+"Learn Thumbaround: flick the pen backward with your middle finger, it rotates 360° over your thumb, catch it cleanly. Expect 1–2 weeks of 20-minute daily practice",
+"Learn Fingerpass: the pen rolls sequentially across all four fingers without any throwing motion. Practice one finger transition at a time, very slowly",
+"Learn Sonic: the pen spins 360° between index and middle finger driven by a sharp wrist flick, the hardest of the three basics",
+"Build a combo: Thumbaround → Fingerpass → Sonic in smooth sequence without pausing. This is the minimum for competition entry",
+"Enter PSPC online video competition rounds, submit a filmed routine judged on complexity and execution cleanliness. Rankings update after each round"
+],
+rank:"PSPC and Pentrix maintain global community rankings via competition results. The field is small globally, top 1000 is a realistic 1–2 year target.",
+res:{l:"Pentrix pen spinning community",u:"https://www.pentrix.com"}},
+
+{id:9,cat:"Physical",wow:"Very cool",
+title:"Competitive sport stacking, WSSA world ranking",
+cost:"l",cL:"<₹1,500",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"The World Sport Stacking Association maintains official world rankings for cup stacking events. Watching elite sport stacking is genuinely shocking, hands moving faster than seems mechanically possible. Youth divisions have separate rankings with distinct top 1000 cutoffs.",
+steps:[
+"Buy a Speed Stacks competition set with official mat and timer (~₹1,200), the mat triggers the timer automatically, required for verified record submission",
+"Learn 3-6-3: up-stack 3 cups left, 6 cups center, 3 cups right, then down-stack in reverse. This is the primary competition event",
+"Practice each sub-movement in isolation: 3-stack up alone, 3-stack down alone, 6-stack up alone, 6-stack down alone. Only combine once each is clean",
+"Develop symmetric hand independence, left and right hands operate independently in precise alternating timing. Drill each hand alone before combining",
+"Speed comes only after clean technique, sloppy fast practice ingrains errors that take months to remove. Slow, correct repetitions first",
+"Submit verified times to WSSA through their official app. Enter WSSA-sanctioned events through the India affiliate for official age-category global ranking"
+],
+rank:"WSSA official world rankings are maintained per event and age category. Youth division top 1000 cutoffs are more accessible than adult, a realistic 1–2 year target.",
+res:{l:"World Sport Stacking Association",u:"https://www.thewssa.com"}},
+
+{id:10,cat:"Physical",wow:"Very cool",
+title:"Marathon running, ARRS world age-group ranking",
+cost:"l",cL:"<₹2,000",diff:"h",dL:"Hard",yr:2,yrM:4,time:"2–3 years",
+desc:"The Association of Road Racing Statisticians maintains official world rankings for marathon times by age group. The under-20 global ranking is separate from adult, and a sub-2:45 marathon as a 17-year-old puts you in world-elite youth territory. Running is universally understood and universally respected.",
+steps:[
+"Build an aerobic base first: run 5 days per week at easy conversational pace for 3 months. If you cannot speak in full sentences, you are running too hard",
+"Follow the Hal Higdon Novice 2 marathon training plan (free online), it structures 18 weeks of progressive long runs, tempo runs, and recovery days",
+"One long run per week is the most important single training element, increase by 1–2km each week, peaking at 32km three weeks before race day",
+"Add one tempo run per week: 15–20 seconds per km faster than easy pace for 20–40 minutes. This builds lactate threshold, the primary determinant of marathon performance",
+"Enter an official AIMS/IAAF-certified marathon for your ranking to count, Mumbai, Delhi, and Bengaluru all host certified events annually (entry fees under ₹2,000)",
+"Your official finish time is your world ranking entry. ARRS tracks all finishers from certified marathons globally by age group, your ranking is published"
+],
+rank:"ARRS maintains world marathon rankings by age group from all certified races. Under-20 top 1000 globally is a well-defined, verifiable time target achievable with 2–3 years of structured training.",
+res:{l:"ARRS world road running rankings",u:"https://www.arrs.run"}},
+
+/* ─── MEMORY ─── */
+{id:11,cat:"Memory",wow:"Extremely cool",
+title:"Memorise a shuffled deck of cards, IAMS speed cards ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:4,time:"2–3 years",
+desc:"Speed cards is an official IAMS memory sport event with a public global ranking. World record is under 14 seconds. You can demonstrate this anywhere with just a deck of cards. 'I can memorise a shuffled deck of cards, and I'm world top 1000 at it' is a sentence that stops conversations.",
+steps:[
+"Build a 52-card Person-Action-Object (PAO) system: every card gets a unique vivid person, action, and object. (Ace of Spades = Usain Bolt / sprinting / sword)",
+"Create a memory palace with 18 stations using rooms in your home, you will place one image (encoding 3 cards) at each station",
+"Combine 3 consecutive cards into one image: the person from card 1, performing the action of card 2, using the object of card 3. This encodes 3 cards per single memorable image",
+"Drill encoding speed: flip a card, generate the image in under 2 seconds. This is the real bottleneck, not the recall phase",
+"Full run: memorise all 52 cards, close the deck, walk the palace and write all 52 in order. Time the memorisation and recall phases separately",
+"Enter IAMS speed cards events and XMT (Extreme Memory Tournament) online qualifiers for official world ranking"
+],
+rank:"IAMS speed cards world ranking is publicly maintained and updated after every sanctioned event. Top 1000 requires under 2 minutes for a full deck, a concrete, trainable target.",
+res:{l:"Art of Memory, deck memorisation guide",u:"https://artofmemory.com/blog/how-to-memorize-a-deck-of-cards/"}},
+
+{id:12,cat:"Memory",wow:"Very cool",
+title:"Pi recitation, Pi World Ranking List (5,000+ digits)",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"Pi World Ranking maintains a formally verified global list. Top 1000 requires approximately 5,000 digits. Telling people you have memorised 5,000 digits of pi is one of the most immediately impressive intellectual statements possible, and the technique is fully learnable by anyone.",
+steps:[
+"Learn the Major System: each digit 0–9 maps to a consonant sound (0=S/Z, 1=T/D, 2=N, 3=M, 4=R, 5=L, 6=J/SH, 7=K/G, 8=F/V, 9=P/B). Vowels are free. This converts digits into words",
+"Convert strings of 10 pi digits into 1–2 vivid words using these consonants. The resulting words form a memorable image. Absurd images work better than logical ones",
+"Build a memory palace: use your home room by room. Each distinct location (door, chair, window, corner) holds one image representing 10 digits",
+"Start with 100 digits. Add 100 per week only after the previous block is rock solid, recite the full sequence daily before extending",
+"Recite out loud daily. Vocalization reinforces the palace walk and catches drift before errors compound",
+"Submit a verified video recording to Pi World Ranking following their submission guidelines, this creates your official global placement"
+],
+rank:"Pi World Ranking List is publicly maintained. Top 1000 globally requires a formally verified recitation of approximately 5,000 correct consecutive digits.",
+res:{l:"Pi World Ranking List",u:"https://www.pi-world-ranking-list.com"}},
+
+{id:13,cat:"Memory",wow:"Very cool",
+title:"Memory sports, random words event, IAMS world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:4,time:"1–3 years",
+desc:"Memorising 100+ random words in exact order in 5 minutes and recalling them perfectly is both a world-ranked competitive event and a legitimate demonstration skill. It sounds impossible to almost everyone, which is exactly what makes it impressive.",
+steps:[
+"Map your home as a memory palace: every door, window, lamp, chair, corner, and piece of furniture is a station. A typical flat has 30–50 distinct stations",
+"For each word, create one vivid, moving, multi-sensory image placed at the next station. The stranger and more specific the image, the better it sticks",
+"Link 2–3 words per station as a mini-story: ELEPHANT JUGGLING a HAMMER encodes 3 words per location and triples your capacity",
+"Practice with randomly generated word lists (free online generators), always timed at exactly 5 minutes",
+"Review immediately after encoding: walk the palace mentally and output every word. Note which images felt weak and make them weirder",
+"Enter IAMS random words events for official world ranking, also practice on Memory League for structured daily competition"
+],
+rank:"IAMS random words world ranking is publicly maintained. Top 1000 requires approximately 100–130 words recalled in 5 minutes, achievable with consistent palace technique training.",
+res:{l:"Memory Sports training guide",u:"https://memory-sports.com/learn-memory-sports/"}},
+
+/* ─── MENTAL MATH ─── */
+{id:14,cat:"Mental Math",wow:"Extremely cool",
+title:"Name any date's day of the week, MCWC calendar ranking",
+cost:"f",cL:"Free",diff:"e",dL:"Easier",yr:0,yrM:1,time:"3–8 weeks",
+desc:"Someone gives you any date in history or the future, '23rd August 1952', and you name the correct day of the week in under 5 seconds. You can demonstrate this anywhere, any time, with zero props. It is the closest thing to a real superpower that exists. Official MCWC event with global ranking.",
+steps:[
+"Memorise the 4 century anchors cold: 1800=Friday, 1900=Wednesday, 2000=Tuesday, 2100=Sunday",
+"Learn the Doomsday dates, specific dates in each month that always fall on the same weekday as each other in any given year: 4/4, 6/6, 8/8, 10/10, 12/12 and 5/9, 9/5, 7/11, 11/7 (mnemonic: 'I work 9-to-5 at 7-11'). Also January 3rd and February 28th",
+"Calculate any year's Doomsday from its last 2 digits using the odd+11 method: if odd add 11, divide by 2, if result is odd add 11, take mod 7, subtract from 7, add century anchor, take mod 7",
+"Count forward or backward from the nearest Doomsday date to your target date, simple addition",
+"Practice with birthdays of everyone you know, then random historical dates. Verify every answer on timeanddate.com until you are consistently correct",
+"Enter MCWC online calendar dates sub-event qualifier rounds, results create your official global ranking in this specific event"
+],
+rank:"MCWC calendar dates sub-event has its own official global ranking. The specialist field is tiny, top 1000 is essentially being a serious active practitioner.",
+res:{l:"Doomsday algorithm, Wikipedia",u:"https://en.wikipedia.org/wiki/Doomsday_rule"}},
+
+{id:15,cat:"Mental Math",wow:"Very cool",
+title:"Mental multiplication of 3-digit numbers, MCWC ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"1–3 years",
+desc:"Multiplying two 3-digit numbers in your head in under 30 seconds is the kind of thing that makes people put their phones down. The Mental Calculation World Cup has an official global ranking for this. The technique is fully learnable, it is skill, not innate talent.",
+steps:[
+"Foundation: memorise the full multiplication table to 20×20 cold, all 400 products must be instant recall, not calculation",
+"Learn the cross-multiplication method for 2×2 digit numbers: (AB × CD) = (A×C)×100 + (A×D + B×C)×10 + (B×D). Drill until the process is automatic",
+"Extend to 3×2 digit multiplication by adding one more partial product layer, practice 50 random pairs daily",
+"3×3 multiplication: break each number into H×100 + T×10 + U, apply the extended cross-method, track carries using working memory",
+"Train working memory specifically using dual-n-back apps, the bottleneck is holding and manipulating 4–5 partial products simultaneously",
+"Practice on mental-calculation.eu daily timed drills (free) and enter MCWC online qualifier rounds, results feed into official global ranking"
+],
+rank:"MCWC official rankings cover multiplication as a standalone event. The global field numbers only hundreds of serious competitors, top 1000 means being a consistent active participant.",
+res:{l:"Mental Calculation World Cup",u:"https://www.recordholders.org/en/events/worldcup/"}},
+
+{id:16,cat:"Mental Math",wow:"Very cool",
+title:"Mental square roots to 2 decimal places, MCWC event",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"6 months–2 years",
+desc:"Computing the square root of any 4-digit number in your head in under 20 seconds is a crowd-stopping skill. It's an official MCWC event with a global ranking, and because the specialist field is tiny, top 1000 is genuinely elite in the entire world.",
+steps:[
+"Memorise all perfect squares from 1² to 100², these must be instant recall, not calculation. Drill them daily for 2 weeks",
+"Learn the approximation formula: for N near a perfect square n², √N ≈ n + (N−n²) ÷ (2n). This gives 1–2 decimal places of accuracy instantly",
+"Practice with numbers near perfect squares first: √50, √125, √300, apply the formula as a single smooth mental operation",
+"For numbers far from a perfect square, iterate: apply the formula, then use the result as your new approximation for a second pass",
+"Build speed: identify the nearest perfect square, compute the remainder, apply the division, practise until this is one fluid mental motion",
+"Enter MCWC square root sub-event online qualifiers, the specialist field is very small, making top 1000 accessible within 1–2 years"
+],
+rank:"MCWC maintains an official global ranking for the square roots event. The specialist field is small, serious competitors routinely reach top 1000 within 2 years of training.",
+res:{l:"Mental Calculation World Cup, square roots",u:"https://www.recordholders.org/en/events/worldcup/"}},
+
+/* ─── STRATEGY ─── */
+{id:17,cat:"Strategy",wow:"Very cool",
+title:"Chess, FIDE under-18 world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:3,yrM:7,time:"3–6 years",
+desc:"FIDE maintains official global chess ratings and publishes monthly under-18 world rankings separately. The absolute global top 1000 in chess is superhuman territory. The under-18 world ranking is not, and top 1000 under-18 in the world is a genuinely elite, verifiable milestone. Chess is universally understood.",
+steps:[
+"Do 15 puzzles daily on Chess.com or Lichess from day one. Tactics training drives 80% of improvement at every level below master, this is non-negotiable",
+"Learn the 3 opening principles deeply: control the center, develop knights before bishops, castle within 10 moves, apply these before memorising any specific lines",
+"Learn 2 openings for White and 1 defence for Black against both e4 and d4. Understand the ideas behind moves, not just the sequence",
+"Review every loss: find the single move where the game turned. Use Lichess analysis board (free, no limit), not just the result, the exact move",
+"Get a FIDE rating by entering OTB (over-the-board) rated tournaments, India has FIDE-rated events in most cities. Your rating appears after 5 rated games",
+"Study endgames systematically, king and pawn endings, basic rook endings. Most games at sub-1600 reach a winning/drawing endgame that is then misplayed"
+],
+rank:"FIDE publishes monthly under-18 world rankings separately from the open ranking. Top 1000 under-18 globally is a verifiable, prestigious milestone with a clear pathway.",
+res:{l:"Lichess, free chess training and games",u:"https://lichess.org"}},
+
+{id:18,cat:"Strategy",wow:"Very cool",
+title:"Competitive Othello / Reversi, WOF world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The World Othello Federation has an official global rating system. Othello's player pool is smaller than chess, making top 1000 far more accessible. 'World-ranked in an international board game federation' is immediately understood by everyone and signals serious competitive dedication.",
+steps:[
+"Learn the key strategic principles: corners are permanent positional wins that cannot be flipped once taken, all opening strategy is about corner access or denial",
+"Avoid X-squares (diagonally adjacent to corners) early, taking them hands the corner to your opponent on their next move and is almost always a losing trade",
+"Learn parity: in the endgame, having the last move in each isolated region of the board often decides the winner. Count parity explicitly in late-game positions",
+"Study stable discs, discs that can never be flipped regardless of subsequent play. Building stable regions is the core strategic objective",
+"Play rated games daily on Othello Quest (iOS/Android, free), it maintains a live world ranking you can track directly",
+"Enter WOF-rated online tournaments quarterly, results feed directly into your official world rating and published ranking"
+],
+rank:"WOF official ratings are publicly listed and updated after every sanctioned event. Top 1000 globally is around 2000+ WOF rating, achievable within 2–4 years of serious dedicated play.",
+res:{l:"World Othello Federation rankings",u:"https://www.worldothello.org/ratings"}},
+
+{id:19,cat:"Strategy",wow:"Very cool",
+title:"Competitive Go (the board game), OGS world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:6,yrM:12,time:"5–10 years",
+desc:"Go is described by many as the most complex game ever created. The OGS has a live global ranking. 'I am a ranked Go player' commands a specific kind of respect, and the game has centuries of history behind it. Starting at 17 gives you a real window to reach a meaningful level.",
+steps:[
+"Learn the rules on OGS.net, Go has just a few rules (place stones, capture by surrounding) but the strategic depth is extraordinary",
+"Study life-and-death problems (tsumego) daily from the very beginning, a group with two separate internal spaces lives; one without dies. This is the foundational tactical skill",
+"Play rated games on OGS.net (free) immediately, losing games against stronger players is the fastest learning mechanism available",
+"Study the 4 basic strategic concepts one per month: influence vs territory, thickness vs thinness, direction of play, and joseki (established corner sequences)",
+"Watch Nick Sibicky's YouTube channel, consistently the best English-language Go instruction available",
+"Set concrete rank targets: 20 kyu → 10 kyu → 1 kyu → 1 dan. Dan ranks are internationally recognised milestones"
+],
+rank:"OGS global ranking is live and public. Top 1000 is approximately 5 dan amateur, a long but well-mapped road with internationally recognised rank milestones at every level.",
+res:{l:"Online Go Server (OGS)",u:"https://online-go.com"}},
+
+/* ─── WORD GAMES ─── */
+{id:20,cat:"Word Games",wow:"Very cool",
+title:"Competitive Scrabble, WESPA official world ranking",
+cost:"l",cL:"<₹2,000",diff:"h",dL:"Hard",yr:4,yrM:8,time:"3–6 years",
+desc:"WESPA and NASPA maintain official world Scrabble rankings. India has a strong competitive Scrabble scene. Saying 'I am world-ranked in competitive Scrabble' is immediately understood by everyone, Scrabble is one of the most recognised games on earth, and almost no one has ever met a world-ranked player.",
+steps:[
+"Memorise all 124 valid 2-letter words in Collins Scrabble Words, this single task has the highest ROI of any study in competitive Scrabble. Every game uses them",
+"Memorise 3-letter words next, there are ~1,300 and they form the dense core of board positions. Use the Collins Scrabble Tools app for flashcard drilling",
+"Study rack management: evaluate your whole rack after every move. Keep vowel/consonant balance, retain S and blank tiles, avoid duplicate letters",
+"Learn bingos (7-tile plays using your whole rack, scoring a 50-point bonus), start with the most common stems: SATINE, RETINA, AELRST",
+"Play daily rated games on Internet Scrabble Club (ISC), free, large competitive pool, rated games contribute to your ranking history",
+"Enter tournaments through the Scrabble Association of India for official WESPA rating points, national results feed into the global rating"
+],
+rank:"WESPA ratings are publicly maintained. Top 1000 globally is the top 20% of approximately 5,000 rated competitive players worldwide.",
+res:{l:"Collins Scrabble word study",u:"https://www.collinsdictionary.com/scrabble"}},
+
+{id:21,cat:"Word Games",wow:"Very cool",
+title:"Competitive crossword solving, ACPT world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:3,yrM:7,time:"3–5 years",
+desc:"The American Crossword Puzzle Tournament publishes full annual global rankings for every participant. Elite crossword solvers are cultural figures, the film Wordplay made this mainstream. Completing a NYT crossword in under 3 minutes live is something people find remarkable.",
+steps:[
+"Solve one NYT crossword every single day, time yourself strictly from day one. Track times in a spreadsheet. This has no substitute as the primary training method",
+"Learn recurring fill vocabulary: OREO, EPEE, ETUI, ALOE, ARIA, ESNE, OLEO, RIAL, ERNE appear constantly, recognising them instantly saves multiple seconds per puzzle",
+"Work systematically through the week, Monday NYT under 4 minutes consistently before focusing on Tuesday. Do not skip difficulty levels while easier puzzles still feel hard",
+"Practise under tournament conditions specifically: no aids, strict timer, complete or leave blanks. The psychological pressure of competition is a real performance variable",
+"Study constructor styles, 5–6 regular NYT setters use distinctive cluing patterns. Familiarity with their style gives you a real edge on their puzzles",
+"Enter the ACPT, qualifying divisions exist for all levels, every participant's full results are published publicly"
+],
+rank:"ACPT publishes full annual rankings for all participants. The global field of a few thousand serious competitors makes top 1000 a realistic and documented target.",
+res:{l:"ACPT, American Crossword Puzzle Tournament",u:"https://www.crosswordtournament.com"}},
+
+/* ─── PUZZLES ─── */
+{id:22,cat:"Puzzles",wow:"Very cool",
+title:"Competitive Sudoku, WPF Grand Prix world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"The World Puzzle Federation Grand Prix has official global rankings and includes Sudoku as a flagship event. Top competitors solve hard Sudoku in under 3 minutes. 'World-ranked competitive Sudoku solver' is widely understood and commands genuine intellectual respect.",
+steps:[
+"Master the 5 standard techniques: naked singles, hidden singles, naked pairs, pointing pairs, box-line reduction, these solve everything up to medium difficulty",
+"Learn X-wings for hard difficulty: when a digit can only appear in 2 rows across exactly 2 columns, you can eliminate it from those columns elsewhere",
+"Move to variant Sudoku: Killer (sum constraints in cages), Thermometer (increasing sequences), Arrow (arrow cells sum to the circle). WPF competitions test all variants",
+"Practice timed solving exclusively on Logic Masters Deutschland (free, huge rated library), it shows your live global rating",
+"Enter WPF Grand Prix online rounds (free), results immediately feed into your official global standing",
+"Watch Cracking the Cryptic on YouTube: Simon Anthony and Mark Goodliffe are world-class solvers who narrate their reasoning, the most efficient way to absorb advanced technique"
+],
+rank:"WPF Grand Prix official standings update after every competition round. Logic Masters Deutschland maintains a live global rating, your position is always visible.",
+res:{l:"WPF Puzzle Grand Prix",u:"https://www.gp.worldpuzzle.org"}},
+
+{id:23,cat:"Puzzles",wow:"Very cool",
+title:"WCA Fewest Moves Count, Rubik's cube strategy event",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"FMC is a WCA event where you have 60 minutes to find the shortest possible solution to a cube scramble. World record is 16 moves. Top 1000 requires ~28–30 moves average. It rewards deep strategy and planning, finger speed is completely irrelevant. A different kind of impressive.",
+steps:[
+"Learn CFOP or Roux method first, you need the full vocabulary of Rubik's moves before you can compose optimised solutions",
+"Study NISS (Normal Inverse Scramble Switch): working on both the scramble and its mathematical inverse simultaneously often reveals dramatically shorter partial solutions",
+"Learn skeleton technique: find a near-solution leaving 3–5 pieces unsolved, then insert short algorithms into earlier move sequences to fix those pieces without disturbing the rest",
+"Practise with published WCA scrambles from past competitions, analyse your solution over 24 hours without time pressure first before training under 60-minute conditions",
+"Study top FMC solvers' annotated solution write-ups: Sebastian Weyer publishes these online and they teach the reasoning process explicitly",
+"Enter WCA competitions with FMC, your average across 3 attempts contributes to an official world ranking completely separate from speed events"
+],
+rank:"WCA FMC world ranking is completely separate from speed events. Top 1000 requires approximately 28–30 moves average, a deep strategic challenge, not a physical one.",
+res:{l:"WCA FMC world ranking",u:"https://www.worldcubeassociation.org/results/rankings/333fm/average"}},
+
+{id:24,cat:"Puzzles",wow:"Very cool",
+title:"Competitive Minesweeper, expert difficulty world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"6 months–2 years",
+desc:"Minesweeper has an official verified global leaderboard. World record is ~31 seconds. Almost everyone has played Minesweeper, which means they instantly understand the gap between them and 'world top 1000'. Entirely free, no equipment needed.",
+steps:[
+"Play exclusively on minesweeper.online, it records and submits verified times automatically to the global leaderboard. No setup needed",
+"Learn chord-clicking immediately: pressing left + right mouse buttons simultaneously auto-clears all non-mine neighbours of a completed numbered cell",
+"Memorise the standard probability patterns: 1-2-1 along a wall, 1-2-2-1, and corner configurations, these eliminate guessing in most situations",
+"Always open from a corner: this gives the largest initial guaranteed clear and puts the most useful number cells in play",
+"Track your personal best every session. Target consistent sub-100s before sub-70s, sub-60s, sub-50s, each bracket takes 1–3 months",
+"At sub-60 seconds your name appears in verified global top tier. Confirm your position at minesweeper.info"
+],
+rank:"Minesweeper Ranking at minesweeper.info maintains a verified, continuously updated global leaderboard. Top 1000 globally is approximately 45–50 seconds on expert difficulty.",
+res:{l:"Minesweeper global ranking",u:"https://www.minesweeper.info/world_ranking.html"}},
+
+{id:25,cat:"Puzzles",wow:"Very cool",
+title:"Competitive jigsaw puzzles, WJPF world ranking",
+cost:"l",cL:"<₹1,000",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"The World Jigsaw Puzzle Federation runs official timed championships with global rankings. Most people have done jigsaw puzzles casually, which means they instantly understand why being world-ranked at it is extraordinary. The gap between a casual puzzler and top 1000 is enormous.",
+steps:[
+"Buy a quality 500-piece puzzle with varied colour regions (~₹800), the competition format uses 500 pieces. Buy the same puzzle twice so you can time repeat attempts",
+"Develop a systematic method: sort all border pieces first (one flat side), then sort interior pieces by dominant colour into 6–8 zones",
+"Train shape recognition: learn to find pieces by their tab/blank configuration as the primary identifier, using colour as secondary. This is the skill that separates top solvers",
+"Study the puzzle image for 3 minutes before opening the box, identify distinct visual zones and mentally assign each to a colour pile",
+"Practice the interior (not just the border), most competitive time is lost in the middle section, not at the edges",
+"Enter WJPF online competitions, held multiple times per year, globally ranked results published after each event"
+],
+rank:"WJPF maintains official global rankings updated after each sanctioned competition. The field is growing but top 1000 remains accessible for dedicated solvers.",
+res:{l:"World Jigsaw Puzzle Federation",u:"https://www.worldjigsawpuzzle.org"}},
+
+/* ─── DIGITAL ─── */
+{id:26,cat:"Digital",wow:"Very cool",
+title:"Speed typing, Monkeytype global top 1000",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"Monkeytype has a verified public global leaderboard. Top 1000 is ~160–180 wpm. Typing at 160 wpm in front of someone, more than twice the speed of a fast casual typist, is visually extraordinary. Every person who uses a keyboard understands exactly how impressive this is and can immediately feel the gap.",
+steps:[
+"Stop all hunt-and-pecking immediately from day one, complete cold turkey. Accept slower speed for several weeks while relearning. This discomfort is unavoidable and temporary",
+"Use keybr.com to learn the home row layout systematically: it introduces new keys only after your accuracy on existing keys exceeds 97%",
+"Practice 30 minutes daily: 20 minutes on keybr.com for technique, 10 minutes on monkeytype.com for measurement. Track your weekly best",
+"Accuracy always before speed, never deliberately type faster than your accuracy allows. Speed follows accuracy automatically over weeks",
+"At 120+ wpm stable: consider switching to Colemak-DH layout. The redesigned key placement removes the most awkward QWERTY finger movements and raises the ceiling",
+"At 150+ wpm: submit to the Monkeytype verified leaderboard. Your position is live and globally ranked, track it weekly"
+],
+rank:"Monkeytype global leaderboard is public and updated in real time. Top 1000 globally is approximately 160 wpm on the 60-second English test.",
+res:{l:"Monkeytype leaderboard",u:"https://monkeytype.com/leaderboards"}},
+
+{id:27,cat:"Digital",wow:"Very cool",
+title:"Competitive geography, GeoGuessr Pro League world ranking",
+cost:"l",cL:"<₹1,500/yr",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"GeoGuessr Pro League has official continuously updated world rankings. Being able to identify any country on earth from a single street-level photograph, with no labels, and being world top 1000 at it, is something people find genuinely extraordinary when you demonstrate it in front of them.",
+steps:[
+"Learn the primary visual meta-cues: sun angle tells which hemisphere, road marking colours narrow to region, language script identifies language family, road sign style identifies country",
+"Study each continent's visual fingerprints, Africa: red dirt roads, acacia trees, right-hand traffic; Southeast Asia: specific script families, tuk-tuks; South America: yellow road markings",
+"Use geohints.com as your main reference, it catalogues every country's distinguishing visual cues in one searchable, free database. Study one continent per week",
+"Practise on the free GeoGuessr tier with country-specific maps before moving to world maps, region mastery before global coverage",
+"Track your country streak, GeoGuessr's country streak mode has a public leaderboard (free) showing how many consecutive countries you correctly identify",
+"Upgrade to Pro (~₹1,500/year) for ranked league play, grind rated matches consistently to accumulate ranking points"
+],
+rank:"GeoGuessr Pro League has official world rankings continuously updated. Country streak world leaderboard is free and public. Top 1000 requires near-perfect geographical visual literacy.",
+res:{l:"GeoGuessr Pro League",u:"https://www.geoguessr.com/pro-league"}},
+
+{id:28,cat:"Digital",wow:"Very cool",
+title:"Flag identification speed, Sporcle and Seterra world ranking",
+cost:"f",cL:"Free",diff:"e",dL:"Easier",yr:0,yrM:2,time:"3–12 months",
+desc:"Sporcle and Seterra track competitive geography quiz rankings globally. 195 flags is a bounded memorisation problem with a clear finish line. Sub-60-second all-flags completion is documented world-elite territory. The fastest path to any world ranking on this list.",
+steps:[
+"Memorise all 195 flags systematically by region, start with Africa, which has the most visual variation and is hardest to confuse with careful study",
+"Use Seterra's timed flag quiz mode daily, noting specifically which flags you hesitate on, these are your weak spots to isolate",
+"Learn the confusable flag pairs explicitly: Romania/Chad (nearly identical), Indonesia/Monaco (reversed red-white), Ireland/Ivory Coast (mirrored tricolour)",
+"Study the less-common flags as their own category: small Pacific island nations, Caribbean flags, Central Asian flags, these are where most people fail",
+"Target sub-90 seconds → sub-75 → sub-60. Each threshold takes 4–8 weeks of daily focused practice",
+"Enter Sporcle's timed leaderboard challenges for official ranking placement"
+],
+rank:"Sporcle and Seterra both maintain public global leaderboards for world flags speed quizzes. Sub-60-second all-flags completion is documented world-elite territory.",
+res:{l:"Seterra, world flag quiz",u:"https://www.seterra.com/en/vgp/3003"}},
+
+{id:29,cat:"Digital",wow:"Very cool",
+title:"World capitals, competitive geography speed ranking",
+cost:"f",cL:"Free",diff:"e",dL:"Easier",yr:0,yrM:1,time:"2–6 months",
+desc:"Being asked any capital city and answering instantly, all 195, without hesitation, is impressive in any room. 195 countries is a bounded, completable memorisation problem. Sporcle tracks this skill globally. Achievable in months, impressive for life.",
+steps:[
+"Group countries by continent and memorise one continent at a time, never try all 195 at once",
+"For each country-capital pair, create a vivid visual link: France + Paris = an iron Eiffel tower crushing a 'pair' of shoes. Specific and bizarre images stick best",
+"Use an Anki world capitals deck for spaced repetition, it will automatically resurface the pairs you keep forgetting",
+"Memorise the surprising capitals first since these cause the most errors: Australia (Canberra, not Sydney), Canada (Ottawa, not Toronto), Brazil (Brasília, not Rio)",
+"Use Seterra's World Capitals quiz mode daily, timed, highlights your weakest regions",
+"Enter Sporcle's timed world capitals quiz leaderboard, top finishers by completion time are globally ranked"
+],
+rank:"Sporcle and Seterra both maintain public global leaderboards for world capitals speed quizzes. Sub-4-minute completion of all 195 capitals is documented world-elite territory.",
+res:{l:"Seterra world capitals quiz",u:"https://www.seterra.com/en/vgp/3053"}},
+
+/* ─── DEBATE & SPEECH ─── */
+{id:30,cat:"Debate & Speech",wow:"Extremely cool",
+title:"Competitive debate, WSDC global speaker ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The World Schools Debate Championship publishes official global speaker rankings. Tabroom.com tracks individual speaker points across hundreds of British Parliamentary tournaments globally. Debating is arguably the highest-status extracurricular with verifiable world rankings, and the skill transfers visibly to every part of life.",
+steps:[
+"Learn the World Schools format: 3 speakers per team, 8-minute constructive speeches alternating between sides, Points of Information interjected during speeches, 4-minute reply speech to close",
+"Study the 3 judging criteria explicitly: matter (the arguments themselves), manner (delivery, presence, and confidence), method (structure, logical flow, rebuttals). Judges score all three",
+"Practise 8-minute impromptu speeches on random topics with 15 minutes of prep, this is the core competition skill. Do this every day with a timer",
+"Join a school or city debate club immediately, live judging feedback is irreplaceable for improving manner and presence, which cannot be developed through solo practice",
+"Study winning World Schools speeches on YouTube, analyse how top speakers frame their position in the first 30 seconds and handle Points of Information under pressure",
+"Build a tournament record on Tabroom.com, it accumulates your speaker points globally across all BP tournaments and creates a live world ranking"
+],
+rank:"WSDC publishes official global speaker rankings after each championship. Tabroom.com tracks global BP speaker rankings continuously across hundreds of tournaments.",
+res:{l:"World Schools Debate Championship",u:"https://www.worldschoolsdebating.org"}},
+
+{id:31,cat:"Debate & Speech",wow:"Very cool",
+title:"World Championship of Public Speaking, Toastmasters ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:4,time:"1–3 years",
+desc:"Toastmasters runs the World Championship of Public Speaking with 30,000+ contestants from 143 countries. Reaching any semifinal stage places you in official world top 100. The competition pathway is structured and fully documented, and public speaking mastery is universally admired in every field.",
+steps:[
+"Join a Toastmasters club, meetings are free to attend or minimal cost (~₹1,000/year membership). Find one at toastmasters.org/find-a-club",
+"Complete Pathways Level 1 and Level 2 systematically, these build the exact skills evaluated in competition: organisation, vocal variety, body language, and storytelling",
+"Enter the Humorous Speech contest at club level first, it has the most entrants and gives structured feedback from multiple experienced judges",
+"The competition ladder: Club → Area → Division → District → Region → World. Each round dramatically narrows the field. Advancing to Division level places you in roughly the top 1% of all entrants",
+"Your 5–7 minute competition speech must be performed 100+ times before the world stage, top speakers eliminate every hesitation and awkward pause through sheer repetition",
+"Study winning World Championship speeches on YouTube, the top speeches almost always follow a 3-act personal narrative with a clear universal message and a memorable close"
+],
+rank:"Toastmasters World Championship publishes official results for all 30,000+ contestants. Reaching any semifinal stage places you in verified world top 100.",
+res:{l:"Toastmasters World Championship of Public Speaking",u:"https://www.toastmasters.org/Events/World-Championship-of-Public-Speaking"}},
+
+/* ─── KNOWLEDGE ─── */
+{id:32,cat:"Knowledge",wow:"Very cool",
+title:"World Quizzing Championship, global trivia ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The WQC publishes full official global rankings annually for all participants. Open to anyone. Covering 8 categories, it is the most respected international general knowledge competition. 'World-ranked trivia competitor' is immediately understood and respected, everyone knows what a trivia competition is.",
+steps:[
+"Study all 8 WQC category areas, you cannot ignore any: science and nature, arts and entertainment, history, geography, sport, music, food and drink, pop culture",
+"Create Anki flashcard decks for each category, add 10–15 new cards per day, review due cards every single day without exception",
+"Do 30+ Sporcle quizzes per week across all categories, track which categories produce the most wrong answers and shift study time toward those",
+"Join a local or online pub quiz league, competitive pressure and immediate scoring feedback accelerates improvement far faster than solo study",
+"Take publicly released WQC practice tests from previous years, they are on the WQC website and give an accurate level assessment",
+"Enter the WQC annual event, 240 questions across all categories over 2 hours, held simultaneously worldwide, full results published globally"
+],
+rank:"WQC publishes complete global rankings annually. With ~5,000 active competitors, top 1000 is the top 20%, a well-defined and achievable target.",
+res:{l:"World Quizzing Championships",u:"https://www.worldquizzing.org"}},
+
+{id:33,cat:"Knowledge",wow:"Very cool",
+title:"Competitive trivia, LearnedLeague platform ranking",
+cost:"l",cL:"<₹2,000/yr",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"LearnedLeague is an invitation-based competitive trivia platform with a live global ranking mentioned in the NYT and Atlantic. Being an LL member signals serious intellectual standing. The strategic depth (choosing which questions to defend) makes it more than trivia.",
+steps:[
+"Get an invitation through the LL waitlist on their website or ask a current member, each member can invite others",
+"Study the LL question archive (available to members), past questions reveal the precise difficulty calibration and category tendencies",
+"LL has a strategic layer: after seeing each day's 6 questions, you choose which 3 to 'defend'. Opponents score points by answering your defended questions right. Strategic selection matters alongside raw knowledge",
+"Build a category-by-category Anki deck for your weakest areas, LL shows your accuracy per category, making it easy to identify exactly what to study",
+"Participate in OneDay events (special single-day competitions) to practise under tournament conditions without affecting your main ranking while building it",
+"Consistent overperformance in your Rundle (division) leads to promotion and higher global ranking, track your division standing weekly"
+],
+rank:"LearnedLeague maintains a live global ranking with thousands of active members. Top 1000 is a well-documented and culturally prestigious milestone.",
+res:{l:"LearnedLeague",u:"https://learnedleague.com"}},
+
+/* ─── CREATIVE ─── */
+{id:34,cat:"Creative",wow:"Very cool",
+title:"Competitive origami, BOS and OrigamiUSA world ranking",
+cost:"f",cL:"Free",diff:"m",dL:"Medium",yr:1,yrM:3,time:"1–2 years",
+desc:"The British Origami Society and OrigamiUSA run world conventions with tracked global competition results. Folding a complex insect or geometric form from a single uncut sheet of paper in front of someone commands genuine awe. The competitive field is small globally. Equipment: paper.",
+steps:[
+"Master the 5 fundamental origami bases: preliminary base, waterbomb base, bird base, fish base, frog base, almost every model derives from one of these",
+"Learn 20 intermediate models at increasing complexity, timing yourself on each. Precision at slow speed transfers reliably to precision at fast speed",
+"Study crease pattern reading: advanced competitive origami models are specified as crease patterns. Reading them opens access to the most complex models",
+"Practice precision above all else: every fold must align edges exactly. A 1mm misalignment at step 5 propagates to a 5mm error at step 40, this is what separates competition folders from hobbyists",
+"Film your folds and compare creases to reference photographs, folds should be razor-sharp, corners should land exactly on marked points",
+"Enter BOS and OrigamiUSA convention competitions, online divisions exist. Results are tracked globally and feed into community world rankings"
+],
+rank:"The competitive origami community is small globally. Top 1000 competitive folders worldwide is a realistic target with 1–2 years of dedicated practice and competition entry.",
+res:{l:"OrigamiUSA diagram database",u:"https://origamiusa.org/thefold"}},
+
+{id:35,cat:"Creative",wow:"Very cool",
+title:"Competitive crossword construction, NYT publication record",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:4,yrM:8,time:"3–6 years",
+desc:"Fewer than 1,000 constructors have ever been published in the New York Times crossword. Achieving a NYT publication is itself entry to a world-elite group. The path is documented, the tools are free, and the credential is permanent and universally understood.",
+steps:[
+"Learn construction rules: 180° rotational symmetry, no unchecked squares (every white square is in both an Across and Down word), clean and interesting fill",
+"Use the free Crossfire software or the web-based Crossword Nexus constructor, both are professional-grade tools at no cost",
+"Study published grid patterns, specifically look at what fills editors approve vs reject. The NYT blog Wordplay publishes constructor notes that are invaluable",
+"Submit to smaller outlets first to build credits and get editorial feedback: Universal Crossword, USA Today, LA Times, each is a meaningful publication in its own right",
+"Follow the NYT's publicly available constructor submission guidelines exactly. The acceptance rate is low, but the rejection letters contain actionable feedback",
+"Getting published places you in a group of under 1,000 people in history, a genuinely world-elite credential by definition"
+],
+rank:"NYT crossword publication is the ranking signal itself, fewer than 1,000 constructors have ever achieved it. This is world-elite territory by definition.",
+res:{l:"Crossword constructor guide, xwordinfo",u:"https://www.xwordinfo.com/Design"}},
+
+/* ─── PHYSICAL extra ─── */
+{id:36,cat:"Physical",wow:"Very cool",
+title:"Competitive swimming, FINA world age-group ranking",
+cost:"l",cL:"<₹2,000",diff:"h",dL:"Hard",yr:3,yrM:6,time:"3–5 years",
+desc:"World Aquatics (FINA) maintains official world rankings by age group for every swimming event. Youth divisions are separate from adult rankings. Top 1000 under-18 in a specific stroke and distance is an achievable and formally verified milestone. Swimming is universally understood as elite.",
+steps:[
+"Join a structured swim club with a coach, technique at the start is everything. Self-taught swimming almost never reaches competitive level because stroke mechanics are too subtle",
+"Choose one stroke and one distance to specialise in, spreading across multiple events dilutes training. For top-1000 accessibility: 100m breaststroke or 200m backstroke under-18 are realistic targets",
+"Train 5–6 days per week following a periodised programme, early-stage training focuses on stroke mechanics, later stages on speed work and race pace",
+"Enter all available FINA-sanctioned meets, your official world ranking only counts times from sanctioned events. The more you compete, the more your ranking reflects your actual level",
+"Video analysis of your own stroke is the fastest improvement tool: film underwater and compare your technique to world-class swimmers at the same event",
+"Track your time against the current FINA world age-group rankings, it tells you exactly what pace you need at each 50m split to reach top 1000"
+],
+rank:"FINA/World Aquatics maintains official world rankings by age group for every stroke and distance. Youth age-group rankings are separate from senior rankings.",
+res:{l:"World Aquatics rankings",u:"https://www.worldaquatics.com/swimming/rankings"}},
+
+{id:37,cat:"Physical",wow:"Very cool",
+title:"Powerlifting, IPF world age-group ranking by weight class",
+cost:"l",cL:"<₹2,000",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"The International Powerlifting Federation maintains official world rankings by weight class, gender, and age category. Sub-junior (under-18) divisions have their own rankings. Top 1000 in your specific weight class and age group is a verifiable, officially published milestone.",
+steps:[
+"Learn the 3 competition lifts from a qualified coach or detailed instructional resource, squat, bench press, and deadlift technique must be correct before adding heavy load",
+"Competition powerlifting has strict rules: squat to depth (hip crease below knee), bench with pause at chest, deadlift to lockout. Learn these rules before training toward them",
+"Follow a linear progression programme for 6 months, Starting Strength or GZCLP are free, well-documented, and appropriate for beginners",
+"Enter IPF-affiliated competitions through the Powerlifting Federation of India, your total (squat + bench + deadlift) is your ranking entry",
+"Calculate your Wilks or IPF GL points score, this normalises performance across body weights and is the basis of IPF world ranking",
+"Track your ranking against current IPF sub-junior world standards, the federation publishes full results from all sanctioned competitions"
+],
+rank:"IPF publishes official world rankings by weight class, gender, and age division. Sub-junior (under-18) divisions have separate rankings from open and junior categories.",
+res:{l:"International Powerlifting Federation",u:"https://www.powerlifting.sport/rankings"}},
+
+{id:38,cat:"Physical",wow:"Very cool",
+title:"Competitive archery, World Archery youth ranking",
+cost:"l",cL:"<₹2,000",diff:"m",dL:"Medium",yr:2,yrM:5,time:"2–4 years",
+desc:"World Archery maintains official global rankings for all age categories including youth. Archery is one of the most broadly understood precision sports, everyone knows what it is, everyone can visualise the skill gap, and 'world-ranked archer' commands immediate respect.",
+steps:[
+"Archery India or your state association can connect you with a beginner club, many schools and colleges have facilities. First 3 months should be entirely with a coach for form",
+"Learn the 5 fundamental elements of technique: stance, anchor point, draw, aim, and release. Consistent repetition of correct form is the entire sport",
+"Recurve is the Olympic format and the most recognised, compound bow is easier to shoot accurately but less prestigious competitively. Choose recurve for world ranking purposes",
+"Enter archery competitions sanctioned by Archery Association of India, national results feed into World Archery's youth ranking",
+"Track your score per round (FITA rounds at standard distances) against the current World Archery youth ranking standards",
+"The equipment cost for a beginner recurve setup is under ₹2,000 for club practice, clubs often loan equipment initially"
+],
+rank:"World Archery maintains official global rankings for all age categories including under-18 youth. National competition results feed into the global ranking.",
+res:{l:"World Archery rankings",u:"https://www.worldarchery.sport/ranking/para/recurve"}},
+
+/* ─── ADDITIONAL ─── */
+{id:39,cat:"Word Games",wow:"Very cool",
+title:"Competitive spelling, Scripps National Spelling Bee world ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"The Scripps National Spelling Bee is the most famous spelling competition in the world, it airs on ESPN, has produced documentaries, and creates genuine celebrities. The international competition structure gives non-US competitors a ranking pathway. 'World-ranked speller' is a remarkable credential.",
+steps:[
+"Study the official Scripps word list (available free), it is divided into difficulty tiers. Start from the beginning and work forward",
+"Learn the key etymology families: Greek, Latin, French, German, and Arabic root patterns predict spelling in ways that make the list learnable as a system rather than individual words",
+"Practice oral spelling with a coach or study partner, competition spelling is spoken aloud, not written, and the performance element matters",
+"Study root-based spelling patterns: knowing that 'philo-' means love, 'cardi-' means heart, 'graph-' means write lets you correctly spell hundreds of words you've never seen",
+"Enter international Scripps-affiliated competitions or RSBee (Regional Spelling Bee) through school for official ranking placement",
+"The South Asian community dominates the Scripps bee, Indian-origin winners include 7 of the last 10 champions, which means study materials and coaching networks are well-developed"
+],
+rank:"Scripps Spelling Bee publishes full official results for all competition participants globally. The international competition structure creates a verifiable world ranking for top performers.",
+res:{l:"Scripps Spelling Bee word list",u:"https://spellingbee.com/studymaterials"}},
+
+{id:40,cat:"Mental Math",wow:"Extremely cool",
+title:"Mental abacus / flash anzan, World Mental Arithmetic ranking",
+cost:"f",cL:"Free",diff:"h",dL:"Hard",yr:2,yrM:5,time:"2–4 years",
+desc:"Flash anzan is adding 15 random 3-digit numbers that flash on a screen in under 1 second each, entirely in your head, by visualising and mentally moving an abacus. World champions are under 12 years old. The World Mental Arithmetic Association has official global rankings. Watching someone do this is genuinely incomprehensible.",
+steps:[
+"Learn to use a physical abacus first, understand the bead movements for addition and subtraction before attempting mental visualisation",
+"Learn soroban (Japanese abacus) specifically: columns represent ones, tens, hundreds, thousands; each column has one 5-bead and four 1-beads above and below the beam",
+"Practice visualising the abacus clearly in your mind with eyes closed, start by picturing a single column, then two, then a full 4-column soroban",
+"Begin flash anzan with single-digit numbers flashing at 1 per second, build to 2-digit then 3-digit as your mental abacus becomes stable",
+"Use the free Anzan app or Aloha Mental Math software for structured progression, these are the standard training tools for competition preparation",
+"Enter World Mental Arithmetic Association (WMA) sanctioned competitions online, results feed into official global rankings by age category"
+],
+rank:"WMA maintains official global rankings by age category for flash anzan and mental arithmetic events. The youth field is highly competitive but well-structured with clear progression levels.",
+res:{l:"Aloha Mental Arithmetic, training and competition",u:"https://www.aloha.net"}}
+
+];
+
+const CATS = ["All", ...new Set(DATA.map(d => d.cat))];
+let activeC = "All", activeS = "def";
+let checked = {};
+try { const v = localStorage.getItem("top1k_cool_v1"); if (v) checked = JSON.parse(v); } catch(e) {}
+function save() { try { localStorage.setItem("top1k_cool_v1", JSON.stringify(checked)); } catch(e) {} }
+
+function costOrder(c) { return c === "f" ? 0 : 1; }
+function diffOrder(d) { return d === "e" ? 0 : d === "m" ? 1 : 2; }
+
+function getSorted(arr) {
+  const a = [...arr];
+  if (activeS === "cost") a.sort((x, y) => costOrder(x.cost) - costOrder(y.cost));
+  else if (activeS === "diff") a.sort((x, y) => diffOrder(x.diff) - diffOrder(y.diff));
+  else if (activeS === "time") a.sort((x, y) => x.yr - y.yr);
+  return a;
+}
+
+function updateProgress() {
+  const done = Object.values(checked).filter(Boolean).length;
+  const pct = Math.round(done / DATA.length * 100);
+  document.getElementById("pfill").style.width = pct + "%";
+  document.getElementById("plbl").textContent = done + " / " + DATA.length + " done";
+}
+
+function render() {
+  const filtered = activeC === "All" ? DATA : DATA.filter(d => d.cat === activeC);
+  const sorted = getSorted(filtered);
+  document.getElementById("mlbl").textContent = sorted.length + " pursuit" + (sorted.length !== 1 ? "s" : "");
+  const grid = document.getElementById("grid");
+  const openSet = new Set([...grid.querySelectorAll(".card.open")].map(c => +c.dataset.id));
+  grid.innerHTML = "";
+  if (!sorted.length) { grid.innerHTML = '<div class="empty">Nothing here, try a different filter.</div>'; return; }
+  sorted.forEach(item => {
+    const pct = Math.min(100, Math.round(item.yr / item.yrM * 100));
+    const isDone = !!checked[item.id];
+    const el = document.createElement("div");
+    el.className = "card" + (openSet.has(item.id) ? " open" : "") + (isDone ? " done" : "");
+    el.dataset.id = item.id;
+    const diffC = item.diff === "e" ? "easy" : item.diff === "m" ? "med" : "hard";
+    const costC = item.cost === "f" ? "free" : "low";
+    const wowC = item.wow === "Extremely cool" ? "high" : "med";
+    el.innerHTML = `
+<div class="card-head">
+  <div class="check${isDone ? " on" : ""}" data-cb="${item.id}"></div>
+  <div class="card-main">
+    <div class="card-title">${item.title}</div>
+    <span class="tag t-wow" style="${wowC === "high" ? "" : "background:#f4f2ec;color:#555040;border-color:#d0ccbc"}">${item.wow}</span>
+    <div class="card-tags">
+      <span class="tag t-cat">${item.cat}</span>
+      <span class="tag t-${costC}">${item.cL}</span>
+      <span class="tag t-${diffC}">${item.dL}</span>
+    </div>
+  </div>
+  <span class="chev">▼</span>
+</div>
+<div class="card-body">
+  <div class="sec-label">What it is</div>
+  <p class="desc">${item.desc}</p>
+  <div class="sec-label">Step-by-step guide</div>
+  <ul class="steps">${item.steps.map((s, i) => `<li><span class="step-n">${i+1}.</span><span>${s}</span></li>`).join("")}</ul>
+  <div class="sec-label">Official ranking</div>
+  <div class="rank-box">${item.rank}</div>
+  <div class="sec-label">Time to top 1000</div>
+  <div class="tl-row">
+    <div class="tl-track"><div class="tl-fill" style="width:${pct}%"></div></div>
+    <span class="tl-label">${item.time}</span>
+  </div>
+  <div class="sec-label">Best resource</div>
+  <a class="res-btn" href="${item.res.u}" target="_blank">${item.res.l} →</a>
+</div>`;
+    el.querySelector(".card-head").addEventListener("click", e => {
+      if (e.target.closest("[data-cb]")) return;
+      el.classList.toggle("open");
+    });
+    el.querySelector("[data-cb]").addEventListener("click", e => {
+      e.stopPropagation();
+      checked[item.id] = !checked[item.id];
+      save();
+      el.classList.toggle("done", !!checked[item.id]);
+      el.querySelector(".check").classList.toggle("on", !!checked[item.id]);
+      updateProgress();
+    });
+    grid.appendChild(el);
+  });
+}
+
+// Category buttons
+const catBar = document.getElementById("catbar");
+CATS.forEach(cat => {
+  const btn = document.createElement("button");
+  btn.className = "pill" + (cat === "All" ? " active" : "");
+  btn.textContent = cat;
+  btn.onclick = () => {
+    activeC = cat;
+    document.querySelectorAll("#catbar .pill").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  };
+  catBar.appendChild(btn);
+});
+
+// Sort buttons
+document.querySelectorAll(".sort-row button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    activeS = btn.dataset.s;
+    document.querySelectorAll(".sort-row button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  });
+});
+
+render();
+updateProgress();
+</script>
+</body>
+</html>

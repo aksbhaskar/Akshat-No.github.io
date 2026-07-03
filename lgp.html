@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lodha Genius Programme | Akshat Bhaskar</title>
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper:       #fffff8;
+      --ink:         #111110;
+      --ink-med:     #333330;
+      --ink-soft:    #666660;
+      --ink-faint:   #999990;
+      --ink-ghost:   #ccccbb;
+      --rule:        #d0d0c0;
+      --rule-light:  #e4e4d8;
+      --serif:       'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:        'Inconsolata', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1.5px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+    .topbar-back {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-back:hover { color: var(--ink); }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .masthead {
+      padding-top: 100px;
+      padding-bottom: 2.8rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .masthead-meta {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--ink-faint); letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .masthead-meta span::before {
+      content: '·';
+      margin-right: 0.5rem;
+      color: var(--ink-ghost);
+    }
+    .masthead-meta span:first-child::before { content: ''; margin-right: 0; }
+
+    h1.page-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 1.4rem;
+    }
+
+    .pill-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .pill {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      border: 0.5px solid var(--rule); color: var(--ink-soft);
+      padding: 0.22rem 0.6rem;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 0 3rem;
+      padding-top: 2.8rem;
+    }
+
+    .main-col { grid-column: 1 / 2; }
+    .aside-col {
+      grid-column: 2 / 3;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.4rem;
+    }
+
+    .lead {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      line-height: 1.82;
+      color: var(--ink-med);
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 3rem;
+    }
+    .lead a, .lead strong {
+      color: var(--ink);
+    }
+    .lead a {
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 3px;
+    }
+    .lead a:hover { color: var(--ink-soft); }
+
+    .sec {
+      display: flex; align-items: baseline; gap: 1rem;
+      border-bottom: 0.5px solid var(--ink);
+      padding-bottom: 0.55rem;
+      margin-bottom: 1.8rem;
+      margin-top: 3rem;
+    }
+    .sec-num { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); }
+
+    .course {
+      padding: 1.4rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .course:last-child { border-bottom: none; }
+    .course.visible { opacity: 1; transform: translateY(0); }
+
+    .course-header {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin-bottom: 0.5rem; flex-wrap: wrap;
+    }
+    .course-tag {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .course-title {
+      font-family: var(--serif); font-size: 1.02rem;
+      font-weight: 600; color: var(--ink);
+    }
+    .course-instructor {
+      font-family: var(--serif); font-size: 0.84rem;
+      font-style: italic; color: var(--ink-soft); margin-bottom: 0.6rem;
+    }
+    .course-instructor a {
+      color: var(--ink-soft); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .course-instructor a:hover { color: var(--ink); }
+    .course-body {
+      font-family: var(--serif); font-size: 0.91rem;
+      color: var(--ink-med); line-height: 1.78;
+      text-align: justify; hyphens: auto;
+    }
+    .course-body a {
+      color: var(--ink-med); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .course-body a:hover { color: var(--ink); }
+
+    .seminar-list { list-style: none; margin-bottom: 1.6rem; }
+    .seminar-list li {
+      padding: 1rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      font-family: var(--serif); font-size: 0.91rem;
+      color: var(--ink-med); line-height: 1.72;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .seminar-list li:first-child { border-top: 0.5px solid var(--rule-light); }
+    .seminar-list li.visible { opacity: 1; transform: translateY(0); }
+    .seminar-list li a {
+      color: var(--ink-med); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .seminar-list li a:hover { color: var(--ink); }
+    .talk-title {
+      font-style: italic; display: block;
+      color: var(--ink); margin-bottom: 0.15rem;
+    }
+    .speaker-line {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.04em;
+    }
+
+    .seminar-btn {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.63rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink); border: 0.5px solid var(--ink);
+      padding: 0.45rem 1rem; text-decoration: none;
+      margin-bottom: 2rem; margin-top: 0.4rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .seminar-btn:hover { background: var(--ink); color: var(--paper); }
+
+    .prose {
+      font-family: var(--serif); font-size: 0.93rem;
+      color: var(--ink-med); line-height: 1.8;
+      text-align: justify; hyphens: auto; margin-bottom: 1.4rem;
+    }
+    .prose a {
+      color: var(--ink-med); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .prose a:hover { color: var(--ink); }
+    .prose strong { font-weight: 600; color: var(--ink); }
+
+    .pullquote {
+      border-left: 1.5px solid var(--ink-ghost);
+      padding: 0.5rem 1.2rem;
+      margin: 2rem 0;
+      font-family: var(--serif); font-size: 1rem;
+      font-style: italic; color: var(--ink-soft); line-height: 1.7;
+    }
+
+    .aside-note {
+      font-family: var(--serif); font-size: 0.72rem;
+      line-height: 1.65; color: var(--ink-soft);
+      margin-bottom: 2.4rem;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .aside-note.visible { opacity: 1; }
+    .aside-note strong { font-weight: 600; color: var(--ink-med); }
+    .aside-note a {
+      color: var(--ink-soft); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 2px;
+    }
+    .aside-note a:hover { color: var(--ink); }
+    .aside-note .note-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      color: var(--ink-faint); letter-spacing: 0.04em;
+      display: block; margin-bottom: 0.3rem;
+    }
+
+    .reflection {
+      border: 0.5px solid var(--rule);
+      padding: 1.8rem 2rem;
+      margin: 2.4rem 0;
+      background: rgba(0,0,0,0.015);
+    }
+    .reflection-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 0.9rem; display: block;
+    }
+    .reflection p {
+      font-family: var(--serif); font-size: 0.93rem;
+      color: var(--ink-med); line-height: 1.8;
+    }
+    .reflection p strong { font-weight: 600; color: var(--ink); }
+
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      margin-top: 4rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    @media (max-width: 680px) {
+      .topbar { padding: 1.1rem 1.4rem; }
+      .body-grid { grid-template-columns: 1fr; }
+      .aside-col { display: none; }
+      h1.page-title { font-size: 1.7rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <a class="topbar-back" href="index.html">← back</a>
+</div>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-meta">
+      <span>May – June 2025</span>
+      <span>Ashoka University, Sonepat</span>
+      <span>Continued: 2025 – 2026</span>
+    </div>
+    <h1 class="page-title">Lodha Genius Programme</h1>
+    <p class="page-subtitle">A month of pure mathematics, Nobel laureates, and 3 am problem sheets</p>
+    <div class="pill-row">
+      <span class="pill">Pure Mathematics</span>
+      <span class="pill">Acceptance ≈ 3%</span>
+      <span class="pill">Fully Funded</span>
+      <span class="pill">Ashoka University</span>
+      <span class="pill">ETEAM 2026</span>
+    </div>
+  </header>
+
+  <div class="body-grid">
+
+    <div class="main-col">
+
+      <p class="lead">
+        I got accepted to and completed the one-month <a href="https://www.lodhageniusprogramme.com/" target="_blank">Lodha Genius Programme</a> On Campus Module at Ashoka University in May and June 2025. The Lodha Genius Programme is a <strong>fully funded, all-expenses-paid</strong>, highly competitive summer programme focusing on Science and Mathematics with an <strong>acceptance rate of approximately 3%</strong>, hosted at Ashoka University and sponsored by the Lodha Foundation. Though the On-Campus Module has ended, I am currently engaged in the Continued-Learning Module of LGP, where I am preparing for the European Tournament of Enthusiastic Apprentice Mathematicians (ETEAM) 2026 and the International Tournament of Young Mathematicians (ITYM) 2026, while also auditing the Research Track in Mathematics.
+      </p>
+
+      <div class="sec">
+        <span class="sec-num">§1</span>
+        <span class="sec-name">Academic Specialisation</span>
+      </div>
+
+      <p class="prose">
+        I specialised in <strong>Pure Mathematics</strong>, taking courses in Number Theory, Group Theory, Linear Algebra, and Geometry (Plane to Spherical). The academic rigour was remarkable: trying to solve open problems at 3 am, working together to crack problem sets in the library an hour before the deadline, and embracing failure as part of the process.
+      </p>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[1]</span>
+          <span class="course-title">Number Theory</span>
+        </div>
+        <p class="course-instructor">
+          Taught by <a href="https://scholar.google.com/citations?user=8JfLn5cAAAAJ&hl=en" target="_blank">Professor Shanta Laishram</a>
+        </p>
+        <p class="course-body">
+          Covered over all four weeks with daily 3-hour lectures, plus tutorials every evening (sometimes running 4–5 hours). The course loosely followed <a href="https://kvmwai.edu.in/upload/StudyMaterial/David_Burton_-_Elementary_number_theory-McGraw-Hill_Higher_Education_(2005).pdf" target="_blank"><em>Elementary Number Theory</em> by David Burton</a>. My final presentation focused on Euler's Criterion for quadratic residues modulo primes, judged on mathematical rigour by the Professor, Programme Instructor, and TAs.
+        </p>
+      </div>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[2]</span>
+          <span class="course-title">Algebra &amp; Group Theory</span>
+        </div>
+        <p class="course-instructor">
+          Taught by <a href="https://sites.google.com/view/niladri-patra/cv?authuser=0" target="_blank">Professor Niladri Sekhar Patra</a>
+        </p>
+        <p class="course-body">
+          Covered in the final two weeks, working through <a href="https://indico.global/event/1463/contributions/28283/attachments/14395/22374/(Undergraduate%20Texts%20in%20Mathematics)%20M.%20A.%20Armstrong%20-%20Groups%20and%20symmetry-Springer%20(1988).pdf" target="_blank"><em>Groups and Symmetry</em> by M.A. Armstrong</a>. Assessment consisted of daily problem sets, twice-weekly quizzes, and a final exam.
+        </p>
+      </div>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[3]</span>
+          <span class="course-title">Linear Algebra</span>
+        </div>
+        <p class="course-instructor">
+          Taught by <a href="https://sites.google.com/view/sagar-shrivastava/home" target="_blank">Professor Sagar Shrivastav</a>
+        </p>
+        <p class="course-body">
+          Used the same notes and material that Professor Sagar uses for his undergraduate courses (MAT-1001 and CS-2210) at Ashoka. Lectures on Mondays and Fridays, with quizzes in the first 15 minutes of every class and undergraduate problem sets as primary assessment.
+        </p>
+      </div>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[4]</span>
+          <span class="course-title">Geometry, Plane to Spherical</span>
+        </div>
+        <p class="course-instructor">
+          Taught by <a href="https://arxiv.org/abs/2204.05594" target="_blank">Professor Mohit Upmanyu</a>
+        </p>
+        <p class="course-body">
+          Covered in the first two weeks, following <a href="https://www.aproged.pt/biblioteca/geometryrevisited_coxetergreitzer.pdf" target="_blank"><em>Geometry Revisited</em> by H.S.M. Coxeter</a>. Daily exercises from the text, once-per-lecture quizzes, and a final exam.
+        </p>
+      </div>
+
+      <div class="pullquote">
+        "One month ago, I couldn't have imagined that two weeks later I would be sitting in a secluded classroom in Ashoka University at 10 pm trying to understand my programme instructor's PhD thesis."
+      </div>
+
+      <div class="sec">
+        <span class="sec-num">§2</span>
+        <span class="sec-name">Continued Learning Module</span>
+      </div>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[i]</span>
+          <span class="course-title">Foundations of ETEAM</span>
+        </div>
+        <p class="course-instructor">
+          Taught by Professor Sagar Shrivastava &nbsp;·&nbsp; Invitation to top 10% of LGP Scholars
+        </p>
+        <p class="course-body">
+          A year-long enrichment course preparing scholars for the <a href="https://eteam-tournament.org/" target="_blank">European Tournament of Enthusiastic Apprentice Mathematicians (ETEAM) 2026</a> and the <a href="https://www.itym.org/" target="_blank">International Tournament of Young Mathematicians (ITYM) 2026</a>. Conducted weekly over 1.5 hours, the course covers algebra, advanced geometry, number theory, group theory, calculus, probability, logic, discrete mathematics, real analysis, and more, emphasising conceptual depth and mathematical maturity over rote technique.
+        </p>
+        <p class="course-body" style="margin-top:0.7rem;">
+          MOCK ETEAM Simulations are held periodically, dividing students into groups and assigning each the role of Reporter, Opponent, and Reviewer across different problems, mirroring the exact tournament format. Simulations have taken place online (October 26, 2025) and offline at Ashoka University (November 25–26, 2025, travel stipends provided). The <a href="https://eteam-tournament.org/index.php/about-the-eteam/" target="_blank">full rules and syllabus for ETEAM are here</a>.
+        </p>
+      </div>
+
+      <div class="course">
+        <div class="course-header">
+          <span class="course-tag">[ii]</span>
+          <span class="course-title">Research Track in Mathematics</span>
+        </div>
+        <p class="course-instructor">
+          Taught by Professor Sagar Shrivastava
+        </p>
+        <p class="course-body">
+          Designed to introduce mathematically talented high school students to the world of mathematical research. Moving beyond problem-solving, the course emphasises exploration, critical reading, and exposition, core elements of the research process. Each month covers a theme from an area with rich theoretical foundations and active research culture. We read 1–2 expository papers per week, discuss them in live sessions, work on related problem sets, and write a monthly exposition synthesising our learning, examples, and reflections on proof techniques.
+        </p>
+      </div>
+
+      <div class="sec">
+        <span class="sec-num">§3</span>
+        <span class="sec-name">Great Ideas Seminars</span>
+      </div>
+
+      <p class="prose">
+        Alongside the mathematics curriculum, LGP hosted a series of Great Ideas Seminars: talks and conversations with world-class scientists, Nobel laureates, and innovators spanning mathematics, cosmology, biology, fashion, and more.
+      </p>
+
+      <a href="greatideasseminar.html" class="seminar-btn">Read about the Great Ideas Seminars →</a>
+
+      <ul class="seminar-list">
+        <li>
+          <span class="talk-title">Euler's Work on Zeta Values</span>
+          <span class="speaker-line">
+            <a href="https://en.wikipedia.org/wiki/Haruzo_Hida" target="_blank">Professor Haruzo Hida</a>, 2019 Leroy P. Steele Prize, AMS; Distinguished Research Professor, UCLA
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Great Ideas in Cosmology: The Expanding Universe</span>
+          <span class="speaker-line">
+            <a href="https://www.smithsonianjourneys.org/experts/raja-guhathakurta/" target="_blank">Professor Raja GuhaThakurta</a>, UC Santa Cruz &amp; <a href="https://en.wikipedia.org/wiki/Brian_Schmidt" target="_blank">Professor Brian Schmidt</a>, 2011 Nobel Prize in Physics, Vice-Chancellor, ANU
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">What is Life?</span>
+          <span class="speaker-line">
+            <a href="https://en.wikipedia.org/wiki/Paul_Nurse" target="_blank">Sir Paul Nurse</a>, 2001 Nobel Prize in Physiology or Medicine; former President of the Royal Society; Director, Francis Crick Institute
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Biology: A Bridge between Science, Medicine and Space Exploration</span>
+          <span class="speaker-line">
+            <a href="https://www.esa.int/ESA_Multimedia/Images/2013/04/Brigitte_Godard" target="_blank">Dr. Brigitte Godard</a>, ESA Space Surgeon &amp; <a href="https://en.wikipedia.org/wiki/Sharmila_Bhattacharya" target="_blank">Dr. Sharmila Bhattacharya</a>, Principal Investigator, NASA Ames
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Whence Biological Forms</span>
+          <span class="speaker-line">
+            <a href="https://en.wikipedia.org/wiki/Thomas_Lecuit" target="_blank">Professor Thomas Lecuit</a>, Professor, Collège de France
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Breaking Barriers</span>
+          <span class="speaker-line">
+            <a href="https://www.janelia.org/lab/shroff-lab" target="_blank">Hari Shroff</a>, Senior Group Leader, Janelia Research Campus; developer of breakthrough optical microscopy methods
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Simple Science Toys</span>
+          <span class="speaker-line">
+            <a href="https://en.wikipedia.org/wiki/Arvind_Gupta" target="_blank">Arvind Gupta</a>, Padma Shree; Indian science educator, toy inventor, author
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Where Fashion Meets Innovation</span>
+          <span class="speaker-line">
+            <a href="https://en.wikipedia.org/wiki/Mossi_Traor%C3%A9" target="_blank">Mossi Traoré</a>, French fashion designer, Founder of the MOSSI label
+          </span>
+        </li>
+        <li>
+          <span class="talk-title">Site Visit: Astrophotography at Aperture Telescopes</span>
+          <span class="speaker-line">
+            <a href="https://ajaytalwar.com/" target="_blank">Shri Ajay Talwar</a>, astrophotographer for 30+ years; one of only two people in the world to have captured a <a href="https://ajaytalwar.com/the-indian-tutulemma/" target="_blank"><em>tutulemma</em></a> (an analemma containing a solar eclipse)
+          </span>
+        </li>
+      </ul>
+
+      <p class="prose">
+        On the final day, our graduation certificates were awarded by <a href="https://en.wikipedia.org/wiki/Somak_Raychaudhury" target="_blank"><strong>Professor Somak Raychaudhury</strong></a>, Vice-Chancellor of <a href="https://en.wikipedia.org/wiki/Ashoka_University" target="_blank">Ashoka University</a> and past Director of <a href="https://www.iucaa.in/en/" target="_blank">IUCAA</a>.
+      </p>
+
+      <div class="sec">
+        <span class="sec-num">§4</span>
+        <span class="sec-name">Reflection</span>
+      </div>
+
+      <div class="reflection">
+        <span class="reflection-label">Takeaway</span>
+        <p>
+          Above all, what I'll treasure most are the people: the 3 am Maggi and the friendships that turned four weeks into home. <strong>Thank you</strong> to the faculty, mentors, and peers who shaped this transformative experience.
+        </p>
+      </div>
+
+    </div>
+
+    <aside class="aside-col">
+
+      <div class="aside-note">
+        <span class="note-label">Programme</span>
+        The <strong>Lodha Genius Programme</strong> is a fully funded residential programme at Ashoka University for India's most mathematically talented students. Acceptance rate: ~3.2%.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">Sponsor</span>
+        Funded by the <strong>Lodha Foundation</strong>, a philanthropic arm of the Lodha Group, supporting excellence in science and mathematics education.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">Continued Learning</span>
+        Invitation to the Continued Learning Module was extended to the <strong>top 10%</strong> of LGP Scholars, to prepare for ETEAM and ITYM 2026.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">ETEAM</span>
+        The <a href="https://eteam-tournament.org/" target="_blank">European Tournament of Enthusiastic Apprentice Mathematicians</a> is an international mathematics tournament structured around open problem-solving and peer critique.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">Nobel Laureates</span>
+        LGP Great Ideas Seminars featured <strong>Sir Paul Nurse</strong> (2001 Nobel, Physiology) and <strong>Brian Schmidt</strong> (2011 Nobel, Physics), among others.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">Tutulemma</span>
+        A <em>tutulemma</em> is an analemma image containing a solar eclipse. Only two people in the world have ever captured one, Ajay Talwar is one of them.
+      </div>
+
+      <div class="aside-note">
+        <span class="note-label">Graduation</span>
+        Certificates awarded by <strong>Professor Somak Raychaudhury</strong>, Vice-Chancellor of Ashoka University and past Director of IUCAA.
+      </div>
+
+    </aside>
+
+  </div>
+
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.course, .seminar-list li, .aside-note').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Great Ideas Seminars, Field Notes | Akshat Bhaskar</title>
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --cream:        #f5f0e8;
+      --cream-mid:    #ede7d9;
+      --cream-dark:   #e0d8c8;
+      --ink:          #2a2418;
+      --ink-med:      #4a3f30;
+      --ink-soft:     #7a6e5e;
+      --ink-faint:    #a89e8e;
+      --ink-ghost:    #c8bfaf;
+      --rule:         #d8cfbf;
+      --rule-light:   #e8e2d5;
+      --red-wax:      #8b2e1a;
+      --red-wax-soft: #c4552b;
+      --green-field:  #3a5c40;
+      --amber-aged:   #a06820;
+      --notebook-line: rgba(160,140,110,0.18);
+      --serif:        'Lora', 'Palatino Linotype', Georgia, serif;
+      --display:      'Playfair Display', 'Didot', Georgia, serif;
+      --mono:         'DM Mono', 'Courier New', monospace;
+      --outer:        clamp(20px, 5vw, 72px);
+      --max-doc:      900px;
+      --col-main:     520px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.025rem;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      /* subtle notebook line texture */
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(1.78rem - 1px),
+        var(--notebook-line) calc(1.78rem - 1px),
+        var(--notebook-line) 1.78rem
+      );
+      background-attachment: local;
+    }
+
+    /* ── TOPBAR ─────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem clamp(20px, 4vw, 60px);
+      background: rgba(245,240,232,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .topbar-logo {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--cream); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(42,36,24,0.96); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--display); font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(245,240,232,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(245,240,232,0.9); }
+    .nav-hr { width: 28px; height: 0.5px; background: rgba(245,240,232,0.15); margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s; }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(245,240,232,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(245,240,232,0.85); }
+
+    /* ── PROGRESS ───────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--red-wax); z-index: 999; transition: width 0.1s linear;
+      opacity: 0.7;
+    }
+
+    /* ── DOCUMENT WRAPPER ───────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+    }
+
+    /* ── COVER ──────────────────────────────────────────────── */
+    .cover {
+      padding-top: 110px;
+      padding-bottom: 3rem;
+      border-bottom: 1.5px solid var(--ink);
+    }
+
+    .cover-stamp {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 0.5px solid var(--rule-light);
+      padding-bottom: 0.6rem;
+    }
+
+    .cover-stamp-red {
+      color: var(--red-wax);
+      font-weight: 500;
+    }
+
+    .cover-center { text-align: center; }
+
+    .cover-icon {
+      font-size: 1.4rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    h1.cover-title {
+      font-family: var(--display);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.01em;
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-subtitle {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .cover-provenance {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-med);
+      margin-bottom: 0.3rem;
+    }
+
+    .cover-coords {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-top: 1rem;
+    }
+
+    /* wax-seal style badge */
+    .wax-seal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--red-wax);
+      color: #f5f0e8;
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      margin: 1.6rem auto 0;
+      text-align: center;
+      opacity: 0.88;
+    }
+    .wax-seal .seal-num {
+      font-size: 1.3rem;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1;
+      display: block;
+    }
+
+    /* ── PREAMBLE ───────────────────────────────────────────── */
+    .preamble {
+      display: grid;
+      grid-template-columns: var(--col-main) 1fr;
+      gap: 0 2.4rem;
+      padding: 2.8rem 0;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .preamble-main {}
+
+    .preamble-marginal {
+      border-left: 1px solid var(--rule-light);
+      padding-left: 1.4rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      line-height: 1.7;
+      color: var(--ink-faint);
+    }
+
+    .preamble-text {
+      font-family: var(--serif);
+      font-size: 0.96rem;
+      color: var(--ink-med);
+      line-height: 1.82;
+      hyphens: auto;
+      text-align: justify;
+    }
+    .preamble-text a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.5px; text-underline-offset: 3px; }
+    .preamble-text a:hover { color: var(--ink-soft); }
+
+    .marginal-note {
+      margin-bottom: 1.6rem;
+    }
+    .marginal-note strong {
+      display: block;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── LOG ENTRY STRUCTURE ────────────────────────────────── */
+    .log-wrapper {
+      display: grid;
+      grid-template-columns: var(--col-main) 1fr;
+      gap: 0 2.4rem;
+    }
+
+    .log-main-col { }
+
+    .log-margin-col {
+      border-left: 1px solid var(--rule-light);
+      padding-left: 1.4rem;
+      padding-top: 2rem;
+    }
+
+    /* section divider, like a field tab */
+    .log-chapter-head {
+      margin-top: 3.5rem;
+      padding: 0.55rem 0 0.55rem;
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 0.5px solid var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .log-ch-num {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--red-wax-soft);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+    .log-ch-title {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    /* Individual log entry */
+    .log-entry {
+      padding: 2rem 0 2rem;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .log-entry:last-of-type { border-bottom: none; }
+    .log-entry.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hand-numbered log label */
+    .log-num {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+    .log-num-bubble {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--cream);
+      background: var(--ink-soft);
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 0;
+    }
+    .log-num-meta {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+    }
+    .log-num-meta .field-tag {
+      display: inline-block;
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-field);
+      border: 0.5px solid var(--green-field);
+      padding: 0 0.35rem;
+      margin-left: 0.4rem;
+      border-radius: 2px;
+      vertical-align: 1px;
+    }
+
+    .log-entry-title {
+      font-family: var(--display);
+      font-size: 1.18rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.25;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .log-entry-title:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .log-speaker-line {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.85rem;
+    }
+    .log-speaker-line a {
+      color: var(--ink-soft);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 2px;
+    }
+    .log-speaker-line a:hover { color: var(--ink); }
+
+    .log-desc {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      color: var(--ink-med);
+      line-height: 1.8;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* pull-quote style observation */
+    .log-obs {
+      margin: 1.1rem 0 0.4rem;
+      padding: 0.5rem 0 0.5rem 1.1rem;
+      border-left: 2px solid var(--red-wax);
+      font-family: var(--serif);
+      font-size: 0.86rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ── MARGIN ANNOTATIONS ─────────────────────────────────── */
+    .margin-ann {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .margin-ann.visible { opacity: 1; }
+
+    .margin-ann-num {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--cream-dark);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .margin-ann strong {
+      display: block;
+      font-weight: 500;
+      color: var(--ink-med);
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.2rem;
+    }
+
+    .margin-field-label {
+      display: inline-block;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-aged);
+      border: 0.5px solid var(--amber-aged);
+      padding: 1px 0.4rem;
+      border-radius: 2px;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── PHOTO GALLERY ──────────────────────────────────────── */
+    .photo-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.2rem 0 0.4rem;
+    }
+    .photo-gallery img {
+      height: 130px;
+      width: auto;
+      max-width: 100%;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+      filter: sepia(8%) contrast(1.02);
+      transition: filter 0.25s, transform 0.25s;
+      cursor: zoom-in;
+    }
+    .photo-gallery img:hover {
+      filter: sepia(0%) contrast(1.06);
+      transform: scale(1.02);
+      z-index: 2;
+      position: relative;
+    }
+    .photo-gallery.single img { height: 180px; }
+
+    /* ── LIGHTBOX ───────────────────────────────────────────── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(42,36,24,0.9); align-items: center;
+      justify-content: center; cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close {
+      position: fixed; top: 1.2rem; right: 1.5rem;
+      color: var(--cream); font-size: 2rem; cursor: pointer;
+      opacity: 0.6; transition: opacity 0.2s; font-family: sans-serif;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── BACK LINK ──────────────────────────────────────────── */
+    .back-link {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      margin: 3rem 0 5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 1.5px solid var(--ink);
+      padding: 1.3rem 0 5rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.07em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      :root { --outer: 18px; }
+      .preamble,
+      .log-wrapper { grid-template-columns: 1fr; }
+      .preamble-marginal,
+      .log-margin-col { display: none; }
+      .topbar { padding: 1rem 1.2rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.cover-title { font-size: 1.9rem; }
+      .photo-gallery img { height: 100px; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img decoding="async" loading="lazy" id="lightbox-img" src="" alt="" />
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-stamp">
+      <span>Lodha Genius Programme · Ashoka University</span>
+      <span class="cover-stamp-red">Field Record, May/June 2025</span>
+    </div>
+    <div class="cover-center">
+      <span class="cover-icon">✦</span>
+      <h1 class="cover-title">Great Ideas Seminars</h1>
+      <p class="cover-subtitle">An expedition log in ten encounters</p>
+      <p class="cover-provenance">Recorded by Akshat Bhaskar</p>
+      <p class="cover-provenance" style="font-style:normal;font-size:0.82rem;color:var(--ink-faint);">
+        Lodha Genius Programme · 2025 Cohort
+      </p>
+      <p class="cover-coords">
+        28°8911'N 77°1263'E &nbsp;·&nbsp; Sonipat, Haryana &nbsp;·&nbsp; Great Ideas
+      </p>
+      <div class="wax-seal">
+        <span class="seal-num">✦</span>
+        LGP<br>2025
+      </div>
+    </div>
+  </div>
+
+  <!-- PREAMBLE -->
+  <div class="preamble">
+    <div class="preamble-main">
+      <p class="preamble-text">
+        One of the most extraordinary parts of the <a href="lgp.html">Lodha Genius Programme</a> was the Great Ideas Seminar series, lectures and conversations with Nobel laureates, leading scientists, and innovators from across the world. These were not lectures in the conventional sense. They were windows into how exceptional minds observe, question, and sit with uncertainty.
+      </p>
+      <p class="preamble-text" style="margin-top:1rem;">
+        What follows is a field record: ten encounters, each noted as close to the original experience as memory allows. The margin carries context; the centre carries the encounter itself.
+      </p>
+    </div>
+    <div class="preamble-marginal">
+      <div class="marginal-note">
+        <strong>Programme</strong>
+        Lodha Genius Programme<br>
+        Ashoka University, Sonipat
+      </div>
+      <div class="marginal-note">
+        <strong>Duration</strong>
+        May – June 2025<br>
+        Residential, fully funded
+      </div>
+      <div class="marginal-note">
+        <strong>Acceptance</strong>
+        ≈ 3.2% of applicants<br>
+        Pure Mathematics track
+      </div>
+      <div class="marginal-note">
+        <strong>Format</strong>
+        Lectures · Conversations<br>
+        Site visits · Seminars
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG ENTRIES -->
+  <div class="log-wrapper">
+    <div class="log-main-col">
+
+      <!-- CHAPTER HEAD: MATHEMATICS & PHYSICS -->
+      <div class="log-chapter-head">
+        <span class="log-ch-num">Log / I</span>
+        <span class="log-ch-title">On Number, Form & the Cosmos</span>
+      </div>
+
+      <!-- Entry 01 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">01</span>
+          <span class="log-num-meta">
+            Pure Mathematics
+            <span class="field-tag">Seminar</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Euler's Work on Zeta Values</a>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Haruzo_Hida" target="_blank">Professor Haruzo Hida</a>
+          · Distinguished Research Professor, UCLA · Steele Prize 2019
+        </p>
+        <p class="log-desc">
+          Professor Hida walked us through Euler's remarkable resolution of the Basel problem, how the sum of reciprocals of perfect squares connects, improbably, to π². The lecture moved between the purely computational and the philosophically strange: why should a discrete sum converge to an irrational involving a circle? We learnt much about how research actually proceeds in pure mathematics, the patience, the dead ends, the role of analogy.
+        </p>
+        <p class="log-desc" style="margin-top:0.7rem;">
+          We also heard, in passing, about Professor Hida's collaboration with <a href="https://en.wikipedia.org/wiki/Andrew_Wiles" target="_blank" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Sir Andrew Wiles</a>, the <a href="https://abelprize.no/abel-prize-laureates/2016" target="_blank" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Abel Prize laureate</a> who proved Fermat's Last Theorem. History felt briefly close.
+        </p>
+        <div class="log-obs">
+          The session reminded me that the deepest mathematical results often sit at intersections no one expected, geometry meeting series, circles meeting integers.
+        </div>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="hida.jpg"  alt="Professor Haruzo Hida" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="hida2.jpg" alt="Professor Haruzo Hida" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="hida3.jpg" alt="Professor Haruzo Hida" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="hida4.jpg" alt="Professor Haruzo Hida" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 02 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">02</span>
+          <span class="log-num-meta">
+            Cosmology
+            <span class="field-tag">Joint Session</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Great Ideas in Cosmology: The Expanding Universe</a>
+        <p class="log-speaker-line">
+          <a href="https://crest.ucsc.edu/raja-guhathakurta/" target="_blank">Professor Raja GuhaThakurta</a>, UCO/Lick Observatory, UC Santa Cruz
+          &nbsp;·&nbsp;
+          <a href="https://en.wikipedia.org/wiki/Brian_Schmidt" target="_blank">Professor Brian Schmidt</a>, Nobel Prize in Physics 2011 · Vice-Chancellor, ANU
+        </p>
+        <p class="log-desc">
+          A joint session tracing the discovery that the universe's expansion is not slowing down, it is accelerating. The counterintuitive finding earned Schmidt and his collaborators the Nobel. The session moved from observational technique to philosophical implication: what does it mean that most of the universe is dark matter and dark energy, things we can infer but not directly see?
+        </p>
+        <div class="log-obs">
+          We named the unknown. That felt like its own kind of courage, to publish a result that implied a universe mostly composed of something we cannot yet understand.
+        </div>
+        <div class="photo-gallery single">
+          <img decoding="async" loading="lazy" src="brian.jpg" alt="Professor Brian Schmidt" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- CHAPTER HEAD: LIFE SCIENCES -->
+      <div class="log-chapter-head">
+        <span class="log-ch-num">Log / II</span>
+        <span class="log-ch-title">On Life, Form & the Human Body</span>
+      </div>
+
+      <!-- Entry 03 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">03</span>
+          <span class="log-num-meta">
+            Cell Biology & Evolution
+            <span class="field-tag">Seminar</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">What is Life?</a>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Paul_Nurse" target="_blank">Sir Paul Nurse</a>
+          · Nobel Prize in Physiology or Medicine, 2001 · Director, Francis Crick Institute
+        </p>
+        <p class="log-desc">
+          Sir Paul took on a question that sounds simple until you try to answer it. He approached it through information: how is it stored, how is it transmitted, how does an egg reliably become the same organism every time? The lecture was one of the most thought-provoking hours of the programme. We also received, free of charge, copies of his book <em>What is Life?</em> (2020), delivered to our homes by LGP.
+        </p>
+        <div class="log-obs">
+          The question isn't rhetorical. It has a genuine answer, and that answer, once glimpsed, reframes what it means to be a living thing observing other living things.
+        </div>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="paul.jpg"  alt="Sir Paul Nurse" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="paul2.jpg" alt="Sir Paul Nurse" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="paul3.jpg" alt="Sir Paul Nurse" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="paul4.jpg" alt="Sir Paul Nurse" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 04 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">04</span>
+          <span class="log-num-meta">
+            Space Medicine
+            <span class="field-tag">Joint Session</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Biology: A Bridge between Science, Medicine and Space Exploration</a>
+        <p class="log-speaker-line">
+          <a href="https://www.esa.int/ESA_Multimedia/Images/2013/04/Brigitte_Godard" target="_blank">Dr. Brigitte Godard</a>, ESA Space Surgeon
+          &nbsp;·&nbsp;
+          <a href="https://www.nasa.gov/people/sharmila-bhattacharya-2/" target="_blank">Dr. Sharmila Bhattacharya</a>, Principal Investigator, NASA Ames
+        </p>
+        <p class="log-desc">
+          What happens to the human body in space? Microgravity and isolation alter biology in ways that challenge medicine on Earth. Dr. Bhattacharya's work on model organisms and Dr. Godard's clinical experience with astronauts made this one of the most grounded talks of the series, practical consequence meeting frontier science.
+        </p>
+        <div class="photo-gallery single">
+          <img decoding="async" loading="lazy" src="brigitte.jpg" alt="Dr. Brigitte Godard" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 05 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">05</span>
+          <span class="log-num-meta">
+            Developmental Biology
+            <span class="field-tag">Seminar</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Whence Biological Forms</a>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Thomas_Lecuit" target="_blank">Professor Thomas Lecuit</a>
+          · Professor, Collège de France
+        </p>
+        <p class="log-desc">
+          Professor Lecuit studies the question of morphogenesis: how does a single fertilised egg reliably produce the same complex organism every time? His talk bridged physics and biology, exploring the mechanical forces and signalling pathways that sculpt living tissue. It also brought into relief the sheer scale of variation in living forms, size, symmetry, architecture, and what it takes to understand that variation mathematically.
+        </p>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="thomas.jpg"  alt="Professor Thomas Lecuit" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="thomas2.jpg" alt="Professor Thomas Lecuit" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 06 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">06</span>
+          <span class="log-num-meta">
+            Imaging Technology
+            <span class="field-tag">Conversation</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Breaking Barriers</a>
+        <p class="log-speaker-line">
+          <a href="https://www.janelia.org/lab/shroff-lab" target="_blank">Hari Shroff</a>
+          · Senior Group Leader, Janelia Research Campus
+        </p>
+        <p class="log-desc">
+          Shroff has built microscopes that can image living cells at resolutions and speeds previously thought impossible. The session was a close study of his team's instruments, the engineering, the physics, the sheer patience required to develop tools that let us see what was invisible. It raised a question we returned to often: to what extent does what we can measure shape what we think we understand?
+        </p>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="hari.jpg"  alt="Hari Shroff" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="hari2.jpg" alt="Hari Shroff" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="hari3.jpg" alt="Hari Shroff" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- CHAPTER HEAD: CURIOSITY & CRAFT -->
+      <div class="log-chapter-head">
+        <span class="log-ch-num">Log / III</span>
+        <span class="log-ch-title">On Curiosity, Craft & the Made Object</span>
+      </div>
+
+      <!-- Entry 07 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">07</span>
+          <span class="log-num-meta">
+            Science Education
+            <span class="field-tag">Demonstration</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Simple Science Toys</a>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Arvind_Gupta_(toy_inventor)" target="_blank">Arvind Gupta</a>
+          · Padma Shri · Science Educator, IIT Kanpur
+        </p>
+        <p class="log-desc">
+          Unlike any other session in the series. Arvind Gupta has spent decades building science toys from trash, matchsticks, straws, newspaper, and using them to teach physics and mathematics to children across India. He showed us, live, how to construct a dozen different instruments in minutes. The session ended with a story about a captain at sea and a piece of newspaper used as a navigational prop. Joyful and humbling. A reminder that curiosity does not require equipment.
+        </p>
+        <div class="log-obs">
+          The best science education often happens without a classroom. He knew this completely.
+        </div>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="arvind.jpg"  alt="Arvind Gupta" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="arvind2.jpg" alt="Arvind Gupta" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="arvind3.jpg" alt="Arvind Gupta" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 08 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">08</span>
+          <span class="log-num-meta">
+            Design & Culture
+            <span class="field-tag">Seminar</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Where Fashion Meets Innovation</a>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Mossi_Traor%C3%A9" target="_blank">Mossi Traoré</a>
+          · Fashion Designer · Founder, MOSSI
+        </p>
+        <p class="log-desc">
+          Traoré spoke about designing at the intersection of African heritage and contemporary innovation, how creativity operates under constraint. For a room full of mathematicians and scientists, it was a genuinely different mode of thinking about aesthetics and material culture. We also got the opportunity to touch and feel many of the unconventional fabrics MOSSI is working with in an effort to make fashion physically memorable.
+        </p>
+        <div class="photo-gallery single">
+          <img decoding="async" loading="lazy" src="mossi.jpg" alt="Mossi Traoré" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- CHAPTER HEAD: FIELD -->
+      <div class="log-chapter-head">
+        <span class="log-ch-num">Log / IV</span>
+        <span class="log-ch-title">Field Excursions</span>
+      </div>
+
+      <!-- Entry 09 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">09</span>
+          <span class="log-num-meta">
+            Astrophotography
+            <span class="field-tag">Site Visit</span>
+          </span>
+        </div>
+        <a href="#" class="log-entry-title">Aperture Telescopes & Astrophotography</a>
+        <p class="log-speaker-line">
+          <a href="https://ajaytalwar.com/" target="_blank">Shri Ajay Talwar</a>
+          · Astrophotographer · 30+ years · One of two people to capture a <em>tutulemma</em>
+        </p>
+        <p class="log-desc">
+          We visited <a href="https://aperturetelescopes.com/" target="_blank" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px;">Aperture Telescopes</a> and spent an evening on astrophotography with Shri Ajay Talwar, one of only two people in the world to have ever captured a <em>tutulemma</em>, an analemma that contains a solar eclipse. Watching someone who has dedicated thirty years to photographing the sky talk about patience and timing was a quietly profound experience.
+        </p>
+        <p class="log-desc" style="margin-top:0.7rem;">
+          I held in my hand a fragment of a meteor that had struck north India years ago. And participated in a VR simulation of the International Space Station interior.
+        </p>
+        <div class="log-obs">
+          The meteor was heavier than I expected. Something about that weight, matter that had traveled from somewhere else in the solar system and ended up in a palm in a workshop in Delhi, stayed with me.
+        </div>
+        <div class="photo-gallery">
+          <img decoding="async" loading="lazy" src="talwar.jpg"  alt="Shri Ajay Talwar" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="talwar2.jpg" alt="Astrophotography session" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="talwar3.jpg" alt="Astrophotography session" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="meteor.jpg"  alt="Meteor fragment" onclick="openLightbox(this)" />
+          <img decoding="async" loading="lazy" src="space.jpg"   alt="ISS simulation" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <!-- Entry 10 -->
+      <div class="log-entry">
+        <div class="log-num">
+          <span class="log-num-bubble">10</span>
+          <span class="log-num-meta">
+            Closing Ceremony
+            <span class="field-tag">Graduation</span>
+          </span>
+        </div>
+        <span class="log-entry-title">Graduation</span>
+        <p class="log-speaker-line">
+          <a href="https://en.wikipedia.org/wiki/Somak_Raychaudhury" target="_blank">Professor Somak Raychaudhury</a>
+          · Vice-Chancellor, Ashoka University · Past Director, IUCAA
+        </p>
+        <p class="log-desc">
+          On the final day, graduation certificates were awarded by Professor Somak Raychaudhury. The programme closed as it had opened, with the sense that something real had happened in the room; that ideas had been encountered, not merely transmitted.
+        </p>
+        <div class="photo-gallery single">
+          <img decoding="async" loading="lazy" src="certificate.jpg" alt="Graduation ceremony" onclick="openLightbox(this)" />
+        </div>
+      </div>
+
+      <a href="lgp.html" class="back-link">← Back to Lodha Genius Programme</a>
+
+    </div><!-- /log-main-col -->
+
+    <!-- MARGIN COLUMN -->
+    <div class="log-margin-col" aria-hidden="true">
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">01</span>
+        <span class="margin-field-label">Mathematics</span>
+        <strong>Haruzo Hida</strong>
+        Steele Prize 2019 · UCLA<br>
+        Worked with Sir Andrew Wiles on<br>
+        Fermat's Last Theorem
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">02</span>
+        <span class="margin-field-label">Cosmology</span>
+        <strong>Brian Schmidt</strong>
+        Nobel Physics 2011<br>
+        Discovered the accelerating<br>
+        expansion of the universe
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">03</span>
+        <span class="margin-field-label">Biology</span>
+        <strong>Paul Nurse</strong>
+        Nobel Medicine 2001<br>
+        Former President, Royal Society<br>
+        Director, Francis Crick Institute
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">04</span>
+        <span class="margin-field-label">Medicine</span>
+        <strong>Godard &amp; Bhattacharya</strong>
+        ESA &amp; NASA<br>
+        Space biology &amp; human<br>
+        physiology in microgravity
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">05</span>
+        <span class="margin-field-label">Morphology</span>
+        <strong>Thomas Lecuit</strong>
+        Collège de France<br>
+        Physics of tissue formation
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">06</span>
+        <span class="margin-field-label">Imaging</span>
+        <strong>Hari Shroff</strong>
+        Janelia Research Campus<br>
+        Breakthrough optical<br>
+        microscopy methods
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">07</span>
+        <span class="margin-field-label">Pedagogy</span>
+        <strong>Arvind Gupta</strong>
+        Padma Shri<br>
+        Science toys from trash<br>
+        across rural India
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">08</span>
+        <span class="margin-field-label">Design</span>
+        <strong>Mossi Traoré</strong>
+        Founder, MOSSI<br>
+        African heritage in<br>
+        contemporary fashion
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">09</span>
+        <span class="margin-field-label">Astronomy</span>
+        <strong>Ajay Talwar</strong>
+        One of two people to capture<br>
+        a tutulemma, an analemma<br>
+        containing a solar eclipse
+      </div>
+
+      <div class="margin-ann">
+        <span class="margin-ann-num">10</span>
+        <span class="margin-field-label">Closing</span>
+        <strong>Somak Raychaudhury</strong>
+        Vice-Chancellor, Ashoka Univ.<br>
+        Past Director, IUCAA
+      </div>
+
+    </div><!-- /log-margin-col -->
+
+  </div><!-- /log-wrapper -->
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar · New Delhi, India · Field Record No. 1</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div><!-- /document -->
+
+<script>
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.04 });
+  document.querySelectorAll('.log-entry, .margin-ann').forEach(el => obs.observe(el));
+
+  function openLightbox(img) {
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

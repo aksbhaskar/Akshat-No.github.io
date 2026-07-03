@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Press | Akshat Bhaskar</title>
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:      #fffff8;
+      --ink:        #111110;
+      --ink-med:    #333330;
+      --ink-soft:   #666660;
+      --ink-faint:  #999990;
+      --ink-ghost:  #ccccbb;
+      --rule:       #d0d0c0;
+      --rule-light: #e4e4d8;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+      --col-width:  460px;
+      --gutter:     28px;
+      --outer:      clamp(24px, 4vw, 56px);
+      --max-doc:    860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--col-width) var(--gutter) 1fr;
+    }
+
+    .doc-full,
+    .titlepage,
+    .section-head,
+    .doc-footer   { grid-column: 1 / -1; }
+    .body-col     { grid-column: 1 / 2; }
+    .margin-col   { grid-column: 3 / 4; }
+
+    /* ─── PROGRESS ──────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── TITLE PAGE ────────────────────────────────────────── */
+    .titlepage {
+      padding-top: 90px;
+      padding-bottom: 0;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+    .doc-meta-top {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
+    }
+    .title-block { padding-bottom: 2.6rem; }
+    .back-mono {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; display: inline-block;
+      margin-bottom: 1.5rem; transition: color 0.2s;
+    }
+    .back-mono:hover { color: var(--ink); }
+    .back-mono::before { content: '← '; }
+    .page-label {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.09em;
+      text-transform: uppercase; display: block; margin-bottom: 0.6rem;
+    }
+    h1.page-title {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      letter-spacing: 0.01em; line-height: 1.15; color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .page-subtitle {
+      font-family: var(--serif); font-size: 1rem;
+      font-style: italic; color: var(--ink-soft);
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────────────── */
+    .section-head {
+      padding-top: 3rem; padding-bottom: 0.65rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+
+    /* ─── BODY COLUMN ───────────────────────────────────────── */
+    .body-col { padding-top: 2rem; padding-bottom: 4rem; }
+
+    /* ─── PRESS ENTRIES ─────────────────────────────────────── */
+    .press-entry {
+      padding: 1.8rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .press-entry:first-child { padding-top: 1.5rem; }
+    .press-entry:last-child  { border-bottom: none; }
+    .press-entry.visible     { opacity: 1; transform: translateY(0); }
+
+    .press-meta {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+    .press-num {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-ghost); letter-spacing: 0.04em; flex-shrink: 0;
+    }
+    .press-platform {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .press-source {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-ghost); letter-spacing: 0.05em;
+    }
+    .press-dot {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-ghost);
+    }
+
+    .press-title {
+      font-family: var(--serif); font-size: 1.02rem;
+      font-weight: 400; color: var(--ink);
+      text-decoration: none; display: block;
+      line-height: 1.35; margin-bottom: 0.35rem;
+      transition: color 0.2s;
+    }
+    .press-title:hover { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+    .press-desc {
+      font-family: var(--serif); font-size: 0.9rem;
+      color: var(--ink-soft); line-height: 1.75;
+      text-align: justify; hyphens: auto;
+      margin-bottom: 0.55rem;
+    }
+
+    .press-readmore {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      text-decoration: none; display: inline-block;
+      transition: color 0.2s;
+    }
+    .press-readmore:hover { color: var(--ink); }
+
+    /* ─── EMBED SECTION ─────────────────────────────────────── */
+    /* embeds live in a full-width zone below the two-col grid */
+    .embeds-zone {
+      grid-column: 1 / -1;
+      padding-bottom: 3rem;
+    }
+
+    .embeds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 1.8rem;
+    }
+
+    .embed-cell {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .embed-cell.visible { opacity: 1; transform: translateY(0); }
+
+    /* force embeds to fill their cell */
+    .embed-cell blockquote.instagram-media {
+      background: #fff !important;
+      border: 0 !important;
+      border-radius: 2px !important;
+      box-shadow: 0 0 0 0.5px var(--rule) !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+    .embed-cell .twitter-tweet {
+      margin: 0 !important;
+    }
+
+    /* ─── MARGIN COLUMN ─────────────────────────────────────── */
+    .margin-col {
+      padding-top: 2rem; padding-bottom: 4rem;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.6rem;
+    }
+    .marginal {
+      font-family: var(--serif); font-size: 0.76rem;
+      line-height: 1.65; color: var(--ink-soft);
+      margin-bottom: 2.2rem;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .marginal.visible { opacity: 1; }
+    .marginal sup { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); margin-right: 0.2rem; }
+    .marginal strong { font-weight: 600; color: var(--ink-med); }
+
+    /* ─── CONTACT LINE ──────────────────────────────────────── */
+    .press-contact {
+      grid-column: 1 / -1;
+      padding: 1.5rem 0 0;
+      border-top: 0.5px solid var(--rule-light);
+      font-family: var(--serif); font-size: 0.88rem;
+      color: var(--ink-soft); font-style: italic;
+    }
+    .press-contact a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .press-contact a:hover { color: var(--ink-soft); }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      :root { --outer: 20px; }
+      .document { grid-template-columns: 1fr; }
+      .body-col   { grid-column: 1 / -1; }
+      .margin-col { display: none; }
+      .embeds-zone { grid-column: 1 / -1; }
+      .embeds-grid { grid-template-columns: 1fr; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.page-title { font-size: 1.65rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- TITLE PAGE -->
+  <div class="titlepage">
+    <div class="doc-meta-top">
+      <span>Press &nbsp;·&nbsp; Features &amp; Mentions</span>
+      <span>New Delhi &nbsp;·&nbsp; 2026</span>
+    </div>
+    <div class="title-block">
+      <a href="index.html" class="back-mono">Back to Home</a>
+      <span class="page-label">Media &nbsp;·&nbsp; Social &amp; Institutional</span>
+      <h1 class="page-title">Press</h1>
+      <p class="page-subtitle">Posts, features, and mentions across platforms</p>
+    </div>
+  </div>
+
+  <!-- §1 FEATURES -->
+  <div class="section-head">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Institutional Features</span>
+  </div>
+
+  <!-- BODY: press entries -->
+  <div class="body-col">
+
+    <div class="press-entry">
+      <div class="press-meta">
+        <span class="press-num">[1]</span>
+        <span class="press-platform">LinkedIn</span>
+        <span class="press-dot">·</span>
+        <span class="press-source">Lodha Foundation</span>
+      </div>
+      <a class="press-title"
+        href="https://www.linkedin.com/posts/lodha-lodhafoundation-lodhagenius-share-7445384466258337792-GSho"
+        target="_blank" rel="noopener">
+        Lodha Genius Programme, Celebrating the Cohort
+      </a>
+      <p class="press-desc">The Lodha Foundation featured Akshat Bhaskar as part of the 2025 cohort announcement for the Lodha Genius Programme, recognising his selection into the Pure Mathematics specialisation.</p>
+      <a class="press-readmore"
+        href="https://www.linkedin.com/posts/lodha-lodhafoundation-lodhagenius-share-7445384466258337792-GSho"
+        target="_blank" rel="noopener">View post →</a>
+    </div>
+
+    <div class="press-entry">
+      <div class="press-meta">
+        <span class="press-num">[2]</span>
+        <span class="press-platform">LinkedIn</span>
+        <span class="press-dot">·</span>
+        <span class="press-source">Lodha Genius</span>
+      </div>
+      <a class="press-title"
+        href="https://www.linkedin.com/posts/celebrating-our-geniuses-ugcPost-7445084732352086016-xVYx"
+        target="_blank" rel="noopener">
+        Celebrating Our Geniuses
+      </a>
+      <p class="press-desc">A dedicated post from the Lodha Genius Programme celebrating their 2025 scholars individually, featuring Akshat Bhaskar among the cohort of India's most mathematically talented students.</p>
+      <a class="press-readmore"
+        href="https://www.linkedin.com/posts/celebrating-our-geniuses-ugcPost-7445084732352086016-xVYx"
+        target="_blank" rel="noopener">View post →</a>
+    </div>
+
+    <div class="press-entry">
+      <div class="press-meta">
+        <span class="press-num">[3]</span>
+        <span class="press-platform">LinkedIn</span>
+        <span class="press-dot">·</span>
+        <span class="press-source">Skill the Nation</span>
+      </div>
+      <a class="press-title"
+        href="https://www.linkedin.com/posts/skillthenation-dpsrkp-skillthenation-share-7412459552270548992--aFw"
+        target="_blank" rel="noopener">
+        DPS RKP × Skill the Nation
+      </a>
+      <p class="press-desc">Skill the Nation featured Akshat Bhaskar and Delhi Public School R.K. Puram in connection with the SOAR AI initiative and his felicitation at Rashtrapati Bhavan by the President of India.</p>
+      <a class="press-readmore"
+        href="https://www.linkedin.com/posts/skillthenation-dpsrkp-skillthenation-share-7412459552270548992--aFw"
+        target="_blank" rel="noopener">View post →</a>
+    </div>
+
+    <div class="press-entry">
+      <div class="press-meta">
+        <span class="press-num">[4]</span>
+        <span class="press-platform">LinkedIn</span>
+        <span class="press-dot">·</span>
+        <span class="press-source">Skill the Nation</span>
+      </div>
+      <a class="press-title"
+        href="https://www.linkedin.com/posts/skillthenation-dpsrkp-skillthenation-share-7412500655334158336-954t"
+        target="_blank" rel="noopener">
+        DPS RKP × Skill the Nation (II)
+      </a>
+      <p class="press-desc">A follow-up post highlighting Akshat Bhaskar's recognition under the Government of India's SOAR programme for his work on Artificial Intelligence.</p>
+      <a class="press-readmore"
+        href="https://www.linkedin.com/posts/skillthenation-dpsrkp-skillthenation-share-7412500655334158336-954t"
+        target="_blank" rel="noopener">View post →</a>
+    </div>
+
+    <div class="press-entry">
+      <div class="press-meta">
+        <span class="press-num">[5]</span>
+        <span class="press-platform">Facebook</span>
+        <span class="press-dot">·</span>
+        <span class="press-source">Delhi Public School, R.K. Puram</span>
+      </div>
+      <a class="press-title"
+        href="https://www.facebook.com/dpsrkpnet/posts/it-was-a-proud-moment-for-dps-rkpuram-as-two-of-its-students-akshat-bhaskar-and-/1326569712840671/"
+        target="_blank" rel="noopener">
+        A Proud Moment for DPS RKP
+      </a>
+      <p class="press-desc">The official DPS R.K. Puram page celebrated Akshat's felicitation at Rashtrapati Bhavan by President Droupadi Murmu, noting it as a proud moment for the school.</p>
+      <a class="press-readmore"
+        href="https://www.facebook.com/dpsrkpnet/posts/it-was-a-proud-moment-for-dps-rkpuram-as-two-of-its-students-akshat-bhaskar-and-/1326569712840671/"
+        target="_blank" rel="noopener">View post →</a>
+    </div>
+
+  </div>
+
+  <!-- MARGIN NOTES -->
+  <div class="margin-col">
+    <div class="marginal">
+      <sup>†</sup>
+      The <strong>Lodha Foundation</strong> runs the Lodha Genius Programme at Ashoka University, a fully funded residential programme for India's most mathematically talented students, with a 3.2% acceptance rate.
+    </div>
+    <div class="marginal" style="margin-top: 3rem;">
+      <sup>‡</sup>
+      <strong>Skill the Nation</strong> is the Government of India initiative under which Akshat received his SOAR recognition. His work on AI was among 17 students selected nationally.
+    </div>
+    <div class="marginal" style="margin-top: 5.5rem;">
+      <sup>§</sup>
+      <strong>Delhi Public School, R.K. Puram</strong> is one of India's most prominent secondary schools. Akshat's felicitation at Rashtrapati Bhavan was formally celebrated by the school across multiple channels.
+    </div>
+  </div>
+
+  <!-- §2 SOCIAL POSTS -->
+  <div class="section-head">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Social Posts</span>
+  </div>
+
+  <!-- Embedded posts: full-width below the two-column layout -->
+  <div class="embeds-zone">
+    <div class="embeds-grid">
+
+      <div class="embed-cell">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DWk7FKciXtM/"
+          data-instgrm-version="14">
+        </blockquote>
+      </div>
+
+      <div class="embed-cell">
+        <blockquote class="twitter-tweet">
+          <a href="https://x.com/aksbhaskar/status/2006653278646682090"></a>
+        </blockquote>
+      </div>
+
+      <div class="embed-cell">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DS-LfL4k-SS/"
+          data-instgrm-version="14">
+        </blockquote>
+      </div>
+
+      <div class="embed-cell">
+        <blockquote class="twitter-tweet">
+          <a href="https://x.com/dpsrkpnet/status/2006695382630428777"></a>
+        </blockquote>
+      </div>
+
+      <div class="embed-cell">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DS93R-pEwZ9/"
+          data-instgrm-version="14">
+        </blockquote>
+      </div>
+
+      <div class="embed-cell">
+        <blockquote class="twitter-tweet">
+          <a href="https://x.com/dpsrkpnet/status/2006736317170987415"></a>
+        </blockquote>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRESS CONTACT -->
+  <div class="press-contact">
+    For press enquiries: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Embed scripts -->
+<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script>
+  /* progress bar */
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  /* scroll animations */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.press-entry, .embed-cell').forEach(el => obs.observe(el));
+
+  const obsM = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obsM.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.marginal').forEach(el => obsM.observe(el));
+</script>
+</body>
+</html>

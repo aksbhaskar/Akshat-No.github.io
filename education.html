@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education | Akshat Bhaskar</title>
+  <meta name="description" content="Academic record, programmes, and fellowships, Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/education.html" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:        #fffff8;
+      --ink:          #111110;
+      --ink-med:      #333330;
+      --ink-soft:     #666660;
+      --ink-faint:    #999990;
+      --ink-ghost:    #ccccbb;
+      --rule:         #d0d0c0;
+      --rule-light:   #e4e4d8;
+      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:         'Inconsolata', 'Courier New', monospace;
+      --col-width:    460px;
+      --gutter:       28px;
+      --outer:        clamp(24px, 4vw, 56px);
+      --max-doc:      860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT GRID ───────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--col-width) var(--gutter) 1fr;
+    }
+
+    .doc-full,
+    .titlepage,
+    .abstract-block,
+    .keywords-row,
+    .toc-block,
+    .section-head,
+    .doc-footer { grid-column: 1 / -1; }
+
+    .entries-col  { grid-column: 1 / 2; }
+    .sidenotes-col { grid-column: 3 / 4; }
+
+    /* ─── HEADER / TITLE PAGE ──────────────────────────────── */
+    .titlepage {
+      padding-top: 90px;
+      padding-bottom: 0;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+
+    .doc-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
+    }
+
+    .title-center {
+      text-align: center;
+      padding-bottom: 3rem;
+    }
+
+    h1.doc-title {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-author-line {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-med);
+      margin-bottom: 0.2rem;
+    }
+
+    .doc-affil {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.07em;
+      margin-bottom: 0.15rem;
+    }
+
+    .doc-back {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.07em;
+      margin-top: 0.55rem;
+    }
+    .doc-back a {
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .doc-back a:hover { color: var(--ink-med); }
+
+    /* ─── ABSTRACT / PREAMBLE ───────────────────────────────── */
+    .abstract-block {
+      padding: 2.8rem 0;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .abstract-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .abstract-heading {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .abstract-text {
+      font-family: var(--serif);
+      font-size: 0.94rem;
+      line-height: 1.78;
+      color: var(--ink-med);
+    }
+
+    .abstract-text a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 3px;
+    }
+    .abstract-text a:hover { color: var(--ink-soft); }
+
+    .abstract-note {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      text-align: center;
+      margin-top: 1.2rem;
+      line-height: 1.72;
+    }
+
+    /* ─── KEYWORDS ─────────────────────────────────────────── */
+    .keywords-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 0;
+      border-bottom: 0.5px solid var(--ink);
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .kw-label  { font-style: italic; color: var(--ink-med); flex-shrink: 0; }
+    .kw-text   { color: var(--ink); }
+    .kw-link {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .kw-link:hover { color: var(--ink-soft); }
+    .kw-sep { color: var(--ink-ghost); }
+
+    /* ─── TABLE OF CONTENTS ─────────────────────────────────── */
+    .toc-block {
+      padding: 2.4rem 0 2.2rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .section-label {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      display: block;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .toc-list { list-style: none; max-width: 420px; margin: 0 auto; }
+    .toc-list li {
+      display: flex; align-items: baseline;
+      justify-content: space-between; padding: 0.2rem 0;
+    }
+    .toc-list li a {
+      font-family: var(--serif); font-size: 0.93rem;
+      color: var(--ink); text-decoration: none;
+    }
+    .toc-list li a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .toc-leaders {
+      flex: 1; border-bottom: 1px dotted var(--rule);
+      margin: 0 0.5rem; position: relative; top: -3px; min-width: 40px;
+    }
+    .toc-page { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); }
+
+    /* ─── SECTION HEADER ────────────────────────────────────── */
+    .section-head {
+      padding-top: 3.2rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+
+    /* ─── ENTRIES ────────────────────────────────────────────── */
+    .entries-col { padding-top: 2rem; }
+
+    .entry {
+      padding: 0 0 2.4rem;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .entry:last-child { border-bottom: none; }
+    .entry.visible { opacity: 1; transform: translateY(0); }
+
+    .entry-label {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.05em;
+      margin-bottom: 0.3rem; margin-top: 1.9rem; display: block;
+    }
+
+    .entry-title {
+      font-family: var(--serif); font-size: 1.05rem;
+      font-weight: 400; color: var(--ink);
+      line-height: 1.35; text-decoration: none; display: block;
+    }
+    .entry-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .entry-desc {
+      font-family: var(--serif); font-size: 0.9rem;
+      color: var(--ink-med); line-height: 1.75;
+      margin-top: 0.45rem; text-align: justify; hyphens: auto;
+    }
+    .entry-desc a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 3px;
+    }
+    .entry-desc a:hover { color: var(--ink-soft); }
+
+    .entry-readmore {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      text-decoration: none; margin-top: 0.55rem;
+      display: inline-block; transition: color 0.2s;
+    }
+    .entry-readmore:hover { color: var(--ink); }
+
+    /* ─── SIDENOTES ─────────────────────────────────────────── */
+    .sidenotes-col {
+      padding-top: 2rem;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.6rem;
+    }
+
+    .sidenote {
+      font-family: var(--serif); font-size: 0.76rem;
+      line-height: 1.65; color: var(--ink-soft);
+      margin-bottom: 2.2rem;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .sidenote.visible { opacity: 1; }
+    .sidenote sup { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); margin-right: 0.2rem; }
+    .sidenote strong { font-weight: 600; color: var(--ink-med); }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--ink-faint); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      :root { --outer: 20px; }
+      .document { grid-template-columns: 1fr; }
+      .entries-col  { grid-column: 1 / -1; }
+      .sidenotes-col { display: none; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.doc-title { font-size: 1.7rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- TITLE PAGE -->
+  <div class="titlepage">
+    <div class="doc-meta-top">
+      <span>Akshat Bhaskar &ensp;·&ensp; Education</span>
+      <span>New Delhi &nbsp;·&nbsp; 2026</span>
+    </div>
+    <div class="title-center">
+      <h1 class="doc-title">Education</h1>
+      <p class="doc-author-line">Academic record, 2022, present</p>
+      <p class="doc-affil">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Class of 2026</p>
+      <p class="doc-affil" style="margin-top:0.15rem;">Lodha Genius Programme &nbsp;·&nbsp; Ashoka University</p>
+      <p class="doc-back"><a href="index.html">← akshatbhaskar.ninja</a></p>
+    </div>
+  </div>
+
+  <!-- PREAMBLE -->
+  <div class="abstract-block">
+    <div class="abstract-inner">
+      <span class="abstract-heading">Preamble</span>
+      <p class="abstract-text">
+        What follows is a record of Akshat's formal schooling, residential research programmes, and competitive fellowships, assembled between 2022 and the present. His foundation was a standard CBSE curriculum at one of India's most competitive schools; everything else was built around it. Admitted into the country's most selective mathematics programme at a 3.2% acceptance rate, appointed to a paid research apprenticeship in analytic number theory, and accepted into competitive programmes internationally, none of it accessed through IB, A-levels, or the infrastructure of educational consultants.
+      </p>
+      <p class="abstract-note">
+        Entries are ordered roughly by academic weight, not chronology. Dates are of participation.
+      </p>
+    </div>
+  </div>
+
+  <!-- SUBJECTS ROW -->
+  <div class="keywords-row">
+    <span class="kw-label">Subjects: &nbsp;</span>
+    <span class="kw-text">Pure Mathematics</span><span class="kw-sep">,</span>
+    <span class="kw-text">Number Theory</span><span class="kw-sep">,</span>
+    <span class="kw-text">Public Policy</span><span class="kw-sep">,</span>
+    <span class="kw-text">Financial Literacy</span><span class="kw-sep">,</span>
+    <span class="kw-text">Entrepreneurship</span><span class="kw-sep">&nbsp;·&nbsp;</span>
+    <a href="resume.pdf" class="kw-link" target="_blank">resume.pdf ↗</a>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-block">
+    <span class="section-label">Contents</span>
+    <ol class="toc-list">
+      <li>
+        <a href="#academic-programmes">1 &ensp; Academic &amp; Research Programmes</a>
+        <span class="toc-leaders"></span>
+        <span class="toc-page">§1</span>
+      </li>
+      <li>
+        <a href="#fellowships">2 &ensp; Schools, Fellowships &amp; Workshops</a>
+        <span class="toc-leaders"></span>
+        <span class="toc-page">§2</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- §1 ACADEMIC & RESEARCH PROGRAMMES -->
+  <div class="section-head" id="academic-programmes">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Academic &amp; Research Programmes</span>
+  </div>
+
+  <div class="entries-col">
+
+    <div class="entry">
+      <span class="entry-label">[1] &nbsp; 15th May 2026 – 20th June 2026 · Ashoka University, Sonipat</span>
+      <a href="mathapprenticeship.html" class="entry-title">Teaching Assistant &amp; Research Apprentice, Lodha Genius</a>
+      <p class="entry-desc">Paid research and teaching position at the Lodha Genius – Ashoka University Programme. An explicit institutional exception was made to include Akshat as a pre-undergraduate applicant. Research focus: algebraic number theory, under Professor Shanta Laishram (Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi), alongside faculty from IIT Delhi, CMI, ISI Kolkata, ISI Delhi, and Ashoka University.</p>
+      <a href="mathapprenticeship.html" class="entry-readmore">Read more →</a>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[2] &nbsp; May – June 2025 · Ashoka University, Sonipat &nbsp;·&nbsp; 3.2% Acceptance</span>
+      <a href="lgp.html" class="entry-title">Lodha Genius Programme, Pure Mathematics</a>
+      <p class="entry-desc">Admitted into the fully funded Lodha Genius Programme 2025 Cohort, specialising in Pure Mathematics, Number Theory, Group Theory, Linear Algebra, and Geometry. Attended alongside top undergraduate mathematicians from across India.</p>
+      <a href="lgp.html" class="entry-readmore">Read more →</a>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[3] &nbsp; May – June 2025 · Ashoka University</span>
+      <a href="greatideasseminar.html" class="entry-title">Great Ideas Seminars, Lodha Genius Programme</a>
+      <p class="entry-desc">Attended intimate colloquia with Nobel laureates, leading scientists, and mathematicians, including Sir Paul Nurse (Nobel Prize in Physiology, 2001), Professor Brian Schmidt (Nobel Prize in Physics, 2011), and Professor Haruzo Hida (AMS Steele Prize), among others.</p>
+      <a href="greatideasseminar.html" class="entry-readmore">Read more →</a>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[4] &nbsp; August – November 2025 · University of California, Santa Cruz</span>
+      <span class="entry-title">Shadow the Scientists Programme</span>
+      <p class="entry-desc">Selected for the competitive Shadow the Scientists Programme at UC Santa Cruz, pairing students with active UCSC researchers to observe and participate directly in ongoing scientific work.</p>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[5] &nbsp; April 2022 – May 2026 · New Delhi</span>
+      <a href="dpsrkp.html" class="entry-title">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Class of 2026</a>
+      <p class="entry-desc">Completed secondary and senior secondary education at one of India's most selective schools. Elected President of the Student Council. CBSE stream: Physics, Chemistry, Mathematics, and Economics.</p>
+      <a href="dpsrkp.html" class="entry-readmore">Read more →</a>
+    </div>
+
+  </div>
+
+  <!-- SIDENOTES §1 -->
+  <div class="sidenotes-col" aria-hidden="true">
+
+    <div class="sidenote">
+      <sup>†</sup>
+      <strong>LG-AUP</strong> is a paid research and teaching appointment at the Lodha Genius – Ashoka University Programme. Akshat joins as a pre-undergraduate student, an exception made explicitly for this role.
+    </div>
+
+    <div class="sidenote">
+      <sup>‡</sup>
+      The <strong>Lodha Genius Programme</strong> is fully funded and residential, designed for India's most mathematically gifted students. Acceptance rate: 3.2%.
+    </div>
+
+    <div class="sidenote">
+      <sup>§</sup>
+      The <strong>Great Ideas Seminars</strong> are small, invitation-only colloquia held within the LGP. Past speakers include two Nobel laureates and a recipient of the AMS Steele Prize in Number Theory.
+    </div>
+
+    <div class="sidenote">
+      <sup>¶</sup>
+      The <strong>Shadow the Scientists Programme</strong> at UC Santa Cruz pairs selected students with faculty researchers engaged in active scientific inquiry.
+    </div>
+
+    <div class="sidenote">
+      <sup>‖</sup>
+      <strong>Delhi Public School, R.K. Puram</strong> is among India's most competitive schools, with over 5,000 students. Akshat served as Student Council President in his final year.
+    </div>
+
+  </div>
+
+  <!-- §2 FELLOWSHIPS & WORKSHOPS -->
+  <div class="section-head" id="fellowships">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Schools, Fellowships &amp; Workshops</span>
+  </div>
+
+  <div class="entries-col">
+
+    <div class="entry">
+      <span class="entry-label">[6] &nbsp; April 2026 · Bengaluru &nbsp;·&nbsp; 8% Acceptance</span>
+      <a href="yc.html" class="entry-title">Y Combinator, Startup School India</a>
+      <p class="entry-desc">Selected for YC's inaugural Startup School India, among 2,000 founders, builders, and engineers from across the country. Pitched his financial literacy initiative directly to Jared Friedman, received a $25K+ AI compute grant from Y Combinator, and met the founding teams of Zepto, Razorpay, Groww, and Meesho.</p>
+      <a href="yc.html" class="entry-readmore">Read more →</a>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[7] &nbsp; June 2025 · Hong Kong Baptist University</span>
+      <span class="entry-title">HKBU Summer School, ESG &amp; Culture in Marketing</span>
+      <p class="entry-desc">Nominated as one of five students from Delhi Public School, R.K. Puram (from a school of 5,000+). Studied ESG and culture in marketing under Professor Barry Hung, Department of Management, Marketing and Information Systems.</p>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[8] &nbsp; 2024 · IIT Bombay</span>
+      <span class="entry-title">Eureka! Juniors, E-Cell IIT Bombay</span>
+      <p class="entry-desc">Completed a selective three-month entrepreneurship development programme run by the Entrepreneurship Cell of IIT Bombay. Developed and pitched <em>FinKid</em>, a financial literacy initiative, to industry leaders and CXOs.</p>
+    </div>
+
+    <div class="entry">
+      <span class="entry-label">[9] &nbsp; May – September 2024 · Online &nbsp;·&nbsp; Selected from 32,000</span>
+      <span class="entry-title">Innovator, s3 Cohort, buildspace</span>
+      <p class="entry-desc">Selected for the s3 Cohort of buildspace, a global programme for early-stage builders and founders. Chosen from among 32,000 applications worldwide; the programme focused on shipping real products with real users within a compressed timeline.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDENOTES §2 -->
+  <div class="sidenotes-col" aria-hidden="true">
+
+    <div class="sidenote">
+      <sup>**</sup>
+      <strong>Y Combinator's Startup School India</strong> was YC's first event of its kind in the country. Akshat received a $25K+ AI compute grant from YC and pitched to partner Jared Friedman.
+    </div>
+
+    <div class="sidenote">
+      <sup>††</sup>
+      <strong>HKBU Summer School</strong>, Akshat was among only five nominees from a school of over 5,000 students, taught by Professor Barry Hung at Hong Kong Baptist University.
+    </div>
+
+    <div class="sidenote">
+      <sup>‡‡</sup>
+      <strong>Eureka! Juniors</strong> is the high school track of IIT Bombay's E-Cell, one of India's most prominent undergraduate entrepreneurship organisations.
+    </div>
+
+    <div class="sidenote">
+      <sup>§§</sup>
+      <strong>buildspace</strong> received over 32,000 applications for its s3 Cohort worldwide. The programme was known for its constraint-driven approach to building and shipping.
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.entry, .sidenote').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

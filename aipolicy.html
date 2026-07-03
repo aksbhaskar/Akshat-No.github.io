@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Two Faces of Progress | Akshat Bhaskar</title>
+  <meta name="description" content="AI Policy Research by Akshat Bhaskar, The Two Faces of Progress, published in IJRASET." />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --paper:        #fafaf4;
+      --ink:          #111110;
+      --ink-med:      #333330;
+      --ink-soft:     #666660;
+      --ink-faint:    #999990;
+      --ink-ghost:    #ccccbb;
+      --rule:         #d0d0c0;
+      --rule-light:   #e4e4d8;
+      --accent:       #2a2a26;
+      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:         'Inconsolata', 'Courier New', monospace;
+      --col-main:     520px;
+      --gutter:       32px;
+      --outer:        clamp(24px, 4vw, 64px);
+      --max-doc:      900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+      display: grid;
+      grid-template-columns: var(--col-main) var(--gutter) 1fr;
+    }
+
+    .doc-full,
+    .paper-header,
+    .paper-abstract,
+    .paper-meta-row,
+    .section-head,
+    .doc-footer { grid-column: 1 / -1; }
+
+    .main-col   { grid-column: 1 / 2; }
+    .margin-col { grid-column: 3 / 4; }
+
+    /* ─── TOPBAR / NAV ───────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(250,250,244,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span { background: var(--paper); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,248,0.22); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+
+    /* ─── PROGRESS BAR ───────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── PAPER HEADER ───────────────────────────────────────── */
+    .paper-header {
+      padding-top: 100px;
+      padding-bottom: 2.8rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+
+    .breadcrumb {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      margin-bottom: 2.6rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .breadcrumb a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { color: var(--ink-ghost); }
+
+    .paper-journal-line {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+
+    h1.paper-title {
+      font-family: var(--serif); font-size: 2rem;
+      font-weight: 400; line-height: 1.2;
+      color: var(--ink); margin-bottom: 0.5rem;
+      max-width: 640px;
+    }
+
+    h1.paper-title em {
+      font-style: italic;
+    }
+
+    .paper-subtitle {
+      font-family: var(--serif); font-size: 1.05rem;
+      font-style: italic; color: var(--ink-soft);
+      margin-bottom: 1.8rem; max-width: 560px;
+    }
+
+    .paper-author-block {
+      display: flex; align-items: baseline;
+      gap: 1.8rem; flex-wrap: wrap;
+    }
+
+    .paper-author {
+      font-family: var(--serif); font-size: 0.95rem;
+      color: var(--ink-med);
+    }
+    .paper-author span {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.05em;
+      margin-left: 0.4rem;
+    }
+
+    .paper-date {
+      font-family: var(--mono); font-size: 0.64rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+    }
+
+    /* ─── ABSTRACT BLOCK ─────────────────────────────────────── */
+    .paper-abstract {
+      padding: 2.6rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      display: grid;
+      grid-template-columns: var(--col-main) var(--gutter) 1fr;
+    }
+
+    .abstract-body {
+      grid-column: 1 / 2;
+      font-family: var(--serif); font-size: 0.93rem;
+      color: var(--ink-med); line-height: 1.82;
+      text-align: justify; hyphens: auto;
+    }
+
+    .abstract-body::before {
+      content: "Abstract";
+      display: block; font-family: var(--serif);
+      font-size: 0.82rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      color: var(--ink); margin-bottom: 0.75rem;
+    }
+
+    .abstract-aside {
+      grid-column: 3 / 4;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.6rem;
+    }
+
+    .meta-block {
+      margin-bottom: 1.8rem;
+    }
+    .meta-label {
+      font-family: var(--mono); font-size: 0.60rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-transform: uppercase; display: block; margin-bottom: 0.3rem;
+    }
+    .meta-value {
+      font-family: var(--serif); font-size: 0.82rem;
+      color: var(--ink-med); line-height: 1.55;
+    }
+    .meta-value a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .meta-value a:hover { color: var(--ink-soft); }
+
+    /* ─── META ROW ───────────────────────────────────────────── */
+    .paper-meta-row {
+      display: flex; align-items: baseline;
+      gap: 0.5rem; flex-wrap: wrap;
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--ink);
+      font-family: var(--serif); font-size: 0.84rem;
+    }
+    .meta-tag-label { font-style: italic; color: var(--ink-soft); flex-shrink: 0; }
+    .meta-tag {
+      color: var(--ink); padding: 0.05rem 0;
+    }
+    .meta-sep { color: var(--ink-ghost); }
+
+    /* ─── SECTION HEAD ───────────────────────────────────────── */
+    .section-head {
+      padding-top: 3rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .sec-num { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); }
+
+    /* ─── BODY TEXT SECTION ──────────────────────────────────── */
+    .body-section {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: var(--col-main) var(--gutter) 1fr;
+      padding-top: 1.8rem;
+      padding-bottom: 2.4rem;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+    .body-section:last-of-type { border-bottom: none; }
+
+    .body-text {
+      grid-column: 1 / 2;
+    }
+
+    .body-text p {
+      font-family: var(--serif); font-size: 0.96rem;
+      color: var(--ink-med); line-height: 1.82;
+      text-align: justify; hyphens: auto;
+      margin-bottom: 1.1rem;
+    }
+
+    .body-text p:last-child { margin-bottom: 0; }
+
+    .body-text a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .body-text a:hover { color: var(--ink-soft); }
+
+    /* subsection heading */
+    .sub-heading {
+      font-family: var(--serif); font-size: 0.88rem;
+      font-weight: 600; color: var(--ink);
+      margin: 1.6rem 0 0.5rem;
+      font-style: normal;
+    }
+
+    /* item list, no bullets, indented with em-dash */
+    .item-list {
+      list-style: none; margin: 0.6rem 0 1rem; padding: 0;
+    }
+    .item-list li {
+      font-family: var(--serif); font-size: 0.93rem;
+      color: var(--ink-med); line-height: 1.75;
+      padding-left: 1.4rem; position: relative;
+      margin-bottom: 0.35rem;
+    }
+    .item-list li::before {
+      content: ", ";
+      position: absolute; left: 0;
+      color: var(--ink-ghost); font-family: var(--serif);
+    }
+
+    /* opportunity / challenge columns */
+    .two-col-list {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 2rem; margin: 0.8rem 0 1rem;
+    }
+    .two-col-list .col-head {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+      display: block;
+    }
+    .two-col-list .col-items {
+      font-family: var(--serif); font-size: 0.9rem;
+      color: var(--ink-med); line-height: 1.72;
+    }
+    .two-col-list .col-items li {
+      list-style: none; padding-left: 1.1rem; position: relative;
+      margin-bottom: 0.2rem;
+    }
+    .two-col-list .col-items li::before {
+      content: "·";
+      position: absolute; left: 0.1rem;
+      color: var(--ink-ghost);
+    }
+
+    /* margin note */
+    .body-margin {
+      grid-column: 3 / 4;
+      border-left: 0.5px solid var(--rule-light);
+      padding-left: 1.6rem;
+    }
+
+    .margin-note {
+      font-family: var(--serif); font-size: 0.76rem;
+      line-height: 1.65; color: var(--ink-soft);
+      margin-bottom: 2rem;
+      opacity: 0; transition: opacity 0.55s ease;
+    }
+    .margin-note.visible { opacity: 1; }
+    .margin-note strong { font-weight: 600; color: var(--ink-med); }
+    .margin-note em { font-style: italic; }
+    .margin-note a {
+      color: var(--ink-soft); text-decoration: underline;
+      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
+    }
+    .margin-note a:hover { color: var(--ink); }
+
+    /* ─── CTA / LINKS SECTION ───────────────────────────────── */
+    .cta-bar {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 2rem;
+      padding: 2rem 0;
+      border-top: 0.5px solid var(--ink);
+      flex-wrap: wrap;
+    }
+
+    .cta-link {
+      font-family: var(--mono); font-size: 0.66rem;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      border: 0.5px solid var(--ink);
+      padding: 0.45rem 1rem; transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .cta-link:hover { background: var(--ink); color: var(--paper); }
+
+    .cta-link.ghost {
+      border-color: var(--rule); color: var(--ink-soft);
+    }
+    .cta-link.ghost:hover { border-color: var(--ink); color: var(--ink); background: none; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--rule-light);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── FADE IN ─────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      :root { --outer: 20px; }
+      .document,
+      .paper-abstract,
+      .body-section { grid-template-columns: 1fr; }
+      .paper-abstract .abstract-body,
+      .body-text,
+      .main-col { grid-column: 1 / -1; }
+      .abstract-aside,
+      .body-margin,
+      .margin-col { display: none; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      h1.paper-title { font-size: 1.65rem; }
+      .two-col-list { grid-template-columns: 1fr; gap: 1.2rem; }
+      .cta-bar { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
+
+  <!-- PAPER HEADER -->
+  <div class="paper-header">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="research.html">Research</a>
+      <span>/</span>
+      <span style="color: var(--ink-soft);">AI Policy</span>
+    </div>
+    <p class="paper-journal-line">IJRASET · Vol. 13, Issue 7 · July 2025</p>
+    <h1 class="paper-title">The Two Faces of Progress:<br><em>A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</em></h1>
+    <div class="paper-author-block">
+      <span class="paper-author">Akshat Bhaskar <span>Author</span></span>
+      <span class="paper-author">Prof. Surbhi Goel <span>Mentor · University of Pennsylvania</span></span>
+      <span class="paper-date">DOI: 10.22214/ijraset.2025.73146</span>
+    </div>
+  </div>
+
+  <!-- ABSTRACT + META ASIDE -->
+  <div class="paper-abstract">
+    <div class="abstract-body fade-in">
+      This paper examines the rapid progress of artificial intelligence across economic, social, and geopolitical dimensions, from the Future of Life Institute's open letter (March 2023) and the Paris AI Action Summit (2025), to the formation of public AI foundations and the emergence of international governance frameworks. It traces both the profound opportunities and the systemic risks that attend AI's integration into global society, with particular attention to the tension between innovation and precaution in the AGI debate. The paper argues for open, inclusive, and ethically grounded development approaches as a precondition for equitable AI deployment.
+    </div>
+
+    <div class="abstract-aside">
+      <div class="meta-block fade-in">
+        <span class="meta-label">Journal</span>
+        <span class="meta-value">International Journal for Research in Applied Science and Engineering Technology</span>
+      </div>
+      <div class="meta-block fade-in">
+        <span class="meta-label">Published</span>
+        <span class="meta-value">July 2025</span>
+      </div>
+      <div class="meta-block fade-in">
+        <span class="meta-label">Full Text</span>
+        <span class="meta-value">
+          <a href="https://www.researchgate.net/publication/393986547_The_Two_Faces_of_Progress_A_Look_at_the_Socio-Economic_Challenges_and_Opportunities_Presented_by_Artificial_Intelligence" target="_blank">ResearchGate ↗</a><br>
+          <a href="https://ijraset.com" target="_blank">IJRASET ↗</a>
+        </span>
+      </div>
+      <div class="meta-block fade-in">
+        <span class="meta-label">Presented at</span>
+        <span class="meta-value">NYC STEM Research Conference<br><span style="font-style:italic;font-size:0.78rem;color:var(--ink-faint);">Only high schooler in attendance</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS ROW -->
+  <div class="paper-meta-row">
+    <span class="meta-tag-label">Topics: &nbsp;</span>
+    <span class="meta-tag">AI Governance</span><span class="meta-sep">,</span>
+    <span class="meta-tag">Socio-Economic Impact</span><span class="meta-sep">,</span>
+    <span class="meta-tag">Existential Risk</span><span class="meta-sep">,</span>
+    <span class="meta-tag">Public Policy</span><span class="meta-sep">,</span>
+    <span class="meta-tag">AGI</span><span class="meta-sep">,</span>
+    <span class="meta-tag">Global Regulation</span>
+  </div>
+
+  <!-- §1 CONTEXT -->
+  <div class="section-head">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Context &amp; Motivation</span>
+  </div>
+
+  <div class="body-section">
+    <div class="body-text fade-in">
+      <p>
+        Artificial intelligence has ceased to be a purely technical matter. In the span of a few years, it has become a political, economic, and philosophical one, reshaping how governments think about labour, security, education, and sovereignty. This research emerged from a desire to understand not just what AI is doing, but what it means: for individuals, for institutions, and for the international order.
+      </p>
+      <p>
+        The triggering event was the Future of Life Institute's open letter of March 2023, signed by over a thousand researchers and technologists, calling for a pause on frontier AI development. That moment crystallised the stakes. Shortly after, the Paris AI Action Summit (2025) and the formation of public AI foundations signalled that governments were beginning to treat AI governance as a serious policy domain, not merely a regulatory afterthought.
+      </p>
+      <p>
+        Conducted under the informal mentorship of Professor Surbhi Goel, Magerman Term Assistant Professor of Computer and Information Science at the University of Pennsylvania, this research sought to synthesise these developments into a coherent policy-analytical framework accessible to policymakers and researchers alike.
+      </p>
+    </div>
+    <div class="body-margin">
+      <div class="margin-note fade-in">
+        <strong>Future of Life Institute (2023).</strong> Over 1,000 signatories, including leading AI researchers, called for a six-month pause on training systems more powerful than GPT-4.
+      </div>
+      <div class="margin-note fade-in">
+        <strong>Paris AI Action Summit.</strong> Convened in February 2025 with 60+ participating nations. Focused on AI safety, inclusion, and international governance frameworks.
+      </div>
+    </div>
+  </div>
+
+  <!-- §2 FINDINGS -->
+  <div class="section-head">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Principal Findings</span>
+  </div>
+
+  <div class="body-section">
+    <div class="body-text fade-in">
+      <p>
+        The paper's analysis organises around a central tension: that the same capabilities which make AI transformatively beneficial, speed, scale, generalisation, also make it systemically dangerous. This is not a paradox to be resolved, but a condition to be managed through governance design.
+      </p>
+
+      <p class="sub-heading">Opportunities and Challenges</p>
+
+      <div class="two-col-list">
+        <div>
+          <span class="col-head">Opportunities</span>
+          <ul class="col-items">
+            <li>Medical diagnostics at scale</li>
+            <li>Automation of routine labour</li>
+            <li>Accelerated scientific research</li>
+            <li>Expanded access to expertise</li>
+            <li>Economic productivity gains</li>
+          </ul>
+        </div>
+        <div>
+          <span class="col-head">Challenges</span>
+          <ul class="col-items">
+            <li>Structural job displacement</li>
+            <li>Algorithmic bias and inequity</li>
+            <li>Surveillance and civil liberties</li>
+            <li>Concentration of AI power</li>
+            <li>AGI alignment risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>
+        A recurring finding is that existing regulatory instruments, designed for a world of slower, more legible technologies, are ill-suited to AI's pace of development. The paper thus advocates for adaptive governance: frameworks that can evolve in tandem with the technology, rather than lag behind it by years.
+      </p>
+
+      <p class="sub-heading">The AGI Question</p>
+      <p>
+        The paper devotes particular attention to the artificial general intelligence (AGI) debate, which occupies an unusual position in policy discourse: simultaneously dismissed as speculative and treated as an urgent priority by safety researchers. The paper argues this ambiguity is itself a governance problem, it allows policymakers to defer action under the cover of scientific uncertainty.
+      </p>
+    </div>
+
+    <div class="body-margin">
+      <div class="margin-note fade-in">
+        <strong>Adaptive governance</strong> refers to regulatory architectures designed to update in response to new evidence, borrowed from environmental policy, where scientific uncertainty is a permanent condition.
+      </div>
+      <div class="margin-note fade-in">
+        <strong>AGI</strong> (Artificial General Intelligence): a hypothetical system with the capacity to perform any intellectual task a human can. No such system exists today, but debate around its timing and risks shapes current policy.
+      </div>
+    </div>
+  </div>
+
+  <!-- §3 POLICY RECOMMENDATIONS -->
+  <div class="section-head">
+    <span class="sec-num">§3</span>
+    <span class="sec-title">Policy Recommendations</span>
+  </div>
+
+  <div class="body-section">
+    <div class="body-text fade-in">
+      <p>
+        The paper's conclusions are oriented toward practice, toward what can actually be done by governments, institutions, and the international community. Four broad recommendations emerge:
+      </p>
+      <ul class="item-list">
+        <li>Establish independent AI safety bodies with standing authority to audit frontier model development, modelled on the IAEA's role in nuclear governance.</li>
+        <li>Build open and inclusive development ecosystems that distribute access to AI capabilities across geographies and institutions, not just frontier labs in a handful of countries.</li>
+        <li>Develop international frameworks for AGI risk, analogous to arms control treaties, with verification mechanisms and agreed thresholds for pause or disclosure.</li>
+        <li>Invest in transition support for workers and communities likely to face displacement, prioritising labour markets with the least capacity to absorb shocks.</li>
+      </ul>
+      <p>
+        These recommendations do not assume hostility toward AI development. They assume only that the benefits of AI are not self-distributing, and that good outcomes require deliberate institutional design.
+      </p>
+    </div>
+
+    <div class="body-margin">
+      <div class="margin-note fade-in">
+        <strong>IAEA model.</strong> The International Atomic Energy Agency provides a precedent for international technical governance of dual-use technology, combining promotion of beneficial uses with safety oversight.
+      </div>
+      <div class="margin-note fade-in">
+        The paper was presented at the <strong>NYC STEM Research Conference</strong>, where Akshat was the only high school student in attendance.
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <a href="https://www.researchgate.net/publication/393986547_The_Two_Faces_of_Progress_A_Look_at_the_Socio-Economic_Challenges_and_Opportunities_Presented_by_Artificial_Intelligence" target="_blank" class="cta-link">Read Full Paper ↗</a>
+    <a href="research.html" class="cta-link ghost">← All Research</a>
+    <a href="index.html" class="cta-link ghost">← Home</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* progress bar */
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  /* intersection observer for fade-in + margin notes */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-in, .margin-note').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────── */
+:root {
+  --bg:         #faf9f7;
+  --bg-2:       #f2f0ec;
+  --bg-3:       #eae8e3;
+  --bg-4:       #e2dfd9;
+  --border:     #dedad3;
+  --border-2:   #c8c4bc;
+  --text:       #1c1b19;
+  --text-muted: #6b6860;
+  --text-dim:   #a8a49d;
+  --accent:     #3d5a80;
+  --accent-2:   #1a7a62;
+  --accent-warm:#a0620a;
+  --white:      #1c1b19;
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.11);
+  --serif:      'EB Garamond', Georgia, serif;
+  --sans:       'Inter', 'Karla', system-ui, sans-serif;
+}
+
+/* ─── RESET & BASE ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Karla', var(--sans), sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 16px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-2); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-warm); }
+
+/* ─── NAVBAR (other pages) ──────────────────────────────────────── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,247,0.92);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5vw;
+}
+
+.navbar ul {
+  list-style: none; display: flex;
+  align-items: center; justify-content: flex-end;
+  flex-wrap: wrap; height: 56px; gap: 0;
+}
+
+.navbar li a {
+  display: block; padding: 0.3rem 0.85rem;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--text-muted); position: relative;
+  transition: color var(--transition);
+}
+
+.navbar li a::after {
+  content: ''; position: absolute;
+  bottom: -1px; left: 0.85rem; right: 0.85rem;
+  height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform var(--transition);
+}
+
+.navbar li a:hover,
+.navbar li a:focus { color: var(--text); text-decoration: none; }
+
+.navbar li a:hover::after,
+.navbar li a:focus::after { transform: scaleX(1); transform-origin: left; }
+
+/* ─── HERO (other pages that still use .hero class) ─────────────── */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-text { flex: 1 1 460px; }
+
+.hero h1 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.14;
+  color: var(--text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.name-highlight {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(120deg, var(--accent) 5%, var(--accent-2) 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h2 {
+  font-family: 'Spectral', serif;
+  font-size: 1rem; font-weight: 300; font-style: italic;
+  color: var(--text-muted); line-height: 1.65;
+  margin-bottom: 2rem; max-width: 460px;
+}
+
+.hero p {
+  font-size: 0.93rem; color: var(--text-muted);
+  max-width: 500px; margin-bottom: 2rem; line-height: 1.85;
+}
+
+.hero p a { color: var(--accent-2); }
+.hero p a:hover { color: var(--accent-warm); }
+
+/* ─── BUTTONS ───────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Karla', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: all var(--transition);
+  cursor: pointer;
+  margin-right: 0.5rem; margin-bottom: 0.4rem;
+  border: 1px solid transparent;
+}
+
+.btn:not(.btn-secondary) {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.btn:not(.btn-secondary):hover {
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-warm);
+  border-color: var(--accent-warm);
+}
+.btn-secondary:hover {
+  background: var(--accent-warm);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+/* ─── SOCIAL ICONS ──────────────────────────────────────────────── */
+.social-icons {
+  display: flex; gap: 0.5rem;
+  margin-top: 2rem; flex-wrap: wrap;
+}
+
+.social-icons a {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 0.9rem;
+  transition: all var(--transition); text-decoration: none;
+}
+
+.social-icons a:hover {
+  border-color: var(--text); color: var(--text);
+  background: var(--bg-3);
+}
+
+/* ─── HERO IMAGE ────────────────────────────────────────────────── */
+.hero-image { flex: 0 0 auto; text-align: center; }
+
+.profile-image {
+  width: 200px; height: 200px;
+  object-fit: cover; border-radius: 50%;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  filter: grayscale(15%);
+  transition: filter var(--transition), box-shadow var(--transition);
+}
+.profile-image:hover {
+  filter: grayscale(0%);
+  box-shadow: var(--shadow-lg);
+}
+
+.subtitle {
+  display: block; font-size: 0.78rem;
+  color: var(--text-dim); font-weight: 400;
+  letter-spacing: 0.03em; margin-top: 0.85rem; line-height: 1.65;
+}
+
+/* ─── CONTENT SECTION ───────────────────────────────────────────── */
+.content-section {
+  max-width: 860px; margin: 3rem auto 4rem;
+  padding: 3rem 3.5rem;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.page-header {
+  margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 300; color: var(--text);
+  margin-bottom: 0.35rem; letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  font-size: 0.88rem; color: var(--text-dim);
+  letter-spacing: 0.05em; font-weight: 400;
+}
+
+/* ─── CARDS ─────────────────────────────────────────────────────── */
+.card-list {
+  display: flex; flex-direction: column;
+  gap: 0.85rem; margin-bottom: 2.8rem;
+}
+
+.card {
+  display: flex; align-items: flex-start;
+  gap: 1.1rem; padding: 1.25rem 1.4rem;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover, .card:focus-within {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+  flex-shrink: 0; width: 42px; height: 42px;
+  background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; transition: transform var(--transition);
+}
+.card:hover .card-icon { transform: scale(1.1); }
+
+.card-content h3 {
+  font-size: 0.98rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.3rem; letter-spacing: 0.01em;
+}
+
+.card-content p {
+  font-size: 0.88rem; color: var(--text-muted); line-height: 1.72;
+}
+
+.card-content p a { color: var(--accent-2); }
+.card-content p a:hover { color: var(--accent-warm); }
+
+.card.box-highlight {
+  border-color: rgba(61,90,128,0.2);
+  background: rgba(61,90,128,0.02);
+  cursor: pointer;
+}
+
+.card.box-highlight:hover, .card.box-highlight:focus {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-popout {
+  font-size: 0.82em; color: var(--accent);
+  margin-left: 4px; display: inline-block;
+  transition: transform var(--transition);
+}
+.card.box-highlight:hover .card-popout { transform: translateX(4px); }
+
+/* ─── CONTACT SECTION ───────────────────────────────────────────── */
+.contact-section {
+  text-align: center; padding-top: 1.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.email-link { font-size: 0.88rem; color: var(--text-muted); }
+.email-link a { color: var(--accent-warm); font-weight: 600; }
+.email-link a:hover { color: var(--accent-2); }
+
+/* ─── MEMOIR / DETAIL SECTIONS ──────────────────────────────────── */
+.lgp-memoir-section,
+.dps-memoir-section,
+.memoir-section {
+  max-width: 780px; margin: 3rem auto 4rem;
+  padding: 2.8rem 3.2rem;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  color: var(--text); font-size: 1rem;
+}
+
+.lgp-memoir-section h1,
+.dps-memoir-section h1,
+.memoir-section h1 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: 300; color: var(--text);
+  line-height: 1.22; margin-bottom: 1.4rem; letter-spacing: -0.02em;
+}
+
+.lgp-memoir-section h2,
+.dps-memoir-section h2,
+.memoir-section h2 {
+  font-family: 'Spectral', serif;
+  font-size: 1.2rem; font-weight: 400;
+  color: var(--accent); margin-top: 2rem; margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.lgp-memoir-section p,
+.dps-memoir-section p,
+.memoir-section p {
+  margin-bottom: 0.95rem; line-height: 1.82;
+  color: var(--text); font-size: 0.95rem;
+}
+
+.lgp-memoir-section ul,
+.dps-memoir-section ul,
+.memoir-section ul { padding-left: 1.3rem; margin-bottom: 1rem; }
+
+.lgp-memoir-section li,
+.dps-memoir-section li,
+.memoir-section li {
+  margin: 0.4em 0; color: var(--text);
+  font-size: 0.94rem; line-height: 1.75;
+}
+
+.lgp-memoir-section a,
+.dps-memoir-section a,
+.memoir-section a {
+  color: var(--accent-2);
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: rgba(26,122,98,0.3); font-weight: 500;
+}
+.lgp-memoir-section a:hover,
+.dps-memoir-section a:hover,
+.memoir-section a:hover { color: var(--accent-warm); }
+
+.lgp-memoir-section b,
+.dps-memoir-section b,
+.memoir-section b { color: var(--text); font-weight: 600; }
+
+.lgp-memoir-section blockquote,
+.memoir-section blockquote {
+  border-left: 2px solid var(--border-2);
+  padding: 0.6rem 1.2rem; margin: 1.4rem 0;
+  background: var(--bg-2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic; color: var(--text-muted); font-size: 0.93rem;
+}
+
+/* ─── PRESIDENT PAGE ────────────────────────────────────────────── */
+.president-hero {
+  max-width: 860px; margin: 3rem auto 4rem;
+  padding: 3rem 3.5rem;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.president-hero h1 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 300; color: var(--text);
+  margin-bottom: 0.6rem; letter-spacing: -0.02em;
+}
+
+.president-meta {
+  font-size: 0.78rem; color: var(--text-dim);
+  letter-spacing: 0.07em; text-transform: uppercase;
+  margin-bottom: 1.8rem; font-weight: 500;
+}
+
+.president-hero p {
+  font-size: 0.95rem; color: var(--text);
+  line-height: 1.82; margin-bottom: 1.1rem;
+}
+
+.president-hero a { color: var(--accent-2); }
+.president-hero a:hover { color: var(--accent-warm); }
+
+/* ─── BACK LINK ─────────────────────────────────────────────────── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--text-dim); margin-top: 2.5rem;
+  transition: color var(--transition);
+}
+.back-link:hover { color: var(--accent); text-decoration: none; }
+
+/* ─── TEXT SELECTION ────────────────────────────────────────────── */
+::selection { background: rgba(61,90,128,0.12); color: var(--text); }
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .navbar ul { justify-content: center; height: auto; padding: 0.5rem 0; gap: 0; }
+  .navbar li a { font-size: 0.72rem; padding: 0.28rem 0.55rem; }
+
+  .hero { padding: 3.5rem 6vw 3rem; flex-direction: column-reverse; text-align: center; gap: 2rem; }
+  .hero h2, .hero p { max-width: 100%; }
+  .social-icons { justify-content: center; }
+
+  .content-section,
+  .lgp-memoir-section,
+  .dps-memoir-section,
+  .memoir-section,
+  .president-hero { margin: 1.5rem 1rem; padding: 1.8rem 1.4rem; border-radius: var(--radius-lg); }
+
+  .card { flex-direction: column; gap: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.8rem; }
+  .hero h2 { font-size: 0.93rem; }
+  .page-header h1 { font-size: 1.6rem; }
+  .profile-image { width: 150px; height: 150px; }
+  .navbar li a { font-size: 0.68rem; padding: 0.22rem 0.44rem; }
+  .content-section { margin: 0.8rem; padding: 1.2rem 0.9rem; }
+}

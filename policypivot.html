@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Policy Pivot, Inside India's Strategic Shift</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust: #C4462A;
+    --dark-rust: #8B2E16;
+    --amber: #F0A500;
+    --cream: #F5ECD7;
+    --charcoal: #1A1510;
+    --smoke: #2C2318;
+    --gold: #D4A843;
+    --soft: #E8D5B0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(196,70,42,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(240,165,0,0.08) 0%, transparent 60%);
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--amber);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.4s forwards;
+  }
+
+  .hero-title .the { font-size: 0.45em; font-weight: 700; color: var(--soft); display: block; }
+  .hero-title .policy { color: var(--cream); display: block; }
+  .hero-title .pivot { color: var(--rust); font-style: italic; display: block; }
+
+  .hero-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--soft);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--rust);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.7s forwards;
+  }
+
+  .hero-meta {
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.8s forwards;
+  }
+
+  .hero-meta .label { font-size: 11px; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; margin-bottom: 6px; }
+  .hero-meta .editors { font-size: 18px; font-weight: 500; color: var(--cream); }
+  .hero-meta .pub { font-size: 12px; color: var(--soft); margin-top: 8px; }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 60px;
+  }
+
+  .book-cover-3d {
+    width: 260px;
+    perspective: 1200px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+  }
+
+  .book-inner {
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+  }
+
+  .book-inner:hover {
+    transform: rotateY(-8deg) rotateX(2deg) scale(1.03);
+  }
+
+  .book-face {
+    background: var(--rust);
+    border-radius: 4px 12px 12px 4px;
+    padding: 32px 28px;
+    box-shadow:
+      -8px 8px 0 #7a2010,
+      -12px 0 20px rgba(0,0,0,0.5),
+      0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-face::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, #7a2010 0%, rgba(196,70,42,0.3) 100%);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .book-face::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .book-pafi {
+    background: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 9px;
+    color: #333;
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .book-t { font-family: 'Playfair Display', serif; }
+  .book-t .b-the { display: block; font-size: 22px; font-weight: 700; color: #1A1510; margin-bottom: 2px; }
+  .book-t .b-policy { display: block; font-size: 38px; font-weight: 900; color: #1A1510; line-height: 1; }
+  .book-t .b-pivot { display: block; font-size: 44px; font-weight: 900; font-style: italic; color: #1A1510; line-height: 1; }
+
+  .book-sign {
+    width: 90px; height: 90px;
+    background: var(--amber);
+    transform: rotate(45deg);
+    margin: 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .book-sign-inner { transform: rotate(-45deg); font-size: 28px; line-height: 1; text-align: center; }
+
+  .book-inside {
+    font-size: 11px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 0 4px;
+  }
+
+  .book-editors {
+    font-size: 10px;
+    color: var(--soft);
+    border-top: 1px solid rgba(245,236,215,0.3);
+    padding-top: 12px;
+    font-weight: 500;
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(245,236,215,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .dot.active, .dot:hover { background: var(--amber); transform: scale(1.4); }
+
+  .dot::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 11px;
+    color: var(--amber);
+    opacity: 0;
+    transition: opacity 0.2s;
+    letter-spacing: 1px;
+  }
+
+  .dot:hover::after { opacity: 1; }
+
+  /* SECTIONS */
+  section { padding: 100px 80px; position: relative; }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--smoke); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text { font-size: 17px; line-height: 1.8; color: var(--soft); }
+  .about-text p { margin-bottom: 20px; }
+
+  .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .stat-card {
+    background: rgba(196,70,42,0.15);
+    border: 1px solid rgba(196,70,42,0.3);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(196,70,42,0.25);
+    transform: translateY(-4px);
+    border-color: var(--rust);
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label { font-size: 12px; color: var(--soft); line-height: 1.4; }
+
+  /* PILLARS */
+  #pillars { background: var(--charcoal); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pillar-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,236,215,0.1);
+    border-radius: 16px;
+    padding: 36px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--pillar-color, var(--rust));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+  }
+
+  .pillar-card:hover::before { transform: scaleX(1); }
+
+  .pillar-card:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-6px);
+    border-color: rgba(245,236,215,0.2);
+  }
+
+  .pillar-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(245,236,215,0.05);
+    position: absolute;
+    top: 16px; right: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .pillar-desc { font-size: 14px; line-height: 1.7; color: var(--soft); }
+
+  .pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(245,236,215,0.08);
+    color: var(--soft);
+    border: 1px solid rgba(245,236,215,0.15);
+  }
+
+  /* TIMELINE */
+  #vision { background: var(--smoke); }
+
+  .timeline { position: relative; padding-left: 40px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rust), var(--amber));
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+
+  .tl-item.visible { opacity: 1; transform: translateX(0); }
+
+  .tl-dot {
+    position: absolute;
+    left: -46px; top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--rust);
+    border: 3px solid var(--charcoal);
+    box-shadow: 0 0 0 2px var(--rust);
+    transition: all 0.3s;
+  }
+
+  .tl-item:hover .tl-dot {
+    background: var(--amber);
+    box-shadow: 0 0 0 2px var(--amber), 0 0 20px rgba(240,165,0,0.3);
+  }
+
+  .tl-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .tl-desc { font-size: 14px; color: var(--soft); line-height: 1.7; max-width: 600px; }
+
+  /* DIPLOMACY */
+  #diplomacy { background: var(--charcoal); }
+
+  .diplo-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .wheel-wrap {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    margin: 0 auto;
+  }
+
+  .wheel-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px; height: 110px;
+    background: var(--rust);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cream);
+    z-index: 10;
+    box-shadow: 0 0 40px rgba(196,70,42,0.4);
+    line-height: 1.3;
+    padding: 12px;
+  }
+
+  .wheel-item {
+    position: absolute;
+    width: 78px; height: 78px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--cream);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(245,236,215,0.2);
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
+  }
+
+  .wheel-item:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    z-index: 20;
+  }
+
+  .wheel-item .wi-icon { font-size: 20px; margin-bottom: 3px; }
+
+  .wheel-item:nth-child(1) { top: 10px; left: 50%; transform: translateX(-50%); }
+  .wheel-item:nth-child(2) { top: 60px; right: 20px; }
+  .wheel-item:nth-child(3) { bottom: 60px; right: 20px; }
+  .wheel-item:nth-child(4) { bottom: 10px; left: 50%; transform: translateX(-50%); }
+  .wheel-item:nth-child(5) { bottom: 60px; left: 20px; }
+  .wheel-item:nth-child(6) { top: 60px; left: 20px; }
+
+  .wheel-item:nth-child(1):hover { transform: translateX(-50%) scale(1.15); }
+  .wheel-item:nth-child(4):hover { transform: translateX(-50%) scale(1.15); }
+  .wheel-item:not(:nth-child(1)):not(:nth-child(4)):hover { transform: scale(1.15); }
+
+  .diplo-text .point {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(245,236,215,0.1);
+    transition: all 0.3s;
+  }
+
+  .diplo-text .point:hover { padding-left: 12px; border-bottom-color: var(--rust); }
+
+  .point-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .point-body { font-size: 13px; color: var(--soft); line-height: 1.6; }
+
+  /* ESSAYS */
+  #essays { background: var(--smoke); }
+
+  .essays-intro { font-size: 16px; color: var(--soft); max-width: 600px; margin-bottom: 48px; line-height: 1.8; }
+
+  .essay-filter { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+
+  .filter-btn {
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    border-radius: 24px;
+    border: 1px solid rgba(245,236,215,0.2);
+    background: transparent;
+    color: var(--soft);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--rust);
+    border-color: var(--rust);
+    color: var(--cream);
+  }
+
+  .essay-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .essay-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,236,215,0.08);
+    border-radius: 10px;
+    padding: 20px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .essay-item::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rust);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .essay-item:hover::after { transform: scaleY(1); }
+  .essay-item:hover { background: rgba(196,70,42,0.1); border-color: rgba(196,70,42,0.3); padding-left: 26px; }
+
+  .essay-item.hidden { display: none; }
+
+  .essay-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: rgba(240,165,0,0.5);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .essay-name { font-size: 13px; font-weight: 500; color: var(--cream); line-height: 1.5; }
+  .essay-cat { font-size: 10px; color: var(--amber); margin-top: 4px; letter-spacing: 1px; }
+
+  /* AUTHORS */
+  #authors { background: var(--charcoal); }
+
+  .authors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+  .author-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,236,215,0.1);
+    border-radius: 16px;
+    padding: 36px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .author-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(196,70,42,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .author-card:hover { border-color: rgba(196,70,42,0.4); transform: translateY(-4px); }
+
+  .author-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rust), var(--dark-rust));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(196,70,42,0.4);
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .author-role { font-size: 12px; color: var(--amber); letter-spacing: 1px; margin-bottom: 16px; }
+  .author-bio { font-size: 13px; color: var(--soft); line-height: 1.7; }
+
+  /* QUOTE */
+  .quote-section {
+    background: var(--rust);
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 240px;
+    color: rgba(0,0,0,0.1);
+    position: absolute;
+    top: -20px; left: 30px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-section::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 240px;
+    color: rgba(0,0,0,0.1);
+    position: absolute;
+    bottom: -100px; right: 30px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 30px);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-attr { font-size: 13px; letter-spacing: 2px; opacity: 0.8; }
+
+  /* FOOTER */
+  footer {
+    background: #0E0B07;
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(245,236,215,0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--rust);
+  }
+
+  .footer-info { font-size: 12px; color: rgba(245,236,215,0.4); text-align: right; line-height: 1.8; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(24px); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+    from { opacity: 0; }
+  }
+
+  /* TOOLTIP */
+  .tooltip-box {
+    position: fixed;
+    background: var(--charcoal);
+    border: 1px solid var(--rust);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--cream);
+    max-width: 240px;
+    line-height: 1.6;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+
+  .tooltip-box.show { opacity: 1; }
+  .tooltip-box strong { color: var(--amber); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 32px; }
+    section { padding: 70px 32px; }
+    .about-grid, .authors-grid, .diplo-layout { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-info { text-align: center; }
+    .quote-section { padding: 60px 32px; }
+    .nav-dots { display: none; }
+  }
+</style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-dots">
+  <div class="dot active" data-label="HOME" onclick="goTo('hero')"></div>
+  <div class="dot" data-label="ABOUT" onclick="goTo('about')"></div>
+  <div class="dot" data-label="PILLARS" onclick="goTo('pillars')"></div>
+  <div class="dot" data-label="VISION" onclick="goTo('vision')"></div>
+  <div class="dot" data-label="DIPLOMACY" onclick="goTo('diplomacy')"></div>
+  <div class="dot" data-label="ESSAYS" onclick="goTo('essays')"></div>
+  <div class="dot" data-label="EDITORS" onclick="goTo('authors')"></div>
+</nav>
+
+<div class="tooltip-box" id="tooltip"></div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">akshatbhaskar.ninja</p>
+    <h1 class="hero-title">
+      <span class="the">The</span>
+      <span class="policy">Policy</span>
+      <span class="pivot">Pivot</span>
+    </h1>
+    <p class="hero-subtitle">A Book Review by Akshat Bhaskar</p>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <p class="label">Book Compiled by</p>
+      <p class="editors">Ajay Khanna &amp; Rahul Sharma</p>
+      <p class="pub">Published by Juggernaut · 2025 · ₹899</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="book-cover-3d">
+      <div class="book-inner">
+        <div class="book-face">
+          <div class="book-pafi">🟡 Public Affairs Forum of India</div>
+          <div class="book-t">
+            <span class="b-the">The</span>
+            <span class="b-policy">Policy</span>
+            <span class="b-pivot">Pivot</span>
+          </div>
+          <div class="book-sign">
+            <div class="book-sign-inner">↗<br>〰</div>
+          </div>
+          <div class="book-inside">Inside India's<br>Strategic Shift</div>
+          <div class="book-editors">Edited by Ajay Khanna and Rahul Sharma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">What is this book?</p>
+  <h2 class="section-title reveal">A map of India's<br>policy transformation</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>The Policy Pivot is a landmark edited volume capturing India's sweeping policy transformation, across economy, society, and diplomacy, as the nation races toward its centennial of independence in 2047.</p>
+      <p>Commissioned by the Public Affairs Forum of India (PAFI) to mark its 18th anniversary, the book unites 25 essays from India's most respected voices across business, government, academia, and civil society.</p>
+      <p>It interrogates the end of "policy paralysis," the critique of Nehruvian economics, and the emergence of a more participatory, transparent governance ecosystem where public affairs has become central to democratic accountability.</p>
+    </div>
+    <div class="stat-cards reveal">
+      <div class="stat-card">
+        <div class="stat-num">25</div>
+        <div class="stat-label">Insightful essays from top voices</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18</div>
+        <div class="stat-label">Years of PAFI celebrated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Core pillars: Economy, Society, Diplomacy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2047</div>
+        <div class="stat-label">Viksit Bharat vision horizon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <p class="section-label reveal">Core themes</p>
+  <h2 class="section-title reveal">Three pillars of<br>India's strategic pivot</h2>
+  <div class="pillars-grid">
+    <div class="pillar-card reveal" style="--pillar-color:#C4462A">
+      <div class="pillar-num">01</div>
+      <span class="pillar-icon">📈</span>
+      <h3 class="pillar-title">Economy &amp; Governance</h3>
+      <p class="pillar-desc">Examines India's break from post-war protectionism and the Nehruvian legacy, arguing for bold corrections as East Asian rivals surged ahead. Explores the mandate to end policy paralysis through decisive economic reversals.</p>
+      <div class="pillar-tags">
+        <span class="tag">LIBERALISATION</span>
+        <span class="tag">MAKE IN INDIA</span>
+        <span class="tag">GST</span>
+        <span class="tag">INFRA</span>
+      </div>
+    </div>
+    <div class="pillar-card reveal" style="--pillar-color:#F0A500">
+      <div class="pillar-num">02</div>
+      <span class="pillar-icon">🎓</span>
+      <h3 class="pillar-title">Social Policy</h3>
+      <p class="pillar-desc">Calls for reimagining social infrastructure, education systems, women's economic participation, youth in policymaking, and philanthropy at population scale. Human capital is inseparable from strategic growth.</p>
+      <div class="pillar-tags">
+        <span class="tag">EDUCATION</span>
+        <span class="tag">WOMEN</span>
+        <span class="tag">YOUTH</span>
+        <span class="tag">PHILANTHROPY</span>
+      </div>
+    </div>
+    <div class="pillar-card reveal" style="--pillar-color:#7AB8A0">
+      <div class="pillar-num">03</div>
+      <span class="pillar-icon">🌐</span>
+      <h3 class="pillar-title">Diplomacy &amp; Strategy</h3>
+      <p class="pillar-desc">India's "calm yogic approach", a posture that reconciles competing great powers while preserving strategic autonomy through multi-alignment and issue-based coalitions like the Quad and I2U2.</p>
+      <div class="pillar-tags">
+        <span class="tag">QUAD</span>
+        <span class="tag">I2U2</span>
+        <span class="tag">MULTI-ALIGNMENT</span>
+        <span class="tag">AUTONOMY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="vision">
+  <p class="section-label reveal">The road ahead</p>
+  <h2 class="section-title reveal">Journey to<br>Viksit Bharat 2047</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1947, 1991</p>
+      <h3 class="tl-title">Nehruvian Era &amp; Policy Stagnation</h3>
+      <p class="tl-desc">Decades of state-led socialism and import substitution kept India insular while East Asian economies leapfrogged. The book frames this as the original "policy paralysis" that the pivot must undo.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1991, 2013</p>
+      <h3 class="tl-title">Liberalisation, Incomplete Revolution</h3>
+      <p class="tl-desc">Economic opening began but governance remained fragmented. Growth surged yet structural reforms stalled, leaving India far below its potential on manufacturing, infrastructure, and social indicators.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2014, Present</p>
+      <h3 class="tl-title">The Policy Pivot, A New Mandate</h3>
+      <p class="tl-desc">A decisive electoral mandate enabled bold policy reversals: GST, IBC, digital public infrastructure, PLI schemes, and a more assertive foreign policy rooted in strategic autonomy and multi-alignment.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2047</p>
+      <h3 class="tl-title">Viksit Bharat, The 100-Year Goal</h3>
+      <p class="tl-desc">By India's centenary of independence, the vision is a fully developed, prosperous nation. The book maps the policy choices, on economy, society, and diplomacy, that will determine whether this goal is achieved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIPLOMACY -->
+<section id="diplomacy">
+  <p class="section-label reveal">Foreign policy</p>
+  <h2 class="section-title reveal">The Yogic Approach<br>to Global Affairs</h2>
+  <div class="diplo-layout">
+    <div class="wheel-wrap reveal">
+      <div class="wheel-center">India's<br>Strategic<br>Autonomy</div>
+      <div class="wheel-item" data-tip="Quad" data-info="A security dialogue with the US, Japan, and Australia, India's anchor in the Indo-Pacific architecture."><span class="wi-icon">🤝</span>Quad</div>
+      <div class="wheel-item" data-tip="I2U2" data-info="India-Israel-UAE-US group focused on food security, clean energy and infrastructure investment."><span class="wi-icon">🔗</span>I2U2</div>
+      <div class="wheel-item" data-tip="SCO" data-info="Shanghai Cooperation Organisation, India's engagement with Russia and Central Asia alongside China."><span class="wi-icon">🌏</span>SCO</div>
+      <div class="wheel-item" data-tip="BRICS" data-info="Emerging economies bloc, India uses BRICS to voice Global South priorities without abandoning Western ties."><span class="wi-icon">🧱</span>BRICS</div>
+      <div class="wheel-item" data-tip="G20" data-info="India's G20 presidency was a landmark moment to set the global development agenda as voice of the Global South."><span class="wi-icon">🌐</span>G20</div>
+      <div class="wheel-item" data-tip="Bilateral" data-info="Strong bilateral ties with the US, Russia, France, UAE, Japan, each managed independently for maximum leverage."><span class="wi-icon">✈️</span>Bilateral</div>
+    </div>
+    <div class="diplo-text reveal">
+      <div class="point">
+        <p class="point-head">🧘 Calm Yogic Posture</p>
+        <p class="point-body">India navigates great power rivalry through composure rather than alignment, maintaining equidistance and issue-based partnerships across competing blocs.</p>
+      </div>
+      <div class="point">
+        <p class="point-head">⚖️ Multi-Alignment</p>
+        <p class="point-body">Rather than picking sides, India builds concurrent partnerships, with the US through Quad, with Russia through SCO, with the Gulf through I2U2, to maximise leverage.</p>
+      </div>
+      <div class="point">
+        <p class="point-head">🏛️ Issue-Based Coalitions</p>
+        <p class="point-body">On climate, tech, supply chains, and security, India assembles different coalitions per issue, a flexible, non-ideological diplomacy preserving maximum freedom of action.</p>
+      </div>
+      <div class="point">
+        <p class="point-head">🚀 Global South Leadership</p>
+        <p class="point-body">India positions itself as the voice of the Global South, leveraging its G20 presidency and development record to claim moral and strategic leadership in the emerging world order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESSAYS -->
+<section id="essays">
+  <p class="section-label reveal">Inside the volume</p>
+  <h2 class="section-title reveal">Selected Essays</h2>
+  <p class="essays-intro reveal">Filter by theme. Hover any essay for a preview. Contributors span ministers, CEOs, diplomats, and civil society leaders.</p>
+
+  <div class="essay-filter reveal">
+    <button class="filter-btn active" onclick="filterEssays('ALL')">ALL</button>
+    <button class="filter-btn" onclick="filterEssays('ECONOMY')">ECONOMY</button>
+    <button class="filter-btn" onclick="filterEssays('SOCIAL')">SOCIAL</button>
+    <button class="filter-btn" onclick="filterEssays('DIPLOMACY')">DIPLOMACY</button>
+    <button class="filter-btn" onclick="filterEssays('GOVERNANCE')">GOVERNANCE</button>
+  </div>
+
+  <div class="essay-list reveal" id="essayList"></div>
+</section>
+
+<!-- AUTHORS -->
+<section id="authors">
+  <p class="section-label reveal">The editors</p>
+  <h2 class="section-title reveal">Who shaped this volume?</h2>
+  <div class="authors-grid">
+    <div class="author-card reveal">
+      <div class="author-avatar">AK</div>
+      <h3 class="author-name">Ajay Khanna</h3>
+      <p class="author-role">Co-Founder, PAFI</p>
+      <p class="author-bio">Strategic adviser and ombudsperson at Jubilant Bhartia Group; senior adviser to The Convergence Foundation, Urban Land Institute (India), and Catalyst 2030. A WEF Global Alliance member with over three decades of association with the World Economic Forum and Schwab Foundation for Social Entrepreneurship.</p>
+    </div>
+    <div class="author-card reveal">
+      <div class="author-avatar">RS</div>
+      <h3 class="author-name">Rahul Sharma</h3>
+      <p class="author-role">Managing Director, USIBC</p>
+      <p class="author-bio">Co-founder and past president of PAFI; long career in international and Indian media before pivoting to public affairs. Currently Managing Director of the US-India Business Council. Previously co-edited <em>A New Cold War: Henry Kissinger and the Rise of China</em> (2021).</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="quote-text">"The Policy Pivot is not only a policy manual but also a thoughtful commentary on India's socio-economic trajectory."</p>
+  <p class="quote-attr">, Storizen Magazine Book Review</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THE POLICY PIVOT</div>
+  <div class="footer-info">
+    Published by Juggernaut · 2025<br>
+    ISBN: 978-93-5345-865-2 · ₹899<br>
+    Public Affairs Forum of India (PAFI)
+  </div>
+</footer>
+
+<script>
+const essays = [
+  { num:"01", name:"India's Economic Trajectory, From Paralysis to Pivot", cat:"ECONOMY", info:"Traces the arc from Nehruvian stagnation to decisive reform and the political mandate that made it possible." },
+  { num:"02", name:"The GST Revolution and Cooperative Federalism", cat:"ECONOMY", info:"How GST reshaped India's fiscal architecture and forced Centre-State coordination." },
+  { num:"03", name:"Make in India: Industrial Policy Reinvented", cat:"ECONOMY", info:"PLI schemes, manufacturing targets and India's push to capture global supply chains." },
+  { num:"04", name:"Digital Public Infrastructure, The UPI Story", cat:"ECONOMY", info:"India's fintech leapfrog and the Aadhaar-UPI-DigiLocker stack as a global template." },
+  { num:"05", name:"How Indian Philanthropy Needs to Evolve for Higher ROI", cat:"SOCIAL", info:"By Ashish Dhawan et al, systems philanthropy, institution-building and population-scale change." },
+  { num:"06", name:"The Missing Seat at the Table: India's Youth in Policymaking", cat:"SOCIAL", info:"An imperative for Viksit Bharat, giving young people a real role in shaping the policies that determine their future." },
+  { num:"07", name:"Women's Workforce Participation as Strategic Priority", cat:"SOCIAL", info:"Unlocking India's demographic dividend through gender inclusion in the formal economy." },
+  { num:"08", name:"Reimagining India's Education Architecture", cat:"SOCIAL", info:"NEP 2020 and the long road to learning outcomes at scale." },
+  { num:"09", name:"India's Calm Yogic Approach to Global Affairs", cat:"DIPLOMACY", info:"Strategic autonomy through multi-alignment and issue-based coalitions in an era of great power competition." },
+  { num:"10", name:"The Quad, A New Architecture for the Indo-Pacific", cat:"DIPLOMACY", info:"India's role in the emerging security and technology framework with the US, Japan, and Australia." },
+  { num:"11", name:"India and the Global South, Claiming Leadership", cat:"DIPLOMACY", info:"G20 presidency, development voice, and India's positioning in the post-Western world order." },
+  { num:"12", name:"Corporate Governance and Public Accountability", cat:"GOVERNANCE", info:"How India Inc. must evolve its role in democratic accountability and ethical policy engagement." },
+  { num:"13", name:"Public Affairs as Strategic Function", cat:"GOVERNANCE", info:"The evolution of public affairs from lobbying to a core strategic pillar within corporate and civic organisations." },
+  { num:"14", name:"Sustainability, ESG and Policy Alignment", cat:"GOVERNANCE", info:"How India's regulatory push on ESG is redefining the relationship between business and the state." },
+];
+
+const list = document.getElementById('essayList');
+let currentFilter = 'ALL';
+
+function renderEssays() {
+  list.innerHTML = '';
+  essays.forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'essay-item' + (currentFilter !== 'ALL' && e.cat !== currentFilter ? ' hidden' : '');
+    div.setAttribute('data-cat', e.cat);
+    div.setAttribute('data-tip', e.name);
+    div.setAttribute('data-info', e.info);
+    div.innerHTML = `<div class="essay-num">${e.num}</div><div><div class="essay-name">${e.name}</div><div class="essay-cat">${e.cat}</div></div>`;
+    list.appendChild(div);
+  });
+  attachTooltips();
+}
+
+function filterEssays(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.essay-item').forEach(el => {
+    el.classList.toggle('hidden', cat !== 'ALL' && el.dataset.cat !== cat);
+  });
+}
+
+// Tooltip
+const tooltip = document.getElementById('tooltip');
+function attachTooltips() {
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      tooltip.innerHTML = `<strong>${el.dataset.tip}</strong>${el.dataset.info || ''}`;
+      tooltip.classList.add('show');
+    });
+    el.addEventListener('mousemove', (e) => {
+      tooltip.style.left = (e.clientX + 16) + 'px';
+      tooltip.style.top  = (e.clientY - 10) + 'px';
+    });
+    el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+  });
+}
+
+renderEssays();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .tl-item').forEach(el => observer.observe(el));
+
+// Nav dots
+const sectionIds = ['hero','about','pillars','vision','diplomacy','essays','authors'];
+const dots = document.querySelectorAll('.dot');
+
+function goTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+window.addEventListener('scroll', () => {
+  const mid = window.scrollY + window.innerHeight / 2;
+  sectionIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.offsetTop;
+    const bot = top + el.offsetHeight;
+    if (mid >= top && mid < bot) {
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[i]) dots[i].classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
