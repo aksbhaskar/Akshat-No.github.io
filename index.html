@@ -654,6 +654,31 @@
     }
     .plate-num { color: var(--ink-faint); margin-right: 0.5rem; }
 
+    /* ─── EASTER-EGG STAMP (Konami code) ────────────────────── */
+    .stamp {
+      position: fixed; top: 42%; left: 50%; z-index: 9999;
+      transform: translate(-50%, -50%) rotate(-11deg) scale(1.5);
+      opacity: 0; pointer-events: none;
+      font-family: var(--mono); color: #a12b1e;
+      border: 3px double #a12b1e; border-radius: 10px;
+      padding: 0.55rem 1.5rem 0.7rem; text-align: center;
+      background: rgba(161,43,30,0.05);
+      box-shadow: inset 0 0 0 1px rgba(161,43,30,0.18);
+      text-transform: uppercase; mix-blend-mode: multiply;
+    }
+    .stamp .stamp-main { display: block; font-size: 2.3rem; font-weight: 700; letter-spacing: 0.14em; line-height: 1; }
+    .stamp .stamp-sub  { display: block; font-size: 0.68rem; letter-spacing: 0.34em; margin-top: 0.45rem; }
+    .stamp.show { animation: stampIn 0.45s cubic-bezier(.2,1.5,.4,1) forwards; }
+    .stamp.hide { transition: opacity 0.6s ease; opacity: 0 !important; }
+    @keyframes stampIn {
+      0%   { opacity: 0; transform: translate(-50%,-50%) rotate(-11deg) scale(1.7); }
+      55%  { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(0.9); }
+      100% { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .stamp.show { animation: none; opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1); }
+    }
+
     /* ─── RESPONSIVE ────────────────────────────────────────── */
     @media (max-width: 700px) {
       :root { --outer: 20px; }
@@ -1105,6 +1130,83 @@
       }
     } catch { status.textContent = 'Network error.'; status.classList.add('err'); }
     finally { btn.disabled = false; btn.textContent = 'Send'; }
+  });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Hero stats count up on load */
+  function countUp(el) {
+    const raw = el.textContent;
+    const tokens = raw.match(/\d[\d,]*(?:\.\d+)?/g);
+    if (!tokens) return;
+    const target = tokens.reduce((a, b) =>
+      parseFloat(b.replace(/,/g, '')) > parseFloat(a.replace(/,/g, '')) ? b : a);
+    const decimals = (target.split('.')[1] || '').length;
+    const grouped = target.includes(',');
+    const end = parseFloat(target.replace(/,/g, ''));
+    const fmt = n => {
+      let v = decimals ? n.toFixed(decimals) : String(Math.round(n));
+      if (grouped) {
+        const p = v.split('.');
+        p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        v = p.join('.');
+      }
+      return v;
+    };
+    const dur = 1400, t0 = performance.now();
+    (function frame(t) {
+      const p = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = raw.replace(target, fmt(end * eased));
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = raw;
+    })(t0);
+    // Guarantee the real value shows even if frames are throttled (background tab)
+    setTimeout(() => { el.textContent = raw; }, dur + 500);
+  }
+  if (!reduceMotion) {
+    setTimeout(() => document.querySelectorAll('.hero-stat-num').forEach(countUp), 250);
+  }
+
+  /* Cheeky title when the visitor tabs away */
+  const realTitle = document.title;
+  document.addEventListener('visibilitychange', () => {
+    document.title = document.hidden ? 'come back :(' : realTitle;
+  });
+
+  /* A note for anyone who opens the console */
+  console.log('%cAkshat Bhaskar', 'font:700 22px Georgia,serif;color:#111');
+  console.log(
+    '%cYou opened the console. Respect.\n' +
+    'This whole site is hand-written, no framework. If you poke at the source, you are my kind of person.\n' +
+    'Say hi: bhaskarakshat22@gmail.com\n\n' +
+    'PS. try the Konami code:  up up down down left right left right B A',
+    'font:13px monospace;color:#666;line-height:1.6'
+  );
+
+  /* Konami code -> an academic ink stamp thunks onto the page */
+  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let kpos = 0;
+  function stamp() {
+    document.querySelector('.stamp')?.remove();
+    const s = document.createElement('div');
+    s.className = 'stamp';
+    s.innerHTML = '<span class="stamp-main">Approved</span><span class="stamp-sub">Certified Curious</span>';
+    document.body.appendChild(s);
+    void s.offsetWidth; // force reflow so the stamp animation plays reliably
+    s.classList.add('show');
+    setTimeout(() => { s.classList.add('hide'); setTimeout(() => s.remove(), 650); }, 2200);
+  }
+  document.addEventListener('keydown', e => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (k === konami[kpos]) {
+      kpos++;
+      if (kpos === konami.length) { kpos = 0; stamp(); }
+    } else {
+      kpos = (k === konami[0]) ? 1 : 0;
+    }
   });
 </script>
 </body>
