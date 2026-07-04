@@ -2,7 +2,7 @@
 
 My personal site. It's where I keep the things I've actually worked on (research, NGO, financial literacy initiatives, advanced mathematics) along with a few side pages I built because I wanted them to exist: a chess timer, a budget tool, a gym plan, a Kashmir/Ladakh trip itinerary.
 
-I wrote it by hand. No framework, no build step, nothing to install. Just HTML, some CSS, and a bit of vanilla JavaScript on the pages that needed it. The whole thing is meant to read like an academic paper, abstract and footnotes and all, because I figured a portfolio that looks like a journal article would stick in your head longer than yet another card grid.
+I wrote it by hand. No framework, nothing to install. Just HTML, CSS, and a bit of vanilla JavaScript on the pages that needed it. The whole thing is meant to read like an academic paper, abstract and footnotes and all, because I figured a portfolio that looks like a journal article would stick in your head longer than yet another card grid.
 
 ## Running it
 
