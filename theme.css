@@ -1,0 +1,81 @@
+/* Shared: night-mode palette, the Konami stamp, and the theme toggle.
+   Loaded on every page. Dark overrides only bite on the standard
+   "paper document" pages that define --paper / --ink. */
+
+/* ── Night reading mode ─────────────────────────────────────── */
+html.dark {
+  --paper:      #16150f;
+  --ink:        #f0ead9;
+  --ink-med:    #cbc6b6;
+  --ink-soft:   #969184;
+  --ink-faint:  #6f6b5c;
+  --ink-ghost:  #4c4940;
+  --rule:       #3a3830;
+  --rule-light: #2a2822;
+}
+html.dark body { background: var(--paper); color: var(--ink); }
+
+/* Bits that hardcode the light paper colour need a hand in the dark. */
+html.dark .topbar {
+  background: rgba(22, 21, 15, 0.9);
+  border-bottom-color: rgba(240, 234, 217, 0.08);
+}
+html.dark .hero-caption {
+  background: linear-gradient(to top, rgba(22,21,15,0.9) 0%, transparent 100%);
+}
+html.dark .hero-president,
+html.dark .hero-img-wrap { background: var(--paper); }
+html.dark .plate-frame img,
+html.dark .hero-img-wrap img,
+html.dark .author-photo { filter: grayscale(35%) contrast(1.02) brightness(0.92); }
+html.dark .plate:hover .plate-frame img { filter: grayscale(0%) contrast(1.03) brightness(0.98); }
+html.dark .form-status.ok  { color: #6fbf8e; }
+html.dark .form-status.err { color: #e08a8a; }
+
+/* ── Theme toggle button (floating, bottom-right) ───────────── */
+.theme-toggle {
+  position: fixed;
+  right: 1.4rem; bottom: 1.4rem;
+  z-index: 300;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0.5px solid var(--ink-ghost, #ccccbb);
+  border-radius: 50%;
+  background: var(--paper, #fffff8);
+  color: var(--ink-soft, #666660);
+  font-family: var(--mono, monospace);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle:hover { color: var(--ink, #111); border-color: var(--ink-faint, #999); transform: translateY(-2px); }
+.theme-toggle:active { transform: translateY(0); }
+
+@media print { .theme-toggle { display: none !important; } }
+
+/* ── Konami-code ink stamp ──────────────────────────────────── */
+.stamp {
+  position: fixed; top: 42%; left: 50%; z-index: 9999;
+  transform: translate(-50%, -50%) rotate(-11deg) scale(1.5);
+  opacity: 0; pointer-events: none;
+  font-family: var(--mono, monospace); color: #c23b2e;
+  border: 3px double #c23b2e; border-radius: 10px;
+  padding: 0.55rem 1.5rem 0.7rem; text-align: center;
+  background: rgba(194,59,46,0.06);
+  box-shadow: inset 0 0 0 1px rgba(194,59,46,0.2);
+  text-transform: uppercase;
+}
+html.dark .stamp { color: #e8837a; border-color: #e8837a; }
+.stamp .stamp-main { display: block; font-size: 2.3rem; font-weight: 700; letter-spacing: 0.14em; line-height: 1; }
+.stamp .stamp-sub  { display: block; font-size: 0.68rem; letter-spacing: 0.34em; margin-top: 0.45rem; }
+.stamp.show { animation: stampIn 0.45s cubic-bezier(.2,1.5,.4,1) forwards; }
+.stamp.hide { transition: opacity 0.6s ease; opacity: 0 !important; }
+@keyframes stampIn {
+  0%   { opacity: 0; transform: translate(-50%,-50%) rotate(-11deg) scale(1.7); }
+  55%  { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(0.9); }
+  100% { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stamp.show { animation: none; opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1); }
+}
