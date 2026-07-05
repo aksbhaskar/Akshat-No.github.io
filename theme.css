@@ -79,3 +79,40 @@ html.dark .stamp { color: #e8837a; border-color: #e8837a; }
 @media (prefers-reduced-motion: reduce) {
   .stamp.show { animation: none; opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1); }
 }
+
+/* ── Whisper (small cheeky toast, bottom-left) ──────────────── */
+.whisper {
+  position: fixed; left: 1.4rem; bottom: 1.4rem; z-index: 320;
+  max-width: 260px;
+  font-family: var(--mono, monospace); font-size: 0.7rem; line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft, #666660); background: var(--paper, #fffff8);
+  border: 0.5px solid var(--rule, #d0d0c0);
+  border-left: 2px solid var(--ink-faint, #999990);
+  padding: 0.6rem 0.8rem; border-radius: 3px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+.whisper.show { opacity: 1; transform: translateY(0); }
+@media print { .whisper { display: none !important; } }
+
+/* ── Poke bubble (clicking the author photo) ────────────────── */
+.poke-bubble {
+  position: fixed; z-index: 320;
+  font-family: var(--mono, monospace); font-size: 0.66rem;
+  color: var(--ink, #111110); background: var(--paper, #fffff8);
+  border: 0.5px solid var(--rule, #d0d0c0); border-radius: 12px;
+  padding: 0.3rem 0.65rem; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  opacity: 0; transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.poke-bubble.show { opacity: 1; }
+@keyframes pokeWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-7deg); }
+  75% { transform: rotate(7deg); }
+}
+.poke { animation: pokeWiggle 0.4s ease; }

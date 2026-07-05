@@ -85,11 +85,93 @@
     });
   }
 
-  /* ── Cheeky title when the visitor tabs away ──────────────── */
+  /* ── A little whisper toast, bottom-left ──────────────────── */
+  var whisperBusy = false;
+  function whisper(msg, dur) {
+    if (whisperBusy) return;
+    whisperBusy = true;
+    var w = document.createElement('div');
+    w.className = 'whisper';
+    w.textContent = msg;
+    document.body.appendChild(w);
+    void w.offsetWidth;
+    w.classList.add('show');
+    setTimeout(function () {
+      w.classList.remove('show');
+      setTimeout(function () { w.remove(); whisperBusy = false; }, 500);
+    }, dur || 5000);
+  }
+
+  /* ── The title reacts to the visitor (the "come back :(" vibe) ── */
   var realTitle = document.title;
+  var titleTemp = false, awaySpin = null, idleTimer = null;
+  function setTitle(m) { document.title = m; titleTemp = true; }
+  function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+
+  var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
   document.addEventListener('visibilitychange', function () {
-    document.title = document.hidden ? 'come back :(' : realTitle;
+    if (document.hidden) {
+      clearTimeout(idleTimer);
+      clearInterval(awaySpin);
+      var i = 0; setTitle(awayMsgs[0]);
+      awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+    } else {
+      clearInterval(awaySpin); awaySpin = null;
+      document.title = 'yay, you came back :)'; titleTemp = true;
+      setTimeout(restoreTitle, 1700);
+      scheduleIdle();
+    }
   });
+
+  /* Nudge the tab if the visitor goes quiet for a while */
+  function scheduleIdle() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+  }
+  ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () {
+      if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+      scheduleIdle();
+    }, { passive: true });
+  });
+  scheduleIdle();
+
+  /* Browsing in the small hours? Say hi. */
+  var hr = new Date().getHours();
+  if (hr >= 0 && hr < 5) setTimeout(function () { whisper('up late? me too.'); }, 3500);
+
+  /* Reward finishing a page */
+  var endShown = false;
+  window.addEventListener('scroll', function () {
+    if (endShown) return;
+    var scrollable = document.body.scrollHeight - window.innerHeight;
+    if (scrollable < 400) return;
+    if (window.scrollY >= scrollable - 40) {
+      endShown = true;
+      whisper('you read the whole thing. that means a lot.', 6000);
+    }
+  }, { passive: true });
+
+  /* Poke the author photo (homepage) */
+  var photo = document.querySelector('.author-photo');
+  if (photo) {
+    var quips = ['hi!', "that's me", 'hey, stop poking', 'ok that tickles', 'why are we still doing this', 'fine, one more', 'ok bye, for real'];
+    var qi = 0, bubble = null, hideBubble = null;
+    photo.style.cursor = 'pointer';
+    photo.addEventListener('click', function () {
+      photo.classList.remove('poke'); void photo.offsetWidth; photo.classList.add('poke');
+      if (!bubble) { bubble = document.createElement('div'); bubble.className = 'poke-bubble'; document.body.appendChild(bubble); }
+      bubble.textContent = quips[Math.min(qi, quips.length - 1)];
+      var r = photo.getBoundingClientRect();
+      bubble.style.left = (r.left + r.width / 2) + 'px';
+      bubble.style.top = (r.top - 8) + 'px';
+      bubble.style.transform = 'translate(-50%, -100%)';
+      void bubble.offsetWidth; bubble.classList.add('show');
+      qi++;
+      clearTimeout(hideBubble);
+      hideBubble = setTimeout(function () { if (bubble) bubble.classList.remove('show'); }, 1900);
+    });
+  }
 
   /* ── A note for anyone who opens the console ──────────────── */
   console.log('%cAkshat Bhaskar', 'font:700 22px Georgia,serif;color:#a04030');
