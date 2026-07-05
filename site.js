@@ -25,8 +25,10 @@
     paint();
     btn.addEventListener('click', function () {
       root.classList.toggle('dark');
-      try { localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+      var isDark = root.classList.contains('dark');
+      try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
       paint();
+      if (isDark && once('dark1')) whisper('easier on the eyes. good call.');
     });
     (document.body || document.documentElement).appendChild(btn);
   }
@@ -102,6 +104,59 @@
     }, dur || 5000);
   }
 
+  /* Fire something at most once per browsing session */
+  function once(key) {
+    try { if (sessionStorage.getItem(key)) return false; sessionStorage.setItem(key, '1'); return true; }
+    catch (e) { return true; }
+  }
+
+  /* A little speech bubble anchored above an element */
+  var sharedBubble = null, bubbleTimer = null;
+  function bubbleAt(el, text, dur) {
+    if (!sharedBubble) { sharedBubble = document.createElement('div'); sharedBubble.className = 'poke-bubble'; document.body.appendChild(sharedBubble); }
+    sharedBubble.textContent = text;
+    var r = el.getBoundingClientRect();
+    sharedBubble.style.left = (r.left + r.width / 2) + 'px';
+    sharedBubble.style.top = (r.top - 8) + 'px';
+    sharedBubble.style.transform = 'translate(-50%, -100%)';
+    void sharedBubble.offsetWidth; sharedBubble.classList.add('show');
+    clearTimeout(bubbleTimer);
+    bubbleTimer = setTimeout(function () { if (sharedBubble) sharedBubble.classList.remove('show'); }, dur || 1900);
+  }
+
+  /* ── Per-page flavour, keyed off the file name ────────────── */
+  var pageKey = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
+  var PAGES = {
+    index:        { end: 'you read the whole thing. that means a lot.' },
+    education:    { end: 'yes, i do actually attend class.' },
+    experience:   { end: "and that's just the paper trail." },
+    awards:       { end: "ok, that's enough flexing. probably." },
+    research:     { end: 'the footnotes are the best part.' },
+    aipolicy:     { end: 'peer-reviewed and everything.' },
+    goi:          { end: 'policy is more fun than it sounds. sometimes.' },
+    lgp:          { end: '3.2% acceptance. still feels unreal.' },
+    greatideasseminar: { end: 'turns out nobel laureates are pretty chill.' },
+    mathapprenticeship: { end: 'proofs over vibes.' },
+    president:    { end: "still can't quite believe that one." },
+    edunomix:     { end: 'built this before i could drive.' },
+    taxcity:      { end: 'yes. taxes. thrilling, i know.' },
+    podcast:      { end: 'give it a listen sometime?' },
+    press:        { end: 'hi to any journalists reading this.' },
+    bookshelf:    { end: 'found your next read yet?' },
+    betweentheworldandme: { end: 'worth the read. genuinely.' },
+    gym:          { end: "reading about squats isn't leg day." },
+    budget:       { end: 'now go check your real bank balance.' },
+    chesstimer:   { end: 'your move.' },
+    ladakh:       { end: 'pack warm. so, when do we leave?' },
+    top1000:      { end: 'how many could you actually pull off?' },
+    yc:           { end: 'startup school was a trip.' },
+    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
+    policypivot:  { end: 'small policy, big ripple.' },
+    pi:           { end: '3.14159 26535... ok i will stop.' },
+    '404':        { end: 'lost? happens to the best of us.' }
+  };
+  function pageBit(name, fallback) { var p = PAGES[pageKey]; return (p && p[name]) || fallback; }
+
   /* ── The title reacts to the visitor (the "come back :(" vibe) ── */
   var realTitle = document.title;
   var titleTemp = false, awaySpin = null, idleTimer = null;
@@ -140,38 +195,47 @@
   var hr = new Date().getHours();
   if (hr >= 0 && hr < 5) setTimeout(function () { whisper('up late? me too.'); }, 3500);
 
-  /* Reward finishing a page */
+  /* Reward finishing a page, with a line tailored to that page */
+  var endMsg = pageBit('end', 'you read the whole thing. that means a lot.');
   var endShown = false;
+  function showEnd() { if (!endShown && once('end_' + pageKey)) { endShown = true; whisper(endMsg, 6000); } }
   window.addEventListener('scroll', function () {
     if (endShown) return;
     var scrollable = document.body.scrollHeight - window.innerHeight;
     if (scrollable < 400) return;
-    if (window.scrollY >= scrollable - 40) {
-      endShown = true;
-      whisper('you read the whole thing. that means a lot.', 6000);
-    }
+    if (window.scrollY >= scrollable - 40) showEnd();
   }, { passive: true });
+  // Short pages can't scroll to a bottom, so offer the line after a beat instead
+  setTimeout(function () {
+    if (!endShown && (document.body.scrollHeight - window.innerHeight) < 400) showEnd();
+  }, 4500);
 
   /* Poke the author photo (homepage) */
   var photo = document.querySelector('.author-photo');
   if (photo) {
     var quips = ['hi!', "that's me", 'hey, stop poking', 'ok that tickles', 'why are we still doing this', 'fine, one more', 'ok bye, for real'];
-    var qi = 0, bubble = null, hideBubble = null;
+    var qi = 0;
     photo.style.cursor = 'pointer';
     photo.addEventListener('click', function () {
       photo.classList.remove('poke'); void photo.offsetWidth; photo.classList.add('poke');
-      if (!bubble) { bubble = document.createElement('div'); bubble.className = 'poke-bubble'; document.body.appendChild(bubble); }
-      bubble.textContent = quips[Math.min(qi, quips.length - 1)];
-      var r = photo.getBoundingClientRect();
-      bubble.style.left = (r.left + r.width / 2) + 'px';
-      bubble.style.top = (r.top - 8) + 'px';
-      bubble.style.transform = 'translate(-50%, -100%)';
-      void bubble.offsetWidth; bubble.classList.add('show');
+      bubbleAt(photo, quips[Math.min(qi, quips.length - 1)]);
       qi++;
-      clearTimeout(hideBubble);
-      hideBubble = setTimeout(function () { if (bubble) bubble.classList.remove('show'); }, 1900);
     });
   }
+
+  /* Trying to right-click / save a photo? */
+  document.addEventListener('contextmenu', function (e) {
+    if (e.target && e.target.tagName === 'IMG' && once('rc')) whisper('trying to save that? bold move.');
+  });
+
+  /* A quiet nod for sticking around a few minutes */
+  setTimeout(function () {
+    if (!document.hidden && once('stay')) whisper("you've been here a while. flattered, honestly.");
+  }, 180000);
+
+  /* Wink from the footer */
+  var footer = document.querySelector('.footer-text');
+  if (footer) footer.addEventListener('mouseenter', function () { bubbleAt(footer, 'made with too much care.'); });
 
   /* ── A note for anyone who opens the console ──────────────── */
   console.log('%cAkshat Bhaskar', 'font:700 22px Georgia,serif;color:#a04030');
