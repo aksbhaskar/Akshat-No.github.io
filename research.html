@@ -13,15 +13,17 @@
   <style>
     /* ─── VARIABLES ─────────────────────────────────────────── */
     :root {
-      --paper:      #faf8f3;
-      --ink:        #1a1916;
-      --ink-med:    #3a3832;
-      --ink-soft:   #6b6860;
-      --ink-faint:  #9e9b94;
-      --ink-ghost:  #cac8bf;
-      --rule:       #d4d1c6;
-      --rule-light: #e2dfd5;
-      --accent:     #8b5e3c;   /* warm brown, a different flavour from index */
+      --paper:      #fbfcfa;   /* cool lab white, not the warm cream of home */
+      --ink:        #14161a;
+      --ink-med:    #363a42;
+      --ink-soft:   #646a76;
+      --ink-faint:  #9aa0ac;
+      --ink-ghost:  #c8ccd4;
+      --rule:       #ccd2da;
+      --rule-light: #e0e4ea;
+      --accent:     #2b5a8c;   /* blue-black annotation ink */
+      --grid:       rgba(43,90,140,0.055);
+      --pub-green:  #3d7a52;
       --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:       'Inconsolata', 'Courier New', monospace;
       --outer:      clamp(22px, 4vw, 60px);
@@ -29,18 +31,35 @@
       --col-gutter: 32px;
       --max-doc:    900px;
     }
+    html.dark {
+      --accent: #8db2dc;
+      --grid: rgba(150,185,225,0.05);
+      --pub-green: #7dbb95;
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      background: var(--paper);
+      background-color: var(--paper);
+      /* faint graph paper, the desk this work happens on */
+      background-image:
+        linear-gradient(var(--grid) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, var(--grid) 0.5px, transparent 0.5px);
+      background-size: 28px 28px;
       color: var(--ink);
       font-family: var(--serif);
       font-size: 1.0625rem;
       line-height: 1.74;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+    }
+    html.dark body.page-research {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(var(--grid) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, var(--grid) 0.5px, transparent 0.5px);
+      background-size: 28px 28px;
     }
 
     /* ─── PROGRESS BAR ──────────────────────────────────────── */
@@ -55,10 +74,11 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(250,248,243,0.93);
+      background: rgba(251,252,250,0.93);
       backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(212,209,198,0.4);
+      border-bottom: 0.5px solid rgba(204,210,218,0.4);
     }
+    html.dark .topbar { background: rgba(22,21,15,0.9); border-bottom-color: rgba(240,234,217,0.08); }
     .topbar-logo {
       font-family: var(--mono); font-size: 0.68rem;
       color: var(--ink-faint); letter-spacing: 0.07em;
@@ -83,7 +103,7 @@
     /* ─── NAV OVERLAY ───────────────────────────────────────── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(26,25,22,0.95); backdrop-filter: blur(8px);
+      background: rgba(20,22,26,0.95); backdrop-filter: blur(8px);
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
       padding: 5rem 4rem;
@@ -93,7 +113,7 @@
     .nav-overlay a.nav-link {
       font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(250,248,243,0.22); line-height: 1.35;
+      color: rgba(251,252,250,0.5); line-height: 1.35;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -106,9 +126,9 @@
     .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
     .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
     .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay a.nav-link:hover { color: rgba(250,248,243,0.9); }
+    .nav-overlay a.nav-link:hover { color: rgba(251,252,250,0.95); }
     .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(250,248,243,0.15);
+      width: 28px; height: 0.5px; background: rgba(251,252,250,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -118,8 +138,8 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(250,248,243,0.25); transition: color 0.2s; text-decoration: none; }
-    .nav-socials-row a:hover { color: rgba(250,248,243,0.85); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,252,250,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(251,252,250,0.9); }
 
     /* ─── DOCUMENT GRID ─────────────────────────────────────── */
     .document {
@@ -130,22 +150,20 @@
       grid-template-columns: var(--col-main) var(--col-gutter) 1fr;
     }
 
-    /* Full-width spans */
     .doc-full,
     .page-header,
+    .statement-block,
+    .timeline-strip,
     .section-rule,
     .doc-footer { grid-column: 1 / -1; }
 
-    /* Main column */
     .papers-col { grid-column: 1 / 2; }
-
-    /* Margin column */
     .margin-col { grid-column: 3 / 4; }
 
     /* ─── PAGE HEADER ───────────────────────────────────────── */
     .page-header {
       padding-top: 100px;
-      padding-bottom: 2.8rem;
+      padding-bottom: 2.4rem;
       border-bottom: 0.5px solid var(--ink);
     }
 
@@ -177,13 +195,97 @@
       text-align: right; flex-shrink: 0;
       line-height: 1.9;
     }
+    .page-meta .ident { color: var(--accent); }
 
-    .page-interest-line {
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.96rem; color: var(--ink-soft);
-      margin-top: 1.1rem; line-height: 1.6;
+    /* arXiv-style subject tags under the title */
+    .subject-tags {
+      margin-top: 1.1rem;
+      display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: baseline;
     }
-    .page-interest-line em { font-style: normal; color: var(--ink-med); }
+    .subject-tags .st-label {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.9rem; color: var(--ink-soft); margin-right: 0.2rem;
+    }
+    .stag {
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.04em; color: var(--accent);
+      border: 0.5px solid var(--rule); border-radius: 2px;
+      padding: 0.12rem 0.45rem;
+      background: var(--paper);
+    }
+
+    /* ─── RESEARCH STATEMENT (abstract of the page) ─────────── */
+    .statement-block {
+      padding: 2.2rem 0 2.4rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .statement-inner { max-width: 560px; margin: 0 auto; }
+    .statement-head {
+      font-family: var(--serif); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      text-align: center; display: block; margin-bottom: 0.9rem;
+    }
+    .statement-text {
+      font-size: 0.93rem; line-height: 1.78; color: var(--ink-med);
+      text-align: justify; hyphens: auto;
+    }
+    .statement-eq {
+      text-align: center;
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.02rem; color: var(--ink-med);
+      margin-top: 1.3rem;
+      display: flex; align-items: baseline; justify-content: center; gap: 1.4rem;
+    }
+    .statement-eq .eq-num {
+      font-family: var(--mono); font-style: normal;
+      font-size: 0.62rem; color: var(--ink-faint);
+    }
+    .statement-eq sub, .statement-eq sup { font-size: 0.62em; }
+    .statement-caption {
+      font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint);
+      letter-spacing: 0.05em; text-align: center; margin-top: 0.55rem;
+    }
+
+    /* ─── PUBLICATION TIMELINE ──────────────────────────────── */
+    .timeline-strip {
+      padding: 1.5rem 0 1.6rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .tl-track {
+      position: relative; height: 1px; background: var(--rule);
+      margin: 1.4rem 0.5rem 0;
+    }
+    .tl-node {
+      position: absolute; top: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--paper); border: 1.5px solid var(--accent);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s cubic-bezier(.2,1.4,.4,1);
+    }
+    .tl-node.pub { background: var(--accent); }
+    .tl-node.visible { transform: translate(-50%, -50%) scale(1); }
+    .tl-node:hover::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em;
+      color: var(--ink-med); background: var(--paper);
+      border: 0.5px solid var(--rule); padding: 0.18rem 0.5rem;
+      white-space: nowrap; z-index: 5;
+    }
+    .tl-years {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint);
+      letter-spacing: 0.06em; margin-top: 0.7rem; padding: 0 0.2rem;
+    }
+    .tl-legend {
+      font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+    .tl-legend .dot {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      border: 1.5px solid var(--accent); vertical-align: baseline; margin-right: 0.3rem;
+    }
+    .tl-legend .dot.f { background: var(--accent); }
 
     /* ─── SECTION RULE ──────────────────────────────────────── */
     .section-rule {
@@ -192,18 +294,9 @@
       border-bottom: 0.5px solid var(--ink);
       display: flex; align-items: baseline; gap: 1rem;
     }
-    .sec-glyph {
-      font-family: var(--mono); font-size: 0.72rem;
-      color: var(--ink-faint); flex-shrink: 0;
-    }
-    .sec-name {
-      font-family: var(--serif); font-size: 1.15rem;
-      font-weight: 400; color: var(--ink);
-    }
-    .sec-count {
-      font-family: var(--mono); font-size: 0.62rem;
-      color: var(--ink-ghost); margin-left: auto;
-    }
+    .sec-glyph { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--ink); }
+    .sec-count { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-ghost); margin-left: auto; }
 
     /* ─── PAPERS LIST ───────────────────────────────────────── */
     .papers-col { padding-top: 1.8rem; }
@@ -226,28 +319,28 @@
       text-align: right; flex-shrink: 0;
     }
 
-    .paper-body {}
-
     .paper-status-row {
       display: flex; align-items: center; gap: 0.5rem;
       margin-bottom: 0.45rem; flex-wrap: wrap;
     }
 
-    /* Status chips */
     .chip {
       font-family: var(--mono); font-size: 0.6rem;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.15rem 0.55rem; border-radius: 2px;
       font-weight: 600; flex-shrink: 0;
     }
-    .chip-published { background: rgba(80,120,80,0.1); color: #4a7a52; border: 0.5px solid rgba(80,120,80,0.3); }
-    .chip-ongoing   { background: rgba(139,94,60,0.1); color: var(--accent); border: 0.5px solid rgba(139,94,60,0.3); }
+    .chip-published { background: rgba(61,122,82,0.08); color: var(--pub-green); border: 0.5px solid rgba(61,122,82,0.3); }
+    .chip-ongoing   { background: rgba(43,90,140,0.07); color: var(--accent); border: 0.5px solid rgba(43,90,140,0.3); }
     .chip-upcoming  { background: rgba(100,100,170,0.08); color: #5a5aaa; border: 0.5px solid rgba(100,100,170,0.25); }
-    .chip-completed { background: rgba(60,60,60,0.07); color: var(--ink-soft); border: 0.5px solid var(--rule); }
+    .chip-completed { background: rgba(60,60,60,0.06); color: var(--ink-soft); border: 0.5px solid var(--rule); }
+    html.dark .chip-upcoming { color: #a3a3e0; }
 
-    .paper-year {
+    .paper-year { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-ghost); letter-spacing: 0.04em; }
+
+    .paper-cat {
       font-family: var(--mono); font-size: 0.6rem;
-      color: var(--ink-ghost); letter-spacing: 0.04em;
+      color: var(--accent); letter-spacing: 0.03em;
     }
 
     .paper-title {
@@ -256,7 +349,6 @@
       text-decoration: none; display: block;
     }
     .paper-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 0.5px; }
-
     .paper-title em { font-style: italic; }
 
     .paper-venue {
@@ -272,15 +364,53 @@
       text-align: justify; hyphens: auto;
     }
 
+    .paper-links { margin-top: 0.6rem; display: flex; gap: 1.1rem; align-items: baseline; }
     .paper-link {
       font-family: var(--mono); font-size: 0.6rem;
       color: var(--accent); letter-spacing: 0.06em;
-      text-decoration: none; margin-top: 0.6rem; display: inline-block;
-      border-bottom: 0.5px solid rgba(139,94,60,0.3);
+      text-decoration: none; display: inline-block;
+      border-bottom: 0.5px solid rgba(43,90,140,0.3);
       padding-bottom: 1px;
       transition: color 0.2s, border-color 0.2s;
     }
     .paper-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
+    .cite-toggle {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      background: none; border: none; cursor: pointer;
+      border-bottom: 0.5px dashed var(--ink-ghost); padding: 0 0 1px;
+      transition: color 0.2s;
+    }
+    .cite-toggle:hover { color: var(--accent); }
+
+    /* ─── BIBTEX (the signature) ────────────────────────────── */
+    .bibtex {
+      display: none;
+      margin-top: 0.9rem;
+      position: relative;
+      background: rgba(43,90,140,0.04);
+      border: 0.5px solid var(--rule);
+      border-left: 2px solid var(--accent);
+      padding: 0.85rem 1rem;
+    }
+    .bibtex.open { display: block; animation: bibIn 0.3s ease; }
+    @keyframes bibIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    .bibtex pre {
+      font-family: var(--mono); font-size: 0.66rem;
+      line-height: 1.65; color: var(--ink-med);
+      white-space: pre; overflow-x: auto;
+    }
+    .bibtex .bib-key { color: var(--accent); }
+    .bib-copy {
+      position: absolute; top: 0.5rem; right: 0.6rem;
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint); background: var(--paper);
+      border: 0.5px solid var(--rule); border-radius: 2px;
+      padding: 0.18rem 0.55rem; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .bib-copy:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ─── MARGIN COLUMN ─────────────────────────────────────── */
     .margin-col {
@@ -296,32 +426,14 @@
       opacity: 0; transition: opacity 0.6s ease;
     }
     .margin-note.visible { opacity: 1; }
-
     .margin-note .mn-label {
       font-family: var(--mono); font-size: 0.58rem;
       letter-spacing: 0.07em; color: var(--ink-ghost);
       text-transform: uppercase; display: block;
       margin-bottom: 0.3rem;
     }
-
     .margin-note strong { font-weight: 600; color: var(--ink-med); }
     .margin-note a { color: var(--ink-med); text-underline-offset: 2px; }
-
-    /* Interest statement in margin */
-    .margin-interests {
-      font-family: var(--serif); font-size: 0.75rem;
-      color: var(--ink-soft); line-height: 1.7;
-      padding: 1rem 1rem 1rem 0.9rem;
-      border-left: 1.5px solid var(--rule);
-      margin-bottom: 2rem;
-      opacity: 0; transition: opacity 0.6s ease 0.1s;
-    }
-    .margin-interests.visible { opacity: 1; }
-    .margin-interests .mi-head {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.08em; color: var(--ink-faint);
-      text-transform: uppercase; display: block; margin-bottom: 0.5rem;
-    }
 
     /* ─── FOOTER ────────────────────────────────────────────── */
     .doc-footer {
@@ -346,6 +458,7 @@
       h1.page-title { font-size: 1.75rem; }
       .page-title-row { flex-direction: column; gap: 0.6rem; }
       .page-meta { text-align: left; }
+      .statement-eq { flex-direction: column; gap: 0.3rem; }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -363,7 +476,7 @@
   <link rel="stylesheet" href="theme.css">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body>
+<body class="page-research">
 
 <div id="prog"></div>
 
@@ -405,13 +518,46 @@
     <div class="page-title-row">
       <h1 class="page-title">Research</h1>
       <div class="page-meta">
-        New Delhi, India<br>
-        Updated 2026
+        <span class="ident">index: AKB.2026-01</span><br>
+        New Delhi, India · rev. 2026
       </div>
     </div>
-    <p class="page-interest-line">
-      Interests: <em>Economic Policy</em> &ensp;·&ensp; <em>Mathematical Economics</em> &ensp;·&ensp; <em>International Economics</em>
-    </p>
+    <div class="subject-tags">
+      <span class="st-label">Subject areas:</span>
+      <span class="stag">econ.GN</span>
+      <span class="stag">q-fin.RM</span>
+      <span class="stag">math.NT</span>
+      <span class="stag">cs.CY</span>
+    </div>
+  </div>
+
+  <!-- RESEARCH STATEMENT -->
+  <div class="statement-block">
+    <div class="statement-inner">
+      <span class="statement-head">Research Statement</span>
+      <p class="statement-text">
+        Akshat is interested in the economics of information and governance: how institutions encode knowledge, how policy alters incentive structures, and where rigorous mathematical tools can illuminate questions that prose alone cannot. Current work spans AI policy, tail risk in financial markets, education policy, and algebraic number theory.
+      </p>
+      <div class="statement-eq">
+        <span>W(&pi;) = max<sub>a&thinsp;&isin;&thinsp;A</sub> &Sigma;<sub>s</sub> &pi;(s)&thinsp;u(a, s)</span>
+        <span class="eq-num">(1)</span>
+      </div>
+      <p class="statement-caption">Eq. 1 · the value of information, as the envelope of expected utility over actions</p>
+    </div>
+  </div>
+
+  <!-- PUBLICATION TIMELINE -->
+  <div class="timeline-strip">
+    <span class="tl-legend"><span class="dot f"></span>published &nbsp;&nbsp;<span class="dot"></span>programme / in progress</span>
+    <div class="tl-track" id="tl-track">
+      <span class="tl-node pub" style="left: 18%" data-tip="[2] Arbitrage, IIM Rohtak · 2024"></span>
+      <span class="tl-node pub" style="left: 52%" data-tip="[1] IJRASET · 2025"></span>
+      <span class="tl-node" style="left: 44%" data-tip="[7] Lodha Genius Programme · 2025"></span>
+      <span class="tl-node" style="left: 63%" data-tip="[6] NYAS Junior Academy · Fall 2025"></span>
+      <span class="tl-node" style="left: 84%" data-tip="[5] LG-AUP Math Apprenticeship · 2026"></span>
+      <span class="tl-node" style="left: 92%" data-tip="[4] NEP 2020 study · ongoing"></span>
+    </div>
+    <div class="tl-years"><span>2024</span><span>2025</span><span>2026</span></div>
   </div>
 
   <!-- §1, PAPERS & PUBLICATIONS -->
@@ -430,11 +576,28 @@
         <div class="paper-status-row">
           <span class="chip chip-published">Published</span>
           <span class="paper-year">2025</span>
+          <span class="paper-cat">[econ.GN]</span>
         </div>
         <a href="aipolicy.html" class="paper-title"><em>The Two Faces of Progress:</em> A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</a>
         <span class="paper-venue">IJRASET · Vol. 13, Issue 7, 2025 · Peer-reviewed</span>
         <p class="paper-desc">Research conducted under Professor Surbhi Goel (University of Pennsylvania) on AI policy and existential risk, examining the dual nature of transformative technology through an economic and governance lens. Presented at the NYC STEM Research Conference; I was the only high school student in the room.</p>
-        <a href="aipolicy.html" class="paper-link">Full paper →</a>
+        <div class="paper-links">
+          <a href="aipolicy.html" class="paper-link">Full paper →</a>
+          <button class="cite-toggle" data-bib="bib-1">\cite</button>
+        </div>
+        <div class="bibtex" id="bib-1">
+          <button class="bib-copy" data-bib="bib-1">copy</button>
+          <pre><span class="bib-key">@article</span>{bhaskar2025twofaces,
+  author  = {Bhaskar, Akshat},
+  title   = {The Two Faces of Progress: A Look at the
+             Socio-Economic Challenges and Opportunities
+             Presented by Artificial Intelligence},
+  journal = {IJRASET},
+  volume  = {13},
+  number  = {7},
+  year    = {2025}
+}</pre>
+        </div>
       </div>
     </div>
 
@@ -445,6 +608,7 @@
         <div class="paper-status-row">
           <span class="chip chip-published">Published</span>
           <span class="paper-year">2024</span>
+          <span class="paper-cat">[econ.GN]</span>
         </div>
         <a href="#" class="paper-title"><em>How Economics Runs the World</em></a>
         <span class="paper-venue">Arbitrage · Finance &amp; Investment Journal, IIM Rohtak</span>
@@ -458,6 +622,7 @@
       <div class="paper-body">
         <div class="paper-status-row">
           <span class="chip chip-completed">Completed</span>
+          <span class="paper-cat">[q-fin.RM]</span>
         </div>
         <span class="paper-title">Black Swan Research</span>
         <span class="paper-venue">Indian School of Business and Finance · Under Prof. Kritika Soni</span>
@@ -471,6 +636,7 @@
       <div class="paper-body">
         <div class="paper-status-row">
           <span class="chip chip-ongoing">Ongoing</span>
+          <span class="paper-cat">[econ.GN]</span>
         </div>
         <span class="paper-title">NEP 2020 Impact Research</span>
         <span class="paper-venue">Independent · India</span>
@@ -482,11 +648,6 @@
 
   <!-- MARGIN: Papers -->
   <div class="margin-col" id="margin-papers">
-    <div class="margin-interests">
-      <span class="mi-head">Research statement</span>
-      Akshat is interested in the economics of information and governance, how institutions encode knowledge, how policy alters incentive structures, and where rigorous mathematical tools can illuminate questions that prose alone cannot.
-    </div>
-
     <div class="margin-note">
       <span class="mn-label">Note [1]</span>
       <strong>Prof. Surbhi Goel</strong> is a faculty member at the University of Pennsylvania. The paper appears in IJRASET (Vol. 13, Issue 7, 2025) and was presented in New York.
@@ -518,11 +679,14 @@
       <div class="paper-body">
         <div class="paper-status-row">
           <span class="chip chip-upcoming">Concluded · 15th May – 20th Jun 2026</span>
+          <span class="paper-cat">[math.NT]</span>
         </div>
         <a href="mathapprenticeship.html" class="paper-title">Number Theory Research, Lodha Genius Undergraduate Research Mathematics Apprenticeship</a>
         <span class="paper-venue">Ashoka University · LG-AUP · Paid research programme</span>
         <p class="paper-desc">Original research in algebraic number theory under Professor Shanta Laishram (Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi).</p>
-        <a href="mathapprenticeship.html" class="paper-link">Programme details →</a>
+        <div class="paper-links">
+          <a href="mathapprenticeship.html" class="paper-link">Programme details →</a>
+        </div>
       </div>
     </div>
 
@@ -532,6 +696,7 @@
       <div class="paper-body">
         <div class="paper-status-row">
           <span class="chip chip-completed">Completed Fall 2025</span>
+          <span class="paper-cat">[cs.CY]</span>
         </div>
         <a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" target="_blank" rel="noopener" class="paper-title">New York Academy of Sciences, Junior Academy</a>
         <span class="paper-venue">NYAS Junior Academy · Fall 2025 Challenge · Energy Infrastructure</span>
@@ -546,11 +711,14 @@
         <div class="paper-status-row">
           <span class="chip chip-completed">Completed</span>
           <span class="paper-year">2025</span>
+          <span class="paper-cat">[math.HO]</span>
         </div>
         <a href="lgp.html" class="paper-title">Lodha Genius Programme, Pure Mathematics</a>
         <span class="paper-venue">Ashoka University · ≈3.2% acceptance · Fully funded residential</span>
         <p class="paper-desc">Completed university-level pure mathematics, Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates. One of fewer than 30 students admitted nationwide.</p>
-        <a href="lgp.html" class="paper-link">Read more →</a>
+        <div class="paper-links">
+          <a href="lgp.html" class="paper-link">Read more →</a>
+        </div>
       </div>
     </div>
 
@@ -625,7 +793,24 @@
       }
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.paper, .margin-note, .margin-interests').forEach(el => obs.observe(el));
+  document.querySelectorAll('.paper, .margin-note, .tl-node').forEach(el => obs.observe(el));
+
+  /* BibTeX: toggle + copy */
+  document.querySelectorAll('.cite-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const box = document.getElementById(btn.dataset.bib);
+      box.classList.toggle('open');
+    });
+  });
+  document.querySelectorAll('.bib-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = document.querySelector('#' + btn.dataset.bib + ' pre').innerText;
+      const done = () => { btn.textContent = 'copied'; setTimeout(() => { btn.textContent = 'copy'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else { done(); }
+    });
+  });
 </script>
 <script src="site.js" defer></script>
 </body>
