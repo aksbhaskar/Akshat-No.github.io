@@ -11,23 +11,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── VARIABLES (identical to index) ─────────────────── */
+    /* ─── VARIABLES ────────────────────────────────────────
+       The operator's ledger: porcelain stock, graphite ink,
+       ledger-green for anything that moved a number. */
     :root {
-      --paper:        #fffff8;
-      --ink:          #111110;
-      --ink-med:      #333330;
-      --ink-soft:     #666660;
-      --ink-faint:    #999990;
-      --ink-ghost:    #ccccbb;
-      --rule:         #d0d0c0;
-      --rule-light:   #e4e4d8;
+      --paper:        #f3f4f2;
+      --ink:          #22262b;
+      --ink-med:      #3d434b;
+      --ink-soft:     #6a7078;
+      --ink-faint:    #9aa0a6;
+      --ink-ghost:    #c9ccce;
+      --rule:         #cfd3d2;
+      --rule-light:   #e2e5e3;
+      --ledger:       #1f6f50;
       --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:         'Inconsolata', 'Courier New', monospace;
+      --num:          'Space Grotesk', 'Inconsolata', sans-serif;
       --outer:        clamp(24px, 5vw, 64px);
     }
+    html.dark { --ledger: #7fc8a4; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
@@ -53,9 +58,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(255,255,248,0.92);
+      background: rgba(243,244,242,0.92);
       backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+      border-bottom: 0.5px solid rgba(207,211,210,0.4);
     }
     .topbar-logo {
       font-family: var(--mono); font-size: 0.68rem;
@@ -165,6 +170,41 @@
       line-height: 1.68;
     }
 
+    /* ─── IMPACT STRIP (the dossier's headline figures) ──── */
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .impact {
+      padding: 1.5rem 0.6rem 1.4rem;
+      border-right: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .impact.visible { opacity: 1; transform: translateY(0); }
+    .impact:last-child { border-right: none; }
+    .impact-num {
+      font-family: var(--num);
+      font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      display: block;
+      font-variant-numeric: tabular-nums;
+    }
+    .impact-num .up { color: var(--ledger); }
+    .impact-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: block;
+      margin-top: 0.3rem;
+      line-height: 1.6;
+    }
+
     /* ─── SECTION HEAD (identical to index) ─────────────── */
     .section-head {
       padding-top: 3.2rem;
@@ -186,7 +226,7 @@
     .timeline {
       position: relative;
       padding-left: 1.8rem;
-      border-left: 0.5px solid var(--rule-light);
+      border-left: 1px solid var(--rule);
       margin-top: 0;
     }
 
@@ -199,15 +239,16 @@
     .t-entry:last-child { border-bottom: none; padding-bottom: 0.5rem; }
     .t-entry.visible { opacity: 1; transform: translateY(0); }
 
-    /* tick mark on the timeline rule */
+    /* square marker on the ledger rule: a record, not a memory */
     .t-entry::before {
       content: '';
       position: absolute;
-      left: -1px;
-      width: 5px;
-      height: 0.5px;
-      background: var(--rule);
-      margin-top: 2.85rem; /* aligns with first line of entry */
+      left: -3.5px;
+      width: 6px;
+      height: 6px;
+      background: var(--paper);
+      border: 1px solid var(--ink-med);
+      margin-top: 2.9rem;
     }
 
     .t-meta {
@@ -218,20 +259,23 @@
     }
 
     .t-date {
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
+      font-family: var(--num);
+      font-size: 0.62rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .t-badge {
-      font-family: var(--mono);
-      font-size: 0.56rem;
-      letter-spacing: 0.09em;
+      font-family: var(--num);
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--ink-soft);
-      border: 0.5px solid var(--rule);
-      padding: 0.08rem 0.38rem;
+      color: var(--ledger);
+      border: 1px solid var(--ledger);
+      padding: 0.08rem 0.4rem;
       line-height: 1.6;
     }
 
@@ -303,6 +347,9 @@
       .nav-overlay { padding: 4rem 1.8rem; }
       .doc-meta-top { flex-direction: column; gap: 0.2rem; }
       .timeline { padding-left: 1.3rem; }
+      .impact-strip { grid-template-columns: 1fr 1fr; }
+      .impact:nth-child(2) { border-right: none; }
+      .impact:nth-child(1), .impact:nth-child(2) { border-bottom: 0.5px solid var(--rule-light); }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -360,6 +407,26 @@
     </div>
     <h1 class="page-title">Experience &amp; Projects</h1>
     <p class="page-sub">A chronological record of research roles, leadership positions,<br>and independent work, across policy, mathematics, and social enterprise.</p>
+  </div>
+
+  <!-- HEADLINE FIGURES -->
+  <div class="impact-strip">
+    <div class="impact">
+      <span class="impact-num"><span class="up" data-count="48000">48,000</span>+</span>
+      <span class="impact-label">Young Indians reached<br>through TaxCity</span>
+    </div>
+    <div class="impact">
+      <span class="impact-num"><span class="up" data-count="14">14</span> states</span>
+      <span class="impact-label">Programme footprint<br>across India</span>
+    </div>
+    <div class="impact">
+      <span class="impact-num">$<span class="up" data-count="25">25</span>K+</span>
+      <span class="impact-label">AI compute grant<br>from Y Combinator</span>
+    </div>
+    <div class="impact">
+      <span class="impact-num"><span class="up" data-count="54">54</span> schools</span>
+      <span class="impact-label">Nationwide essay<br>competition, 19 states</span>
+    </div>
   </div>
 
   <!-- §1 PROFESSIONAL EXPERIENCE -->
@@ -463,6 +530,31 @@
   window.addEventListener('scroll', () => {
     prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
   }, { passive: true });
+
+  /* headline figures count up when the strip enters view */
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function runCount(el) {
+    const end = parseInt(el.dataset.count, 10);
+    const grouped = el.textContent.includes(',');
+    const dur = 1300, t0 = performance.now();
+    (function frame(t) {
+      const p = Math.min(1, (t - t0) / dur);
+      const v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      el.textContent = grouped ? v.toLocaleString('en-IN') : String(v);
+      if (p < 1) requestAnimationFrame(frame);
+    })(t0);
+    setTimeout(() => { el.textContent = grouped ? end.toLocaleString('en-IN') : String(end); }, dur + 400);
+  }
+  const stripObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('visible');
+        if (!still) en.target.querySelectorAll('[data-count]').forEach(runCount);
+        stripObs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.impact').forEach(el => stripObs.observe(el));
 
   const hamburger = document.getElementById('hamburger');
   const overlay   = document.getElementById('nav-overlay');
