@@ -3,107 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Podcast | Akshat Bhaskar</title>
-  <meta name="description" content="Decoded, a podcast by Akshat Bhaskar on economics and technology, made accessible for all." />
+  <title>Decoded, the Podcast | Akshat Bhaskar</title>
+  <meta name="description" content="Decoded: conversations on economics and technology, hosted by Akshat Bhaskar. On Spotify, Apple Podcasts, and Amazon Music." />
   <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/podcast.html" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── VARIABLES ─────────────────────────────────────────── */
+    /* ── THE CONTROL ROOM ──
+       Cool studio charcoal, one cue lamp, one live waveform. */
     :root {
-      --paper:        #fffff8;
-      --ink:          #111110;
-      --ink-med:      #333330;
-      --ink-soft:     #666660;
-      --ink-faint:    #999990;
-      --ink-ghost:    #ccccbb;
-      --rule:         #d0d0c0;
-      --rule-light:   #e4e4d8;
-      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:         'Inconsolata', 'Courier New', monospace;
-
-      --col-width:    460px;
-      --gutter:       28px;
-      --outer:        clamp(24px, 4vw, 56px);
-      --max-doc:      860px;
+      --studio:     #101214;
+      --console:    #181b1e;
+      --panel:      #1f2327;
+      --edge:       #2b3036;
+      --signal:     #35c26e;   /* level meters, links */
+      --cue:        #e5484d;   /* the ON AIR lamp */
+      --white:      #eef0ee;
+      --grey:       #a6adb2;
+      --dim:        #626a70;
+      --serif:      'EB Garamond', Georgia, serif;
+      --ui:         'Outfit', sans-serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
+      background: var(--studio);
+      color: var(--white);
+      font-family: var(--ui);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
+    ::selection { background: rgba(53,194,110,0.3); }
 
-    /* ─── LAYOUT GRID ───────────────────────────────────────── */
-    .document {
-      max-width: var(--max-doc);
-      margin: 0 auto;
-      padding: 0 var(--outer);
-      display: grid;
-      grid-template-columns: var(--col-width) var(--gutter) 1fr;
+    /* ── PROGRESS ── */
+    #prog {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--signal); z-index: 999; transition: width 0.1s linear;
     }
 
-    .doc-full,
-    .titlepage,
-    .abstract-block,
-    .keywords-row,
-    .toc-block,
-    .section-head,
-    .doc-footer { grid-column: 1 / -1; }
-
-    .entries-col { grid-column: 1 / 2; }
-    .sidenotes-col { grid-column: 3 / 4; }
-
-    /* ─── PROGRESS ─────────────────────────────────────────── */
-    .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--ink); z-index: 999; transition: width 0.1s linear;
-    }
-
-    /* ─── NAV ──────────────────────────────────────────────── */
+    /* ── TOPBAR ── */
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(255,255,248,0.92);
+      background: rgba(16,18,20,0.9);
       backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(209,208,192,0.3);
+      border-bottom: 1px solid rgba(43,48,54,0.6);
     }
     .topbar-logo {
       font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
+      color: var(--dim); letter-spacing: 0.07em;
       text-decoration: none; transition: color 0.2s;
     }
-    .topbar-logo:hover { color: var(--ink); }
+    .topbar-logo:hover { color: var(--signal); }
 
     .hamburger {
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column; gap: 5px; padding: 4px;
     }
     .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+      display: block; width: 20px; height: 1px;
+      background: var(--dim); transition: all 0.3s ease; transform-origin: center;
     }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span { background: var(--paper); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger:hover span { background: var(--white); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+    /* ── NAV OVERLAY ── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(17,17,16,0.94); backdrop-filter: blur(8px);
+      background: rgba(10,11,12,0.97);
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
       padding: 5rem 4rem;
@@ -113,7 +92,7 @@
     .nav-overlay a.nav-link {
       font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(255,255,248,0.22); line-height: 1.35;
+      color: rgba(238,240,238,0.45); line-height: 1.35;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -126,9 +105,9 @@
     .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
     .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
     .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-overlay a.nav-link:hover { color: var(--signal); }
     .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      width: 28px; height: 1px; background: rgba(238,240,238,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -138,273 +117,203 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
-    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(238,240,238,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: var(--signal); }
 
-    /* ─── TITLE PAGE ────────────────────────────────────────── */
-    .titlepage {
-      padding-top: 90px;
-      padding-bottom: 0;
-      border-bottom: 0.5px solid var(--rule-light);
-    }
+    /* ── PAGE ── */
+    .studio { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 
-    .doc-meta-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
-      margin-bottom: 2.8rem;
-    }
-
-    .title-center {
-      text-align: center;
+    /* ── HERO / BOOTH ── */
+    .booth {
+      padding-top: 15vh;
       padding-bottom: 3rem;
-    }
-
-    h1.doc-title {
-      font-family: var(--serif);
-      font-size: 2.1rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .doc-author-line {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--ink-med);
-      margin-bottom: 0.2rem;
-    }
-
-    .doc-affil {
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      color: var(--ink-soft);
-      letter-spacing: 0.07em;
-      margin-bottom: 0.15rem;
-    }
-
-    .doc-date {
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.07em;
-      margin-top: 0.55rem;
-    }
-
-    /* ─── ABSTRACT ─────────────────────────────────────────── */
-    .abstract-block {
-      padding: 2.8rem 0;
-      border-bottom: 0.5px solid var(--ink);
-    }
-
-    .abstract-inner {
-      max-width: 520px;
-      margin: 0 auto;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    .abstract-heading {
-      font-family: var(--serif);
-      font-size: 0.88rem;
-      font-weight: 600;
       text-align: center;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      display: block;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
     }
 
-    .abstract-text {
+    .onair {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--grey);
+      border: 1px solid var(--edge); border-radius: 3px;
+      padding: 0.4rem 0.9rem;
+      margin-bottom: 2.4rem;
+    }
+    .onair .lamp {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--cue);
+      box-shadow: 0 0 8px rgba(229,72,77,0.8);
+      animation: lampPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes lampPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; box-shadow: 0 0 2px rgba(229,72,77,0.3); }
+    }
+
+    h1.show-title {
       font-family: var(--serif);
-      font-size: 0.94rem;
-      line-height: 1.78;
-      color: var(--ink-med);
+      font-size: clamp(3rem, 9vw, 4.6rem);
+      font-weight: 400; font-style: italic;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--white);
     }
 
-    .abstract-text a {
-      color: var(--ink);
-      text-decoration: underline;
-      text-decoration-thickness: 0.5px;
-      text-underline-offset: 3px;
-    }
-    .abstract-text a:hover { color: var(--ink-soft); }
-
-    /* ─── KEYWORDS ─────────────────────────────────────────── */
-    .keywords-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.9rem 0;
-      border-bottom: 0.5px solid var(--ink);
-      font-family: var(--serif);
-      font-size: 0.85rem;
-      flex-wrap: wrap;
-    }
-    .kw-label { font-style: italic; color: var(--ink-med); flex-shrink: 0; }
-    .kw-link {
-      color: var(--ink); text-decoration: underline;
-      text-decoration-thickness: 0.5px; text-underline-offset: 3px;
-    }
-    .kw-link:hover { color: var(--ink-soft); }
-    .kw-sep { color: var(--ink-ghost); }
-
-    /* ─── TABLE OF CONTENTS ─────────────────────────────────── */
-    .toc-block {
-      padding: 2.4rem 0 2.2rem;
-      border-bottom: 0.5px solid var(--ink);
-    }
-
-    .section-label {
-      font-family: var(--serif);
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      display: block;
-      text-align: center;
-      margin-bottom: 1.2rem;
-    }
-
-    .toc-list { list-style: none; max-width: 420px; margin: 0 auto; }
-    .toc-list li {
-      display: flex; align-items: baseline;
-      justify-content: space-between; padding: 0.2rem 0;
-    }
-    .toc-list li a {
-      font-family: var(--serif); font-size: 0.93rem;
-      color: var(--ink); text-decoration: none;
-    }
-    .toc-list li a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .toc-leaders {
-      flex: 1; border-bottom: 1px dotted var(--rule);
-      margin: 0 0.5rem; position: relative; top: -3px; min-width: 40px;
-    }
-    .toc-page { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); }
-
-    /* ─── SECTION HEADER ────────────────────────────────────── */
-    .section-head {
-      padding-top: 3.2rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 0.5px solid var(--ink);
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-    }
-    .sec-num { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
-    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
-
-    /* ─── ENTRIES ────────────────────────────────────────────── */
-    .entries-col { padding-top: 2rem; }
-
-    .entry {
-      padding: 0 0 2.4rem;
-      border-bottom: 0.5px solid var(--rule-light);
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .entry:last-child { border-bottom: none; }
-    .entry.visible { opacity: 1; transform: translateY(0); }
-
-    .entry-label {
-      font-family: var(--mono); font-size: 0.64rem;
-      color: var(--ink-faint); letter-spacing: 0.05em;
-      margin-bottom: 0.3rem; margin-top: 1.9rem; display: block;
-    }
-
-    .entry-title {
-      font-family: var(--serif); font-size: 1.05rem;
-      font-weight: 400; color: var(--ink);
-      line-height: 1.35; text-decoration: none; display: block;
-    }
-    .entry-title:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    .entry-desc {
-      font-family: var(--serif); font-size: 0.9rem;
-      color: var(--ink-med); line-height: 1.75;
-      margin-top: 0.45rem; text-align: justify; hyphens: auto;
-    }
-
-    /* ─── SPOTIFY EMBED ─────────────────────────────────────── */
-    .embed-wrap {
+    .show-tag {
+      font-family: var(--ui); font-weight: 300;
+      font-size: 1.02rem; color: var(--grey);
       margin-top: 1.1rem;
-      border: 0.5px solid var(--rule-light);
     }
 
-    .embed-wrap iframe {
-      display: block;
-      border-radius: 0;
+    /* the waveform: forty bars of a conversation */
+    .waveform {
+      display: flex; align-items: center; justify-content: center;
+      gap: 3px; height: 44px;
+      margin: 2.6rem auto 0;
+    }
+    .waveform span {
+      width: 3px; border-radius: 2px;
+      background: var(--signal);
+      height: 100%;
+      transform-origin: center;
+      animation: wf 1.6s ease-in-out infinite;
+      opacity: 0.85;
+    }
+    @keyframes wf {
+      0%, 100% { transform: scaleY(0.18); opacity: 0.4; }
+      50%      { transform: scaleY(1);    opacity: 0.95; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .waveform span { animation: none; }
+      .onair .lamp { animation: none; }
     }
 
-    /* ─── PLATFORM LINKS ────────────────────────────────────── */
-    .platform-links {
-      margin-top: 0.85rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 0.7rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
+    /* platform pills */
+    .platforms {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.7rem; margin-top: 2.6rem;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--ui); font-weight: 500; font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: var(--white); text-decoration: none;
+      border: 1px solid var(--edge); border-radius: 999px;
+      background: var(--console);
+      padding: 0.55rem 1.1rem;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .pill i { color: var(--signal); font-size: 0.85rem; }
+    .pill:hover { border-color: var(--signal); transform: translateY(-2px); }
+
+    /* ── PLAYER CONSOLE ── */
+    .console-block { padding: 3.5rem 0 0; }
+    .console-frame {
+      border: 1px solid var(--edge);
+      border-radius: 10px;
+      background: var(--console);
+      padding: 0.9rem;
+    }
+    .console-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 0.3rem 0.8rem;
+    }
+    .console-head .ch-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+    }
+    .console-head .ch-meters { display: flex; gap: 3px; align-items: flex-end; height: 12px; }
+    .console-head .ch-meters span {
+      width: 3px; background: var(--signal); border-radius: 1px;
+      animation: wf 1.3s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+    .console-frame iframe { display: block; border-radius: 6px; width: 100%; }
+
+    /* ── LINER NOTES ── */
+    .liner {
+      padding: 4.5rem 0 0;
+      max-width: 600px; margin: 0 auto;
+    }
+    .liner-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--signal); display: block; text-align: center;
+      margin-bottom: 1.4rem;
+    }
+    .liner p {
+      font-family: var(--serif);
+      font-size: 1.04rem; line-height: 1.85;
+      color: var(--grey); text-align: center;
+    }
+    .liner p em { color: var(--white); }
+
+    /* studio facts row */
+    .facts {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--edge);
+      border: 1px solid var(--edge); border-radius: 8px;
+      overflow: hidden;
+      margin: 3.2rem 0 0;
+    }
+    .fact { background: var(--console); padding: 1.3rem 1.1rem; }
+    .fact-k {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); display: block; margin-bottom: 0.35rem;
+    }
+    .fact-v { font-family: var(--ui); font-weight: 400; font-size: 0.85rem; color: var(--white); line-height: 1.5; }
+
+    /* ── BOOKING ── */
+    .booking {
+      margin: 4.5rem 0 0;
+      border-top: 1px solid var(--edge);
+      padding: 3rem 0 10vh;
+      text-align: center;
+    }
+    .booking h2 {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: 1.5rem; color: var(--white);
+    }
+    .booking p {
+      font-family: var(--ui); font-weight: 300;
+      font-size: 0.88rem; color: var(--grey);
+      max-width: 440px; margin: 0.8rem auto 1.6rem;
+    }
+    .booking .mic-btn {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.66rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--studio); background: var(--signal);
+      text-decoration: none; border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .booking .mic-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(53,194,110,0.25); }
+    .booking .subject-hint {
+      display: block; margin-top: 1rem;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.06em; color: var(--dim);
     }
 
-    .platform-links a {
-      color: var(--ink-soft);
-      text-decoration: underline;
-      text-decoration-thickness: 0.5px;
-      text-underline-offset: 3px;
-      transition: color 0.2s;
-    }
-    .platform-links a:hover { color: var(--ink); }
-
-    .platform-links .pl-sep { color: var(--ink-ghost); }
-
-    /* ─── SIDENOTES ─────────────────────────────────────────── */
-    .sidenotes-col {
-      padding-top: 2rem;
-      border-left: 0.5px solid var(--rule-light);
-      padding-left: 1.6rem;
-    }
-
-    .sidenote {
-      font-family: var(--serif); font-size: 0.76rem;
-      line-height: 1.65; color: var(--ink-soft);
-      margin-bottom: 2.2rem;
-      opacity: 0; transition: opacity 0.6s ease;
-    }
-    .sidenote.visible { opacity: 1; }
-    .sidenote sup { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); margin-right: 0.2rem; }
-    .sidenote strong { font-weight: 600; color: var(--ink-med); }
-
-    /* ─── FOOTER ───────────────────────────────────────────── */
-    .doc-footer {
-      border-top: 0.5px solid var(--ink);
+    /* ── FOOTER ── */
+    .studio-footer {
+      border-top: 1px solid var(--edge);
       padding: 1.3rem 0 4rem;
       display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
-    .footer-socials a:hover { color: var(--ink-med); }
+    .footer-socials a { font-size: 0.78rem; color: var(--dim); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--signal); }
 
-    /* ─── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 700px) {
-      :root { --outer: 20px; }
-      .document { grid-template-columns: 1fr; }
-      .entries-col { grid-column: 1 / -1; }
-      .sidenotes-col { display: none; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
       .topbar { padding: 1.1rem 1.4rem; }
       .nav-overlay { padding: 4rem 1.8rem; }
-      h1.doc-title { font-size: 1.7rem; }
+      .booth { padding-top: 12vh; }
+      .facts { grid-template-columns: 1fr; }
+      .waveform { height: 34px; }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -422,9 +331,9 @@
   <link rel="stylesheet" href="theme.css">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body class="paper">
+<body>
 
-<div class="progress-rule" id="prog"></div>
+<div id="prog"></div>
 
 <!-- NAV -->
 <div class="topbar">
@@ -451,123 +360,82 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════ -->
-<div class="document">
+<div class="studio">
 
-  <!-- TITLE PAGE -->
-  <div class="titlepage">
-    <div class="doc-meta-top">
-      <span>Decoded &nbsp;·&nbsp; A Podcast by Akshat Bhaskar</span>
-      <span>New Delhi &nbsp;·&nbsp; 2026</span>
+  <!-- THE BOOTH -->
+  <header class="booth">
+    <span class="onair"><span class="lamp"></span>On Air · Est. 2024</span>
+    <h1 class="show-title">Decoded</h1>
+    <p class="show-tag">Conversations on economics and technology, without the jargon.</p>
+
+    <div class="waveform" id="waveform" aria-hidden="true"></div>
+
+    <div class="platforms">
+      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener"><i class="fab fa-spotify"></i>Spotify</a>
+      <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><i class="fab fa-apple"></i>Apple Podcasts</a>
+      <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><i class="fab fa-amazon"></i>Amazon Music</a>
     </div>
-    <div class="title-center">
-      <h1 class="doc-title">Decoded</h1>
-      <p class="doc-author-line">Conversations on economics and technology</p>
-      <p class="doc-affil">Hosted by Akshat Bhaskar &nbsp;·&nbsp; Delhi Public School, R.K. Puram</p>
-      <p class="doc-date">Available on Spotify &nbsp;·&nbsp; Apple Podcasts &nbsp;·&nbsp; Amazon Music</p>
+  </header>
+
+  <!-- THE CONSOLE -->
+  <section class="console-block">
+    <div class="console-frame">
+      <div class="console-head">
+        <span class="ch-label">Now Playing · Featured Episode</span>
+        <span class="ch-meters" aria-hidden="true">
+          <span style="height:12px;animation-delay:0s"></span>
+          <span style="height:8px;animation-delay:.2s"></span>
+          <span style="height:11px;animation-delay:.4s"></span>
+          <span style="height:6px;animation-delay:.1s"></span>
+          <span style="height:10px;animation-delay:.3s"></span>
+        </span>
+      </div>
+      <iframe
+        src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
+        width="100%" height="351"
+        frameborder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Decoded, featured episode on Spotify"
+      ></iframe>
     </div>
-  </div>
+  </section>
 
-  <!-- SPOTIFY EMBED, hero -->
-  <div style="grid-column:1/-1; padding: 1.8rem 0 0; border-bottom: 0.5px solid var(--rule-light);">
-    <iframe
-      src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
-      width="100%" height="351"
-      frameborder="0"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      style="display:block;"
-    ></iframe>
-  </div>
+  <!-- LINER NOTES -->
+  <section class="liner">
+    <span class="liner-label">Liner Notes</span>
+    <p>
+      <em>Decoded</em> makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world. The show is rooted in a simple conviction: <em>the most important ideas shouldn't be locked behind academic walls.</em>
+    </p>
 
-  <!-- ABSTRACT -->
-  <div class="abstract-block">
-    <div class="abstract-inner">
-      <span class="abstract-heading">About the Podcast</span>
-      <p class="abstract-text">
-        <em>Decoded</em> is a podcast that makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode features conversations with economists, technologists, and policy thinkers breaking down the ideas shaping our world: from financial systems and AI to public policy and social innovation. The show is rooted in a simple conviction: that the most important ideas shouldn't be locked behind academic walls.
-      </p>
-    </div>
-  </div>
-
-  <!-- KEYWORDS ROW -->
-  <div class="keywords-row">
-    <span class="kw-label">Listen on: &nbsp;</span>
-    <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener" class="kw-link">Spotify ↗</a><span class="kw-sep">,</span>
-    <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener" class="kw-link">Apple Podcasts ↗</a><span class="kw-sep">,</span>
-    <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener" class="kw-link">Amazon Music ↗</a>
-  </div>
-
-  <!-- TABLE OF CONTENTS -->
-  <div class="toc-block">
-    <span class="section-label">Contents</span>
-    <ol class="toc-list">
-      <li>
-        <a href="#episodes">1 &ensp; Episodes</a>
-        <span class="toc-leaders"></span>
-        <span class="toc-page">§1</span>
-      </li>
-    </ol>
-  </div>
-
-  <!-- §1 EPISODES -->
-  <div class="section-head" id="episodes">
-    <span class="sec-num">§1</span>
-    <span class="sec-title">Episodes</span>
-  </div>
-
-  <div class="entries-col">
-
-    <div class="entry">
-      <span class="entry-label">[1] &nbsp; Featured Episode · Spotify</span>
-      <span class="entry-title">Latest Episode</span>
-      <p class="entry-desc">
-        Interviews with economists and technologists breaking down ideas that matter, accessible, rigorous, and without the jargon.
-      </p>
-      <div class="platform-links">
-        <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener">Full show on Spotify ↗</a>
-        <span class="pl-sep">·</span>
-        <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">Apple Podcasts ↗</a>
-        <span class="pl-sep">·</span>
-        <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">Amazon Music ↗</a>
+    <div class="facts">
+      <div class="fact">
+        <span class="fact-k">Host</span>
+        <span class="fact-v">Akshat Bhaskar, New Delhi</span>
+      </div>
+      <div class="fact">
+        <span class="fact-k">Production</span>
+        <span class="fact-v">Independent. No sponsors, no backing, just ideas.</span>
+      </div>
+      <div class="fact">
+        <span class="fact-k">Schedule</span>
+        <span class="fact-v">Episodes drop irregularly. Subscribe to be notified.</span>
       </div>
     </div>
+  </section>
 
-    <div class="entry">
-      <span class="entry-label">[2] &nbsp; Correspondence</span>
-      <span class="entry-title">Get in Touch</span>
-      <p class="entry-desc">
-        For episode pitches, guest suggestions, or general correspondence about <em>Decoded</em>, write directly.
-        All messages are read. &nbsp;<a href="mailto:bhaskarakshat22@gmail.com" style="color:var(--ink);text-decoration:underline;text-decoration-thickness:0.5px;text-underline-offset:3px;">bhaskarakshat22@gmail.com</a>
-      </p>
-    </div>
-
-  </div>
-
-  <!-- SIDENOTES -->
-  <div class="sidenotes-col" aria-hidden="true">
-
-    <div class="sidenote">
-      <sup>†</sup>
-      <strong>Decoded</strong> launched in 2024 and is independently produced. No institutional backing, no sponsors, just ideas worth talking about.
-    </div>
-
-    <div class="sidenote">
-      <sup>‡</sup>
-      The show is available on all major platforms. New episodes drop irregularly, subscribe on <strong>Spotify</strong> or <strong>Apple Podcasts</strong> to be notified.
-    </div>
-
-    <div class="sidenote">
-      <sup>§</sup>
-      Guest suggestions and collaboration inquiries are welcome. Write to <strong>bhaskarakshat22@gmail.com</strong> with the subject line <em>Decoded, Guest</em>.
-    </div>
-
-  </div>
+  <!-- BOOKING -->
+  <section class="booking">
+    <h2>Step into the booth</h2>
+    <p>Episode pitches, guest suggestions, and correspondence about the show are all welcome. Every message is read.</p>
+    <a class="mic-btn" href="mailto:bhaskarakshat22@gmail.com?subject=Decoded, Guest">Pitch an episode</a>
+    <span class="subject-hint">subject line: "Decoded, Guest"</span>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+  <footer class="studio-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; recorded in New Delhi</span>
     <div class="footer-socials">
       <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
       <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -605,16 +473,16 @@
   }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
 
-  // Scroll-in animations
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.entry, .sidenote').forEach(el => obs.observe(el));
+  // Build the waveform: forty bars, each with its own tempo
+  const wf = document.getElementById('waveform');
+  for (let i = 0; i < 40; i++) {
+    const bar = document.createElement('span');
+    const h = 20 + Math.round(60 * Math.abs(Math.sin(i * 0.55)) + Math.random() * 20);
+    bar.style.height = Math.min(100, h) + '%';
+    bar.style.animationDelay = (i * 0.045).toFixed(3) + 's';
+    bar.style.animationDuration = (1.2 + (i % 5) * 0.16).toFixed(2) + 's';
+    wf.appendChild(bar);
+  }
 </script>
 <script src="site.js" defer></script>
 </body>
