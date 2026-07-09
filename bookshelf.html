@@ -26,16 +26,18 @@
 
   <style>
     /* ─── VARIABLES ─────────────────────────────────────────── */
+    /* the reading room: library cream under a warm lamp */
     :root {
-      --paper:        #fffff8;
-      --ink:          #111110;
-      --ink-med:      #333330;
-      --ink-soft:     #666660;
-      --ink-faint:    #999990;
-      --ink-ghost:    #ccccbb;
-      --rule:         #d0d0c0;
-      --rule-light:   #e4e4d8;
-      --accent:       #111110;
+      --paper:        #f9f4e6;
+      --ink:          #241d12;
+      --ink-med:      #43392a;
+      --ink-soft:     #6f6551;
+      --ink-faint:    #9d937d;
+      --ink-ghost:    #c9bfa8;
+      --rule:         #d6cbb0;
+      --rule-light:   #e6ddc8;
+      --accent:       #241d12;
+      --lamp:         rgba(255,196,110,0.16);
       --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:         'Inconsolata', 'Courier New', monospace;
       --col-width:    520px;
@@ -53,6 +55,9 @@
 
     body {
       background: var(--paper);
+      /* the reading lamp pools at the top of the page */
+      background-image: radial-gradient(720px 340px at 50% -60px, var(--lamp), transparent 75%);
+      background-repeat: no-repeat;
       color: var(--ink);
       font-family: var(--serif);
       font-size: 1.0625rem;
@@ -640,6 +645,7 @@
       <span>New Delhi &nbsp;·&nbsp; 2026</span>
     </div>
     <div class="title-center">
+      <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:0.9rem;">Ex Libris · Akshat Bhaskar</span>
       <h1 class="doc-title">Bookshelf</h1>
       <p class="doc-author-line">What I'm reading &nbsp;·&nbsp; What shaped me</p>
     </div>
