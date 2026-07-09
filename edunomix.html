@@ -14,7 +14,7 @@
   <style>
     /* ─── VARIABLES ─────────────────────────────────────────── */
     :root {
-      --paper:        #fffff8;
+      --paper: #faf3ea;
       --ink:          #111110;
       --ink-med:      #333330;
       --ink-soft:     #666660;
@@ -71,7 +71,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(255,255,248,0.92);
+      background: rgba(250,243,234,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 0.5px solid rgba(209,208,192,0.3);
     }
@@ -108,7 +108,7 @@
     .nav-overlay a.nav-link {
       font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(255,255,248,0.22); line-height: 1.35;
+      color: rgba(250,243,234,0.22); line-height: 1.35;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -121,9 +121,9 @@
     .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
     .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
     .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-overlay a.nav-link:hover { color: rgba(250,243,234,0.9); }
     .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      width: 28px; height: 0.5px; background: rgba(250,243,234,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -133,8 +133,8 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
-    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(250,243,234,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(250,243,234,0.85); }
 
     /* ─── TITLE PAGE ────────────────────────────────────────── */
     .titlepage {
@@ -352,6 +352,17 @@
       h1.page-title { font-size: 1.65rem; }
       .stat-row { gap: 1.4rem; }
     }
+  
+    .page-ident {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #a4462d;
+      margin-bottom: 0.8rem;
+    }
+    html.dark .page-ident { color: #d89078; }
   </style>
 <!-- print styles + reduced motion -->
 <style>
@@ -409,6 +420,7 @@
     <div class="title-block">
       <a href="experience.html" class="back-mono">Back to Experience</a>
       <span class="page-label">Nonprofit Leadership &nbsp;·&nbsp; Financial Literacy</span>
+      <span class="page-ident">Annual Report · Edunomix India Chapter</span>
       <h1 class="page-title">Founder &amp; President<br>Edunomix India Chapter</h1>
       <p class="page-subtitle">US 501(c)(3) · First South Asia Chapter · Since 2023</p>
     </div>
