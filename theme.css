@@ -2,8 +2,10 @@
    Loaded on every page. Dark overrides only bite on the standard
    "paper document" pages that define --paper / --ink. */
 
-/* ── Night reading mode ─────────────────────────────────────── */
-html.dark {
+/* ── Night reading mode ─────────────────────────────────────────
+   Scoped to body.paper: only the standard manuscript pages flip.
+   Bespoke pages (awards hall, gym, budget...) own their palettes. */
+html.dark body.paper {
   --paper:      #16150f;
   --ink:        #f0ead9;
   --ink-med:    #cbc6b6;
@@ -12,25 +14,25 @@ html.dark {
   --ink-ghost:  #4c4940;
   --rule:       #3a3830;
   --rule-light: #2a2822;
+  background: var(--paper); color: var(--ink);
 }
-html.dark body { background: var(--paper); color: var(--ink); }
 
 /* Bits that hardcode the light paper colour need a hand in the dark. */
-html.dark .topbar {
+html.dark body.paper .topbar {
   background: rgba(22, 21, 15, 0.9);
   border-bottom-color: rgba(240, 234, 217, 0.08);
 }
-html.dark .hero-caption {
+html.dark body.paper .hero-caption {
   background: linear-gradient(to top, rgba(22,21,15,0.9) 0%, transparent 100%);
 }
-html.dark .hero-president,
-html.dark .hero-img-wrap { background: var(--paper); }
-html.dark .plate-frame img,
-html.dark .hero-img-wrap img,
-html.dark .author-photo { filter: grayscale(35%) contrast(1.02) brightness(0.92); }
-html.dark .plate:hover .plate-frame img { filter: grayscale(0%) contrast(1.03) brightness(0.98); }
-html.dark .form-status.ok  { color: #6fbf8e; }
-html.dark .form-status.err { color: #e08a8a; }
+html.dark body.paper .hero-president,
+html.dark body.paper .hero-img-wrap { background: var(--paper); }
+html.dark body.paper .plate-frame img,
+html.dark body.paper .hero-img-wrap img,
+html.dark body.paper .author-photo { filter: grayscale(35%) contrast(1.02) brightness(0.92); }
+html.dark body.paper .plate:hover .plate-frame img { filter: grayscale(0%) contrast(1.03) brightness(0.98); }
+html.dark body.paper .form-status.ok  { color: #6fbf8e; }
+html.dark body.paper .form-status.err { color: #e08a8a; }
 
 /* ── Theme toggle button (floating, bottom-right) ───────────── */
 .theme-toggle {
