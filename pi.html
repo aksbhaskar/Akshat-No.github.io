@@ -3,16 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>A Thousand Digits of Π | Akshat Bhaskar</title>
+  <title>A Thousand Digits of Pi | Akshat Bhaskar</title>
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* a small shrine to the circle */
+    :root {
+      --paper: #fdfcf7;
+      --ink: #17181c;
+      --ink-soft: #6a6f7a;
+      --ink-faint: #a2a7b0;
+      --rule: #d5d7dc;
+      --pi: #2b5a8c;
+      --serif: 'EB Garamond', Georgia, serif;
+      --mono: 'Inconsolata', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      min-height: 100vh;
+      padding: 3rem 1.4rem 5rem;
+    }
+    .sheet { max-width: 640px; margin: 0 auto; }
+    .back {
+      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.07em;
+      color: var(--ink-faint); text-decoration: none;
+    }
+    .back:hover { color: var(--ink); }
+
+    .circle-head { text-align: center; margin: 3rem 0 2.6rem; }
+    .circle-head svg { width: 130px; height: 130px; }
+    .circle-head .ring {
+      fill: none; stroke: var(--pi); stroke-width: 1.5;
+      stroke-dasharray: 380; stroke-dashoffset: 380;
+      animation: draw 2.4s ease forwards 0.3s;
+    }
+    .circle-head .dia { stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 3 4; }
+    .circle-head .glyph { font-family: var(--serif); font-style: italic; font-size: 44px; fill: var(--ink); }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { .circle-head .ring { animation: none; stroke-dashoffset: 0; } }
+
+    h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 1.6rem; text-align: center; margin-top: 1.4rem;
+    }
+    .sub {
+      font-family: var(--serif); font-style: italic;
+      color: var(--ink-soft); text-align: center; font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+    .ratio {
+      font-family: var(--serif); font-style: italic;
+      text-align: center; font-size: 1.05rem; color: var(--ink-soft);
+      margin-top: 1.2rem;
+    }
+
+    .lead {
+      font-family: var(--mono); font-size: 1.5rem; letter-spacing: 0.04em;
+      text-align: center; color: var(--pi); margin: 2.6rem 0 1.4rem;
+    }
+    .digits {
+      font-family: var(--mono);
+      font-size: 0.86rem; line-height: 2.1; letter-spacing: 0.12em;
+      color: var(--ink); text-align: justify;
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+      padding: 1.6rem 0;
+    }
+    .dg { position: relative; margin-right: 0.9em; white-space: nowrap; transition: color 0.15s; }
+    .dg:hover { color: var(--pi); }
+    .dg:hover::after {
+      content: attr(data-n);
+      position: absolute; top: -1.25em; left: 50%; transform: translateX(-50%);
+      font-size: 0.56rem; letter-spacing: 0.06em; color: var(--ink-faint);
+      white-space: nowrap;
+    }
+    .colophon {
+      font-family: var(--serif); font-style: italic; font-size: 0.85rem;
+      color: var(--ink-soft); text-align: center; margin-top: 1.8rem;
+    }
+  </style>
 <!-- print styles + reduced motion -->
 <style>
 @media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
   body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
@@ -22,27 +100,123 @@
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
 <body>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="awards.html">Awards</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="podcast.html">Podcast</a></li>
-      <li><a href="bookshelf.html">Bookshelf</a></li>
-    </ul>
-  </nav>
+  <div class="sheet">
+    <a class="back" href="index.html">&larr; akshatbhaskar.ninja</a>
 
-  <section class="lgp-memoir-section">
-    <h1>A Thousand Digits of Π</h1>
-    <h2>Because Why Not?</h2>
-    <p>
-      3 . 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 8 3 2 7 9 5 0 2 8 8 4 1 9 7 1 6 9 3 9 9 3 7 5 1 0 5 8 2 0 9 7 4 9 4 4 5 9 2 3 0 7 8 1 6 4 0 6 2 8 6 2 0 8 9 9 8 6 2 8 0 3 4 8 2 5 3 4 2 1 1 7 0 6 7 9 8 2 1 4 8 0 8 6 5 1 3 2 8 2 3 0 6 6 4 7 0 9 3 8 4 4 6 0 9 5 5 0 5 8 2 2 3 1 7 2 5 3 5 9 4 0 8 1 2 8 4 8 1 1 1 7 4 5 0 2 8 4 1 0 2 7 0 1 9 3 8 5 2 1 1 0 5 5 5 9 6 4 4 6 2 2 9 4 8 9 4 9 3 0 3 8 1 9 6 4 4 2 8 8 1 0 9 7 5 6 6 5 9 3 3 4 4 6 1 2 8 4 7 5 6 4 8 2 3 3 7 8 6 7 8 3 1 6 5 2 7 1 2 0 1 9 0 9 1 4 5 6 4 8 5 6 6 9 2 3 4 6 0 3 4 8 6 1 0 4 5 4 3 2 6 6 4 8 2 1 3 3 9 3 6 0 7 2 6 0 2 4 9 1 4 1 2 7 3 7 2 4 5 8 7 0 0 6 6 0 6 3 1 5 5 8 8 1 7 4 8 8 1 5 2 0 9 2 0 9 6 2 8 2 9 2 5 4 0 9 1 7 1 5 3 6 4 3 6 7 8 9 2 5 9 0 3 6 0 0 1 1 3 3 0 5 3 0 5 4 8 8 2 0 4 6 6 5 2 1 3 8 4 1 4 6 9 5 1 9 4 1 5 1 6 0 9 4 3 3 0 5 7 2 7 0 3 6 5 7 5 9 5 9 1 9 5 3 0 9 2 1 8 6 1 1 7 3 8 1 9 3 2 6 1 1 7 9 3 1 0 5 1 1 8 5 4 8 0 7 4 4 6 2 3 7 9 9 6 2 7 4 9 5 6 7 3 5 1 8 8 5 7 5 2 7 2 4 8 9 1 2 2 7 9 3 8 1 8 3 0 1 1 9 4 9 1 2 9 8 3 3 6 7 3 3 6 2 4 4 0 6 5 6 6 4 3 0 8 6 0 2 1 3 9 4 9 4 6 3 9 5 2 2 4 7 3 7 1 9 0 7 0 2 1 7 9 8 6 0 9 4 3 7 0 2 7 7 0 5 3 9 2 1 7 6 2 9 3 1 7 6 7 5 2 3 8 4 6 7 4 8 1 8 4 6 7 6 6 9 4 0 5 1 3 2 0 0 0 5 6 8 1 2 7 1 4 5 2 6 3 5 6 0 8 2 7 7 8 5 7 7 1 3 4 2 7 5 7 7 8 9 6 0 9 1 7 3 6 3 7 1 7 8 7 2 1 4 6 8 4 4 0 9 0 1 2 2 4 9 5 3 4 3 0 1 4 6 5 4 9 5 8 5 3 7 1 0 5 0 7 9 2 2 7 9 6 8 9 2 5 8 9 2 3 5 4 2 0 1 9 9 5 6 1 1 2 1 2 9 0 2 1 9 6 0 8 6 4 0 3 4 4 1 8 1 5 9 8 1 3 6 2 9 7 7 4 7 7 1 3 0 9 9 6 0 5 1 8 7 0 7 2 1 1 3 4 9 9 9 9 9 9 8 3 7 2 9 7 8 0 4 9 9 5 1 0 5 9 7 3 1 7 3 2 8 1 6 0 9 6 3 1 8 5 9 5 0 2 4 4 5 9 4 5 5 3 4 6 9 0 8 3 0 2 6 4 2 5 2 2 3 0 8 2 5 3 3 4 4 6 8 5 0 3 5 2 7 2 3 0 3 2 5 3 3 2 0 8 3 8 1 4 2 0 6 1 7 1 7 7 6 9 1 4 7 3 0 3 5 9 8 2 5 3 4 9 0 4 2 8 7 5 5 4 6 8 7 3 1 1 5 9 5 6 2 8 6 3 8 8 2 3 5 3 7 8 7 5 9 3 7 5 1 9 5 7 7 8 1 8 5 7 7 8 0 5 3 2 1 7 1 2 2 6 8 0 6 6 1 3 0 0 1 9 2 7 8 7 6 6 1 1 1 9 5 9 0 9 2 1 6 4 2 0 1 9 8
+    <div class="circle-head">
+      <svg viewBox="0 0 130 130" aria-hidden="true">
+        <circle class="ring" cx="65" cy="65" r="60"/>
+        <line class="dia" x1="5" y1="65" x2="125" y2="65"/>
+        <text class="glyph" x="65" y="80" text-anchor="middle">&pi;</text>
+      </svg>
+      <h1>A Thousand Digits of &pi;</h1>
+      <p class="sub">because why not?</p>
+      <p class="ratio">the ratio of any circle's circumference to its diameter, wherever you are</p>
+    </div>
+
+    <div class="lead">3.</div>
+    <p class="digits">
+        <span class="dg" data-n="1–10">1415926535</span>
+        <span class="dg" data-n="11–20">8979323846</span>
+        <span class="dg" data-n="21–30">2643383279</span>
+        <span class="dg" data-n="31–40">5028841971</span>
+        <span class="dg" data-n="41–50">6939937510</span>
+        <span class="dg" data-n="51–60">5820974944</span>
+        <span class="dg" data-n="61–70">5923078164</span>
+        <span class="dg" data-n="71–80">0628620899</span>
+        <span class="dg" data-n="81–90">8628034825</span>
+        <span class="dg" data-n="91–100">3421170679</span>
+        <span class="dg" data-n="101–110">8214808651</span>
+        <span class="dg" data-n="111–120">3282306647</span>
+        <span class="dg" data-n="121–130">0938446095</span>
+        <span class="dg" data-n="131–140">5058223172</span>
+        <span class="dg" data-n="141–150">5359408128</span>
+        <span class="dg" data-n="151–160">4811174502</span>
+        <span class="dg" data-n="161–170">8410270193</span>
+        <span class="dg" data-n="171–180">8521105559</span>
+        <span class="dg" data-n="181–190">6446229489</span>
+        <span class="dg" data-n="191–200">4930381964</span>
+        <span class="dg" data-n="201–210">4288109756</span>
+        <span class="dg" data-n="211–220">6593344612</span>
+        <span class="dg" data-n="221–230">8475648233</span>
+        <span class="dg" data-n="231–240">7867831652</span>
+        <span class="dg" data-n="241–250">7120190914</span>
+        <span class="dg" data-n="251–260">5648566923</span>
+        <span class="dg" data-n="261–270">4603486104</span>
+        <span class="dg" data-n="271–280">5432664821</span>
+        <span class="dg" data-n="281–290">3393607260</span>
+        <span class="dg" data-n="291–300">2491412737</span>
+        <span class="dg" data-n="301–310">2458700660</span>
+        <span class="dg" data-n="311–320">6315588174</span>
+        <span class="dg" data-n="321–330">8815209209</span>
+        <span class="dg" data-n="331–340">6282925409</span>
+        <span class="dg" data-n="341–350">1715364367</span>
+        <span class="dg" data-n="351–360">8925903600</span>
+        <span class="dg" data-n="361–370">1133053054</span>
+        <span class="dg" data-n="371–380">8820466521</span>
+        <span class="dg" data-n="381–390">3841469519</span>
+        <span class="dg" data-n="391–400">4151609433</span>
+        <span class="dg" data-n="401–410">0572703657</span>
+        <span class="dg" data-n="411–420">5959195309</span>
+        <span class="dg" data-n="421–430">2186117381</span>
+        <span class="dg" data-n="431–440">9326117931</span>
+        <span class="dg" data-n="441–450">0511854807</span>
+        <span class="dg" data-n="451–460">4462379962</span>
+        <span class="dg" data-n="461–470">7495673518</span>
+        <span class="dg" data-n="471–480">8575272489</span>
+        <span class="dg" data-n="481–490">1227938183</span>
+        <span class="dg" data-n="491–500">0119491298</span>
+        <span class="dg" data-n="501–510">3367336244</span>
+        <span class="dg" data-n="511–520">0656643086</span>
+        <span class="dg" data-n="521–530">0213949463</span>
+        <span class="dg" data-n="531–540">9522473719</span>
+        <span class="dg" data-n="541–550">0702179860</span>
+        <span class="dg" data-n="551–560">9437027705</span>
+        <span class="dg" data-n="561–570">3921762931</span>
+        <span class="dg" data-n="571–580">7675238467</span>
+        <span class="dg" data-n="581–590">4818467669</span>
+        <span class="dg" data-n="591–600">4051320005</span>
+        <span class="dg" data-n="601–610">6812714526</span>
+        <span class="dg" data-n="611–620">3560827785</span>
+        <span class="dg" data-n="621–630">7713427577</span>
+        <span class="dg" data-n="631–640">8960917363</span>
+        <span class="dg" data-n="641–650">7178721468</span>
+        <span class="dg" data-n="651–660">4409012249</span>
+        <span class="dg" data-n="661–670">5343014654</span>
+        <span class="dg" data-n="671–680">9585371050</span>
+        <span class="dg" data-n="681–690">7922796892</span>
+        <span class="dg" data-n="691–700">5892354201</span>
+        <span class="dg" data-n="701–710">9956112129</span>
+        <span class="dg" data-n="711–720">0219608640</span>
+        <span class="dg" data-n="721–730">3441815981</span>
+        <span class="dg" data-n="731–740">3629774771</span>
+        <span class="dg" data-n="741–750">3099605187</span>
+        <span class="dg" data-n="751–760">0721134999</span>
+        <span class="dg" data-n="761–770">9998372978</span>
+        <span class="dg" data-n="771–780">0499510597</span>
+        <span class="dg" data-n="781–790">3173281609</span>
+        <span class="dg" data-n="791–800">6318595024</span>
+        <span class="dg" data-n="801–810">4594553469</span>
+        <span class="dg" data-n="811–820">0830264252</span>
+        <span class="dg" data-n="821–830">2308253344</span>
+        <span class="dg" data-n="831–840">6850352723</span>
+        <span class="dg" data-n="841–850">0325332083</span>
+        <span class="dg" data-n="851–860">8142061717</span>
+        <span class="dg" data-n="861–870">7691473035</span>
+        <span class="dg" data-n="871–880">9825349042</span>
+        <span class="dg" data-n="881–890">8755468731</span>
+        <span class="dg" data-n="891–900">1595628638</span>
+        <span class="dg" data-n="901–910">8235378759</span>
+        <span class="dg" data-n="911–920">3751957781</span>
+        <span class="dg" data-n="921–930">8577805321</span>
+        <span class="dg" data-n="931–940">7122680661</span>
+        <span class="dg" data-n="941–950">3001927876</span>
+        <span class="dg" data-n="951–960">6111959092</span>
+        <span class="dg" data-n="961–968">16420198</span>
     </p>
-    <h2>Thank You!</h2>
-    <p>Hope you had a fun read!</p>
-  </section>
+
+    <p class="colophon">hover a block to find your place. hope you had a fun read.</p>
+  </div>
 <script src="site.js" defer></script>
 </body>
 </html>
