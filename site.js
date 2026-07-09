@@ -5,13 +5,9 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ── Night mode ───────────────────────────────────────────────
-     Only offered on the standard "paper document" pages, which are
-     the ones that define a --paper custom property. */
-  function paperPage() {
-    var v = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim();
-    return v !== '';
-  }
-  if (paperPage()) {
+     Only offered on the standard "paper document" pages, marked
+     with body.paper. Bespoke pages keep their own designs. */
+  if (document.body.classList.contains('paper')) {
     var root = document.documentElement;
     var stored = null;
     try { stored = localStorage.getItem('theme'); } catch (e) {}
