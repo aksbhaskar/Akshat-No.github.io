@@ -25,7 +25,7 @@
   <style>
     /* ─── VARIABLES ─────────────────────────────────────────── */
     :root {
-      --paper:        #fffff8;
+      --paper: #f2f4f9;
       --ink:          #111110;
       --ink-med:      #333330;
       --ink-soft:     #666660;
@@ -290,7 +290,7 @@
       font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400;
       font-style: italic;
-      color: rgba(255,255,248,0.22);
+      color: rgba(242,244,249,0.22);
       line-height: 1.35;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
@@ -305,10 +305,10 @@
     .nav-overlay.open a.nav-link:nth-child(5) { transition-delay:0.15s }
     .nav-overlay.open a.nav-link:nth-child(6) { transition-delay:0.18s }
     .nav-overlay.open a.nav-link:nth-child(7) { transition-delay:0.21s }
-    .nav-overlay.open a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-overlay.open a.nav-link:hover { color: rgba(242,244,249,0.9); }
 
     .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      width: 28px; height: 0.5px; background: rgba(242,244,249,0.15);
       margin: 1.3rem 0;
       opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
@@ -321,10 +321,10 @@
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
     .nav-socials-row a {
-      font-size: 0.82rem; color: rgba(255,255,248,0.25);
+      font-size: 0.82rem; color: rgba(242,244,249,0.25);
       transition: color 0.2s; text-decoration: none;
     }
-    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+    .nav-socials-row a:hover { color: rgba(242,244,249,0.85); }
 
     /* ─── PROGRESS BAR ──────────────────────────────────────── */
     .progress-rule {
@@ -383,6 +383,17 @@
         --outer: 32px;
       }
     }
+  
+    .page-ident {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #12315e;
+      margin-bottom: 0.8rem;
+    }
+    html.dark .page-ident { color: #8aa8d8; }
   </style>
 <!-- print styles + reduced motion -->
 <style>
@@ -438,6 +449,7 @@
       <span>New Delhi &nbsp;·&nbsp; 2026</span>
     </div>
     <div class="title-center">
+      <span class="page-ident">School Record · Delhi Public School, R.K. Puram</span>
       <h1 class="doc-title">Delhi Public School, R.K. Puram</h1>
       <p class="doc-author-line">Class of 2026 &nbsp;·&nbsp; President Student Council</p>
       <p class="doc-affil">Physics, Chemistry, Mathematics, Economics, English</p>

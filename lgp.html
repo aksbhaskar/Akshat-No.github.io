@@ -12,7 +12,7 @@
 
   <style>
     :root {
-      --paper:       #fffff8;
+      --paper: #f2f4f8;
       --ink:         #111110;
       --ink-med:     #333330;
       --ink-soft:    #666660;
@@ -46,7 +46,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(255,255,248,0.92);
+      background: rgba(242,244,248,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 0.5px solid rgba(209,208,192,0.3);
     }
@@ -306,6 +306,17 @@
       .aside-col { display: none; }
       h1.page-title { font-size: 1.7rem; }
     }
+  
+    .page-ident {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #33418f;
+      margin-bottom: 0.8rem;
+    }
+    html.dark .page-ident { color: #93a0d8; }
   </style>
 <!-- print styles + reduced motion -->
 <style>
@@ -339,7 +350,8 @@
       <span>Ashoka University, Sonepat</span>
       <span>Continued: 2025 – 2026</span>
     </div>
-    <h1 class="page-title">Lodha Genius Programme</h1>
+    <span class="page-ident">Dept. of Pure Mathematics · Ashoka University</span>
+      <h1 class="page-title">Lodha Genius Programme</h1>
     <p class="page-subtitle">A month of pure mathematics, Nobel laureates, and 3 am problem sheets</p>
     <div class="pill-row">
       <span class="pill">Pure Mathematics</span>

@@ -14,7 +14,7 @@
   <style>
     /* ─── VARIABLES ─────────────────────────────────────────── */
     :root {
-      --paper:        #fafaf4;
+      --paper: #f6fafa;
       --ink:          #111110;
       --ink-med:      #333330;
       --ink-soft:     #666660;
@@ -68,7 +68,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(250,250,244,0.92);
+      background: rgba(246,250,250,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 0.5px solid rgba(209,208,192,0.3);
     }
@@ -105,7 +105,7 @@
     .nav-overlay a.nav-link {
       font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(255,255,248,0.22); line-height: 1.35;
+      color: rgba(246,250,250,0.22); line-height: 1.35;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -118,9 +118,9 @@
     .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
     .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
     .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
+    .nav-overlay a.nav-link:hover { color: rgba(246,250,250,0.9); }
     .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
+      width: 28px; height: 0.5px; background: rgba(246,250,250,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -130,8 +130,8 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
-    .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(246,250,250,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(246,250,250,0.85); }
 
     /* ─── PROGRESS BAR ───────────────────────────────────────── */
     .progress-rule {
@@ -431,6 +431,17 @@
       .two-col-list { grid-template-columns: 1fr; gap: 1.2rem; }
       .cta-bar { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
     }
+  
+    .page-ident {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #0f6b6b;
+      margin-bottom: 0.8rem;
+    }
+    html.dark .page-ident { color: #6fb5b5; }
   </style>
 <!-- print styles + reduced motion -->
 <style>
@@ -489,7 +500,8 @@
       <span style="color: var(--ink-soft);">AI Policy</span>
     </div>
     <p class="paper-journal-line">IJRASET · Vol. 13, Issue 7 · July 2025</p>
-    <h1 class="paper-title">The Two Faces of Progress:<br><em>A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</em></h1>
+    <span class="page-ident">Peer-Reviewed Publication · IJRASET Vol. 13, Issue 7</span>
+      <h1 class="paper-title">The Two Faces of Progress:<br><em>A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</em></h1>
     <div class="paper-author-block">
       <span class="paper-author">Akshat Bhaskar <span>Author</span></span>
       <span class="paper-author">Prof. Surbhi Goel <span>Mentor · University of Pennsylvania</span></span>
