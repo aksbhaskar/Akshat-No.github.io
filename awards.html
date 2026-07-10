@@ -10,287 +10,279 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* ── THE HALL ── */
+    /* ─── VARIABLES ────────────────────────────────────────────
+       The honours list: ivory stock, ink, laurel green.
+       "Laureate" means crowned with laurel; that is the accent. */
     :root {
-      --hall:        #0e0d0b;   /* warm black walls */
-      --wall:        #161410;
-      --gold:        #c9a35c;   /* brass plaque */
-      --gold-bright: #e8c987;
-      --gold-dim:    rgba(201,163,92,0.35);
-      --bone:        #ece5d8;   /* label text */
-      --bone-soft:   #b5ad9d;
-      --dim:         #857d6c;
-      --hairline:    rgba(201,163,92,0.22);
-      --display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
-      --serif:   'EB Garamond', Georgia, serif;
-      --mono:    'Inconsolata', 'Courier New', monospace;
+      --paper:        #faf7ee;
+      --ink:          #17170f;
+      --ink-med:      #38382c;
+      --ink-soft:     #6a6a58;
+      --ink-faint:    #9c9c88;
+      --ink-ghost:    #c8c8b4;
+      --rule:         #d4d0ba;
+      --rule-light:   #e6e2cf;
+      --laurel:       #2e5d43;
+      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:         'Inconsolata', 'Courier New', monospace;
+      --outer:        clamp(24px, 4vw, 56px);
+      --max-doc:      760px;
     }
+    html.dark { --laurel: #8fc4a6; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      background: var(--hall);
-      color: var(--bone);
+      background: var(--paper);
+      color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.7;
+      font-size: 1.0625rem;
+      line-height: 1.72;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    ::selection { background: rgba(201,163,92,0.3); }
-
-    /* the spotlight that follows the visitor through the hall */
-    #spotlight {
-      position: fixed; inset: 0; z-index: 1;
-      pointer-events: none;
-      background: radial-gradient(640px at 50% 30%, rgba(232,201,135,0.06), transparent 70%);
-    }
-
-    /* ── PROGRESS ── */
-    #progress-bar {
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
       position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--gold); z-index: 999; transition: width 0.1s linear;
+      background: var(--ink); z-index: 999; transition: width 0.1s linear;
     }
 
-    /* ── TOP BAR ── */
-    .top-bar-fixed {
+    /* ─── TOPBAR ───────────────────────────────────────────── */
+    .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 2.5rem;
-      pointer-events: none;
+      padding: 1.2rem 3rem;
+      background: rgba(250,247,238,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(212,208,186,0.4);
     }
-    .top-bar-name {
-      pointer-events: all;
-      font-family: var(--mono); font-size: 0.66rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--dim); text-decoration: none; transition: color 0.2s;
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
     }
-    .top-bar-name:hover { color: var(--gold-bright); }
+    .topbar-logo:hover { color: var(--ink); }
 
     .hamburger {
-      pointer-events: all;
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column; gap: 5px; padding: 4px;
     }
     .hamburger span {
-      display: block; width: 18px; height: 1px; background: var(--dim);
-      transition: all 0.3s ease; transform-origin: center;
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
     }
-    .hamburger:hover span { background: var(--gold-bright); }
-    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
-    /* ── NAV OVERLAY ── */
+    /* ─── NAV OVERLAY ──────────────────────────────────────── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(10,9,7,0.97);
+      background: rgba(23,23,15,0.94); backdrop-filter: blur(8px);
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
     .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay > a {
-      font-family: var(--display);
-      font-size: clamp(2.2rem, 6vw, 3.6rem);
-      font-weight: 400; color: rgba(236,229,216,0.45);
-      text-decoration: none; letter-spacing: -0.01em; line-height: 1.25;
-      opacity: 0; transform: translateY(14px);
-      transition: color 0.22s ease, transform 0.4s ease, opacity 0.4s ease;
-    }
-    .nav-overlay.open > a { opacity: 1; transform: translateY(0); }
-    .nav-overlay.open > a:nth-child(1) { transition-delay: 0.04s; }
-    .nav-overlay.open > a:nth-child(2) { transition-delay: 0.08s; }
-    .nav-overlay.open > a:nth-child(3) { transition-delay: 0.12s; }
-    .nav-overlay.open > a:nth-child(4) { transition-delay: 0.16s; }
-    .nav-overlay.open > a:nth-child(5) { transition-delay: 0.20s; }
-    .nav-overlay.open > a:nth-child(6) { transition-delay: 0.24s; }
-    .nav-overlay.open > a:nth-child(7) { transition-delay: 0.28s; }
-    .nav-overlay > a:hover { color: var(--gold-bright); }
-
-    .nav-socials {
-      display: flex; gap: 1.4rem; margin-top: 2.5rem;
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
-    }
-    .nav-overlay.open .nav-socials { opacity: 1; transform: translateY(0); }
-    .nav-socials a { font-size: 0.9rem; color: rgba(236,229,216,0.35); transition: color 0.22s; }
-    .nav-socials a:hover { color: var(--gold-bright); }
-
-    /* ── PAGE ── */
-    .page {
-      position: relative; z-index: 2;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── HEADER ── */
-    .awards-header {
-      padding-top: 16vh;
-      padding-bottom: 6vh;
-      text-align: center;
-    }
-    .collection-eyebrow {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.34em; text-transform: uppercase;
-      color: var(--gold); display: block; margin-bottom: 1.6rem;
-    }
-    .awards-header h1 {
-      font-family: var(--display);
-      font-size: clamp(2.6rem, 7vw, 4.2rem);
-      font-weight: 300;
-      line-height: 1.06;
-      letter-spacing: 0.01em;
-      color: var(--bone);
-    }
-    .awards-header .sub {
-      font-family: var(--serif);
-      font-size: 1rem; font-style: italic;
-      color: var(--bone-soft); margin-top: 1rem;
-    }
-    .header-rule {
-      width: 42px; height: 1px; background: var(--gold);
-      margin: 2.6rem auto 0;
-    }
-
-    /* ── CENTERPIECE ── */
-    .centerpiece {
-      position: relative;
-      border: 1px solid var(--hairline);
-      padding: 3.2rem 2.6rem 2.8rem;
-      margin-bottom: 9vh;
-      text-align: center;
-      background:
-        radial-gradient(420px at 50% 0%, rgba(232,201,135,0.07), transparent 75%),
-        var(--wall);
-      opacity: 0; transform: translateY(14px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .centerpiece.visible { opacity: 1; transform: translateY(0); }
-    /* corner ticks, like a mounted frame */
-    .centerpiece::before, .centerpiece::after,
-    .centerpiece .tick-a, .centerpiece .tick-b {
-      content: ""; position: absolute; width: 14px; height: 14px;
-      border-color: var(--gold); border-style: solid;
-    }
-    .centerpiece::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-    .centerpiece::after  { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
-    .centerpiece .tick-a { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
-    .centerpiece .tick-b { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
-
-    .cp-plaque {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.8rem; display: block;
-    }
-    .cp-title {
-      font-family: var(--display);
-      font-size: clamp(1.7rem, 4.4vw, 2.5rem);
-      font-weight: 400; line-height: 1.18; color: var(--bone);
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(250,247,238,0.5); line-height: 1.35;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
-      transition: color 0.25s;
     }
-    a.cp-title:hover { color: var(--gold-bright); }
-    .cp-desc {
-      font-family: var(--serif); font-size: 0.92rem;
-      color: var(--bone-soft); line-height: 1.8;
-      max-width: 480px; margin: 1.2rem auto 0;
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay a.nav-link:hover { color: rgba(250,247,238,0.95); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(250,247,238,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
-    .cp-issuer {
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(250,247,238,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(250,247,238,0.9); }
+
+    /* ─── DOCUMENT ─────────────────────────────────────────── */
+    .document {
+      max-width: var(--max-doc);
+      margin: 0 auto;
+      padding: 0 var(--outer);
+    }
+
+    /* ─── HEADER ───────────────────────────────────────────── */
+    .honours-head {
+      padding-top: 110px;
+      padding-bottom: 2.4rem;
+      text-align: center;
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .hh-eyebrow {
       font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--dim); margin-top: 1.8rem; display: block;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--laurel); display: block; margin-bottom: 1.2rem;
     }
-    .cp-link {
-      display: inline-block; margin-top: 1.4rem;
+    h1.hh-title {
+      font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
+      letter-spacing: 0.02em; line-height: 1.1; color: var(--ink);
+    }
+    .hh-sub {
+      font-family: var(--serif); font-size: 0.98rem; font-style: italic;
+      color: var(--ink-soft); margin-top: 0.6rem;
+    }
+    .hh-laurel {
+      width: 74px; height: 30px; margin: 1.4rem auto 0;
+      color: var(--laurel); display: block;
+    }
+    .hh-tally {
       font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      border-bottom: 1px solid var(--gold-dim); padding-bottom: 3px;
+      letter-spacing: 0.1em; color: var(--ink-faint);
+      margin-top: 1.5rem;
+    }
+
+    /* ─── THE PRINCIPAL CITATION ───────────────────────────── */
+    .citation {
+      margin: 3rem auto 0;
+      max-width: 560px;
+      border: 0.5px solid var(--ink);
+      padding: 2.2rem 2.2rem 2rem;
+      text-align: center;
+      position: relative;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .citation.visible { opacity: 1; transform: translateY(0); }
+    /* a second, inner hairline: the traditional certificate double frame */
+    .citation::before {
+      content: ""; position: absolute; inset: 4px;
+      border: 0.5px solid var(--rule);
+      pointer-events: none;
+    }
+    .cit-order {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--ink-soft); display: block; margin-bottom: 1.3rem;
+    }
+    .cit-title {
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 500;
+      line-height: 1.25; color: var(--ink);
+      text-decoration: none; display: block;
+    }
+    a.cit-title:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 0.5px; }
+    .cit-for {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.94rem; color: var(--ink-med); line-height: 1.75;
+      margin-top: 0.9rem;
+    }
+    .cit-place {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-top: 1.4rem;
+    }
+    .cit-link {
+      display: inline-block; margin-top: 0.9rem;
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.06em; color: var(--laurel);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--rule); padding-bottom: 1px;
       transition: color 0.2s, border-color 0.2s;
     }
-    .cp-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+    .cit-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
 
-    /* ── GALLERY ── */
-    .gallery-label {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--dim); text-align: center; display: block;
-      margin-bottom: 4vh;
+    /* ─── SECTION HEAD ─────────────────────────────────────── */
+    .section-head {
+      padding-top: 3.4rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex; align-items: baseline; gap: 1rem;
     }
+    .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+    .sec-note  { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-ghost); margin-left: auto; letter-spacing: 0.05em; }
 
-    .awards-list { display: flex; flex-direction: column; margin-bottom: 8vh; }
+    /* ─── HONOURS TABLE ────────────────────────────────────── */
+    .honours { padding: 0.8rem 0 1rem; }
 
-    .award-item {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 1.8rem;
-      padding: 1.9rem 0.4rem;
-      border-bottom: 1px solid rgba(201,163,92,0.12);
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
-      text-decoration: none;
+    .honour {
+      padding: 1.55rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .award-item:first-child { border-top: 1px solid rgba(201,163,92,0.12); }
-    .award-item.visible { opacity: 1; transform: translateY(0); }
-    .award-item:hover { background: rgba(232,201,135,0.025); }
+    .honour:last-child { border-bottom: none; }
+    .honour.visible { opacity: 1; transform: translateY(0); }
 
-    .exhibit-no {
-      font-family: var(--display); font-size: 1.3rem; font-weight: 300;
-      color: var(--gold); line-height: 1;
-      padding-top: 0.2rem; text-align: right;
-      font-feature-settings: "lnum";
+    /* title ......... year : the table-of-honours line */
+    .honour-line {
+      display: flex; align-items: baseline; gap: 0.7rem;
     }
-
-    .award-body { display: flex; flex-direction: column; gap: 0.4rem; }
-
-    .award-plaque {
-      font-family: var(--mono); font-size: 0.56rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dim);
+    .honour-title {
+      font-family: var(--serif); font-size: 1.06rem; font-weight: 500;
+      color: var(--ink); line-height: 1.35;
     }
-
-    .award-title {
-      font-family: var(--display);
-      font-size: 1.32rem; font-weight: 400;
-      color: var(--bone); line-height: 1.3;
-      transition: color 0.25s;
+    .honour-leader {
+      flex: 1; min-width: 32px;
+      border-bottom: 1px dotted var(--rule);
+      position: relative; top: -4px;
     }
-    .award-item.linkable:hover .award-title { color: var(--gold-bright); }
-    .award-item.linkable { cursor: pointer; }
-
-    .award-desc {
-      font-family: var(--serif);
-      font-size: 0.86rem; color: var(--bone-soft);
-      line-height: 1.75;
+    .honour-year {
+      font-family: var(--serif); font-size: 0.95rem;
+      color: var(--laurel); flex-shrink: 0;
+      font-variant-numeric: oldstyle-nums;
     }
-
-    /* ── CONTACT ── */
-    .contact-block {
-      padding: 2.4rem 0 10vh;
-      border-top: 1px solid var(--hairline);
-      text-align: center;
-    }
-    .contact-block p {
+    .honour-cite {
       font-family: var(--serif); font-style: italic;
-      font-size: 0.85rem; color: var(--dim);
+      font-size: 0.88rem; color: var(--ink-med); line-height: 1.7;
+      margin-top: 0.35rem; max-width: 58ch;
     }
-    .contact-block a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-dim); padding-bottom: 1px; }
-    .contact-block a:hover { color: var(--gold-bright); }
+    .honour-issuer {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-top: 0.5rem;
+    }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .top-bar-fixed { padding: 1.2rem 1.5rem; }
-      .page { padding: 0 1.4rem; }
-      .awards-header { padding-top: 13vh; }
-      .centerpiece { padding: 2.4rem 1.4rem 2.2rem; }
-      .award-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.6rem 0.2rem; }
-      .exhibit-no { text-align: left; font-size: 1.05rem; }
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      border-top: 0.5px solid var(--ink);
+      margin-top: 2.5rem;
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      :root { --outer: 20px; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      .honours-head { padding-top: 92px; }
+      h1.hh-title { font-size: 1.8rem; }
+      .citation { padding: 1.8rem 1.2rem 1.6rem; }
+      .honour-line { flex-wrap: wrap; }
+      .honour-leader { display: none; }
+      .honour-year::before { content: "· "; color: var(--ink-ghost); }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -308,27 +300,28 @@
   <link rel="stylesheet" href="theme.css">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body>
+<body class="paper">
 
-<div id="spotlight"></div>
-<div id="progress-bar"></div>
+<div class="progress-rule" id="prog"></div>
 
-<div class="top-bar-fixed">
-  <a href="index.html" class="top-bar-name">Akshat Bhaskar</a>
-  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </div>
 
 <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <a href="index.html">Home</a>
-  <a href="education.html">Education</a>
-  <a href="experience.html">Experience</a>
-  <a href="awards.html">Awards</a>
-  <a href="research.html">Research</a>
-  <a href="podcast.html">Podcast</a>
-  <a href="bookshelf.html">Bookshelf</a>
-  <div class="nav-socials">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
     <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
     <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
@@ -336,200 +329,229 @@
   </div>
 </nav>
 
-<div class="page">
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="document">
 
-  <header class="awards-header">
-    <span class="collection-eyebrow">The Collection · 14 Pieces</span>
-    <h1>Awards &amp; Honours</h1>
-    <p class="sub">Recognition for academic excellence and innovative projects</p>
-    <div class="header-rule"></div>
+  <!-- HEADER -->
+  <header class="honours-head">
+    <span class="hh-eyebrow">Honours &amp; Distinctions</span>
+    <h1 class="hh-title">Awards</h1>
+    <p class="hh-sub">Recognition for academic excellence and innovative projects</p>
+    <svg class="hh-laurel" viewBox="0 0 74 30" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+      <path d="M10 24 Q 24 26 36 25"/>
+      <path d="M64 24 Q 50 26 38 25"/>
+      <path d="M12 23 q -2 -5 2 -8 q 1 5 -2 8"/>
+      <path d="M18 24.5 q -1 -5 4 -7 q 0 5 -4 7"/>
+      <path d="M25 25 q 0 -5 5 -6 q -1 5 -5 6"/>
+      <path d="M31 25.2 q 1 -4 6 -4.5 q -2 4 -6 4.5"/>
+      <path d="M62 23 q 2 -5 -2 -8 q -1 5 2 8"/>
+      <path d="M56 24.5 q 1 -5 -4 -7 q 0 5 4 7"/>
+      <path d="M49 25 q 0 -5 -5 -6 q 1 5 5 6"/>
+      <path d="M43 25.2 q -1 -4 -6 -4.5 q 2 4 6 4.5"/>
+    </svg>
+    <p class="hh-tally">fourteen honours · 2022–2026 · one felicitation by the Head of State</p>
   </header>
 
-  <!-- CENTERPIECE -->
-  <div class="centerpiece">
-    <span class="tick-a"></span><span class="tick-b"></span>
-    <span class="cp-plaque">Exhibit I · Rashtrapati Bhavan · January 2026</span>
-    <a href="president.html" class="cp-title">Felicitated by the President of India</a>
-    <p class="cp-desc">Selected as 1 of 17 students nationwide to be felicitated by President Droupadi Murmu at Rashtrapati Bhavan for AI and financial literacy work under the Government of India's SOAR initiative.</p>
-    <span class="cp-issuer">Government of India · SOAR Initiative</span><br>
-    <a href="president.html" class="cp-link">View this exhibit</a>
+  <!-- THE PRINCIPAL CITATION -->
+  <div class="citation">
+    <span class="cit-order">By order of the President of India</span>
+    <a href="president.html" class="cit-title">Felicitated by President Droupadi Murmu</a>
+    <p class="cit-for">
+      cited as one of seventeen students nationwide for work on Artificial Intelligence
+      and financial literacy under the Government of India's SOAR initiative
+    </p>
+    <span class="cit-place">Rashtrapati Bhavan · New Delhi · January 2026</span><br>
+    <a href="president.html" class="cit-link">the full account →</a>
   </div>
 
-  <span class="gallery-label">The Permanent Collection</span>
+  <!-- §1 THE HONOURS LIST -->
+  <div class="section-head">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">The Honours List</span>
+    <span class="sec-note">in order of weight, not date</span>
+  </div>
 
-  <div class="awards-list">
+  <div class="honours">
 
-    <div class="award-item">
-      <span class="exhibit-no">II</span>
-      <div class="award-body">
-        <span class="award-plaque">Jan 2025 · Lodha Foundation &amp; Ashoka University</span>
-        <span class="award-title">Lodha Genius Programme, 3% Acceptance Rate</span>
-        <p class="award-desc">Selected into the fully funded Lodha Genius Programme at Ashoka University for a specialization in Pure Mathematics.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Lodha Genius Programme, 3% acceptance rate</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2025</span>
       </div>
+      <p class="honour-cite">for selection into the fully funded programme at Ashoka University, specialising in Pure Mathematics</p>
+      <span class="honour-issuer">Lodha Foundation &amp; Ashoka University</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">III</span>
-      <div class="award-body">
-        <span class="award-plaque">Jul 2025 · IJRASET · Peer-reviewed</span>
-        <span class="award-title">Research Publication, IJRASET</span>
-        <p class="award-desc">AI Policy paper "The Two Faces of Progress" published in the International Journal for Research in Applied Science &amp; Engineering Technology · DOI: 10.22214/ijraset.2025.73146</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Research publication, IJRASET</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2025</span>
       </div>
+      <p class="honour-cite">for "The Two Faces of Progress", peer-reviewed and published internationally · DOI: 10.22214/ijraset.2025.73146</p>
+      <span class="honour-issuer">International Journal for Research in Applied Science &amp; Engineering Technology</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">IV</span>
-      <div class="award-body">
-        <span class="award-plaque">Jan 2023 · Directorate of Education, Delhi</span>
-        <span class="award-title">MVPP Scholar, Rank 44 / 67,000+</span>
-        <p class="award-desc">Top 0.06% in Delhi Government Science Talent Exam; INR 5,000 scholarship.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">MVPP Scholar, Rank 44 of 67,000+</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2023</span>
       </div>
+      <p class="honour-cite">for placing in the top 0.06% of the Delhi Government Science Talent Examination, with scholarship</p>
+      <span class="honour-issuer">Directorate of Education, Delhi</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">V</span>
-      <div class="award-body">
-        <span class="award-plaque">Jan 2023 · Delhi Public School, R.K. Puram</span>
-        <span class="award-title">Principal's Gold Medal for Academic Excellence</span>
-        <p class="award-desc">Awarded for outstanding academic performance.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Principal's Gold Medal for Academic Excellence</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2023</span>
       </div>
+      <p class="honour-cite">for outstanding academic performance</p>
+      <span class="honour-issuer">Delhi Public School, R.K. Puram</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">VI</span>
-      <div class="award-body">
-        <span class="award-plaque">Dec 2023 · Global Priorities Institute, Oxford University</span>
-        <span class="award-title">Top 1%, Pivotal International Essay Competition</span>
-        <p class="award-desc">Internationally Top 1% distinction for essay on AI Policy and Existential Risks.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Top 1%, Pivotal International Essay Competition</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2023</span>
       </div>
+      <p class="honour-cite">for an essay on AI policy and existential risk</p>
+      <span class="honour-issuer">Global Priorities Institute, Oxford University</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">VII</span>
-      <div class="award-body">
-        <span class="award-plaque">Apr 2025 · Northeastern University</span>
-        <span class="award-title">Finalist, Northeastern University International Essay Competition</span>
-        <p class="award-desc">Finalist distinction for essay on the Economic and Social Effects of Artificial Intelligence on the Global Economy.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Finalist, Northeastern University International Essay Competition</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2025</span>
       </div>
+      <p class="honour-cite">for an essay on the economic and social effects of artificial intelligence on the global economy</p>
+      <span class="honour-issuer">Northeastern University</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">VIII</span>
-      <div class="award-body">
-        <span class="award-plaque">Nov 2023 · Masters' Union</span>
-        <span class="award-title">National Winner, Masters' Union Startup Weekend</span>
-        <p class="award-desc">1st Position nationwide for project "CycleCare", judged by CXOs and industry experts.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">National Winner, Masters' Union Startup Weekend</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2023</span>
       </div>
+      <p class="honour-cite">for "CycleCare", placed first nationwide before a jury of CXOs and industry experts</p>
+      <span class="honour-issuer">Masters' Union</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">IX</span>
-      <div class="award-body">
-        <span class="award-plaque">Sep 2024 · ComAstitva</span>
-        <span class="award-title">Winner, Quizzonomics, ComAstitva 2024</span>
-        <p class="award-desc">National Economics Quiz Champion; competition featured participation from 30+ schools across India; award received from senior WION News Anchor Molly Gambhir.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Winner, Quizzonomics, ComAstitva</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2024</span>
       </div>
+      <p class="honour-cite">for the national economics quiz championship, contested by 30+ schools; presented by WION anchor Molly Gambhir</p>
+      <span class="honour-issuer">ComAstitva</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">X</span>
-      <div class="award-body">
-        <span class="award-plaque">Nov 2024 · Aeross, DPS R.K. Puram</span>
-        <span class="award-title">Runner-Up, Volatus UAV Challenge, CelesteCon 2024</span>
-        <p class="award-desc">Designed scalable drone delivery solutions.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Runner-Up, Volatus UAV Challenge, CelesteCon</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2024</span>
       </div>
+      <p class="honour-cite">for the design of scalable drone delivery solutions</p>
+      <span class="honour-issuer">Aeross, the Aerospace Society of DPS R.K. Puram</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">XI</span>
-      <div class="award-body">
-        <span class="award-plaque">2023 &amp; 2024 · Directorate of Education, Delhi</span>
-        <span class="award-title">Winner, Delhi Zonal Football Championship</span>
-        <p class="award-desc">Consecutive district champions in 2023–24 and 2024–25.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Winner, Delhi Zonal Football Championship</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2023 &amp; 2024</span>
       </div>
+      <p class="honour-cite">for consecutive district championships, 2023–24 and 2024–25</p>
+      <span class="honour-issuer">Directorate of Education, Delhi</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">XII</span>
-      <div class="award-body">
-        <span class="award-plaque">Jan 2024 · Delhi Public School, R.K. Puram</span>
-        <span class="award-title">Principal's Red Tie for National Achievements</span>
-        <p class="award-desc">Awarded for national achievements in extra-curricular activities.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Principal's Red Tie for National Achievements</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2024</span>
       </div>
+      <p class="honour-cite">for national achievements in extra-curricular activities</p>
+      <span class="honour-issuer">Delhi Public School, R.K. Puram</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">XIII</span>
-      <div class="award-body">
-        <span class="award-plaque">2024–25 · Delhi Public School, R.K. Puram</span>
-        <span class="award-title">Principal's Blue Blazer for Academic Excellence</span>
-        <p class="award-desc">Awarded for academic excellence in 2024–25.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Principal's Blue Blazer for Academic Excellence</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2024–25</span>
       </div>
+      <p class="honour-cite">for academic excellence in the 2024–25 session</p>
+      <span class="honour-issuer">Delhi Public School, R.K. Puram</span>
     </div>
 
-    <div class="award-item">
-      <span class="exhibit-no">XIV</span>
-      <div class="award-body">
-        <span class="award-plaque">2022–25 · Delhi Public School, R.K. Puram</span>
-        <span class="award-title">Principal's Scholar Badge for Academic Excellence</span>
-        <p class="award-desc">Awarded for academic excellence across three consecutive years: 2022–23, 2023–24, and 2024–25.</p>
+    <div class="honour">
+      <div class="honour-line">
+        <span class="honour-title">Principal's Scholar Badge for Academic Excellence</span>
+        <span class="honour-leader"></span>
+        <span class="honour-year">2022–25</span>
       </div>
+      <p class="honour-cite">for academic excellence across three consecutive years</p>
+      <span class="honour-issuer">Delhi Public School, R.K. Puram</span>
     </div>
 
   </div>
 
-  <div class="contact-block">
-    <p>Enquiries about the collection: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
-  </div>
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
 
 </div>
 
 <script>
-  const bar = document.getElementById('progress-bar');
+  const prog = document.getElementById('prog');
   window.addEventListener('scroll', () => {
-    bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  });
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
 
   const hamburger = document.getElementById('hamburger');
-  const overlay = document.getElementById('nav-overlay');
-  let open = false;
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
   hamburger.addEventListener('click', () => {
-    open = !open;
-    hamburger.classList.toggle('open', open);
-    overlay.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
-    overlay.setAttribute('aria-hidden', !open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
-  overlay.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-    open = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
     document.body.style.overflow = '';
   }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) hamburger.click(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
 
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        setTimeout(() => e.target.classList.add('visible'), i * 55);
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.award-item, .centerpiece').forEach(el => obs.observe(el));
-
-  /* the spotlight follows the visitor */
-  const spot = document.getElementById('spotlight');
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!still && window.matchMedia('(hover: hover)').matches) {
-    let raf = null;
-    window.addEventListener('mousemove', e => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        spot.style.background = 'radial-gradient(640px at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(232,201,135,0.06), transparent 70%)';
-        raf = null;
-      });
-    }, { passive: true });
-  }
+  document.querySelectorAll('.honour, .citation').forEach(el => obs.observe(el));
 </script>
 <script src="site.js" defer></script>
 </body>
