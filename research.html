@@ -262,7 +262,7 @@
       transform: translate(-50%, -50%) scale(0);
       transition: transform 0.4s cubic-bezier(.2,1.4,.4,1);
     }
-    .tl-node.pub { background: var(--accent); }
+    .tl-node.is-pub { background: var(--accent); }
     .tl-node.visible { transform: translate(-50%, -50%) scale(1); }
     .tl-node:hover::after {
       content: attr(data-tip);
@@ -301,7 +301,7 @@
     /* ─── PAPERS LIST ───────────────────────────────────────── */
     .papers-col { padding-top: 1.8rem; }
 
-    .paper {
+    .pub {
       padding: 1.8rem 0;
       border-bottom: 0.5px solid var(--rule-light);
       display: grid;
@@ -310,8 +310,8 @@
       opacity: 0; transform: translateY(8px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .paper:last-child { border-bottom: none; }
-    .paper.visible { opacity: 1; transform: translateY(0); }
+    .pub:last-child { border-bottom: none; }
+    .pub.visible { opacity: 1; transform: translateY(0); }
 
     .paper-num {
       font-family: var(--mono); font-size: 0.66rem;
@@ -550,8 +550,8 @@
   <div class="timeline-strip">
     <span class="tl-legend"><span class="dot f"></span>published &nbsp;&nbsp;<span class="dot"></span>programme / in progress</span>
     <div class="tl-track" id="tl-track">
-      <span class="tl-node pub" style="left: 18%" data-tip="[2] Arbitrage, IIM Rohtak · 2024"></span>
-      <span class="tl-node pub" style="left: 52%" data-tip="[1] IJRASET · 2025"></span>
+      <span class="tl-node is-pub" style="left: 18%" data-tip="[2] Arbitrage, IIM Rohtak · 2024"></span>
+      <span class="tl-node is-pub" style="left: 52%" data-tip="[1] IJRASET · 2025"></span>
       <span class="tl-node" style="left: 44%" data-tip="[7] Lodha Genius Programme · 2025"></span>
       <span class="tl-node" style="left: 63%" data-tip="[6] NYAS Junior Academy · Fall 2025"></span>
       <span class="tl-node" style="left: 84%" data-tip="[5] LG-AUP Math Apprenticeship · 2026"></span>
@@ -570,7 +570,7 @@
   <div class="papers-col">
 
     <!-- P1 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[1]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -602,7 +602,7 @@
     </div>
 
     <!-- P2 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[2]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -617,7 +617,7 @@
     </div>
 
     <!-- P3 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[3]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -631,7 +631,7 @@
     </div>
 
     <!-- P4 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[4]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -674,7 +674,7 @@
   <div class="papers-col">
 
     <!-- F1 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[5]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -691,7 +691,7 @@
     </div>
 
     <!-- F2 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[6]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -705,7 +705,7 @@
     </div>
 
     <!-- F3 -->
-    <div class="paper">
+    <div class="pub">
       <span class="paper-num">[7]</span>
       <div class="paper-body">
         <div class="paper-status-row">
@@ -793,7 +793,7 @@
       }
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.paper, .margin-note, .tl-node').forEach(el => obs.observe(el));
+  document.querySelectorAll('.pub, .margin-note, .tl-node').forEach(el => obs.observe(el));
 
   /* BibTeX: toggle + copy */
   document.querySelectorAll('.cite-toggle').forEach(btn => {
