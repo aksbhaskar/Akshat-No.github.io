@@ -3,12 +3,12 @@
 (function () {
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
 
   /* ── Night mode ───────────────────────────────────────────────
      Only offered on the standard "paper document" pages, marked
      with body.paper. Bespoke pages keep their own designs. */
   if (document.body.classList.contains('paper')) {
-    var root = document.documentElement;
     var stored = null;
     try { stored = localStorage.getItem('theme'); } catch (e) {}
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -25,6 +25,7 @@
       try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
       paint();
       if (isDark && once('dark1')) whisper('easier on the eyes. good call.');
+      discover('night', true);
     });
     (document.body || document.documentElement).appendChild(btn);
   }
@@ -85,12 +86,17 @@
 
   /* ── A little whisper toast, bottom-left ──────────────────── */
   var whisperBusy = false;
-  function whisper(msg, dur) {
+  function whisper(msg, dur, onClick) {
     if (whisperBusy) return;
     whisperBusy = true;
     var w = document.createElement('div');
     w.className = 'whisper';
     w.textContent = msg;
+    if (onClick) {
+      w.style.pointerEvents = 'auto';
+      w.style.cursor = 'pointer';
+      w.addEventListener('click', function () { onClick(); w.classList.remove('show'); });
+    }
     document.body.appendChild(w);
     void w.offsetWidth;
     w.classList.add('show');
@@ -256,6 +262,7 @@
     void s.offsetWidth; // force reflow so the animation plays
     s.classList.add('show');
     setTimeout(function () { s.classList.add('hide'); setTimeout(function () { s.remove(); }, 650); }, 2200);
+    discover('konami', true);
   }
   document.addEventListener('keydown', function (e) {
     var tag = (e.target.tagName || '').toLowerCase();
@@ -268,4 +275,235 @@
       kpos = (k === konami[0]) ? 1 : 0;
     }
   });
+
+  /* ══════════════════════════════════════════════════════════════
+     Shared helpers for the newer features
+  ══════════════════════════════════════════════════════════════ */
+  function copyText(text) {
+    try { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text); } catch (e) {}
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    } catch (e) {}
+  }
+  function docTitle() { return document.title.replace(/\s*[|]\s*Akshat Bhaskar\s*$/, '').trim() || 'akshatbhaskar.ninja'; }
+
+  /* Soft page fade on internal navigation */
+  if (!reduceMotion) root.classList.add('page-fade');
+  function navTo(href) {
+    if (!href) return;
+    if (/\.pdf($|\?)/i.test(href)) { window.open(href, '_blank'); return; }
+    if (reduceMotion) { location.href = href; return; }
+    root.classList.add('leaving');
+    setTimeout(function () { location.href = href; }, 160);
+  }
+  if (!reduceMotion) {
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      if (a.target === '_blank' || a.hasAttribute('download')) return;
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || /^(mailto:|tel:|https?:|\/\/)/i.test(href)) return;
+      e.preventDefault();
+      navTo(href);
+    });
+    window.addEventListener('pageshow', function () { root.classList.remove('leaving'); });
+  }
+
+  /* ══ Discovery / completionist stamp ══════════════════════════ */
+  var DISCOVERIES = ['konami', 'palette', 'cite', 'night'];
+  function discover(key, quiet) {
+    var found;
+    try { found = JSON.parse(localStorage.getItem('found') || '[]'); } catch (e) { found = []; }
+    if (found.indexOf(key) !== -1) return;
+    found.push(key);
+    try { localStorage.setItem('found', JSON.stringify(found)); } catch (e) {}
+    if (found.length >= DISCOVERIES.length) {
+      setTimeout(completionStamp, 3000);
+    } else if (!quiet) {
+      whisper('you found something. ' + found.length + ' of ' + DISCOVERIES.length + '.');
+    }
+  }
+  function completionStamp() {
+    try { if (localStorage.getItem('completed')) return; localStorage.setItem('completed', '1'); } catch (e) {}
+    var old = document.querySelector('.stamp'); if (old) old.remove();
+    var s = document.createElement('div');
+    s.className = 'stamp';
+    s.innerHTML = '<span class="stamp-main">Nothing Left</span><span class="stamp-sub">to find · explorer, first class</span>';
+    document.body.appendChild(s);
+    void s.offsetWidth; s.classList.add('show');
+    setTimeout(function () { s.classList.add('hide'); setTimeout(function () { s.remove(); }, 650); }, 2800);
+  }
+
+  /* ══ Command palette (press "/" or Ctrl/Cmd+K) ════════════════ */
+  var PAL = [
+    { name: 'Home', note: 'index', href: 'index.html' },
+    { name: 'Education', note: "the registrar's file", href: 'education.html' },
+    { name: 'Experience', note: "the operator's ledger", href: 'experience.html' },
+    { name: 'Awards & Honours', note: 'the honours list', href: 'awards.html' },
+    { name: 'Research', note: 'the working index', href: 'research.html' },
+    { name: 'Podcast · Decoded', note: 'the control room', href: 'podcast.html' },
+    { name: 'Bookshelf', note: 'the reading room', href: 'bookshelf.html' },
+    { name: 'Press', note: 'the clipping file', href: 'press.html' },
+    { name: 'Felicitated by the President', note: 'jan 2026', href: 'president.html' },
+    { name: 'AI Policy · The Two Faces of Progress', note: 'paper', href: 'aipolicy.html' },
+    { name: 'Lodha Genius Programme', note: 'mathematics', href: 'lgp.html' },
+    { name: 'Math Apprenticeship', note: 'number theory', href: 'mathapprenticeship.html' },
+    { name: 'TaxCity', note: 'CFO', href: 'taxcity.html' },
+    { name: 'Edunomix India', note: 'founder', href: 'edunomix.html' },
+    { name: 'Ministry of Education', note: 'policy intern', href: 'goi.html' },
+    { name: 'Y Combinator, Startup School', note: 'founder', href: 'yc.html' },
+    { name: 'Great Ideas Seminars', note: 'nobel laureates', href: 'greatideasseminar.html' },
+    { name: 'Kashmir & Ladakh', note: 'trip itinerary', href: 'ladakh.html' },
+    { name: 'Chess timer', note: 'a small tool', href: 'chesstimer.html' },
+    { name: 'A Thousand Digits of Pi', note: 'why not', href: 'pi.html' },
+    { name: 'Resume (PDF)', note: 'download', href: 'resume.pdf' },
+    { name: 'Copy email address', note: 'action', action: 'email' },
+    { name: 'Toggle night mode', note: 'action', action: 'theme' }
+  ];
+  var palVeil, palBox, palInput, palList, palItems = [], palActive = 0, palOpen = false;
+  function itemsFor() {
+    var paper = document.body.classList.contains('paper');
+    return PAL.filter(function (it) { return !(it.action === 'theme' && !paper); });
+  }
+  function buildPalette() {
+    if (palVeil) return;
+    palVeil = document.createElement('div'); palVeil.className = 'palette-veil';
+    palBox = document.createElement('div'); palBox.className = 'palette';
+    palBox.innerHTML =
+      '<div class="palette-head"><span>Jump to</span><span>esc to close</span></div>' +
+      '<input type="text" placeholder="search the site…" aria-label="Search the site" autocomplete="off" spellcheck="false">' +
+      '<div class="palette-list"></div>';
+    document.body.appendChild(palVeil);
+    document.body.appendChild(palBox);
+    palInput = palBox.querySelector('input');
+    palList = palBox.querySelector('.palette-list');
+    palVeil.addEventListener('click', closePalette);
+    palInput.addEventListener('input', renderPalette);
+    palInput.addEventListener('keydown', paletteKeys);
+  }
+  function renderPalette() {
+    var q = palInput.value.trim().toLowerCase();
+    palItems = itemsFor().filter(function (it) {
+      return !q || it.name.toLowerCase().indexOf(q) !== -1 || (it.note || '').toLowerCase().indexOf(q) !== -1;
+    });
+    palActive = 0; palList.innerHTML = '';
+    if (!palItems.length) {
+      palList.innerHTML = '<div class="palette-empty">nothing by that name. try "research" or "night".</div>';
+      return;
+    }
+    palItems.forEach(function (it, i) {
+      var el = document.createElement('div');
+      el.className = 'palette-item' + (i === 0 ? ' active' : '');
+      el.innerHTML = '<span class="pi-name"></span><span class="pi-note"></span>';
+      el.querySelector('.pi-name').textContent = it.name;
+      el.querySelector('.pi-note').textContent = it.note || '';
+      el.addEventListener('mouseenter', function () { setActive(i); });
+      el.addEventListener('click', function () { runItem(it); });
+      palList.appendChild(el);
+    });
+  }
+  function setActive(i) {
+    palActive = i;
+    var kids = palList.children;
+    for (var j = 0; j < kids.length; j++) kids[j].classList.toggle('active', j === i);
+    if (kids[i] && kids[i].scrollIntoView) kids[i].scrollIntoView({ block: 'nearest' });
+  }
+  function paletteKeys(e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(palActive + 1, palItems.length - 1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(palActive - 1, 0)); }
+    else if (e.key === 'Enter') { e.preventDefault(); if (palItems[palActive]) runItem(palItems[palActive]); }
+    else if (e.key === 'Escape') { e.preventDefault(); closePalette(); }
+  }
+  function runItem(it) {
+    closePalette();
+    if (it.action === 'email') { copyText('bhaskarakshat22@gmail.com'); whisper('email copied. say hi.'); return; }
+    if (it.action === 'theme') { var t = document.querySelector('.theme-toggle'); if (t) t.click(); return; }
+    navTo(it.href);
+  }
+  function openPalette() {
+    buildPalette();
+    discover('palette', true);
+    palInput.value = ''; renderPalette();
+    palOpen = true;
+    palVeil.classList.add('open'); palBox.classList.add('open');
+    setTimeout(function () { palInput.focus(); }, 20);
+  }
+  function closePalette() {
+    if (!palOpen) return;
+    palOpen = false;
+    palVeil.classList.remove('open'); palBox.classList.remove('open');
+  }
+  document.addEventListener('keydown', function (e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    var typing = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+    if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault(); palOpen ? closePalette() : openPalette(); return;
+    }
+    if (e.key === '/' && !typing && !palOpen) { e.preventDefault(); openPalette(); }
+  });
+
+  /* ══ Cite on select ═══════════════════════════════════════════ */
+  var chip = null, chipText = '';
+  function showCite() {
+    var sel = window.getSelection();
+    var text = sel ? sel.toString().trim() : '';
+    if (!text || text.length < 12 || sel.rangeCount === 0) { hideCite(); return; }
+    var r = sel.getRangeAt(0).getBoundingClientRect();
+    if (!r.width && !r.height) { hideCite(); return; }
+    if (!chip) {
+      chip = document.createElement('div'); chip.className = 'cite-chip'; chip.textContent = 'cite ↗';
+      document.body.appendChild(chip);
+      chip.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      chip.addEventListener('click', doCite);
+    }
+    chipText = text;
+    chip.style.left = Math.max(8, Math.min(r.right - 10, window.innerWidth - 96)) + 'px';
+    chip.style.top = Math.max(8, r.top - 34) + 'px';
+    chip.classList.add('show');
+  }
+  function hideCite() { if (chip) chip.classList.remove('show'); }
+  function doCite() {
+    var quote = chipText.replace(/\s+/g, ' ');
+    var citation = '"' + quote + '", Akshat Bhaskar, ' + docTitle() + '. ' + location.href.split('#')[0];
+    copyText(citation);
+    chip.textContent = 'copied ✓';
+    discover('cite');
+    setTimeout(function () { chip.textContent = 'cite ↗'; hideCite(); }, 1500);
+  }
+  document.addEventListener('mouseup', function () { setTimeout(showCite, 10); });
+  document.addEventListener('touchend', function () { setTimeout(showCite, 10); }, { passive: true });
+  document.addEventListener('selectionchange', function () {
+    var s = window.getSelection();
+    if (!s || !s.toString().trim()) hideCite();
+  });
+  window.addEventListener('scroll', hideCite, { passive: true });
+
+  /* ══ Welcome back, resume where you left off ══════════════════ */
+  (function () {
+    var now = Date.now();
+    var lastVisit, lastPath, lastTitle;
+    try {
+      lastVisit = +(localStorage.getItem('av_last') || 0);
+      lastPath = localStorage.getItem('av_path');
+      lastTitle = localStorage.getItem('av_title');
+    } catch (e) {}
+    var SIX_H = 6 * 3600 * 1000;
+    if (lastVisit && (now - lastVisit) > SIX_H && lastPath && lastPath !== location.pathname) {
+      setTimeout(function () {
+        whisper('welcome back. resume ' + (lastTitle || 'where you left off') + '? →', 8000, function () { navTo(lastPath); });
+      }, 1600);
+    }
+    function save() {
+      try {
+        localStorage.setItem('av_last', String(Date.now()));
+        localStorage.setItem('av_path', location.pathname);
+        localStorage.setItem('av_title', docTitle());
+      } catch (e) {}
+    }
+    save();
+    window.addEventListener('pagehide', save);
+  })();
 })();
