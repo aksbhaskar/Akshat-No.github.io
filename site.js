@@ -347,6 +347,7 @@
     { name: 'Research', note: 'the working index', href: 'research.html' },
     { name: 'Podcast · Decoded', note: 'the control room', href: 'podcast.html' },
     { name: 'Bookshelf', note: 'the reading room', href: 'bookshelf.html' },
+    { name: 'Connect', note: 'get in touch, book a call', href: 'connect.html' },
     { name: 'Press', note: 'the clipping file', href: 'press.html' },
     { name: 'Felicitated by the President', note: 'jan 2026', href: 'president.html' },
     { name: 'AI Policy · The Two Faces of Progress', note: 'paper', href: 'aipolicy.html' },

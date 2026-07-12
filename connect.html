@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connect | Akshat Bhaskar</title>
+  <meta name="description" content="Get in touch with Akshat Bhaskar: book a call, send a message, or find him across every platform." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/connect.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Connect with Akshat Bhaskar" />
+  <meta property="og:description" content="Book a call, send a message, or find him across every platform." />
+  <meta property="og:url" content="https://akshatbhaskar.ninja/connect.html" />
+  <meta property="og:image" content="https://akshatbhaskar.ninja/og-image.jpg" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ────────────────────────────────────────────
+       The correspondence desk: warm ivory, ink, one calm teal. */
+    :root {
+      --paper:      #fbf9f2;
+      --ink:        #191712;
+      --ink-med:    #3b372e;
+      --ink-soft:   #6a6456;
+      --ink-faint:  #9c9684;
+      --ink-ghost:  #cac4b2;
+      --rule:       #dad4c2;
+      --rule-light: #e9e4d5;
+      --accent:     #2f6a5b;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+      --outer:      clamp(22px, 4vw, 56px);
+      --measure:    760px;
+    }
+    html.dark { --accent: #74c0ad; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--accent); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── TOPBAR ───────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(251,249,242,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(218,212,194,0.4);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    /* ─── NAV OVERLAY ──────────────────────────────────────── */
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(25,23,18,0.95); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.45rem, 3.2vw, 2.2rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(251,249,242,0.5); line-height: 1.3;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
+    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
+    .nav-overlay a.nav-link:hover { color: rgba(251,249,242,0.95); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(251,249,242,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,249,242,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(251,249,242,0.9); }
+
+    /* ─── PAGE ─────────────────────────────────────────────── */
+    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .connect-head { padding-top: 118px; padding-bottom: 1rem; text-align: center; }
+    .ch-crumbs {
+      font-family: var(--mono); font-size: 0.66rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      display: flex; gap: 0.55rem; justify-content: center; align-items: center;
+    }
+    .ch-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .ch-crumbs a:hover { color: var(--ink); }
+    .ch-crumbs .sep { color: var(--ink-ghost); }
+    .ch-eyebrow {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); display: block; margin: 2.4rem 0 1rem;
+    }
+    h1.ch-title {
+      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 400; letter-spacing: 0.02em; line-height: 1.05; color: var(--ink);
+    }
+    .ch-intro {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.08rem; color: var(--ink-soft);
+      max-width: 520px; margin: 1rem auto 0; line-height: 1.6;
+    }
+
+    /* ─── SECTION LABEL ────────────────────────────────────── */
+    .clabel {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 3.4rem 0 1.4rem;
+    }
+    .clabel span {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--ink-faint); flex-shrink: 0;
+    }
+    .clabel::before, .clabel::after {
+      content: ""; height: 0.5px; background: var(--rule); flex: 1;
+    }
+
+    /* ─── CALENDLY ─────────────────────────────────────────── */
+    .cal-frame {
+      border: 0.5px solid var(--rule);
+      background: var(--paper);
+      overflow: hidden;
+    }
+    .calendly-inline-widget { min-width: 320px; height: 700px; }
+    .cal-note {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.06em; color: var(--ink-faint);
+      text-align: center; margin-top: 0.8rem;
+    }
+    .cal-note a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--rule); }
+    .cal-note a:hover { color: var(--ink); }
+
+    /* ─── DIRECT: EMAIL + FORM ─────────────────────────────── */
+    .direct-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem;
+      align-items: start;
+    }
+    .email-card {
+      border: 0.5px solid var(--rule);
+      border-left: 2px solid var(--accent);
+      padding: 1.4rem 1.5rem;
+    }
+    .email-card .ec-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: 0.6rem;
+    }
+    .email-card .ec-addr {
+      font-family: var(--serif); font-size: 1.14rem;
+      color: var(--ink); text-decoration: none; word-break: break-all;
+      border-bottom: 0.5px solid var(--ink-ghost); transition: border-color 0.2s;
+    }
+    .email-card .ec-addr:hover { border-color: var(--accent); }
+    .copy-btn {
+      display: inline-block; margin-top: 1rem;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-soft); background: none;
+      border: 0.5px solid var(--ink-ghost); border-radius: 2px;
+      padding: 0.35rem 0.8rem; cursor: pointer; transition: color 0.2s, border-color 0.2s;
+    }
+    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .email-card p {
+      font-family: var(--serif); font-size: 0.85rem; font-style: italic;
+      color: var(--ink-soft); margin-top: 1rem; line-height: 1.6;
+    }
+
+    .form-field { margin-bottom: 1.1rem; }
+    .form-field label {
+      display: block; font-family: var(--serif);
+      font-size: 0.8rem; font-style: italic;
+      color: var(--ink-soft); margin-bottom: 0.3rem;
+    }
+    .form-field input, .form-field textarea {
+      display: block; width: 100%; background: transparent;
+      border: none; border-bottom: 0.5px solid var(--ink-ghost);
+      padding: 0.4rem 0; font-family: var(--serif); font-size: 0.97rem;
+      color: var(--ink); outline: none; border-radius: 0;
+      transition: border-color 0.2s; -webkit-appearance: none;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--ink-ghost); font-style: italic; }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+    .form-field textarea { resize: vertical; min-height: 74px; }
+    .btn-send {
+      font-family: var(--mono); font-size: 0.66rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--paper); background: var(--accent);
+      border: none; cursor: pointer; border-radius: 3px;
+      padding: 0.6rem 1.2rem; transition: opacity 0.2s;
+    }
+    .btn-send:hover { opacity: 0.88; }
+    .btn-send:disabled { opacity: 0.5; cursor: default; }
+    .form-status {
+      font-family: var(--mono); font-size: 0.64rem;
+      letter-spacing: 0.05em; color: var(--ink-soft); margin-left: 1rem;
+    }
+    .form-status.ok  { color: #3a7a58; }
+    .form-status.err { color: #a13a3a; }
+    html.dark .form-status.ok { color: #74c0ad; }
+    html.dark .form-status.err { color: #e08a8a; }
+
+    /* ─── CHANNELS ─────────────────────────────────────────── */
+    .channels {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      border-top: 0.5px solid var(--ink);
+      border-left: 0.5px solid var(--rule-light);
+    }
+    .channel {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 1.1rem 1.2rem;
+      border-right: 0.5px solid var(--rule-light);
+      border-bottom: 0.5px solid var(--rule-light);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .channel:hover { background: rgba(47,106,91,0.05); }
+    .channel i {
+      font-size: 1.05rem; color: var(--accent); width: 1.4rem; text-align: center; flex-shrink: 0;
+    }
+    .ch-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); display: block; line-height: 1.25; }
+    .ch-handle { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em; color: var(--ink-faint); display: block; margin-top: 0.1rem; }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 3.4rem;
+      border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 680px) {
+      :root { --outer: 20px; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      .direct-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .channels { grid-template-columns: 1fr; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials, .cal-frame { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+  <link rel="stylesheet" href="theme.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
+</head>
+<body class="paper">
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <a class="nav-link" href="connect.html">Connect</a>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- HERO -->
+  <header class="connect-head">
+    <div class="ch-crumbs">
+      <a href="index.html">Akshat Bhaskar</a><span class="sep">/</span><span>Connect</span>
+    </div>
+    <span class="ch-eyebrow">Correspondence</span>
+    <h1 class="ch-title">Get in Touch</h1>
+    <p class="ch-intro">For collaborations, research, media, or a simple hello. Book a time that suits you, write directly, or find me wherever you already are. Every message is read.</p>
+  </header>
+
+  <!-- BOOK A CALL -->
+  <div class="clabel"><span>Book a call</span></div>
+  <div class="cal-frame">
+    <div id="calendly" class="calendly-inline-widget" data-url="https://calendly.com/akshatbhaskar/30min"></div>
+  </div>
+  <p class="cal-note">A 30-minute conversation &nbsp;·&nbsp; opens through <a href="https://calendly.com/akshatbhaskar/30min" target="_blank" rel="noopener">Calendly</a></p>
+
+  <!-- WRITE DIRECTLY -->
+  <div class="clabel"><span>Write to me</span></div>
+  <div class="direct-grid">
+    <div class="email-card">
+      <span class="ec-label">Email</span>
+      <a class="ec-addr" href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a><br>
+      <button class="copy-btn" id="copy-email" type="button">copy address</button>
+      <p>The surest way to reach me. I read everything and reply to most.</p>
+    </div>
+
+    <form id="contact-form">
+      <div class="form-field">
+        <label for="name"><em>Name</em></label>
+        <input type="text" id="name" name="name" placeholder="Your name" />
+      </div>
+      <div class="form-field">
+        <label for="email"><em>Email</em></label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-field">
+        <label for="message"><em>Message</em></label>
+        <textarea id="message" name="message" placeholder="Write your message here…" required></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <button type="submit" id="submit-btn" class="btn-send">Send</button>
+        <span class="form-status" id="form-status"></span>
+      </div>
+    </form>
+  </div>
+
+  <!-- FIND ME ELSEWHERE -->
+  <div class="clabel"><span>Find me elsewhere</span></div>
+  <div class="channels">
+    <a class="channel" href="https://x.com/aksbhaskar" target="_blank" rel="noopener">
+      <i class="fab fa-x-twitter"></i><span><span class="ch-name">X (Twitter)</span><span class="ch-handle">@aksbhaskar</span></span>
+    </a>
+    <a class="channel" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin"></i><span><span class="ch-name">LinkedIn</span><span class="ch-handle">in/aksbhaskar · 7,000+ followers</span></span>
+    </a>
+    <a class="channel" href="https://github.com/aksbhaskar" target="_blank" rel="noopener">
+      <i class="fab fa-github"></i><span><span class="ch-name">GitHub</span><span class="ch-handle">@aksbhaskar</span></span>
+    </a>
+    <a class="channel" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" rel="noopener">
+      <i class="fa-brands fa-google-scholar"></i><span><span class="ch-name">Google Scholar</span><span class="ch-handle">publications &amp; citations</span></span>
+    </a>
+    <a class="channel" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" rel="noopener">
+      <i class="fa-brands fa-researchgate"></i><span><span class="ch-name">ResearchGate</span><span class="ch-handle">Akshat-Bhaskar-2</span></span>
+    </a>
+    <a class="channel" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener">
+      <i class="fab fa-spotify"></i><span><span class="ch-name">Decoded on Spotify</span><span class="ch-handle">the podcast</span></span>
+    </a>
+    <a class="channel" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">
+      <i class="fa-solid fa-podcast"></i><span><span class="ch-name">Decoded on Apple Podcasts</span><span class="ch-handle">the podcast</span></span>
+    </a>
+    <a class="channel" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">
+      <i class="fab fa-amazon"></i><span><span class="ch-name">Decoded on Amazon Music</span><span class="ch-handle">the podcast</span></span>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/aksbhaskar" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* progress */
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* nav */
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  /* theme the Calendly widget to match the page before it initialises */
+  (function () {
+    var dark = document.documentElement.classList.contains('dark');
+    var base = 'https://calendly.com/akshatbhaskar/30min?hide_gdpr_banner=1&primary_color=2f6a5b';
+    var url = dark
+      ? base + '&background_color=16150f&text_color=f0ead9&primary_color=74c0ad'
+      : base + '&background_color=fbf9f2&text_color=191712';
+    var el = document.getElementById('calendly');
+    if (el) el.setAttribute('data-url', url);
+  })();
+
+  /* copy email */
+  document.getElementById('copy-email').addEventListener('click', function () {
+    var btn = this, text = 'bhaskarakshat22@gmail.com';
+    var done = function () { btn.textContent = 'copied ✓'; setTimeout(function () { btn.textContent = 'copy address'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
+    else done();
+  });
+
+  /* message form -> Formspree */
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    btn.disabled = true; btn.textContent = 'Sending…';
+    status.textContent = ''; status.className = 'form-status';
+    try {
+      const res = await fetch('https://formspree.io/f/xpqokanp', {
+        method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }
+      });
+      if (res.ok) { status.textContent = 'Sent, thank you.'; status.classList.add('ok'); form.reset(); }
+      else { const j = await res.json(); status.textContent = j?.errors?.map(e => e.message).join(', ') || 'Something went wrong.'; status.classList.add('err'); }
+    } catch { status.textContent = 'Network error.'; status.classList.add('err'); }
+    finally { btn.disabled = false; btn.textContent = 'Send'; }
+  });
+</script>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="site.js" defer></script>
+</body>
+</html>
