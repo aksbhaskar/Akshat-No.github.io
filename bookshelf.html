@@ -233,8 +233,8 @@
     /* ─── BOOK GRID ─────────────────────────────────────────── */
     .book-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+      gap: 1.5rem 1.4rem;
       margin-bottom: 4rem;
     }
 
@@ -248,27 +248,29 @@
       position: relative;
       width: 100%;
       aspect-ratio: 2/3;
-      border-radius: 3px 10px 10px 3px;
+      border-radius: 2px 5px 5px 2px;
       overflow: hidden;
-      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-      box-shadow: -5px 5px 18px rgba(0,0,0,0.4), -2px 2px 4px rgba(0,0,0,0.25), inset -3px 0 8px rgba(0,0,0,0.25);
+      transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.35s ease;
+      /* soft, warm shelf shadow + a hint of spine curvature */
+      box-shadow: 0 5px 14px rgba(60,42,18,0.16), inset -2px 0 6px rgba(0,0,0,0.10);
       border: 0.5px solid var(--rule);
     }
-    
+
     .book-card:hover .book-visual,
     .book-card.active .book-visual {
-      transform: translateX(6px) rotateY(-10deg) scale(1.03);
-      box-shadow: -20px 16px 44px rgba(0,0,0,0.5), -4px 4px 8px rgba(0,0,0,0.35), inset -3px 0 8px rgba(0,0,0,0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 26px rgba(60,42,18,0.24), inset -2px 0 6px rgba(0,0,0,0.10);
     }
 
+    /* the spine: a slim shaded edge on the left */
     .book-visual::before {
       content: '';
       position: absolute;
       left: 0;
       top: 0;
       bottom: 0;
-      width: 12px;
-      background: rgba(0,0,0,0.25);
+      width: 6px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.16), rgba(0,0,0,0.02));
       z-index: 2;
       pointer-events: none;
     }
@@ -284,6 +286,28 @@
     
     .book-card:hover .book-cover-img {
       filter: grayscale(0%);
+    }
+
+    /* keep covers aligned to the top of the shelf */
+    .book-grid { align-items: start; }
+
+    /* the selected book steps forward and fills the row:
+       a small cover on the left, its details on the right */
+    .book-card.active {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 1.7rem;
+      align-items: flex-start;
+    }
+    .book-card.active .book-visual {
+      flex: 0 0 clamp(112px, 30%, 150px);
+      transform: none;
+    }
+    .book-card.active .book-expand { flex: 1; min-width: 0; }
+    .book-card.active .book-expand-inner { margin-top: 0; }
+    @media (max-width: 480px) {
+      .book-card.active { flex-direction: column; gap: 0; }
+      .book-card.active .book-visual { flex-basis: auto; width: 55%; }
     }
 
     .reading-badge {
@@ -619,7 +643,7 @@
 </div>
 
 <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <a class="nav-link" href="index.html">Home</a>
+  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
   <a class="nav-link" href="about.html">About</a>
   <a class="nav-link" href="education.html">Education</a>
   <a class="nav-link" href="experience.html">Experience</a>
@@ -627,7 +651,7 @@
   <a class="nav-link" href="research.html">Research</a>
   <a class="nav-link" href="podcast.html">Podcast</a>
   <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a>
+  <a class="nav-link" href="connect.html">Connect</a></div>
   <div class="nav-hr"></div>
   <div class="nav-socials-row">
     <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
@@ -666,6 +690,7 @@
         <p>Click any cover to open details</p>
       </div>
 
+      <div class="book-grid">
         <!-- Book 1 -->
         <div class="book-card" tabindex="0" role="button" aria-expanded="false">
           <div class="book-visual">
@@ -725,6 +750,7 @@
             </div>
           </div>
         </div>
+      </div>
 
       </div>
 

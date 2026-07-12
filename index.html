@@ -379,6 +379,20 @@
     .btn-send:hover { background: var(--ink); color: var(--paper); }
     .btn-send:disabled { color: var(--ink-ghost); border-color: var(--ink-ghost); cursor: default; background: none; }
 
+    /* a filled call-to-action toward the full Connect page */
+    .connect-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.66rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--paper); background: var(--ink);
+      text-decoration: none; border: 0.5px solid var(--ink);
+      padding: 0.6rem 1.15rem; margin-bottom: 1.5rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .connect-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .connect-cta .arr { transition: transform 0.2s; }
+    .connect-cta:hover .arr { transform: translateX(3px); }
+
     .form-status {
       font-family: var(--mono); font-size: 0.66rem;
       letter-spacing: 0.05em; color: var(--ink-soft); margin-left: 1rem;
@@ -717,7 +731,7 @@
 </div>
 
 <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <a class="nav-link" href="index.html">Home</a>
+  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
   <a class="nav-link" href="about.html">About</a>
   <a class="nav-link" href="education.html">Education</a>
   <a class="nav-link" href="experience.html">Experience</a>
@@ -725,7 +739,7 @@
   <a class="nav-link" href="research.html">Research</a>
   <a class="nav-link" href="podcast.html">Podcast</a>
   <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a>
+  <a class="nav-link" href="connect.html">Connect</a></div>
   <div class="nav-hr"></div>
   <div class="nav-socials-row">
     <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
@@ -1025,8 +1039,9 @@
   </div>
 
   <div class="contact-aside" aria-label="Contact details">
+    <a href="connect.html" class="connect-cta">Get in touch <span class="arr">→</span></a>
     <p style="margin-bottom:1rem;">
-      Direct correspondence is always welcome. For collaborations, research inquiries, or media, please write.
+      Direct correspondence is always welcome. For collaborations, research inquiries, or media, please write. Or <a href="connect.html">book a call and find every link</a> on the connect page.
     </p>
     <p style="margin-bottom:0.5rem;">
       <strong style="font-weight:600;color:var(--ink-med);">Email</strong><br>
