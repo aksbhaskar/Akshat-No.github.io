@@ -106,6 +106,84 @@ html.dark .stamp { color: #e8837a; border-color: #e8837a; }
 @media print { .whisper { display: none !important; } }
 @media (max-width: 700px) { .whisper { left: 1.3rem; bottom: 1.3rem; max-width: 76vw; font-size: 0.94rem; } }
 
+/* ── Command palette: the index card ────────────────────────── */
+.palette-veil {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(20, 19, 14, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.palette-veil.open { opacity: 1; pointer-events: all; }
+.palette {
+  position: fixed; z-index: 401;
+  top: 18vh; left: 50%;
+  width: min(480px, calc(100vw - 2.4rem));
+  transform: translateX(-50%) translateY(6px);
+  background: var(--paper, #fffff8);
+  border: 1px solid var(--ink, #111110);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.palette.open { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+.palette-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 0.55rem 0.9rem 0;
+  font-family: var(--mono, monospace); font-size: 0.56rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-faint, #999990);
+}
+.palette input {
+  width: 100%; background: transparent; border: none; outline: none;
+  border-bottom: 0.5px solid var(--rule, #d0d0c0);
+  padding: 0.65rem 0.9rem 0.7rem;
+  font-family: var(--serif, Georgia, serif); font-style: italic;
+  font-size: 1.05rem; color: var(--ink, #111110);
+}
+.palette input::placeholder { color: var(--ink-ghost, #ccccbb); font-style: italic; }
+.palette-list { max-height: 300px; overflow-y: auto; padding: 0.35rem 0 0.45rem; }
+.palette-item {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: 0.42rem 0.9rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+.palette-item .pi-name { font-family: var(--serif, Georgia, serif); font-size: 0.97rem; color: var(--ink, #111110); }
+.palette-item .pi-note { font-family: var(--mono, monospace); font-size: 0.58rem; letter-spacing: 0.05em; color: var(--ink-faint, #999990); white-space: nowrap; }
+.palette-item.active, .palette-item:hover {
+  border-left-color: var(--ink, #111110);
+  background: rgba(0,0,0,0.035);
+}
+html.dark .palette-item.active, html.dark .palette-item:hover { background: rgba(255,255,255,0.05); }
+.palette-empty {
+  font-family: var(--serif, Georgia, serif); font-style: italic;
+  font-size: 0.9rem; color: var(--ink-soft, #666660);
+  padding: 0.8rem 0.9rem 0.9rem;
+}
+@media print { .palette, .palette-veil { display: none !important; } }
+
+/* ── Cite-on-select chip ────────────────────────────────────── */
+.cite-chip {
+  position: fixed; z-index: 380;
+  font-family: var(--mono, monospace); font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink, #111110); background: var(--paper, #fffff8);
+  border: 0.5px solid var(--ink-faint, #999990);
+  padding: 0.28rem 0.6rem; cursor: pointer;
+  box-shadow: 0 0 14px 4px var(--paper, #fffff8);
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+.cite-chip.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+.cite-chip:hover { border-color: var(--ink, #111110); }
+@media print { .cite-chip { display: none !important; } }
+
+/* ── Soft page transitions ──────────────────────────────────── */
+html.page-fade body { transition: opacity 0.15s ease; }
+html.page-fade.leaving body { opacity: 0; }
+
 /* ── Poke bubble (clicking the author photo) ────────────────── */
 .poke-bubble {
   position: fixed; z-index: 320;
