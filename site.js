@@ -340,6 +340,7 @@
   /* ══ Command palette (press "/" or Ctrl/Cmd+K) ════════════════ */
   var PAL = [
     { name: 'Home', note: 'index', href: 'index.html' },
+    { name: 'About', note: 'the long version', href: 'about.html' },
     { name: 'Education', note: "the registrar's file", href: 'education.html' },
     { name: 'Experience', note: "the operator's ledger", href: 'experience.html' },
     { name: 'Awards & Honours', note: 'the honours list', href: 'awards.html' },
