@@ -574,20 +574,21 @@
       animation: heroReveal 2s ease-out forwards;
     }
 
-    .hero-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2.2rem 1.8rem;
-      background: linear-gradient(to top, rgba(255,255,248,0.88) 0%, transparent 100%);
-    }
-
-    .hero-caption-left {
+    /* Photo credit sits below the image, on paper, clearly legible */
+    .hero-credit {
+      display: flex; flex-wrap: wrap;
+      align-items: baseline; justify-content: center;
+      gap: 0.2rem 0.9rem;
+      padding: 1.1rem var(--outer) 0;
+      max-width: var(--max-doc); margin: 0 auto;
       font-family: var(--mono);
-      font-size: 0.59rem;
+      font-size: 0.62rem;
       letter-spacing: 0.07em;
       color: var(--ink-soft);
-      line-height: 1.8;
+      line-height: 1.7;
+      text-align: center;
     }
+    .hero-credit .sep { color: var(--ink-ghost); }
 
     /* Right panel */
     .hero-right-panel {
@@ -700,8 +701,7 @@
       .hero-left-panel,
       .hero-right-panel { display: none; }
       .hero-img-wrap { grid-column: 1 / -1; }
-      .hero-caption { padding: 1.5rem 1.4rem; }
-      .hero-caption-left { font-size: 0.55rem; }
+      .hero-credit { font-size: 0.56rem; padding-top: 0.9rem; }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -771,12 +771,6 @@
   <!-- CENTER: PHOTO -->
   <div class="hero-img-wrap">
     <img src="hero_president.jpg" width="1600" height="1067" fetchpriority="high" decoding="async" alt="Akshat Bhaskar felicitated by President Droupadi Murmu at Rashtrapati Bhavan, January 2026" />
-    <div class="hero-caption">
-      <span class="hero-caption-left">
-        With President Droupadi Murmu &nbsp;·&nbsp; Rashtrapati Bhavan<br>
-        SOAR Initiative, Government of India &nbsp;·&nbsp; January 2026
-      </span>
-    </div>
   </div>
 
   <!-- RIGHT PANEL -->
@@ -803,6 +797,13 @@
   </div>
 
 </section>
+
+<!-- PHOTO CREDIT (readable, below the image) -->
+<p class="hero-credit">
+  <span>With President Droupadi Murmu &nbsp;·&nbsp; Rashtrapati Bhavan</span>
+  <span class="sep">/</span>
+  <span>SOAR Initiative, Government of India &nbsp;·&nbsp; January 2026</span>
+</p>
 
 <!-- ══════════════════════════════════════════════════════ -->
 <div class="document">
