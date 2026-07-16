@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Articles | Akshat Bhaskar</title>
+  <meta name="description" content="Selected writing by Akshat Bhaskar: published papers and essays on economics, artificial intelligence, and public policy." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/articles.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Articles by Akshat Bhaskar" />
+  <meta property="og:description" content="Selected writing on economics, artificial intelligence, and public policy." />
+  <meta property="og:url" content="https://akshatbhaskar.ninja/articles.html" />
+  <meta property="og:image" content="https://akshatbhaskar.ninja/og-image.jpg" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES ────────────────────────────────────────────
+       The periodical: ivory stock, ink, one oxblood byline. */
+    :root {
+      --paper:      #fbf9f2;
+      --ink:        #191712;
+      --ink-med:    #3b372e;
+      --ink-soft:   #6a6456;
+      --ink-faint:  #9c9684;
+      --ink-ghost:  #cac4b2;
+      --rule:       #dad4c2;
+      --rule-light: #e9e4d5;
+      --accent:     #883838;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+      --outer:      clamp(22px, 4vw, 56px);
+      --measure:    720px;
+    }
+    html.dark { --accent: #de938f; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--accent); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── TOPBAR ───────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(251,249,242,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(218,212,194,0.4);
+    }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    /* ─── NAV OVERLAY ──────────────────────────────────────── */
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(25,23,18,0.95); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(251,249,242,0.5); line-height: 1.28;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
+    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
+    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
+    .nav-overlay a.nav-link:hover { color: rgba(251,249,242,0.95); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(251,249,242,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,249,242,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(251,249,242,0.9); }
+
+    /* ─── PAGE ─────────────────────────────────────────────── */
+    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer) 4rem; }
+
+    /* ─── MASTHEAD ─────────────────────────────────────────── */
+    .art-head { padding-top: 116px; text-align: center; border-bottom: 0.5px solid var(--ink); padding-bottom: 2.2rem; }
+    .art-crumbs {
+      font-family: var(--mono); font-size: 0.66rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      display: flex; gap: 0.55rem; justify-content: center; align-items: center;
+    }
+    .art-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .art-crumbs a:hover { color: var(--ink); }
+    .art-crumbs .sep { color: var(--ink-ghost); }
+    .art-eyebrow {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); display: block; margin: 2.4rem 0 1rem;
+    }
+    h1.art-title {
+      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.3rem);
+      font-weight: 400; letter-spacing: 0.02em; line-height: 1.04; color: var(--ink);
+    }
+    .art-sub {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.05rem; color: var(--ink-soft); margin-top: 0.7rem;
+    }
+
+    /* ─── PIECES ───────────────────────────────────────────── */
+    .pieces { padding-top: 0.6rem; }
+
+    .group-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--ink-faint); display: block;
+      margin: 2.6rem 0 0.2rem; padding-bottom: 0.6rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .group-label:first-child { margin-top: 1.4rem; }
+
+    .piece {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 0 1.2rem;
+      padding: 2.1rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .piece:last-child { border-bottom: none; }
+    .piece.visible { opacity: 1; transform: translateY(0); }
+
+    .piece-no {
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--ink-ghost); padding-top: 0.5rem; text-align: right;
+    }
+
+    .piece-kicker {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .piece-type {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); border: 0.5px solid var(--accent);
+      padding: 0.1rem 0.42rem;
+    }
+    .piece-venue {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.04em; color: var(--ink-faint);
+    }
+
+    .piece-title {
+      font-family: var(--serif); font-size: 1.32rem; font-weight: 400;
+      color: var(--ink); line-height: 1.28; text-decoration: none;
+      display: inline; background-image: linear-gradient(var(--ink-ghost), var(--ink-ghost));
+      background-size: 0 0.5px; background-position: 0 100%; background-repeat: no-repeat;
+      transition: background-size 0.3s ease, color 0.2s;
+    }
+    a.piece-title:hover { background-size: 100% 0.5px; color: var(--ink); }
+    .piece-title em { font-style: italic; }
+
+    .piece-dek {
+      font-family: var(--serif); font-size: 0.94rem;
+      color: var(--ink-med); line-height: 1.75;
+      margin-top: 0.5rem; text-align: justify; hyphens: auto;
+    }
+
+    .piece-links { margin-top: 0.7rem; display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: baseline; }
+    .piece-link {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.06em; color: var(--accent);
+      text-decoration: none; border-bottom: 0.5px solid rgba(136,56,56,0.35);
+      padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;
+    }
+    .piece-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
+
+    /* ─── COLOPHON ─────────────────────────────────────────── */
+    .colophon {
+      margin-top: 3rem; border-top: 0.5px solid var(--ink);
+      padding-top: 1.8rem; text-align: center;
+    }
+    .colophon p {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7;
+      max-width: 480px; margin: 0 auto;
+    }
+    .colophon a { color: var(--ink-med); text-decoration: underline; text-decoration-thickness: 0.5px; text-underline-offset: 3px; }
+    .colophon a:hover { color: var(--accent); }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 3rem; border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--ink-med); }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      :root { --outer: 20px; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
+      .piece { grid-template-columns: 1fr; }
+      .piece-no { display: none; }
+    }
+  </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+  <link rel="stylesheet" href="theme.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
+</head>
+<body class="paper">
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="articles.html">Articles</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <a class="nav-link" href="connect.html">Connect</a></div>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="art-head">
+    <div class="art-crumbs">
+      <a href="index.html">Akshat Bhaskar</a><span class="sep">/</span><span>Articles</span>
+    </div>
+    <span class="art-eyebrow">Selected Writing</span>
+    <h1 class="art-title">Articles</h1>
+    <p class="art-sub">Published papers and essays on economics, artificial intelligence, and public policy.</p>
+  </header>
+
+  <!-- PIECES -->
+  <div class="pieces">
+
+    <span class="group-label">Papers &amp; Competition Essays</span>
+
+    <article class="piece">
+      <span class="piece-no">01</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Peer-reviewed paper</span>
+          <span class="piece-venue">IJRASET · Vol. 13, Issue 7 · 2025</span>
+        </div>
+        <a href="aipolicy.html" class="piece-title"><em>The Two Faces of Progress:</em> A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</a>
+        <p class="piece-dek">Written under Professor Surbhi Goel of the University of Pennsylvania, the paper examines the dual nature of transformative AI through an economic and governance lens. It was published internationally and presented at the NYC STEM Research Conference, where I was the only high-school student in the room.</p>
+        <div class="piece-links">
+          <a href="aipolicy.html" class="piece-link">Read the paper →</a>
+          <a href="https://www.researchgate.net/publication/393986547_The_Two_Faces_of_Progress_A_Look_at_the_Socio-Economic_Challenges_and_Opportunities_Presented_by_Artificial_Intelligence" target="_blank" rel="noopener" class="piece-link">ResearchGate ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">02</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay · Published</span>
+          <span class="piece-venue">Arbitrage · Finance &amp; Investment Journal, IIM Rohtak · 2024</span>
+        </div>
+        <span class="piece-title"><em>How Economics Runs the World</em></span>
+        <p class="piece-dek">An analysis of global economic structures, monetary policy transmission, regulatory architecture, and capital market dynamics, with proposed improvements to international financial governance. I was the only high-school author published in the issue.</p>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">03</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay · Top 1%</span>
+          <span class="piece-venue">Global Priorities Institute, University of Oxford · 2023</span>
+        </div>
+        <span class="piece-title">On AI Policy and Existential Risk</span>
+        <p class="piece-dek">An argument for a measured, evidence-led approach to advanced artificial intelligence, placed in the top one percent internationally in the Pivotal essay competition run by Oxford's Global Priorities Institute.</p>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">04</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay · Finalist</span>
+          <span class="piece-venue">Northeastern University International Essay Competition · 2025</span>
+        </div>
+        <span class="piece-title">The Economic and Social Effects of Artificial Intelligence on the Global Economy</span>
+        <p class="piece-dek">A finalist essay examining how the diffusion of artificial intelligence reshapes labour markets, productivity, and inequality across developed and developing economies.</p>
+      </div>
+    </article>
+
+    <span class="group-label">For the Edunomix Institute</span>
+
+    <article class="piece">
+      <span class="piece-no">05</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/669fa826494345109d06cd9860ae914b" target="_blank" rel="noopener" class="piece-title">Effects of Overvaluation on Competition and the Broader Economic Landscape</a>
+        <p class="piece-dek">How overvalued startups distort market competition, misallocate resources, and seed economic risk through speculative bubbles and predatory acquisitions.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/669fa826494345109d06cd9860ae914b" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">06</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/e0df22f5821c4dfcb041a24c8ccc34c8" target="_blank" rel="noopener" class="piece-title">India Budget 2024</a>
+        <p class="piece-dek">A reading of India's Union Budget 2024-25: employment initiatives, startup reforms, MSME support, and youth development.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/e0df22f5821c4dfcb041a24c8ccc34c8" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">07</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/dbbd24e43cb14148abf6742409c1d1c2" target="_blank" rel="noopener" class="piece-title">Unveiling ONDC: Transforming Indian E-Commerce</a>
+        <p class="piece-dek">On the Open Network for Digital Commerce, India's push for an inclusive, transparent, and interoperable e-commerce ecosystem.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/dbbd24e43cb14148abf6742409c1d1c2" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">08</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/8160334a84f645a892058d8e61077bb8" target="_blank" rel="noopener" class="piece-title">The Rise of Sustainable Finance</a>
+        <p class="piece-dek">How sustainable finance ties financial decisions to environmental, social, and governance considerations in the face of climate change and inequality.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/8160334a84f645a892058d8e61077bb8" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">09</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/f241ff497568435da8ba5ce9f138289d" target="_blank" rel="noopener" class="piece-title">Private Jets and the World Economy</a>
+        <p class="piece-dek">How private aviation by celebrities and world leaders drives carbon emissions, measured against commercial flight, and what sustainable aviation fuel might change.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/f241ff497568435da8ba5ce9f138289d" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <span class="piece-no">10</span>
+      <div class="piece-body">
+        <div class="piece-kicker">
+          <span class="piece-type">Essay</span>
+          <span class="piece-venue">Edunomix Institute · 2024</span>
+        </div>
+        <a href="https://edunomixinstitute.com/articles/d84ccc6f9da14da0b2a3aab6564f1a31" target="_blank" rel="noopener" class="piece-title">Bangladesh in 2024: What's Next?</a>
+        <p class="piece-dek">On the political upheaval in Bangladesh, from student protests over the job-quota system to the resignation and flight of Prime Minister Sheikh Hasina.</p>
+        <div class="piece-links"><a href="https://edunomixinstitute.com/articles/d84ccc6f9da14da0b2a3aab6564f1a31" target="_blank" rel="noopener" class="piece-link">Read on Edunomix ↗</a></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <p>Shorter pieces, notes, and commentary appear on <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="noopener">LinkedIn</a>. For the full body of research, see the <a href="research.html">research index</a>.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.piece').forEach(el => obs.observe(el));
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>
