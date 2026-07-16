@@ -342,6 +342,7 @@
     { name: 'Experience', note: "the operator's ledger", href: 'experience.html' },
     { name: 'Awards & Honours', note: 'the honours list', href: 'awards.html' },
     { name: 'Research', note: 'the working index', href: 'research.html' },
+    { name: 'Articles', note: 'selected writing', href: 'articles.html' },
     { name: 'Podcast · Decoded', note: 'the control room', href: 'podcast.html' },
     { name: 'Bookshelf', note: 'the reading room', href: 'bookshelf.html' },
     { name: 'Connect', note: 'get in touch, book a call', href: 'connect.html' },
