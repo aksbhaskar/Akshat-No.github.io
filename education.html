@@ -22,7 +22,7 @@
       --ink:          #1e2a44;
       --ink-med:      #3e4a66;
       --ink-soft:     #6b7387;
-      --ink-faint:    #979dac;
+      --ink-faint:    #646d80;
       --ink-ghost:    #c5c3b6;
       --rule:         #d3cbb4;
       --rule-light:   #e3dcc8;
@@ -392,7 +392,7 @@
     }
     .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .footer-socials a:hover { color: var(--ink-med); }
 
     /* ─── NAV ──────────────────────────────────────────────── */
@@ -413,7 +413,8 @@
 
     .hamburger {
       background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
       display: block; width: 20px; height: 0.5px;
@@ -466,7 +467,7 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
 
     /* ─── PROGRESS ─────────────────────────────────────────── */
@@ -599,7 +600,7 @@
 </nav>
 
 <!-- ══════════════════════════════════════════════════════ -->
-<div class="document">
+<div class="document" role="main">
 
   <!-- TITLE PAGE: the registrar's file -->
   <div class="titlepage">

@@ -16,7 +16,7 @@
       --ink:         #111110;
       --ink-med:     #333330;
       --ink-soft:    #666660;
-      --ink-faint:   #999990;
+      --ink-faint:   #6d6d67;
       --ink-ghost:   #ccccbb;
       --rule:        #d0d0c0;
       --rule-light:  #e4e4d8;
@@ -297,7 +297,7 @@
     }
     .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .footer-socials a:hover { color: var(--ink-med); }
 
     @media (max-width: 680px) {
@@ -348,7 +348,7 @@
   <a class="topbar-back" href="index.html">← back</a>
 </div>
 
-<div class="page">
+<div class="page" role="main">
 
   <header class="masthead">
     <div class="masthead-meta">

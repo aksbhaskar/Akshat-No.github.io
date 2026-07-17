@@ -17,7 +17,7 @@
       --ink:        #14161a;
       --ink-med:    #363a42;
       --ink-soft:   #646a76;
-      --ink-faint:  #9aa0ac;
+      --ink-faint:  #6c717a;
       --ink-ghost:  #c8ccd4;
       --rule:       #ccd2da;
       --rule-light: #e0e4ea;
@@ -88,7 +88,8 @@
 
     .hamburger {
       background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
       display: block; width: 20px; height: 0.5px;
@@ -142,7 +143,7 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,252,250,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,252,250,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .nav-socials-row a:hover { color: rgba(251,252,250,0.9); }
 
     /* ─── DOCUMENT GRID ─────────────────────────────────────── */
@@ -448,7 +449,7 @@
     }
     .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .footer-socials a:hover { color: var(--ink-med); }
 
     /* ─── RESPONSIVE ────────────────────────────────────────── */
@@ -514,7 +515,7 @@
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<div class="document">
+<div class="document" role="main">
 
   <!-- PAGE HEADER -->
   <div class="page-header">
