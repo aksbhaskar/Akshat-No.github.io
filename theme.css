@@ -10,7 +10,7 @@ html.dark body.paper {
   --ink:        #f0ead9;
   --ink-med:    #cbc6b6;
   --ink-soft:   #969184;
-  --ink-faint:  #6f6b5c;
+  --ink-faint:  #868273;   /* 4.7:1 on the dark paper; #6f6b5c was 3.4 */
   --ink-ghost:  #4c4940;
   --rule:       #3a3830;
   --rule-light: #2a2822;

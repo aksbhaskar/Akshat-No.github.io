@@ -42,7 +42,15 @@
     var ov = document.getElementById('nav-overlay');
     if (!ov || !window.MutationObserver) return;
     function sync() {
-      document.body.classList.toggle('nav-open', ov.classList.contains('open'));
+      var open = ov.classList.contains('open');
+      document.body.classList.toggle('nav-open', open);
+      /* The closed menu is aria-hidden, but its links stayed in the tab
+         order, so keyboard focus disappeared into a menu nobody could
+         see. inert takes them out of the tree and the tab order both.
+         Set from script rather than markup: if this file fails to load,
+         the menu stays usable instead of being permanently inert. */
+      if (open) ov.removeAttribute('inert');
+      else ov.setAttribute('inert', '');
     }
     new MutationObserver(sync).observe(ov, { attributes: true, attributeFilter: ['class'] });
     sync();

@@ -40,7 +40,7 @@
       --ink:          #111110;
       --ink-med:      #333330;
       --ink-soft:     #666660;
-      --ink-faint:    #999990;
+      --ink-faint:    #70706a;
       --ink-ghost:    #ccccbb;
       --rule:         #d0d0c0;
       --rule-light:   #e4e4d8;
@@ -467,7 +467,8 @@
 
     .hamburger {
       pointer-events: all; background: none; border: none;
-      cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      cursor: pointer; display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
 
     .hamburger span {
@@ -532,8 +533,7 @@
 
     .nav-socials-row a {
       font-size: 0.82rem; color: rgba(251,247,236,0.25);
-      transition: color 0.2s; text-decoration: none;
-    }
+      transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
 
     .nav-socials-row a:hover { color: rgba(251,247,236,0.85); }
 
@@ -566,8 +566,7 @@
     .footer-socials a {
       font-size: 0.78rem;
       color: var(--ink-ghost);
-      transition: color 0.2s;
-    }
+      transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
 
     .footer-socials a:hover { color: var(--ink-med); }
 
@@ -667,7 +666,7 @@
 </nav>
 
 <!-- ══════════════════════════════════════════════════════ -->
-<div class="document">
+<div class="document" role="main">
 
   <!-- TITLE PAGE -->
   <div class="titlepage">

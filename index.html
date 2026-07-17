@@ -58,7 +58,7 @@
       --ink:          #111110;
       --ink-med:      #333330;
       --ink-soft:     #666660;
-      --ink-faint:    #999990;
+      --ink-faint:    #73736c;
       --ink-ghost:    #ccccbb;
       --rule:         #d0d0c0;
       --rule-light:   #e4e4d8;
@@ -243,7 +243,7 @@
       text-decoration-thickness: 0.5px; text-underline-offset: 3px;
     }
     .kw-link:hover { color: var(--ink-soft); }
-    .kw-sep { color: var(--ink-ghost); }
+    .kw-sep { color: var(--ink-faint); }
 
     /* ─── TABLE OF CONTENTS ─────────────────────────────────── */
     .toc-block {
@@ -433,7 +433,7 @@
     }
     .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-faint); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .footer-socials a:hover { color: var(--ink-med); }
 
     /* ─── NAV ──────────────────────────────────────────────── */
@@ -454,7 +454,8 @@
 
     .hamburger {
       background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
       display: block; width: 20px; height: 0.5px;
@@ -507,7 +508,7 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(255,255,248,0.25); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .nav-socials-row a:hover { color: rgba(255,255,248,0.85); }
 
     /* ─── PROGRESS ─────────────────────────────────────────── */
@@ -630,7 +631,7 @@
       line-height: 1.7;
       text-align: center;
     }
-    .hero-credit .sep { color: var(--ink-ghost); }
+    .hero-credit .sep { color: var(--ink-faint); }
 
     /* Right panel */
     .hero-right-panel {
@@ -673,7 +674,7 @@
       font-family: var(--mono);
       font-size: 0.54rem;
       letter-spacing: 0.11em;
-      color: var(--ink-ghost);
+      color: var(--ink-faint);
     }
 
     /* ─── INLINE FIGURES (scattered through the entries) ──────── */
@@ -873,7 +874,7 @@
 </p>
 
 <!-- ══════════════════════════════════════════════════════ -->
-<div class="document">
+<div class="document" role="main">
 
   <!-- TITLE PAGE -->
   <div class="titlepage">
@@ -1105,7 +1106,7 @@
     <form id="contact-form">
       <div class="form-row">
         <div class="form-field">
-          <label for="name"><em>Name</em> <span style="font-size:0.75rem;color:var(--ink-ghost)">(optional)</span></label>
+          <label for="name"><em>Name</em> <span style="font-size:0.75rem;color:var(--ink-faint)">(optional)</span></label>
           <input type="text" id="name" name="name" placeholder="Your name" />
         </div>
         <div class="form-field">

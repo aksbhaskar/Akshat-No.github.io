@@ -66,7 +66,8 @@
     /* ── HAMBURGER ── */
     .hamburger {
       pointer-events: all; background: none; border: none;
-      cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      cursor: pointer; display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
       display: block; width: 18px; height: 1px; background: var(--text-dim);
@@ -278,7 +279,7 @@
   </div>
 </nav>
 
-<div class="page">
+<div class="page" role="main">
   <article class="article">
 
     <span class="article-eyebrow">Award</span>
