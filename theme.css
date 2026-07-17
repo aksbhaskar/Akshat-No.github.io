@@ -222,6 +222,24 @@ html.page-fade.leaving body { opacity: 0; }
   column-gap: clamp(2rem, 6vw, 4.5rem);
   row-gap: 0.1rem;
 }
+/* ── The topbar while the nav is open ───────────────────────────
+   The topbar sits above the overlay (z 200 vs 190), so on the light
+   pages it stayed a bright strip cutting across the dark menu. Let
+   the overlay show through and light up the logo and hamburger to
+   match the links underneath. Each page sets .topbar in its own
+   inline <style>, which loads after this file, so these selectors
+   carry an extra class to win on specificity rather than order. */
+body.nav-open .topbar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+body.nav-open .topbar-logo { color: rgba(251, 249, 242, 0.5); }
+body.nav-open .topbar-logo:hover { color: rgba(251, 249, 242, 0.95); }
+body.nav-open .hamburger span { background: rgba(251, 249, 242, 0.6); }
+body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
+
 @media (max-width: 560px) {
   .nav-overlay .nav-cols { column-gap: 1.5rem; }
 }

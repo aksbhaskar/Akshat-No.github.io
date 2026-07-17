@@ -9,10 +9,13 @@
      Only offered on the standard "paper document" pages, marked
      with body.paper. Bespoke pages keep their own designs. */
   if (document.body.classList.contains('paper')) {
+    /* Light is the default. The site is a paper document and it should
+       open as one, whatever the visitor's OS prefers. Night mode is
+       opt-in, and once chosen it sticks across pages and visits. */
     var stored = null;
     try { stored = localStorage.getItem('theme'); } catch (e) {}
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored === 'dark' || (stored === null && prefersDark)) root.classList.add('dark');
+    if (stored === 'dark') root.classList.add('dark');
+    else root.classList.remove('dark');
 
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
@@ -29,6 +32,21 @@
     });
     (document.body || document.documentElement).appendChild(btn);
   }
+
+  /* ── Mirror the nav overlay's state onto the body ───────────
+     Every page opens the menu with its own inline script. Rather
+     than teach all of them a new trick, watch the overlay and copy
+     its state up to the body, so the topbar can get out of the way
+     (see .nav-open in theme.css). */
+  (function () {
+    var ov = document.getElementById('nav-overlay');
+    if (!ov || !window.MutationObserver) return;
+    function sync() {
+      document.body.classList.toggle('nav-open', ov.classList.contains('open'));
+    }
+    new MutationObserver(sync).observe(ov, { attributes: true, attributeFilter: ['class'] });
+    sync();
+  })();
 
   /* ── Count up any hero stats present ──────────────────────── */
   function countUp(el) {
