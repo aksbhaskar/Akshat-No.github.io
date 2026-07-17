@@ -2,6 +2,20 @@
    Loaded on every page. Dark overrides only bite on the standard
    "paper document" pages that define --paper / --ink. */
 
+/* ── Skip link ──────────────────────────────────────────────────
+   Invisible until a keyboard user tabs onto it, then it drops in
+   from the top and jumps them past the nav to the content. */
+.skip-link {
+  position: fixed; top: -60px; left: 1rem; z-index: 1001;
+  font-family: 'Inconsolata', monospace; font-size: 0.72rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fffff8; background: #111110;
+  padding: 0.65rem 1.1rem; text-decoration: none;
+  border: 1px solid #fffff8;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0.9rem; outline: 2px solid #fffff8; outline-offset: 2px; }
+
 /* ── Night reading mode ─────────────────────────────────────────
    Scoped to body.paper: only the standard manuscript pages flip.
    Bespoke pages (awards hall, gym, budget...) own their palettes. */
