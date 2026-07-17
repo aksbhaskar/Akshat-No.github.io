@@ -481,6 +481,10 @@
     .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
     .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
     .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
+    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
+    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
+    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
     .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
     .nav-hr {
       width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
@@ -558,6 +562,34 @@
       line-height: 1.7;
       color: var(--ink-soft);
     }
+
+    /* A live status line, pointing at the Now page */
+    .hero-now {
+      display: inline-flex; align-items: center; gap: 0.42rem;
+      margin-top: 1.1rem; text-decoration: none;
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.11em; text-transform: uppercase;
+      color: var(--ink-faint); transition: color 0.2s;
+    }
+    .hero-now:hover { color: var(--ink); }
+    .hero-now .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #4a7c59; flex: none;
+      box-shadow: 0 0 0 0 rgba(74,124,89,0.5);
+      animation: nowPulse 2.6s ease-out infinite;
+    }
+    @keyframes nowPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(74,124,89,0.5); }
+      70%  { box-shadow: 0 0 0 5px rgba(74,124,89,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,124,89,0); }
+    }
+    .hero-now .what {
+      color: var(--ink-med); text-transform: none;
+      letter-spacing: 0.03em; font-size: 0.62rem;
+    }
+    .hero-now .arr { transition: transform 0.2s; }
+    .hero-now:hover .arr { transform: translateX(2px); }
+    @media (prefers-reduced-motion: reduce) { .hero-now .dot { animation: none; } }
 
     /* Center image column */
     .hero-img-wrap {
@@ -733,6 +765,7 @@
 <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
   <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
   <a class="nav-link" href="about.html">About</a>
+  <a class="nav-link" href="now.html">Now</a>
   <a class="nav-link" href="education.html">Education</a>
   <a class="nav-link" href="experience.html">Experience</a>
   <a class="nav-link" href="awards.html">Awards</a>
@@ -764,6 +797,10 @@
         Social innovator.<br>
         Number theorist.
       </p>
+
+      <a class="hero-now" href="now.html" aria-label="What I am doing now">
+        <span class="dot"></span>Now<span class="what" id="now-what">building Edunomix</span><span class="arr">→</span>
+      </a>
     </div>
 
     <span class="hero-panel-tag">New Delhi &nbsp;·&nbsp; 2026</span>
@@ -1127,6 +1164,31 @@
     } catch { status.textContent = 'Network error.'; status.classList.add('err'); }
     finally { btn.disabled = false; btn.textContent = 'Send'; }
   });
+
+  /* Cycle the hero status line through what is actually on my desk.
+     The full version lives on /now. */
+  (function () {
+    const el = document.getElementById('now-what');
+    if (!el) return;
+    const bits = [
+      'building Edunomix',
+      'recording Decoded',
+      'reading Dalio',
+      'writing on AI policy',
+      'stuck on a proof'
+    ];
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let i = 0;
+    el.style.transition = 'opacity 0.4s ease';
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % bits.length;
+        el.textContent = bits[i];
+        el.style.opacity = '1';
+      }, 420);
+    }, 3800);
+  })();
 </script>
 <script src="site.js" defer></script>
 </body>
