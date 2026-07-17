@@ -185,6 +185,40 @@
       overflow: hidden;
     }
     .calendly-inline-widget { min-width: 320px; height: 700px; }
+
+    /* ─── PRESS KIT ───────────────────────────────────────────
+       What a journalist or programme organiser actually needs:
+       a bio they can lift verbatim, and a photograph. */
+    .presskit {
+      border: 0.5px solid var(--rule);
+      border-left: 2px solid var(--accent);
+      padding: 1.5rem 1.6rem 1.3rem;
+      background: rgba(47,106,91,0.03);
+    }
+    .pk-bio {
+      font-family: var(--serif); font-size: 0.97rem;
+      line-height: 1.75; color: var(--ink-med);
+      margin: 0;
+    }
+    .pk-row {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.6rem 1.4rem; margin-top: 1.15rem;
+      padding-top: 0.95rem; border-top: 0.5px solid var(--rule-light);
+    }
+    .pk-btn {
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); background: none;
+      border: 0.5px solid var(--accent); border-radius: 0;
+      padding: 0.45rem 0.9rem; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pk-btn:hover { background: var(--accent); color: var(--paper); }
+    .pk-note {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.06em; color: var(--ink-faint);
+    }
     .cal-note {
       font-family: var(--mono); font-size: 0.58rem;
       letter-spacing: 0.06em; color: var(--ink-faint);
@@ -437,6 +471,18 @@
     </a>
   </div>
 
+  <!-- PRESS KIT -->
+  <div class="clabel"><span>For press &amp; programmes</span></div>
+  <div class="presskit">
+    <p class="pk-bio" id="pk-bio">Akshat Bhaskar is a student researcher working across economics, artificial intelligence, and public policy, and President of the 9,500-strong Student Council at Delhi Public School, R.K. Puram. He was felicitated by the President of India as one of seventeen students nationwide under the Government of India's SOAR initiative, has published peer-reviewed research on AI policy in IJRASET, and serves as CFO of TaxCity, a Ministry of Education recognised financial-literacy initiative that has reached 79,000+ students across 27 countries. He hosts Decoded, a podcast on economics and technology recognised with three Spotify for Creators awards in 2025.</p>
+    <div class="pk-row">
+      <button class="pk-btn" id="pk-copy" type="button">Copy bio</button>
+      <a class="pk-btn" href="akshat.jpg" download="akshat-bhaskar.jpg">Headshot ↓</a>
+      <a class="pk-btn" href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      <span class="pk-note">Free to use verbatim, with or without notice.</span>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="doc-footer">
     <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
@@ -451,6 +497,18 @@
 </div>
 
 <script>
+  /* press-kit bio copy */
+  const pkBtn = document.getElementById('pk-copy');
+  if (pkBtn) pkBtn.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(document.getElementById('pk-bio').textContent.trim()); }
+    catch (e) {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('pk-bio'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges();
+    }
+    pkBtn.textContent = 'Copied ✓';
+    setTimeout(() => { pkBtn.textContent = 'Copy bio'; }, 1600);
+  });
+
   /* progress */
   const prog = document.getElementById('prog');
   window.addEventListener('scroll', () => {

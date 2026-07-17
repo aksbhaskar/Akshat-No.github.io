@@ -643,6 +643,27 @@
     }
 
     /* Photo credit sits below the image, on paper, clearly legible */
+    /* ── CREDENTIALS BAND ─────────────────────────────────────
+       The recognitions that live on inner pages, surfaced where
+       every visitor actually looks. One quiet line between rules. */
+    .cred-band {
+      max-width: var(--max-doc); margin: 2.2rem auto 0;
+      padding: 0.95rem var(--outer);
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex; flex-wrap: wrap;
+      align-items: baseline; justify-content: center;
+      gap: 0.3rem 1.05rem;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--ink-soft); text-align: center;
+    }
+    .cred-band .cb-label { color: var(--ink-faint); letter-spacing: 0.24em; }
+    .cred-band .cb-sep { color: var(--ink-ghost); }
+    .cred-band a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .cred-band a:hover { color: var(--ink); }
+    .cred-band b { font-weight: 600; color: var(--ink-med); }
+
     .hero-credit {
       display: flex; flex-wrap: wrap;
       align-items: baseline; justify-content: center;
@@ -901,6 +922,16 @@
   <span class="sep">/</span>
   <span>SOAR Initiative, Government of India &nbsp;·&nbsp; January 2026</span>
 </p>
+
+<!-- CREDENTIALS BAND -->
+<aside class="cred-band" aria-label="Recognitions">
+  <span class="cb-label">Recognised by</span>
+  <span><b>Ministry of Education</b>, Govt. of India</span>
+  <span class="cb-sep">·</span>
+  <a href="press.html">Featured in <b>The Times of India</b>, <b>The Economic Times</b> &amp; <b>Dainik Bhaskar</b></a>
+  <span class="cb-sep">·</span>
+  <a href="podcast.html"><b>Spotify Wrapped 2025</b>, three creator awards</a>
+</aside>
 
 <!-- ══════════════════════════════════════════════════════ -->
 <div class="document" role="main">
