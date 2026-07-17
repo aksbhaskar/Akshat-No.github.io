@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Now | Akshat Bhaskar</title>
+  <meta name="description" content="What Akshat Bhaskar is working on, reading, and thinking about right now. A dated dispatch from a desk in New Delhi." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatbhaskar.ninja/now.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="What Akshat Bhaskar is doing now" />
+  <meta property="og:description" content="A dated dispatch: what I am building, reading, and thinking about right now." />
+  <meta property="og:url" content="https://akshatbhaskar.ninja/now.html" />
+  <meta property="og:image" content="https://akshatbhaskar.ninja/og-image.jpg" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    (function(){try{var s=localStorage.getItem('theme');
+    if(s==='dark'||(s===null&&window.matchMedia('(prefers-color-scheme: dark)').matches))
+    document.documentElement.classList.add('dark');}catch(e){}})();
+  </script>
+  <link rel="stylesheet" href="theme.css">
+
+  <style>
+    /* ─── VARIABLES ────────────────────────────────────────────
+       The desk: warm paper under a lamp, ink, one ochre. */
+    :root {
+      --paper:      #fbf8f0;
+      --ink:        #1a1712;
+      --ink-med:    #3d382e;
+      --ink-soft:   #6b6555;
+      --ink-faint:  #9d9683;
+      --ink-ghost:  #cbc4b1;
+      --rule:       #dbd4c1;
+      --rule-light: #eae5d6;
+      --accent:     #9a6320;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --mono:       'Inconsolata', 'Courier New', monospace;
+      --outer:      clamp(22px, 4vw, 56px);
+      --measure:    720px;
+    }
+    html.dark { --accent: #e0a458; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    ::selection { background: rgba(154,99,32,0.18); }
+
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--accent); z-index: 999; transition: width 0.1s linear;
+    }
+
+    /* ─── TOPBAR ───────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(251,248,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(219,212,193,0.4);
+    }
+    html.dark .topbar { background: rgba(20,19,17,0.92); }
+    .topbar-logo {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.07em;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .topbar-logo:hover { color: var(--ink); }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+    /* ─── NAV OVERLAY ──────────────────────────────────────── */
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 190;
+      background: rgba(26,23,18,0.95); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 5rem 4rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a.nav-link {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(251,248,240,0.5); line-height: 1.28;
+      opacity: 0; transform: translateX(-10px);
+      transition: color 0.25s, transform 0.35s, opacity 0.35s;
+      text-decoration: none; display: block;
+    }
+    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
+    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
+    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
+    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
+    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
+    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
+    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
+    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
+    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
+    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
+    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
+    .nav-overlay a.nav-link:hover { color: rgba(251,248,240,0.95); }
+    .nav-hr {
+      width: 28px; height: 0.5px; background: rgba(251,248,240,0.15);
+      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
+    }
+    .nav-overlay.open .nav-hr { opacity: 1; }
+    .nav-socials-row {
+      display: flex; gap: 1.2rem;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
+    }
+    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,248,240,0.35); transition: color 0.2s; text-decoration: none; }
+    .nav-socials-row a:hover { color: rgba(251,248,240,0.9); }
+
+    /* ─── PAGE ─────────────────────────────────────────────── */
+    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
+
+    /* ─── HEAD ─────────────────────────────────────────────── */
+    .now-head { padding-top: 118px; padding-bottom: 0.4rem; }
+    .nh-crumbs {
+      font-family: var(--mono); font-size: 0.66rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      display: flex; gap: 0.55rem; align-items: center;
+    }
+    .nh-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .nh-crumbs a:hover { color: var(--ink); }
+    .nh-crumbs .sep { color: var(--ink-ghost); }
+
+    h1.nh-title {
+      font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 3.9rem);
+      font-weight: 400; letter-spacing: 0.01em; line-height: 1;
+      color: var(--ink); margin: 2.4rem 0 0;
+    }
+    .nh-sub {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.12rem; color: var(--ink-soft);
+      margin-top: 0.9rem; max-width: 44ch; line-height: 1.6;
+    }
+
+    /* ─── THE DATELINE STRIP ───────────────────────────────
+       A live clock at the desk this was written at. */
+    .dateline {
+      margin: 2.6rem 0 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 0.5px solid var(--rule);
+      padding: 0.85rem 0;
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: 0.5rem 1.6rem;
+      font-family: var(--mono); font-size: 0.7rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .dateline b {
+      font-weight: 500; color: var(--ink-med);
+      text-transform: none; letter-spacing: 0.04em;
+    }
+    .dl-item { display: flex; align-items: baseline; gap: 0.5rem; }
+    .dl-key { color: var(--ink-ghost); }
+    /* the second-hand blink on the live clock */
+    #clock .tick { color: var(--accent); animation: blink 2s step-end infinite; }
+    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
+    @media (prefers-reduced-motion: reduce) { #clock .tick { animation: none; } }
+    .lamp {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); margin-right: 0.15rem;
+      box-shadow: 0 0 7px rgba(154,99,32,0.55);
+    }
+
+    /* ─── ENTRIES ──────────────────────────────────────────── */
+    .entries { margin-top: 1rem; }
+
+    .now-block {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 0 2.4rem;
+      padding: 2.1rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.3,1);
+    }
+    .now-block.visible { opacity: 1; transform: translateY(0); }
+    .now-block:last-child { border-bottom: none; }
+
+    .nb-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 0.42rem;
+    }
+    .nb-body p { margin-bottom: 0.9rem; color: var(--ink-med); }
+    .nb-body p:last-child { margin-bottom: 0; }
+    .nb-body a {
+      color: var(--ink); text-decoration: none;
+      background-image: linear-gradient(var(--accent), var(--accent));
+      background-size: 100% 0.5px; background-repeat: no-repeat;
+      background-position: 0 100%;
+      transition: background-size 0.25s ease, color 0.2s;
+    }
+    .nb-body a:hover { color: var(--accent); background-size: 100% 1px; }
+    .nb-body em { font-style: italic; }
+
+    /* a small run of items, like a reading list */
+    .stack { list-style: none; }
+    .stack li {
+      padding: 0.36rem 0 0.36rem 1.1rem;
+      position: relative; color: var(--ink-med);
+    }
+    .stack li::before {
+      content: '·'; position: absolute; left: 0.15rem;
+      color: var(--accent); font-weight: 700;
+    }
+    .stack .by {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-faint); letter-spacing: 0.03em;
+      display: block; line-height: 1.5;
+    }
+
+    /* ─── COLOPHON ─────────────────────────────────────────── */
+    .colophon {
+      margin: 3rem 0 0; padding: 1.5rem 0 0;
+      border-top: 1px solid var(--ink);
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.65;
+    }
+    .colophon a { color: var(--ink-med); text-decoration: none; border-bottom: 0.5px solid var(--ink-ghost); }
+    .colophon a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 4rem; padding: 2rem 0 3rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-text { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-socials { display: flex; gap: 1.1rem; }
+    .footer-socials a { color: var(--ink-ghost); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--accent); }
+
+    @media (max-width: 620px) {
+      .topbar { padding: 1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 2rem; }
+      .now-block { grid-template-columns: 1fr; gap: 0.7rem; }
+      .nb-label { padding-top: 0; }
+    }
+  </style>
+</head>
+<body class="paper">
+
+<div class="progress-rule" id="prog"></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">akshatbhaskar.ninja</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="nav-link" href="now.html">Now</a>
+  <a class="nav-link" href="education.html">Education</a>
+  <a class="nav-link" href="experience.html">Experience</a>
+  <a class="nav-link" href="awards.html">Awards</a>
+  <a class="nav-link" href="research.html">Research</a>
+  <a class="nav-link" href="articles.html">Articles</a>
+  <a class="nav-link" href="podcast.html">Podcast</a>
+  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
+  <a class="nav-link" href="connect.html">Connect</a></div>
+  <div class="nav-hr"></div>
+  <div class="nav-socials-row">
+    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <header class="now-head">
+    <div class="nh-crumbs">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Now</span>
+    </div>
+
+    <h1 class="nh-title">Now</h1>
+    <p class="nh-sub">What has my attention at the moment. Not a résumé, not an archive. Just the current state of the desk.</p>
+
+    <!-- The live dateline. The clock is real, and it runs on my time, not yours. -->
+    <div class="dateline">
+      <span class="dl-item">
+        <span class="dl-key">Updated</span>
+        <b id="updated">17 July 2026</b>
+      </span>
+      <span class="dl-item">
+        <span class="dl-key">Freshness</span>
+        <b id="freshness">today</b>
+      </span>
+      <span class="dl-item">
+        <span class="lamp"></span>
+        <span class="dl-key">New Delhi</span>
+        <b id="clock">··<span class="tick">:</span>··</b>
+      </span>
+    </div>
+  </header>
+
+  <!-- ── THE ENTRIES ─────────────────────────────────────── -->
+  <main class="entries">
+
+    <section class="now-block">
+      <div class="nb-label">Building</div>
+      <div class="nb-body">
+        <p>Running the <a href="edunomix.html">Edunomix India Chapter</a>, which I founded to teach economics to students who never get offered it. Most of my week goes here: curriculum, chapter leads, and the unglamorous work of keeping volunteers energised.</p>
+        <p>Also serving as CFO at <a href="taxcity.html">TaxCity</a>, where I spend more time in spreadsheets than I ever expected to enjoy.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Writing</div>
+      <div class="nb-body">
+        <p>Following up on <a href="aipolicy.html"><em>The Two Faces of Progress</em></a>. The peer-reviewed version answered one question and opened three more, which I am told is how research is supposed to go.</p>
+        <p>Shorter pieces land on <a href="articles.html">the articles page</a> when they are ready.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Recording</div>
+      <div class="nb-body">
+        <p>New episodes of <a href="podcast.html"><em>Decoded</em></a>, my podcast on economics and technology. The hardest part was never the recording. It is deciding which of my own takes to cut.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Reading</div>
+      <div class="nb-body">
+        <ul class="stack">
+          <li>Principles for Dealing with the Changing World Order
+            <span class="by">Ray Dalio</span></li>
+          <li>The Policy Pivot
+            <span class="by">Ajay Khanna &amp; Rahul Sharma</span></li>
+          <li>A Song of Ice and Fire
+            <span class="by">George R. R. Martin &nbsp;·&nbsp; for when policy gets heavy</span></li>
+        </ul>
+        <p style="margin-top:0.9rem">The whole shelf lives <a href="bookshelf.html">here</a>.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Thinking about</div>
+      <div class="nb-body">
+        <p>Whether AI governance can be written fast enough to matter. Every draft I read is careful, thorough, and about eighteen months behind the thing it regulates.</p>
+        <p>Also: why economics is taught as a subject to be examined rather than a lens for seeing the world. That gap is most of why Edunomix exists.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Learning</div>
+      <div class="nb-body">
+        <p>Number theory, still, slowly. <a href="mathapprenticeship.html">The apprenticeship</a> ended but the habit did not.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
+      <div class="nb-label">Saying no to</div>
+      <div class="nb-body">
+        <p>Most things. It took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="colophon">
+    <p>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, an idea I stole from Derek Sivers. The premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. If we have spoken before and this is out of date, that is on me. <a href="connect.html">Nudge me</a>.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
+    <div class="footer-socials">
+      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* ── EDIT ME ──────────────────────────────────────────────
+     The only line to touch when you refresh this page.
+     Everything dated below reads from it. */
+  const LAST_UPDATED = '2026-07-17';
+  /* ─────────────────────────────────────────────────────── */
+
+  const upd = new Date(LAST_UPDATED + 'T12:00:00+05:30');
+  document.getElementById('updated').textContent =
+    upd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // Say plainly how stale this is. Better honest than pretending.
+  const days = Math.max(0, Math.floor((Date.now() - upd.getTime()) / 86400000));
+  const fresh =
+    days === 0  ? 'today' :
+    days === 1  ? 'yesterday' :
+    days < 14   ? days + ' days ago' :
+    days < 60   ? Math.round(days / 7) + ' weeks ago' :
+    days < 400  ? Math.round(days / 30) + ' months ago, sorry' :
+                  'embarrassingly long ago';
+  document.getElementById('freshness').textContent = fresh;
+
+  // A real clock, in my timezone. Visitors are usually somewhere else.
+  const clockEl = document.getElementById('clock');
+  function tickClock() {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata', weekday: 'short',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(new Date());
+    const g = t => (parts.find(p => p.type === t) || {}).value || '';
+    clockEl.innerHTML = g('weekday') + ' ' + g('hour') +
+      '<span class="tick">:</span>' + g('minute');
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('nav-overlay');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    overlay.setAttribute('aria-hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
+    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.now-block').forEach(el => obs.observe(el));
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>

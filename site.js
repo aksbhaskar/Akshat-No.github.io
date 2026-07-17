@@ -130,6 +130,7 @@
   var pageKey = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
   var PAGES = {
     index:        { end: 'you read the whole thing. that means a lot.' },
+    now:          { end: 'that was true when i wrote it, anyway.' },
     education:    { end: 'yes, i do actually attend class.' },
     experience:   { end: "and that's just the paper trail." },
     awards:       { end: "ok, that's enough flexing. probably." },
@@ -338,6 +339,7 @@
   var PAL = [
     { name: 'Home', note: 'index', href: 'index.html' },
     { name: 'About', note: 'the long version', href: 'about.html' },
+    { name: 'Now', note: 'what i am doing this month', href: 'now.html' },
     { name: 'Education', note: "the registrar's file", href: 'education.html' },
     { name: 'Experience', note: "the operator's ledger", href: 'experience.html' },
     { name: 'Awards & Honours', note: 'the honours list', href: 'awards.html' },
