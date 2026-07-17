@@ -4,19 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Decoded, the Podcast | Akshat Bhaskar</title>
-  <meta name="description" content="Decoded: conversations on economics and technology, hosted by Akshat Bhaskar. Recognised by Spotify for Creators in 2025 as a Marathon Show, Instant Hit Show, and Most Shared Show. On Spotify, Apple Podcasts, and Amazon Music." />
+  <meta name="description" content="Decoded: conversations on economics and technology, hosted by Akshat Bhaskar. Named A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show in Spotify's Wrapped for Creators. On Spotify, Apple Podcasts, and Amazon Music." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatbhaskar.ninja/podcast.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Decoded, the Podcast" />
+  <meta property="og:description" content="Conversations on economics and technology. Three Spotify Wrapped 2025 creator awards." />
+  <meta property="og:url" content="https://akshatbhaskar.ninja/podcast.html" />
+  <meta property="og:image" content="https://akshatbhaskar.ninja/decoded_wrapped_2025.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://akshatbhaskar.ninja/decoded_wrapped_2025.png" />
+  <meta name="theme-color" content="#eeede8" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org", "@type": "PodcastSeries",
     "name": "Decoded",
     "url": "https://akshatbhaskar.ninja/podcast.html",
-    "description": "Long-form conversations on economics and technology, hosted by Akshat Bhaskar. Recognised by Spotify for Creators in 2025 as a Marathon Show, Instant Hit Show, and Most Shared Show.",
+    "description": "Long-form conversations on economics and technology, hosted by Akshat Bhaskar. Named A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show in Spotify's Wrapped for Creators.",
     "author": {"@type": "Person", "name": "Akshat Bhaskar", "url": "https://akshatbhaskar.ninja"},
+    "image": "https://akshatbhaskar.ninja/decoded_wrapped_2025.png",
     "inLanguage": "en",
     "genre": ["Economics", "Technology", "Public Policy"],
-    "award": ["Spotify for Creators 2025 Marathon Show", "Spotify for Creators 2025 Instant Hit Show", "Spotify for Creators 2025 Most Shared Show"],
+    "award": ["A 2025 Marathon Show, Spotify Wrapped for Creators", "A 2025 Instant Hit Show, Spotify Wrapped for Creators", "A 2025 Most Shared Show, Spotify Wrapped for Creators"],
     "sameAs": [
       "https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs",
       "https://podcasts.apple.com/us/podcast/decoded/id1829278052",
@@ -30,44 +39,48 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <style>
-    /* ── THE CONTROL ROOM ──
-       Cool studio charcoal, one cue lamp, one live waveform. */
+    /* ── THE WRAPPED POSTER ──
+       Built from the artwork Spotify sent: off-white stock, ink,
+       one mustard, one periwinkle, one tomato. Flat colour, hard
+       shadows, and plenty of quiet paper between the loud bits. */
     :root {
-      --studio:     #101214;
-      --console:    #181b1e;
-      --panel:      #1f2327;
-      --edge:       #2b3036;
-      --signal:     #35c26e;   /* level meters, links */
-      --cue:        #e5484d;   /* the ON AIR lamp */
-      --white:      #eef0ee;
-      --grey:       #a6adb2;
-      --dim:        #626a70;
+      --paper:      #eeede8;
+      --ink:        #161613;
+      --ink-soft:   #55544e;
+      --ink-faint:  #6a6961;   /* 4.7:1 on the poster paper */
+      --rule:       #d6d4cb;
+      --mustard:    #c7a411;
+      --peri:       #a79ff5;
+      --tomato:     #f04a31;
       --serif:      'EB Garamond', Georgia, serif;
       --ui:         'Outfit', sans-serif;
       --mono:       'Inconsolata', 'Courier New', monospace;
+      --outer:      clamp(22px, 4vw, 56px);
+      --max:        980px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      background: var(--studio);
-      color: var(--white);
+      background: var(--paper);
+      color: var(--ink);
       font-family: var(--ui);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      overflow-x: hidden;
     }
-    ::selection { background: rgba(53,194,110,0.3); }
+    ::selection { background: rgba(167,159,245,0.45); }
 
     /* ── PROGRESS ── */
     #prog {
-      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-      background: var(--signal); z-index: 999; transition: width 0.1s linear;
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--tomato); z-index: 999; transition: width 0.1s linear;
     }
 
     /* ── TOPBAR ── */
@@ -75,16 +88,16 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(16,18,20,0.9);
+      background: rgba(238,237,232,0.92);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(43,48,54,0.6);
+      border-bottom: 1px solid var(--rule);
     }
     .topbar-logo {
       font-family: var(--mono); font-size: 0.68rem;
-      color: var(--dim); letter-spacing: 0.07em;
+      color: var(--ink-faint); letter-spacing: 0.07em;
       text-decoration: none; transition: color 0.2s;
     }
-    .topbar-logo:hover { color: var(--signal); }
+    .topbar-logo:hover { color: var(--ink); }
 
     .hamburger {
       background: none; border: none; cursor: pointer;
@@ -92,18 +105,17 @@
       gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
-      display: block; width: 20px; height: 1px;
-      background: var(--dim); transition: all 0.3s ease; transform-origin: center;
+      display: block; width: 20px; height: 2px;
+      background: var(--ink); transition: all 0.3s ease; transform-origin: center;
     }
-    .hamburger:hover span { background: var(--white); }
-    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── NAV OVERLAY ── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(10,11,12,0.97);
+      background: rgba(22,22,19,0.96);
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
       padding: 5rem 4rem;
@@ -111,9 +123,9 @@
     }
     .nav-overlay.open { opacity: 1; pointer-events: all; }
     .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem);
       font-weight: 400; font-style: italic;
-      color: rgba(238,240,238,0.45); line-height: 1.35;
+      color: rgba(238,237,232,0.5); line-height: 1.28;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -130,9 +142,9 @@
     .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
     .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
     .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay a.nav-link:hover { color: var(--signal); }
+    .nav-overlay a.nav-link:hover { color: var(--peri); }
     .nav-hr {
-      width: 28px; height: 1px; background: rgba(238,240,238,0.15);
+      width: 28px; height: 1px; background: rgba(238,237,232,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -142,254 +154,259 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(238,240,238,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: var(--signal); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(238,237,232,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .nav-socials-row a:hover { color: var(--peri); }
 
     /* ── PAGE ── */
-    .studio { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    .poster { max-width: var(--max); margin: 0 auto; padding: 0 var(--outer); }
 
-    /* ── HERO / BOOTH ── */
-    .booth {
-      padding-top: 15vh;
-      padding-bottom: 3rem;
-      text-align: center;
+    /* ── OP-ART RIBBON ──
+       The concentric arc pattern from the artwork's corner, redrawn
+       in CSS as a thin band under the topbar. Decoration only. */
+    .ribbon {
+      height: 26px; margin-top: 76px;
+      background: repeating-linear-gradient(90deg,
+        var(--ink) 0 14px, var(--paper) 14px 28px);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
     }
 
-    .onair {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-family: var(--mono); font-size: 0.62rem;
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: clamp(3rem, 7vh, 5rem) 0 2.6rem;
+      text-align: left;
+    }
+    .kicker {
+      font-family: var(--mono); font-size: 0.64rem;
       letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--grey);
-      border: 1px solid var(--edge); border-radius: 3px;
-      padding: 0.4rem 0.9rem;
-      margin-bottom: 2.4rem;
-    }
-    .onair .lamp {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--cue);
-      box-shadow: 0 0 8px rgba(229,72,77,0.8);
-      animation: lampPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes lampPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; box-shadow: 0 0 2px rgba(229,72,77,0.3); }
-    }
-
-    h1.show-title {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 9vw, 4.6rem);
-      font-weight: 400; font-style: italic;
-      letter-spacing: 0.01em;
-      line-height: 1;
-      color: var(--white);
-    }
-
-    .show-tag {
-      font-family: var(--ui); font-weight: 300;
-      font-size: 1.02rem; color: var(--grey);
-      margin-top: 1.1rem;
-    }
-
-    /* the waveform: forty bars of a conversation */
-    .waveform {
-      display: flex; align-items: center; justify-content: center;
-      gap: 3px; height: 44px;
-      margin: 2.6rem auto 0;
-    }
-    .waveform span {
-      width: 3px; border-radius: 2px;
-      background: var(--signal);
-      height: 100%;
-      transform-origin: center;
-      animation: wf 1.6s ease-in-out infinite;
-      opacity: 0.85;
-    }
-    @keyframes wf {
-      0%, 100% { transform: scaleY(0.18); opacity: 0.4; }
-      50%      { transform: scaleY(1);    opacity: 0.95; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .waveform span { animation: none; }
-      .onair .lamp { animation: none; }
-    }
-
-    /* ── AWARD PLAQUES ──
-       Spotify's own 2025 recognitions, mounted the way a studio hangs
-       its plates: rack labels, not stickers. */
-    .accolade-rail {
-      margin-top: 2.8rem;
-      border-top: 1px solid var(--edge);
-      border-bottom: 1px solid var(--edge);
-      padding: 1.1rem 0;
-    }
-    .rail-label {
-      font-family: var(--mono); font-size: 0.56rem;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--dim); display: block; margin-bottom: 0.85rem;
-    }
-    .accolades {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .accolade {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--white);
-      background: var(--panel);
-      border: 1px solid var(--edge);
-      border-left: 2px solid var(--signal);
-      padding: 0.45rem 0.75rem;
-    }
-    .accolade-hours {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.1em; color: var(--grey);
-      margin-top: 0.85rem; display: block;
-    }
-    .accolade-hours b { color: var(--signal); font-weight: 600; }
-
-    /* platform pills */
-    .platforms {
-      display: flex; justify-content: center; flex-wrap: wrap;
-      gap: 0.7rem; margin-top: 2.6rem;
-    }
-    .pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--ui); font-weight: 500; font-size: 0.78rem;
-      letter-spacing: 0.03em;
-      color: var(--white); text-decoration: none;
-      border: 1px solid var(--edge); border-radius: 999px;
-      background: var(--console);
-      padding: 0.55rem 1.1rem;
-      transition: border-color 0.2s, transform 0.2s, background 0.2s;
-    }
-    .pill i { color: var(--signal); font-size: 0.85rem; }
-    .pill:hover { border-color: var(--signal); transform: translateY(-2px); }
-
-    /* ── PLAYER CONSOLE ── */
-    .console-block { padding: 3.5rem 0 0; }
-    .console-frame {
-      border: 1px solid var(--edge);
-      border-radius: 10px;
-      background: var(--console);
-      padding: 0.9rem;
-    }
-    .console-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 0.3rem 0.8rem;
-    }
-    .console-head .ch-label {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
-    }
-    .console-head .ch-meters { display: flex; gap: 3px; align-items: flex-end; height: 12px; }
-    .console-head .ch-meters span {
-      width: 3px; background: var(--signal); border-radius: 1px;
-      animation: wf 1.3s ease-in-out infinite;
-      transform-origin: bottom;
-    }
-    .console-frame iframe { display: block; border-radius: 6px; width: 100%; }
-
-    /* ── LINER NOTES ── */
-    .liner {
-      padding: 4.5rem 0 0;
-      max-width: 600px; margin: 0 auto;
-    }
-    .liner-label {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--signal); display: block; text-align: center;
+      color: var(--ink-soft);
+      display: inline-flex; align-items: center; gap: 0.6rem;
       margin-bottom: 1.4rem;
     }
-    .liner p {
-      font-family: var(--serif);
-      font-size: 1.04rem; line-height: 1.85;
-      color: var(--grey); text-align: center;
+    .kicker .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--tomato); border: 2px solid var(--ink);
+      display: inline-block;
     }
-    .liner p em { color: var(--white); }
+    h1.show {
+      font-family: var(--ui); font-weight: 800;
+      font-size: clamp(3.4rem, 12vw, 7rem);
+      line-height: 0.95; letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .show-tag {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      color: var(--ink-soft);
+      margin-top: 1.2rem; max-width: 34ch; line-height: 1.55;
+    }
 
-    /* studio facts row */
+    /* the circle stack from the poster, floated to the hero's right */
+    .circles {
+      position: absolute; right: -1rem; top: 0.4rem;
+      width: clamp(120px, 22vw, 220px); aspect-ratio: 10 / 16;
+      pointer-events: none;
+    }
+    .circles i {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      width: 62%; aspect-ratio: 1; border-radius: 50%;
+      border: 2.5px solid var(--ink); font-style: normal;
+    }
+    .circles i:nth-child(1) { top: 0;   background: var(--mustard); }
+    .circles i:nth-child(2) { top: 30%; background: var(--peri); }
+    .circles i:nth-child(3) { top: 60%; background: var(--tomato); }
+
+    .star {
+      position: absolute; font-size: 1.5rem; color: var(--ink);
+      pointer-events: none; line-height: 1;
+    }
+
+    /* platform chips */
+    .platforms { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.2rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--ui); font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      color: var(--paper); background: var(--ink);
+      text-decoration: none;
+      border: 2px solid var(--ink); border-radius: 999px;
+      padding: 0.6rem 1.25rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .pill:hover {
+      background: var(--paper); color: var(--ink);
+      transform: translate(-2px, -2px);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    /* ── SECTION LABELS ── */
+    .slab {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 3.6rem 0 1.6rem;
+    }
+    .slab span {
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--ink-soft); white-space: nowrap;
+    }
+    .slab::after { content: ''; height: 2px; background: var(--ink); flex: 1; }
+
+    /* ── WRAPPED 2025 ── */
+    .wrapped {
+      display: grid; grid-template-columns: minmax(240px, 340px) 1fr;
+      gap: clamp(1.6rem, 4vw, 3.2rem);
+      align-items: center;
+    }
+    .wrapped-art { position: relative; }
+    .wrapped-art img {
+      display: block; width: 100%; height: auto;
+      border: 2.5px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+      background: var(--paper);
+    }
+    .wrapped-art figcaption {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; color: var(--ink-faint);
+      margin-top: 1rem;
+    }
+
+    .award-list { list-style: none; }
+    .award-list li {
+      display: flex; align-items: center; gap: 1.1rem;
+      padding: 1.05rem 0;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .award-list li:last-of-type { border-bottom: none; }
+    .award-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2.5px solid var(--ink); flex: none;
+    }
+    .award-list li:nth-child(1) .award-dot { background: var(--mustard); }
+    .award-list li:nth-child(2) .award-dot { background: var(--peri); }
+    .award-list li:nth-child(3) .award-dot { background: var(--tomato); }
+    .award-name {
+      font-family: var(--ui); font-weight: 700;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      letter-spacing: -0.01em; line-height: 1.2;
+    }
+    .award-sub {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-top: 0.2rem;
+    }
+    .award-foot {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.98rem; color: var(--ink-soft);
+      margin-top: 1.4rem;
+    }
+
+    /* ── FEATURED EPISODE ── */
+    .episode-card {
+      border: 2.5px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--peri);
+      background: var(--ink);
+      padding: 0;
+      overflow: hidden;
+    }
+    .episode-card iframe { display: block; width: 100%; height: 352px; border: 0; }
+
+    /* ── LINER NOTES ── */
+    .liner p {
+      font-family: var(--serif); font-size: 1.13rem;
+      line-height: 1.8; color: var(--ink);
+      max-width: 62ch;
+    }
+    .liner em { font-style: italic; }
+
     .facts {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--edge);
-      border: 1px solid var(--edge); border-radius: 8px;
-      overflow: hidden;
-      margin: 3.2rem 0 0;
+      gap: 1.2rem; margin-top: 2.2rem;
     }
-    .fact { background: var(--console); padding: 1.3rem 1.1rem; }
+    .fact {
+      border-top: 2.5px solid var(--ink);
+      padding-top: 0.7rem;
+    }
     .fact-k {
-      font-family: var(--mono); font-size: 0.56rem;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--dim); display: block; margin-bottom: 0.35rem;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: 0.3rem;
     }
-    .fact-v { font-family: var(--ui); font-weight: 400; font-size: 0.85rem; color: var(--white); line-height: 1.5; }
+    .fact-v { font-family: var(--ui); font-weight: 500; font-size: 0.9rem; color: var(--ink-soft); }
 
-    /* ── BOOKING ── */
+    /* ── PITCH ── */
     .booking {
-      margin: 4.5rem 0 0;
-      border-top: 1px solid var(--edge);
-      padding: 3rem 0 10vh;
+      margin: 4rem 0 0;
+      border: 2.5px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--mustard);
+      background: var(--paper);
+      padding: clamp(1.8rem, 4vw, 3rem);
       text-align: center;
+      position: relative;
     }
     .booking h2 {
-      font-family: var(--serif); font-style: italic; font-weight: 400;
-      font-size: 1.5rem; color: var(--white);
+      font-family: var(--ui); font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      text-transform: uppercase; letter-spacing: -0.01em;
     }
     .booking p {
-      font-family: var(--ui); font-weight: 300;
-      font-size: 0.88rem; color: var(--grey);
-      max-width: 440px; margin: 0.8rem auto 1.6rem;
+      font-family: var(--serif); font-size: 1.02rem;
+      color: var(--ink-soft); max-width: 46ch;
+      margin: 0.7rem auto 1.6rem;
     }
-    .booking .mic-btn {
+    .mic-btn {
       display: inline-block;
-      font-family: var(--mono); font-size: 0.66rem;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--studio); background: var(--signal);
-      text-decoration: none; border-radius: 4px;
-      padding: 0.75rem 1.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: var(--ui); font-weight: 700; font-size: 0.95rem;
+      color: var(--paper); background: var(--ink);
+      text-decoration: none;
+      border: 2px solid var(--ink); border-radius: 999px;
+      padding: 0.8rem 2rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .booking .mic-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(53,194,110,0.25); }
-    .booking .subject-hint {
-      display: block; margin-top: 1rem;
+    .mic-btn:hover {
+      background: var(--tomato); border-color: var(--ink); color: var(--paper);
+      transform: translate(-2px, -2px);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .subject-hint {
+      display: block; margin-top: 0.9rem;
       font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.06em; color: var(--dim);
+      letter-spacing: 0.08em; color: var(--ink-faint);
     }
 
     /* ── FOOTER ── */
     .studio-footer {
-      border-top: 1px solid var(--edge);
-      padding: 1.3rem 0 4rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      margin-top: 4.5rem; padding: 2rem 0 3rem;
+      border-top: 2.5px solid var(--ink);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
     }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.05em; }
+    .footer-text { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--dim); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--signal); }
+    .footer-socials a { color: var(--ink-soft); font-size: 0.85rem; transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .footer-socials a:hover { color: var(--tomato); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
-      .booth { padding-top: 12vh; }
-      .facts { grid-template-columns: 1fr; }
-      .waveform { height: 34px; }
+    @media (max-width: 820px) {
+      .circles { display: none; }
+      .wrapped { grid-template-columns: 1fr; }
+      .wrapped-art { max-width: 320px; }
+      .facts { grid-template-columns: 1fr; gap: 1rem; }
+    }
+    @media (max-width: 560px) {
+      .topbar { padding: 1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 2rem; }
+      .ribbon { margin-top: 64px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pill, .mic-btn { transition: none; }
+      .pill:hover, .mic-btn:hover { transform: none; box-shadow: none; }
     }
   </style>
-<!-- print styles + reduced motion -->
-<style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
-</style>
-  <link rel="stylesheet" href="theme.css">
-  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div id="prog"></div>
 
@@ -415,68 +432,84 @@
   <a class="nav-link" href="connect.html">Connect</a></div>
   <div class="nav-hr"></div>
   <div class="nav-socials-row">
-    <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
-    <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
   </div>
 </nav>
 
-<div class="studio" role="main">
+<!-- OP-ART RIBBON -->
+<div class="ribbon" aria-hidden="true"></div>
 
-  <!-- THE BOOTH -->
-  <header class="booth">
-    <span class="onair"><span class="lamp"></span>On Air · Est. 2024</span>
-    <h1 class="show-title">Decoded</h1>
+<div class="poster" role="main" id="main">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="star" style="top: 8%; left: 62%;" aria-hidden="true">✦</span>
+    <span class="star" style="bottom: 12%; right: 34%; font-size: 1rem;" aria-hidden="true">✦</span>
+    <div class="circles" aria-hidden="true"><i></i><i></i><i></i></div>
+
+    <span class="kicker"><span class="dot"></span>A podcast &nbsp;·&nbsp; Est. 2024</span>
+    <h1 class="show">Decoded</h1>
     <p class="show-tag">Conversations on economics and technology, without the jargon.</p>
 
-    <div class="waveform" id="waveform" aria-hidden="true"></div>
-
     <div class="platforms">
-      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener"><i class="fab fa-spotify"></i>Spotify</a>
+      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener"><i class="fab fa-spotify"></i>Spotify</a>
       <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><i class="fab fa-apple"></i>Apple Podcasts</a>
       <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><i class="fab fa-amazon"></i>Amazon Music</a>
     </div>
-
-    <div class="accolade-rail">
-      <span class="rail-label">Spotify for Creators &nbsp;·&nbsp; Wrapped 2025</span>
-      <div class="accolades">
-        <span class="accolade">Marathon Show</span>
-        <span class="accolade">Instant Hit Show</span>
-        <span class="accolade">Most Shared Show</span>
-      </div>
-      <span class="accolade-hours">Past <b>300 listening hours</b> on Spotify</span>
-    </div>
   </header>
 
-  <!-- THE CONSOLE -->
-  <section class="console-block">
-    <div class="console-frame">
-      <div class="console-head">
-        <span class="ch-label">Now Playing · Featured Episode</span>
-        <span class="ch-meters" aria-hidden="true">
-          <span style="height:12px;animation-delay:0s"></span>
-          <span style="height:8px;animation-delay:.2s"></span>
-          <span style="height:11px;animation-delay:.4s"></span>
-          <span style="height:6px;animation-delay:.1s"></span>
-          <span style="height:10px;animation-delay:.3s"></span>
-        </span>
-      </div>
-      <iframe
-        src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
-        width="100%" height="351"
-        frameborder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-        title="Decoded, featured episode on Spotify"
-      ></iframe>
+  <!-- WRAPPED 2025 -->
+  <div class="slab"><span>Spotify Wrapped for Creators · 2025</span></div>
+  <section class="wrapped">
+    <figure class="wrapped-art">
+      <img src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025 artwork for Decoded, naming it A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show" width="1080" height="1920" loading="lazy" decoding="async">
+      <figcaption>The artwork Spotify sent. Kept as issued.</figcaption>
+    </figure>
+    <div>
+      <ul class="award-list">
+        <li>
+          <span class="award-dot" aria-hidden="true"></span>
+          <div>
+            <span class="award-name">A 2025 Marathon Show</span>
+            <span class="award-sub">Sustained listener engagement</span>
+          </div>
+        </li>
+        <li>
+          <span class="award-dot" aria-hidden="true"></span>
+          <div>
+            <span class="award-name">A 2025 Instant Hit Show</span>
+            <span class="award-sub">Strong launch performance</span>
+          </div>
+        </li>
+        <li>
+          <span class="award-dot" aria-hidden="true"></span>
+          <div>
+            <span class="award-name">A 2025 Most Shared Show</span>
+            <span class="award-sub">High audience sharing</span>
+          </div>
+        </li>
+      </ul>
+      <p class="award-foot">Three platform recognitions in the show's first full year, past 300 listening hours on Spotify.</p>
     </div>
   </section>
 
+  <!-- FEATURED EPISODE -->
+  <div class="slab"><span>Now playing · Featured episode</span></div>
+  <section class="episode-card">
+    <iframe
+      src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      title="Decoded, featured episode on Spotify"
+    ></iframe>
+  </section>
+
   <!-- LINER NOTES -->
+  <div class="slab"><span>Liner notes</span></div>
   <section class="liner">
-    <span class="liner-label">Liner Notes</span>
     <p>
       <em>Decoded</em> makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world. The show is rooted in a simple conviction: <em>the most important ideas shouldn't be locked behind academic walls.</em>
     </p>
@@ -499,6 +532,7 @@
 
   <!-- BOOKING -->
   <section class="booking">
+    <span class="star" style="top: -0.8rem; right: 6%;" aria-hidden="true">✦</span>
     <h2>Step into the booth</h2>
     <p>Episode pitches, guest suggestions, and correspondence about the show are all welcome. Every message is read.</p>
     <a class="mic-btn" href="mailto:bhaskarakshat22@gmail.com?subject=Decoded, Guest">Pitch an episode</a>
@@ -507,25 +541,23 @@
 
   <!-- FOOTER -->
   <footer class="studio-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; recorded in New Delhi</span>
+    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
     <div class="footer-socials">
-      <a href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
-      <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
     </div>
   </footer>
 
 </div>
 
 <script>
-  // Progress bar
   const prog = document.getElementById('prog');
   window.addEventListener('scroll', () => {
     prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
   }, { passive: true });
 
-  // Hamburger nav
   const hamburger = document.getElementById('hamburger');
   const overlay   = document.getElementById('nav-overlay');
   let menuOpen = false;
@@ -538,23 +570,10 @@
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
   overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false;
-    hamburger.classList.remove('open');
-    overlay.classList.remove('open');
+    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
     document.body.style.overflow = '';
   }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-
-  // Build the waveform: forty bars, each with its own tempo
-  const wf = document.getElementById('waveform');
-  for (let i = 0; i < 40; i++) {
-    const bar = document.createElement('span');
-    const h = 20 + Math.round(60 * Math.abs(Math.sin(i * 0.55)) + Math.random() * 20);
-    bar.style.height = Math.min(100, h) + '%';
-    bar.style.animationDelay = (i * 0.045).toFixed(3) + 's';
-    bar.style.animationDuration = (1.2 + (i % 5) * 0.16).toFixed(2) + 's';
-    wf.appendChild(bar);
-  }
 </script>
 <script src="site.js" defer></script>
 </body>
