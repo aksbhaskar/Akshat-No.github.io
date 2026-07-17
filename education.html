@@ -237,6 +237,78 @@
     }
     .toc-page { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); }
 
+    /* ─── ENROLMENT TIMELINE ────────────────────────────────
+       School runs underneath the whole span as one unbroken
+       term, in seal red. The programmes are the marks made
+       along the way, in the registrar's navy. */
+    .timeline-strip {
+      grid-column: 1 / -1;
+      padding: 1.7rem 0 1.5rem;
+      border-bottom: 0.5px solid var(--ink);
+    }
+    .tl-legend {
+      font-family: var(--mono); font-size: 0.58rem;
+      color: var(--ink-faint); letter-spacing: 0.05em;
+      display: flex; gap: 1.4rem; align-items: center;
+    }
+    .tl-legend .key { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .tl-legend .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      border: 1.5px solid var(--ink); box-sizing: border-box;
+    }
+    .tl-legend .bar { width: 18px; height: 3px; background: var(--seal); opacity: 0.5; }
+
+    .tl-track {
+      position: relative; height: 1px; background: var(--rule);
+      margin: 1.5rem 0.5rem 0;
+    }
+
+    /* the school years */
+    .tl-span {
+      position: absolute; top: 50%;
+      height: 3px; background: var(--seal); opacity: 0.4;
+      transform: translateY(-50%) scaleX(0); transform-origin: left center;
+      transition: transform 0.9s cubic-bezier(.2,.8,.3,1), opacity 0.3s;
+    }
+    .tl-span.visible { transform: translateY(-50%) scaleX(1); }
+    .tl-span:hover { opacity: 0.7; }
+
+    /* the programmes */
+    .tl-node {
+      position: absolute; top: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--paper); border: 1.5px solid var(--ink);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s cubic-bezier(.2,1.4,.4,1), border-color 0.2s;
+    }
+    .tl-node.visible { transform: translate(-50%, -50%) scale(1); }
+    .tl-node:hover { border-color: var(--seal); }
+
+    .tl-span:hover::after,
+    .tl-node:hover::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 13px; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em;
+      color: var(--ink-med); background: var(--paper);
+      border: 0.5px solid var(--rule); padding: 0.18rem 0.5rem;
+      white-space: nowrap; z-index: 5;
+    }
+
+    /* Years sit at the midpoint of the year they name, so a dot placed
+       by its real date lands where the eye expects it. Absolute rather
+       than space-between, which would only be evenly spaced by luck. */
+    .tl-years {
+      position: relative; height: 1.1em;
+      margin: 0.75rem 0.5rem 0;
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+    }
+    .tl-years span { position: absolute; transform: translateX(-50%); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tl-span, .tl-node { transition: none; }
+    }
+
     /* ─── SECTION HEADER ────────────────────────────────────── */
     .section-head {
       padding-top: 3.2rem;
@@ -620,6 +692,32 @@
     </ol>
   </div>
 
+  <!-- ENROLMENT TIMELINE -->
+  <div class="timeline-strip">
+    <div class="tl-legend">
+      <span class="key"><span class="bar"></span>school</span>
+      <span class="key"><span class="dot"></span>programmes &amp; selections</span>
+    </div>
+    <div class="tl-track">
+      <span class="tl-span" style="left: 5%; width: 81.7%" data-tip="[5] Delhi Public School, R.K. Puram · Apr 2022 – May 2026"></span>
+      <span class="tl-node" style="left: 47%" data-tip="[9] buildspace, s3 Cohort · May 2024"></span>
+      <span class="tl-node" style="left: 53%" data-tip="[8] Eureka! Juniors, IIT Bombay · 2024"></span>
+      <span class="tl-node" style="left: 66%" data-tip="[2] Lodha Genius Programme · May 2025"></span>
+      <span class="tl-node" style="left: 69%" data-tip="[3] Great Ideas Seminars · May 2025"></span>
+      <span class="tl-node" style="left: 72%" data-tip="[7] HKBU Summer School · Jun 2025"></span>
+      <span class="tl-node" style="left: 75.5%" data-tip="[4] Shadow the Scientists, UCSC · Aug 2025"></span>
+      <span class="tl-node" style="left: 83%" data-tip="[6] Y Combinator, Startup School · Apr 2026"></span>
+      <span class="tl-node" style="left: 88%" data-tip="[1] LG-AUP Math Apprenticeship · May 2026"></span>
+    </div>
+    <div class="tl-years">
+      <span style="left: 10%">2022</span>
+      <span style="left: 30%">2023</span>
+      <span style="left: 50%">2024</span>
+      <span style="left: 70%">2025</span>
+      <span style="left: 90%">2026</span>
+    </div>
+  </div>
+
   <!-- §1 ACADEMIC & RESEARCH PROGRAMMES -->
   <div class="section-head" id="academic-programmes">
     <span class="sec-num">§1</span>
@@ -803,7 +901,7 @@
       }
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.entry, .sidenote').forEach(el => obs.observe(el));
+  document.querySelectorAll('.entry, .sidenote, .tl-span, .tl-node').forEach(el => obs.observe(el));
 </script>
 <script src="site.js" defer></script>
 </body>
