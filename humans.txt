@@ -1,0 +1,15 @@
+/* TEAM */
+  Everything: Akshat Bhaskar
+  Location:   New Delhi, India
+  Contact:    bhaskarakshat22@gmail.com
+  Web:        https://akshatbhaskar.ninja
+
+/* SITE */
+  Stack:      Hand-written HTML, CSS, and vanilla JavaScript. No framework, no build step.
+  Fonts:      EB Garamond, Inconsolata
+  Hosting:    GitHub Pages
+  Standards:  Zero em-dashes. One accent colour per page. Every claim checkable.
+
+/* NOTES */
+  You found humans.txt, which means you are the kind of person
+  who reads the credits. Try pressing "/" anywhere on the site.
