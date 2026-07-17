@@ -690,6 +690,25 @@
       border: 0.5px solid var(--rule);
       background: var(--rule-light);
     }
+    /* Three photographs in the footprint of one plate: the tall shot
+       down the left, two wide ones stacked beside it. Keeps the 3:2
+       rhythm every other plate on this page follows. */
+    .plate-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 5px;
+      aspect-ratio: 3 / 2;
+    }
+    .plate-mosaic .plate-frame {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+    .plate-mosaic .m-tall { grid-row: 1 / 3; }
+    @media (max-width: 520px) {
+      .plate-mosaic { gap: 4px; }
+    }
+
     .plate-frame img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -929,7 +948,29 @@
     </div>
 
     <div class="entry">
-      <span class="entry-label">[2] &nbsp; May – June 2025 · Ashoka University</span>
+      <span class="entry-label">[2] &nbsp; 2025 – 26 · Delhi Public School, R.K. Puram</span>
+      <a href="dpsrkp.html" class="entry-title">President, Student Council</a>
+      <p class="entry-desc">Appointed to lead the Student Council of a 9,500+ student body after a seven-round selection process, and sworn into office by Shri V. K. Shunglu, ninth Comptroller and Auditor General of India and Vice Chairman of the DPS Society.</p>
+      <a href="dpsrkp.html" class="entry-readmore">Read more →</a>
+    </div>
+
+    <figure class="plate entry-fig">
+      <div class="plate-mosaic" data-tilt>
+        <div class="plate-frame m-tall">
+          <img loading="lazy" decoding="async" width="738" height="1246" style="object-position:top;" src="dps_president_speech.jpg" alt="Akshat Bhaskar addressing the school in the President Student Council sash" />
+        </div>
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="940" height="529" src="dps_swearing_in.jpg" alt="The Student Council appointees with Shri V. K. Shunglu at the swearing-in ceremony" />
+        </div>
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="598" height="800" style="object-position:top;" src="dps_wall_of_fame.jpg" alt="Akshat Bhaskar pointing to his name on the Delhi Public School R.K. Puram Wall of Fame" />
+        </div>
+      </div>
+      <figcaption>Addressing the school; the swearing-in by Shri V. K. Shunglu; and the R.K. Puram Wall of Fame.</figcaption>
+    </figure>
+
+    <div class="entry">
+      <span class="entry-label">[3] &nbsp; May – June 2025 · Ashoka University</span>
       <a href="lgp.html" class="entry-title">Lodha Genius Programme</a>
       <p class="entry-desc">Admitted into the fully funded Lodha Genius Programme (≈3% acceptance) for Pure Mathematics: Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates.</p>
       <a href="lgp.html" class="entry-readmore">Read more →</a>
@@ -943,7 +984,7 @@
     </figure>
 
     <div class="entry">
-      <span class="entry-label">[3] &nbsp; 2023 · Directorate of Education, Delhi</span>
+      <span class="entry-label">[4] &nbsp; 2023 · Directorate of Education, Delhi</span>
       <a href="awards.html" class="entry-title">MVPP Scholar, Rank 44 / 67,000+</a>
       <p class="entry-desc">Ranked 44th out of over 67,000 students (Top 0.06%) in Delhi's state science examination. Awarded an INR 5,000 scholarship and the Principal's Gold Medal for Academic Excellence.</p>
       <a href="awards.html" class="entry-readmore">View all awards →</a>
@@ -957,7 +998,7 @@
     </figure>
 
     <div class="entry">
-      <span class="entry-label">[4] &nbsp; July 2025 · IJRASET</span>
+      <span class="entry-label">[5] &nbsp; July 2025 · IJRASET</span>
       <a href="aipolicy.html" class="entry-title">AI Policy Research, <em>The Two Faces of Progress</em></a>
       <p class="entry-desc">Research on AI policy and existential risk under Professor Surbhi Goel (University of Pennsylvania). The paper was peer-reviewed and published internationally, then presented at the NYC STEM Research Conference, where Akshat was the only high schooler in the room.</p>
       <a href="aipolicy.html" class="entry-readmore">Read more →</a>
@@ -971,7 +1012,7 @@
     </figure>
 
     <div class="entry">
-      <span class="entry-label">[5] &nbsp; June 2025 · Ministry of Education, New Delhi</span>
+      <span class="entry-label">[6] &nbsp; June 2025 · Ministry of Education, New Delhi</span>
       <a href="goi.html" class="entry-title">Policy Intern, Ministry of Education</a>
       <p class="entry-desc">Contributed to internal policy analysis on the Samagra Shiksha Scheme at the Office of Mr. Rahul Pachori, Director, reviewing financial architecture and budget allocation under NEP 2020.</p>
       <a href="goi.html" class="entry-readmore">Read more →</a>
@@ -985,7 +1026,7 @@
     </figure>
 
     <div class="entry">
-      <span class="entry-label">[6] &nbsp; Since June 2024</span>
+      <span class="entry-label">[7] &nbsp; Since June 2024</span>
       <a href="taxcity.html" class="entry-title">CFO, TaxCity</a>
       <p class="entry-desc">Leading finance and grants at TaxCity, a government-recognised card game teaching tax filing and financial literacy. Impacted 48,000+ young adults across 30+ schools in 14 states. Recognised by the Ministry of Education.</p>
       <a href="taxcity.html" class="entry-readmore">Read more →</a>
@@ -999,7 +1040,7 @@
     </figure>
 
     <div class="entry">
-      <span class="entry-label">[7] &nbsp; Since 2023 · India Chapter</span>
+      <span class="entry-label">[8] &nbsp; Since 2023 · India Chapter</span>
       <a href="edunomix.html" class="entry-title">Founder &amp; President, Edunomix India Chapter</a>
       <p class="entry-desc">Founded the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit. Ran a nationwide essay competition across 19 states and 54 schools, taught displaced Ukrainian students, and published financial literacy research.</p>
       <a href="edunomix.html" class="entry-readmore">Read more →</a>

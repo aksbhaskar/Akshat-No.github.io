@@ -86,6 +86,10 @@
   /* ── Gentle 3D tilt on framed photos ──────────────────────── */
   if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
     document.querySelectorAll('.plate-frame, [data-tilt]').forEach(function (el) {
+      /* A mosaic is one photograph made of three. Tilting each cell on
+         its own would shear the seams apart, so let the whole block
+         tilt together (it carries data-tilt) and leave the cells be. */
+      if (el.closest('.plate-mosaic') && !el.hasAttribute('data-tilt')) return;
       el.style.transition = 'transform 0.3s ease';
       el.style.transformStyle = 'preserve-3d';
       el.addEventListener('mousemove', function (e) {

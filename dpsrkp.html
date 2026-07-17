@@ -205,33 +205,77 @@
     }
 
     /* ─── PLATES ───────────────────────────────────────────────
-       Photographs set into the memoir, captioned below the image
-       the way a printed plate would be. */
-    .dps-plate { margin: 1.8rem 0 2rem; }
+       Photographs set into the memoir like plates in a printed book.
+
+       A tall photo cannot run the full 520px measure without
+       swallowing the page, but holding it to 350px left a dead strip
+       of column beside it. So the caption moves into that strip and
+       sits on the photo's baseline: the whitespace becomes the layout
+       rather than an accident. Wide photos keep the full measure and
+       take their caption underneath. */
+    .dps-plate { margin: 2.2rem 0 2.4rem; }
     .dps-plate img {
       display: block; width: 100%; height: auto;
       border: 0.5px solid var(--rule);
-      filter: grayscale(12%) contrast(1.02);
-      transition: filter 0.4s ease;
+      filter: grayscale(14%) contrast(1.02);
+      transition: filter 0.5s ease, transform 0.5s cubic-bezier(.2,.7,.3,1);
     }
     .dps-plate:hover img { filter: grayscale(0%) contrast(1.02); }
+
     .dps-plate figcaption {
       font-family: var(--mono); font-size: 0.62rem;
       color: var(--ink-faint); letter-spacing: 0.04em;
-      line-height: 1.6; margin-top: 0.6rem;
-      padding-left: 0.7rem;
-      border-left: 1.5px solid var(--rule);
-      text-align: left;
+      line-height: 1.65; text-align: left;
     }
     .dps-plate figcaption b {
       display: block; font-weight: 500;
       font-family: var(--serif); font-style: italic;
-      font-size: 0.86rem; letter-spacing: 0;
-      color: var(--ink-med); margin-bottom: 0.2rem;
+      font-size: 0.9rem; letter-spacing: 0;
+      color: var(--ink-med); margin-bottom: 0.35rem;
     }
-    /* The tall shots would swallow the column at full width, so rein
-       them in and let the wide ones run the full measure. */
-    .dps-plate.is-portrait { max-width: 350px; }
+    /* The number that makes a photograph a plate. */
+    .dps-plate figcaption b::before {
+      content: attr(data-plate);
+      font-family: var(--mono); font-style: normal;
+      font-size: 0.58rem; letter-spacing: 0.18em;
+      color: var(--ink-ghost); display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Wide: full measure, caption beneath, hung off a short rule. */
+    .dps-plate:not(.is-portrait) figcaption {
+      margin-top: 0.75rem; padding-left: 0.85rem;
+      border-left: 1.5px solid var(--rule);
+    }
+
+    /* Tall: photo left, caption in the space beside it, on its baseline. */
+    .dps-plate.is-portrait {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      column-gap: 1.5rem;
+      align-items: end;
+    }
+    .dps-plate.is-portrait figcaption { padding-bottom: 0.2rem; }
+    /* Alternate the side so two tall plates do not march down one edge. */
+    .dps-plate.is-portrait.is-flipped { grid-template-columns: 1fr 320px; }
+    .dps-plate.is-portrait.is-flipped img { grid-column: 2; }
+    .dps-plate.is-portrait.is-flipped figcaption {
+      grid-column: 1; grid-row: 1;
+      text-align: right;
+    }
+
+    @media (max-width: 740px) {
+      .dps-plate.is-portrait,
+      .dps-plate.is-portrait.is-flipped { grid-template-columns: 1fr; row-gap: 0.75rem; }
+      .dps-plate.is-portrait img,
+      .dps-plate.is-portrait.is-flipped img { grid-column: 1; }
+      .dps-plate.is-portrait figcaption,
+      .dps-plate.is-portrait.is-flipped figcaption {
+        grid-column: 1; grid-row: auto; text-align: left;
+        padding-left: 0.85rem; padding-bottom: 0;
+        border-left: 1.5px solid var(--rule);
+      }
+    }
 
     .dps-memoir-section ul {
       list-style: none;
@@ -516,7 +560,7 @@
       <figure class="dps-plate is-portrait">
         <img src="dps_president_speech.jpg" alt="Akshat Bhaskar addressing the school in the President Student Council sash" width="738" height="1246" loading="lazy" decoding="async">
         <figcaption>
-          <b>Addressing the school</b>
+          <b data-plate="Plate I">Addressing the school</b>
           President of the 9,500+ student body at Delhi Public School, R.K. Puram, leading the Student Council in representation, governance, and school-wide initiatives.
         </figcaption>
       </figure>
@@ -524,16 +568,16 @@
       <figure class="dps-plate">
         <img src="dps_swearing_in.jpg" alt="The Student Council appointees with Shri V. K. Shunglu at the swearing-in ceremony" width="940" height="529" loading="lazy" decoding="async">
         <figcaption>
-          <b>The swearing-in</b>
+          <b data-plate="Plate II">The swearing-in</b>
           Sworn into office by Shri V. K. Shunglu, former Comptroller and Auditor General of India and Vice Chairman of the Delhi Public School Society.
         </figcaption>
       </figure>
 
       <h2>Wall of Fame</h2>
-      <figure class="dps-plate is-portrait">
+      <figure class="dps-plate is-portrait is-flipped">
         <img src="dps_wall_of_fame.jpg" alt="Akshat Bhaskar pointing to his name on the Delhi Public School R.K. Puram Wall of Fame" width="598" height="800" loading="lazy" decoding="async">
         <figcaption>
-          <b>Name on the board</b>
+          <b data-plate="Plate III">Name on the board</b>
           Honoured on the Delhi Public School, R.K. Puram Wall of Fame following my appointment as President Student Council, and in recognition of contributions across academics, research, leadership, entrepreneurship, and extracurricular excellence.
         </figcaption>
       </figure>
