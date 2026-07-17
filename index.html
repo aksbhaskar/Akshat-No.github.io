@@ -23,10 +23,18 @@
   <meta name="theme-color" content="#fffff8" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
   <link rel="apple-touch-icon" href="akshat.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- The hero is the LCP. Start it before the parser reaches the markup,
+       and let the phone take the 80KB copy instead of the 285KB one. -->
+  <link rel="preload" as="image" href="hero_president.jpg"
+        imagesrcset="hero_president_800.jpg 800w, hero_president_1200.jpg 1200w, hero_president.jpg 1600w"
+        imagesizes="(max-width: 760px) 100vw, 56vw" fetchpriority="high">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
   <script>
     /* Light by default; only a saved choice turns the lights off.
        Runs before paint so the theme never flashes. */
@@ -838,7 +846,11 @@
 
   <!-- CENTER: PHOTO -->
   <div class="hero-img-wrap">
-    <img src="hero_president.jpg" width="1600" height="1067" fetchpriority="high" decoding="async" alt="Akshat Bhaskar felicitated by President Droupadi Murmu at Rashtrapati Bhavan, January 2026" />
+    <img src="hero_president.jpg"
+         srcset="hero_president_800.jpg 800w, hero_president_1200.jpg 1200w, hero_president.jpg 1600w"
+         sizes="(max-width: 760px) 100vw, 56vw"
+         width="1600" height="1067" fetchpriority="high" decoding="async"
+         alt="Akshat Bhaskar felicitated by President Droupadi Murmu at Rashtrapati Bhavan, January 2026" />
   </div>
 
   <!-- RIGHT PANEL -->
