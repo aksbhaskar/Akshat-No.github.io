@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Decoded, the Podcast | Akshat Bhaskar</title>
-  <meta name="description" content="Decoded: conversations on economics and technology, hosted by Akshat Bhaskar. On Spotify, Apple Podcasts, and Amazon Music." />
+  <meta name="description" content="Decoded: conversations on economics and technology, hosted by Akshat Bhaskar. Recognised by Spotify for Creators in 2025 as a Marathon Show, Instant Hit Show, and Most Shared Show. On Spotify, Apple Podcasts, and Amazon Music." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatbhaskar.ninja/podcast.html" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
@@ -196,6 +196,39 @@
       .onair .lamp { animation: none; }
     }
 
+    /* ── AWARD PLAQUES ──
+       Spotify's own 2025 recognitions, mounted the way a studio hangs
+       its plates: rack labels, not stickers. */
+    .accolade-rail {
+      margin-top: 2.8rem;
+      border-top: 1px solid var(--edge);
+      border-bottom: 1px solid var(--edge);
+      padding: 1.1rem 0;
+    }
+    .rail-label {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--dim); display: block; margin-bottom: 0.85rem;
+    }
+    .accolades {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .accolade {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--white);
+      background: var(--panel);
+      border: 1px solid var(--edge);
+      border-left: 2px solid var(--signal);
+      padding: 0.45rem 0.75rem;
+    }
+    .accolade-hours {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; color: var(--grey);
+      margin-top: 0.85rem; display: block;
+    }
+    .accolade-hours b { color: var(--signal); font-weight: 600; }
+
     /* platform pills */
     .platforms {
       display: flex; justify-content: center; flex-wrap: wrap;
@@ -386,6 +419,16 @@
       <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="noopener"><i class="fab fa-spotify"></i>Spotify</a>
       <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><i class="fab fa-apple"></i>Apple Podcasts</a>
       <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><i class="fab fa-amazon"></i>Amazon Music</a>
+    </div>
+
+    <div class="accolade-rail">
+      <span class="rail-label">Spotify for Creators &nbsp;·&nbsp; Wrapped 2025</span>
+      <div class="accolades">
+        <span class="accolade">Marathon Show</span>
+        <span class="accolade">Instant Hit Show</span>
+        <span class="accolade">Most Shared Show</span>
+      </div>
+      <span class="accolade-hours">Past <b>300 listening hours</b> on Spotify</span>
     </div>
   </header>
 

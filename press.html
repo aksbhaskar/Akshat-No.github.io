@@ -210,6 +210,35 @@
     .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
     .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
 
+    /* ── FEATURED IN ──
+       National mastheads that have covered the work, set like a
+       run of nameplates above the fold. */
+    .featured-in {
+      margin: 2.4rem 0 0;
+      padding: 1.5rem 0 0.4rem;
+      text-align: center;
+    }
+    .fi-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: 1.1rem;
+    }
+    .fi-names {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      align-items: baseline; gap: 0.6rem 1.6rem;
+    }
+    .fi-names span {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.05rem, 2.6vw, 1.5rem);
+      color: var(--ink); letter-spacing: 0.01em;
+    }
+    .fi-names .dot { color: var(--ink-faint); font-weight: 400; }
+    .fi-note {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.9rem; color: var(--ink-faint);
+      margin-top: 1rem;
+    }
+
     /* ─── BODY COLUMN ───────────────────────────────────────── */
     .body-col { padding-top: 2rem; padding-bottom: 4rem; }
 
@@ -439,6 +468,19 @@
         <span>Price: one read</span>
       </div>
     </div>
+  </div>
+
+  <!-- FEATURED IN -->
+  <div class="featured-in">
+    <span class="fi-label">Featured in</span>
+    <div class="fi-names">
+      <span>The Times of India</span>
+      <span class="dot">·</span>
+      <span>The Economic Times</span>
+      <span class="dot">·</span>
+      <span>Dainik Bhaskar</span>
+    </div>
+    <p class="fi-note">National coverage of TaxCity, the financial-literacy initiative Akshat leads as CFO.</p>
   </div>
 
   <!-- §1 FEATURES -->
