@@ -17,6 +17,15 @@
     if (stored === 'dark') root.classList.add('dark');
     else root.classList.remove('dark');
 
+    /* Keep the browser chrome in step with the page: the theme-color
+       meta names each page's paper, so tint it ink at night. */
+    var metaTheme = document.querySelector('meta[name="theme-color"]');
+    var dayColor = metaTheme ? metaTheme.getAttribute('content') : null;
+    function paintChrome() {
+      if (metaTheme) metaTheme.setAttribute('content', root.classList.contains('dark') ? '#16150f' : dayColor);
+    }
+    paintChrome();
+
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.setAttribute('aria-label', 'Toggle night mode');
@@ -27,6 +36,7 @@
       var isDark = root.classList.contains('dark');
       try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
       paint();
+      paintChrome();
       if (isDark && once('dark1')) whisper('easier on the eyes. good call.');
       discover('night', true);
     });
@@ -273,7 +283,8 @@
     '%cYou opened the console. Respect.\n' +
     'This whole site is hand-written, no framework. If you poke at the source, you are my kind of person.\n' +
     'Say hi: bhaskarakshat22@gmail.com\n\n' +
-    'PS. try the Konami code:  up up down down left right left right B A',
+    'PS. try the Konami code:  up up down down left right left right B A\n' +
+    'PPS. the credits live at /humans.txt',
     'font:13px monospace;color:#888;line-height:1.6'
   );
 

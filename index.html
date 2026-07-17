@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://akshatbhaskar.ninja/og-image.jpg" />
   <meta name="theme-color" content="#fffff8" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="apple-touch-icon" href="akshat.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
   <!-- The hero is the LCP. Start it before the parser reaches the markup,
        and let the phone take the 80KB copy instead of the 285KB one. -->
   <link rel="preload" as="image" href="hero_president.jpg"
@@ -43,6 +43,14 @@
   </script>
   <link rel="stylesheet" href="theme.css">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", "@type": "WebSite",
+    "name": "Akshat Bhaskar",
+    "alternateName": "akshatbhaskar.ninja",
+    "url": "https://akshatbhaskar.ninja"
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org", "@type": "Person",
@@ -839,7 +847,7 @@
   </button>
 </div>
 
-<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
   <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
   <a class="nav-link" href="about.html">About</a>
   <a class="nav-link" href="now.html">Now</a>
