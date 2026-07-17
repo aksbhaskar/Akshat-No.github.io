@@ -204,6 +204,35 @@
       hyphens: auto;
     }
 
+    /* ─── PLATES ───────────────────────────────────────────────
+       Photographs set into the memoir, captioned below the image
+       the way a printed plate would be. */
+    .dps-plate { margin: 1.8rem 0 2rem; }
+    .dps-plate img {
+      display: block; width: 100%; height: auto;
+      border: 0.5px solid var(--rule);
+      filter: grayscale(12%) contrast(1.02);
+      transition: filter 0.4s ease;
+    }
+    .dps-plate:hover img { filter: grayscale(0%) contrast(1.02); }
+    .dps-plate figcaption {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--ink-faint); letter-spacing: 0.04em;
+      line-height: 1.6; margin-top: 0.6rem;
+      padding-left: 0.7rem;
+      border-left: 1.5px solid var(--rule);
+      text-align: left;
+    }
+    .dps-plate figcaption b {
+      display: block; font-weight: 500;
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.86rem; letter-spacing: 0;
+      color: var(--ink-med); margin-bottom: 0.2rem;
+    }
+    /* The tall shots would swallow the column at full width, so rein
+       them in and let the wide ones run the full measure. */
+    .dps-plate.is-portrait { max-width: 350px; }
+
     .dps-memoir-section ul {
       list-style: none;
       margin-bottom: 1.5rem;
@@ -483,6 +512,31 @@
       <p>
         I was appointed the President of the Student Council, Class of '26 after rigorous application, interview, and recommendation rounds. The finalists had to go through a 7-round interview process. After being appointed, I was sworn as the President Student Council by Shri V. K. Shunglu, ninth Comptroller and Auditor General of India and Vice-Chairman of the DPS Society.
       </p>
+
+      <figure class="dps-plate is-portrait">
+        <img src="dps_president_speech.jpg" alt="Akshat Bhaskar addressing the school in the President Student Council sash" width="738" height="1246" loading="lazy" decoding="async">
+        <figcaption>
+          <b>Addressing the school</b>
+          President of the 9,500+ student body at Delhi Public School, R.K. Puram, leading the Student Council in representation, governance, and school-wide initiatives.
+        </figcaption>
+      </figure>
+
+      <figure class="dps-plate">
+        <img src="dps_swearing_in.jpg" alt="The Student Council appointees with Shri V. K. Shunglu at the swearing-in ceremony" width="940" height="529" loading="lazy" decoding="async">
+        <figcaption>
+          <b>The swearing-in</b>
+          Sworn into office by Shri V. K. Shunglu, former Comptroller and Auditor General of India and Vice Chairman of the Delhi Public School Society.
+        </figcaption>
+      </figure>
+
+      <h2>Wall of Fame</h2>
+      <figure class="dps-plate is-portrait">
+        <img src="dps_wall_of_fame.jpg" alt="Akshat Bhaskar pointing to his name on the Delhi Public School R.K. Puram Wall of Fame" width="598" height="800" loading="lazy" decoding="async">
+        <figcaption>
+          <b>Name on the board</b>
+          Honoured on the Delhi Public School, R.K. Puram Wall of Fame following my appointment as President Student Council, and in recognition of contributions across academics, research, leadership, entrepreneurship, and extracurricular excellence.
+        </figcaption>
+      </figure>
 
       <h2>Activities and Achievements</h2>
       <ul>
