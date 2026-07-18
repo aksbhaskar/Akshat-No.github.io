@@ -35,6 +35,7 @@
   </script>
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <link rel="stylesheet" href="theme.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
@@ -63,6 +64,10 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
+
+    /* Icon sizing lives in theme.css too, but this page must never
+       balloon to the 300x150 SVG default if that file is slow or gone. */
+    svg.icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.125em; }
 
     body {
       background: var(--paper);
