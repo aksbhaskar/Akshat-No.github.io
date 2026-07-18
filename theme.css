@@ -16,6 +16,16 @@
 }
 .skip-link:focus { top: 0.9rem; outline: 2px solid #fffff8; outline-offset: 2px; }
 
+/* ── Inline brand icons ─────────────────────────────────────────
+   icons.svg replaced Font Awesome: same marks, one small sprite,
+   no third-party CSS. Sized like the glyphs they replaced. */
+.icon {
+  width: 1em; height: 1em;
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: -0.125em;
+}
+
 /* ── Night reading mode ─────────────────────────────────────────
    Scoped to body.paper: only the standard manuscript pages flip.
    Bespoke pages (awards hall, gym, budget...) own their palettes. */
