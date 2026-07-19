@@ -132,10 +132,8 @@
     .section-head,
     .doc-footer { grid-column: 1 / -1; }
 
-    .entries-col,
     .contact-col { grid-column: 1 / 2; }
 
-    .sidenotes-col,
     .contact-aside { grid-column: 3 / 4; }
 
     /* ─── HEADER / TITLE PAGE ──────────────────────────────── */
@@ -322,8 +320,6 @@
     .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
 
     /* ─── ENTRIES ────────────────────────────────────────────── */
-    .entries-col { padding-top: 2rem; }
-
     .entry {
       padding: 0 0 2.4rem;
       border-bottom: 0.5px solid var(--rule-light);
@@ -360,22 +356,51 @@
     }
     .entry-readmore:hover { color: var(--ink); }
 
-    /* ─── SIDENOTES ─────────────────────────────────────────── */
-    .sidenotes-col {
-      padding-top: 2rem;
-      border-left: 0.5px solid var(--rule-light);
-      padding-left: 1.6rem;
+    /* ─── THE CATALOGUE ─────────────────────────────────────
+       Selected Work runs the full measure: text on one side, the
+       entry's artifact on the other, sides alternating down the
+       page. Every entry gets its evidence. */
+    .works { grid-column: 1 / -1; }
+    .work {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(1.6rem, 4vw, 3.2rem);
+      align-items: center;
+      padding: 2.5rem 0;
+      border-bottom: 0.5px solid var(--rule-light);
+    }
+    .work:last-child { border-bottom: none; }
+    .work:nth-child(even) .work-text { order: 2; }
+    .work .entry { padding: 0; border-bottom: none; }
+    .work .entry-label { margin-top: 0; }
+    .work-media { margin: 0; }
+    .work-note {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.8rem; color: var(--ink-soft);
+      line-height: 1.6; margin-top: 0.5rem;
+    }
+    .work-note sup { font-family: var(--mono); font-style: normal; color: var(--ink-faint); margin-right: 0.3rem; }
+
+    /* Documents, not photographs: a certificate or letter must be read,
+       not cropped. Drop the fixed frame, show the whole page on paper,
+       and skip the grayscale wash that suits photos. */
+    .work-media.is-doc .plate-frame {
+      aspect-ratio: auto;
+      background: #fff;
+      padding: 0.5rem;
+      box-shadow: 0 1px 10px rgba(17,17,16,0.06);
+    }
+    .work-media.is-doc .plate-frame img {
+      height: auto;
+      object-fit: contain;
+      filter: none;
+      max-height: 460px;
+    }
+    @media (max-width: 760px) {
+      .work { grid-template-columns: 1fr; gap: 1.1rem; padding: 2rem 0; }
+      .work:nth-child(even) .work-text { order: 0; }
     }
 
-    .sidenote {
-      font-family: var(--serif); font-size: 0.76rem;
-      line-height: 1.65; color: var(--ink-soft);
-      margin-bottom: 2.2rem;
-      opacity: 0; transition: opacity 0.6s ease;
-    }
-    .sidenote.visible { opacity: 1; }
-    .sidenote sup { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); margin-right: 0.2rem; }
-    .sidenote strong { font-weight: 600; color: var(--ink-med); }
 
     /* ─── CONTACT ───────────────────────────────────────────── */
     .contact-col {
@@ -729,7 +754,6 @@
     }
 
     /* ─── INLINE FIGURES (scattered through the entries) ──────── */
-    .entry-fig { margin: 0.2rem 0 2.6rem; }
     .plate {
       opacity: 0; transform: translateY(10px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -787,8 +811,7 @@
     @media (max-width: 700px) {
       :root { --outer: 20px; }
       .document { grid-template-columns: 1fr; }
-      .entries-col, .contact-col { grid-column: 1 / -1; }
-      .sidenotes-col { display: none; }
+      .contact-col { grid-column: 1 / -1; }
       /* Keep contact details visible on mobile, they are real content,
          not supplementary sidenotes. Show below the form with a top rule. */
       .contact-aside {
@@ -827,8 +850,15 @@
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  /* Reveal is decorative; never let it hide the main content on this pass. */
+  .entry, .plate { opacity: 1 !important; transform: none !important; }
 }
 </style>
+<noscript><style>
+  /* Selected Work is the page's core content; if scripting is off, the
+     scroll-reveal observer never runs, so guarantee it is all visible. */
+  .entry, .plate { opacity: 1 !important; transform: none !important; }
+</style></noscript>
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
 <body class="paper">
@@ -1005,160 +1035,142 @@
     <span class="sec-title">Selected Work</span>
   </div>
 
-  <div class="entries-col">
+  <div class="works">
 
-    <div class="entry">
-      <span class="entry-label">[1] &nbsp; January 2026 · Rashtrapati Bhavan, New Delhi</span>
-      <a href="president.html" class="entry-title">Felicitated by the President of India</a>
-      <p class="entry-desc">Selected as 1 of 17 students nationwide to be felicitated by President Droupadi Murmu for work on Artificial Intelligence under the Government of India's SOAR initiative.</p>
-      <a href="president.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <div class="entry">
-      <span class="entry-label">[2] &nbsp; 2025 – 26 · Delhi Public School, R.K. Puram</span>
-      <a href="dpsrkp.html" class="entry-title">President, Student Council</a>
-      <p class="entry-desc">Appointed to lead the Student Council of a 9,500+ student body after a seven-round selection process, and sworn into office by Shri V. K. Shunglu, ninth Comptroller and Auditor General of India and Vice Chairman of the DPS Society.</p>
-      <a href="dpsrkp.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-mosaic" data-tilt>
-        <div class="plate-frame m-tall">
-          <img loading="lazy" decoding="async" width="738" height="1246" style="object-position:top;" src="dps_president_speech.jpg" alt="Akshat Bhaskar addressing the school in the President Student Council sash" />
-        </div>
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[1] &nbsp; January 2026 · Rashtrapati Bhavan, New Delhi</span>
+        <a href="president.html" class="entry-title">Felicitated by the President of India</a>
+        <p class="entry-desc">Selected as 1 of 17 students nationwide to be felicitated by President Droupadi Murmu for work on Artificial Intelligence under the Government of India's SOAR initiative.</p>
+        <a href="president.html" class="entry-readmore">Read more →</a>
+      </div>
+      <figure class="plate work-media">
         <div class="plate-frame">
-          <img loading="lazy" decoding="async" width="940" height="529" src="dps_swearing_in.jpg" alt="The Student Council appointees with Shri V. K. Shunglu at the swearing-in ceremony" />
+          <img loading="lazy" decoding="async" width="760" height="470" src="president_detail.jpg" alt="President Droupadi Murmu with the felicitated students at Rashtrapati Bhavan" />
         </div>
+        <figcaption>The felicitation ceremony with President Droupadi Murmu, Rashtrapati Bhavan, January 2026.</figcaption>
+        <p class="work-note"><sup>†</sup>Rashtrapati Bhavan is the official residence of the President of India, one of the largest presidential palaces in the world.</p>
+      </figure>
+    </article>
+
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[2] &nbsp; 2025 – 26 · Delhi Public School, R.K. Puram</span>
+        <a href="dpsrkp.html" class="entry-title">President, Student Council</a>
+        <p class="entry-desc">Appointed to lead the Student Council of a 9,500+ student body after a seven-round selection process, and sworn into office by Shri V. K. Shunglu, ninth Comptroller and Auditor General of India and Vice Chairman of the DPS Society.</p>
+        <a href="dpsrkp.html" class="entry-readmore">Read more →</a>
+      </div>
+      <figure class="plate work-media">
+        <div class="plate-mosaic" data-tilt>
+          <div class="plate-frame m-tall">
+            <img loading="lazy" decoding="async" width="738" height="1246" style="object-position:top;" src="dps_president_speech.jpg" alt="Akshat Bhaskar addressing the school in the President Student Council sash" />
+          </div>
+          <div class="plate-frame">
+            <img loading="lazy" decoding="async" width="940" height="529" src="dps_swearing_in.jpg" alt="The Student Council appointees with Shri V. K. Shunglu at the swearing-in ceremony" />
+          </div>
+          <div class="plate-frame">
+            <img loading="lazy" decoding="async" width="598" height="800" style="object-position:top;" src="dps_wall_of_fame.jpg" alt="Akshat Bhaskar pointing to his name on the Delhi Public School R.K. Puram Wall of Fame" />
+          </div>
+        </div>
+        <figcaption>Addressing the school; the swearing-in by Shri V. K. Shunglu; and the R.K. Puram Wall of Fame.</figcaption>
+      </figure>
+    </article>
+
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[3] &nbsp; May – June 2025 · Ashoka University</span>
+        <a href="lgp.html" class="entry-title">Lodha Genius Programme</a>
+        <p class="entry-desc">Admitted into the fully funded Lodha Genius Programme (≈3% acceptance) for Pure Mathematics: Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates.</p>
+        <a href="lgp.html" class="entry-readmore">Read more →</a>
+      </div>
+      <figure class="plate work-media">
         <div class="plate-frame">
-          <img loading="lazy" decoding="async" width="598" height="800" style="object-position:top;" src="dps_wall_of_fame.jpg" alt="Akshat Bhaskar pointing to his name on the Delhi Public School R.K. Puram Wall of Fame" />
+          <img loading="lazy" decoding="async" width="1100" height="799" src="plate_paul.jpg" alt="Akshat Bhaskar with Nobel Laureate Sir Paul Nurse at the Lodha Genius Programme" />
         </div>
+        <figcaption>With Sir Paul Nurse, Nobel Laureate, at the Lodha Genius Programme.</figcaption>
+        <p class="work-note"><sup>‡</sup>The Lodha Genius Programme is a fully funded residential programme at Ashoka University for India's most mathematically talented students. Acceptance rate: 3.2%.</p>
+      </figure>
+    </article>
+
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[4] &nbsp; 2023 · Directorate of Education, Delhi</span>
+        <a href="awards.html" class="entry-title">MVPP Scholar, Rank 44 / 67,000+</a>
+        <p class="entry-desc">Ranked 44th out of over 67,000 students (Top 0.06%) in Delhi's state science examination. Awarded an INR 5,000 scholarship and the Principal's Gold Medal for Academic Excellence.</p>
+        <a href="awards.html" class="entry-readmore">View all awards →</a>
       </div>
-      <figcaption>Addressing the school; the swearing-in by Shri V. K. Shunglu; and the R.K. Puram Wall of Fame.</figcaption>
-    </figure>
+      <figure class="plate work-media is-doc">
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="1280" height="991" src="mvpp_medal.jpg" alt="Certificate of Appreciation from Delhi Public School R.K. Puram, awarding Akshat Bhaskar a gold medal for excellence in academics under MVPP" />
+        </div>
+        <figcaption>The Principal's Gold Medal citation for MVPP, 2022 – 23.</figcaption>
+        <p class="work-note"><sup>§</sup>MVPP (Mukhyamantri Vigyan Pratibha Pariksha) is Delhi's state merit scholarship exam, taken by students from over 900 schools.</p>
+      </figure>
+    </article>
 
-    <div class="entry">
-      <span class="entry-label">[3] &nbsp; May – June 2025 · Ashoka University</span>
-      <a href="lgp.html" class="entry-title">Lodha Genius Programme</a>
-      <p class="entry-desc">Admitted into the fully funded Lodha Genius Programme (≈3% acceptance) for Pure Mathematics: Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates.</p>
-      <a href="lgp.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="494" height="878" src="plate_lgp.jpg" alt="Akshat Bhaskar on stage at the Lodha Genius Programme, Ashoka University" />
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[5] &nbsp; July 2025 · IJRASET</span>
+        <a href="aipolicy.html" class="entry-title">AI Policy Research, <em>The Two Faces of Progress</em></a>
+        <p class="entry-desc">Research on AI policy and existential risk under Professor Surbhi Goel (University of Pennsylvania). The paper was peer-reviewed and published internationally, then presented at the NYC STEM Research Conference, where Akshat was the only high schooler in the room.</p>
+        <a href="aipolicy.html" class="entry-readmore">Read more →</a>
       </div>
-      <figcaption>On stage at the Lodha Genius Programme, Ashoka University.</figcaption>
-    </figure>
+      <figure class="plate work-media">
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="688" height="622" style="object-position:top;" src="plate_paper.jpg" alt="Published research paper, The Two Faces of Progress, IJRASET 2025" />
+        </div>
+        <figcaption>Peer-reviewed and published: <em>The Two Faces of Progress</em>, IJRASET (2025).</figcaption>
+        <p class="work-note"><sup>¶</sup>Prof. Surbhi Goel is a faculty member at the University of Pennsylvania. The paper appears in IJRASET, Volume 13, Issue 7, 2025.</p>
+      </figure>
+    </article>
 
-    <div class="entry">
-      <span class="entry-label">[4] &nbsp; 2023 · Directorate of Education, Delhi</span>
-      <a href="awards.html" class="entry-title">MVPP Scholar, Rank 44 / 67,000+</a>
-      <p class="entry-desc">Ranked 44th out of over 67,000 students (Top 0.06%) in Delhi's state science examination. Awarded an INR 5,000 scholarship and the Principal's Gold Medal for Academic Excellence.</p>
-      <a href="awards.html" class="entry-readmore">View all awards →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="1100" height="799" src="plate_paul.jpg" alt="Akshat Bhaskar with Nobel Laureate Sir Paul Nurse at the Lodha Genius Programme" />
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[6] &nbsp; June 2025 · Ministry of Education, New Delhi</span>
+        <a href="goi.html" class="entry-title">Policy Intern, Ministry of Education</a>
+        <p class="entry-desc">Contributed to internal policy analysis on the Samagra Shiksha Scheme at the Office of Mr. Rahul Pachori, Director, reviewing financial architecture and budget allocation under NEP 2020.</p>
+        <a href="goi.html" class="entry-readmore">Read more →</a>
       </div>
-      <figcaption>With Sir Paul Nurse, Nobel Laureate, at the Lodha Genius Programme.</figcaption>
-    </figure>
+      <figure class="plate work-media is-doc">
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="766" height="1079" style="object-position:top;" src="hero_goi.jpg" alt="Internship certification letter from the Office of the Director, Ministry of Education, Government of India" />
+        </div>
+        <figcaption>The letter, from the Office of the Director, Ministry of Education.</figcaption>
+        <p class="work-note"><sup>‖</sup>The Samagra Shiksha Scheme is India's flagship integrated school education programme under the National Education Policy 2020.</p>
+      </figure>
+    </article>
 
-    <div class="entry">
-      <span class="entry-label">[5] &nbsp; July 2025 · IJRASET</span>
-      <a href="aipolicy.html" class="entry-title">AI Policy Research, <em>The Two Faces of Progress</em></a>
-      <p class="entry-desc">Research on AI policy and existential risk under Professor Surbhi Goel (University of Pennsylvania). The paper was peer-reviewed and published internationally, then presented at the NYC STEM Research Conference, where Akshat was the only high schooler in the room.</p>
-      <a href="aipolicy.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="688" height="622" style="object-position:top;" src="plate_paper.jpg" alt="Published research paper, The Two Faces of Progress, IJRASET 2025" />
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[7] &nbsp; Since June 2024</span>
+        <a href="taxcity.html" class="entry-title">CFO, TaxCity</a>
+        <p class="entry-desc">Leading finance and grants at TaxCity, a government-recognised card game teaching tax filing and financial literacy. Secured $120,000+ in grants and reached 79,000+ students in India and across 27 countries. Recognised by the Ministry of Education.</p>
+        <a href="taxcity.html" class="entry-readmore">Read more →</a>
       </div>
-      <figcaption>Peer-reviewed and published: <em>The Two Faces of Progress</em>, IJRASET (2025).</figcaption>
-    </figure>
+      <figure class="plate work-media">
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="1100" height="825" src="plate_yc.jpg" alt="Akshat Bhaskar at Y Combinator Startup School India" />
+        </div>
+        <figcaption>Y Combinator Startup School India, where the financial-literacy work was pitched to YC partner Jared Friedman.</figcaption>
+        <p class="work-note"><sup>**</sup>TaxCity has received formal recognition from the Ministry of Education, Government of India.</p>
+      </figure>
+    </article>
 
-    <div class="entry">
-      <span class="entry-label">[6] &nbsp; June 2025 · Ministry of Education, New Delhi</span>
-      <a href="goi.html" class="entry-title">Policy Intern, Ministry of Education</a>
-      <p class="entry-desc">Contributed to internal policy analysis on the Samagra Shiksha Scheme at the Office of Mr. Rahul Pachori, Director, reviewing financial architecture and budget allocation under NEP 2020.</p>
-      <a href="goi.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="1100" height="825" src="plate_gis.jpg" alt="Akshat Bhaskar at the Great Ideas Seminar, Ashoka University" />
+    <article class="work">
+      <div class="entry work-text">
+        <span class="entry-label">[8] &nbsp; Since 2023 · India Chapter</span>
+        <a href="edunomix.html" class="entry-title">Founder &amp; President, Edunomix India Chapter</a>
+        <p class="entry-desc">Founded the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit. Ran a nationwide essay competition across 19 states and 54 schools, taught displaced Ukrainian students, and published financial literacy research.</p>
+        <a href="edunomix.html" class="entry-readmore">Read more →</a>
       </div>
-      <figcaption>At the Great Ideas Seminar, meeting Nobel laureates and leading thinkers.</figcaption>
-    </figure>
-
-    <div class="entry">
-      <span class="entry-label">[7] &nbsp; Since June 2024</span>
-      <a href="taxcity.html" class="entry-title">CFO, TaxCity</a>
-      <p class="entry-desc">Leading finance and grants at TaxCity, a government-recognised card game teaching tax filing and financial literacy. Secured $120,000+ in grants and reached 79,000+ students in India and across 27 countries. Recognised by the Ministry of Education.</p>
-      <a href="taxcity.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="1100" height="825" src="plate_yc.jpg" alt="Akshat Bhaskar at Y Combinator Startup School India" />
-      </div>
-      <figcaption>Y Combinator Startup School India, with a founder from the YC network.</figcaption>
-    </figure>
-
-    <div class="entry">
-      <span class="entry-label">[8] &nbsp; Since 2023 · India Chapter</span>
-      <a href="edunomix.html" class="entry-title">Founder &amp; President, Edunomix India Chapter</a>
-      <p class="entry-desc">Founded the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit. Ran a nationwide essay competition across 19 states and 54 schools, taught displaced Ukrainian students, and published financial literacy research.</p>
-      <a href="edunomix.html" class="entry-readmore">Read more →</a>
-    </div>
-
-    <figure class="plate entry-fig">
-      <div class="plate-frame">
-        <img loading="lazy" decoding="async" width="1100" height="825" src="plate_groww.jpg" alt="Y Combinator Startup School India main hall, Groww fireside" />
-      </div>
-      <figcaption>Y Combinator Startup School India, the Groww fireside.</figcaption>
-    </figure>
-
-  </div>
-
-  <!-- SIDENOTES -->
-  <div class="sidenotes-col" aria-hidden="true">
-
-    <div class="sidenote">
-      <sup>†</sup>
-      <strong>Rashtrapati Bhavan</strong> is the official residence of the President of India, one of the largest presidential palaces in the world.
-    </div>
-
-    <div class="sidenote">
-      <sup>‡</sup>
-      The <strong>Lodha Genius Programme</strong> is a fully funded residential programme at Ashoka University for India's most mathematically talented students. Acceptance rate: 3.2%.
-    </div>
-
-    <div class="sidenote">
-      <sup>§</sup>
-      <strong>MVPP</strong> (Mukhyamantri Vigyan Pratibha Pariksha) is Delhi's state merit scholarship exam, taken by students from over 900 schools.
-    </div>
-
-    <div class="sidenote">
-      <sup>¶</sup>
-      Prof. Surbhi Goel is a faculty member at the <strong>University of Pennsylvania</strong>. The resulting paper, <em>The Two Faces of Progress</em>, appears in IJRASET (Volume 13, Issue 7, 2025).
-    </div>
-
-    <div class="sidenote">
-      <sup>‖</sup>
-      The <strong>Samagra Shiksha Scheme</strong> is India's flagship integrated school education programme under the National Education Policy 2020.
-    </div>
-
-    <div class="sidenote">
-      <sup>**</sup>
-      <strong>TaxCity</strong> has reached students across 14 Indian states and received formal recognition from the Ministry of Education, Government of India.
-    </div>
-
-    <div class="sidenote">
-      <sup>††</sup>
-      <strong>Edunomix Institute</strong> is a US 501(c)(3) nonprofit focused on financial and economic education. Akshat's India Chapter is the first in South Asia.
-    </div>
+      <figure class="plate work-media is-doc">
+        <div class="plate-frame">
+          <img loading="lazy" decoding="async" width="1895" height="599" src="hero_edunomix.jpg" alt="The Edunomix India Economics Essay Competition announcement, naming Akshat Bhaskar as organiser" />
+        </div>
+        <figcaption>The nationwide essay competition, as announced by the Institute.</figcaption>
+        <p class="work-note"><sup>††</sup>Edunomix Institute is a US 501(c)(3) nonprofit focused on financial and economic education. The India Chapter is the first in South Asia.</p>
+      </figure>
+    </article>
 
   </div>
 
@@ -1258,7 +1270,7 @@
       }
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.entry, .sidenote, .plate').forEach(el => obs.observe(el));
+  document.querySelectorAll('.entry, .plate').forEach(el => obs.observe(el));
 
   const form   = document.getElementById('contact-form');
   const btn    = document.getElementById('submit-btn');
