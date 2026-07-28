@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://akshatbhaskar.ninja/sitemap.xml
+Sitemap: https://akshatb.com/sitemap.xml
