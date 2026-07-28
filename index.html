@@ -480,6 +480,42 @@
     }
     .contact-aside a:hover { color: var(--ink); }
 
+    /* ─── HOMEPAGE MEDIA STRIP ─────────────────────────────────
+       A short reel of the archive, linking to the full gallery. */
+    .media-strip { grid-column: 1 / -1; margin-top: 1.4rem; }
+    .media-reel {
+      display: grid; grid-auto-flow: column;
+      grid-auto-columns: minmax(150px, 1fr);
+      gap: 0.7rem; overflow-x: auto; padding-bottom: 0.6rem;
+      scroll-snap-type: x proximity;
+    }
+    .media-reel a { scroll-snap-align: start; display: block; text-decoration: none; }
+    .media-reel .mr-frame {
+      width: 100%; aspect-ratio: 4 / 3; overflow: hidden;
+      border: 0.5px solid var(--rule); background: var(--rule-light);
+    }
+    .media-reel img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(12%); transition: filter 0.4s ease, transform 0.5s ease;
+    }
+    .media-reel a:hover img { filter: grayscale(0%); transform: scale(1.03); }
+    .media-reel .mr-cap {
+      display: block; font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.04em; color: var(--ink-faint);
+      margin-top: 0.4rem; line-height: 1.4;
+    }
+    .media-more {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--mono); font-size: 0.66rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-med); text-decoration: none; margin-top: 1rem;
+      border-bottom: 0.5px solid var(--rule); padding-bottom: 0.15rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .media-more:hover { color: var(--ink); border-color: var(--ink); }
+    .media-more .arr { transition: transform 0.2s; }
+    .media-more:hover .arr { transform: translateX(3px); }
+
     /* ─── FOOTER ───────────────────────────────────────────── */
     .doc-footer {
       border-top: 0.5px solid var(--ink);
@@ -551,6 +587,7 @@
     .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
     .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
     .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
+    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
     .nav-overlay a.nav-link:hover { color: rgba(255,255,248,0.9); }
     .nav-hr {
       width: 28px; height: 0.5px; background: rgba(255,255,248,0.15);
@@ -883,6 +920,7 @@
   <a class="nav-link" href="awards.html">Awards</a>
   <a class="nav-link" href="research.html">Research</a>
   <a class="nav-link" href="articles.html">Articles</a>
+  <a class="nav-link" href="media.html">Media</a>
   <a class="nav-link" href="podcast.html">Podcast</a>
   <a class="nav-link" href="bookshelf.html">Bookshelf</a>
   <a class="nav-link" href="connect.html">Connect</a></div>
@@ -1174,9 +1212,27 @@
 
   </div>
 
-  <!-- §2 CORRESPONDENCE -->
-  <div class="section-head" id="contact">
+  <!-- §2 MEDIA -->
+  <div class="section-head" id="media">
     <span class="sec-num">§2</span>
+    <span class="sec-title">In Pictures</span>
+  </div>
+
+  <div class="media-strip">
+    <div class="media-reel">
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="president_detail.jpg" alt="With President Droupadi Murmu at Rashtrapati Bhavan"></div><span class="mr-cap">Rashtrapati Bhavan</span></a>
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="dps_president_speech.jpg" alt="Addressing the school as President Student Council"></div><span class="mr-cap">President, Student Council</span></a>
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="paul.jpg" alt="With Nobel Laureate Sir Paul Nurse"></div><span class="mr-cap">With Sir Paul Nurse</span></a>
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="plate_paper.jpg" alt="Peer-reviewed paper in IJRASET"></div><span class="mr-cap">Published research</span></a>
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025"></div><span class="mr-cap">Decoded, Spotify Wrapped</span></a>
+      <a href="media.html"><div class="mr-frame"><img loading="lazy" decoding="async" src="ycstage.jpg" alt="Y Combinator Startup School India"></div><span class="mr-cap">Y Combinator</span></a>
+    </div>
+    <a href="media.html" class="media-more">View the full archive <span class="arr">→</span></a>
+  </div>
+
+  <!-- §3 CORRESPONDENCE -->
+  <div class="section-head" id="contact">
+    <span class="sec-num">§3</span>
     <span class="sec-title">Correspondence</span>
   </div>
 
