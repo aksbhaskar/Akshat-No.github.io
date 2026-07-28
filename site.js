@@ -326,7 +326,7 @@
       document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
     } catch (e) {}
   }
-  function docTitle() { return document.title.replace(/\s*[|]\s*Akshat Bhaskar\s*$/, '').trim() || 'akshatbhaskar.ninja'; }
+  function docTitle() { return document.title.replace(/\s*[|]\s*Akshat Bhaskar\s*$/, '').trim() || 'akshatb.com'; }
 
   /* Soft page fade on internal navigation */
   if (!reduceMotion) root.classList.add('page-fade');

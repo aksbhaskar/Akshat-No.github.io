@@ -2,7 +2,7 @@
   Everything: Akshat Bhaskar
   Location:   New Delhi, India
   Contact:    bhaskarakshat22@gmail.com
-  Web:        https://akshatbhaskar.ninja
+  Web:        https://akshatb.com
 
 /* SITE */
   Stack:      Hand-written HTML, CSS, and vanilla JavaScript. No framework, no build step.
