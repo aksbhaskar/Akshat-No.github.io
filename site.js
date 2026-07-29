@@ -186,13 +186,9 @@
     taxcity:      { end: 'yes. taxes. thrilling, i know.' },
     podcast:      { end: 'give it a listen sometime?' },
     press:        { end: 'hi to any journalists reading this.' },
-    bookshelf:    { end: 'found your next read yet?' },
-    betweentheworldandme: { end: 'worth the read. genuinely.' },
-    budget:       { end: 'now go check your real bank balance.' },
-    top1000:      { end: 'how many could you actually pull off?' },
+    bookshelf:    { end: 'found your next read yet?' },
     yc:           { end: 'startup school was a trip.' },
-    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
-    policypivot:  { end: 'small policy, big ripple.' },
+    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
     pi:           { end: '3.14159 26535... ok i will stop.' },
     '404':        { end: 'lost? happens to the best of us.' }
   };
