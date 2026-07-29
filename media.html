@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Media | Akshat Bhaskar</title>
-  <meta name="description" content="A visual archive of Akshat Bhaskar's work: the presidential felicitation, the Lodha Genius Programme, TaxCity, Decoded, research, and service, in photographs and documents." />
+  <meta name="description" content="A visual archive of Akshat Bhaskar's work in photographs, certificates, and documents. Every frame links to the page it belongs to." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatb.com/media.html" />
   <meta name="theme-color" content="#f6f5f1">
@@ -27,49 +27,33 @@
   <link rel="stylesheet" href="theme.css">
 
   <style>
-    /* ─── VARIABLES ─── The archive: cool paper, ink, one archival blue. */
     :root {
-      --paper:      #f6f5f1;
-      --ink:        #17181c;
-      --ink-med:    #3a3c42;
-      --ink-soft:   #62646c;
-      --ink-faint:  #6c6e77;
-      --rule:       #d7d6cf;
-      --rule-light: #e7e6df;
-      --accent:     #3b4a63;
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(20px, 4vw, 56px);
-      --max:        1120px;
+      --paper:#f6f5f1; --ink:#17181c; --ink-med:#3a3c42; --ink-soft:#62646c; --ink-faint:#6c6e77;
+      --rule:#d7d6cf; --rule-light:#e7e6df; --accent:#3b4a63;
+      --serif:'EB Garamond','Palatino Linotype',Georgia,serif; --mono:'Inconsolata','Courier New',monospace;
+      --outer:clamp(20px,4vw,56px); --max:1180px;
     }
-    html.dark { --accent: #93a6c4; }
+    html.dark { --accent:#93a6c4; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { font-size:16px; scroll-behavior:smooth; }
+    body { background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:1.0625rem; line-height:1.7; -webkit-font-smoothing:antialiased; min-height:100vh; }
+    ::selection { background:rgba(59,74,99,0.18); }
+    .progress-rule { position:fixed; top:0; left:0; height:1px; width:0%; background:var(--accent); z-index:999; transition:width 0.1s linear; }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-    body {
-      background: var(--paper); color: var(--ink);
-      font-family: var(--serif); font-size: 1.0625rem; line-height: 1.7;
-      -webkit-font-smoothing: antialiased; min-height: 100vh;
-    }
-    ::selection { background: rgba(59,74,99,0.18); }
-
-    .progress-rule { position: fixed; top: 0; left: 0; height: 1px; width: 0%; background: var(--accent); z-index: 999; transition: width 0.1s linear; }
-
-    /* topbar / nav (shared grammar) */
-    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(246,245,241,0.92); backdrop-filter: blur(8px); border-bottom: 0.5px solid rgba(215,214,207,0.5); }
-    html.dark .topbar { background: rgba(22,21,15,0.9); }
-    .topbar-logo { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.07em; text-decoration: none; transition: color 0.2s; }
-    .topbar-logo:hover { color: var(--ink); }
-    .hamburger { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 4px; min-width: 24px; min-height: 24px; }
-    .hamburger span { display: block; width: 20px; height: 0.5px; background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center; }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-    .nav-overlay { position: fixed; inset: 0; z-index: 190; background: rgba(23,24,28,0.96); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 5rem 4rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay a.nav-link { font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem); font-weight: 400; font-style: italic; color: rgba(246,245,241,0.5); line-height: 1.28; opacity: 0; transform: translateX(-10px); transition: color 0.25s, transform 0.35s, opacity 0.35s; text-decoration: none; display: block; }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
+    .topbar { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.2rem 3rem; background:rgba(246,245,241,0.92); backdrop-filter:blur(8px); border-bottom:0.5px solid rgba(215,214,207,0.5); }
+    html.dark .topbar { background:rgba(22,21,15,0.9); }
+    .topbar-logo { font-family:var(--mono); font-size:0.68rem; color:var(--ink-faint); letter-spacing:0.07em; text-decoration:none; transition:color 0.2s; }
+    .topbar-logo:hover { color:var(--ink); }
+    .hamburger { background:none; border:none; cursor:pointer; display:flex; flex-direction:column; justify-content:center; gap:5px; padding:4px; min-width:24px; min-height:24px; }
+    .hamburger span { display:block; width:20px; height:0.5px; background:var(--ink-faint); transition:all 0.3s ease; transform-origin:center; }
+    .hamburger:hover span { background:var(--ink); }
+    .hamburger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+    .nav-overlay { position:fixed; inset:0; z-index:190; background:rgba(23,24,28,0.96); backdrop-filter:blur(8px); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:5rem 4rem; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    .nav-overlay.open { opacity:1; pointer-events:all; }
+    .nav-overlay a.nav-link { font-family:var(--serif); font-size:clamp(1.4rem,3.1vw,2.1rem); font-weight:400; font-style:italic; color:rgba(246,245,241,0.5); line-height:1.28; opacity:0; transform:translateX(-10px); transition:color 0.25s,transform 0.35s,opacity 0.35s; text-decoration:none; display:block; }
+    .nav-overlay.open a.nav-link { opacity:1; transform:translateX(0); }
     .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
     .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
     .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
@@ -82,53 +66,47 @@
     .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
     .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
     .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: rgba(246,245,241,0.95); }
-    .nav-hr { width: 28px; height: 0.5px; background: rgba(246,245,241,0.15); margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s; }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row { display: flex; gap: 1.2rem; opacity: 0; transform: translateX(-6px); transition: opacity 0.35s 0.26s, transform 0.35s 0.26s; }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(246,245,241,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(246,245,241,0.9); }
-    .icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.125em; }
+    .nav-overlay a.nav-link:hover { color:rgba(246,245,241,0.95); }
+    .nav-hr { width:28px; height:0.5px; background:rgba(246,245,241,0.15); margin:1.3rem 0; opacity:0; transition:opacity 0.35s ease 0.22s; }
+    .nav-overlay.open .nav-hr { opacity:1; }
+    .nav-socials-row { display:flex; gap:1.2rem; opacity:0; transform:translateX(-6px); transition:opacity 0.35s 0.26s,transform 0.35s 0.26s; }
+    .nav-overlay.open .nav-socials-row { opacity:1; transform:translateX(0); }
+    .nav-socials-row a { font-size:0.82rem; color:rgba(246,245,241,0.35); transition:color 0.2s; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:24px; }
+    .nav-socials-row a:hover { color:rgba(246,245,241,0.9); }
+    .icon { width:1em; height:1em; fill:currentColor; display:inline-block; vertical-align:-0.125em; }
 
-    /* page */
-    .page { max-width: var(--max); margin: 0 auto; padding: 0 var(--outer); }
-    .m-head { padding-top: 116px; padding-bottom: 0.6rem; }
-    .m-crumbs { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.06em; display: flex; gap: 0.55rem; align-items: center; }
-    .m-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
-    .m-crumbs a:hover { color: var(--ink); }
-    .m-crumbs .sep { color: var(--rule); }
-    h1.m-title { font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 3.9rem); font-weight: 400; letter-spacing: 0.01em; line-height: 1; margin: 2.2rem 0 0; }
-    .m-sub { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ink-soft); margin-top: 0.9rem; max-width: 52ch; }
-    .m-rule { border: none; border-top: 1px solid var(--ink); margin: 2rem 0 0; }
+    .page { max-width:var(--max); margin:0 auto; padding:0 var(--outer); }
+    .m-head { padding-top:116px; padding-bottom:0.6rem; }
+    .m-crumbs { font-family:var(--mono); font-size:0.66rem; color:var(--ink-faint); letter-spacing:0.06em; display:flex; gap:0.55rem; align-items:center; }
+    .m-crumbs a { color:var(--ink-faint); text-decoration:none; transition:color 0.2s; }
+    .m-crumbs a:hover { color:var(--ink); }
+    .m-crumbs .sep { color:var(--rule); }
+    h1.m-title { font-family:var(--serif); font-size:clamp(2.6rem,7vw,3.9rem); font-weight:400; letter-spacing:0.01em; line-height:1; margin:2.2rem 0 0; }
+    .m-sub { font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--ink-soft); margin-top:0.9rem; max-width:52ch; }
+    .m-rule { border:none; border-top:1px solid var(--ink); margin:2rem 0 2.4rem; }
 
-    /* section labels */
-    .m-section-label { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.4rem; }
-    .m-section-label span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
-    .m-section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+    /* one shuffled masonry wall, no sections */
+    .m-grid { columns:4 220px; column-gap:0.9rem; }
+    @media (max-width:900px){ .m-grid { columns:3 200px; } }
+    @media (max-width:560px){ .m-grid { columns:2 150px; column-gap:0.6rem; } }
+    .m-tile { position:relative; display:inline-block; width:100%; margin:0 0 0.9rem; break-inside:avoid; text-decoration:none; color:inherit; overflow:hidden; border:0.5px solid var(--rule); }
+    .m-tile img { display:block; width:100%; height:auto; background:var(--rule-light); filter:grayscale(10%); transition:filter 0.4s ease, transform 0.5s cubic-bezier(.2,.7,.3,1); }
+    .m-tile:hover img { filter:grayscale(0%); transform:scale(1.04); }
+    .m-go { position:absolute; left:0; right:0; bottom:0; padding:1.4rem 0.7rem 0.55rem; font-family:var(--mono); font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:linear-gradient(to top, rgba(15,16,20,0.82), rgba(15,16,20,0)); opacity:0; transform:translateY(6px); transition:opacity 0.3s ease, transform 0.3s ease; }
+    .m-tile:hover .m-go { opacity:1; transform:translateY(0); }
 
-    /* masonry grid via CSS columns */
-    .m-grid { columns: 3 260px; column-gap: 1.2rem; }
-    @media (max-width: 640px) { .m-grid { columns: 1; } }
-    .m-tile { display: inline-block; width: 100%; margin: 0 0 1.2rem; break-inside: avoid; text-decoration: none; color: inherit; }
-    .m-tile img { display: block; width: 100%; height: auto; border: 0.5px solid var(--rule); background: var(--rule-light); filter: grayscale(8%); transition: filter 0.4s ease, transform 0.4s cubic-bezier(.2,.7,.3,1), box-shadow 0.4s ease; }
-    .m-tile:hover img { filter: grayscale(0%); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(23,24,28,0.10); }
-    .m-cap { display: block; font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--ink-med); line-height: 1.5; margin-top: 0.55rem; }
-    .m-link { display: block; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.3rem; transition: color 0.2s; }
-    .m-tile:hover .m-link { color: var(--accent); }
-
-    .m-foot { margin: 3.5rem 0 0; padding: 1.4rem 0 0; border-top: 1px solid var(--ink); font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); }
-    .doc-footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-text { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { color: var(--rule); font-size: 0.85rem; transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--accent); }
-    @media (max-width: 560px) { .topbar { padding: 1rem 1.4rem; } .nav-overlay { padding: 4rem 2rem; } }
+    .m-foot { margin:2.6rem 0 0; padding:1.4rem 0 0; border-top:1px solid var(--ink); font-family:var(--serif); font-style:italic; font-size:0.95rem; color:var(--ink-soft); }
+    .doc-footer { margin-top:3rem; padding:2rem 0 3rem; border-top:0.5px solid var(--rule); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .footer-text { font-family:var(--mono); font-size:0.66rem; color:var(--ink-faint); letter-spacing:0.05em; }
+    .footer-socials { display:flex; gap:1.1rem; }
+    .footer-socials a { color:var(--rule); font-size:0.85rem; transition:color 0.2s; display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:24px; }
+    .footer-socials a:hover { color:var(--accent); }
+    @media (max-width:560px){ .topbar { padding:1rem 1.4rem; } .nav-overlay { padding:4rem 2rem; } }
+    @media (prefers-reduced-motion: reduce){ .m-tile img { transition:none; } .m-tile:hover img { transform:none; } }
   </style>
 </head>
 <body class="paper">
 <a class="skip-link" href="#main">Skip to content</a>
-
 <div class="progress-rule" id="prog"></div>
 
 <div class="topbar">
@@ -162,311 +140,386 @@
   <header class="m-head">
     <div class="m-crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Media</span></div>
     <h1 class="m-title">Media</h1>
-    <p class="m-sub">A visual archive: the photographs, certificates, and documents behind the record. Each frame links back to the story it belongs to.</p>
+    <p class="m-sub">Every photograph, certificate, and document, in no particular order. Tap any frame to reach the story behind it.</p>
     <hr class="m-rule">
   </header>
 
-    <div class="m-section-label"><span>Felicitated by the President of India</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="president.html">
-        <img loading="lazy" decoding="async" src="president_detail.jpg" alt="The felicitation ceremony with President Droupadi Murmu, Rashtrapati Bhavan, January 2026.">
-        <span class="m-cap">The felicitation ceremony with President Droupadi Murmu, Rashtrapati Bhavan, January 2026.</span>
-        <span class="m-link">president &rarr;</span>
+  <div class="m-grid">
+      <a class="m-tile" href="taxcity.html" aria-label="TaxCity">
+        <img loading="lazy" decoding="async" src="hero_taxcity.jpg" alt="TaxCity">
+        <span class="m-go">TaxCity &rarr;</span>
       </a>
-    </div>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hari.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="media_number_theory.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="brian.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="plate_paul.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="mvpp_medal.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="about.html" aria-label="About">
+        <img loading="lazy" decoding="async" src="media_un_desertification.jpg" alt="About">
+        <span class="m-go">About &rarr;</span>
+      </a>
+      <a class="m-tile" href="research.html" aria-label="Research">
+        <img loading="lazy" decoding="async" src="hero_research.jpg" alt="Research">
+        <span class="m-go">Research &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_ioqm_delhi.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_nsic.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice3.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="mossi.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_nyc_stem.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="aipolicy.html" aria-label="AI Policy Research">
+        <img loading="lazy" decoding="async" src="media_ijraset_cert.jpg" alt="AI Policy Research">
+        <span class="m-go">AI Policy Research &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hida.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="certificate.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_dila_cert.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hida2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_daydream.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hida3.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_tks.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="space.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="meesho.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_sebi.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="talwar2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice1.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="plate_groww.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="edunomix.html" aria-label="Edunomix India">
+        <img loading="lazy" decoding="async" src="hero_edunomix.jpg" alt="Edunomix India">
+        <span class="m-go">Edunomix India &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hari2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="president.html" aria-label="The President of India">
+        <img loading="lazy" decoding="async" src="hero_president.jpg" alt="The President of India">
+        <span class="m-go">The President of India &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="media_ta_badge.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="aaditjared.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="media_lgp_schedule.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="paul3.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="media_yc_ticket.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="research.html" aria-label="Research">
+        <img loading="lazy" decoding="async" src="plate_paper.jpg" alt="Research">
+        <span class="m-go">Research &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="talwar3.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="groww.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="brigitte.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="thomas2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_celestecon.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="paul4.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="ycvenue.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_abhyuday.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="talwar.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="plate_gis.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice2.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="media_dps_award.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="dps_president_speech.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="ycstage.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="dps_wall_of_fame.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hida4.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="podcast.html" aria-label="Decoded">
+        <img loading="lazy" decoding="async" src="media_spotify_email.jpg" alt="Decoded">
+        <span class="m-go">Decoded &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="plate_lgp.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_dila.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice4.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="media_lgp_letter.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="goi.html" aria-label="Ministry of Education">
+        <img loading="lazy" decoding="async" src="hero_goi.jpg" alt="Ministry of Education">
+        <span class="m-go">Ministry of Education &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="hero_lgp.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_quiz_2.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="harshil.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="media_council_pledge.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="taxcity.html" aria-label="TaxCity">
+        <img loading="lazy" decoding="async" src="media_taxcity_board.jpg" alt="TaxCity">
+        <span class="m-go">TaxCity &rarr;</span>
+      </a>
+      <a class="m-tile" href="lgp.html" aria-label="Lodha Genius Programme">
+        <img loading="lazy" decoding="async" src="media_eteam_cert.jpg" alt="Lodha Genius Programme">
+        <span class="m-go">Lodha Genius Programme &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="arvind3.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="taxcity.html" aria-label="TaxCity">
+        <img loading="lazy" decoding="async" src="media_taxcity_cards.jpg" alt="TaxCity">
+        <span class="m-go">TaxCity &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="arvind.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="paul.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="about.html" aria-label="About">
+        <img loading="lazy" decoding="async" src="media_hp_cashflow.jpg" alt="About">
+        <span class="m-go">About &rarr;</span>
+      </a>
+      <a class="m-tile" href="president.html" aria-label="The President of India">
+        <img loading="lazy" decoding="async" src="president_detail.jpg" alt="The President of India">
+        <span class="m-go">The President of India &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="media_cryptography.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="hero_mvpp.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="research.html" aria-label="Research">
+        <img loading="lazy" decoding="async" src="media_nyas_cert.jpg" alt="Research">
+        <span class="m-go">Research &rarr;</span>
+      </a>
+      <a class="m-tile" href="about.html" aria-label="About">
+        <img loading="lazy" decoding="async" src="media_hp_circular.jpg" alt="About">
+        <span class="m-go">About &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="thomas.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="dps_swearing_in.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="taxcity.html" aria-label="TaxCity">
+        <img loading="lazy" decoding="async" src="media_taxcity_benefits.jpg" alt="TaxCity">
+        <span class="m-go">TaxCity &rarr;</span>
+      </a>
+      <a class="m-tile" href="articles.html" aria-label="Selected Writing">
+        <img loading="lazy" decoding="async" src="media_northeastern.jpg" alt="Selected Writing">
+        <span class="m-go">Selected Writing &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="paul2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_quiz_1.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="jaredx.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="arvind2.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="hari3.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="aman.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="dpsrkp.html" aria-label="Delhi Public School, R.K. Puram">
+        <img loading="lazy" decoding="async" src="media_council_2425.jpg" alt="Delhi Public School, R.K. Puram">
+        <span class="m-go">Delhi Public School, R.K. Puram &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice5.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="experience.html" aria-label="Experience">
+        <img loading="lazy" decoding="async" src="media_masters_union.jpg" alt="Experience">
+        <span class="m-go">Experience &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="plate_yc.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+      <a class="m-tile" href="podcast.html" aria-label="Decoded">
+        <img loading="lazy" decoding="async" src="decoded_wrapped_2025.png" alt="Decoded">
+        <span class="m-go">Decoded &rarr;</span>
+      </a>
+      <a class="m-tile" href="greatideasseminar.html" aria-label="The Great Ideas Seminars">
+        <img loading="lazy" decoding="async" src="meteor.jpg" alt="The Great Ideas Seminars">
+        <span class="m-go">The Great Ideas Seminars &rarr;</span>
+      </a>
+      <a class="m-tile" href="mathapprenticeship.html" aria-label="Math Apprenticeship">
+        <img loading="lazy" decoding="async" src="mathapprentice6.jpg" alt="Math Apprenticeship">
+        <span class="m-go">Math Apprenticeship &rarr;</span>
+      </a>
+      <a class="m-tile" href="awards.html" aria-label="Awards & Honours">
+        <img loading="lazy" decoding="async" src="media_ioqm_national.jpg" alt="Awards & Honours">
+        <span class="m-go">Awards & Honours &rarr;</span>
+      </a>
+      <a class="m-tile" href="yc.html" aria-label="Y Combinator">
+        <img loading="lazy" decoding="async" src="ycpartners.jpg" alt="Y Combinator">
+        <span class="m-go">Y Combinator &rarr;</span>
+      </a>
+  </div>
 
-    <div class="m-section-label"><span>Delhi Public School, R.K. Puram</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="dps_president_speech.jpg" alt="Addressing the school as President of the Student Council.">
-        <span class="m-cap">Addressing the school as President of the Student Council.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="dps_swearing_in.jpg" alt="The Student Council swearing-in, by Shri V. K. Shunglu.">
-        <span class="m-cap">The Student Council swearing-in, by Shri V. K. Shunglu.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="dps_wall_of_fame.jpg" alt="On the R.K. Puram Wall of Fame.">
-        <span class="m-cap">On the R.K. Puram Wall of Fame.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="media_council_pledge.jpg" alt="Sworn into office by Ms. Namita Pradhan, former Assistant Director General of the WHO." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Sworn into office by Ms. Namita Pradhan, former Assistant Director General of the WHO.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="media_council_2425.jpg" alt="The Student Council, 2024 to 25." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">The Student Council, 2024 to 25.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-      <a class="m-tile" href="dpsrkp.html">
-        <img loading="lazy" decoding="async" src="media_dps_award.jpg" alt="Awarded at Delhi Public School, R.K. Puram." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Awarded at Delhi Public School, R.K. Puram.</span>
-        <span class="m-link">dpsrkp &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Lodha Genius Programme</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="lgp.html">
-        <img loading="lazy" decoding="async" src="media_lgp_letter.jpg" alt="Lodha Genius Programme 2025 admission letter, Ashoka University." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Lodha Genius Programme 2025 admission letter, Ashoka University.</span>
-        <span class="m-link">lgp &rarr;</span>
-      </a>
-      <a class="m-tile" href="lgp.html">
-        <img loading="lazy" decoding="async" src="certificate.jpg" alt="On stage at the Lodha Genius Programme.">
-        <span class="m-cap">On stage at the Lodha Genius Programme.</span>
-        <span class="m-link">lgp &rarr;</span>
-      </a>
-      <a class="m-tile" href="lgp.html">
-        <img loading="lazy" decoding="async" src="media_number_theory.jpg" alt="Euler's Criterion and quadratic residues, Number Theory mid-term presentation." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Euler's Criterion and quadratic residues, Number Theory mid-term presentation.</span>
-        <span class="m-link">lgp &rarr;</span>
-      </a>
-      <a class="m-tile" href="lgp.html">
-        <img loading="lazy" decoding="async" src="media_eteam_cert.jpg" alt="Mock ETEAM, the Continued Learning module at Ashoka University." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Mock ETEAM, the Continued Learning module at Ashoka University.</span>
-        <span class="m-link">lgp &rarr;</span>
-      </a>
-      <a class="m-tile" href="lgp.html">
-        <img loading="lazy" decoding="async" src="media_ta_badge.jpg" alt="Teaching Assistant, Lodha Genius Programme 2026." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Teaching Assistant, Lodha Genius Programme 2026.</span>
-        <span class="m-link">lgp &rarr;</span>
-      </a>
-      <a class="m-tile" href="mathapprenticeship.html">
-        <img loading="lazy" decoding="async" src="media_lgp_schedule.jpg" alt="A week at the apprenticeship: teaching, graduate lectures, and research." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">A week at the apprenticeship: teaching, graduate lectures, and research.</span>
-        <span class="m-link">mathapprenticeship &rarr;</span>
-      </a>
-      <a class="m-tile" href="mathapprenticeship.html">
-        <img loading="lazy" decoding="async" src="media_cryptography.jpg" alt="Modern Cryptography, a graduate lecture by Prof. Sourav Mukhopadhyay, IIT Kharagpur." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Modern Cryptography, a graduate lecture by Prof. Sourav Mukhopadhyay, IIT Kharagpur.</span>
-        <span class="m-link">mathapprenticeship &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>The Great Ideas Seminars</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="paul.jpg" alt="With Sir Paul Nurse, Nobel Laureate in Physiology or Medicine.">
-        <span class="m-cap">With Sir Paul Nurse, Nobel Laureate in Physiology or Medicine.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="brian.jpg" alt="With Professor Brian Schmidt, Nobel Laureate in Physics.">
-        <span class="m-cap">With Professor Brian Schmidt, Nobel Laureate in Physics.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="hida.jpg" alt="With Professor Haruzo Hida, Steele Prize, UCLA.">
-        <span class="m-cap">With Professor Haruzo Hida, Steele Prize, UCLA.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="thomas.jpg" alt="With Professor Thomas Lecuit, Collège de France.">
-        <span class="m-cap">With Professor Thomas Lecuit, Collège de France.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="hari.jpg" alt="With Hari Shroff, Janelia Research Campus.">
-        <span class="m-cap">With Hari Shroff, Janelia Research Campus.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="arvind.jpg" alt="With Arvind Gupta, Padma Shri, on building science from scrap.">
-        <span class="m-cap">With Arvind Gupta, Padma Shri, on building science from scrap.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-      <a class="m-tile" href="greatideasseminar.html">
-        <img loading="lazy" decoding="async" src="brigitte.jpg" alt="The space-medicine session, with ESA and NASA Ames.">
-        <span class="m-cap">The space-medicine session, with ESA and NASA Ames.</span>
-        <span class="m-link">greatideasseminar &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>TaxCity</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="taxcity.html">
-        <img loading="lazy" decoding="async" src="media_taxcity_board.jpg" alt="TaxCity's life-size board at a school showcase, TETR Disrupt." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">TaxCity's life-size board at a school showcase, TETR Disrupt.</span>
-        <span class="m-link">taxcity &rarr;</span>
-      </a>
-      <a class="m-tile" href="taxcity.html">
-        <img loading="lazy" decoding="async" src="media_taxcity_cards.jpg" alt="TaxCity components: persona cards and a mock ITR-3 return." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">TaxCity components: persona cards and a mock ITR-3 return.</span>
-        <span class="m-link">taxcity &rarr;</span>
-      </a>
-      <a class="m-tile" href="taxcity.html">
-        <img loading="lazy" decoding="async" src="media_taxcity_benefits.jpg" alt="TaxCity tax-benefit cards, teaching deductions and reliefs." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">TaxCity tax-benefit cards, teaching deductions and reliefs.</span>
-        <span class="m-link">taxcity &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Decoded, the Podcast</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="podcast.html">
-        <img loading="lazy" decoding="async" src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025, three awards for Decoded.">
-        <span class="m-cap">Spotify Wrapped for Creators 2025, three awards for Decoded.</span>
-        <span class="m-link">podcast &rarr;</span>
-      </a>
-      <a class="m-tile" href="podcast.html">
-        <img loading="lazy" decoding="async" src="media_spotify_email.jpg" alt="Spotify for Creators: a 2025 Marathon Show." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Spotify for Creators: a 2025 Marathon Show.</span>
-        <span class="m-link">podcast &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Research & Writing</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="aipolicy.html">
-        <img loading="lazy" decoding="async" src="plate_paper.jpg" alt="The Two Faces of Progress, peer-reviewed and published in IJRASET.">
-        <span class="m-cap">The Two Faces of Progress, peer-reviewed and published in IJRASET.</span>
-        <span class="m-link">aipolicy &rarr;</span>
-      </a>
-      <a class="m-tile" href="aipolicy.html">
-        <img loading="lazy" decoding="async" src="media_ijraset_cert.jpg" alt="The IJRASET publication certificate for The Two Faces of Progress." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">The IJRASET publication certificate for The Two Faces of Progress.</span>
-        <span class="m-link">aipolicy &rarr;</span>
-      </a>
-      <a class="m-tile" href="articles.html">
-        <img loading="lazy" decoding="async" src="media_northeastern.jpg" alt="Finalist, Northeastern University London Essay Competition 2025." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Finalist, Northeastern University London Essay Competition 2025.</span>
-        <span class="m-link">articles &rarr;</span>
-      </a>
-      <a class="m-tile" href="research.html">
-        <img loading="lazy" decoding="async" src="media_nyas_cert.jpg" alt="The Junior Academy, New York Academy of Sciences, 2025 to 26." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">The Junior Academy, New York Academy of Sciences, 2025 to 26.</span>
-        <span class="m-link">research &rarr;</span>
-      </a>
-      <a class="m-tile" href="goi.html">
-        <img loading="lazy" decoding="async" src="hero_goi.jpg" alt="The internship letter from the Office of the Director, Ministry of Education.">
-        <span class="m-cap">The internship letter from the Office of the Director, Ministry of Education.</span>
-        <span class="m-link">goi &rarr;</span>
-      </a>
-      <a class="m-tile" href="edunomix.html">
-        <img loading="lazy" decoding="async" src="hero_edunomix.jpg" alt="The nationwide Edunomix India economics essay competition.">
-        <span class="m-cap">The nationwide Edunomix India economics essay competition.</span>
-        <span class="m-link">edunomix &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Y Combinator</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="yc.html">
-        <img loading="lazy" decoding="async" src="media_yc_ticket.jpg" alt="Y Combinator Startup School 2026, Chase Center, San Francisco." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Y Combinator Startup School 2026, Chase Center, San Francisco.</span>
-        <span class="m-link">yc &rarr;</span>
-      </a>
-      <a class="m-tile" href="yc.html">
-        <img loading="lazy" decoding="async" src="ycstage.jpg" alt="Y Combinator Startup School India.">
-        <span class="m-cap">Y Combinator Startup School India.</span>
-        <span class="m-link">yc &rarr;</span>
-      </a>
-      <a class="m-tile" href="yc.html">
-        <img loading="lazy" decoding="async" src="ycpartners.jpg" alt="With founders from the Y Combinator network.">
-        <span class="m-cap">With founders from the Y Combinator network.</span>
-        <span class="m-link">yc &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Awards & Olympiads</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_ioqm_national.jpg" alt="Certificate of Merit, Indian Olympiad Qualifier in Mathematics, national top 10%." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Certificate of Merit, Indian Olympiad Qualifier in Mathematics, national top 10%.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_ioqm_delhi.jpg" alt="Certificate of Merit, IOQM 2025 to 26, top 10% from Delhi." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Certificate of Merit, IOQM 2025 to 26, top 10% from Delhi.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_nsic.jpg" alt="National Space Innovation Challenge 2023, NITI Aayog, AIM, and ISRO." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">National Space Innovation Challenge 2023, NITI Aayog, AIM, and ISRO.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_nyc_stem.jpg" alt="National Youth Conference on STEM 2025." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">National Youth Conference on STEM 2025.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_celestecon.jpg" alt="Second place, Volatus at CELESTECON, the R.K. Puram Aerospace Society." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Second place, Volatus at CELESTECON, the R.K. Puram Aerospace Society.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_tks.jpg" alt="Accepted to The Knowledge Society, 2025 to 26 cohort." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Accepted to The Knowledge Society, 2025 to 26 cohort.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_abhyuday.jpg" alt="Qualified to Round 2, Abhyuday Action Plan 2023, IIT Bombay." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Qualified to Round 2, Abhyuday Action Plan 2023, IIT Bombay.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-      <a class="m-tile" href="awards.html">
-        <img loading="lazy" decoding="async" src="media_sebi.jpg" alt="SEBI Investor Awareness Test, National Institute of Securities Markets." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">SEBI Investor Awareness Test, National Institute of Securities Markets.</span>
-        <span class="m-link">awards &rarr;</span>
-      </a>
-    </div>
-
-    <div class="m-section-label"><span>Service & Certification</span></div>
-    <div class="m-grid">
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_dila.jpg" alt="District Interact Leadership Assembly 2024, with Rotary district leadership." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">District Interact Leadership Assembly 2024, with Rotary district leadership.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_dila_cert.jpg" alt="DILA 2024 certificate, Rotary International District 3011." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">DILA 2024 certificate, Rotary International District 3011.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_quiz_1.jpg" alt="Quizzing Club honours at Delhi Public School, R.K. Puram." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Quizzing Club honours at Delhi Public School, R.K. Puram.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_quiz_2.jpg" alt="Quizzing Club, competition podiums and the rolling trophy." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Quizzing Club, competition podiums and the rolling trophy.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_masters_union.jpg" alt="Masters' Union Startup Weekend, November 2023." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Masters' Union Startup Weekend, November 2023.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="experience.html">
-        <img loading="lazy" decoding="async" src="media_daydream.jpg" alt="Organiser, Daydream Delhi 2025 game jam at IIT Delhi, with Hack Club." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">Organiser, Daydream Delhi 2025 game jam at IIT Delhi, with Hack Club.</span>
-        <span class="m-link">experience &rarr;</span>
-      </a>
-      <a class="m-tile" href="about.html">
-        <img loading="lazy" decoding="async" src="media_un_desertification.jpg" alt="UN Convention to Combat Desertification, Drought Day campaign 2021." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">UN Convention to Combat Desertification, Drought Day campaign 2021.</span>
-        <span class="m-link">about &rarr;</span>
-      </a>
-      <a class="m-tile" href="about.html">
-        <img loading="lazy" decoding="async" src="media_hp_cashflow.jpg" alt="HP LIFE certification: Cash Flow." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">HP LIFE certification: Cash Flow.</span>
-        <span class="m-link">about &rarr;</span>
-      </a>
-      <a class="m-tile" href="about.html">
-        <img loading="lazy" decoding="async" src="media_hp_circular.jpg" alt="HP LIFE certification: Circular Economy." onerror="this.closest('.m-tile').style.display='none'">
-        <span class="m-cap">HP LIFE certification: Circular Economy.</span>
-        <span class="m-link">about &rarr;</span>
-      </a>
-    </div>
-
-  <p class="m-foot">The paper trail, in pictures. For the written record, start with <a href="about.html" style="color:var(--ink-med);">the long version</a>.</p>
+  <p class="m-foot">That is the record, in pictures. For the written version, start with <a href="about.html" style="color:var(--ink-med);">the long version</a>.</p>
 
   <footer class="doc-footer">
     <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
@@ -480,20 +533,13 @@
 
 <script>
   const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => { prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%'; }, { passive: true });
+  window.addEventListener('scroll', () => { prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%'; }, { passive:true });
   const hamburger = document.getElementById('hamburger');
   const overlay = document.getElementById('nav-overlay');
   let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => { menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
+  hamburger.addEventListener('click', () => { menuOpen=!menuOpen; hamburger.classList.toggle('open',menuOpen); overlay.classList.toggle('open',menuOpen); hamburger.setAttribute('aria-expanded',menuOpen); overlay.setAttribute('aria-hidden',!menuOpen); document.body.style.overflow=menuOpen?'hidden':''; });
+  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => { menuOpen=false; hamburger.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && menuOpen) hamburger.click(); });
 </script>
 <script src="site.js" defer></script>
 </body>
