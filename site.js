@@ -29,7 +29,7 @@
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.setAttribute('aria-label', 'Toggle night mode');
-    var paint = function () { btn.textContent = root.classList.contains('dark') ? '☀' : '☾'; }; // sun / moon
+    var paint = function () { btn.textContent = root.classList.contains('dark') ? '☀︎' : '☾'; }; // sun / moon, text presentation (no colour emoji)
     paint();
     btn.addEventListener('click', function () {
       root.classList.toggle('dark');
@@ -186,9 +186,9 @@
     taxcity:      { end: 'yes. taxes. thrilling, i know.' },
     podcast:      { end: 'give it a listen sometime?' },
     press:        { end: 'hi to any journalists reading this.' },
-    bookshelf:    { end: 'found your next read yet?' },
+    bookshelf:    { end: 'found your next read yet?' },
     yc:           { end: 'startup school was a trip.' },
-    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
+    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
     pi:           { end: '3.14159 26535... ok i will stop.' },
     '404':        { end: 'lost? happens to the best of us.' }
   };
@@ -493,7 +493,7 @@
     var r = sel.getRangeAt(0).getBoundingClientRect();
     if (!r.width && !r.height) { hideCite(); return; }
     if (!chip) {
-      chip = document.createElement('div'); chip.className = 'cite-chip'; chip.textContent = 'cite ↗';
+      chip = document.createElement('div'); chip.className = 'cite-chip'; chip.textContent = 'cite';
       document.body.appendChild(chip);
       chip.addEventListener('mousedown', function (e) { e.preventDefault(); });
       chip.addEventListener('click', doCite);
@@ -510,7 +510,7 @@
     copyText(citation);
     chip.textContent = 'copied ✓';
     discover('cite');
-    setTimeout(function () { chip.textContent = 'cite ↗'; hideCite(); }, 1500);
+    setTimeout(function () { chip.textContent = 'cite'; hideCite(); }, 1500);
   }
   document.addEventListener('mouseup', function () { setTimeout(showCite, 10); });
   document.addEventListener('touchend', function () { setTimeout(showCite, 10); }, { passive: true });
