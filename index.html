@@ -40,6 +40,70 @@
   </script>
   <link rel="stylesheet" href="theme.css">
 
+  <!-- ─── SPLASH: shown once per session while the page settles ───
+       Decide before first paint so returning / reduced-motion
+       visitors never catch a flash of it. -->
+  <script>(function(){try{
+    var seen = sessionStorage.getItem('splashSeen');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add((seen || reduce) ? 'splash-off' : 'splash-active');
+  }catch(e){document.documentElement.classList.add('splash-off');}})();</script>
+  <style>
+    html.splash-off #splash { display: none !important; }
+    html.splash-active { overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) { #splash { display: none !important; } }
+
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: #fffff8; color: #17170f;
+      font-family: 'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    html.dark #splash { background: #14140e; color: #f3efe0; }
+    #splash.sp-done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .sp-inner { text-align: center; padding: 2rem; max-width: 92vw; cursor: default; }
+
+    .sp-name {
+      font-size: clamp(2rem, 7.5vw, 4.2rem); font-weight: 500;
+      letter-spacing: .015em; line-height: 1; white-space: nowrap;
+    }
+    .sp-name .l {
+      display: inline-block; opacity: 0; transform: translateY(.55em);
+      animation: spRise .62s cubic-bezier(.2,.7,.2,1) forwards;
+      animation-delay: calc(var(--i) * .045s);
+    }
+    .sp-name .sp { display: inline-block; width: .34em; }
+    @keyframes spRise { to { opacity: 1; transform: translateY(0); } }
+
+    .sp-laurel {
+      width: 82px; height: 27px; margin: 1.05rem auto 0; display: block;
+      color: #2e5d43; opacity: 0; animation: spFade .8s ease forwards .72s;
+    }
+    html.dark .sp-laurel { color: #8fc4a6; }
+
+    .sp-quip {
+      font-family: 'Inconsolata', 'Courier New', monospace;
+      font-size: .72rem; letter-spacing: .16em; text-transform: lowercase;
+      color: #6a6a58; margin-top: 1.05rem; min-height: 1em;
+      opacity: 0; animation: spFade .6s ease forwards .55s;
+    }
+    html.dark .sp-quip { color: #9a9a86; }
+
+    .sp-rule {
+      width: min(240px, 58vw); height: 1px; margin: 1.4rem auto 0;
+      background: rgba(0,0,0,.12); overflow: hidden;
+    }
+    html.dark .sp-rule { background: rgba(255,255,255,.13); }
+    .sp-rule span {
+      display: block; height: 100%; width: 0; background: #17170f;
+      animation: spFill 2s cubic-bezier(.4,0,.1,1) forwards .15s;
+    }
+    html.dark .sp-rule span { background: #f3efe0; }
+    @keyframes spFill { to { width: 100%; } }
+    @keyframes spFade { to { opacity: 1; } }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org", "@type": "WebSite",
@@ -906,6 +970,56 @@
   <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
 <body class="paper">
+
+<!-- ─── SPLASH ───────────────────────────────────────────────── -->
+<div id="splash" role="status" aria-label="Loading akshatb.com">
+  <div class="sp-inner">
+    <div class="sp-name" aria-hidden="true"><span class="l" style="--i:0">A</span><span class="l" style="--i:1">k</span><span class="l" style="--i:2">s</span><span class="l" style="--i:3">h</span><span class="l" style="--i:4">a</span><span class="l" style="--i:5">t</span><span class="sp"></span><span class="l" style="--i:6">B</span><span class="l" style="--i:7">h</span><span class="l" style="--i:8">a</span><span class="l" style="--i:9">s</span><span class="l" style="--i:10">k</span><span class="l" style="--i:11">a</span><span class="l" style="--i:12">r</span></div>
+    <svg class="sp-laurel" viewBox="0 0 74 30" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+      <path d="M10 24 Q 24 26 36 25"/><path d="M64 24 Q 50 26 38 25"/>
+      <path d="M12 23 q -2 -5 2 -8 q 1 5 -2 8"/><path d="M18 24.5 q -1 -5 4 -7 q 0 5 -4 7"/>
+      <path d="M25 25 q 0 -5 5 -6 q -1 5 -5 6"/><path d="M31 25.2 q 1 -4 6 -4.5 q -2 4 -6 4.5"/>
+      <path d="M62 23 q 2 -5 -2 -8 q -1 5 2 8"/><path d="M56 24.5 q 1 -5 -4 -7 q 0 5 4 7"/>
+      <path d="M49 25 q 0 -5 -5 -6 q 1 5 5 6"/><path d="M43 25.2 q -1 -4 -6 -4.5 q 2 4 6 4.5"/>
+    </svg>
+    <p class="sp-quip">loading&hellip;</p>
+    <div class="sp-rule"><span></span></div>
+  </div>
+</div>
+<script>
+(function(){
+  var s = document.getElementById('splash');
+  if (!s) return;
+  var html = document.documentElement;
+  if (html.classList.contains('splash-off')) { s.remove(); return; }
+  var quips = [
+    'admitted at roughly a 3% acceptance rate…',
+    'proving one small lemma…',
+    'counting to sixty-seven thousand…',
+    'typesetting the manuscript…',
+    'warming up the printing press…',
+    'shuffling the honours…',
+    'filing the tax return, for fun…',
+    'ranking forty-fourth, again…'
+  ];
+  var q = s.querySelector('.sp-quip');
+  if (q) q.textContent = quips[Math.floor(Math.random() * quips.length)];
+  try { sessionStorage.setItem('splashSeen', '1'); } catch (e) {}
+  var gone = false;
+  function done() {
+    if (gone) return; gone = true;
+    s.classList.add('sp-done');
+    html.classList.remove('splash-active');
+    setTimeout(function(){ if (s && s.parentNode) s.remove(); }, 650);
+  }
+  var timer = setTimeout(done, 2300);
+  // let an impatient visitor skip straight in
+  s.addEventListener('click', function(){ clearTimeout(timer); done(); });
+  window.addEventListener('keydown', function(){ clearTimeout(timer); done(); }, { once: true });
+  window.addEventListener('wheel', function(){ clearTimeout(timer); done(); }, { once: true, passive: true });
+})();
+</script>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="progress-rule" id="prog"></div>
