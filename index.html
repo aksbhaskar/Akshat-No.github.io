@@ -185,7 +185,7 @@
       margin: 0 auto;
       padding: 0 var(--outer);
       display: grid;
-      grid-template-columns: var(--col-width) var(--gutter) 1fr;
+      grid-template-columns: var(--col-width) var(--gutter) minmax(0, 1fr);
     }
 
     .doc-full,
@@ -918,7 +918,7 @@
     /* ─── RESPONSIVE ────────────────────────────────────────── */
     @media (max-width: 700px) {
       :root { --outer: 20px; }
-      .document { grid-template-columns: 1fr; }
+      .document { grid-template-columns: minmax(0, 1fr); }
       .contact-col { grid-column: 1 / -1; }
       /* Keep contact details visible on mobile, they are real content,
          not supplementary sidenotes. Show below the form with a top rule. */
