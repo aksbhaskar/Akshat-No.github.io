@@ -324,5 +324,4 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
 
 /* ── "Surprise me" menu link, in the accent so it stands out ── */
 .nav-surprise { color: #e7b866 !important; font-style: italic !important; letter-spacing: 0.01em; }
-.nav-surprise::after { content: " \2192"; }
 .nav-surprise:hover { opacity: 0.85; }
