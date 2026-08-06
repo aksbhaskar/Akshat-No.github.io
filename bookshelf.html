@@ -255,8 +255,8 @@
       box-shadow: 0 4px 8px -2px var(--wood-shadow);
     }
 
-    /* a second, empty shelf hints at the rest of the case */
-    .shelf-empty { margin-top: 4.2rem; opacity: 0.55; }
+    /* the second shelf, sitting a level down the case */
+    .shelf-lower { margin-top: 4.2rem; }
 
     .shelf-hint {
       font-family: var(--serif); font-style: italic;
@@ -432,11 +432,7 @@
           <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/81dMAyw4kjL._AC_UF1000,1000_QL80_.jpg" alt="A Song of Ice and Fire by George R.R. Martin" />
           <span class="ribbon">Reading</span>
         </button>
-        <button class="book" data-i="2" aria-label="Open notes on The Policy Pivot">
-          <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg" alt="The Policy Pivot by Ajay Khanna and Rahul Sharma" />
-          <span class="ribbon">Reading</span>
-        </button>
-        <button class="book" data-i="3" aria-label="Open notes on Development as Freedom">
+        <button class="book" data-i="2" aria-label="Open notes on Development as Freedom">
           <img loading="lazy" decoding="async" src="https://covers.openlibrary.org/b/isbn/9780385720274-L.jpg" alt="Development as Freedom by Amartya Sen" />
           <span class="ribbon">Reading</span>
         </button>
@@ -444,7 +440,13 @@
       <div class="shelf-plank"></div>
     </div>
 
-    <div class="shelf shelf-empty" aria-hidden="true">
+    <div class="shelf shelf-lower">
+      <div class="shelf-books">
+        <button class="book" data-i="3" aria-label="Open notes on The Policy Pivot">
+          <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg" alt="The Policy Pivot by Ajay Khanna and Rahul Sharma" />
+          <span class="ribbon">Reading</span>
+        </button>
+      </div>
       <div class="shelf-plank"></div>
     </div>
   </div>
@@ -515,20 +517,20 @@
       tags: ["Fiction", "Fantasy", "Political Theory", "Power"]
     },
     {
-      cover: "https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg",
-      title: "The Policy Pivot",
-      author: "Ajay Khanna & Rahul Sharma",
-      prog: "~25%", pct: 25,
-      blurb: "Published to mark eighteen years of the Public Affairs Forum of India (PAFI), this is a collection of 25 essays from leading voices across Indian business, government, academia, and civil society. Contributors examine the shifting dynamics of India's policy ecosystem, where governance is becoming more participatory and public affairs more central to democratic accountability. A timely and insightful read given my own work at the intersection of policy and finance.",
-      tags: ["Policy", "India", "Governance", "Public Affairs"]
-    },
-    {
       cover: "https://covers.openlibrary.org/b/isbn/9780385720274-L.jpg",
       title: "Development as Freedom",
       author: "Amartya Sen",
       prog: "~15%", pct: 15,
       blurb: "Sen's central argument is that development should be measured by the real freedoms people actually enjoy, the capability to be educated, healthy, heard, and free from want, rather than by income or GDP alone. Recasting poverty as a deprivation of capabilities, and not merely a shortage of cash, has quietly rearranged how I judge my own work, from Edunomix to the research. It is the rare economics book that reads like moral philosophy without ever going soft on the economics.",
       tags: ["Development", "Economics", "Ethics", "Welfare"]
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg",
+      title: "The Policy Pivot",
+      author: "Ajay Khanna & Rahul Sharma",
+      prog: "~25%", pct: 25,
+      blurb: "Published to mark eighteen years of the Public Affairs Forum of India (PAFI), this is a collection of 25 essays from leading voices across Indian business, government, academia, and civil society. Contributors examine the shifting dynamics of India's policy ecosystem, where governance is becoming more participatory and public affairs more central to democratic accountability. A timely and insightful read given my own work at the intersection of policy and finance.",
+      tags: ["Policy", "India", "Governance", "Public Affairs"]
     }
   ];
 
