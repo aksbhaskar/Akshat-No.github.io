@@ -186,7 +186,7 @@
     taxcity:      { end: 'yes. taxes. thrilling, i know.' },
     podcast:      { end: 'give it a listen sometime?' },
     press:        { end: 'hi to any journalists reading this.' },
-    bookshelf:    { end: 'found your next read yet?' },
+    bookshelf:    { end: 'found your next read yet?' },
     yc:           { end: 'startup school was a trip.' },
     dpsrkp:       { end: 'best years, cheesy as that sounds.' },
     pi:           { end: '3.14159 26535... ok i will stop.' },
@@ -399,6 +399,8 @@
     { name: 'Great Ideas Seminars', note: 'nobel laureates', href: 'greatideasseminar.html' },
     { name: 'A Thousand Digits of Pi', note: 'why not', href: 'pi.html' },
     { name: 'Resume (PDF)', note: 'download', href: 'resume.pdf' },
+    { name: 'Surprise me', note: 'jump to a random page', action: 'surprise' },
+    { name: 'Throw confetti', note: 'why not', action: 'confetti' },
     { name: 'Copy email address', note: 'action', action: 'email' },
     { name: 'Toggle night mode', note: 'action', action: 'theme' }
   ];
@@ -460,6 +462,8 @@
     closePalette();
     if (it.action === 'email') { copyText('bhaskarakshat22@gmail.com'); whisper('email copied. say hi.'); return; }
     if (it.action === 'theme') { var t = document.querySelector('.theme-toggle'); if (t) t.click(); return; }
+    if (it.action === 'surprise') { surprise(); return; }
+    if (it.action === 'confetti') { burst(window.innerWidth / 2, window.innerHeight * 0.4, { count: 54 }); return; }
     navTo(it.href);
   }
   function openPalette() {
@@ -610,4 +614,84 @@
       whisper('section link copied.');
     });
   });
+
+  /* ══ Confetti ═════════════════════════════════════════════════
+     A quick burst of paper flecks in the page's own inks. Used by
+     the name, the palette, and the surprise button below. */
+  function burst(x, y, opts) {
+    if (reduceMotion) return;
+    opts = opts || {};
+    var n = opts.count || 28;
+    var cs = getComputedStyle(document.documentElement);
+    function col(c) { if (c.charAt(0) === '-') { return (cs.getPropertyValue(c).trim() || '#888'); } return c; }
+    var palette = [col('--accent'), col('--ink'), '#c9a227', '#b0442f', col('--ink-soft')];
+    var layer = document.createElement('div');
+    layer.className = 'confetti-layer';
+    document.body.appendChild(layer);
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement('i');
+      p.className = 'confetti-bit';
+      var ang = Math.random() * Math.PI * 2;
+      var vel = 70 + Math.random() * 150;
+      var dx = Math.cos(ang) * vel;
+      var dy = Math.sin(ang) * vel - (70 + Math.random() * 90); // bias the pop upward
+      var w = 5 + Math.random() * 6;
+      p.style.left = x + 'px'; p.style.top = y + 'px';
+      p.style.background = palette[i % palette.length];
+      p.style.width = w + 'px';
+      p.style.height = (w * (0.45 + Math.random() * 0.7)) + 'px';
+      p.style.setProperty('--dx', dx.toFixed(1) + 'px');
+      p.style.setProperty('--dy', dy.toFixed(1) + 'px');
+      p.style.setProperty('--rot', (Math.random() * 720 - 360).toFixed(0) + 'deg');
+      p.style.animationDelay = (Math.random() * 60).toFixed(0) + 'ms';
+      layer.appendChild(p);
+    }
+    setTimeout(function () { layer.remove(); }, 1500);
+  }
+
+  /* ══ The name is a toy (homepage) ═════════════════════════════ */
+  [].slice.call(document.querySelectorAll('.hero-big-name, .doc-title')).forEach(function (el) {
+    el.style.cursor = 'pointer';
+    el.title = 'go on, click it';
+    el.addEventListener('click', function (e) {
+      burst(e.clientX || (e.target.getBoundingClientRect().left + 40), e.clientY || e.target.getBoundingClientRect().top);
+      el.classList.remove('name-pop'); void el.offsetWidth; el.classList.add('name-pop');
+    });
+  });
+
+  /* ══ Surprise me: teleport to a random page ═══════════════════ */
+  function surprise() {
+    var here = (location.pathname.split('/').pop() || 'index.html');
+    var pages = PAL.filter(function (it) {
+      return it.href && /\.html$/.test(it.href) && it.href !== here;
+    });
+    if (!pages.length) return;
+    var pick = pages[Math.floor(Math.random() * pages.length)];
+    try { sessionStorage.setItem('surprised', '1'); } catch (e) {}
+    whisper('rolling the dice…', 1200);
+    setTimeout(function () { navTo(pick.href); }, 260);
+  }
+
+  /* A prominent "Surprise me" link, dropped into every page's menu */
+  (function () {
+    var cols = document.querySelector('.nav-overlay .nav-cols');
+    if (!cols) return;
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'nav-link nav-surprise';
+    link.textContent = 'Surprise me';
+    link.addEventListener('click', function (e) { e.preventDefault(); surprise(); });
+    cols.appendChild(link);
+  })();
+
+  /* Land on the new page with a little fanfare */
+  try {
+    if (sessionStorage.getItem('surprised')) {
+      sessionStorage.removeItem('surprised');
+      setTimeout(function () {
+        burst(window.innerWidth / 2, window.innerHeight * 0.34, { count: 46 });
+        whisper('surprise. welcome to ' + docTitle() + '.', 5000);
+      }, 550);
+    }
+  } catch (e) {}
 })();

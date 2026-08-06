@@ -298,3 +298,31 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
 .section-head:hover .sec-anchor, .sec-anchor:focus { opacity: 1; outline: none; }
 .sec-anchor:hover { color: var(--accent, #7a4a24); }
 @media print { .sec-anchor { display: none !important; } }
+
+/* ── Confetti burst ─────────────────────────────────────────── */
+.confetti-layer { position: fixed; inset: 0; pointer-events: none; z-index: 500; overflow: hidden; }
+.confetti-bit {
+  position: absolute; display: block; border-radius: 1px;
+  transform: translate(-50%, -50%);
+  animation: confettiFly 1.2s cubic-bezier(0.15, 0.6, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes confettiFly {
+  0%   { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+  12%  { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 280px)) rotate(var(--rot)); opacity: 0; }
+}
+@media print { .confetti-layer { display: none !important; } }
+
+/* ── The clickable name gives a little pop ──────────────────── */
+.name-pop { animation: namePop 0.5s cubic-bezier(0.34, 1.4, 0.5, 1); }
+@keyframes namePop {
+  0%   { transform: none; }
+  35%  { transform: scale(1.05) rotate(-1.2deg); }
+  100% { transform: none; }
+}
+
+/* ── "Surprise me" menu link, in the accent so it stands out ── */
+.nav-surprise { color: #e7b866 !important; font-style: normal !important; letter-spacing: 0.01em; }
+.nav-surprise::after { content: " \2192"; }
+.nav-surprise:hover { opacity: 0.85; }
