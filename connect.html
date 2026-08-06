@@ -192,35 +192,36 @@
     /* ─── PRESS KIT ───────────────────────────────────────────
        What a journalist or programme organiser actually needs:
        a bio they can lift verbatim, and a photograph. */
-    .presskit {
-      border: 0.5px solid var(--rule);
-      border-left: 2px solid var(--accent);
-      padding: 1.5rem 1.6rem 1.3rem;
-      background: rgba(47,106,91,0.03);
+    .presskit { border: 0.5px solid var(--ink); }
+    .pk-body { padding: 1.7rem 1.8rem 1.5rem; }
+    .pk-kicker {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: 0.95rem;
     }
     .pk-bio {
-      font-family: var(--serif); font-size: 0.97rem;
-      line-height: 1.75; color: var(--ink-med);
-      margin: 0;
+      font-family: var(--serif); font-size: 1.02rem;
+      line-height: 1.8; color: var(--ink-med); margin: 0;
+      text-align: justify; hyphens: auto;
     }
     .pk-row {
-      display: flex; flex-wrap: wrap; align-items: center;
-      gap: 0.6rem 1.4rem; margin-top: 1.15rem;
-      padding-top: 0.95rem; border-top: 0.5px solid var(--rule-light);
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+      padding: 0.95rem 1.8rem; border-top: 0.5px solid var(--rule);
+      background: var(--rule-light);
     }
     .pk-btn {
-      font-family: var(--mono); font-size: 0.62rem;
+      font-family: var(--mono); font-size: 0.6rem;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); background: none;
-      border: 0.5px solid var(--accent); border-radius: 0;
-      padding: 0.45rem 0.9rem; cursor: pointer;
-      text-decoration: none; display: inline-block;
-      transition: background 0.2s, color 0.2s;
+      color: var(--ink-med); background: var(--paper);
+      border: 0.5px solid var(--rule); border-radius: 2px;
+      padding: 0.5rem 0.95rem; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .pk-btn:hover { background: var(--accent); color: var(--paper); }
+    .pk-btn:hover { color: var(--accent); border-color: var(--accent); }
     .pk-note {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.06em; color: var(--ink-faint);
+      font-family: var(--serif); font-style: italic; font-size: 0.84rem;
+      color: var(--ink-faint); margin-left: auto;
     }
     .cal-note {
       font-family: var(--mono); font-size: 0.58rem;
@@ -299,26 +300,40 @@
     html.dark .form-status.ok { color: #74c0ad; }
     html.dark .form-status.err { color: #e08a8a; }
 
-    /* ─── CHANNELS ─────────────────────────────────────────── */
-    .channels {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      border-top: 0.5px solid var(--ink);
-      border-left: 0.5px solid var(--rule-light);
+    /* ─── DIRECTORY (find me elsewhere) ─────────────────────────
+       An index, not a dashboard: grouped, ruled, with leader dots
+       running each name out to its handle. */
+    .directory { columns: 2; column-gap: 3rem; }
+    .dir-group { break-inside: avoid; margin-bottom: 1.9rem; }
+    .dir-group:last-child { margin-bottom: 0; }
+    .dir-glabel {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-faint); display: block;
+      padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--ink);
     }
-    .channel {
-      display: flex; align-items: center; gap: 0.9rem;
-      padding: 1.1rem 1.2rem;
-      border-right: 0.5px solid var(--rule-light);
+    .dir-row {
+      display: flex; align-items: baseline; gap: 0.7rem;
+      padding: 0.66rem 0.1rem;
       border-bottom: 0.5px solid var(--rule-light);
-      text-decoration: none;
-      transition: background 0.2s;
+      text-decoration: none; color: inherit;
+      transition: padding-left 0.22s ease;
     }
-    .channel:hover { background: rgba(47,106,91,0.05); }
-    .channel i {
-      font-size: 1.05rem; color: var(--accent); width: 1.4rem; text-align: center; flex-shrink: 0;
+    .dir-row:hover { padding-left: 0.45rem; }
+    .dir-ico {
+      flex-shrink: 0; color: var(--ink-soft);
+      font-size: 0.92rem; align-self: center;
+      transition: color 0.2s ease;
     }
-    .ch-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); display: block; line-height: 1.25; }
-    .ch-handle { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em; color: var(--ink-faint); display: block; margin-top: 0.1rem; }
+    .dir-row:hover .dir-ico { color: var(--accent); }
+    .dir-name { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); flex-shrink: 0; }
+    .dir-lead { flex: 1; align-self: stretch; border-bottom: 1px dotted var(--rule); min-width: 0.8rem; transform: translateY(-0.28rem); }
+    .dir-handle {
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em;
+      color: var(--ink-faint); flex-shrink: 0; white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+    .dir-row:hover .dir-handle { color: var(--accent); }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
     .doc-footer {
@@ -338,7 +353,7 @@
       .topbar { padding: 1.1rem 1.4rem; }
       .nav-overlay { padding: 4rem 1.8rem; }
       .direct-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .channels { grid-template-columns: 1fr; }
+      .directory { columns: 1; }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -448,37 +463,53 @@
 
   <!-- FIND ME ELSEWHERE -->
   <div class="clabel"><span>Find me elsewhere</span></div>
-  <div class="channels">
-    <a class="channel" href="https://x.com/aksbhaskar" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg><span><span class="ch-name">X (Twitter)</span><span class="ch-handle">@aksbhaskar</span></span>
-    </a>
-    <a class="channel" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg><span><span class="ch-name">LinkedIn</span><span class="ch-handle">in/aksbhaskar · 7,000+ followers</span></span>
-    </a>
-    <a class="channel" href="https://github.com/aksbhaskar" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#github"/></svg><span><span class="ch-name">GitHub</span><span class="ch-handle">@aksbhaskar</span></span>
-    </a>
-    <a class="channel" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg><span><span class="ch-name">Google Scholar</span><span class="ch-handle">publications &amp; citations</span></span>
-    </a>
-    <a class="channel" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg><span><span class="ch-name">ResearchGate</span><span class="ch-handle">Akshat-Bhaskar-2</span></span>
-    </a>
-    <a class="channel" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#spotify"/></svg><span><span class="ch-name">Decoded on Spotify</span><span class="ch-handle">the podcast</span></span>
-    </a>
-    <a class="channel" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#podcast"/></svg><span><span class="ch-name">Decoded on Apple Podcasts</span><span class="ch-handle">the podcast</span></span>
-    </a>
-    <a class="channel" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">
-      <svg class="icon" aria-hidden="true"><use href="icons.svg#amazon"/></svg><span><span class="ch-name">Decoded on Amazon Music</span><span class="ch-handle">the podcast</span></span>
-    </a>
+  <div class="directory">
+
+    <div class="dir-group">
+      <span class="dir-glabel">Social</span>
+      <a class="dir-row" href="https://x.com/aksbhaskar" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg><span class="dir-name">X (Twitter)</span><span class="dir-lead"></span><span class="dir-handle">@aksbhaskar</span>
+      </a>
+      <a class="dir-row" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#linkedin"/></svg><span class="dir-name">LinkedIn</span><span class="dir-lead"></span><span class="dir-handle">7,000+ followers</span>
+      </a>
+      <a class="dir-row" href="https://github.com/aksbhaskar" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#github"/></svg><span class="dir-name">GitHub</span><span class="dir-lead"></span><span class="dir-handle">@aksbhaskar</span>
+      </a>
+    </div>
+
+    <div class="dir-group">
+      <span class="dir-glabel">Scholarly</span>
+      <a class="dir-row" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg><span class="dir-name">Google Scholar</span><span class="dir-lead"></span><span class="dir-handle">citations</span>
+      </a>
+      <a class="dir-row" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#researchgate"/></svg><span class="dir-name">ResearchGate</span><span class="dir-lead"></span><span class="dir-handle">profile</span>
+      </a>
+    </div>
+
+    <div class="dir-group">
+      <span class="dir-glabel">Decoded, the podcast</span>
+      <a class="dir-row" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#spotify"/></svg><span class="dir-name">Spotify</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
+      </a>
+      <a class="dir-row" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#podcast"/></svg><span class="dir-name">Apple Podcasts</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
+      </a>
+      <a class="dir-row" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">
+        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#amazon"/></svg><span class="dir-name">Amazon Music</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
+      </a>
+    </div>
+
   </div>
 
   <!-- PRESS KIT -->
   <div class="clabel"><span>For press &amp; programmes</span></div>
   <div class="presskit">
+    <div class="pk-body">
+    <span class="pk-kicker">Boilerplate biography</span>
     <p class="pk-bio" id="pk-bio">Akshat Bhaskar is a student researcher working across economics, artificial intelligence, and public policy, and President Student Council of the 9,500 students at Delhi Public School, R.K. Puram. He was felicitated by the President of India as one of seventeen students nationwide under the Government of India's SOAR initiative, and has published peer-reviewed research on AI policy, conducted under a University of Pennsylvania professor, in IJRASET. He founded and leads the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit advancing economics education, and serves as CFO of TaxCity, a Ministry of Education recognised initiative that has reached 79,000+ students across 27 countries. At the Lodha Genius Programme he completed graduate-level mathematics, conducted original research in pure number theory under a professor at the Indian Statistical Institute, and attended lectures by Nobel laureates. He hosts Decoded, a podcast on economics and technology recognised with three Spotify for Creators awards in 2025.</p>
+    </div>
     <div class="pk-row">
       <button class="pk-btn" id="pk-copy" type="button">Copy bio</button>
       <a class="pk-btn" href="akshat.jpg" download="akshat-bhaskar.jpg">Headshot ↓</a>
