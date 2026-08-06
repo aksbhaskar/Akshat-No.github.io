@@ -186,7 +186,7 @@
     taxcity:      { end: 'yes. taxes. thrilling, i know.' },
     podcast:      { end: 'give it a listen sometime?' },
     press:        { end: 'hi to any journalists reading this.' },
-    bookshelf:    { end: 'found your next read yet?' },
+    bookshelf:    { end: 'found your next read yet?' },
     yc:           { end: 'startup school was a trip.' },
     dpsrkp:       { end: 'best years, cheesy as that sounds.' },
     pi:           { end: '3.14159 26535... ok i will stop.' },
@@ -545,4 +545,69 @@
     save();
     window.addEventListener('pagehide', save);
   })();
+
+  /* ══ Back to top ══════════════════════════════════════════════
+     A quiet return button that surfaces once you are deep in a
+     long page. Sits just above the night-mode toggle. */
+  if (document.body.classList.contains('paper')) {
+    var toTop = document.createElement('button');
+    toTop.className = 'to-top';
+    toTop.type = 'button';
+    toTop.setAttribute('aria-label', 'Back to top');
+    toTop.textContent = '↑'; // plain up arrow, no colour emoji
+    document.body.appendChild(toTop);
+    var topShown = false;
+    function topCheck() {
+      var show = window.scrollY > window.innerHeight * 1.4;
+      if (show !== topShown) { topShown = show; toTop.classList.toggle('show', show); }
+    }
+    window.addEventListener('scroll', topCheck, { passive: true });
+    topCheck();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ══ Contents scrollspy ═══════════════════════════════════════
+     On pages with a table of contents, light up the entry for the
+     section you are currently reading. No-op everywhere else. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.toc-list a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var targets = [];
+    links.forEach(function (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t) targets.push(t);
+    });
+    if (!targets.length) return;
+    function here(id) {
+      links.forEach(function (a) { a.classList.toggle('here', a.getAttribute('href') === '#' + id); });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) here(e.target.id); });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    targets.forEach(function (t) { io.observe(t); });
+  })();
+
+  /* ══ Section deep-links ═══════════════════════════════════════
+     Hover a numbered section heading and a pilcrow appears; click
+     it to copy a link straight to that section. In keeping with a
+     page that already behaves like a paper. */
+  [].slice.call(document.querySelectorAll('.section-head[id]')).forEach(function (h) {
+    var id = h.id;
+    var a = document.createElement('a');
+    a.className = 'sec-anchor';
+    a.href = '#' + id;
+    a.setAttribute('aria-label', 'Copy a link to this section');
+    a.textContent = '¶'; // pilcrow
+    var title = h.querySelector('.sec-title');
+    if (title) title.insertAdjacentElement('afterend', a);
+    else h.appendChild(a);
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      copyText(location.href.split('#')[0] + '#' + id);
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
+      whisper('section link copied.');
+    });
+  });
 })();
