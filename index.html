@@ -587,9 +587,30 @@
     .media-more .arr { transition: transform 0.2s; }
     .media-more:hover .arr { transform: translateX(3px); }
 
+    /* ─── FOOTER INDEX (a crawlable map of the whole site) ──── */
+    .footer-index {
+      grid-column: 1 / -1;
+      margin-top: 3rem; padding-top: 1.7rem;
+      border-top: 0.5px solid var(--ink);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 2rem;
+    }
+    .fi-label {
+      font-family: var(--mono); font-size: 0.56rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: 0.7rem;
+    }
+    .fi-group a {
+      display: block; font-family: var(--serif); font-size: 0.94rem;
+      color: var(--ink-soft); text-decoration: none;
+      padding: 0.2rem 0; transition: color 0.2s;
+    }
+    .fi-group a:hover { color: var(--accent); }
+    @media (max-width: 620px) { .footer-index { grid-template-columns: 1fr 1fr; } }
+
     /* ─── FOOTER ───────────────────────────────────────────── */
     .doc-footer {
-      border-top: 0.5px solid var(--ink);
+      grid-column: 1 / -1;
+      border-top: 0.5px solid var(--rule);
       padding: 1.3rem 0 4rem;
       display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
@@ -1391,6 +1412,42 @@
       <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank">LinkedIn</a>
     </p>
   </div>
+
+  <!-- SITE INDEX (every page, one click from home) -->
+  <nav class="footer-index" aria-label="All pages">
+    <div class="fi-group">
+      <span class="fi-label">Profile</span>
+      <a href="index.html#profile">About</a>
+      <a href="now.html">Now</a>
+      <a href="education.html">Education</a>
+      <a href="experience.html">Experience</a>
+      <a href="awards.html">Awards &amp; Honours</a>
+      <a href="research.html">Research</a>
+    </div>
+    <div class="fi-group">
+      <span class="fi-label">Work</span>
+      <a href="president.html">Felicitated by the President</a>
+      <a href="aipolicy.html">AI Policy Paper</a>
+      <a href="lgp.html">Lodha Genius Programme</a>
+      <a href="mathapprenticeship.html">Math Apprenticeship</a>
+      <a href="greatideasseminar.html">Great Ideas Seminars</a>
+      <a href="taxcity.html">TaxCity</a>
+      <a href="edunomix.html">Edunomix India</a>
+      <a href="goi.html">Ministry of Education</a>
+      <a href="yc.html">Y Combinator</a>
+      <a href="dpsrkp.html">DPS R.K. Puram</a>
+    </div>
+    <div class="fi-group">
+      <span class="fi-label">More</span>
+      <a href="articles.html">Articles</a>
+      <a href="media.html">Media</a>
+      <a href="podcast.html">Decoded Podcast</a>
+      <a href="bookshelf.html">Bookshelf</a>
+      <a href="press.html">Press</a>
+      <a href="connect.html">Connect</a>
+      <a href="pi.html">A Thousand Digits of Pi</a>
+    </div>
+  </nav>
 
   <!-- FOOTER -->
   <footer class="doc-footer">
