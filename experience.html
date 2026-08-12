@@ -21,8 +21,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <style>
     /* ─── VARIABLES ────────────────────────────────────────
@@ -37,13 +37,11 @@
       --ink-ghost:    #c9ccce;
       --rule:         #cfd3d2;
       --rule-light:   #e2e5e3;
-      --ledger:       #1f6f50;
       --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:         'Inconsolata', 'Courier New', monospace;
-      --num:          'Space Grotesk', 'Inconsolata', sans-serif;
       --outer:        clamp(24px, 5vw, 64px);
+      --measure:      720px;
     }
-    html.dark { --ledger: #7fc8a4; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
@@ -145,7 +143,7 @@
 
     /* ─── DOCUMENT WRAPPER ───────────────────────────────── */
     .document {
-      max-width: 680px;
+      max-width: var(--measure);
       margin: 0 auto;
       padding: 0 var(--outer);
     }
@@ -190,35 +188,37 @@
     .impact-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-bottom: 0.5px solid var(--ink);
+      gap: 1.4rem 1rem;
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+      margin-top: 2.8rem;
+      padding: 2.2rem 0;
     }
     .impact {
-      padding: 1.5rem 0.6rem 1.4rem;
-      border-right: 0.5px solid var(--rule-light);
+      text-align: center;
       opacity: 0; transform: translateY(8px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .impact.visible { opacity: 1; transform: translateY(0); }
-    .impact:last-child { border-right: none; }
     .impact-num {
-      font-family: var(--num);
-      font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.4vw, 2rem);
       font-weight: 500;
-      letter-spacing: -0.01em;
       color: var(--ink);
       display: block;
+      line-height: 1;
       font-variant-numeric: tabular-nums;
     }
-    .impact-num .up { color: var(--ledger); }
+    .impact-num .up { color: var(--ink); }
     .impact-label {
       font-family: var(--mono);
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--ink-faint);
       display: block;
-      margin-top: 0.3rem;
-      line-height: 1.6;
+      margin-top: 0.75rem;
+      line-height: 1.65;
     }
 
     /* ─── SECTION HEAD (identical to index) ─────────────── */
@@ -239,77 +239,71 @@
      * treating each entry as a dated record rather than a bibliography item.
      * Different from index's [n] sidenote-grid; same typographic family.
      */
-    .timeline {
-      position: relative;
-      padding-left: 1.8rem;
-      border-left: 1px solid var(--rule);
-      margin-top: 0;
-    }
+    .timeline { margin-top: 0.4rem; }
 
     .t-entry {
-      padding: 2rem 0 2.4rem;
+      padding: 2.9rem 0 3rem;
       border-bottom: 0.5px solid var(--rule-light);
       opacity: 0; transform: translateY(10px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .t-entry:last-child { border-bottom: none; padding-bottom: 0.5rem; }
+    .t-entry:last-child { border-bottom: none; }
     .t-entry.visible { opacity: 1; transform: translateY(0); }
 
     .t-meta {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      margin-bottom: 0.3rem;
+      gap: 0.75rem;
+      margin-bottom: 0.7rem;
     }
 
     .t-date {
-      font-family: var(--num);
-      font-size: 0.62rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
       font-weight: 500;
-      color: var(--ink-soft);
-      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .t-badge {
-      font-family: var(--num);
-      font-size: 0.55rem;
+      font-family: var(--mono);
+      font-size: 0.54rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ledger);
-      border: 1px solid var(--ledger);
-      padding: 0.08rem 0.4rem;
+      color: var(--ink-faint);
+      border: 0.5px solid var(--rule);
+      padding: 0.1rem 0.45rem;
       line-height: 1.6;
     }
 
     .t-title {
       font-family: var(--serif);
-      font-size: 1.08rem;
-      font-weight: 400;
+      font-size: 1.3rem;
+      font-weight: 500;
       color: var(--ink);
-      line-height: 1.3;
+      line-height: 1.26;
       text-decoration: none;
       display: block;
-      margin-bottom: 0.12rem;
+      margin-bottom: 0.3rem;
     }
-    a.t-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+    a.t-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 0.5px; }
 
     .t-org {
       font-family: var(--serif);
-      font-size: 0.86rem;
+      font-size: 0.92rem;
       font-style: italic;
       color: var(--ink-soft);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
     }
 
     .t-desc {
       font-family: var(--serif);
-      font-size: 0.9rem;
+      font-size: 0.99rem;
       color: var(--ink-med);
-      line-height: 1.75;
-      text-align: justify;
-      hyphens: auto;
+      line-height: 1.82;
+      max-width: 62ch;
     }
 
     .t-desc a {
@@ -326,7 +320,7 @@
       color: var(--ink-faint);
       letter-spacing: 0.06em;
       text-decoration: none;
-      margin-top: 0.55rem;
+      margin-top: 0.85rem;
       display: inline-block;
       transition: color 0.2s;
     }
@@ -350,10 +344,8 @@
       .topbar { padding: 1.1rem 1.4rem; }
       .nav-overlay { padding: 4rem 1.8rem; }
       .doc-meta-top { flex-direction: column; gap: 0.2rem; }
-      .timeline { padding-left: 1.3rem; }
-      .impact-strip { grid-template-columns: 1fr 1fr; }
-      .impact:nth-child(2) { border-right: none; }
-      .impact:nth-child(1), .impact:nth-child(2) { border-bottom: 0.5px solid var(--rule-light); }
+      .impact-strip { grid-template-columns: 1fr 1fr; row-gap: 1.9rem; }
+      .t-title { font-size: 1.18rem; }
     }
   </style>
 <!-- print styles + reduced motion -->
@@ -454,6 +446,49 @@
 
     <div class="t-entry">
       <div class="t-meta">
+        <span class="t-date">Since Aug 2026</span>
+        <span class="t-badge">current</span>
+      </div>
+      <span class="t-title">Talent Recruitment Intern, DocsDocs</span>
+      <p class="t-org">DocsDocs &nbsp;·&nbsp; Apple-backed &nbsp;·&nbsp; Remote</p>
+      <p class="t-desc">Recently joined DocsDocs, an Apple-backed startup, as a remote Talent Recruitment Intern, helping source and evaluate talent as the team scales. If you would like to learn more, reach me at <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>.</p>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
+        <span class="t-date">Since Feb 2024</span>
+        <span class="t-badge">ongoing</span>
+      </div>
+      <a href="edunomix.html" class="t-title">Founder &amp; President, Edunomix India Chapter</a>
+      <p class="t-org">Edunomix Institute &nbsp;·&nbsp; US 501(c)(3) &nbsp;·&nbsp; India Chapter</p>
+      <p class="t-desc">Founded and led the India Chapter of the <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">Edunomix Institute</a>, the first South Asia chapter of a US 501(c)(3) nonprofit. Ran a <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">nationwide essay competition</a> spanning 19 states and 54 schools, organised workshops, taught displaced Ukrainian students, and published financial literacy research.</p>
+      <a href="edunomix.html" class="t-more">Read more →</a>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
+        <span class="t-date">Since Jun 2024</span>
+        <span class="t-badge">ongoing</span>
+      </div>
+      <a href="taxcity.html" class="t-title">CFO, TaxCity</a>
+      <p class="t-org">TaxCity &nbsp;·&nbsp; Finance &amp; Grants &nbsp;·&nbsp; Government-recognised</p>
+      <p class="t-desc">Leading the finance and grants department at TaxCity, a Ministry of Education recognised financial literacy initiative built around a card game that teaches tax filing. Oversee financial planning, budgeting, grant strategy, and fundraising, and manage a team of finance interns. Secured $120,000+ in grant funding and contributed to ₹550,000+ in revenue. The programme has reached 79,000+ students in India and across 27 countries. Received Letters of Recommendation from Members of Parliament.</p>
+      <a href="taxcity.html" class="t-more">Read more →</a>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
+        <span class="t-date">Since Dec 2023</span>
+        <span class="t-badge">ongoing</span>
+      </div>
+      <a href="articles.html" class="t-title">Researcher, Edunomix Institute</a>
+      <p class="t-org">Edunomix India &nbsp;·&nbsp; Economics, finance &amp; public policy</p>
+      <p class="t-desc">Research and long-form articles on economics, finance, and public policy for students and educators worldwide. Subjects have included the Union Budget 2024, the Open Network for Digital Commerce, the Bangladesh crisis, sustainable finance and ESG, and the economics of private aviation.</p>
+      <a href="articles.html" class="t-more">Read the articles →</a>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
         <span class="t-date">15th May – 20th Jun 2026</span>
         <span class="t-badge">Concluded</span>
       </div>
@@ -466,7 +501,7 @@
     <div class="t-entry">
       <div class="t-meta">
         <span class="t-date">Aug 2025 – Jul 2026</span>
-        <span class="t-badge">ongoing</span>
+        <span class="t-badge">Concluded</span>
       </div>
       <span class="t-title">Junior Researcher, The New York Academy of Sciences</span>
       <p class="t-org">The Junior Academy &nbsp;·&nbsp; Fall 2025 Cohort &nbsp;·&nbsp; ≈10% acceptance</p>
@@ -475,8 +510,8 @@
 
     <div class="t-entry">
       <div class="t-meta">
-        <span class="t-date">Since Jan 2025</span>
-        <span class="t-badge">ongoing</span>
+        <span class="t-date">Jan 2025 – 2026</span>
+        <span class="t-badge">Concluded</span>
       </div>
       <a href="aipolicy.html" class="t-title">AI Policy Researcher, Penn Engineering</a>
       <p class="t-org">University of Pennsylvania &nbsp;·&nbsp; Under Prof. Surbhi Goel</p>
@@ -494,39 +529,6 @@
       <a href="goi.html" class="t-more">Read more →</a>
     </div>
 
-    <div class="t-entry">
-      <div class="t-meta">
-        <span class="t-date">Since Jun 2024</span>
-        <span class="t-badge">ongoing</span>
-      </div>
-      <a href="taxcity.html" class="t-title">CFO, TaxCity</a>
-      <p class="t-org">TaxCity &nbsp;·&nbsp; Finance &amp; Grants &nbsp;·&nbsp; Government-recognised</p>
-      <p class="t-desc">Leading the finance and grants department at TaxCity, a Ministry of Education recognised financial literacy initiative built around a card game that teaches tax filing. Oversee financial planning, budgeting, grant strategy, and fundraising, and manage a team of finance interns. Secured $120,000+ in grant funding and contributed to ₹550,000+ in revenue. The programme has reached 79,000+ students in India and across 27 countries. Received Letters of Recommendation from Members of Parliament.</p>
-      <a href="taxcity.html" class="t-more">Read more →</a>
-    </div>
-
-    <div class="t-entry">
-      <div class="t-meta">
-        <span class="t-date">Since Feb 2024</span>
-        <span class="t-badge">ongoing</span>
-      </div>
-      <a href="edunomix.html" class="t-title">Founder &amp; President, Edunomix India Chapter</a>
-      <p class="t-org">Edunomix Institute &nbsp;·&nbsp; US 501(c)(3) &nbsp;·&nbsp; India Chapter</p>
-      <p class="t-desc">Founded and led the India Chapter of the <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">Edunomix Institute</a>, the first South Asia chapter of a US 501(c)(3) nonprofit. Ran a <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">nationwide essay competition</a> spanning 19 states and 54 schools, organised workshops, taught displaced Ukrainian students, and published financial literacy research.</p>
-      <a href="edunomix.html" class="t-more">Read more →</a>
-    </div>
-
-    <div class="t-entry">
-      <div class="t-meta">
-        <span class="t-date">Since Dec 2023</span>
-        <span class="t-badge">ongoing</span>
-      </div>
-      <a href="articles.html" class="t-title">Researcher, Edunomix Institute</a>
-      <p class="t-org">Edunomix India &nbsp;·&nbsp; Economics, finance &amp; public policy</p>
-      <p class="t-desc">Research and long-form articles on economics, finance, and public policy for students and educators worldwide. Subjects have included the Union Budget 2024, the Open Network for Digital Commerce, the Bangladesh crisis, sustainable finance and ESG, and the economics of private aviation.</p>
-      <a href="articles.html" class="t-more">Read the articles →</a>
-    </div>
-
   </div>
 
   <!-- §2 LEADERSHIP -->
@@ -539,8 +541,8 @@
 
     <div class="t-entry">
       <div class="t-meta">
-        <span class="t-date">Since Jul 2025</span>
-        <span class="t-badge">ongoing</span>
+        <span class="t-date">Jul 2025 – 2026</span>
+        <span class="t-badge">Concluded</span>
       </div>
       <a href="dpsrkp.html" class="t-title">President, Student Council</a>
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Class of 2026 &nbsp;·&nbsp; 9,500+ students</p>
@@ -590,15 +592,6 @@
 
     <div class="t-entry">
       <div class="t-meta">
-        <span class="t-date">Oct 2025</span>
-      </div>
-      <span class="t-title">Organiser, Daydream Delhi @ IIT Delhi</span>
-      <p class="t-org">Hack Club &nbsp;·&nbsp; IIT Delhi &nbsp;·&nbsp; New Delhi</p>
-      <p class="t-desc">Organised <a href="https://daydream.hackclub.com/delhi" target="_blank" rel="noopener">Daydream Delhi</a>, a two-day game jam for high schoolers held at IIT Delhi, part of Hack Club's global Daydream event running simultaneously across 100 cities worldwide. Featured workshops on Godot and Ren'py, lightning talks, and a 48-hour game-building sprint. All free of charge.</p>
-    </div>
-
-    <div class="t-entry">
-      <div class="t-meta">
         <span class="t-date">Since Dec 2024</span>
         <span class="t-badge">ongoing</span>
       </div>
@@ -606,6 +599,15 @@
       <p class="t-org">Spotify &nbsp;·&nbsp; Apple Podcasts &nbsp;·&nbsp; Amazon Music</p>
       <p class="t-desc">Long-form conversations with researchers, entrepreneurs, investors, and policymakers on economics, AI, and public policy. I run every part of it: outreach, research, interviewing, editing, and distribution. Past 300 listening hours on Spotify, and named A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show in Spotify's Wrapped for Creators. Available on <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">Spotify</a>, <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">Apple Podcasts</a>, and <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">Amazon Music</a>.</p>
       <a href="podcast.html" class="t-more">Read more →</a>
+    </div>
+
+    <div class="t-entry">
+      <div class="t-meta">
+        <span class="t-date">Oct 2025</span>
+      </div>
+      <span class="t-title">Organiser, Daydream Delhi @ IIT Delhi</span>
+      <p class="t-org">Hack Club &nbsp;·&nbsp; IIT Delhi &nbsp;·&nbsp; New Delhi</p>
+      <p class="t-desc">Organised <a href="https://daydream.hackclub.com/delhi" target="_blank" rel="noopener">Daydream Delhi</a>, a two-day game jam for high schoolers held at IIT Delhi, part of Hack Club's global Daydream event running simultaneously across 100 cities worldwide. Featured workshops on Godot and Ren'py, lightning talks, and a 48-hour game-building sprint. All free of charge.</p>
     </div>
 
   </div>
