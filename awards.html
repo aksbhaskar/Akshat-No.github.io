@@ -42,7 +42,7 @@
       --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:         'Inconsolata', 'Courier New', monospace;
       --outer:        clamp(24px, 4vw, 56px);
-      --max-doc:      760px;
+      --max-doc:      1140px;
     }
     html.dark { --laurel: #8fc4a6; }
 
@@ -238,45 +238,48 @@
     .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
     .sec-note  { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-ghost); margin-left: auto; letter-spacing: 0.05em; }
 
-    /* ─── HONOURS TABLE ────────────────────────────────────── */
-    .honours { padding: 0.8rem 0 1rem; }
-
+    /* ─── HONOURS GRID ─────────────────────────────────────────
+       Open and spaced: each honour is a card in a three-up grid,
+       parted by hairlines, centred, with room to breathe. */
+    .honours {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 0.5rem;
+    }
     .honour {
-      padding: 1.55rem 0;
-      border-bottom: 0.5px solid var(--rule-light);
+      padding: 3rem 1.9rem;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      border-right: 0.5px solid var(--rule);
       opacity: 0; transform: translateY(8px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .honour:last-child { border-bottom: none; }
     .honour.visible { opacity: 1; transform: translateY(0); }
+    .honour:nth-child(3n) { border-right: none; }
+    .honours .honour:last-child { border-right: none; }
 
-    /* title ......... year : the table-of-honours line */
-    .honour-line {
-      display: flex; align-items: baseline; gap: 0.7rem;
+    /* year sits above the title as a small laurel dateline */
+    .honour-line { display: flex; flex-direction: column-reverse; align-items: center; }
+    .honour-leader { display: none; }
+    .honour-year {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.18em; color: var(--laurel);
+      margin-bottom: 1rem; font-variant-numeric: normal;
     }
     .honour-title {
-      font-family: var(--serif); font-size: 1.06rem; font-weight: 500;
-      color: var(--ink); line-height: 1.35;
-    }
-    .honour-leader {
-      flex: 1; min-width: 32px;
-      border-bottom: 1px dotted var(--rule);
-      position: relative; top: -4px;
-    }
-    .honour-year {
-      font-family: var(--serif); font-size: 0.95rem;
-      color: var(--laurel); flex-shrink: 0;
-      font-variant-numeric: oldstyle-nums;
+      font-family: var(--serif); font-size: 1.32rem; font-weight: 500;
+      line-height: 1.22; color: var(--ink); max-width: 15ch;
     }
     .honour-cite {
       font-family: var(--serif); font-style: italic;
-      font-size: 0.88rem; color: var(--ink-med); line-height: 1.7;
-      margin-top: 0.35rem; max-width: 58ch;
+      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.66;
+      margin-top: 1rem; max-width: 32ch;
     }
+    .honour-cite::first-letter { text-transform: uppercase; }
     .honour-issuer {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-top: 0.5rem;
+      font-family: var(--mono); font-size: 0.55rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-top: 1.2rem; max-width: 30ch;
     }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
@@ -292,6 +295,12 @@
     .footer-socials a:hover { color: var(--ink-med); }
 
     /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .honours { grid-template-columns: repeat(2, 1fr); }
+      .honour { border-right: 0.5px solid var(--rule); }
+      .honour:nth-child(3n) { border-right: 0.5px solid var(--rule); }
+      .honour:nth-child(2n) { border-right: none; }
+    }
     @media (max-width: 640px) {
       :root { --outer: 20px; }
       .topbar { padding: 1.1rem 1.4rem; }
@@ -299,9 +308,9 @@
       .honours-head { padding-top: 92px; }
       h1.hh-title { font-size: 1.8rem; }
       .citation { padding: 1.8rem 1.2rem 1.6rem; }
-      .honour-line { flex-wrap: wrap; }
-      .honour-leader { display: none; }
-      .honour-year::before { content: "· "; color: var(--ink-ghost); }
+      .honours { grid-template-columns: 1fr; }
+      .honour { border-right: none !important; border-bottom: 0.5px solid var(--rule-light); padding: 2.4rem 0.5rem; }
+      .honour:last-child { border-bottom: none; }
     }
   </style>
 <!-- print styles + reduced motion -->
