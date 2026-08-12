@@ -325,3 +325,14 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
 /* ── "Surprise me" menu link, in the accent so it stands out ── */
 .nav-surprise { color: #e7b866 !important; font-style: italic !important; letter-spacing: 0.01em; }
 .nav-surprise:hover { opacity: 0.85; }
+
+/* ── Keyboard focus: a clear, on-brand ring for anyone tabbing ──
+   Mouse clicks stay ring-free (:focus-visible), so this only shows
+   for keyboard and assistive-tech users, where it matters. */
+:focus-visible {
+  outline: 2px solid var(--accent, #7a4a24);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* On the dark nav overlay, a light ring reads better than the accent. */
+.nav-overlay a:focus-visible { outline-color: rgba(255,255,255,0.85); }
