@@ -243,7 +243,7 @@
        parted by hairlines, centred, with room to breathe. */
     .honours {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       margin-top: 0.5rem;
     }
     .honour {
@@ -255,7 +255,7 @@
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .honour.visible { opacity: 1; transform: translateY(0); }
-    .honour:nth-child(3n) { border-right: none; }
+    .honour:nth-child(2n) { border-right: none; }
     .honours .honour:last-child { border-right: none; }
 
     /* year sits above the title as a small laurel dateline */
@@ -271,9 +271,9 @@
       line-height: 1.22; color: var(--ink); max-width: 15ch;
     }
     .honour-cite {
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.66;
-      margin-top: 1rem; max-width: 32ch;
+      font-family: var(--serif); font-style: normal;
+      font-size: 1.06rem; color: var(--ink-med); line-height: 1.62;
+      margin-top: 1rem; max-width: 42ch;
     }
     .honour-cite::first-letter { text-transform: uppercase; }
     .honour-issuer {
@@ -295,12 +295,6 @@
     .footer-socials a:hover { color: var(--ink-med); }
 
     /* ─── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 980px) {
-      .honours { grid-template-columns: repeat(2, 1fr); }
-      .honour { border-right: 0.5px solid var(--rule); }
-      .honour:nth-child(3n) { border-right: 0.5px solid var(--rule); }
-      .honour:nth-child(2n) { border-right: none; }
-    }
     @media (max-width: 640px) {
       :root { --outer: 20px; }
       .topbar { padding: 1.1rem 1.4rem; }
