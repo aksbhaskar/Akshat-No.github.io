@@ -336,3 +336,10 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
 }
 /* On the dark nav overlay, a light ring reads better than the accent. */
 .nav-overlay a:focus-visible { outline-color: rgba(255,255,255,0.85); }
+
+/* ── No sideways scroll ─────────────────────────────────────────
+   Full-bleed strips (the photo marquee) measure 100vw, which is a
+   hair wider than the content once a scrollbar is present. clip
+   trims that stray horizontal overflow without making a scroll
+   container, so position:fixed and anchor jumps are unaffected. */
+html, body { overflow-x: clip; }

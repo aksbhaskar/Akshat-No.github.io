@@ -694,4 +694,31 @@
       }, 550);
     }
   } catch (e) {}
+
+  /* ══ Prefetch on hover ════════════════════════════════════════
+     When a visitor hovers or tabs to an internal page link, quietly
+     fetch that page so the click that follows feels instant. Each
+     target is fetched at most once, and only real internal pages. */
+  (function () {
+    var seen = {};
+    function prefetch(a) {
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || seen[href]) return;
+      if (a.target === '_blank' || a.hasAttribute('download')) return;
+      if (/^(#|mailto:|tel:|https?:|\/\/)/i.test(href)) return;
+      if (!/\.html($|[?#])/.test(href)) return;
+      seen[href] = 1;
+      var l = document.createElement('link');
+      l.rel = 'prefetch'; l.href = href;
+      document.head.appendChild(l);
+    }
+    function fromEvent(e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (a) prefetch(a);
+    }
+    document.addEventListener('mouseover', fromEvent, { passive: true });
+    document.addEventListener('focusin', fromEvent);
+    document.addEventListener('touchstart', fromEvent, { passive: true });
+  })();
 })();
