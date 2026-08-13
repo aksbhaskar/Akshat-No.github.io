@@ -326,9 +326,8 @@
     }
     .t-more:hover { color: var(--ink); }
 
-    /* ─── INLINE FIGURES (matched to each entry, never clumped) ─── */
-    .t-figure { margin: 1.7rem 0 0.1rem; max-width: 430px; }
-    .t-figure.wide { max-width: 605px; }
+    /* ─── FIGURES: photographs set beside the entry they belong to ─── */
+    .t-figure { margin: 0; }
     .t-figure img {
       width: 100%; height: auto; display: block;
       border: 0.5px solid var(--rule);
@@ -336,25 +335,43 @@
     }
     .t-figure figcaption {
       font-family: var(--mono);
-      font-size: 0.575rem;
-      letter-spacing: 0.045em;
+      font-size: 0.55rem;
+      letter-spacing: 0.04em;
       color: var(--ink-faint);
-      margin-top: 0.55rem;
-      line-height: 1.7;
+      margin-top: 0.5rem;
+      line-height: 1.66;
     }
     .t-figure figcaption b { color: var(--ink-soft); font-weight: 600; }
-    .t-figs {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-      margin: 1.7rem 0 0.1rem;
-      max-width: 605px;
-      align-items: start;
+    /* paired photographs stack down the side column */
+    .t-figs { display: grid; gap: 0.95rem; margin: 0; }
+
+    /* On a real screen, the entry becomes two columns: text | photo(s) */
+    @media (min-width: 680px) {
+      .t-entry:has(> .t-figure),
+      .t-entry:has(> .t-figs) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 224px;
+        column-gap: 2.5rem;
+        align-items: start;
+      }
+      .t-entry:has(> .t-figure) > *,
+      .t-entry:has(> .t-figs)  > * { grid-column: 1; min-width: 0; }
+      .t-entry > .t-figure,
+      .t-entry > .t-figs {
+        grid-column: 2 !important;
+        grid-row: 1 / span 40;
+        align-self: start;
+        margin-top: 0.15rem;
+      }
+      /* text fills the left column instead of the 62ch cap */
+      .t-entry:has(> .t-figure) .t-desc,
+      .t-entry:has(> .t-figs)  .t-desc { max-width: none; }
     }
-    .t-figs .t-figure { margin: 0; max-width: none; }
-    @media (max-width: 620px) {
-      .t-figs { grid-template-columns: 1fr; gap: 1.4rem; }
-      .t-figure, .t-figure.wide { max-width: 100%; }
+
+    /* Narrow screens: photo(s) sit under the text, comfortably sized */
+    @media (max-width: 679.98px) {
+      .t-figure, .t-figs { margin-top: 1.5rem; max-width: 100%; }
+      .t-figure { max-width: 420px; }
     }
 
     /* ─── FOOTER (identical to index) ───────────────────── */
@@ -788,10 +805,6 @@
       <span class="t-title">Captain, U-19 Football Team</span>
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; District Champions ×2</p>
       <p class="t-desc">Appointed Captain of the U-19 football team, leading training, match preparation, and on-field strategy. Won the Delhi District Championship twice and represented the district at the Delhi State Championship.</p>
-      <figure class="t-figure">
-        <img width="780" height="1040" loading="lazy" decoding="async" src="media_young_football.jpg" alt="Captain of the U-19 football team">
-        <figcaption><b>U-19 captain</b> — district champions twice, and on to the state championship.</figcaption>
-      </figure>
     </div>
 
     <div class="t-entry">
