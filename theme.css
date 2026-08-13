@@ -354,3 +354,8 @@ html, body { overflow-x: clip; }
 .pic-set figcaption { font-family: var(--mono, 'Inconsolata', monospace); font-size: 0.58rem; letter-spacing: 0.05em; color: var(--ink-faint, #777); margin-top: 0.5rem; line-height: 1.55; }
 .pic-set figcaption b { color: var(--ink-med, #333); font-weight: 600; letter-spacing: 0.02em; }
 .pic-set figcaption a { color: inherit; }
+
+/* A tidy uniform variant of the photo set: equal cells, cropped to fit. */
+.pic-set.tidy { grid-template-columns: repeat(3, 1fr); }
+.pic-set.tidy img { aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 640px) { .pic-set.tidy { grid-template-columns: 1fr 1fr; } }
