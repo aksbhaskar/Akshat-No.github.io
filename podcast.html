@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://akshatb.com/decoded_wrapped_2025.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/decoded_wrapped_2025.png" />
-  <meta name="theme-color" content="#eeede8" />
+  <meta name="theme-color" content="#fbf9f3" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org", "@type": "PodcastSeries",
@@ -35,66 +35,61 @@
   </script>
   <link rel="icon" type="image/jpeg" href="akshat.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-  <link rel="stylesheet" href="theme.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <style>
-    /* ── THE WRAPPED POSTER ──
-       Built from the artwork Spotify sent: off-white stock, ink,
-       one mustard, one periwinkle, one tomato. Flat colour, hard
-       shadows, and plenty of quiet paper between the loud bits. */
+    /* ─── VARIABLES ────────────────────────────────────────────
+       The studio, as a manuscript: warm paper, ink, one green. */
     :root {
-      --paper:      #eeede8;
-      --ink:        #161613;
-      --ink-soft:   #55544e;
-      --ink-faint:  #6a6961;   /* 4.7:1 on the poster paper */
-      --rule:       #d6d4cb;
-      --mustard:    #c7a411;
-      --peri:       #a79ff5;
-      --tomato:     #f04a31;
-      --serif:      'EB Garamond', Georgia, serif;
-      --ui:         'Outfit', sans-serif;
+      --paper:      #fbf9f3;
+      --ink:        #17170f;
+      --ink-med:    #38382c;
+      --ink-soft:   #6a6a58;
+      --ink-faint:  #71715f;
+      --ink-ghost:  #cac4b1;
+      --rule:       #dad4c2;
+      --rule-light: #e9e4d5;
+      --accent:     #2f6f52;
+      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
       --mono:       'Inconsolata', 'Courier New', monospace;
       --outer:      clamp(22px, 4vw, 56px);
-      --max:        980px;
+      --measure:    760px;
     }
+    html.dark { --accent: #79c6a2; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
 
-    /* Icon sizing lives in theme.css too, but this page must never
-       balloon to the 300x150 SVG default if that file is slow or gone. */
-    svg.icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.125em; }
-
     body {
       background: var(--paper);
       color: var(--ink);
-      font-family: var(--ui);
-      line-height: 1.65;
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      overflow-x: hidden;
     }
-    ::selection { background: rgba(167,159,245,0.45); }
+    ::selection { background: rgba(47,111,82,0.16); }
 
-    /* ── PROGRESS ── */
-    #prog {
-      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-      background: var(--tomato); z-index: 999; transition: width 0.1s linear;
+    /* ─── PROGRESS ─────────────────────────────────────────── */
+    .progress-rule {
+      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
+      background: var(--accent); z-index: 999; transition: width 0.1s linear;
     }
 
-    /* ── TOPBAR ── */
+    /* ─── TOPBAR ───────────────────────────────────────────── */
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(238,237,232,0.92);
+      background: rgba(251,249,243,0.92);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 0.5px solid rgba(218,212,194,0.4);
     }
+    html.dark .topbar { background: rgba(22,21,15,0.9); }
     .topbar-logo {
       font-family: var(--mono); font-size: 0.68rem;
       color: var(--ink-faint); letter-spacing: 0.07em;
@@ -108,17 +103,18 @@
       gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
-      display: block; width: 20px; height: 2px;
-      background: var(--ink); transition: all 0.3s ease; transform-origin: center;
+      display: block; width: 20px; height: 0.5px;
+      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger:hover span { background: var(--ink); }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
-    /* ── NAV OVERLAY ── */
+    /* ─── NAV OVERLAY ──────────────────────────────────────── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(22,22,19,0.96);
+      background: rgba(23,23,15,0.95); backdrop-filter: blur(8px);
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
       padding: 5rem 4rem;
@@ -126,9 +122,9 @@
     }
     .nav-overlay.open { opacity: 1; pointer-events: all; }
     .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem);
+      font-family: var(--serif); font-size: clamp(1.5rem, 3.3vw, 2.3rem);
       font-weight: 400; font-style: italic;
-      color: rgba(238,237,232,0.5); line-height: 1.28;
+      color: rgba(251,249,243,0.5); line-height: 1.32;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
       text-decoration: none; display: block;
@@ -145,10 +141,9 @@
     .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
     .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
     .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: var(--peri); }
+    .nav-overlay a.nav-link:hover { color: rgba(251,249,243,0.95); }
     .nav-hr {
-      width: 28px; height: 1px; background: rgba(238,237,232,0.15);
+      width: 28px; height: 0.5px; background: rgba(251,249,243,0.15);
       margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
     }
     .nav-overlay.open .nav-hr { opacity: 1; }
@@ -158,261 +153,153 @@
       transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
     }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(238,237,232,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: var(--peri); }
+    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,249,243,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .nav-socials-row a:hover { color: rgba(251,249,243,0.9); }
 
-    /* ── PAGE ── */
-    .poster { max-width: var(--max); margin: 0 auto; padding: 0 var(--outer); }
+    /* ─── PAGE ─────────────────────────────────────────────── */
+    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
 
-    /* ── OP-ART RIBBON ──
-       The concentric arc pattern from the artwork's corner, redrawn
-       in CSS as a thin band under the topbar. Decoration only. */
-    .ribbon {
-      height: 26px; margin-top: 76px;
-      background: repeating-linear-gradient(90deg,
-        var(--ink) 0 14px, var(--paper) 14px 28px);
-      border-top: 2px solid var(--ink);
-      border-bottom: 2px solid var(--ink);
+    /* ─── HEADER ───────────────────────────────────────────── */
+    .pod-head { padding-top: 118px; padding-bottom: 0.4rem; }
+    .crumbs {
+      font-family: var(--mono); font-size: 0.66rem;
+      color: var(--ink-faint); letter-spacing: 0.06em;
+      display: flex; gap: 0.55rem; align-items: center;
     }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      padding: clamp(3rem, 7vh, 5rem) 0 2.6rem;
-      text-align: left;
-    }
-    .kicker {
-      font-family: var(--mono); font-size: 0.64rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--ink-soft);
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      margin-bottom: 1.4rem;
-    }
-    .kicker .dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--tomato); border: 2px solid var(--ink);
-      display: inline-block;
-    }
-    h1.show {
-      font-family: var(--ui); font-weight: 800;
-      font-size: clamp(3.4rem, 12vw, 7rem);
-      line-height: 0.95; letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-    .show-tag {
-      font-family: var(--serif); font-style: italic;
-      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
-      color: var(--ink-soft);
-      margin-top: 1.2rem; max-width: 34ch; line-height: 1.55;
-    }
-
-    /* the circle stack from the poster, floated to the hero's right */
-    .circles {
-      position: absolute; right: -1rem; top: 0.4rem;
-      width: clamp(120px, 22vw, 220px); aspect-ratio: 10 / 16;
-      pointer-events: none;
-    }
-    .circles i {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      width: 62%; aspect-ratio: 1; border-radius: 50%;
-      border: 2.5px solid var(--ink); font-style: normal;
-    }
-    .circles i:nth-child(1) { top: 0;   background: var(--mustard); }
-    .circles i:nth-child(2) { top: 30%; background: var(--peri); }
-    .circles i:nth-child(3) { top: 60%; background: var(--tomato); }
-
-    .star {
-      position: absolute; font-size: 1.5rem; color: var(--ink);
-      pointer-events: none; line-height: 1;
-    }
-
-    /* platform chips */
-    .platforms { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.2rem; }
-    .pill {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-family: var(--ui); font-weight: 600; font-size: 0.82rem;
-      letter-spacing: 0.02em;
-      color: var(--paper); background: var(--ink);
-      text-decoration: none;
-      border: 2px solid var(--ink); border-radius: 999px;
-      padding: 0.6rem 1.25rem;
-      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .pill:hover {
-      background: var(--paper); color: var(--ink);
-      transform: translate(-2px, -2px);
-      box-shadow: 3px 3px 0 var(--ink);
-    }
-
-    /* ── SECTION LABELS ── */
-    .slab {
-      display: flex; align-items: center; gap: 1rem;
-      margin: 3.6rem 0 1.6rem;
-    }
-    .slab span {
-      font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--ink-soft); white-space: nowrap;
-    }
-    .slab::after { content: ''; height: 2px; background: var(--ink); flex: 1; }
-
-    /* ── WRAPPED 2025 ── */
-    .wrapped {
-      display: grid; grid-template-columns: minmax(240px, 340px) 1fr;
-      gap: clamp(1.6rem, 4vw, 3.2rem);
-      align-items: center;
-    }
-    .wrapped-art { position: relative; }
-    .wrapped-art img {
-      display: block; width: 100%; height: auto;
-      border: 2.5px solid var(--ink);
-      box-shadow: 8px 8px 0 var(--ink);
-      background: var(--paper);
-    }
-    .wrapped-art figcaption {
+    .crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+    .crumbs a:hover { color: var(--ink); }
+    .crumbs .sep { color: var(--ink-ghost); }
+    .eyebrow {
       font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.08em; color: var(--ink-faint);
-      margin-top: 1rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); display: block; margin: 2.2rem 0 0.9rem;
+    }
+    h1.pod-title {
+      font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 3.8rem);
+      font-weight: 400; letter-spacing: 0.02em; line-height: 1; color: var(--ink);
+    }
+    .pod-sub {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.1rem; color: var(--ink-soft);
+      margin-top: 0.9rem; max-width: 40ch; line-height: 1.55;
     }
 
+    .listen { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.8rem; }
+    .listen a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.64rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none;
+      border: 0.5px solid var(--rule); border-radius: 2px;
+      padding: 0.5rem 0.95rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .listen a:hover { color: var(--accent); border-color: var(--accent); }
+    .listen a .icon { color: var(--accent); font-size: 0.82rem; }
+
+    /* ─── SECTION HEAD ─────────────────────────────────────── */
+    .section-head {
+      padding-top: 3.2rem; padding-bottom: 0.65rem;
+      border-bottom: 0.5px solid var(--ink);
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+
+    /* ─── WRAPPED 2025 ─────────────────────────────────────── */
+    .wrapped {
+      display: grid; grid-template-columns: minmax(200px, 300px) 1fr;
+      gap: clamp(1.4rem, 4vw, 2.8rem); align-items: start; margin-top: 1.6rem;
+    }
+    .wrapped-art img { width: 100%; height: auto; display: block; border: 0.5px solid var(--rule); }
+    .wrapped-art figcaption {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.6rem;
+    }
     .award-list { list-style: none; }
     .award-list li {
-      display: flex; align-items: center; gap: 1.1rem;
-      padding: 1.05rem 0;
-      border-bottom: 1.5px solid var(--rule);
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: 0.95rem 0; border-bottom: 0.5px solid var(--rule-light);
     }
-    .award-list li:last-of-type { border-bottom: none; }
-    .award-dot {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 2.5px solid var(--ink); flex: none;
-    }
-    .award-list li:nth-child(1) .award-dot { background: var(--mustard); }
-    .award-list li:nth-child(2) .award-dot { background: var(--peri); }
-    .award-list li:nth-child(3) .award-dot { background: var(--tomato); }
-    .award-name {
-      font-family: var(--ui); font-weight: 700;
-      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-      letter-spacing: -0.01em; line-height: 1.2;
-    }
-    .award-sub {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-top: 0.2rem;
-    }
-    .award-foot {
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.98rem; color: var(--ink-soft);
-      margin-top: 1.4rem;
-    }
+    .award-list li:last-child { border-bottom: none; }
+    .a-num { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; flex-shrink: 0; padding-top: 0.2rem; }
+    .a-name { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); display: block; line-height: 1.25; }
+    .a-sub { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.25rem; }
+    .award-foot { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); margin-top: 1.3rem; }
 
-    /* ── FEATURED EPISODE ── */
-    .episode-card {
-      border: 2.5px solid var(--ink);
-      box-shadow: 8px 8px 0 var(--peri);
-      background: var(--ink);
-      padding: 0;
-      overflow: hidden;
-    }
-    .episode-card iframe { display: block; width: 100%; height: 352px; border: 0; }
+    /* ─── FEATURED EPISODE ─────────────────────────────────── */
+    .episode-frame { border: 0.5px solid var(--ink); margin-top: 1.6rem; }
+    .episode-frame iframe { display: block; width: 100%; height: 352px; border: 0; }
 
-    /* ── LINER NOTES ── */
-    .liner p {
-      font-family: var(--serif); font-size: 1.13rem;
-      line-height: 1.8; color: var(--ink);
-      max-width: 62ch;
-    }
+    /* ─── LINER NOTES ──────────────────────────────────────── */
+    .liner { font-family: var(--serif); font-size: 1.05rem; line-height: 1.82; color: var(--ink-med); max-width: 62ch; margin-top: 1.5rem; }
     .liner em { font-style: italic; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2rem; }
+    .fact { border-top: 0.5px solid var(--ink); padding-top: 0.65rem; }
+    .fact-k { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 0.35rem; }
+    .fact-v { font-family: var(--serif); font-size: 0.92rem; color: var(--ink-med); line-height: 1.5; }
 
-    .facts {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem; margin-top: 2.2rem;
+    /* ─── PITCH ────────────────────────────────────────────── */
+    .pitch {
+      margin-top: 1.6rem;
+      border: 0.5px solid var(--rule); border-left: 2px solid var(--accent);
+      padding: 1.6rem 1.7rem 1.5rem;
     }
-    .fact {
-      border-top: 2.5px solid var(--ink);
-      padding-top: 0.7rem;
+    .pitch p { font-family: var(--serif); font-size: 0.98rem; color: var(--ink-med); max-width: 52ch; margin-bottom: 1.1rem; line-height: 1.7; }
+    .pitch-btn {
+      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--paper); background: var(--accent);
+      border: none; border-radius: 3px; padding: 0.6rem 1.2rem;
+      text-decoration: none; display: inline-block; transition: opacity 0.2s;
     }
-    .fact-k {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-bottom: 0.3rem;
-    }
-    .fact-v { font-family: var(--ui); font-weight: 500; font-size: 0.9rem; color: var(--ink-soft); }
+    .pitch-btn:hover { opacity: 0.88; }
+    .pitch-hint { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; display: block; margin-top: 0.8rem; }
 
-    /* ── PITCH ── */
-    .booking {
-      margin: 4rem 0 0;
-      border: 2.5px solid var(--ink);
-      box-shadow: 8px 8px 0 var(--mustard);
-      background: var(--paper);
-      padding: clamp(1.8rem, 4vw, 3rem);
-      text-align: center;
-      position: relative;
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 3.6rem; border-top: 0.5px solid var(--ink);
+      padding: 1.3rem 0 4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
-    .booking h2 {
-      font-family: var(--ui); font-weight: 800;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      text-transform: uppercase; letter-spacing: -0.01em;
-    }
-    .booking p {
-      font-family: var(--serif); font-size: 1.02rem;
-      color: var(--ink-soft); max-width: 46ch;
-      margin: 0.7rem auto 1.6rem;
-    }
-    .mic-btn {
-      display: inline-block;
-      font-family: var(--ui); font-weight: 700; font-size: 0.95rem;
-      color: var(--paper); background: var(--ink);
-      text-decoration: none;
-      border: 2px solid var(--ink); border-radius: 999px;
-      padding: 0.8rem 2rem;
-      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .mic-btn:hover {
-      background: var(--tomato); border-color: var(--ink); color: var(--paper);
-      transform: translate(-2px, -2px);
-      box-shadow: 3px 3px 0 var(--ink);
-    }
-    .subject-hint {
-      display: block; margin-top: 0.9rem;
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.08em; color: var(--ink-faint);
-    }
-
-    /* ── FOOTER ── */
-    .studio-footer {
-      margin-top: 4.5rem; padding: 2rem 0 3rem;
-      border-top: 2.5px solid var(--ink);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-text { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
     .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { color: var(--ink-soft); font-size: 0.85rem; transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--tomato); }
+    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .footer-socials a:hover { color: var(--ink-med); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 820px) {
-      .circles { display: none; }
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 680px) {
+      :root { --outer: 20px; }
+      .topbar { padding: 1.1rem 1.4rem; }
+      .nav-overlay { padding: 4rem 1.8rem; }
       .wrapped { grid-template-columns: 1fr; }
       .wrapped-art { max-width: 320px; }
-      .facts { grid-template-columns: 1fr; gap: 1rem; }
-    }
-    @media (max-width: 560px) {
-      .topbar { padding: 1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 2rem; }
-      .ribbon { margin-top: 64px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .pill, .mic-btn { transition: none; }
-      .pill:hover, .mic-btn:hover { transform: none; box-shadow: none; }
+      .facts { grid-template-columns: 1fr; }
     }
   </style>
+<!-- print styles + reduced motion -->
+<style>
+@media print {
+  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials, .episode-frame { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+  <script>
+    /* Light by default; only a saved choice turns the lights off. */
+    (function(){try{if(localStorage.getItem('theme')==='dark')
+    document.documentElement.classList.add('dark');}catch(e){}})();
+  </script>
+  <link rel="stylesheet" href="theme.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body>
+<body class="paper">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div id="prog"></div>
+<div class="progress-rule" id="prog"></div>
 
 <!-- NAV -->
 <div class="topbar">
@@ -443,108 +330,113 @@
   </div>
 </nav>
 
-<!-- OP-ART RIBBON -->
-<div class="ribbon" aria-hidden="true"></div>
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page" role="main" id="main">
 
-<div class="poster" role="main" id="main">
+  <!-- HEADER -->
+  <header class="pod-head">
+    <div class="crumbs">
+      <a href="index.html">Akshat Bhaskar</a><span class="sep">/</span><span>Podcast</span>
+    </div>
+    <span class="eyebrow">A Podcast &nbsp;·&nbsp; Est. December 2024</span>
+    <h1 class="pod-title">Decoded</h1>
+    <p class="pod-sub">Long-form conversations on economics and technology, without the jargon.</p>
 
-  <!-- HERO -->
-  <header class="hero">
-    <span class="star" style="top: 8%; left: 62%;" aria-hidden="true">✦</span>
-    <span class="star" style="bottom: 12%; right: 34%; font-size: 1rem;" aria-hidden="true">✦</span>
-    <div class="circles" aria-hidden="true"><i></i><i></i><i></i></div>
-
-    <span class="kicker"><span class="dot"></span>A podcast &nbsp;·&nbsp; Est. 2024</span>
-    <h1 class="show">Decoded</h1>
-    <p class="show-tag">Conversations on economics and technology, without the jargon.</p>
-
-    <div class="platforms">
-      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#spotify"/></svg>Spotify</a>
-      <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#apple"/></svg>Apple Podcasts</a>
-      <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#amazon"/></svg>Amazon Music</a>
+    <div class="listen">
+      <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#spotify"/></svg>Spotify</a>
+      <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#podcast"/></svg>Apple Podcasts</a>
+      <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#amazon"/></svg>Amazon Music</a>
     </div>
   </header>
 
-  <!-- WRAPPED 2025 -->
-  <div class="slab"><span>Spotify Wrapped for Creators · 2025</span></div>
+  <!-- §1 WRAPPED 2025 -->
+  <div class="section-head">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Spotify Wrapped for Creators, 2025</span>
+  </div>
   <section class="wrapped">
     <figure class="wrapped-art">
       <img src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025 artwork for Decoded, naming it A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show" width="1080" height="1920" loading="lazy" decoding="async">
-      <figcaption>The artwork Spotify sent. Kept as issued.</figcaption>
+      <figcaption>The artwork Spotify sent, kept as issued.</figcaption>
     </figure>
     <div>
       <ul class="award-list">
         <li>
-          <span class="award-dot" aria-hidden="true"></span>
+          <span class="a-num">01</span>
           <div>
-            <span class="award-name">A 2025 Marathon Show</span>
-            <span class="award-sub">Sustained listener engagement</span>
+            <span class="a-name">A 2025 Marathon Show</span>
+            <span class="a-sub">Sustained listener engagement</span>
           </div>
         </li>
         <li>
-          <span class="award-dot" aria-hidden="true"></span>
+          <span class="a-num">02</span>
           <div>
-            <span class="award-name">A 2025 Instant Hit Show</span>
-            <span class="award-sub">Strong launch performance</span>
+            <span class="a-name">A 2025 Instant Hit Show</span>
+            <span class="a-sub">Strong launch performance</span>
           </div>
         </li>
         <li>
-          <span class="award-dot" aria-hidden="true"></span>
+          <span class="a-num">03</span>
           <div>
-            <span class="award-name">A 2025 Most Shared Show</span>
-            <span class="award-sub">High audience sharing</span>
+            <span class="a-name">A 2025 Most Shared Show</span>
+            <span class="a-sub">High audience sharing</span>
           </div>
         </li>
       </ul>
-      <p class="award-foot">Three platform recognitions in the show's first full year, past 300 listening hours on Spotify.</p>
+      <p class="award-foot">Three platform recognitions in the show's first full year, past three hundred listening hours on Spotify.</p>
     </div>
   </section>
 
-  <!-- FEATURED EPISODE -->
-  <div class="slab"><span>Now playing · Featured episode</span></div>
-  <section class="episode-card">
+  <!-- §2 FEATURED EPISODE -->
+  <div class="section-head">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Featured Episode</span>
+  </div>
+  <div class="episode-frame">
     <iframe
       src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
       loading="lazy"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       title="Decoded, featured episode on Spotify"
     ></iframe>
-  </section>
+  </div>
 
-  <!-- LINER NOTES -->
-  <div class="slab"><span>Liner notes</span></div>
-  <section class="liner">
-    <p>
-      <em>Decoded</em> makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world. The show is rooted in a simple conviction: <em>the most important ideas shouldn't be locked behind academic walls.</em>
-    </p>
-
-    <div class="facts">
-      <div class="fact">
-        <span class="fact-k">Host</span>
-        <span class="fact-v">Akshat Bhaskar, New Delhi</span>
-      </div>
-      <div class="fact">
-        <span class="fact-k">Production</span>
-        <span class="fact-v">Independent. No sponsors, no backing, just ideas.</span>
-      </div>
-      <div class="fact">
-        <span class="fact-k">Schedule</span>
-        <span class="fact-v">Episodes drop irregularly. Subscribe to be notified.</span>
-      </div>
+  <!-- §3 LINER NOTES -->
+  <div class="section-head">
+    <span class="sec-num">§3</span>
+    <span class="sec-title">Liner Notes</span>
+  </div>
+  <p class="liner">
+    <em>Decoded</em> makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world. The show is rooted in a simple conviction: <em>the most important ideas should not be locked behind academic walls.</em>
+  </p>
+  <div class="facts">
+    <div class="fact">
+      <span class="fact-k">Host</span>
+      <span class="fact-v">Akshat Bhaskar, New Delhi</span>
     </div>
-  </section>
+    <div class="fact">
+      <span class="fact-k">Production</span>
+      <span class="fact-v">Independent. No sponsors, no backing, just ideas.</span>
+    </div>
+    <div class="fact">
+      <span class="fact-k">Schedule</span>
+      <span class="fact-v">Episodes drop irregularly. Subscribe to be notified.</span>
+    </div>
+  </div>
 
-  <!-- BOOKING -->
-  <section class="booking">
-    <span class="star" style="top: -0.8rem; right: 6%;" aria-hidden="true">✦</span>
-    <h2>Step into the booth</h2>
+  <!-- §4 PITCH -->
+  <div class="section-head">
+    <span class="sec-num">§4</span>
+    <span class="sec-title">Pitch an Episode</span>
+  </div>
+  <div class="pitch">
     <p>Episode pitches, guest suggestions, and correspondence about the show are all welcome. Every message is read.</p>
-    <a class="mic-btn" href="mailto:bhaskarakshat22@gmail.com?subject=Decoded, Guest">Pitch an episode</a>
-    <span class="subject-hint">subject line: "Decoded, Guest"</span>
-  </section>
+    <a class="pitch-btn" href="mailto:bhaskarakshat22@gmail.com?subject=Decoded, Guest">Pitch an episode</a>
+    <span class="pitch-hint">subject line: "Decoded, Guest"</span>
+  </div>
 
   <!-- FOOTER -->
-  <footer class="studio-footer">
+  <footer class="doc-footer">
     <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
     <div class="footer-socials">
       <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
