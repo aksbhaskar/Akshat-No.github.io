@@ -343,3 +343,14 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
    trims that stray horizontal overflow without making a scroll
    container, so position:fixed and anchor jumps are unaffected. */
 html, body { overflow-x: clip; }
+
+/* ── Shared photo set for the detail pages ──────────────────────
+   A simple responsive figure grid. Uses each page's own tokens
+   via var() with fallbacks, so it blends into any of them. */
+.pic-set { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 1.7rem 0 0.6rem; }
+.pic-set.one { grid-template-columns: minmax(0, 460px); }
+.pic-set figure { margin: 0; }
+.pic-set img { width: 100%; height: auto; display: block; border: 0.5px solid var(--rule-light, #e4e4d8); background: var(--rule-light, #eee); }
+.pic-set figcaption { font-family: var(--mono, 'Inconsolata', monospace); font-size: 0.58rem; letter-spacing: 0.05em; color: var(--ink-faint, #777); margin-top: 0.5rem; line-height: 1.55; }
+.pic-set figcaption b { color: var(--ink-med, #333); font-weight: 600; letter-spacing: 0.02em; }
+.pic-set figcaption a { color: inherit; }
