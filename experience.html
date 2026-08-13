@@ -326,6 +326,37 @@
     }
     .t-more:hover { color: var(--ink); }
 
+    /* ─── INLINE FIGURES (matched to each entry, never clumped) ─── */
+    .t-figure { margin: 1.7rem 0 0.1rem; max-width: 430px; }
+    .t-figure.wide { max-width: 605px; }
+    .t-figure img {
+      width: 100%; height: auto; display: block;
+      border: 0.5px solid var(--rule);
+      background: var(--paper);
+    }
+    .t-figure figcaption {
+      font-family: var(--mono);
+      font-size: 0.575rem;
+      letter-spacing: 0.045em;
+      color: var(--ink-faint);
+      margin-top: 0.55rem;
+      line-height: 1.7;
+    }
+    .t-figure figcaption b { color: var(--ink-soft); font-weight: 600; }
+    .t-figs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1.7rem 0 0.1rem;
+      max-width: 605px;
+      align-items: start;
+    }
+    .t-figs .t-figure { margin: 0; max-width: none; }
+    @media (max-width: 620px) {
+      .t-figs { grid-template-columns: 1fr; gap: 1.4rem; }
+      .t-figure, .t-figure.wide { max-width: 100%; }
+    }
+
     /* ─── FOOTER (identical to index) ───────────────────── */
     .doc-footer {
       border-top: 0.5px solid var(--ink);
@@ -453,6 +484,10 @@
       <p class="t-org">Edunomix Institute &nbsp;·&nbsp; US 501(c)(3) &nbsp;·&nbsp; India Chapter</p>
       <p class="t-desc">Founded and led the India Chapter of the <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">Edunomix Institute</a>, the first South Asia chapter of a US 501(c)(3) nonprofit. Ran a <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">nationwide essay competition</a> spanning 19 states and 54 schools, organised workshops, taught displaced Ukrainian students, and published financial literacy research.</p>
       <a href="edunomix.html" class="t-more">Read more →</a>
+      <figure class="t-figure wide">
+        <img width="800" height="340" loading="lazy" decoding="async" src="edu_india_essay.jpg" alt="Edunomix India nationwide essay competition">
+        <figcaption><b>Nationwide essay competition</b> — 19 states, 54 schools, run through the Edunomix India Chapter.</figcaption>
+      </figure>
     </div>
 
     <div class="t-entry">
@@ -474,6 +509,16 @@
       <p class="t-org">TaxCity &nbsp;·&nbsp; Finance &amp; Grants &nbsp;·&nbsp; Government-recognised</p>
       <p class="t-desc">Leading the finance and grants department at TaxCity, a Ministry of Education recognised financial literacy initiative built around a card game that teaches tax filing. Oversee financial planning, budgeting, grant strategy, and fundraising, and manage a team of finance interns. Secured $120,000+ in grant funding and contributed to ₹550,000+ in revenue. The programme has reached 79,000+ students in India and across 27 countries. Received Letters of Recommendation from Members of Parliament.</p>
       <a href="taxcity.html" class="t-more">Read more →</a>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="599" height="800" loading="lazy" decoding="async" src="taxcity_press.jpg" alt="TaxCity featured in the national press">
+          <figcaption><b>National press</b> — featured in the Times of India and the Economic Times.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="599" height="800" loading="lazy" decoding="async" src="taxcity_impact.jpg" alt="TaxCity impact: 79,000+ students">
+          <figcaption><b>79,000+ students</b> — reached across India and 27 countries.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -496,6 +541,10 @@
       <p class="t-org">Indian School of Business &nbsp;·&nbsp; Under Prof. Hemant Kakkar</p>
       <p class="t-desc">Studying how financial misinformation spreads across Indian social media under Professor Hemant Kakkar at the Indian School of Business. Applying MuRIL and XLM-RoBERTa to multilingual, code-mixed posts, and pairing the BFI-2-XS personality inventory with the Fear of Missing Out scale to identify which traits predict the sharing of misleading financial content.</p>
       <a href="research.html" class="t-more">Read more →</a>
+      <figure class="t-figure wide">
+        <img width="1200" height="600" loading="lazy" decoding="async" src="research_fomo_github.jpg" alt="GitHub repository for the financial misinformation study">
+        <figcaption><b>Open repository</b> — the study's models and data, on GitHub.</figcaption>
+      </figure>
     </div>
 
     <div class="t-entry">
@@ -507,6 +556,16 @@
       <p class="t-org">Ashoka University &nbsp;·&nbsp; Sonipat</p>
       <p class="t-desc">A paid research and teaching position at the Lodha Genius–Ashoka University Programme. The programme made an explicit exception to include a pre-undergraduate applicant. Conducting original research in algberaic number theory under Professor Shanta Laishram (Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), New Delhi). Research stipend: ₹10,000.</p>
       <a href="mathapprenticeship.html" class="t-more">Read more →</a>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="600" height="800" loading="lazy" decoding="async" src="ma_ta_2026.jpg" alt="Teaching assistant at the Lodha Genius Math Apprenticeship">
+          <figcaption><b>Teaching assistant</b> — Lodha Genius Programme, Ashoka University.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="1362" height="1928" loading="lazy" decoding="async" src="ma_lgp_certificate_2026.jpg" alt="Math Apprenticeship certificate, 2026">
+          <figcaption><b>Certificate</b> — research and teaching apprenticeship, 2026.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -517,6 +576,10 @@
       <span class="t-title">Junior Researcher, The New York Academy of Sciences</span>
       <p class="t-org">The Junior Academy &nbsp;·&nbsp; Fall 2025 Cohort &nbsp;·&nbsp; ≈10% acceptance</p>
       <p class="t-desc">Selected for the Junior Academy, an international research programme drawing high school students from over 100 countries into interdisciplinary teams. Working on a project in energy infrastructure under Dr. Nandhini Sivakumar, Postdoctoral Research Scientist in Neurodegenerative Diseases at the Motor Neuron Center, Columbia University.</p>
+      <figure class="t-figure wide">
+        <img width="802" height="620" loading="lazy" decoding="async" src="media_nyas_cert.jpg" alt="New York Academy of Sciences Junior Academy certificate">
+        <figcaption><b>The Junior Academy</b> — New York Academy of Sciences, Fall 2025 cohort.</figcaption>
+      </figure>
     </div>
 
     <div class="t-entry">
@@ -528,6 +591,16 @@
       <p class="t-org">University of Pennsylvania &nbsp;·&nbsp; Under Prof. Surbhi Goel</p>
       <p class="t-desc">Research on the policy impact of artificial intelligence under Professor Surbhi Goel, Magerman Term Assistant Professor of Computer and Information Science at the University of Pennsylvania. Produced <em>The Two Faces of Progress</em>, peer-reviewed and published in IJRASET (<a href="https://doi.org/10.22214/ijraset.2025.73146" target="_blank" rel="noopener">DOI</a>), and presented it at the NYC STEM Research Conference as the only high school student selected to present.</p>
       <a href="aipolicy.html" class="t-more">Read more →</a>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="800" height="591" loading="lazy" decoding="async" src="media_ijraset_cert.jpg" alt="IJRASET publication certificate">
+          <figcaption><b>Published</b> — <em>The Two Faces of Progress</em>, peer-reviewed in IJRASET.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="565" height="800" loading="lazy" decoding="async" src="aipolicy_nyc_stem.jpg" alt="Presenting at the NYC STEM Research Conference">
+          <figcaption><b>NYC STEM Conference</b> — the only high-school student selected to present.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -578,6 +651,10 @@
       <p class="t-org">Government of India &nbsp;·&nbsp; New Delhi</p>
       <p class="t-desc">Interned at the Office of Mr. Rahul Pachori, Director, Ministry of Education, contributing to internal policy analysis on the Samagra Shiksha Scheme, reviewing financial architecture and budget allocation under the National Education Policy 2020. <a href="https://drive.google.com/file/d/17b7Cj6xQE8fjWTlmVNdz0CTBZR3HEexU/view?usp=sharing" target="_blank" rel="noopener">Letter of Internship</a></p>
       <a href="goi.html" class="t-more">Read more →</a>
+      <figure class="t-figure">
+        <img width="766" height="1079" loading="lazy" decoding="async" src="hero_goi.jpg" alt="Ministry of Education policy internship">
+        <figcaption><b>Ministry of Education</b> — policy internship, Government of India.</figcaption>
+      </figure>
     </div>
 
   </div>
@@ -599,6 +676,16 @@
       <p class="t-org">Spotify &nbsp;·&nbsp; Apple Podcasts &nbsp;·&nbsp; Amazon Music</p>
       <p class="t-desc">Long-form conversations with researchers, entrepreneurs, investors, and policymakers on economics, AI, and public policy. I run every part of it: outreach, research, interviewing, editing, and distribution. Past 300 listening hours on Spotify, and named A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show in Spotify's Wrapped for Creators. Available on <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">Spotify</a>, <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">Apple Podcasts</a>, and <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">Amazon Music</a>.</p>
       <a href="podcast.html" class="t-more">Read more →</a>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="1200" height="1200" loading="lazy" decoding="async" src="media_decoded_cover.png" alt="Decoded podcast cover art">
+          <figcaption><b>Decoded</b> — on Spotify, Apple Podcasts, and Amazon Music.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="900" height="1600" loading="lazy" decoding="async" src="decoded_wrapped_2025.png" alt="Decoded Spotify Wrapped 2025 stats">
+          <figcaption><b>Spotify Wrapped 2025</b> — a Marathon, Instant Hit, and Most Shared show.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -608,6 +695,10 @@
       <span class="t-title">Organiser, Daydream Delhi @ IIT Delhi</span>
       <p class="t-org">Hack Club &nbsp;·&nbsp; IIT Delhi &nbsp;·&nbsp; New Delhi</p>
       <p class="t-desc">Organised <a href="https://daydream.hackclub.com/delhi" target="_blank" rel="noopener">Daydream Delhi</a>, a two-day game jam for high schoolers held at IIT Delhi, part of Hack Club's global Daydream event running simultaneously across 100 cities worldwide. Featured workshops on Godot and Ren'py, lightning talks, and a 48-hour game-building sprint. All free of charge.</p>
+      <figure class="t-figure wide">
+        <img width="1200" height="630" loading="lazy" decoding="async" src="media_daydream.jpg" alt="Daydream Delhi game jam at IIT Delhi">
+        <figcaption><b>Daydream Delhi</b> — a two-day game jam at IIT Delhi, part of Hack Club's global event.</figcaption>
+      </figure>
     </div>
 
   </div>
@@ -628,6 +719,10 @@
       <span class="t-title">Volunteer, Familial Forestry Movement</span>
       <p class="t-org">Prof. ShyamSunder Jyani &nbsp;·&nbsp; UN Land for Life Award</p>
       <p class="t-desc">Volunteering for five years with Familial Forestry, the community reforestation movement founded by Professor ShyamSunder Jyani and recognised by the United Nations Land for Life Award. Began through the Drought and Desertification Day campaign and continued through green-action initiatives, and is now working to open a chapter at Delhi Public School, R.K. Puram through the Geography Club.</p>
+      <figure class="t-figure wide">
+        <img width="1287" height="994" loading="lazy" decoding="async" src="media_un_desertification.jpg" alt="Familial Forestry environmental volunteering">
+        <figcaption><b>Familial Forestry</b> — reforestation work recognised by the UN Land for Life Award.</figcaption>
+      </figure>
     </div>
 
     <div class="t-entry">
@@ -648,6 +743,10 @@
       <span class="t-title">Core Member, Interact Club</span>
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Rotary International</p>
       <p class="t-desc">Represented the school through Interact, Rotary's youth service wing, attending the District Interact Leadership Assembly (DILA) 2024 and leading a fundraising campaign that raised close to four times its target for the club treasury.</p>
+      <figure class="t-figure wide">
+        <img width="960" height="822" loading="lazy" decoding="async" src="media_dila_interact.jpg" alt="District Interact Leadership Assembly 2024">
+        <figcaption><b>DILA 2024</b> — representing the school at the District Interact Leadership Assembly.</figcaption>
+      </figure>
     </div>
 
   </div>
@@ -669,6 +768,16 @@
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Class of 2026 &nbsp;·&nbsp; 9,500+ students</p>
       <p class="t-desc">Elected President of the Student Council for the Class of 2026 after a seven-stage selection process of applications, interviews, and faculty recommendations. Sworn into office by Shri V. K. Shunglu, former Comptroller and Auditor General of India and Vice Chairman of the Delhi Public School Society. Lead the Council in representing the student body, coordinating between students, faculty, and school leadership, and overseeing student-led committees.</p>
       <a href="dpsrkp.html" class="t-more">Read more →</a>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="738" height="1246" loading="lazy" decoding="async" src="dps_president_speech.jpg" alt="Addressing the school as President of the Student Council">
+          <figcaption><b>Addressing the school</b> — the 9,500-student body.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="940" height="529" loading="lazy" decoding="async" src="dps_swearing_in.jpg" alt="Sworn in as President by Shri V. K. Shunglu">
+          <figcaption><b>Sworn in</b> — by Shri V. K. Shunglu, former Comptroller and Auditor General of India.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -679,6 +788,10 @@
       <span class="t-title">Captain, U-19 Football Team</span>
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; District Champions ×2</p>
       <p class="t-desc">Appointed Captain of the U-19 football team, leading training, match preparation, and on-field strategy. Won the Delhi District Championship twice and represented the district at the Delhi State Championship.</p>
+      <figure class="t-figure">
+        <img width="780" height="1040" loading="lazy" decoding="async" src="media_young_football.jpg" alt="Captain of the U-19 football team">
+        <figcaption><b>U-19 captain</b> — district champions twice, and on to the state championship.</figcaption>
+      </figure>
     </div>
 
     <div class="t-entry">
@@ -689,6 +802,16 @@
       <span class="t-title">Honorary President &amp; Treasurer, Quizzing Club</span>
       <p class="t-org">Delhi Public School, R.K. Puram &nbsp;·&nbsp; Finance &amp; sponsorships</p>
       <p class="t-desc">Managed the finances and sponsorship portfolio of one of India's leading school quizzing clubs, securing over $20,000 in sponsorships and prizes from PlayStation, Art of Problem Solving, Masters' Union, Taskade, and Crossword. Won first place at Quizonomics (ComAstitva 2024) and ComQuest (Arthashastra 2025), and contributed to the school's Overall Rolling Trophy at COMONOMICS 3.0. Offered the presidency for the following year but named Honorary President instead, since school policy bars the Student Council President from holding a second elected post.</p>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="704" height="440" loading="lazy" decoding="async" src="media_quiz_1.jpg" alt="Quizzing team with trophies">
+          <figcaption><b>Quizzing wins</b> — with the club after an interschool victory.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="616" height="344" loading="lazy" decoding="async" src="media_quiz_2.jpg" alt="Quizzing winners with certificates">
+          <figcaption><b>Certificates in hand</b> — first at Quizonomics and ComQuest.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="t-entry">
@@ -699,35 +822,18 @@
       <span class="t-title">Member, Student Council (Class XI)</span>
       <p class="t-org">Delhi Public School, R.K. Puram</p>
       <p class="t-desc">Appointed to the Student Council for Class 11 after applications and interviews. Sworn into office by Ms. Namita Pradhan, former Assistant Director General of the World Health Organisation, IAS officer of the 1977 batch, and Honorary Treasurer of the Delhi Public School Society. The role led to the presidency the following year.</p>
+      <div class="t-figs">
+        <figure class="t-figure">
+          <img width="1024" height="684" loading="lazy" decoding="async" src="media_council_2425.jpg" alt="The 2024-25 Student Council">
+          <figcaption><b>Class XI Council, 2024–25</b> — with the school leadership.</figcaption>
+        </figure>
+        <figure class="t-figure">
+          <img width="1024" height="684" loading="lazy" decoding="async" src="media_council_pledge.jpg" alt="Council investiture oath">
+          <figcaption><b>The oath</b> — Council investiture.</figcaption>
+        </figure>
+      </div>
     </div>
 
-  </div>
-
-  <div class="pic-set tidy" style="margin-top: 2.6rem;">
-    <figure>
-      <img width="738" height="1246" loading="lazy" decoding="async" src="dps_president_speech.jpg" alt="Addressing the school as President of the Student Council">
-      <figcaption><b>President, Student Council</b> — addressing the 9,500-student body.</figcaption>
-    </figure>
-    <figure>
-      <img width="940" height="529" loading="lazy" decoding="async" src="dps_swearing_in.jpg" alt="Sworn in as President Student Council by Shri V. K. Shunglu">
-      <figcaption><b>Sworn in</b> — by Shri V. K. Shunglu, former Comptroller and Auditor General of India.</figcaption>
-    </figure>
-    <figure>
-      <img width="1024" height="684" loading="lazy" decoding="async" src="media_council_2425.jpg" alt="The 2024-25 Student Council on stage">
-      <figcaption><b>Class XI Council, 2024–25</b> — the council with the school leadership.</figcaption>
-    </figure>
-    <figure>
-      <img width="1024" height="684" loading="lazy" decoding="async" src="media_council_pledge.jpg" alt="Council members taking the oath of office">
-      <figcaption><b>The oath</b> — Council investiture.</figcaption>
-    </figure>
-    <figure>
-      <img width="704" height="440" loading="lazy" decoding="async" src="media_quiz_1.jpg" alt="Quizzing team with trophies and certificates">
-      <figcaption><b>Quizzing wins</b> — with the club and faculty after an interschool win.</figcaption>
-    </figure>
-    <figure>
-      <img width="616" height="344" loading="lazy" decoding="async" src="media_quiz_2.jpg" alt="Quizzing winners holding certificates">
-      <figcaption><b>Quizzing wins</b> — certificates in hand.</figcaption>
-    </figure>
   </div>
 
   <!-- FOOTER -->
