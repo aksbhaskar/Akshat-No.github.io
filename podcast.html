@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://akshatb.com/decoded_wrapped_2025.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/decoded_wrapped_2025.png" />
-  <meta name="theme-color" content="#fbf9f3" />
+  <meta name="theme-color" content="#181715" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org", "@type": "PodcastSeries",
@@ -38,97 +38,102 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <style>
-    /* ─── VARIABLES ────────────────────────────────────────────
-       The studio, as a manuscript: warm paper, ink, one green. */
+    /* ─── DECODED · matched to decodedpodcast.vercel.app ─────────
+       Warm near-black stock, cream ink, one muted grey. Fraunces
+       for the display voice, Inter for everything that works. */
     :root {
-      --paper:      #fbf9f3;
-      --ink:        #17170f;
-      --ink-med:    #38382c;
-      --ink-soft:   #6a6a58;
-      --ink-faint:  #71715f;
-      --ink-ghost:  #cac4b1;
-      --rule:       #dad4c2;
-      --rule-light: #e9e4d5;
-      --accent:     #2f6f52;
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(22px, 4vw, 56px);
-      --measure:    760px;
+      --bg:      #181715;
+      --panel:   #1f1e1b;
+      --cream:   #ECEAE3;
+      --muted:   #99958C;
+      --hair:    rgba(236,234,227,0.14);
+      --hair-2:  rgba(236,234,227,0.28);
+      --serif:   'Fraunces', 'Georgia', serif;
+      --sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --outer:   clamp(22px, 5vw, 72px);
+      --measure: 940px;
     }
-    html.dark { --accent: #79c6a2; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      overflow-x: hidden;
     }
-    ::selection { background: rgba(47,111,82,0.16); }
+    ::selection { background: rgba(236,234,227,0.22); color: var(--cream); }
+
+    a { color: inherit; }
+
+    .icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.125em; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 0; z-index: 500;
+      background: var(--cream); color: var(--bg); padding: 0.6rem 1rem;
+      font-family: var(--sans); font-size: 0.8rem; border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { left: 0; }
 
     /* ─── PROGRESS ─────────────────────────────────────────── */
     .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--accent); z-index: 999; transition: width 0.1s linear;
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--cream); z-index: 999; transition: width 0.1s linear;
     }
 
     /* ─── TOPBAR ───────────────────────────────────────────── */
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(251,249,243,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(218,212,194,0.4);
+      padding: 1.1rem clamp(22px, 5vw, 72px);
+      background: rgba(24,23,21,0.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.7px solid var(--hair);
     }
-    html.dark .topbar { background: rgba(22,21,15,0.9); }
     .topbar-logo {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
-      text-decoration: none; transition: color 0.2s;
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 500;
+      color: var(--cream); letter-spacing: 0.01em; text-decoration: none;
+      opacity: 0.85; transition: opacity 0.2s;
     }
-    .topbar-logo:hover { color: var(--ink); }
-
+    .topbar-logo:hover { opacity: 1; }
     .hamburger {
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column; justify-content: center;
       gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
     }
     .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
+      display: block; width: 22px; height: 1.2px;
+      background: var(--cream); transition: all 0.3s ease; transform-origin: center;
     }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.2px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.2px) rotate(-45deg); }
 
     /* ─── NAV OVERLAY ──────────────────────────────────────── */
     .nav-overlay {
       position: fixed; inset: 0; z-index: 190;
-      background: rgba(23,23,15,0.95); backdrop-filter: blur(8px);
+      background: rgba(20,19,17,0.97); backdrop-filter: blur(10px);
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
+      padding: 5rem clamp(22px, 6vw, 80px);
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
     .nav-overlay.open { opacity: 1; pointer-events: all; }
     .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.5rem, 3.3vw, 2.3rem);
-      font-weight: 400; font-style: italic;
-      color: rgba(251,249,243,0.5); line-height: 1.32;
+      font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 400; color: rgba(236,234,227,0.45); line-height: 1.28;
       opacity: 0; transform: translateX(-10px);
       transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none; display: block;
+      text-decoration: none; display: block; letter-spacing: -0.01em;
     }
     .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
     .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
@@ -142,165 +147,138 @@
     .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
     .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
     .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay a.nav-link:hover { color: rgba(251,249,243,0.95); }
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(251,249,243,0.15);
-      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
+    .nav-overlay a.nav-link:hover { color: var(--cream); }
+    .nav-hr { width: 30px; height: 0.7px; background: var(--hair-2); margin: 1.4rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s; }
     .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
+    .nav-socials-row { display: flex; gap: 1.3rem; opacity: 0; transform: translateX(-6px); transition: opacity 0.35s 0.26s, transform 0.35s 0.26s; }
     .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,249,243,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(251,249,243,0.9); }
+    .nav-socials-row a { font-size: 0.9rem; color: rgba(236,234,227,0.4); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .nav-socials-row a:hover { color: var(--cream); }
 
-    /* ─── PAGE ─────────────────────────────────────────────── */
+    /* ─── LAYOUT ───────────────────────────────────────────── */
     .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
-
-    /* ─── HEADER ───────────────────────────────────────────── */
-    .pod-head { padding-top: 118px; padding-bottom: 0.4rem; }
-    .crumbs {
-      font-family: var(--mono); font-size: 0.66rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      display: flex; gap: 0.55rem; align-items: center;
-    }
-    .crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
-    .crumbs a:hover { color: var(--ink); }
-    .crumbs .sep { color: var(--ink-ghost); }
-    .eyebrow {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--accent); display: block; margin: 2.2rem 0 0.9rem;
-    }
-    h1.pod-title {
-      font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 3.8rem);
-      font-weight: 400; letter-spacing: 0.02em; line-height: 1; color: var(--ink);
-    }
-    .pod-sub {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.1rem; color: var(--ink-soft);
-      margin-top: 0.9rem; max-width: 40ch; line-height: 1.55;
+    .section { padding-top: clamp(3.4rem, 7vw, 6rem); }
+    .label {
+      font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.24em; color: var(--muted);
+      display: block; margin-bottom: 1.6rem;
     }
 
-    .listen { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.8rem; }
-    .listen a {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--mono); font-size: 0.64rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-soft); text-decoration: none;
-      border: 0.5px solid var(--rule); border-radius: 2px;
-      padding: 0.5rem 0.95rem;
-      transition: color 0.2s, border-color 0.2s;
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero { padding-top: clamp(120px, 18vh, 190px); padding-bottom: 0.5rem; }
+    .eyebrow { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); letter-spacing: 0.02em; display: block; margin-bottom: 1.5rem; }
+    .display {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(3.6rem, 15vw, 8.8rem); line-height: 0.9;
+      letter-spacing: -0.035em; color: var(--cream);
     }
-    .listen a:hover { color: var(--accent); border-color: var(--accent); }
-    .listen a .icon { color: var(--accent); font-size: 0.82rem; }
+    .lede {
+      font-family: var(--sans); font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: rgba(236,234,227,0.72); margin-top: 1.5rem;
+      max-width: 34ch; line-height: 1.45;
+    }
 
-    /* ─── SECTION HEAD ─────────────────────────────────────── */
-    .section-head {
-      padding-top: 3.2rem; padding-bottom: 0.65rem;
-      border-bottom: 0.5px solid var(--ink);
-      display: flex; align-items: baseline; gap: 1rem;
+    /* ─── PILLS ────────────────────────────────────────────── */
+    .pills { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 2rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+      color: var(--bg); background: var(--cream);
+      border: 0.7px solid var(--cream); border-radius: 9999px;
+      padding: 0.6rem 1.25rem; text-decoration: none;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
-    .sec-num   { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
-    .sec-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); }
+    .pill:hover { transform: translateY(-1px); opacity: 0.9; }
+    .pill-ghost {
+      background: transparent; color: var(--cream);
+      border: 0.7px solid var(--hair-2);
+    }
+    .pill-ghost:hover { border-color: var(--cream); background: rgba(236,234,227,0.05); opacity: 1; }
 
-    /* ─── WRAPPED 2025 ─────────────────────────────────────── */
-    .wrapped {
-      display: grid; grid-template-columns: minmax(200px, 300px) 1fr;
-      gap: clamp(1.4rem, 4vw, 2.8rem); align-items: start; margin-top: 1.6rem;
-    }
-    .wrapped-art img { width: 100%; height: auto; display: block; border: 0.5px solid var(--rule); }
-    .wrapped-art figcaption {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.6rem;
-    }
-    .award-list { list-style: none; }
-    .award-list li {
-      display: flex; gap: 1rem; align-items: baseline;
-      padding: 0.95rem 0; border-bottom: 0.5px solid var(--rule-light);
-    }
-    .award-list li:last-child { border-bottom: none; }
-    .a-num { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; flex-shrink: 0; padding-top: 0.2rem; }
-    .a-name { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); display: block; line-height: 1.25; }
-    .a-sub { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.25rem; }
-    .award-foot { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); margin-top: 1.3rem; }
+    /* ─── DIVIDER ──────────────────────────────────────────── */
+    .rule { height: 0.7px; background: var(--hair); border: 0; margin-top: clamp(3.4rem, 7vw, 6rem); }
+
+    /* ─── WRAPPED ──────────────────────────────────────────── */
+    .wrapped { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: start; }
+    .wrap-img img { width: 100%; height: auto; display: block; border: 0.7px solid var(--hair-2); border-radius: 8px; }
+    .wrap-cap { font-family: var(--sans); font-size: 0.72rem; color: var(--muted); margin-top: 0.7rem; }
+    .awards { list-style: none; }
+    .awards li { display: flex; gap: 1.1rem; align-items: baseline; padding: 1.05rem 0; border-bottom: 0.7px solid var(--hair); }
+    .awards li:first-child { padding-top: 0; }
+    .awards li:last-child { border-bottom: none; }
+    .a-num { font-family: var(--sans); font-size: 0.75rem; font-weight: 500; color: var(--muted); flex-shrink: 0; padding-top: 0.35rem; font-variant-numeric: tabular-nums; }
+    .a-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; color: var(--cream); display: block; line-height: 1.15; letter-spacing: -0.01em; }
+    .a-sub { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.35rem; }
+    .awards-foot { font-family: var(--sans); font-size: 0.95rem; color: rgba(236,234,227,0.72); margin-top: 1.5rem; line-height: 1.55; }
 
     /* ─── FEATURED EPISODE ─────────────────────────────────── */
-    .episode-frame { border: 0.5px solid var(--ink); margin-top: 1.6rem; }
-    .episode-frame iframe { display: block; width: 100%; height: 352px; border: 0; }
+    .embed { border: 0.7px solid var(--hair-2); border-radius: 12px; overflow: hidden; }
+    .embed iframe { display: block; width: 100%; height: 352px; border: 0; }
 
     /* ─── LINER NOTES ──────────────────────────────────────── */
-    .liner { font-family: var(--serif); font-size: 1.05rem; line-height: 1.82; color: var(--ink-med); max-width: 62ch; margin-top: 1.5rem; }
-    .liner em { font-style: italic; }
-    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2rem; }
-    .fact { border-top: 0.5px solid var(--ink); padding-top: 0.65rem; }
-    .fact-k { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 0.35rem; }
-    .fact-v { font-family: var(--serif); font-size: 0.92rem; color: var(--ink-med); line-height: 1.5; }
+    .liner { font-family: var(--serif); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.5; color: var(--cream); max-width: 30ch; font-weight: 400; letter-spacing: -0.01em; }
+    .liner-body { font-family: var(--sans); font-size: 1rem; line-height: 1.7; color: rgba(236,234,227,0.72); max-width: 58ch; margin-top: 1.4rem; }
+
+    /* ─── HOSTS ────────────────────────────────────────────── */
+    .hosts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    .host { border-top: 0.7px solid var(--hair-2); padding-top: 1.1rem; }
+    .host-name { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; display: block; letter-spacing: -0.01em; }
+    .host-role { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); display: block; margin-top: 0.35rem; line-height: 1.4; }
+    .arrow { font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: var(--cream); text-decoration: none; display: inline-block; margin-top: 0.8rem; opacity: 0.8; transition: opacity 0.2s; }
+    .arrow:hover { opacity: 1; }
+
+    /* ─── FACTS ────────────────────────────────────────────── */
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.4rem; }
+    .fact { border-top: 0.7px solid var(--hair); padding-top: 0.75rem; }
+    .fact-k { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; color: var(--muted); display: block; margin-bottom: 0.45rem; }
+    .fact-v { font-family: var(--sans); font-size: 0.92rem; color: rgba(236,234,227,0.82); line-height: 1.5; }
 
     /* ─── PITCH ────────────────────────────────────────────── */
-    .pitch {
-      margin-top: 1.6rem;
-      border: 0.5px solid var(--rule); border-left: 2px solid var(--accent);
-      padding: 1.6rem 1.7rem 1.5rem;
-    }
-    .pitch p { font-family: var(--serif); font-size: 0.98rem; color: var(--ink-med); max-width: 52ch; margin-bottom: 1.1rem; line-height: 1.7; }
-    .pitch-btn {
-      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--paper); background: var(--accent);
-      border: none; border-radius: 3px; padding: 0.6rem 1.2rem;
-      text-decoration: none; display: inline-block; transition: opacity 0.2s;
-    }
-    .pitch-btn:hover { opacity: 0.88; }
-    .pitch-hint { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; display: block; margin-top: 0.8rem; }
-    .pitch p a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.5px; text-underline-offset: 3px; transition: color 0.2s; }
-    .pitch p a:hover { color: var(--accent); }
-    .pitch-contact { margin-top: 1.7rem; }
+    .pitch-h { font-family: var(--serif); font-weight: 500; font-size: clamp(1.9rem, 4.5vw, 3rem); letter-spacing: -0.02em; margin: 0.1rem 0 1rem; line-height: 1.05; }
+    .pitch-p { font-family: var(--sans); font-size: 1rem; color: rgba(236,234,227,0.78); max-width: 54ch; line-height: 1.65; }
+    .pitch-p a { color: var(--cream); text-decoration: underline; text-decoration-thickness: 0.6px; text-underline-offset: 3px; transition: opacity 0.2s; }
+    .pitch-p a:hover { opacity: 0.75; }
+    .pitch-actions { margin: 1.6rem 0 0; }
+    .pitch-hint { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); display: block; margin-top: 0.9rem; }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
-    .doc-footer {
-      margin-top: 3.6rem; border-top: 0.5px solid var(--ink);
-      padding: 1.3rem 0 4rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    .foot {
+      margin-top: clamp(4rem, 8vw, 7rem); border-top: 0.7px solid var(--hair-2);
+      padding: 2rem 0 3.5rem;
+      display: flex; flex-wrap: wrap; gap: 1.4rem; justify-content: space-between; align-items: flex-end;
     }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--ink-med); }
+    .foot-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; display: block; letter-spacing: -0.01em; }
+    .foot-sub { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); display: block; margin-top: 0.4rem; }
+    .foot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.9rem; }
+    .foot-links { display: flex; gap: 1.3rem; }
+    .foot-links a { font-family: var(--sans); font-size: 0.82rem; color: rgba(236,234,227,0.7); text-decoration: none; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--cream); }
+    .foot-socials { display: flex; gap: 1.1rem; }
+    .foot-socials a { font-size: 0.85rem; color: var(--muted); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+    .foot-socials a:hover { color: var(--cream); }
 
     /* ─── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 680px) {
-      :root { --outer: 20px; }
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
+    @media (max-width: 720px) {
+      .topbar { padding: 1rem 22px; }
       .wrapped { grid-template-columns: 1fr; }
-      .wrapped-art { max-width: 320px; }
+      .wrap-img { max-width: 300px; }
+      .hosts { grid-template-columns: 1fr; }
       .facts { grid-template-columns: 1fr; }
+      .foot { flex-direction: column; align-items: flex-start; }
+      .foot-right { align-items: flex-start; }
+    }
+
+    @media print {
+      .topbar, .hamburger, .nav-overlay, .progress-rule, .embed, .foot-socials { display: none !important; }
+      body { background: #fff !important; color: #000 !important; }
+      a { color: #000 !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
     }
   </style>
-<!-- print styles + reduced motion -->
-<style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials, .episode-frame { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
-</style>
-  <script>
-    /* Light by default; only a saved choice turns the lights off. */
-    (function(){try{if(localStorage.getItem('theme')==='dark')
-    document.documentElement.classList.add('dark');}catch(e){}})();
-  </script>
-  <link rel="stylesheet" href="theme.css">
-  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body class="paper">
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="progress-rule" id="prog"></div>
@@ -335,129 +313,170 @@
 </nav>
 
 <!-- ══════════════════════════════════════════════════════ -->
-<div class="page" role="main" id="main">
+<main class="page" id="main">
 
-  <!-- HEADER -->
-  <header class="pod-head">
-    <div class="crumbs">
-      <a href="index.html">Akshat Bhaskar</a><span class="sep">/</span><span>Podcast</span>
-    </div>
-    <span class="eyebrow">A Podcast &nbsp;·&nbsp; Est. December 2024</span>
-    <h1 class="pod-title">Decoded</h1>
-    <p class="pod-sub">Long-form conversations on economics and technology, without the jargon.</p>
-
-    <div class="listen">
-      <a href="https://decodedpodcast.vercel.app" target="_blank" rel="me noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#globe"/></svg>Website</a>
-      <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#spotify"/></svg>Spotify</a>
-      <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#podcast"/></svg>Apple Podcasts</a>
-      <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="icons.svg#amazon"/></svg>Amazon Music</a>
+  <!-- HERO -->
+  <header class="hero">
+    <span class="eyebrow">a podcast &middot; est. 2024</span>
+    <h1 class="display">decoded</h1>
+    <p class="lede">conversations on economics and technology, without the jargon.</p>
+    <div class="pills">
+      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">spotify</a>
+      <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">apple podcasts</a>
+      <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">amazon music</a>
+      <a class="pill pill-ghost" href="https://decodedpodcast.vercel.app" target="_blank" rel="me noopener">visit the full site &#8599;</a>
     </div>
   </header>
 
-  <!-- §1 WRAPPED 2025 -->
-  <div class="section-head">
-    <span class="sec-num">§1</span>
-    <span class="sec-title">Spotify Wrapped for Creators, 2025</span>
-  </div>
-  <section class="wrapped">
-    <figure class="wrapped-art">
-      <img src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025 artwork for Decoded, naming it A 2025 Marathon Show, A 2025 Instant Hit Show, and A 2025 Most Shared Show" width="1080" height="1920" loading="lazy" decoding="async">
-      <figcaption>The artwork Spotify sent, kept as issued.</figcaption>
-    </figure>
-    <div>
-      <ul class="award-list">
-        <li>
-          <span class="a-num">01</span>
-          <div>
-            <span class="a-name">A 2025 Marathon Show</span>
-            <span class="a-sub">Sustained listener engagement</span>
-          </div>
-        </li>
-        <li>
-          <span class="a-num">02</span>
-          <div>
-            <span class="a-name">A 2025 Instant Hit Show</span>
-            <span class="a-sub">Strong launch performance</span>
-          </div>
-        </li>
-        <li>
-          <span class="a-num">03</span>
-          <div>
-            <span class="a-name">A 2025 Most Shared Show</span>
-            <span class="a-sub">High audience sharing</span>
-          </div>
-        </li>
-      </ul>
-      <p class="award-foot">Three platform recognitions in the show's first full year, past three hundred listening hours on Spotify.</p>
+  <hr class="rule">
+
+  <!-- WRAPPED 2025 -->
+  <section class="section">
+    <span class="label">spotify wrapped for creators, 2025</span>
+    <div class="wrapped">
+      <figure class="wrap-img">
+        <img src="decoded_wrapped_2025.png" alt="Spotify Wrapped for Creators 2025 artwork for Decoded, naming it a 2025 Marathon Show, a 2025 Instant Hit Show, and a 2025 Most Shared Show" width="1080" height="1920" loading="lazy" decoding="async">
+        <figcaption class="wrap-cap">the artwork spotify sent, kept as issued.</figcaption>
+      </figure>
+      <div>
+        <ul class="awards">
+          <li>
+            <span class="a-num">01</span>
+            <div>
+              <span class="a-name">a 2025 marathon show</span>
+              <span class="a-sub">sustained listener engagement</span>
+            </div>
+          </li>
+          <li>
+            <span class="a-num">02</span>
+            <div>
+              <span class="a-name">a 2025 instant hit show</span>
+              <span class="a-sub">strong launch performance</span>
+            </div>
+          </li>
+          <li>
+            <span class="a-num">03</span>
+            <div>
+              <span class="a-name">a 2025 most shared show</span>
+              <span class="a-sub">high audience sharing</span>
+            </div>
+          </li>
+        </ul>
+        <p class="awards-foot">three platform recognitions in the show's first full year, past three hundred listening hours on spotify.</p>
+      </div>
     </div>
   </section>
 
-  <!-- §2 FEATURED EPISODE -->
-  <div class="section-head">
-    <span class="sec-num">§2</span>
-    <span class="sec-title">Featured Episode</span>
-  </div>
-  <div class="episode-frame">
-    <iframe
-      src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator"
-      loading="lazy"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      title="Decoded, featured episode on Spotify"
-    ></iframe>
-  </div>
+  <hr class="rule">
 
-  <!-- §3 LINER NOTES -->
-  <div class="section-head">
-    <span class="sec-num">§3</span>
-    <span class="sec-title">Liner Notes</span>
-  </div>
-  <p class="liner">
-    <em>Decoded</em> makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. Each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world. The show is rooted in a simple conviction: <em>the most important ideas should not be locked behind academic walls.</em>
-  </p>
-  <div class="facts">
-    <div class="fact">
-      <span class="fact-k">Host</span>
-      <span class="fact-v">Akshat Bhaskar, New Delhi</span>
+  <!-- FEATURED EPISODE -->
+  <section class="section">
+    <span class="label">featured episode</span>
+    <div class="embed">
+      <iframe
+        src="https://open.spotify.com/embed/episode/1ox0Eo5f7lSVoaOOtt7HkM/video?utm_source=generator&theme=0"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        title="Decoded, featured episode on Spotify"
+      ></iframe>
     </div>
-    <div class="fact">
-      <span class="fact-k">Production</span>
-      <span class="fact-v">Independent. No sponsors, no backing, just ideas.</span>
-    </div>
-    <div class="fact">
-      <span class="fact-k">Schedule</span>
-      <span class="fact-v">Episodes drop irregularly. Subscribe to be notified.</span>
-    </div>
-  </div>
+  </section>
 
-  <!-- §4 PITCH -->
-  <div class="section-head">
-    <span class="sec-num">§4</span>
-    <span class="sec-title">Pitch an Episode</span>
-  </div>
-  <div class="pitch">
-    <p>Episode pitches and guest suggestions are always welcome. Every message is read.</p>
-    <a class="pitch-btn" href="mailto:outreach@thedecodedpodcast.com?subject=Decoded, Guest">Pitch an episode</a>
-    <span class="pitch-hint">outreach@thedecodedpodcast.com &nbsp;·&nbsp; subject line: "Decoded, Guest"</span>
-    <p class="pitch-contact">We are hiring, across research, editing, design, content, and a few leadership roles. To join the team, write to <a href="mailto:team@thedecodedpodcast.com?subject=Decoded, Joining the team">team@thedecodedpodcast.com</a>. To reach me directly, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>.</p>
-  </div>
+  <hr class="rule">
+
+  <!-- LINER NOTES -->
+  <section class="section">
+    <span class="label">liner notes</span>
+    <p class="liner">the most important ideas shouldn't be locked behind academic walls.</p>
+    <p class="liner-body">decoded makes complex ideas in economics and technology accessible to curious minds, no jargon, no prerequisites. each episode is a conversation with economists, technologists, and policy thinkers breaking down the ideas shaping our world.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- HOSTED BY -->
+  <section class="section">
+    <span class="label">hosted by</span>
+    <div class="hosts">
+      <div class="host">
+        <span class="host-name">akshat bhaskar</span>
+        <span class="host-role">founder and host</span>
+        <a class="arrow" href="index.html">read more &rarr;</a>
+      </div>
+      <div class="host">
+        <span class="host-name">amaira akbar</span>
+        <span class="host-role">host &middot; incoming at the university of warwick</span>
+      </div>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <span class="fact-k">based in</span>
+        <span class="fact-v">new delhi, india</span>
+      </div>
+      <div class="fact">
+        <span class="fact-k">production</span>
+        <span class="fact-v">independent. no sponsors, no backing, just ideas.</span>
+      </div>
+      <div class="fact">
+        <span class="fact-k">schedule</span>
+        <span class="fact-v">episodes drop irregularly. subscribe to be notified.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- SUBSCRIBE -->
+  <section class="section">
+    <span class="label">subscribe</span>
+    <p class="liner">new conversations, wherever you listen.</p>
+    <div class="pills">
+      <a class="pill" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">spotify</a>
+      <a class="pill" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">apple podcasts</a>
+      <a class="pill" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">amazon music</a>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- PITCH -->
+  <section class="section">
+    <span class="label">step into the booth</span>
+    <h2 class="pitch-h">have an idea worth decoding?</h2>
+    <p class="pitch-p">episode pitches and guest suggestions are always welcome. every message is read.</p>
+    <div class="pitch-actions">
+      <a class="pill" href="mailto:outreach@thedecodedpodcast.com?subject=Decoded, Guest">pitch an episode</a>
+      <span class="pitch-hint">outreach@thedecodedpodcast.com &middot; subject line &ldquo;decoded, guest&rdquo;</span>
+    </div>
+    <p class="pitch-p" style="margin-top: 2rem;">we&rsquo;re hiring, across research, editing, design, content, and a few leadership roles. to join the team, write to <a href="mailto:team@thedecodedpodcast.com?subject=Decoded, Joining the team">team@thedecodedpodcast.com</a>. to reach me directly, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>.</p>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-    <div class="footer-socials">
-      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-      <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
+  <footer class="foot">
+    <div>
+      <span class="foot-title">decoded</span>
+      <span class="foot-sub">a podcast &middot; est. 2024 &middot; independently produced</span>
+    </div>
+    <div class="foot-right">
+      <div class="foot-links">
+        <a href="https://decodedpodcast.vercel.app" target="_blank" rel="noopener">the show &#8599;</a>
+        <a href="index.html">akshatb.com</a>
+        <a href="connect.html">connect</a>
+      </div>
+      <div class="foot-socials">
+        <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
+        <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
+        <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
+      </div>
     </div>
   </footer>
 
-</div>
+</main>
 
 <script>
   const prog = document.getElementById('prog');
   window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
   }, { passive: true });
 
   const hamburger = document.getElementById('hamburger');
@@ -477,6 +496,5 @@
   }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
 </script>
-<script src="site.js" defer></script>
 </body>
 </html>
