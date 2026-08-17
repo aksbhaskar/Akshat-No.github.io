@@ -38,8 +38,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <style>
     /* ─── DECODED · matched to decodedpodcast.vercel.app ─────────
@@ -52,8 +52,8 @@
       --muted:   #99958C;
       --hair:    rgba(236,234,227,0.14);
       --hair-2:  rgba(236,234,227,0.28);
-      --serif:   'Fraunces', 'Georgia', serif;
-      --sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --serif:   'EB Garamond', 'Palatino Linotype', Georgia, serif;
+      --sans:    'Inconsolata', 'Courier New', monospace;
       --outer:   clamp(22px, 5vw, 72px);
       --measure: 940px;
     }
@@ -64,9 +64,9 @@
     body {
       background: var(--bg);
       color: var(--cream);
-      font-family: var(--sans);
-      font-size: 1rem;
-      line-height: 1.6;
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       overflow-x: hidden;
@@ -173,9 +173,9 @@
       letter-spacing: -0.035em; color: var(--cream);
     }
     .lede {
-      font-family: var(--sans); font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-      color: rgba(236,234,227,0.72); margin-top: 1.5rem;
-      max-width: 34ch; line-height: 1.45;
+      font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+      color: rgba(236,234,227,0.72); margin-top: 1.4rem;
+      max-width: 36ch; line-height: 1.5;
     }
 
     /* ─── PILLS ────────────────────────────────────────────── */
@@ -209,7 +209,7 @@
     .a-num { font-family: var(--sans); font-size: 0.75rem; font-weight: 500; color: var(--muted); flex-shrink: 0; padding-top: 0.35rem; font-variant-numeric: tabular-nums; }
     .a-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; color: var(--cream); display: block; line-height: 1.15; letter-spacing: -0.01em; }
     .a-sub { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.35rem; }
-    .awards-foot { font-family: var(--sans); font-size: 0.95rem; color: rgba(236,234,227,0.72); margin-top: 1.5rem; line-height: 1.55; }
+    .awards-foot { font-family: var(--serif); font-style: italic; font-size: 1.02rem; color: rgba(236,234,227,0.72); margin-top: 1.5rem; line-height: 1.55; }
 
     /* ─── FEATURED EPISODE ─────────────────────────────────── */
     .embed { border: 0.7px solid var(--hair-2); border-radius: 12px; overflow: hidden; }
@@ -217,7 +217,7 @@
 
     /* ─── LINER NOTES ──────────────────────────────────────── */
     .liner { font-family: var(--serif); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.5; color: var(--cream); max-width: 30ch; font-weight: 400; letter-spacing: -0.01em; }
-    .liner-body { font-family: var(--sans); font-size: 1rem; line-height: 1.7; color: rgba(236,234,227,0.72); max-width: 58ch; margin-top: 1.4rem; }
+    .liner-body { font-family: var(--serif); font-size: 1.08rem; line-height: 1.72; color: rgba(236,234,227,0.72); max-width: 58ch; margin-top: 1.4rem; }
 
     /* ─── HOSTS ────────────────────────────────────────────── */
     .hosts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
@@ -231,11 +231,11 @@
     .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.4rem; }
     .fact { border-top: 0.7px solid var(--hair); padding-top: 0.75rem; }
     .fact-k { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; color: var(--muted); display: block; margin-bottom: 0.45rem; }
-    .fact-v { font-family: var(--sans); font-size: 0.92rem; color: rgba(236,234,227,0.82); line-height: 1.5; }
+    .fact-v { font-family: var(--serif); font-size: 1rem; color: rgba(236,234,227,0.82); line-height: 1.5; }
 
     /* ─── PITCH ────────────────────────────────────────────── */
     .pitch-h { font-family: var(--serif); font-weight: 500; font-size: clamp(1.9rem, 4.5vw, 3rem); letter-spacing: -0.02em; margin: 0.1rem 0 1rem; line-height: 1.05; }
-    .pitch-p { font-family: var(--sans); font-size: 1rem; color: rgba(236,234,227,0.78); max-width: 54ch; line-height: 1.65; }
+    .pitch-p { font-family: var(--serif); font-size: 1.08rem; color: rgba(236,234,227,0.78); max-width: 54ch; line-height: 1.68; }
     .pitch-p a { color: var(--cream); text-decoration: underline; text-decoration-thickness: 0.6px; text-underline-offset: 3px; transition: opacity 0.2s; }
     .pitch-p a:hover { opacity: 0.75; }
     .pitch-actions { margin: 1.6rem 0 0; }
@@ -400,11 +400,12 @@
       <div class="host">
         <span class="host-name">akshat bhaskar</span>
         <span class="host-role">founder and host</span>
-        <a class="arrow" href="index.html">read more &rarr;</a>
+        <a class="arrow" href="https://decodedpodcast.vercel.app/akshat" target="_blank" rel="noopener">read more &rarr;</a>
       </div>
       <div class="host">
         <span class="host-name">amaira akbar</span>
         <span class="host-role">host &middot; incoming at the university of warwick</span>
+        <a class="arrow" href="https://decodedpodcast.vercel.app/amaira" target="_blank" rel="noopener">read more &rarr;</a>
       </div>
     </div>
     <div class="facts">
@@ -414,7 +415,7 @@
       </div>
       <div class="fact">
         <span class="fact-k">production</span>
-        <span class="fact-v">independent. no sponsors, no backing, just ideas.</span>
+        <span class="fact-v">independent, researched, recorded, and edited by the hosts.</span>
       </div>
       <div class="fact">
         <span class="fact-k">schedule</span>
