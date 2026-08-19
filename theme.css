@@ -350,7 +350,13 @@ html, body { overflow-x: clip; }
 .pic-set { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 1.7rem 0 0.6rem; }
 .pic-set.one { grid-template-columns: minmax(0, 460px); }
 .pic-set figure { margin: 0; }
-.pic-set img { width: 100%; height: auto; display: block; border: 0.5px solid var(--rule-light, #e4e4d8); background: var(--rule-light, #eee); }
+.pic-set img { width: 100%; height: auto; display: block; border: 0.5px solid var(--rule-light, #e4e4d8); background: var(--rule-light, #eee); transition: box-shadow 0.4s ease; }
+/* A little life on hover: the plate lifts and casts a soft shadow. */
+@media (prefers-reduced-motion: no-preference) {
+  .pic-set figure { transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+  .pic-set figure:hover { transform: translateY(-4px); }
+}
+.pic-set figure:hover img { box-shadow: 0 16px 34px -14px rgba(20,18,10,0.34); }
 .pic-set figcaption { font-family: var(--mono, 'Inconsolata', monospace); font-size: 0.58rem; letter-spacing: 0.05em; color: var(--ink-faint, #777); margin-top: 0.5rem; line-height: 1.55; }
 .pic-set figcaption b { color: var(--ink-med, #333); font-weight: 600; letter-spacing: 0.02em; }
 .pic-set figcaption a { color: inherit; }
