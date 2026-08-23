@@ -619,6 +619,19 @@
       display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
     .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+    /* Colophon: a printer's note, in the spirit of a well-set book. */
+    .colophon {
+      grid-column: 1 / -1;
+      max-width: 660px; margin: 3.4rem auto 0; padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule-light);
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.92rem; line-height: 1.7; color: var(--ink-soft);
+      text-align: center; text-wrap: balance;
+    }
+    .colophon-motto {
+      font-style: normal; font-variant: small-caps; letter-spacing: 0.1em;
+      color: var(--ink-faint); margin-left: 0.35rem;
+    }
     .footer-socials { display: flex; gap: 1.1rem; }
     .footer-socials a { font-size: 0.78rem; color: var(--ink-faint); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
     .footer-socials a:hover { color: var(--ink-med); }
@@ -1308,7 +1321,7 @@
 
   <p>Where TaxCity approached the system from below, Akshat's policy work approached it from within. His research on the socio-economic dimensions of Artificial Intelligence, conducted under Professor Surbhi Goel of the University of Pennsylvania, matured into a peer-reviewed paper published internationally in <a href="aipolicy.html">IJRASET</a> (Volume 13, Issue 7, 2025). He presented the work at the NYC STEM Research Conference, where he was the only high-school student in the room, and held his own among graduate researchers and faculty.</p>
 
-  <p>That work has since turned computational. Under the mentorship of a professor at the Indian School of Business, Akshat is now studying how financial misinformation spreads across Indian social media. Because the content is multilingual and code-mixed, with Hindi and English interleaved in a single sentence, the analysis runs on natural-language models built for Indian languages, MuRIL and XLM-RoBERTa, rather than the English-only systems most tools rely on. Paired with validated psychological instruments, the BFI-2-XS personality inventory and the Fear of Missing Out scale, the study asks a sharper question than most: not merely which posts are false, but which people are most likely to pass them on.</p>
+  <p>That work has since turned computational. Under the mentorship of Professor Hemant Kakkar at the Indian School of Business, Akshat is now studying how financial misinformation spreads across Indian social media. Because the content is multilingual and code-mixed, with Hindi and English interleaved in a single sentence, the analysis runs on natural-language models built for Indian languages, MuRIL and XLM-RoBERTa, rather than the English-only systems most tools rely on. Paired with validated psychological instruments, the BFI-2-XS personality inventory and the Fear of Missing Out scale, the study asks a sharper question than most: not merely which posts are false, but which people are most likely to pass them on.</p>
 
   <p>At the same time he served as a Quantitative Policy Intern at the <a href="goi.html">Ministry of Education</a>, Government of India, contributing to internal analysis of the Samagra Shiksha Scheme under Mr. Rahul Pachori, Director. The posting placed him inside the room where India's education system is measured and revised, studying the financial architecture and budget flows of the country's flagship schooling programme under the National Education Policy 2020. Few students his age have read the national education budget line by line; fewer still have been asked to.</p>
 
@@ -1452,6 +1465,9 @@
       <a href="pi.html">A Thousand Digits of Pi</a>
     </div>
   </nav>
+
+  <!-- COLOPHON -->
+  <p class="colophon">Set in EB Garamond &amp; Inconsolata, with old-style figures. Written and built by hand, without a framework, in New Delhi. <span class="colophon-motto">Sapere aude.</span></p>
 
   <!-- FOOTER -->
   <footer class="doc-footer">
