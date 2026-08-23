@@ -337,6 +337,18 @@ body.nav-open .hamburger:hover span { background: rgba(251, 249, 242, 0.95); }
 /* On the dark nav overlay, a light ring reads better than the accent. */
 .nav-overlay a:focus-visible { outline-color: rgba(255,255,255,0.85); }
 
+/* ── Typographic gravitas: set the serif text like a book ───────
+   Old-style (text) figures sit numbers on the baseline the way a
+   printed page does, with common ligatures and legibility
+   rendering. EB Garamond carries these; Inconsolata ignores the
+   figure feature, so monospaced labels stay lining. Stats and
+   other lining/tabular contexts opt back in on their own. */
+body {
+  font-variant-numeric: oldstyle-nums;
+  font-variant-ligatures: common-ligatures contextual;
+  text-rendering: optimizeLegibility;
+}
+
 /* ── No sideways scroll ─────────────────────────────────────────
    Full-bleed strips (the photo marquee) measure 100vw, which is a
    hair wider than the content once a scrollbar is present. clip
