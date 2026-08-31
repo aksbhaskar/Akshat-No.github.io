@@ -251,6 +251,16 @@
       display: block; line-height: 1.5;
     }
 
+    /* ─── PLANS: a plain, minimal itinerary ────────────────────── */
+    .plans { list-style: none; margin: 0.3rem 0 0; }
+    .plans li {
+      position: relative; padding-left: 1.1rem;
+      margin: 0.3rem 0; line-height: 1.62; color: var(--ink-med);
+    }
+    .plans li::before { content: '-'; position: absolute; left: 0; color: var(--ink-soft); }
+    .plans b { font-weight: 600; color: var(--ink); }
+    .plans .when { color: var(--ink); }
+
     /* ─── COLOPHON ─────────────────────────────────────────── */
     .colophon {
       margin: 3rem 0 0; padding: 1.5rem 0 0;
@@ -350,6 +360,20 @@
   <main class="entries" id="main">
 
     <section class="now-block">
+      <div class="nb-label">Where I'll be</div>
+      <div class="nb-body">
+        <p>Where to find me over the next few months. If any of it lines up with where you are, come say hello.</p>
+        <ul class="plans">
+          <li><b>Ashoka University</b><span class="when"> · September</span> · interviewing professors for <a href="podcast.html">the podcast</a> (date soon)</li>
+          <li><b>Hack Nation Global AI Hackathon</b><span class="when"> · 3&ndash;5 October</span> · I have an organiser's referral code for people worth backing, message me if you want it</li>
+          <li><b>Andaman &amp; Nicobar Islands</b><span class="when"> · 5&ndash;15 October</span> · travelling</li>
+          <li><b>NYAS 208th Annual Meeting</b><span class="when"> · 18 November</span> · as a Member and Fellow</li>
+        </ul>
+        <p style="margin-top:0.9rem">Wherever you are, come meet me.</p>
+      </div>
+    </section>
+
+    <section class="now-block">
       <div class="nb-label">Researching</div>
       <div class="nb-body">
         <p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
@@ -415,23 +439,6 @@
       <div class="nb-body">
         <p>To be technical. I came to this from economics, where it is easy to treat the modelling as somebody else's department. That stops being an option the moment your research question is a fine-tune. So: Python, the transformers stack, and enough statistics to know when I am fooling myself.</p>
         <p>Number theory, still, slowly. <a href="mathapprenticeship.html">The apprenticeship</a> ended but the habit did not.</p>
-      </div>
-    </section>
-
-    <section class="now-block">
-      <div class="nb-label">Where I'll be</div>
-      <div class="nb-body">
-        <ul class="stack">
-          <li>Ashoka University
-            <span class="by">September &nbsp;·&nbsp; interviewing professors for <a href="podcast.html">the podcast</a> (exact date coming soon)</span></li>
-          <li>Hack Nation, 7th Global AI Hackathon
-            <span class="by">3&ndash;5 October &nbsp;·&nbsp; the organisers gave me a referral code to pass to people worth backing, message me if you want it</span></li>
-          <li>Andaman &amp; Nicobar Islands
-            <span class="by">5&ndash;15 October &nbsp;·&nbsp; travelling</span></li>
-          <li>NYAS 208th Annual Meeting
-            <span class="by">Wednesday, 18 November 2026 &nbsp;·&nbsp; as a Member and Fellow</span></li>
-        </ul>
-        <p style="margin-top:0.9rem">Wherever you are, come meet me.</p>
       </div>
     </section>
 
