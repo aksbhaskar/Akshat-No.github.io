@@ -19,67 +19,87 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 600px; margin: 0 auto; padding: 2.8rem 1.4rem 6rem; }
-    nav { margin-bottom: 2.6rem; }
-    nav a { margin-right: 1.4rem; }
+    .wrap { max-width: 600px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
     a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
     a:visited { color: var(--ink); }
     a:hover { text-decoration-thickness: 2px; }
     p { margin: 0 0 1.2rem; }
-    .tight { margin-bottom: 0.2rem; }
+
+    .gap { margin-top: 1.7rem; }
+    .tight { margin: 0 0 0.2rem; }
+
+    details.disc { margin-top: 1.7rem; }
+    details.disc > summary {
+      cursor: pointer;
+      list-style: none;
+      width: max-content;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    details.disc > summary::-webkit-details-marker { display: none; }
+    details.disc > summary::marker { content: ''; }
+    details.disc[open] > summary { margin-bottom: 1.3rem; }
+    .disc-body p:last-child { margin-bottom: 0; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <nav>
-      <a href="future.html">home</a>
-      <a href="articles.html">writing</a>
-      <a href="media.html">photos</a>
-      <a href="index.html">professionalism</a>
-    </nav>
 
     <p>hi, i'm akshat.</p>
 
     <p>i like building things and dragging good ideas out into the open where people can use them.</p>
 
-    <p>i'm interested in economics, anthropology, philosophy, and <a href="mathapprenticeship.html">mathematics</a>, and mostly in the questions that sit where they overlap.</p>
+    <p class="gap tight">ping me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
 
-    <p>i started early. while still in school i founded the india chapter of <a href="edunomix.html">edunomix</a>, a nonprofit that teaches economics to kids who never get offered it, and ran a nationwide essay competition across 19 states and 54 schools.</p>
+    <p class="tight"><a href="index.html">professionalism</a></p>
 
-    <p>i ran finance as cfo of <a href="taxcity.html">taxcity</a>, a card game that teaches tax filing. it reached 79,000+ students across 27 countries and raised $120k+ in grants. we have since wound it down since even with the grants, giving away thousands of kits for free across india stopped being financially sustainable. we donated what was left to a few government schools we had visited, to help them build a better financial-literacy curriculum.</p>
+    <details class="disc">
+      <summary>more on me</summary>
+      <div class="disc-body">
+        <p>i'm interested in economics, anthropology, philosophy, and <a href="mathapprenticeship.html">mathematics</a>, and mostly in the questions that sit where they overlap.</p>
 
-    <p>somewhere in there i started <a href="podcast.html">decoded</a>, a podcast where i sit down with economists and technologists and make their ideas and discoveries make sense to the general public. it's won over three spotify for creators awards and passed 300 listening hours. i just recorded an episode with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">m. ram murty</a>, <a href="https://open.spotify.com/episode/6UUTAMCKXEkv7Uo8WXzIrr" target="_blank" rel="noopener">go check it out</a>.</p>
+        <p>i started early. while still in school i founded the india chapter of <a href="edunomix.html">edunomix</a>, a nonprofit that teaches economics to kids who never get offered it, and ran a nationwide essay competition across 19 states and 54 schools.</p>
 
-    <p>i do research too. i wrote an <a href="aipolicy.html">ai-policy paper</a> that got published and presented at a national conference where i was the only high schooler, and now i'm studying <a href="research.html">how financial misinformation spreads</a> across indian social media at the indian school of business (isb).</p>
+        <p>i ran finance as cfo of <a href="taxcity.html">taxcity</a>, a card game that teaches tax filing. it reached 79,000+ students across 27 countries and raised $120k+ in grants. we have since wound it down since even with the grants, giving away thousands of kits for free across india stopped being financially sustainable. we donated what was left to a few government schools we had visited, to help them build a better financial-literacy curriculum.</p>
 
-    <p>before finishing high school i got <a href="president.html">felicitated by the president of india</a> for my work on ai. i went to <a href="yc.html">yc's</a> first startup school in india, got into buildspace when i was in 10th, and built a bunch of other random stuff. some of it worked, most didn't, but i sure learned a lot.</p>
+        <p>somewhere in there i started <a href="podcast.html">decoded</a>, a podcast where i sit down with economists and technologists and make their ideas and discoveries make sense to the general public. it's won over three spotify for creators awards and passed 300 listening hours. i just recorded an episode with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">m. ram murty</a>, <a href="https://open.spotify.com/episode/6UUTAMCKXEkv7Uo8WXzIrr" target="_blank" rel="noopener">go check it out</a>.</p>
 
-    <p>right now i'm the founding technical and recruitment lead at docsdocs, an apple-backed startup, and i still run edunomix and decoded. i also like to <a href="bookshelf.html">read</a> a lot.</p>
+        <p>i do research too. i wrote an <a href="aipolicy.html">ai-policy paper</a> that got published and presented at a national conference where i was the only high schooler, and now i'm studying <a href="research.html">how financial misinformation spreads</a> across indian social media at the indian school of business (isb).</p>
 
-    <p>sometimes i <a href="articles.html">write things down</a>. if any of this overlaps with what you're building, startup, podcast, research, non profit, whatever, ping me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>. i usually reply to short emails with a clear ask.</p>
+        <p>before finishing high school i got <a href="president.html">felicitated by the president of india</a> for my work on ai. i went to <a href="yc.html">yc's</a> first startup school in india, got into buildspace when i was in 10th, and built a bunch of other random stuff. some of it worked, most didn't, but i sure learned a lot.</p>
 
-    <p style="margin-top:2.4rem;">where to reach the things i run:</p>
+        <p>right now i'm the founding technical and recruitment lead at docsdocs, an apple-backed startup, and i still run edunomix and decoded. i also like to <a href="bookshelf.html">read</a> a lot.</p>
 
-    <p>
-      <b>edunomix</b><br>
-      join or enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
-      learn more: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
-    </p>
+        <p>sometimes i <a href="articles.html">write things down</a>. if any of this overlaps with what you're building, startup, podcast, research, non profit, whatever, ping me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>. i usually reply to short emails with a clear ask.</p>
+      </div>
+    </details>
 
-    <p>
-      <b>decoded</b><br>
-      join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
-      guests &amp; ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
-      other enquiries: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
-      learn more: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
-    </p>
+    <details class="disc">
+      <summary>reach me</summary>
+      <div class="disc-body">
+        <p>where to reach the things i run:</p>
 
-    <p>
-      <b>docsdocs technologies</b><br>
-      join or enquire: <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>
-    </p>
+        <p>
+          <b>edunomix</b><br>
+          join or enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
+          learn more: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
+        </p>
 
-    <p class="tight" style="margin-top:2rem;"><a href="index.html">professionalism</a></p>
+        <p>
+          <b>decoded</b><br>
+          join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
+          guests &amp; ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
+          other enquiries: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
+          learn more: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
+        </p>
+
+        <p>
+          <b>docsdocs technologies</b><br>
+          join or enquire: <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>
+        </p>
+      </div>
+    </details>
+
   </div>
 </body>
 </html>
