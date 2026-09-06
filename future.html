@@ -7,31 +7,23 @@
   <!-- private experiment, kept out of search and off the nav -->
   <meta name="robots" content="noindex, nofollow" />
   <style>
-    :root { --ink: #141414; --bg: #fff; --link: #0a7d30; }
-    /* Uses SK Greenland Semi Bold if it is installed / provided. Drop
-       a woff2 in the repo and swap the local() line for a url() src. */
-    @font-face {
-      font-family: 'SK Greenland';
-      src: local('SK Greenland Semi Bold'), local('SKGreenland-SemiBold'), local('SK Greenland SemiBold');
-      font-weight: 600; font-style: normal; font-display: swap;
-    }
+    :root { --ink: #141414; --bg: #fff; }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: 'SK Greenland', 'SK Greenland Semi Bold', Georgia, 'Palatino Linotype', serif;
-      font-weight: 600;
-      font-size: 17px;
-      line-height: 1.55;
+      font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
+      font-size: 18px;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     .wrap { max-width: 600px; margin: 0 auto; padding: 2.8rem 1.4rem 6rem; }
     nav { margin-bottom: 2.6rem; }
     nav a { margin-right: 1.4rem; }
-    a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
-    a:visited { color: var(--link); }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
     a:hover { text-decoration-thickness: 2px; }
     p { margin: 0 0 1.2rem; }
     .tight { margin-bottom: 0.2rem; }
