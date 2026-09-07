@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>photos</title>
+  <!-- private experiment, kept out of search and off the nav -->
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
+      font-size: 15px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 600px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 2rem; }
+    figure { margin: 0 0 2.6rem; }
+    figure img { width: 100%; height: auto; display: block; }
+    figcaption { margin-top: 0.55rem; color: var(--muted); }
+
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="maybe.html">home</a>
+      <a href="photos.html">photos</a>
+      <a href="index.html">professionalism</a>
+    </nav>
+
+    <h1>photos</h1>
+
+    <figure>
+      <img width="600" height="800" loading="lazy" decoding="async" src="taxcity_tetr.jpg" alt="TaxCity showcased at TETR Disrupt, DPS R.K. Puram">
+      <figcaption>taxcity at tetr disrupt, dps r.k. puram</figcaption>
+    </figure>
+
+    <figure>
+      <img width="599" height="800" loading="lazy" decoding="async" src="taxcity_press.jpg" alt="TaxCity featured in the national press">
+      <figcaption>taxcity in the press</figcaption>
+    </figure>
+
+    <figure>
+      <img width="599" height="800" loading="lazy" decoding="async" src="taxcity_impact.jpg" alt="TaxCity reached 79,000+ students">
+      <figcaption>79,000+ students reached</figcaption>
+    </figure>
+
+  </div>
+</body>
+</html>
