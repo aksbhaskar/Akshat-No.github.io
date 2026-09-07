@@ -24,9 +24,27 @@
     a:visited { color: var(--ink); }
     a:hover { text-decoration-thickness: 2px; }
     p { margin: 0 0 1.2rem; }
+
     nav { margin-bottom: 2.6rem; }
     nav a { margin-right: 1.4rem; }
-    h2 { font-size: 18px; font-weight: bold; margin: 2.2rem 0 1rem; }
+
+    .gap { margin-top: 1.7rem; }
+    .tight { margin: 0 0 0.2rem; }
+
+    details.disc { margin-top: 1.5rem; }
+    details.disc > summary {
+      cursor: pointer;
+      list-style: none;
+      width: max-content;
+      max-width: 100%;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    details.disc > summary::-webkit-details-marker { display: none; }
+    details.disc > summary::marker { content: ''; }
+    details.disc[open] > summary { margin-bottom: 1.3rem; }
+    .disc-body p:last-child { margin-bottom: 0; }
+    .disc-body img { width: 100%; height: auto; display: block; margin: 1.4rem 0 0.2rem; border: 0.5px solid #e2e2e2; }
   </style>
 </head>
 <body>
@@ -43,52 +61,87 @@
 
     <p>I like building things and dragging good ideas out into the open where people can use them.</p>
 
-    <p>I'm interested in economics, anthropology, philosophy, and mathematics, and mostly in the questions that sit where they overlap. The one that has pulled at me longest is simple to state and hard to answer: how can young people, and above all those in under-resourced contexts, gain access to the knowledge and agency that shape their futures? Most of what I've built has been an attempt to answer it.</p>
+    <p>I'm interested in economics, anthropology, philosophy, and mathematics, and mostly in the questions that sit where they overlap.</p>
 
-    <p>It started with money, and with how rarely anyone is taught how it works. While still in school, I founded the India chapter of the <a href="edunomix.html">Edunomix Institute</a>, a US 501(c)(3) nonprofit devoted to financial literacy, and built its first presence in South Asia. We ran a nationwide essay competition across nineteen states and fifty-four schools and held camps in personal finance. Through the Ukraine Speaks English initiative, in partnership with Learn and Teach UA, we also taught economics to displaced Ukrainian students whose ordinary schooling had been interrupted by the war. More than forty of them showed up for the first class of the latest cycle, logging on every week from halfway across the world just to learn how money actually works. That, more than any metric, is why the project exists.</p>
+    <p class="gap tight">Talk to me about economics, anthropology, philosophy, and mathematics: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
 
-    <p>The same conviction carried into <a href="taxcity.html">TaxCity</a>, a government-recognised card game that teaches tax filing, where I served as Chief Financial Officer. It reached more than 79,000 students across 27 countries, raised over $120,000 in grants, and earned recognition from the Ministry of Education. In the end, though, we had to wind it down. Even with the grants, giving away thousands of physical kits for free across India was no longer financially sustainable. We donated what remained to a few government schools we had visited, so the game could keep being played where it was needed most. I'm still proud of what it did.</p>
+    <details class="disc">
+      <summary>Learn about my work in Financial Literacy</summary>
+      <div class="disc-body">
+        <p>Most of what I've built started with one idea: that financial literacy shouldn't be a privilege.</p>
 
-    <p>I'm also drawn to public policy and social change from the inside. My research on the socio-economic dimensions of artificial intelligence, under Professor Surbhi Goel at the University of Pennsylvania, became a peer-reviewed paper published in <a href="aipolicy.html">IJRASET</a>, which I presented at the NYC STEM Research Conference in 2025 as the only high-school student presenting.</p>
+        <p>While still in school, I founded the India chapter of the <a href="edunomix.html">Edunomix Institute</a>, a US 501(c)(3) nonprofit, and built its first presence in South Asia. We ran a nationwide essay competition across nineteen states and fifty-four schools, held camps in personal finance, and, through the Ukraine Speaks English initiative with Learn and Teach UA, taught economics to displaced Ukrainian students whose schooling had been interrupted by the war.</p>
 
-    <p>During my gap year, I've been learning to fold software into that work. Under Professor Hemant Kakkar at the Indian School of Business, I'm <a href="research.html">studying how financial misinformation spreads</a> across Indian social media. Because so much of the false content online is code-mixed Hindi and English in the same sentence, what we call "Hinglish," my analysis runs on language models built for Indian languages, MuRIL and XLM-RoBERTa, rather than the English-only tools most people reach for. Paired with validated psychological instruments, the BFI-2-XS personality inventory and the Fear of Missing Out scale, I'm chasing a sharper question than "which posts are false": which people are most likely to pass them on.</p>
+        <p>The same idea carried into <a href="taxcity.html">TaxCity</a>, a government-recognised card game that teaches tax filing, where I served as Chief Financial Officer. It reached over 79,000 students across 27 countries and raised more than $120,000 in grants. We eventually wound it down: even with the grants, giving away thousands of free kits across India was no longer financially sustainable, so we donated what was left to a few government schools we had visited.</p>
 
-    <p>In June 2025, I served as a Policy Intern at the <a href="goi.html">Ministry of Education</a>, Government of India, in the office of Mr. Rahul Pachori, Director, working on internal analysis of the Samagra Shiksha Scheme, the country's flagship schooling programme under the National Education Policy 2020. Reading a national education budget line by line teaches you things a classroom cannot.</p>
+        <p>And because ideas are only as useful as their reach, I host the <a href="podcast.html">Decoded Podcast</a>, where we interview economists and technologists and translate their ideas and breakthroughs for a general audience. It has won three Spotify for Creators awards and passed three hundred listening hours.</p>
+      </div>
+    </details>
 
-    <p>Underneath all of it runs something quieter. I love mathematics, especially pure mathematics and number theory. I was admitted to the <a href="lgp.html">Lodha Genius Programme</a> at Ashoka University, a fully funded residential programme with an acceptance rate near three percent, where I did university-level coursework in number theory, group theory, linear algebra, and geometry, and sat in on the <a href="greatideasseminar.html">Great Ideas Seminars</a> alongside Nobel laureates like Sir Paul Nurse and Professor Brian Schmidt. It was one of the most rewarding summers of my life, and I made a lot of brilliant friends there. In the first half of my gap year, I continued into original research through a residential <a href="mathapprenticeship.html">mathematics apprenticeship</a> under Professor Shanta Laishram at the Indian Statistical Institute, working in advanced number theory.</p>
+    <details class="disc">
+      <summary>How I got into Research</summary>
+      <div class="disc-body">
+        <p>In 10th grade, I entered the Pivotal International Essay Competition and wrote about the economic and social impact of AI, and mostly the policy surrounding it. I loved the topic. I placed in the international top 1% and got to choose ten books as a prize, delivered to my door.</p>
 
-    <p>Ideas are only as useful as their reach. I <a href="articles.html">write</a>, and I host the <a href="podcast.html">Decoded Podcast</a>, where we interview economists and technologists and translate their ideas and breakthroughs for a general audience. It has won three Spotify for Creators awards and passed three hundred listening hours, and I've built a small team around it. Recently I recorded a conversation I'd chased for weeks with the number theorist <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">M. Ram Murty</a>; it might be the best thing we've made.</p>
+        <p>I wanted to explore more, so I did. I got involved in an AI research project, spoke to a lot of people, and eventually began working under a professor. That research on the socio-economic dimensions of AI, under Professor Surbhi Goel at the University of Pennsylvania, became a peer-reviewed paper published in <a href="aipolicy.html">IJRASET</a>, which I presented at the NYC STEM Research Conference in 2025 as the only high-school student presenting. One thing led to the next, and I haven't stopped since.</p>
+      </div>
+    </details>
 
-    <p>I've also tried to spend time near people who build at scale. At <a href="yc.html">Y Combinator's</a> first Startup School India, I was one of two thousand chosen nationwide, pitched my financial-literacy work to YC partner Jared Friedman, and received an AI compute grant of over $25,000. Earlier, I was selected from a pool of thirty-two thousand into buildspace's s3 cohort.</p>
+    <details class="disc">
+      <summary>What did I do in my gap year</summary>
+      <div class="disc-body">
+        <p>The first half of my gap year went to mathematics. I did a residential <a href="mathapprenticeship.html">mathematics apprenticeship</a> under Professor Shanta Laishram at the Indian Statistical Institute, working in advanced number theory, hosted at Ashoka University.</p>
 
-    <p>My proudest moment came before I'd finished school, when I was <a href="president.html">felicitated by the President of India</a>, Shri Droupadi Murmu, for my work on AI, one of seventeen students chosen nationwide. The rest of the record, ranks, olympiads, and programmes, is <a href="awards.html">here</a>.</p>
+        <p>Then it turned computational. Under Professor Hemant Kakkar at the Indian School of Business, I began studying how financial misinformation spreads across Indian social media, using language models built for Indian languages (MuRIL and XLM-RoBERTa), since so much of the false content is code-mixed "Hinglish", paired with validated psychological instruments to work out not just which posts are false, but who is most likely to pass them on.</p>
 
-    <p>Beyond the desk, I've volunteered with Familial Forestry, a reforestation movement recognised by the UN Land for Life Award, for five years, and I'm working to open a chapter at my school. I captained my school to back-to-back district football championships and served as President of the Student Council at Delhi Public School, R.K. Puram.</p>
+        <p>I also went back to running Edunomix day to day and launched the second edition of our nationwide essay competition, judged by economics scholars from Harvard, UC Berkeley, Cornell, and Warwick. We ran the <a href="https://x.com/aksbhaskar/status/2096799687399690405" target="_blank" rel="noopener">Ukraine Speaks English seminars</a> again this season with Learn and Teach UA, free financial education for students across Ukraine.</p>
 
-    <h2>Reach me</h2>
+        <p>And I built the Decoded team out from just Amaira and me into a real operation, with more than ten hires across research, social media, and outreach, and locked in a collaboration with <a href="https://x.com/aksbhaskar/status/2096795817478963264" target="_blank" rel="noopener">HERizon</a> on a student session about sustainable finance and climate.</p>
+      </div>
+    </details>
 
-    <p>If any of this overlaps with what you're building, a startup, a podcast, a research project, a nonprofit, whatever it is, I'd like to hear about it. You can write to me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>; I usually reply to short emails with a clear ask.</p>
+    <details class="disc">
+      <summary>Awarded by the President</summary>
+      <div class="disc-body">
+        <p>Completing Microsoft's "AI to be Aware" program under the Government of India's SOAR Initiative culminated in one of the most memorable experiences of my academic journey. I was selected as one of only 17 students nationwide to be felicitated by the Hon'ble President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan for my work in Artificial Intelligence.</p>
 
-    <p>Or reach the things I run directly:</p>
+        <p>The ceremony brought together distinguished guests, including Members of Parliament and Union Ministers from the Ministries of Education and Skill Development &amp; Entrepreneurship. During her address, the President spoke about the transformative role of Artificial Intelligence in India's future, emphasising the responsibility of young innovators to apply technology in service of society and national development.</p>
 
-    <p>
-      <b>Edunomix</b><br>
-      Join or enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
-      Learn more: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
-    </p>
+        <p>Following the felicitation, I had the opportunity to briefly interact with the President and later met Shri Jayant Chaudhary, Union Minister of State (Independent Charge) for Skill Development and Entrepreneurship, discussing the role of Artificial Intelligence in advancing skill development across India.</p>
 
-    <p>
-      <b>Decoded</b><br>
-      Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
-      Guests &amp; ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
-      Everything else: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
-      Learn more: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
-    </p>
+        <p>Being recognised at Rashtrapati Bhavan by the President of India was both a tremendous honour and a reminder of the responsibility that comes with pursuing research and innovation in emerging technologies. It reinforced my commitment to contributing to AI not only as a technical discipline, but as a field with profound implications for public policy, society, and economic development.</p>
 
-    <p>
-      <b>DocsDocs Technologies</b><br>
-      Join or enquire: <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>
-    </p>
+        <img width="1600" height="1067" loading="lazy" decoding="async" src="hero_president.jpg" alt="Felicitated by the President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan">
+      </div>
+    </details>
+
+    <details class="disc">
+      <summary>Reach me</summary>
+      <div class="disc-body">
+        <p>If any of this overlaps with what you're building, a startup, a podcast, a research project, a nonprofit, whatever it is, I'd like to hear about it. Write to me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>; I usually reply to short emails with a clear ask.</p>
+
+        <p>Or reach the things I run directly:</p>
+
+        <p>
+          <b>Edunomix</b><br>
+          Join or enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
+          Learn more: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
+        </p>
+
+        <p>
+          <b>Decoded</b><br>
+          Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
+          Guests &amp; ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
+          Everything else: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
+          Learn more: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
+        </p>
+
+        <p>
+          <b>DocsDocs Technologies</b><br>
+          Join or enquire: <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>
+        </p>
+      </div>
+    </details>
 
   </div>
 </body>
