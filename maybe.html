@@ -15,7 +15,7 @@
       background: var(--bg);
       color: var(--ink);
       font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.62;
       -webkit-font-smoothing: antialiased;
     }
@@ -37,9 +37,8 @@
       list-style: none;
       width: max-content;
       max-width: 100%;
-      text-decoration: underline;
-      text-underline-offset: 2px;
     }
+    details.disc > summary .tog { text-decoration: underline; text-underline-offset: 2px; }
     details.disc > summary::-webkit-details-marker { display: none; }
     details.disc > summary::marker { content: ''; }
     details.disc[open] > summary { margin-bottom: 1.3rem; }
@@ -64,7 +63,7 @@
     <p class="gap">some interesting things about me:</p>
 
     <details class="disc">
-      <summary>Financial Literacy</summary>
+      <summary><span class="tog">Financial Literacy</span></summary>
       <div class="disc-body">
         <p>Most of what I've built started with one idea: that financial literacy shouldn't be a privilege.</p>
 
@@ -72,21 +71,23 @@
 
         <p>The same idea carried into <a href="taxcity.html">TaxCity</a>, a government-recognised card game that teaches tax filing, where I served as Chief Financial Officer. It reached over 79,000 students across 27 countries and raised more than $120,000 in grants. We eventually wound it down: even with the grants, giving away thousands of free kits across India was no longer financially sustainable, so we donated what was left to a few government schools we had visited.</p>
 
-        <p>And because ideas are only as useful as their reach, I host the <a href="podcast.html">Decoded Podcast</a>, where we interview economists and technologists and translate their ideas and breakthroughs for a general audience. It has won three Spotify for Creators awards and passed three hundred listening hours.</p>
+        <p>And because ideas are only as useful as their reach, I host the <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">Decoded Podcast</a>, where we interview economists and technologists and translate their ideas and breakthroughs for a general audience. It has won three Spotify for Creators awards and passed three hundred listening hours.</p>
+
+        <p>More recently, I've come to see that literacy alone is not enough of a defence. So I have started studying financial misinformation itself: how false financial claims spread across Indian social media, and who is most likely to pass them on. It is the same mission from a different angle, helping people navigate money safely, and it is what I spend most of my time on now.</p>
       </div>
     </details>
 
     <details class="disc">
-      <summary>how did I get into research?</summary>
+      <summary><span class="tog">how did I get into research?</span></summary>
       <div class="disc-body">
-        <p>In 10th grade, I entered the Pivotal International Essay Competition and wrote about the economic and social impact of AI, and mostly the policy surrounding it. I loved the topic. I placed in the international top 1% and got to choose ten books as a prize, delivered to my door.</p>
+        <p>In 10th grade, I entered the <a href="https://pivotalcontest.org/" target="_blank" rel="noopener">Pivotal International Essay Competition</a> and wrote about the economic and social impact of AI, and mostly the policy surrounding it. I loved the topic. I placed in the international top 1% and got to choose ten books as a prize, delivered to my door.</p>
 
         <p>I wanted to explore more, so I did. I got involved in an AI research project, spoke to a lot of people, and eventually began working under a professor. That research on the socio-economic dimensions of AI, under Professor Surbhi Goel at the University of Pennsylvania, became a peer-reviewed paper published in <a href="aipolicy.html">IJRASET</a>, which I presented at the NYC STEM Research Conference in 2025 as the only high-school student presenting. One thing led to the next, and I haven't stopped since.</p>
       </div>
     </details>
 
     <details class="disc">
-      <summary>I took a gap year after high school. What did I do?</summary>
+      <summary>I took a gap year after high school. <span class="tog">What did I do?</span></summary>
       <div class="disc-body">
         <p>The first half of my gap year went to mathematics. I did a residential <a href="mathapprenticeship.html">mathematics apprenticeship</a> under Professor Shanta Laishram, Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at the Indian Statistical Institute (ISI), Delhi, working in advanced number theory, hosted at Ashoka University. I received a 10,000 INR research stipend, and all in all, it was one of the <a href="https://www.linkedin.com/posts/aksbhaskar_this-year-alongside-my-teaching-assistant-activity-7481233262200152064-l3m-" target="_blank" rel="noopener">most fulfilling summers</a> of my life!</p>
 
@@ -101,7 +102,7 @@
     </details>
 
     <details class="disc">
-      <summary>I was awarded by the Hon'ble President of India. HOW?</summary>
+      <summary>I was awarded by the Hon'ble President of India. <span class="tog">HOW?</span></summary>
       <div class="disc-body">
         <p>Completing Microsoft's "AI to be Aware" program under the Government of India's SOAR Initiative culminated in one of the most memorable experiences of my academic journey. I was selected as one of only 17 students nationwide to be felicitated by the Hon'ble President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan for my work in Artificial Intelligence.</p>
 
@@ -116,7 +117,7 @@
     </details>
 
     <details class="disc">
-      <summary>Reach Me</summary>
+      <summary><span class="tog">Reach Me</span></summary>
       <div class="disc-body">
         <p>If any of this overlaps with what you're building, a startup, a podcast, a research project, a nonprofit, whatever it is, I'd like to hear about it. Write to me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>; I usually reply to short emails with a clear ask.</p>
 
