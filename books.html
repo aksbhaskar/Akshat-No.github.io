@@ -39,10 +39,11 @@
     h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
     .sub { color: var(--muted); font-style: italic; margin: 0 0 2rem; max-width: 46ch; }
     ul.list { list-style: none; margin: 0; padding: 0; }
-    ul.list li { margin: 0 0 0.5rem; padding-left: 1rem; text-indent: -1rem; }
+    ul.list li { margin: 0 0 1.3rem; padding-left: 1rem; text-indent: -1rem; }
     ul.list li::before { content: "- "; }
     ul.list li i { font-style: italic; }
-    .note { color: var(--muted); font-style: italic; margin-top: 2.2rem; font-size: 0.92em; }
+    ul.list li .by { display: block; text-indent: 0; font-style: normal; color: var(--muted); font-size: 0.9em; margin-top: 0.1rem; }
+    .note { color: var(--muted); font-style: italic; margin-top: 2.4rem; font-size: 0.92em; }
 
     @media (min-width: 1000px) { body { font-size: 16px; } }
     @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
@@ -61,20 +62,24 @@
     <p class="sub">here are a few titles I loved, in no particular order (every time you reload the website, the order shuffles)</p>
 
     <ul class="list" id="list">
-      <li><a href="https://www.goodreads.com/book/show/1202.Freakonomics" target="_blank" rel="noopener"><i>Freakonomics</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/10016013-harry-potter-and-the-methods-of-rationality" target="_blank" rel="noopener"><i>Harry Potter and the Methods of Rationality</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/10245602-poor-economics" target="_blank" rel="noopener"><i>Poor Economics</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/170448.Animal_Farm" target="_blank" rel="noopener"><i>Animal Farm</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/70420.The_Undercover_Economist" target="_blank" rel="noopener"><i>The Undercover Economist</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/41109404-gray-day" target="_blank" rel="noopener"><i>Gray Day: My Undercover Mission to Expose America's First Cyber Spy</i></a></li>
-      <li><a href="https://www.goodreads.com/series/43790-a-song-of-ice-and-fire" target="_blank" rel="noopener"><i>A Song of Ice and Fire</i></a> (series)</li>
-      <li><a href="https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow" target="_blank" rel="noopener"><i>Thinking, Fast and Slow</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/3450744-nudge" target="_blank" rel="noopener"><i>Nudge</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/23692271-sapiens" target="_blank" rel="noopener"><i>Sapiens: A Brief History of Humankind</i></a></li>
-      <li><a href="https://www.goodreads.com/book/show/5470.1984" target="_blank" rel="noopener"><i>1984</i></a></li>
+      <li><a href="https://www.goodreads.com/book/show/1202.Freakonomics" target="_blank" rel="noopener"><i>Freakonomics</i></a><span class="by">Steven D. Levitt &amp; Stephen J. Dubner</span></li>
+      <li><a href="https://www.goodreads.com/book/show/10016013-harry-potter-and-the-methods-of-rationality" target="_blank" rel="noopener"><i>Harry Potter and the Methods of Rationality</i></a><span class="by">Eliezer Yudkowsky</span></li>
+      <li><a href="https://www.goodreads.com/book/show/10245602-poor-economics" target="_blank" rel="noopener"><i>Poor Economics</i></a><span class="by">Abhijit V. Banerjee &amp; Esther Duflo</span></li>
+      <li><a href="https://www.goodreads.com/book/show/170448.Animal_Farm" target="_blank" rel="noopener"><i>Animal Farm</i></a><span class="by">George Orwell</span></li>
+      <li><a href="https://www.goodreads.com/book/show/70420.The_Undercover_Economist" target="_blank" rel="noopener"><i>The Undercover Economist</i></a><span class="by">Tim Harford</span></li>
+      <li><a href="https://www.goodreads.com/book/show/41109404-gray-day" target="_blank" rel="noopener"><i>Gray Day: My Undercover Mission to Expose America's First Cyber Spy</i></a><span class="by">Eric O'Neill</span></li>
+      <li><a href="https://www.goodreads.com/series/43790-a-song-of-ice-and-fire" target="_blank" rel="noopener"><i>A Song of Ice and Fire</i></a> (series)<span class="by">George R.R. Martin</span></li>
+      <li><a href="https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow" target="_blank" rel="noopener"><i>Thinking, Fast and Slow</i></a><span class="by">Daniel Kahneman</span></li>
+      <li><a href="https://www.goodreads.com/book/show/3450744-nudge" target="_blank" rel="noopener"><i>Nudge</i></a><span class="by">Richard H. Thaler &amp; Cass R. Sunstein</span></li>
+      <li><a href="https://www.goodreads.com/book/show/23692271-sapiens" target="_blank" rel="noopener"><i>Sapiens: A Brief History of Humankind</i></a><span class="by">Yuval Noah Harari</span></li>
+      <li><a href="https://www.goodreads.com/book/show/5470.1984" target="_blank" rel="noopener"><i>1984</i></a><span class="by">George Orwell</span></li>
+      <li><a href="https://www.goodreads.com/book/show/33507.Twenty_Thousand_Leagues_Under_the_Sea" target="_blank" rel="noopener"><i>Twenty Thousand Leagues Under the Sea</i></a><span class="by">Jules Verne</span></li>
+      <li><a href="https://www.goodreads.com/book/show/431.The_New_York_Trilogy" target="_blank" rel="noopener"><i>The New York Trilogy</i></a><span class="by">Paul Auster</span></li>
+      <li><a href="https://www.goodreads.com/book/show/50485582-the-precipice" target="_blank" rel="noopener"><i>The Precipice: Existential Risk and the Future of Humanity</i></a><span class="by">Toby Ord</span></li>
+      <li><a href="https://www.goodreads.com/book/show/42041926-the-scout-mindset" target="_blank" rel="noopener"><i>The Scout Mindset</i></a><span class="by">Julia Galef</span></li>
     </ul>
 
-    <p class="note">Always taking recommendations &mdash; <a href="mailto:bhaskarakshat22@gmail.com">tell me what to read next</a>.</p>
+    <p class="note">always taking recommendations &mdash; <a href="mailto:bhaskarakshat22@gmail.com">tell me what to read next</a>!</p>
 
   </div>
   <script>
