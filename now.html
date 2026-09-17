@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Now | Akshat Bhaskar</title>
   <meta name="description" content="What Akshat Bhaskar is working on, reading, and thinking about right now. A dated dispatch from a desk in New Delhi." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatb.com/now.html" />
-  <meta name="theme-color" content="#fbf8f0">
   <meta property="og:type" content="website" />
   <meta property="og:title" content="What Akshat Bhaskar is doing now" />
   <meta property="og:description" content="A dated dispatch: what I am building, reading, and thinking about right now." />
@@ -15,546 +14,213 @@
   <meta property="og:image" content="https://akshatb.com/og_now.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og_now.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-  <script>
-    /* Light by default; only a saved choice turns the lights off.
-       Runs before paint so the theme never flashes. */
-    (function(){try{if(localStorage.getItem('theme')==='dark')
-    document.documentElement.classList.add('dark');}catch(e){}})();
-  </script>
-  <link rel="stylesheet" href="theme.css">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap">
   <style>
-    /* ─── VARIABLES ────────────────────────────────────────────
-       The desk: warm paper under a lamp, ink, one ochre. */
-    :root {
-      --paper:      #fbf8f0;
-      --ink:        #1a1712;
-      --ink-med:    #3d382e;
-      --ink-soft:   #6b6555;
-      --ink-faint:  #767061;
-      --ink-ghost:  #cbc4b1;
-      --rule:       #dbd4c1;
-      --rule-light: #eae5d6;
-      --accent:     #9a6320;
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(22px, 4vw, 56px);
-      --measure:    720px;
-    }
-    html.dark { --accent: #e0a458; }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-
+    :root { --ink: #141414; --bg: #fff; --muted: #666; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      background: var(--paper);
+      margin: 0;
+      background: var(--bg);
       color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 15px;
+      line-height: 1.62;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
     }
-    ::selection { background: rgba(154,99,32,0.18); }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 0.9rem; max-width: 46ch; }
+    .meta { color: var(--muted); font-size: 0.86em; margin: 0 0 2.4rem; }
+    .meta .clock { font-variant-numeric: tabular-nums; }
+    p { margin: 0 0 1.1rem; }
 
-    /* ─── PROGRESS ─────────────────────────────────────────── */
-    .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--accent); z-index: 999; transition: width 0.1s linear;
+    section.sec { margin-top: 2.4rem; }
+    section.sec h2 {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--muted); font-weight: normal; margin: 0 0 0.55rem;
     }
+    section.sec p:last-child { margin-bottom: 0; }
 
-    /* ─── TOPBAR ───────────────────────────────────────────── */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(251,248,240,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(219,212,193,0.4);
-    }
-    html.dark .topbar { background: rgba(20,19,17,0.92); }
-    .topbar-logo {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .topbar-logo:hover { color: var(--ink); }
+    ul.list { list-style: none; margin: 0.3rem 0 0; padding: 0; }
+    ul.list li { margin: 0 0 0.55rem; padding-left: 1rem; text-indent: -1rem; }
+    ul.list li::before { content: "- "; }
+    ul.list li i { font-style: italic; }
+    ul.list li .by { display: block; text-indent: 0; font-style: normal; color: var(--muted); font-size: 0.9em; margin-top: 0.1rem; }
 
-    .hamburger {
-      background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
-    }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .colophon { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid #e2e2e2; color: var(--muted); font-style: italic; font-size: 0.92em; }
+    .colophon a { color: var(--ink); }
 
-    /* ─── NAV OVERLAY ──────────────────────────────────────── */
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 190;
-      background: rgba(26,23,18,0.95); backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.4rem, 3.1vw, 2.1rem);
-      font-weight: 400; font-style: italic;
-      color: rgba(251,248,240,0.5); line-height: 1.28;
-      opacity: 0; transform: translateX(-10px);
-      transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none; display: block;
-    }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
-    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
-    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
-    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
-    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
-    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
-    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
-    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
-    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
-    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
-    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: rgba(251,248,240,0.95); }
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(251,248,240,0.15);
-      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,248,240,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(251,248,240,0.9); }
-
-    /* ─── PAGE ─────────────────────────────────────────────── */
-    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
-
-    /* ─── HEAD ─────────────────────────────────────────────── */
-    .now-head { padding-top: 118px; padding-bottom: 0.4rem; }
-    .nh-crumbs {
-      font-family: var(--mono); font-size: 0.66rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      display: flex; gap: 0.55rem; align-items: center;
-    }
-    .nh-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
-    .nh-crumbs a:hover { color: var(--ink); }
-    .nh-crumbs .sep { color: var(--ink-ghost); }
-
-    h1.nh-title {
-      font-family: var(--serif); font-size: clamp(1.8rem, 4.5vw, 2.5rem);
-      font-weight: 400; letter-spacing: 0.01em; line-height: 1;
-      color: var(--ink); margin: 2.4rem 0 0;
-    }
-    .nh-sub {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.12rem; color: var(--ink-soft);
-      margin-top: 0.9rem; max-width: 44ch; line-height: 1.6;
-    }
-
-    /* ─── THE DATELINE STRIP ───────────────────────────────
-       A live clock at the desk this was written at. */
-    .dateline {
-      margin: 2.6rem 0 0;
-      border-top: 1px solid var(--ink);
-      border-bottom: 0.5px solid var(--rule);
-      padding: 0.85rem 0;
-      display: flex; flex-wrap: wrap; align-items: baseline;
-      gap: 0.5rem 1.6rem;
-      font-family: var(--mono); font-size: 0.7rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-    .dateline b {
-      font-weight: 500; color: var(--ink-med);
-      text-transform: none; letter-spacing: 0.04em;
-    }
-    .dl-item { display: flex; align-items: baseline; gap: 0.5rem; }
-    .dl-key { color: var(--ink-ghost); }
-    /* the second-hand blink on the live clock */
-    #clock .tick { color: var(--accent); animation: blink 2s step-end infinite; }
-    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
-    @media (prefers-reduced-motion: reduce) { #clock .tick { animation: none; } }
-    .lamp {
-      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); margin-right: 0.15rem;
-      box-shadow: 0 0 7px rgba(154,99,32,0.55);
-    }
-
-    /* ─── ENTRIES ──────────────────────────────────────────── */
-    .entries { margin-top: 1rem; }
-
-    .now-block {
-      display: grid;
-      grid-template-columns: 128px 1fr;
-      gap: 0 2.4rem;
-      padding: 2.1rem 0;
-      border-bottom: 0.5px solid var(--rule-light);
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.3,1);
-    }
-    .now-block.visible { opacity: 1; transform: translateY(0); }
-    .now-block:last-child { border-bottom: none; }
-
-    .nb-label {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent);
-      padding-top: 0.42rem;
-    }
-    .nb-body p { margin-bottom: 0.9rem; color: var(--ink-med); }
-    .nb-body p:last-child { margin-bottom: 0; }
-    .nb-body a {
-      color: var(--ink); text-decoration: none;
-      background-image: linear-gradient(var(--accent), var(--accent));
-      background-size: 100% 0.5px; background-repeat: no-repeat;
-      background-position: 0 100%;
-      transition: background-size 0.25s ease, color 0.2s;
-    }
-    .nb-body a:hover { color: var(--accent); background-size: 100% 1px; }
-    .nb-body em { font-style: italic; }
-
-    /* a small run of items, like a reading list */
-    .stack { list-style: none; }
-    .stack li {
-      padding: 0.36rem 0 0.36rem 1.1rem;
-      position: relative; color: var(--ink-med);
-    }
-    .stack li::before {
-      content: '·'; position: absolute; left: 0.15rem;
-      color: var(--accent); font-weight: 700;
-    }
-    .stack .by {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.03em;
-      display: block; line-height: 1.5;
-    }
-
-    /* ─── PLANS: a plain, minimal itinerary ────────────────────── */
-    .plans { list-style: none; margin: 0.3rem 0 0; }
-    .plans li {
-      position: relative; padding-left: 1.1rem;
-      margin: 0.3rem 0; line-height: 1.62; color: var(--ink-med);
-    }
-    .plans li::before { content: '-'; position: absolute; left: 0; color: var(--ink-soft); }
-    .plans b { font-weight: 600; color: var(--ink); }
-    .plans .when { color: var(--ink); }
-
-    /* ─── COLOPHON ─────────────────────────────────────────── */
-    .colophon {
-      margin: 3rem 0 0; padding: 1.5rem 0 0;
-      border-top: 1px solid var(--ink);
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.65;
-    }
-    .colophon a { color: var(--ink-med); text-decoration: none; border-bottom: 0.5px solid var(--ink-ghost); }
-    .colophon a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-    /* ─── FOOTER ───────────────────────────────────────────── */
-    .doc-footer {
-      margin-top: 4rem; padding: 2rem 0 3rem;
-      border-top: 0.5px solid var(--rule);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-text { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { color: var(--ink-ghost); font-size: 0.85rem; transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--accent); }
-
-    @media (max-width: 620px) {
-      .topbar { padding: 1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 2rem; }
-      .now-block { grid-template-columns: 1fr; gap: 0.7rem; }
-      .nb-label { padding-top: 0; }
-    }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; line-height: 1.6; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
   </style>
 </head>
-<body class="paper">
-<a class="skip-link" href="#main">Skip to content</a>
+<body>
+  <div class="wrap">
 
-<div class="progress-rule" id="prog"></div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+    </nav>
 
-<!-- NAV -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">akshatb.com</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</div>
+    <h1>now</h1>
+    <p class="sub">what has my attention at the moment. not a résumé, not an archive &mdash; just the current state of the desk.</p>
+    <p class="meta">updated <span id="updated">6 September 2026</span> &middot; <span id="freshness">today</span> &middot; New Delhi <span class="clock" id="clock">··:··</span></p>
 
-<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
-  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
-  <a class="nav-link" href="professionalism.html">Better Website?</a>
-  <a class="nav-link" href="now.html">Now</a>
-  <a class="nav-link" href="education.html">Education</a>
-  <a class="nav-link" href="experience.html">Experience</a>
-  <a class="nav-link" href="awards.html">Awards</a>
-  <a class="nav-link" href="research.html">Research</a>
-  <a class="nav-link" href="articles.html">Articles</a>
-  <a class="nav-link" href="media.html">Media</a>
-  <a class="nav-link" href="podcast.html">Podcast</a>
-  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a></div>
-  <div class="nav-hr"></div>
-  <div class="nav-socials-row">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-  </div>
-</nav>
-
-<!-- ══════════════════════════════════════════════════════ -->
-<div class="page">
-
-  <header class="now-head">
-    <div class="nh-crumbs">
-      <a href="index.html">Home</a>
-      <span class="sep">/</span>
-      <span>Now</span>
-    </div>
-
-    <h1 class="nh-title">Now</h1>
-    <p class="nh-sub">What has my attention at the moment. Not a résumé, not an archive. Just the current state of the desk.</p>
-
-    <!-- The live dateline. The clock is real, and it runs on my time, not yours. -->
-    <div class="dateline">
-      <span class="dl-item">
-        <span class="dl-key">Updated</span>
-        <b id="updated">6 September 2026</b>
-      </span>
-      <span class="dl-item">
-        <span class="dl-key">Freshness</span>
-        <b id="freshness">today</b>
-      </span>
-      <span class="dl-item">
-        <span class="lamp"></span>
-        <span class="dl-key">New Delhi</span>
-        <b id="clock">··<span class="tick">:</span>··</b>
-      </span>
-    </div>
-  </header>
-
-  <!-- ── THE ENTRIES ─────────────────────────────────────── -->
-  <main class="entries" id="main">
-
-    <section class="now-block">
-      <div class="nb-label">Where I'll be</div>
-      <div class="nb-body">
-        <p>Where to find me over the next few months. If any of it lines up with where you are, come say hello.</p>
-        <ul class="plans">
-          <li><b>Hack Nation Global AI Hackathon</b><span class="when"> · 3&ndash;5 October</span> · I have an organiser's referral code for people worth backing, message me if you want it</li>
-          <li><b>Andaman &amp; Nicobar Islands</b><span class="when"> · 5&ndash;15 October</span> · travelling</li>
-          <li><b>NYAS 208th Annual Meeting</b><span class="when"> · 18 November</span> · as a Member and Fellow</li>
-        </ul>
-        <p style="margin-top:0.9rem">Wherever you are, come meet me.</p>
-      </div>
+    <section class="sec">
+      <h2>where i'll be</h2>
+      <p>where to find me over the next few months. if any of it lines up with where you are, come say hello.</p>
+      <ul class="list">
+        <li><b>Hack Nation Global AI Hackathon</b> &middot; 3&ndash;5 October &middot; I have an organiser's referral code for people worth backing, message me if you want it</li>
+        <li><b>Andaman &amp; Nicobar Islands</b> &middot; 5&ndash;15 October &middot; travelling</li>
+        <li><b>NYAS 208th Annual Meeting</b> &middot; 18 November &middot; as a Member and Fellow</li>
+      </ul>
+      <p style="margin-top:0.9rem">wherever you are, come meet me.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Researching</div>
-      <div class="nb-body">
-        <p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
-        <p>The content is multilingual and code-mixed, Hindi and English inside the same sentence, which is what most off-the-shelf models fall over on. So it runs through <a href="https://huggingface.co/google/muril-base-cased" target="_blank" rel="noopener">MuRIL</a>, pretrained on Indian languages, and <a href="https://huggingface.co/FacebookAI/xlm-roberta-base" target="_blank" rel="noopener">XLM-RoBERTa</a>, to see whether the India-specific training earns its keep.</p>
-        <p>The other half is psychological. Using the BFI-2-XS personality inventory and the Fear of Missing Out scale, I am working out which traits predict whether someone forwards a claim they never checked. The interesting question was never what the false posts look like. It is who passes them on.</p>
-      </div>
+    <section class="sec">
+      <h2>researching</h2>
+      <p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
+      <p>The content is multilingual and code-mixed, Hindi and English inside the same sentence, which is what most off-the-shelf models fall over on. So it runs through <a href="https://huggingface.co/google/muril-base-cased" target="_blank" rel="noopener">MuRIL</a>, pretrained on Indian languages, and <a href="https://huggingface.co/FacebookAI/xlm-roberta-base" target="_blank" rel="noopener">XLM-RoBERTa</a>, to see whether the India-specific training earns its keep.</p>
+      <p>The other half is psychological. Using the BFI-2-XS personality inventory and the Fear of Missing Out scale, I am working out which traits predict whether someone forwards a claim they never checked. The interesting question was never what the false posts look like. It is who passes them on.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Building</div>
-      <div class="nb-body">
-        <p>Back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter I founded to teach economics to students who are never offered it. I had stepped back for a while under other commitments, and it is good to be in it properly again.</p>
-        <p>Right now that mostly means the second edition of our nationwide essay competition, which is live and open for submissions. It is open to students in Classes 6 to 12, along with first-year university and gap-year students, with five prompts on questions that actually matter for India, and the strongest essays are read by economics scholars from Harvard, UC Berkeley, Cornell, and the University of Warwick. Entries close on 30 September, a few dozen are already in, and the top entries walk straight onto the Edunomix India research team.</p>
-        <p>We have also partnered again with Learn and Teach UA for this season's Ukraine Speaks English seminars, free financial education for students across Ukraine whose schooling has been disrupted. More than forty turned up for the first class of the cycle, which is the whole reason the programme exists.</p>
-      </div>
+    <section class="sec">
+      <h2>building</h2>
+      <p>Back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter I founded to teach economics to students who are never offered it. I had stepped back for a while under other commitments, and it is good to be in it properly again.</p>
+      <p>Right now that mostly means the second edition of our nationwide essay competition, which is live and open for submissions. It is open to students in Classes 6 to 12, along with first-year university and gap-year students, with five prompts on questions that actually matter for India, and the strongest essays are read by economics scholars from Harvard, UC Berkeley, Cornell, and the University of Warwick. Entries close on 30 September, a few dozen are already in, and the top entries walk straight onto the Edunomix India research team.</p>
+      <p>We have also partnered again with Learn and Teach UA for this season's Ukraine Speaks English seminars, free financial education for students across Ukraine whose schooling has been disrupted. More than forty turned up for the first class of the cycle, which is the whole reason the programme exists.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Hiring</div>
-      <div class="nb-body">
-        <p>Just started as the Head of Talent at DocsDocs Technologies, an Apple-backed startup, helping build the team and product as the company grows. This week alone I ran three candidate interviews as we scale the team up. If you are curious about it, or think you would be a fit, email me at <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>.</p>
-      </div>
+    <section class="sec">
+      <h2>hiring</h2>
+      <p>Just started as the Head of Talent at DocsDocs Technologies, an Apple-backed startup, helping build the team and product as the company grows. This week alone I ran three candidate interviews as we scale the team up. If you are curious about it, or think you would be a fit, email me at <a href="mailto:akshat.bhaskar@docs-docs.com">akshat.bhaskar@docs-docs.com</a>.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Writing</div>
-      <div class="nb-body">
-        <p>Most of my writing now goes into the study above, which is a different craft from an essay. Fewer adjectives, more error bars, and a much longer wait before you are allowed to claim anything.</p>
-        <p>Shorter pieces land on <a href="articles.html">the articles page</a> when they are ready. <a href="aipolicy.html"><em>The Two Faces of Progress</em></a> is done and published, and I have stopped picking at it.</p>
-      </div>
+    <section class="sec">
+      <h2>writing</h2>
+      <p>Most of my writing now goes into the study above, which is a different craft from an essay. Fewer adjectives, more error bars, and a much longer wait before you are allowed to claim anything.</p>
+      <p>Shorter pieces land on <a href="articles.html">the articles page</a> when they are ready. <a href="aipolicy.html"><i>The Two Faces of Progress</i></a> is done and published, and I have stopped picking at it.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Recording</div>
-      <div class="nb-body">
-        <p><a href="podcast.html"><em>Decoded</em></a> is the podcast Amaira and I started in December 2024 to drag good conversations in economics, technology, and policy out of the papers and conference halls they usually die in. It has since passed three hundred listening hours on Spotify and picked up three Spotify for Creators awards this year.</p>
-        <p>The conversation I chased for weeks, with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">M. Ram Murty</a> at Queen's University, one of the sharpest minds in number theory and its philosophy, is now live: forty-four minutes on prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think. It may be the best thing we have recorded, with more genuinely interesting people lined up behind him. To learn what changes as a show scales, I also cold-messaged Akshay Datt of the Founder Thesis podcast and spent a call picking apart the jump from a first dozen episodes to a few hundred.</p>
-        <p>I also coded a new home for the show at <a href="https://decodedpodcast.vercel.app" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>. It started as just the two of us researching, recording, editing, and shipping every episode, so we have been building a team: our first ten-plus hires across research, social media, and outreach, and, after dozens of interviews, a new Head of the Decoded Newsletter (more on who soon). A few newsletter roles are still open, so if you would like to join, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>, or just <a href="connect.html">say hello</a>.</p>
-      </div>
+    <section class="sec">
+      <h2>recording</h2>
+      <p><a href="podcast.html"><i>Decoded</i></a> is the podcast Amaira and I started in December 2024 to drag good conversations in economics, technology, and policy out of the papers and conference halls they usually die in. It has since passed three hundred listening hours on Spotify and picked up three Spotify for Creators awards this year.</p>
+      <p>The conversation I chased for weeks, with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">M. Ram Murty</a> at Queen's University, one of the sharpest minds in number theory and its philosophy, is now live: forty-four minutes on prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think. It may be the best thing we have recorded, with more genuinely interesting people lined up behind him. To learn what changes as a show scales, I also cold-messaged Akshay Datt of the Founder Thesis podcast and spent a call picking apart the jump from a first dozen episodes to a few hundred.</p>
+      <p>I also coded a new home for the show at <a href="https://decodedpodcast.vercel.app" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>. It started as just the two of us researching, recording, editing, and shipping every episode, so we have been building a team: our first ten-plus hires across research, social media, and outreach, and, after dozens of interviews, a new Head of the Decoded Newsletter (more on who soon). A few newsletter roles are still open, so if you would like to join, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>, or just <a href="connect.html">say hello</a>.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Reading</div>
-      <div class="nb-body">
-        <ul class="stack">
-          <li>Development as Freedom
-            <span class="by">Amartya Sen &nbsp;·&nbsp; the one quietly rearranging how I judge my own work</span></li>
-          <li>A Song of Ice and Fire
-            <span class="by">George R. R. Martin &nbsp;·&nbsp; for when policy gets heavy</span></li>
-        </ul>
-        <p style="margin-top:0.9rem">Halfway through Sen's <em>Development as Freedom</em> now, and it is quietly rearranging how I judge my own work. His claim, that development is the real freedoms people have rather than income alone, reframes what I am actually doing: the misinformation study is about one such freedom, the capability to tell a true claim from a false one, and Edunomix is about another, treating economic literacy as something owed to a student rather than optional. Before it I finished Ray Dalio's <em>Principles for Dealing with the Changing World Order</em>. The whole shelf lives <a href="bookshelf.html">here</a>.</p>
-      </div>
+    <section class="sec">
+      <h2>reading</h2>
+      <ul class="list">
+        <li><i>Development as Freedom</i><span class="by">Amartya Sen &mdash; the one quietly rearranging how I judge my own work</span></li>
+        <li><i>A Song of Ice and Fire</i><span class="by">George R. R. Martin &mdash; for when policy gets heavy</span></li>
+      </ul>
+      <p style="margin-top:0.9rem">Halfway through Sen's <i>Development as Freedom</i> now, and it is quietly rearranging how I judge my own work. His claim, that development is the real freedoms people have rather than income alone, reframes what I am actually doing: the misinformation study is about one such freedom, the capability to tell a true claim from a false one, and Edunomix is about another, treating economic literacy as something owed to a student rather than optional. Before it I finished Ray Dalio's <i>Principles for Dealing with the Changing World Order</i>. The whole shelf lives <a href="bookshelf.html">here</a>.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Thinking about</div>
-      <div class="nb-body">
-        <p>Whether the most conscientious people spread financial misinformation fastest, forwarding a warning out of duty rather than carelessness. Whether AI governance can ever be written faster than the thing it regulates. And why economics is taught as a subject to be examined rather than a lens for seeing the world.</p>
-      </div>
+    <section class="sec">
+      <h2>thinking about</h2>
+      <p>Whether the most conscientious people spread financial misinformation fastest, forwarding a warning out of duty rather than carelessness. Whether AI governance can ever be written faster than the thing it regulates. And why economics is taught as a subject to be examined rather than a lens for seeing the world.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Learning</div>
-      <div class="nb-body">
-        <p>To be technical. I came to this from economics, where it is easy to treat the modelling as somebody else's department. That stops being an option the moment your research question is a fine-tune. So: Python, the transformers stack, and enough statistics to know when I am fooling myself.</p>
-        <p>Number theory, still, slowly. <a href="mathapprenticeship.html">The apprenticeship</a> ended but the habit did not.</p>
-      </div>
+    <section class="sec">
+      <h2>learning</h2>
+      <p>To be technical. I came to this from economics, where it is easy to treat the modelling as somebody else's department. That stops being an option the moment your research question is a fine-tune. So: Python, the transformers stack, and enough statistics to know when I am fooling myself.</p>
+      <p>Number theory, still, slowly. <a href="mathapprenticeship.html">The apprenticeship</a> ended but the habit did not.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Obsessed with</div>
-      <div class="nb-body">
-        <p>Claude Code. I hand it the parts of the job that are syntax and keep the parts that are intent. This site was rebuilt with it from scratch, and I still cannot tell whether it has made me faster or just braver.</p>
-      </div>
+    <section class="sec">
+      <h2>obsessed with</h2>
+      <p>Claude Code. I hand it the parts of the job that are syntax and keep the parts that are intent. This site was rebuilt with it from scratch, and I still cannot tell whether it has made me faster or just braver.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Off the desk</div>
-      <div class="nb-body">
-        <p>I ran my first half marathon. Twenty-one kilometres is a long stretch to spend alone with your own thoughts, which, it turns out, is most of the point.</p>
-      </div>
+    <section class="sec">
+      <h2>off the desk</h2>
+      <p>I ran my first half marathon. Twenty-one kilometres is a long stretch to spend alone with your own thoughts, which, it turns out, is most of the point.</p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Reaching out</div>
-      <div class="nb-body">
-        <p>Deliberately talking to more people, founders, researchers, writers, anyone building something they care about. The most useful hour in my week is usually a conversation I did not strictly have to have. Building something? <a href="connect.html">Talk to me!</a></p>
-      </div>
+    <section class="sec">
+      <h2>reaching out</h2>
+      <p>Deliberately talking to more people, founders, researchers, writers, anyone building something they care about. The most useful hour in my week is usually a conversation I did not strictly have to have. Building something? <a href="connect.html">Talk to me!</a></p>
     </section>
 
-    <section class="now-block">
-      <div class="nb-label">Saying no to</div>
-      <div class="nb-body">
-        <p>Most things. It took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
-      </div>
+    <section class="sec">
+      <h2>saying no to</h2>
+      <p>Most things. It took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
     </section>
 
-  </main>
+    <p class="colophon">This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, an idea I stole from Derek Sivers. The premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. If we have spoken before and this is out of date, that is on me. <a href="connect.html">Nudge me</a>.</p>
 
-  <div class="colophon">
-    <p>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, an idea I stole from Derek Sivers. The premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. If we have spoken before and this is out of date, that is on me. <a href="connect.html">Nudge me</a>.</p>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-    <div class="footer-socials">
-      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-      <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-    </div>
-  </footer>
+  <script>
+  /* Dateline: the one line to touch when refreshing this page. */
+  (function () {
+    var LAST_UPDATED = '2026-09-06';
+    var upd = new Date(LAST_UPDATED + 'T12:00:00+05:30');
+    var u = document.getElementById('updated');
+    if (u) u.textContent = upd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    var days = Math.max(0, Math.floor((Date.now() - upd.getTime()) / 86400000));
+    var fresh = days === 0 ? 'today' : days === 1 ? 'yesterday' :
+      days < 14 ? days + ' days ago' :
+      days < 60 ? Math.round(days / 7) + ' weeks ago' :
+      days < 400 ? Math.round(days / 30) + ' months ago, sorry' : 'embarrassingly long ago';
+    var f = document.getElementById('freshness');
+    if (f) f.textContent = fresh;
 
-</div>
+    var clockEl = document.getElementById('clock');
+    function tickClock() {
+      var parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+      }).formatToParts(new Date());
+      var g = function (t) { return (parts.find(function (p) { return p.type === t; }) || {}).value || ''; };
+      if (clockEl) clockEl.textContent = g('weekday') + ' ' + g('hour') + ':' + g('minute');
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
+  })();
 
-<script>
-  /* ── EDIT ME ──────────────────────────────────────────────
-     The only line to touch when you refresh this page.
-     Everything dated below reads from it. */
-  const LAST_UPDATED = '2026-09-06';
-  /* ─────────────────────────────────────────────────────── */
-
-  const upd = new Date(LAST_UPDATED + 'T12:00:00+05:30');
-  document.getElementById('updated').textContent =
-    upd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
-  // Say plainly how stale this is. Better honest than pretending.
-  const days = Math.max(0, Math.floor((Date.now() - upd.getTime()) / 86400000));
-  const fresh =
-    days === 0  ? 'today' :
-    days === 1  ? 'yesterday' :
-    days < 14   ? days + ' days ago' :
-    days < 60   ? Math.round(days / 7) + ' weeks ago' :
-    days < 400  ? Math.round(days / 30) + ' months ago, sorry' :
-                  'embarrassingly long ago';
-  document.getElementById('freshness').textContent = fresh;
-
-  // A real clock, in my timezone. Visitors are usually somewhere else.
-  const clockEl = document.getElementById('clock');
-  function tickClock() {
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Asia/Kolkata', weekday: 'short',
-      hour: '2-digit', minute: '2-digit', hour12: false
-    }).formatToParts(new Date());
-    const g = t => (parts.find(p => p.type === t) || {}).value || '';
-    clockEl.innerHTML = g('weekday') + ' ' + g('hour') +
-      '<span class="tick">:</span>' + g('minute');
-  }
-  tickClock();
-  setInterval(tickClock, 1000);
-
-  const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  }, { passive: true });
-
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('nav-overlay');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.now-block').forEach(el => obs.observe(el));
-</script>
-<script src="site.js" defer></script>
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
 </body>
 </html>
