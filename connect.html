@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connect | Akshat Bhaskar</title>
   <meta name="description" content="Get in touch with Akshat Bhaskar: book a call, send a message, or find him across every platform." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatb.com/connect.html" />
-  <meta name="theme-color" content="#fbf9f2">
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Connect with Akshat Bhaskar" />
   <meta property="og:description" content="Book a call, send a message, or find him across every platform." />
@@ -15,598 +14,269 @@
   <meta property="og:image" content="https://akshatb.com/og_connect.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og_connect.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap">
   <style>
-    /* ─── VARIABLES ────────────────────────────────────────────
-       The correspondence desk: warm ivory, ink, one calm teal. */
-    :root {
-      --paper:      #fbf9f2;
-      --ink:        #191712;
-      --ink-med:    #3b372e;
-      --ink-soft:   #6a6456;
-      --ink-faint:  #757062;
-      --ink-ghost:  #cac4b2;
-      --rule:       #dad4c2;
-      --rule-light: #e9e4d5;
-      --accent:     #2f6a5b;
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(22px, 4vw, 56px);
-      --measure:    760px;
-    }
-    html.dark { --accent: #74c0ad; }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      background: var(--paper);
+      margin: 0;
+      background: var(--bg);
       color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 15px;
+      line-height: 1.62;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 2.4rem; max-width: 50ch; }
+    p { margin: 0 0 1.1rem; }
+
+    section.sec { margin-top: 2.6rem; }
+    section.sec h2 {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--muted); font-weight: normal; margin: 0 0 0.7rem;
     }
 
-    /* ─── PROGRESS ─────────────────────────────────────────── */
-    .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--accent); z-index: 999; transition: width 0.1s linear;
-    }
+    /* book a call */
+    .cal-frame { border: 1px solid var(--rule); overflow: hidden; }
+    .calendly-inline-widget { min-width: 320px; height: 660px; }
+    .note { color: var(--muted); font-style: italic; font-size: 0.9em; margin-top: 0.6rem; }
 
-    /* ─── TOPBAR ───────────────────────────────────────────── */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(251,249,242,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(218,212,194,0.4);
+    /* write to me */
+    .addr { font-size: 1.05rem; }
+    .minibtn {
+      font: inherit; font-size: 0.85em; color: var(--muted); background: none;
+      border: none; padding: 0; margin-left: 0.6rem; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 2px;
     }
-    .topbar-logo {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .topbar-logo:hover { color: var(--ink); }
+    .minibtn:hover { color: var(--ink); }
 
-    .hamburger {
-      background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
-    }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-
-    /* ─── NAV OVERLAY ──────────────────────────────────────── */
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 190;
-      background: rgba(25,23,18,0.95); backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.45rem, 3.2vw, 2.2rem);
-      font-weight: 400; font-style: italic;
-      color: rgba(251,249,242,0.5); line-height: 1.3;
-      opacity: 0; transform: translateX(-10px);
-      transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none; display: block;
-    }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
-    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
-    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
-    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
-    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
-    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
-    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
-    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
-    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
-    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
-    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: rgba(251,249,242,0.95); }
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(251,249,242,0.15);
-      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,249,242,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(251,249,242,0.9); }
-
-    /* ─── PAGE ─────────────────────────────────────────────── */
-    .page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer); }
-
-    /* ─── HERO ─────────────────────────────────────────────── */
-    .connect-head { padding-top: 118px; padding-bottom: 1rem; text-align: center; }
-    .ch-crumbs {
-      font-family: var(--mono); font-size: 0.66rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      display: flex; gap: 0.55rem; justify-content: center; align-items: center;
-    }
-    .ch-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
-    .ch-crumbs a:hover { color: var(--ink); }
-    .ch-crumbs .sep { color: var(--ink-ghost); }
-    .ch-eyebrow {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--accent); display: block; margin: 2.4rem 0 1rem;
-    }
-    h1.ch-title {
-      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.2rem);
-      font-weight: 400; letter-spacing: 0.02em; line-height: 1.05; color: var(--ink);
-    }
-    .ch-intro {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.08rem; color: var(--ink-soft);
-      max-width: 520px; margin: 1rem auto 0; line-height: 1.6;
-    }
-
-    /* ─── SECTION LABEL ────────────────────────────────────── */
-    .clabel {
-      display: flex; align-items: center; gap: 1rem;
-      margin: 3.4rem 0 1.4rem;
-    }
-    .clabel span {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--ink-faint); flex-shrink: 0;
-    }
-    .clabel::before, .clabel::after {
-      content: ""; height: 0.5px; background: var(--rule); flex: 1;
-    }
-
-    /* ─── CALENDLY ─────────────────────────────────────────── */
-    .cal-frame {
-      border: 0.5px solid var(--rule);
-      background: var(--paper);
-      overflow: hidden;
-    }
-    .calendly-inline-widget { min-width: 320px; height: 700px; }
-
-    /* ─── PRESS KIT ───────────────────────────────────────────
-       What a journalist or programme organiser actually needs:
-       a bio they can lift verbatim, and a photograph. */
-    .presskit { border: 0.5px solid var(--ink); }
-    .pk-body { padding: 1.7rem 1.8rem 1.5rem; }
-    .pk-kicker {
-      font-family: var(--mono); font-size: 0.56rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-bottom: 0.95rem;
-    }
-    .pk-bio {
-      font-family: var(--serif); font-size: 1.02rem;
-      line-height: 1.8; color: var(--ink-med); margin: 0;
-      text-align: justify; hyphens: auto;
-    }
-    .pk-row {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
-      padding: 0.95rem 1.8rem; border-top: 0.5px solid var(--rule);
-      background: var(--rule-light);
-    }
-    .pk-btn {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--ink-med); background: var(--paper);
-      border: 0.5px solid var(--rule); border-radius: 2px;
-      padding: 0.5rem 0.95rem; cursor: pointer;
-      text-decoration: none; display: inline-flex; align-items: center;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .pk-btn:hover { color: var(--accent); border-color: var(--accent); }
-    .pk-note {
-      font-family: var(--serif); font-style: italic; font-size: 0.84rem;
-      color: var(--ink-faint); margin-left: auto;
-    }
-    .cal-note {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.06em; color: var(--ink-faint);
-      text-align: center; margin-top: 0.8rem;
-    }
-    .cal-note a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--rule); }
-    .cal-note a:hover { color: var(--ink); }
-
-    /* ─── DIRECT: EMAIL + FORM ─────────────────────────────── */
-    .direct-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem;
-      align-items: start;
-    }
-    .email-card {
-      border: 0.5px solid var(--rule);
-      border-left: 2px solid var(--accent);
-      padding: 1.4rem 1.5rem;
-    }
-    .email-card .ec-label {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-bottom: 0.6rem;
-    }
-    .email-card .ec-addr {
-      font-family: var(--serif); font-size: 1.14rem;
-      color: var(--ink); text-decoration: none; word-break: break-all;
-      border-bottom: 0.5px solid var(--ink-ghost); transition: border-color 0.2s;
-    }
-    .email-card .ec-addr:hover { border-color: var(--accent); }
-    .copy-btn {
-      display: inline-block; margin-top: 1rem;
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--ink-soft); background: none;
-      border: 0.5px solid var(--ink-ghost); border-radius: 2px;
-      padding: 0.35rem 0.8rem; cursor: pointer; transition: color 0.2s, border-color 0.2s;
-    }
-    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
-    .email-card p {
-      font-family: var(--serif); font-size: 0.85rem; font-style: italic;
-      color: var(--ink-soft); margin-top: 1rem; line-height: 1.6;
-    }
-
-    .form-field { margin-bottom: 1.1rem; }
-    .form-field label {
-      display: block; font-family: var(--serif);
-      font-size: 0.8rem; font-style: italic;
-      color: var(--ink-soft); margin-bottom: 0.3rem;
-    }
-    .form-field input, .form-field textarea {
+    form { margin-top: 1.2rem; }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-style: italic; color: var(--muted); font-size: 0.9em; margin-bottom: 0.25rem; }
+    .field input, .field textarea {
       display: block; width: 100%; background: transparent;
-      border: none; border-bottom: 0.5px solid var(--ink-ghost);
-      padding: 0.4rem 0; font-family: var(--serif); font-size: 0.97rem;
-      color: var(--ink); outline: none; border-radius: 0;
-      transition: border-color 0.2s; -webkit-appearance: none;
+      border: none; border-bottom: 1px solid var(--rule);
+      padding: 0.4rem 0; font-family: inherit; font-size: 1rem; color: var(--ink);
+      outline: none; border-radius: 0; -webkit-appearance: none;
     }
-    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--ink-ghost); font-style: italic; }
-    .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
-    .form-field textarea { resize: vertical; min-height: 74px; }
-    .btn-send {
-      font-family: var(--mono); font-size: 0.66rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--paper); background: var(--accent);
-      border: none; cursor: pointer; border-radius: 3px;
-      padding: 0.6rem 1.2rem; transition: opacity 0.2s;
+    .field input::placeholder, .field textarea::placeholder { color: #aaa; font-style: italic; }
+    .field input:focus, .field textarea:focus { border-color: var(--ink); }
+    .field textarea { resize: vertical; min-height: 84px; }
+    .send {
+      font: inherit; font-size: 0.95rem; color: var(--bg); background: var(--ink);
+      border: none; cursor: pointer; padding: 0.45rem 1.1rem; border-radius: 2px;
     }
-    .btn-send:hover { opacity: 0.88; }
-    .btn-send:disabled { opacity: 0.5; cursor: default; }
-    .form-status {
-      font-family: var(--mono); font-size: 0.64rem;
-      letter-spacing: 0.05em; color: var(--ink-soft); margin-left: 1rem;
-    }
-    .form-status.ok  { color: #3a7a58; }
-    .form-status.err { color: #a13a3a; }
-    html.dark .form-status.ok { color: #74c0ad; }
-    html.dark .form-status.err { color: #e08a8a; }
+    .send:hover { opacity: 0.85; }
+    .send:disabled { opacity: 0.5; cursor: default; }
+    .status { font-size: 0.9em; font-style: italic; color: var(--muted); margin-left: 0.8rem; }
+    .status.ok { color: #2f7a52; }
+    .status.err { color: #a13a3a; }
 
-    /* ─── DIRECTORY (find me elsewhere) ─────────────────────────
-       An index, not a dashboard: grouped, ruled, with leader dots
-       running each name out to its handle. */
-    .directory { columns: 2; column-gap: 3rem; }
-    .dir-group { break-inside: avoid; margin-bottom: 1.9rem; }
-    .dir-group:last-child { margin-bottom: 0; }
-    .dir-glabel {
-      font-family: var(--mono); font-size: 0.56rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink-faint); display: block;
-      padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--ink);
-    }
-    .dir-row {
-      display: flex; align-items: baseline; gap: 0.7rem;
-      padding: 0.66rem 0.1rem;
-      border-bottom: 0.5px solid var(--rule-light);
-      text-decoration: none; color: inherit;
-      transition: padding-left 0.22s ease;
-    }
-    .dir-row:hover { padding-left: 0.45rem; }
-    .dir-ico {
-      flex-shrink: 0; color: var(--ink-soft);
-      font-size: 0.92rem; align-self: center;
-      transition: color 0.2s ease;
-    }
-    .dir-row:hover .dir-ico { color: var(--accent); }
-    .dir-name { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); flex-shrink: 0; }
-    .dir-lead { flex: 1; align-self: stretch; border-bottom: 1px dotted var(--rule); min-width: 0.8rem; transform: translateY(-0.28rem); }
-    .dir-handle {
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em;
-      color: var(--ink-faint); flex-shrink: 0; white-space: nowrap;
-      transition: color 0.2s ease;
-    }
-    .dir-row:hover .dir-handle { color: var(--accent); }
+    /* directory */
+    .grp { margin-bottom: 1.4rem; }
+    .grp h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: normal; margin: 0 0 0.4rem; }
+    ul.list { list-style: none; margin: 0; padding: 0; }
+    ul.list li { margin: 0 0 0.4rem; padding-left: 1rem; text-indent: -1rem; }
+    ul.list li::before { content: "- "; }
+    ul.list li .h { color: var(--muted); font-size: 0.9em; font-style: italic; }
 
-    /* ─── FOOTER ───────────────────────────────────────────── */
-    .doc-footer {
-      margin-top: 3.4rem;
-      border-top: 0.5px solid var(--ink);
-      padding: 1.3rem 0 4rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-    }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--ink-med); }
+    /* press */
+    .bio { color: #333; }
+    .press-actions { margin-top: 0.4rem; }
+    .press-actions a, .press-actions button { margin-right: 1.1rem; }
 
-    /* ─── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 680px) {
-      :root { --outer: 20px; }
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
-      .direct-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .directory { columns: 1; }
-    }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; line-height: 1.6; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
   </style>
-<!-- print styles + reduced motion -->
-<style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials, .cal-frame { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
-</style>
-  <script>
-    /* Light by default; only a saved choice turns the lights off.
-       Runs before paint so the theme never flashes. */
-    (function(){try{if(localStorage.getItem('theme')==='dark')
-    document.documentElement.classList.add('dark');}catch(e){}})();
-  </script>
-  <link rel="stylesheet" href="theme.css">
-  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body class="paper">
-<a class="skip-link" href="#main">Skip to content</a>
+<body>
+  <div class="wrap">
 
-<div class="progress-rule" id="prog"></div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+    </nav>
 
-<!-- NAV -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">akshatb.com</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</div>
+    <h1>connect</h1>
+    <p class="sub">for collaborations, research, media, or a simple hello. book a time that suits you, write directly, or find me wherever you already are. every message is read.</p>
 
-<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
-  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
-  <a class="nav-link" href="professionalism.html">Better Website?</a>
-  <a class="nav-link" href="now.html">Now</a>
-  <a class="nav-link" href="education.html">Education</a>
-  <a class="nav-link" href="experience.html">Experience</a>
-  <a class="nav-link" href="awards.html">Awards</a>
-  <a class="nav-link" href="research.html">Research</a>
-  <a class="nav-link" href="articles.html">Articles</a>
-  <a class="nav-link" href="media.html">Media</a>
-  <a class="nav-link" href="podcast.html">Podcast</a>
-  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a></div>
-  <div class="nav-hr"></div>
-  <div class="nav-socials-row">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-  </div>
-</nav>
-
-<!-- ══════════════════════════════════════════════════════ -->
-<div class="page" role="main" id="main">
-
-  <!-- HERO -->
-  <header class="connect-head">
-    <div class="ch-crumbs">
-      <a href="index.html">Akshat Bhaskar</a><span class="sep">/</span><span>Connect</span>
-    </div>
-    <span class="ch-eyebrow">Correspondence</span>
-    <h1 class="ch-title">Get in Touch</h1>
-    <p class="ch-intro">For collaborations, research, media, or a simple hello. Book a time that suits you, write directly, or find me wherever you already are. Every message is read.</p>
-  </header>
-
-  <!-- BOOK A CALL -->
-  <div class="clabel"><span>Book a call</span></div>
-  <div class="cal-frame">
-    <div id="calendly" class="calendly-inline-widget" data-url="https://calendly.com/akshatbhaskar/30min"></div>
-  </div>
-  <p class="cal-note">A 30-minute conversation &nbsp;·&nbsp; opens through <a href="https://calendly.com/akshatbhaskar/30min" target="_blank" rel="noopener">Calendly</a></p>
-
-  <!-- WRITE DIRECTLY -->
-  <div class="clabel"><span>Write to me</span></div>
-  <div class="direct-grid">
-    <div class="email-card">
-      <span class="ec-label">Email</span>
-      <a class="ec-addr" href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a><br>
-      <button class="copy-btn" id="copy-email" type="button">copy address</button>
-      <p>The surest way to reach me. I read everything and reply to most.</p>
-    </div>
-
-    <form id="contact-form">
-      <div class="form-field">
-        <label for="name"><em>Name</em></label>
-        <input type="text" id="name" name="name" placeholder="Your name" />
+    <section class="sec">
+      <h2>book a call</h2>
+      <div class="cal-frame">
+        <div id="calendly" class="calendly-inline-widget" data-url="https://calendly.com/akshatbhaskar/30min"></div>
       </div>
-      <div class="form-field">
-        <label for="email"><em>Email</em></label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+      <p class="note">a 30-minute conversation &mdash; opens through <a href="https://calendly.com/akshatbhaskar/30min" target="_blank" rel="noopener">Calendly</a>.</p>
+    </section>
+
+    <section class="sec">
+      <h2>write to me</h2>
+      <p class="addr"><a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a><button class="minibtn" id="copy-email" type="button">copy</button></p>
+      <p class="note">the surest way to reach me. i read everything and reply to most.</p>
+
+      <form id="contact-form">
+        <div class="field">
+          <label for="name">name</label>
+          <input type="text" id="name" name="name" placeholder="your name" />
+        </div>
+        <div class="field">
+          <label for="email">email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="field">
+          <label for="message">message</label>
+          <textarea id="message" name="message" placeholder="write your message here…" required></textarea>
+        </div>
+        <div style="display:flex;align-items:center;">
+          <button type="submit" id="submit-btn" class="send">send</button>
+          <span class="status" id="form-status"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="sec">
+      <h2>find me elsewhere</h2>
+
+      <div class="grp">
+        <h3>social</h3>
+        <ul class="list">
+          <li><a href="https://x.com/aksbhaskar" target="_blank" rel="me noopener">X (Twitter)</a> <span class="h">@aksbhaskar</span></li>
+          <li><a href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="me noopener">LinkedIn</a> <span class="h">7,000+ followers</span></li>
+          <li><a href="https://github.com/aksbhaskar" target="_blank" rel="me noopener">GitHub</a> <span class="h">@aksbhaskar</span></li>
+        </ul>
       </div>
-      <div class="form-field">
-        <label for="message"><em>Message</em></label>
-        <textarea id="message" name="message" placeholder="Write your message here…" required></textarea>
+
+      <div class="grp">
+        <h3>scholarly</h3>
+        <ul class="list">
+          <li><a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" rel="me noopener">Google Scholar</a> <span class="h">citations</span></li>
+          <li><a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" rel="me noopener">ResearchGate</a> <span class="h">profile</span></li>
+        </ul>
       </div>
-      <div style="display:flex;align-items:center;gap:0.5rem;">
-        <button type="submit" id="submit-btn" class="btn-send">Send</button>
-        <span class="form-status" id="form-status"></span>
+
+      <div class="grp">
+        <h3>decoded, the podcast</h3>
+        <ul class="list">
+          <li><a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">Spotify</a> <span class="h">listen</span></li>
+          <li><a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">Apple Podcasts</a> <span class="h">listen</span></li>
+          <li><a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">Amazon Music</a> <span class="h">listen</span></li>
+        </ul>
       </div>
-    </form>
+    </section>
+
+    <section class="sec">
+      <h2>for press &amp; programmes</h2>
+      <p class="bio" id="pk-bio">Akshat Bhaskar is a student researcher working across economics, artificial intelligence, and public policy, and President Student Council of the 9,500 students at Delhi Public School, R.K. Puram. He was felicitated by the President of India as one of seventeen students nationwide under the Government of India's SOAR initiative, and has published peer-reviewed research on AI policy, conducted under a University of Pennsylvania professor, in IJRASET. He founded and leads the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit advancing economics education, and served as CFO of TaxCity, a Ministry of Education recognised initiative that reached 79,000+ students across 27 countries. At the Lodha Genius Programme he completed graduate-level mathematics, conducted original research in pure number theory under a professor at the Indian Statistical Institute, and attended lectures by Nobel laureates. He hosts Decoded, a podcast on economics and technology recognised with three Spotify for Creators awards in 2025.</p>
+      <p class="press-actions">
+        <button class="minibtn" id="pk-copy" type="button" style="margin-left:0;">copy bio</button>
+        <a href="akshat.jpg" download="akshat-bhaskar.jpg">headshot &darr;</a>
+        <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
+      </p>
+      <p class="note">free to use verbatim, with or without notice.</p>
+    </section>
+
   </div>
 
-  <!-- FIND ME ELSEWHERE -->
-  <div class="clabel"><span>Find me elsewhere</span></div>
-  <div class="directory">
-
-    <div class="dir-group">
-      <span class="dir-glabel">Social</span>
-      <a class="dir-row" href="https://x.com/aksbhaskar" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg><span class="dir-name">X (Twitter)</span><span class="dir-lead"></span><span class="dir-handle">@aksbhaskar</span>
-      </a>
-      <a class="dir-row" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#linkedin"/></svg><span class="dir-name">LinkedIn</span><span class="dir-lead"></span><span class="dir-handle">7,000+ followers</span>
-      </a>
-      <a class="dir-row" href="https://github.com/aksbhaskar" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#github"/></svg><span class="dir-name">GitHub</span><span class="dir-lead"></span><span class="dir-handle">@aksbhaskar</span>
-      </a>
-    </div>
-
-    <div class="dir-group">
-      <span class="dir-glabel">Scholarly</span>
-      <a class="dir-row" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg><span class="dir-name">Google Scholar</span><span class="dir-lead"></span><span class="dir-handle">citations</span>
-      </a>
-      <a class="dir-row" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#researchgate"/></svg><span class="dir-name">ResearchGate</span><span class="dir-lead"></span><span class="dir-handle">profile</span>
-      </a>
-    </div>
-
-    <div class="dir-group">
-      <span class="dir-glabel">Decoded, the podcast</span>
-      <a class="dir-row" href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" target="_blank" rel="me noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#spotify"/></svg><span class="dir-name">Spotify</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
-      </a>
-      <a class="dir-row" href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" target="_blank" rel="noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#podcast"/></svg><span class="dir-name">Apple Podcasts</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
-      </a>
-      <a class="dir-row" href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" target="_blank" rel="noopener">
-        <svg class="icon dir-ico" aria-hidden="true"><use href="icons.svg#amazon"/></svg><span class="dir-name">Amazon Music</span><span class="dir-lead"></span><span class="dir-handle">listen</span>
-      </a>
-    </div>
-
-  </div>
-
-  <!-- PRESS KIT -->
-  <div class="clabel"><span>For press &amp; programmes</span></div>
-  <div class="presskit">
-    <div class="pk-body">
-    <span class="pk-kicker">Boilerplate biography</span>
-    <p class="pk-bio" id="pk-bio">Akshat Bhaskar is a student researcher working across economics, artificial intelligence, and public policy, and President Student Council of the 9,500 students at Delhi Public School, R.K. Puram. He was felicitated by the President of India as one of seventeen students nationwide under the Government of India's SOAR initiative, and has published peer-reviewed research on AI policy, conducted under a University of Pennsylvania professor, in IJRASET. He founded and leads the India Chapter of the Edunomix Institute, a US 501(c)(3) nonprofit advancing economics education, and serves as CFO of TaxCity, a Ministry of Education recognised initiative that has reached 79,000+ students across 27 countries. At the Lodha Genius Programme he completed graduate-level mathematics, conducted original research in pure number theory under a professor at the Indian Statistical Institute, and attended lectures by Nobel laureates. He hosts Decoded, a podcast on economics and technology recognised with three Spotify for Creators awards in 2025.</p>
-    </div>
-    <div class="pk-row">
-      <button class="pk-btn" id="pk-copy" type="button">Copy bio</button>
-      <a class="pk-btn" href="akshat.jpg" download="akshat-bhaskar.jpg">Headshot ↓</a>
-      <a class="pk-btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <span class="pk-note">Free to use verbatim, with or without notice.</span>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-    <div class="footer-socials">
-      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-      <a rel="me" href="https://github.com/aksbhaskar" target="_blank" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="icons.svg#github"/></svg></a>
-      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    </div>
-  </footer>
-
-</div>
-
-<script>
-  /* press-kit bio copy */
-  const pkBtn = document.getElementById('pk-copy');
-  if (pkBtn) pkBtn.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(document.getElementById('pk-bio').textContent.trim()); }
-    catch (e) {
-      const r = document.createRange(); r.selectNodeContents(document.getElementById('pk-bio'));
-      const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges();
-    }
-    pkBtn.textContent = 'Copied ✓';
-    setTimeout(() => { pkBtn.textContent = 'Copy bio'; }, 1600);
-  });
-
-  /* progress */
-  const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  }, { passive: true });
-
-  /* nav */
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('nav-overlay');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-
-  /* theme the Calendly widget to match the page before it initialises */
+  <script>
+  /* copy email */
   (function () {
-    var dark = document.documentElement.classList.contains('dark');
-    var base = 'https://calendly.com/akshatbhaskar/30min?hide_gdpr_banner=1&primary_color=2f6a5b';
-    var url = dark
-      ? base + '&background_color=16150f&text_color=f0ead9&primary_color=74c0ad'
-      : base + '&background_color=fbf9f2&text_color=191712';
-    var el = document.getElementById('calendly');
-    if (el) el.setAttribute('data-url', url);
+    var b = document.getElementById('copy-email');
+    if (!b) return;
+    b.addEventListener('click', function () {
+      var text = 'bhaskarakshat22@gmail.com';
+      var done = function () { b.textContent = 'copied ✓'; setTimeout(function () { b.textContent = 'copy'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
+      else done();
+    });
   })();
 
-  /* copy email */
-  document.getElementById('copy-email').addEventListener('click', function () {
-    var btn = this, text = 'bhaskarakshat22@gmail.com';
-    var done = function () { btn.textContent = 'copied ✓'; setTimeout(function () { btn.textContent = 'copy address'; }, 1600); };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
-    else done();
-  });
+  /* copy press bio */
+  (function () {
+    var b = document.getElementById('pk-copy');
+    if (!b) return;
+    b.addEventListener('click', async function () {
+      var t = document.getElementById('pk-bio').textContent.trim();
+      try { await navigator.clipboard.writeText(t); }
+      catch (e) {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById('pk-bio'));
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges();
+      }
+      b.textContent = 'copied ✓';
+      setTimeout(function () { b.textContent = 'copy bio'; }, 1600);
+    });
+  })();
 
-  /* message form -> Formspree */
-  const form = document.getElementById('contact-form');
-  const btn = document.getElementById('submit-btn');
-  const status = document.getElementById('form-status');
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    btn.disabled = true; btn.textContent = 'Sending…';
-    status.textContent = ''; status.className = 'form-status';
-    try {
-      const res = await fetch('https://formspree.io/f/xpqokanp', {
-        method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }
-      });
-      if (res.ok) { status.textContent = 'Sent, thank you.'; status.classList.add('ok'); form.reset(); }
-      else { const j = await res.json(); status.textContent = j?.errors?.map(e => e.message).join(', ') || 'Something went wrong.'; status.classList.add('err'); }
-    } catch { status.textContent = 'Network error.'; status.classList.add('err'); }
-    finally { btn.disabled = false; btn.textContent = 'Send'; }
-  });
-</script>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script src="site.js" defer></script>
+  /* Calendly, themed light to match the page */
+  (function () {
+    var el = document.getElementById('calendly');
+    if (el) el.setAttribute('data-url',
+      'https://calendly.com/akshatbhaskar/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=141414&primary_color=141414');
+  })();
+
+  /* contact form -> Formspree */
+  (function () {
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('submit-btn');
+    var status = document.getElementById('form-status');
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      btn.disabled = true; btn.textContent = 'sending…';
+      status.textContent = ''; status.className = 'status';
+      try {
+        var res = await fetch('https://formspree.io/f/xpqokanp', {
+          method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }
+        });
+        if (res.ok) { status.textContent = 'sent, thank you.'; status.classList.add('ok'); form.reset(); }
+        else { var j = await res.json(); status.textContent = (j && j.errors ? j.errors.map(function (x) { return x.message; }).join(', ') : 'something went wrong.'); status.classList.add('err'); }
+      } catch (err) { status.textContent = 'network error.'; status.classList.add('err'); }
+      finally { btn.disabled = false; btn.textContent = 'send'; }
+    });
+  })();
+
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
+    });
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
