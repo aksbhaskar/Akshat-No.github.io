@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Y Combinator Startup School India | Akshat Bhaskar</title>
-  <meta name="description" content="Akshat Bhaskar at Y Combinator Startup School India 2026 in Bengaluru, one of 2,000 founders selected, received $25K+ AI grant, pitched to Jared Friedman." />
+  <meta name="description" content="Akshat Bhaskar at Y Combinator Startup School India 2026 in Bengaluru, one of 2,000 founders selected, received a $25K+ AI grant, pitched to Jared Friedman." />
   <meta name="keywords" content="Akshat Bhaskar, Y Combinator, Startup School India, YC India, Jared Friedman, AI grant, Bengaluru event, founder" />
   <meta name="author" content="Akshat Bhaskar" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://akshatb.com/yc.html" />
-  <meta name="theme-color" content="#fff8f2">
+  <meta name="theme-color" content="#ffffff" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Y Combinator, Startup School India | Akshat Bhaskar" />
   <meta property="og:description" content="YC's first physical event in India, selected founder, $25K AI grant, pitched to Jared Friedman." />
@@ -18,779 +18,166 @@
   <meta name="twitter:image" content="https://akshatb.com/akshat.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:creator" content="@aksbhaskar" />
-  <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-  <link rel="shortcut icon" type="image/jpeg" href="akshat.jpg">
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap">
   <style>
-    /* ─── VARIABLES ─────────────────────────────────────────── */
-    :root {
-      --paper: #fff8f2;
-      --ink:          #111110;
-      --ink-med:      #333330;
-      --ink-soft:     #666660;
-      --ink-faint:    #70706a;
-      --ink-ghost:    #ccccbb;
-      --rule:         #d0d0c0;
-      --rule-light:   #e4e4d8;
-      --accent:       #111110;
-      --serif:        'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:         'Inconsolata', 'Courier New', monospace;
-      --col-width:    520px;
-      --margin-width: 80px;
-      --gutter:       32px;
-      --outer:        48px;
-      --radius-sm:    4px;
-      --radius-md:    6px;
-      --radius-lg:    8px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { font-size: 16px; scroll-behavior: smooth; }
-
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-
-    /* ─── LAYOUT GRID ───────────────────────────────────────── */
-    .document {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 var(--outer);
-      display: grid;
-      grid-template-columns: var(--margin-width) var(--gutter) var(--col-width) var(--gutter) 1fr;
-    }
-
-    .doc-full,
-    .titlepage,
-    .section-head,
-    .doc-footer { grid-column: 1 / -1; }
-
-    .main-col { grid-column: 3 / 4; }
-
-    /* ─── HEADER / TITLE PAGE ──────────────────────────────── */
-    .titlepage {
-      grid-column: 1 / -1;
-      padding-top: 80px;
-      padding-bottom: 0;
-      border-bottom: 0.5px solid var(--rule-light);
-      margin-bottom: 0;
-    }
-
-    .doc-meta-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
-      margin-bottom: 2.5rem;
-    }
-
-    .title-center {
-      text-align: center;
-      padding-bottom: 2.8rem;
-    }
-
-    h1.doc-title {
-      font-family: var(--serif);
-      font-size: 2.1rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .doc-author-line {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--ink-med);
-      margin-bottom: 0.2rem;
-    }
-
-    .doc-affil {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--ink-soft);
-      letter-spacing: 0.07em;
-      margin-bottom: 0.15rem;
-    }
-
-    .doc-date {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.07em;
-      margin-top: 0.5rem;
-    }
-
-    /* ─── RULE BELOW TITLE ─────────────────────────────────── */
-    .rule-heavy { border: none; border-top: 2px solid var(--ink); margin: 0; }
-    .rule-thin  { border: none; border-top: 0.5px solid var(--ink); margin: 0; }
-
-    /* ─── BODY SECTIONS ─────────────────────────────────────── */
-    .body-section {
-      display: contents;
-    }
-
-    .section-head {
-      grid-column: 1 / -1;
-      padding-top: 3rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 0.5px solid var(--ink);
-      margin-bottom: 0;
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-    }
-
-    .sec-num {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-      flex-shrink: 0;
-    }
-
-    .sec-title {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: 0.01em;
-    }
-
-    /* ─── CONTENT STYLES ────────────────────────────────────── */
-    .main-col {
-      grid-column: 3 / 4;
-      padding-top: 2rem;
-      padding-bottom: 4rem;
-    }
-
-    .memoir-section h1 {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-    }
-
-    .memoir-section .event-meta {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      display: block;
-    }
-
-    .memoir-section .event-meta a {
-      color: var(--ink);
-      text-decoration: underline;
-      text-decoration-thickness: 0.5px;
-      text-underline-offset: 3px;
-    }
-    .memoir-section .event-meta a:hover { color: var(--ink-soft); }
-
-    .memoir-section h2 {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-top: 2.2rem;
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.01em;
-      border-bottom: 0.5px solid var(--rule-light);
-      padding-bottom: 0.4rem;
-    }
-
-    .memoir-section p {
-      font-family: var(--serif);
-      font-size: 0.94rem;
-      color: var(--ink-med);
-      line-height: 1.72;
-      margin-bottom: 1.2rem;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    .memoir-section img {
-      width: 100%;
-      border-radius: var(--radius-md);
-      border: 0.5px solid var(--rule);
-      filter: grayscale(8%);
-      transition: filter 0.3s ease, transform 0.3s ease;
-      display: block;
-      margin: 1.2rem 0 0.4rem;
-    }
-
-    .memoir-section img:hover {
-      filter: grayscale(0%);
-      transform: scale(1.01);
-    }
-
-    .photo-caption {
-      font-family: var(--serif);
-      font-size: 0.78rem;
-      color: var(--ink-soft);
-      text-align: center;
-      margin-top: -0.25rem;
-      margin-bottom: 1.4rem;
-      font-style: italic;
-    }
-
-    /* ─── PHOTO GRID ──────────────────────────────────────────── */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin: 1.8rem 0;
-    }
-
-    .photo-grid img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: var(--radius-sm);
-      border: 0.5px solid var(--rule);
-      filter: grayscale(8%);
-      transition: filter 0.3s ease, transform 0.3s ease;
-      display: block;
       margin: 0;
-    }
-
-    .photo-grid img:hover {
-      filter: grayscale(0%);
-      transform: scale(1.02);
-    }
-
-    .photo-grid .wide {
-      grid-column: span 2;
-    }
-
-    /* ─── STAT ROW ────────────────────────────────────────────── */
-    .stat-row {
-      display: flex;
-      gap: 2rem;
-      margin: 1.6rem 0 2rem;
-      flex-wrap: wrap;
-      border-top: 0.5px solid var(--rule-light);
-      border-bottom: 0.5px solid var(--rule-light);
-      padding: 1.2rem 0;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      min-width: 100px;
-    }
-
-    .stat-number {
-      font-family: var(--mono);
-      font-size: 1.5rem;
-      font-weight: 500;
+      background: var(--bg);
       color: var(--ink);
-      line-height: 1;
-      letter-spacing: 0.02em;
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 15px;
+      line-height: 1.66;
+      -webkit-font-smoothing: antialiased;
     }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
 
-    .stat-label {
-      font-family: var(--serif);
-      font-size: 0.72rem;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-      font-style: italic;
-    }
+    .dateline { color: var(--muted); font-style: italic; margin: 0 0 0.5rem; }
+    h1 { font-size: 1.25em; font-weight: normal; letter-spacing: 0.01em; margin: 0 0 0.5rem; line-height: 1.2; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 1.6rem; max-width: 52ch; }
+    p { margin: 0 0 1.15rem; }
 
-    /* ─── SPEAKER LIST ────────────────────────────────────────── */
-    .speaker-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin: 0.8rem 0 1.8rem;
-      padding-left: 0;
-      list-style: none;
-      border-top: 0.5px solid var(--rule-light);
-    }
+    h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: normal; margin: 2.4rem 0 0.7rem; }
 
-    .speaker-list li {
-      font-family: var(--serif);
-      font-size: 0.94rem;
-      color: var(--ink-med);
-      padding: 0.6rem 0;
-      border-bottom: 0.5px solid var(--rule-light);
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
+    ul.list { list-style: none; margin: 0.3rem 0 1.2rem; padding: 0; }
+    ul.list li { margin: 0 0 0.5rem; padding-left: 1rem; text-indent: -1rem; }
+    ul.list li::before { content: "- "; }
+    ul.list li .r { display: block; text-indent: 0; color: var(--muted); font-size: 0.9em; font-style: italic; margin-top: 0.05rem; }
 
-    .speaker-list li:last-child { border-bottom: none; }
+    figure { margin: 1.4rem 0; }
+    figure img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    figcaption { margin-top: 0.5rem; color: var(--muted); font-style: italic; font-size: 0.86em; }
 
-    .speaker-name {
-      font-family: var(--serif);
-      font-weight: 600;
-      color: var(--ink);
-      font-size: 0.97rem;
-    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 1.4rem 0; }
+    .grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border: 1px solid var(--rule); }
 
-    .speaker-role {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-    }
+    .note-box { border-left: 2px solid var(--ink); padding-left: 1rem; margin: 1.3rem 0; color: #333; }
+    .note-box b { font-weight: 600; }
 
-    /* ─── HIGHLIGHT BOX ───────────────────────────────────────── */
-    .highlight-box {
-      background: linear-gradient(135deg, var(--rule-light) 60%, rgba(208, 208, 192, 0.2) 100%);
-      border: 0.5px solid var(--rule);
-      border-radius: var(--radius-md);
-      padding: 1.3rem 1.5rem;
-      margin: 1.5rem 0;
-    }
+    .back { display: inline-block; margin-top: 2.4rem; color: var(--muted); }
+    .back:hover { color: var(--ink); }
 
-    .highlight-box p {
-      font-family: var(--serif);
-      font-size: 0.94rem !important;
-      color: var(--ink-med) !important;
-      margin-bottom: 0 !important;
-      text-align: left;
-      hyphens: manual;
-    }
-
-    .highlight-box p strong {
-      font-family: var(--serif);
-      font-weight: 600;
-      color: var(--ink);
-      font-style: normal;
-    }
-
-    /* ─── BACK LINK ─────────────────────────────────────────── */
-    .back-link {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      margin-top: 2.5rem;
-      transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ─── NAV ──────────────────────────────────────────────── */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      pointer-events: none;
-      background: rgba(255, 255, 248, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(209, 208, 192, 0.3);
-    }
-    .topbar-logo {
-      pointer-events: all;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.07em;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .topbar-logo:hover { color: var(--ink); }
-
-    .hamburger {
-      pointer-events: all; background: none; border: none;
-      cursor: pointer; display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 0.5px; background: var(--ink-faint);
-      transition: all 0.3s ease; transform-origin: center;
-    }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span { background: var(--paper); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 190;
-      background: rgba(17, 17, 16, 0.94);
-      backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-
-    .nav-overlay a.nav-link {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 400;
-      font-style: italic;
-      color: rgba(255,248,242,0.22);
-      line-height: 1.35;
-      opacity: 0; transform: translateX(-10px);
-      transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none;
-      display: block;
-    }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
-    .nav-overlay.open a.nav-link:nth-child(1) { transition-delay:0.03s }
-    .nav-overlay.open a.nav-link:nth-child(2) { transition-delay:0.06s }
-    .nav-overlay.open a.nav-link:nth-child(3) { transition-delay:0.09s }
-    .nav-overlay.open a.nav-link:nth-child(4) { transition-delay:0.12s }
-    .nav-overlay.open a.nav-link:nth-child(5) { transition-delay:0.15s }
-    .nav-overlay.open a.nav-link:nth-child(6) { transition-delay:0.18s }
-    .nav-overlay.open a.nav-link:nth-child(7) { transition-delay:0.21s }
-    .nav-overlay.open a.nav-link:hover { color: rgba(255,248,242,0.9); }
-
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(255,248,242,0.15);
-      margin: 1.3rem 0;
-      opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a {
-      font-size: 0.82rem; color: rgba(255,248,242,0.25);
-      transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(255,248,242,0.85); }
-
-    /* ─── PROGRESS BAR ──────────────────────────────────────── */
-    .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--ink); z-index: 999; transition: width 0.1s linear;
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────────── */
-    .doc-footer {
-      grid-column: 1 / -1;
-      border-top: 0.5px solid var(--ink);
-      padding: 1.2rem 0 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .footer-text {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.05em;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 1.1rem;
-    }
-    .footer-socials a {
-      font-size: 0.78rem;
-      color: var(--ink-ghost);
-      transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--ink-med); }
-
-    /* ─── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .photo-grid { grid-template-columns: 1fr 1fr; }
-      .photo-grid .wide { grid-column: span 2; }
-      .stat-row { gap: 1.2rem; }
-    }
-
-    @media (max-width: 740px) {
-      :root { --outer: 20px; }
-      .document {
-        grid-template-columns: 1fr;
-        max-width: 100%;
-      }
-      .main-col { grid-column: 1 / -1; }
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
-      h1.doc-title { font-size: 1.7rem; }
-      .memoir-section h1 { font-size: 1.5rem; }
-      .stat-row { gap: 1rem; flex-direction: column; }
-    }
-
-    @media (min-width: 741px) and (max-width: 1000px) {
-      :root {
-        --col-width: 400px;
-        --margin-width: 60px;
-        --gutter: 20px;
-        --outer: 32px;
-      }
-    }
-  
-    .page-ident {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: #f26522;
-      margin-bottom: 0.8rem;
-    }
-    html.dark .page-ident { color: #f28c5a; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } .grid { grid-template-columns: 1fr; } }
   </style>
-<!-- print styles + reduced motion -->
-<style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
-</style>
-  <script>
-    /* Light by default; only a saved choice turns the lights off.
-       Runs before paint so the theme never flashes. */
-    (function(){try{if(localStorage.getItem('theme')==='dark')
-    document.documentElement.classList.add('dark');}catch(e){}})();
-  </script>
-  <link rel="stylesheet" href="theme.css">
-  <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t===null&&window.matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark");}catch(e){}})();</script>
 </head>
-<body class="paper">
-<a class="skip-link" href="#main">Skip to content</a>
+<body>
+  <div class="wrap">
 
-<div class="progress-rule" id="prog"></div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+    </nav>
 
-<!-- NAV -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">akshatb.com</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</div>
+    <p class="dateline">Bengaluru &middot; 18 April 2026</p>
+    <h1>Y Combinator, Startup School India</h1>
+    <p class="sub">YC's first physical event in India &mdash; one of ~2,000 founders selected, a $25K+ AI grant, and a pitch to Jared Friedman.</p>
 
-<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
-  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
-  <a class="nav-link" href="professionalism.html">Better Website?</a>
-  <a class="nav-link" href="now.html">Now</a>
-  <a class="nav-link" href="education.html">Education</a>
-  <a class="nav-link" href="experience.html">Experience</a>
-  <a class="nav-link" href="awards.html">Awards</a>
-  <a class="nav-link" href="research.html">Research</a>
-  <a class="nav-link" href="articles.html">Articles</a>
-  <a class="nav-link" href="media.html">Media</a>
-  <a class="nav-link" href="podcast.html">Podcast</a>
-  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a></div>
-  <div class="nav-hr"></div>
-  <div class="nav-socials-row">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-  </div>
-</nav>
+    <figure>
+      <img width="1170" height="878" decoding="async" loading="lazy" src="ycstage.jpg" alt="YC Startup School India stage">
+      <figcaption>the stage, YC Startup School India, at NICE Grounds in Bengaluru.</figcaption>
+    </figure>
 
-<!-- ══════════════════════════════════════════════════════ -->
-<div class="document" role="main" id="main">
+    <ul class="list">
+      <li>&approx;8% acceptance rate</li>
+      <li>2,000 founders &amp; builders</li>
+      <li>$25K+ AI grant received</li>
+      <li>the first YC event ever in India</li>
+    </ul>
 
-  <!-- TITLE PAGE -->
-  <div class="titlepage">
-    <div class="doc-meta-top">
-      <span>YC Startup School India</span>
-      <span>Bengaluru &nbsp;·&nbsp; April 2026</span>
+    <h2>what it was</h2>
+    <p>In April 2026, Y Combinator held its first-ever physical event in India: the YC Startup School India in Bengaluru. 2,000 of the country's top founders, engineers, and builders were selected through a competitive application process with an acceptance rate of around 8%. I was one of them.</p>
+    <p>The event brought together three YC General Partners, Jared Friedman, Ankit Gupta, and Jon Xu, alongside some of India's most successful YC-backed founders. The timing was deliberate: the YC Summer 2026 batch application deadline was just 16 days later.</p>
+
+    <figure>
+      <img width="1170" height="878" decoding="async" loading="lazy" src="ycpartners.jpg" alt="YC General Partners Jared Friedman, Ankit Gupta, and Jon Xu on stage">
+      <figcaption>Jared Friedman, Ankit Gupta, and Jon Xu, YC General Partners, on stage.</figcaption>
+    </figure>
+
+    <h2>the grant</h2>
+    <div class="note-box">
+      <p style="margin:0;">every student accepted into Startup School India received <b>$25,000+ in AI and cloud credits</b> from Y Combinator, announced by YC on X just weeks before the event. I received this grant, which went directly toward building my financial literacy initiatives.</p>
     </div>
-    <div class="title-center">
-      <span class="page-ident">Founder's Notes · Y Combinator Startup School India</span>
-      <h1 class="doc-title">Y Combinator, Startup School India</h1>
-      <p class="doc-author-line">First Physical YC Event in India &nbsp;·&nbsp; 2,000 Founders Selected</p>
-      <p class="doc-affil" style="margin-top:0.15rem;">$25K+ AI Grant Received &nbsp;·&nbsp; Pitched to Jared Friedman</p>
+
+    <h2>pitching to Jared Friedman</h2>
+    <p>One of the defining moments of the day was getting to pitch my financial literacy initiative directly to Jared Friedman, YC's Managing Director. Distilling years of work in Edunomix, FinKid, and TaxCity into a conversation with someone who has evaluated thousands of startups was invaluable. Jared also liked my post on X about the event.</p>
+
+    <figure>
+      <img width="1188" height="878" decoding="async" loading="lazy" src="jaredx.jpg" alt="Jared Friedman liking Akshat's post on X" style="max-width:480px;">
+      <figcaption>Jared Friedman liking my post on X after the event.</figcaption>
+    </figure>
+
+    <h2>speakers</h2>
+    <p>The lineup was a who's who of India's most consequential founders, all YC alumni:</p>
+    <ul class="list">
+      <li>Aadit Palicha<span class="r">Co-founder &amp; CEO, Zepto</span></li>
+      <li>Harshil Mathur<span class="r">Co-founder &amp; CEO, Razorpay</span></li>
+      <li>Lalit Keshre<span class="r">Co-founder &amp; CEO, Groww</span></li>
+      <li>Vidit Aatrey<span class="r">Co-founder &amp; CEO, Meesho</span></li>
+      <li>Jared Friedman<span class="r">Managing Director, Y Combinator</span></li>
+      <li>Ankit Gupta<span class="r">General Partner, Y Combinator</span></li>
+      <li>Jon Xu<span class="r">General Partner, Y Combinator</span></li>
+    </ul>
+
+    <div class="grid">
+      <img width="1170" height="878" decoding="async" loading="lazy" src="aaditjared.jpg" alt="Aadit Palicha (Zepto) with Jared Friedman on stage">
+      <img width="1170" height="878" decoding="async" loading="lazy" src="groww.jpg" alt="Lalit Keshre, Groww founder, speaking">
+      <img width="1170" height="878" decoding="async" loading="lazy" src="harshil.jpg" alt="Harshil Mathur, Razorpay founder, on stage">
+      <img width="1170" height="878" decoding="async" loading="lazy" src="ycvenue.jpg" alt="NICE Grounds venue, YC Startup School India">
     </div>
+
+    <h2>the people</h2>
+    <p>Beyond the sessions and speakers, what made the day truly memorable was the quality of people in the room. Being surrounded by 2,000 of India's most ambitious builders, people working on everything from AI infrastructure to consumer fintech, was energising in a way that's hard to describe. I left with connections from across the country and beyond, many of whom I'm still in touch with.</p>
+    <p>Getting to meet Vidit Aatrey (Meesho) in person, a founder who built one of India's most impactful e-commerce platforms, was a highlight I didn't anticipate.</p>
+
+    <h2>takeaway</h2>
+    <p>Startup School India was a signal that India is no longer a market YC watches from a distance, but one it's actively investing in and showing up for. Being in that room, at the age of only 17 (one of the youngest people present), with a grant in hand and a pitch to Jared, felt like a confirmation that the work I've been doing matters.</p>
+
+    <p><a class="back" href="index.html">&larr; back home</a></p>
+
   </div>
-
-  <!-- SECTION HEAD -->
-  <div class="section-head">
-    <span class="sec-num">§1</span>
-    <span class="sec-title">Event Memoir</span>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <div class="main-col">
-    <div class="memoir-section">
-      <span class="event-meta">
-        April 18, 2026 · Bengaluru · <a href="https://events.ycombinator.com/yc-sus-india" target="_blank" rel="noopener">events.ycombinator.com/yc-sus-india</a>
-      </span>
-
-      <!-- Venue photo full width -->
-      <img width="1170" height="878" decoding="async" loading="lazy" src="ycstage.jpg" alt="YC Startup School India stage" />
-
-      <!-- Stats -->
-      <div class="stat-row">
-        <div class="stat">
-          <span class="stat-number">≈8%</span>
-          <span class="stat-label">Acceptance rate</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">2,000</span>
-          <span class="stat-label">Founders & builders</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">$25K+</span>
-          <span class="stat-label">AI grant received</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">1st</span>
-          <span class="stat-label">YC event ever in India</span>
-        </div>
-      </div>
-
-      <h2>What it was</h2>
-      <p>
-        In April 2026, Y Combinator held its first-ever physical event in India: the YC Startup School India in Bengaluru. 2,000 of the country's top founders, engineers, and builders were selected through a competitive application process with an acceptance rate of around 8%. I was one of them.
-      </p>
-      <p>
-        The event brought together three YC General Partners, Jared Friedman, Ankit Gupta, and Jon Xu, alongside some of India's most successful YC-backed founders. The timing was deliberate: the YC Summer 2026 batch application deadline was just 16 days later.
-      </p>
-
-      <!-- Partners photo -->
-      <img width="1170" height="878" decoding="async" loading="lazy" src="ycpartners.jpg" alt="YC General Partners Jared Friedman, Ankit Gupta, and Jon Xu on stage" />
-      <p class="photo-caption">Jared Friedman, Ankit Gupta, and Jon Xu, YC General Partners, on stage</p>
-
-      <h2>The grant</h2>
-      <div class="highlight-box">
-        <p>Every student accepted into Startup School India received <strong>$25,000+ in AI and cloud credits</strong> from Y Combinator, announced by YC on X just weeks before the event. I received this grant, which went directly toward building my financial literacy initiatives.</p>
-      </div>
-
-      <h2>Pitching to Jared Friedman</h2>
-      <p>
-        One of the defining moments of the day was getting to pitch my financial literacy initiative directly to Jared Friedman, YC's Managing Director. The experience of distilling years of work in Edunomix, FinKid, TaxCity, into a conversation with someone who has evaluated thousands of startups was invaluable. Jared also liked my post on X about the event.
-      </p>
-
-      <!-- Jared X screenshot -->
-      <img width="1188" height="878" decoding="async" loading="lazy" src="jaredx.jpg" alt="Jared Friedman liking Akshat's post on X" style="max-width:480px;" />
-      <p class="photo-caption">Jared Friedman liking my post on X after the event</p>
-
-      <h2>Speakers</h2>
-      <p>The speaker lineup was a who's who of India's most consequential founders, all YC alumni:</p>
-
-      <ul class="speaker-list">
-        <li>
-          <span class="speaker-name">Aadit Palicha</span>
-          <span class="speaker-role">Co-founder & CEO, Zepto</span>
-        </li>
-        <li>
-          <span class="speaker-name">Harshil Mathur</span>
-          <span class="speaker-role">Co-founder & CEO, Razorpay</span>
-        </li>
-        <li>
-          <span class="speaker-name">Lalit Keshre</span>
-          <span class="speaker-role">Co-founder & CEO, Groww</span>
-        </li>
-        <li>
-          <span class="speaker-name">Vidit Aatrey</span>
-          <span class="speaker-role">Co-founder & CEO, Meesho</span>
-        </li>
-        <li>
-          <span class="speaker-name">Jared Friedman</span>
-          <span class="speaker-role">Managing Director, Y Combinator</span>
-        </li>
-        <li>
-          <span class="speaker-name">Ankit Gupta</span>
-          <span class="speaker-role">General Partner, Y Combinator</span>
-        </li>
-        <li>
-          <span class="speaker-name">Jon Xu</span>
-          <span class="speaker-role">General Partner, Y Combinator</span>
-        </li>
-      </ul>
-
-      <!-- Photo grid -->
-      <div class="photo-grid">
-        <img width="1170" height="878" decoding="async" loading="lazy" src="aaditjared.jpg" alt="Aadit Palicha (Zepto) with Jared Friedman on stage" class="wide" />
-        <img width="1170" height="878" decoding="async" loading="lazy" src="groww.jpg" alt="Lalit Keshre, Groww founder, speaking" />
-        <img width="1170" height="878" decoding="async" loading="lazy" src="harshil.jpg" alt="Harshil Mathur, Razorpay founder, on stage" />
-        <img width="1170" height="878" decoding="async" loading="lazy" src="ycvenue.jpg" alt="NICE Grounds venue, YC Startup School India" class="wide" />
-      </div>
-
-      <h2>The people</h2>
-      <p>
-        Beyond the sessions and speakers, what made the day truly memorable was the quality of people in the room. Being surrounded by 2,000 of India's most ambitious builders, people working on everything from AI infrastructure to consumer fintech, was energising in a way that's hard to describe. I left with connections from across the country and beyond, many of whom I'm still in touch with.
-      </p>
-      <p>
-        Getting to meet Vidit Aatrey (Meesho) in person, a founder who built one of India's most impactful e-commerce platforms, was a highlight I didn't anticipate.
-      </p>
-
-      <h2>Takeaway</h2>
-      <p>
-        Startup School India was a signal that India is no longer a market YC watches from a distance, but one it's actively investing in and showing up for. Being in that room, at the age of only 17 (one of the youngest people present), with a grant in hand and a pitch to Jared felt like a confirmation that the work I've been doing matters.
-      </p>
-
-      <a href="education.html" class="back-link">← Back to Education</a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-    <div class="footer-socials">
-      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-      <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-    </div>
-  </footer>
-
-</div>
-<!-- ══════════════════════════════════════════════════════ -->
-
-<script>
-  // Progress bar
-  const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  }, { passive: true });
-
-  // Hamburger
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('nav-overlay');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false;
-    hamburger.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-</script>
-<script src="site.js" defer></script>
+  <script>
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
+    });
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
 </body>
 </html>
