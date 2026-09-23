@@ -37,11 +37,11 @@
       background: var(--bg);
       color: var(--ink);
       font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-      font-size: 16px;
-      line-height: 1.66;
+      font-size: 14px;
+      line-height: 1.62;
       -webkit-font-smoothing: antialiased;
     }
-    .page { max-width: 720px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
+    .page { max-width: 520px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
 
     .back {
       display: inline-flex; align-items: center; justify-content: center;
@@ -55,20 +55,22 @@
 
     .frame {
       background: #fff;
-      padding: 14px;
+      padding: 10px;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: 0 30px 70px -34px rgba(60,40,25,0.4), 0 6px 16px -10px rgba(0,0,0,0.12);
-      margin: 0 0 2.4rem;
+      border-radius: 7px;
+      box-shadow: 0 22px 50px -30px rgba(60,40,25,0.4), 0 5px 14px -10px rgba(0,0,0,0.12);
+      max-width: 340px;
+      margin: 0 0 0.7rem;
     }
     .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
+    .cap { max-width: 340px; margin: 0 0 2.2rem; font-style: italic; color: var(--brown); font-size: 0.8rem; line-height: 1.5; }
 
     h1 {
       font-style: italic; font-weight: 400;
-      font-size: clamp(2.3rem, 6vw, 3.4rem); line-height: 1.05;
-      letter-spacing: 0.01em; color: var(--ink); margin: 0 0 0.35rem;
+      font-size: clamp(1.5rem, 4vw, 1.9rem); line-height: 1.1;
+      letter-spacing: 0.01em; color: var(--ink); margin: 0 0 0.3rem;
     }
-    .role { font-style: italic; font-size: 1.12rem; color: var(--brown); margin: 0 0 1.5rem; }
+    .role { font-style: italic; font-size: 0.98rem; color: var(--brown); margin: 0 0 1.4rem; }
 
     .links { list-style: none; margin: 0 0 2.2rem; padding: 0; }
     .links li { position: relative; padding-left: 1.1rem; margin: 0 0 0.45rem; color: var(--body); }
@@ -76,7 +78,7 @@
     .links a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
     .links a:hover { color: var(--brown); }
 
-    .body p { font-size: 1.02rem; line-height: 1.8; color: var(--body); margin: 0 0 1.25rem; }
+    .body p { font-size: 0.95rem; line-height: 1.75; color: var(--body); margin: 0 0 1.15rem; }
     .body p b { font-weight: 600; color: var(--ink); }
 
     .tweet-wrap { margin: 2rem 0 0; }
@@ -91,7 +93,7 @@
       ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     }
 
-    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 16.5px; } }
+    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 15px; } .frame, .cap { max-width: 300px; } }
   </style>
 </head>
 <body>
@@ -104,6 +106,7 @@
     <div class="frame">
       <img width="1600" height="1067" decoding="async" src="hero_president.jpg" alt="Being awarded by the President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan">
     </div>
+    <p class="cap">The one wearing glasses at the right end, grinning like an idiot, is me :)</p>
 
     <h1>Awarded by the President of India</h1>
     <p class="role">SOAR Initiative, Government of India &middot; Rashtrapati Bhavan &middot; 2026</p>
