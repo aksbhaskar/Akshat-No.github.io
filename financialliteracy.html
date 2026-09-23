@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gap Year | Akshat Bhaskar</title>
-  <meta name="description" content="What Akshat Bhaskar did in his gap year after high school — a mathematics apprenticeship, teaching at the Lodha Genius Programme, and research into financial misinformation." />
+  <title>Financial Literacy | Akshat Bhaskar</title>
+  <meta name="description" content="Akshat Bhaskar's work in financial literacy — Edunomix India, TaxCity, the Decoded Podcast, and research into financial misinformation." />
   <meta name="author" content="Akshat Bhaskar" />
-  <link rel="canonical" href="https://akshatb.com/gapyear" />
+  <link rel="canonical" href="https://akshatb.com/financialliteracy" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Gap Year" />
-  <meta property="og:description" content="A mathematics apprenticeship, teaching at the Lodha Genius Programme, and research into financial misinformation." />
-  <meta property="og:url" content="https://akshatb.com/gapyear" />
+  <meta property="og:title" content="Financial Literacy" />
+  <meta property="og:description" content="Edunomix India, TaxCity, the Decoded Podcast, and research into financial misinformation." />
+  <meta property="og:url" content="https://akshatb.com/financialliteracy" />
   <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
@@ -71,7 +71,6 @@
     .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
     .cap { max-width: 420px; margin: 0 0 2rem; font-style: italic; color: var(--brown); font-size: 0.8rem; line-height: 1.5; }
 
-    /* the pop-in animation when arriving from the homepage */
     ::view-transition-old(root) { animation: vtOut 0.28s ease both; }
     ::view-transition-new(root) { animation: vtIn 0.42s cubic-bezier(0.2,0.7,0.2,1) both; }
     @keyframes vtOut { to { opacity: 0; transform: scale(1.01); } }
@@ -92,25 +91,30 @@
 
     <div class="body">
 
-      <p>The first half of my gap year went to mathematics. I did a residential <a href="mathapprenticeship.html">mathematics apprenticeship</a> under Professor Shanta Laishram, Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at the Indian Statistical Institute (ISI), Delhi, working in advanced number theory, hosted at Ashoka University. I received a 10,000 INR research stipend, and all in all, it was one of the <a href="https://www.linkedin.com/posts/aksbhaskar_this-year-alongside-my-teaching-assistant-activity-7481233262200152064-l3m-" target="_blank" rel="noopener">most fulfilling summers</a> of my life!</p>
+      <p>Most of what I've built started with one idea: that financial literacy shouldn't be a privilege.</p>
+
+      <p>I founded the India chapter of the <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">Edunomix Institute</a>, a US 501(c)(3) nonprofit, and built its first presence in South Asia. We ran a <a href="https://edunomixinstitute.com/india-econ-essay-competition" target="_blank" rel="noopener">nationwide essay competition</a> across nineteen states and fifty-four schools, held camps in personal finance, and, through the <a href="https://x.com/aksbhaskar/status/2096799687399690405" target="_blank" rel="noopener">Ukraine Speaks English initiative with Learn and Teach UA</a>, taught economics to displaced Ukrainian students whose schooling had been interrupted by the war.</p>
 
       <div class="frame">
-        <img width="1170" height="878" loading="lazy" decoding="async" src="media_cryptography.jpg" alt="A lecture on modern cryptography during the mathematics apprenticeship">
+        <img width="1920" height="883" loading="lazy" decoding="async" src="ukraine_seminars_fall2026.png" alt="Fall 2026 Ukraine seminars, first session">
       </div>
-      <p class="cap">A lecture on modern cryptography, from the mathematics apprenticeship.</p>
+      <p class="cap">Fall 2026 Ukraine seminars, our first session.</p>
 
-      <p>I was also a <a href="https://www.linkedin.com/posts/aksbhaskar_last-year-i-attended-the-lodha-genius-programme-activity-7480488435523297280-Bo90" target="_blank" rel="noopener">Teaching Assistant</a> to the Lodha Genius Programme 2026, an undergraduate teaching position that the programme made an exception to include me in. Over four weeks, housed at Ashoka University, I worked across four completely different courses: the Mathematics of Investing, Rubik's Cube and Group Theory, Basic but Essential Mechanics, and Origami and Advanced Geometry.</p>
+      <p>The same idea carried into <a href="taxcity.html">TaxCity</a>, a government-recognised card game that teaches tax filing, where I served as Chief Financial Officer. It reached over 79,000 students across 27 countries and raised more than $120,000 in grants. We eventually wound it down: even with the grants, giving away thousands of free kits across India was no longer financially sustainable, so we donated what was left to a few government schools we had visited. Take <a href="photos.html">a look at the game</a>.</p>
 
       <div class="frame tall">
-        <img width="600" height="800" loading="lazy" decoding="async" src="media_ta_badge.jpg" alt="Teaching Assistant ID card, Lodha Genius Programme 2026">
+        <img width="600" height="800" loading="lazy" decoding="async" src="taxcity_tetr.jpg" alt="TaxCity at TETR Disrupt, DPS R.K. Puram">
       </div>
-      <p class="cap">My Teaching Assistant ID card, Lodha Genius Programme.</p>
+      <p class="cap">TaxCity at TETR Disrupt, DPS R.K. Puram.</p>
 
-      <p>Then, for the latter part of my gap year, I worked on a completely different question. Throughout my work in financial literacy, I had assumed ignorance was the disease and information the cure. I had slowly realised that a literate mind is not a protected one. Fear clouds it, and so does the glitter of easy opportunity. My earlier work still stood, Edunomix, TaxCity, and Decoded had all done real good, and I am still running Edunomix and Decoded, but I had started to see that literacy is only one part of the story. Whether someone falls for a scam, or forwards one, often has less to do with what they know and more to do with how they feel. So once I landed back in Delhi from Ashoka, I began exploring that full time: under the guidance of Professor Hemant Kakkar at the Indian School of Business, I am now studying how financial misinformation spreads across Indian social media, using language models built for Indian languages (MuRIL and XLM-RoBERTa), since so much of the false content is code-mixed "Hinglish", paired with validated psychological instruments to work out not just which posts are false, but who is most likely to pass them on. Check out the <a href="https://github.com/aksbhaskar/fomo-misinformation-study" target="_blank" rel="noopener">GitHub</a>!</p>
+      <p>And because ideas are only as useful as their reach, I host the <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">Decoded Podcast</a>, where we interview economists and technologists and translate their ideas and breakthroughs for a general audience. It has won three Spotify for Creators awards and passed three hundred listening hours.</p>
 
-      <p>I also kept running Edunomix day to day and launched the <a href="https://edunomixinstitute.com/india-essay-competition" target="_blank" rel="noopener">second edition of our nationwide essay competition</a>, judged by economics scholars from Harvard, UC Berkeley, Cornell, and Warwick. We ran the <a href="https://x.com/aksbhaskar/status/2096799687399690405" target="_blank" rel="noopener">Ukraine Speaks English seminars</a> again this season with Learn and Teach UA, free financial education for students across Ukraine.</p>
+      <div class="frame">
+        <img width="1200" height="684" loading="lazy" decoding="async" src="decoded_sandeep_juneja.jpg" alt="Interviewing Professor Sandeep Juneja for the Decoded Podcast">
+      </div>
+      <p class="cap">Interviewing Professor Sandeep Juneja for the Decoded Podcast.</p>
 
-      <p>And I expanded the Decoded team out from just Amaira and me into a real operation, with more than 20 volunteers across research, social media, and outreach, and worked on a collaboration with <a href="https://x.com/aksbhaskar/status/2099323296215134314?s=20" target="_blank" rel="noopener">HERizon</a> on various events.</p>
+      <p>More recently, I've come to see that literacy alone is not enough of a defence. So I have started studying financial misinformation itself: how false financial claims spread across Indian social media, and who is most likely to pass them on. It is the same mission from a different angle, helping people navigate money safely, and it is what I spend most of my time on now.</p>
 
     </div>
 
