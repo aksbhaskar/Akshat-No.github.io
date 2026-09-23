@@ -14,14 +14,22 @@
   <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#faf6f2" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
   <style>
-    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    :root {
+      --bg: #faf6f2;
+      --ink: #23201c;
+      --body: #3d372e;
+      --brown: #73574a;
+      --border: #e5dbd7;
+    }
+    @view-transition { navigation: auto; }
+
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -29,77 +37,101 @@
       background: var(--bg);
       color: var(--ink);
       font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.66;
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
-    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
-    a:visited { color: var(--ink); }
-    a:hover { text-decoration-thickness: 2px; }
-    nav { margin-bottom: 2.6rem; }
-    nav a { margin-right: 1.4rem; }
+    .page { max-width: 720px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
 
-    .dateline { color: var(--muted); font-style: italic; margin: 0 0 0.5rem; }
-    h1 { font-size: 1.25em; font-weight: normal; letter-spacing: 0.01em; margin: 0 0 1.4rem; line-height: 1.2; }
-    p { margin: 0 0 1.2rem; }
-    p b, p strong { font-weight: 600; }
+    .back {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--border); color: var(--brown);
+      box-shadow: 0 8px 22px -12px rgba(60,40,25,0.45);
+      text-decoration: none; margin: 0 0 1.8rem;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .back:hover { transform: translateX(-2px); color: var(--ink); }
 
-    figure { margin: 1.4rem 0; }
-    figure img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
-    figcaption { margin-top: 0.5rem; color: var(--muted); font-style: italic; font-size: 0.86em; }
-    .tweet-wrap { margin: 1.4rem 0; }
+    .frame {
+      background: #fff;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 30px 70px -34px rgba(60,40,25,0.4), 0 6px 16px -10px rgba(0,0,0,0.12);
+      margin: 0 0 2.4rem;
+    }
+    .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
+
+    h1 {
+      font-style: italic; font-weight: 400;
+      font-size: clamp(2.3rem, 6vw, 3.4rem); line-height: 1.05;
+      letter-spacing: 0.01em; color: var(--ink); margin: 0 0 0.35rem;
+    }
+    .role { font-style: italic; font-size: 1.12rem; color: var(--brown); margin: 0 0 1.5rem; }
+
+    .links { list-style: none; margin: 0 0 2.2rem; padding: 0; }
+    .links li { position: relative; padding-left: 1.1rem; margin: 0 0 0.45rem; color: var(--body); }
+    .links li::before { content: "•"; position: absolute; left: 0.1rem; color: var(--brown); }
+    .links a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    .links a:hover { color: var(--brown); }
+
+    .body p { font-size: 1.02rem; line-height: 1.8; color: var(--body); margin: 0 0 1.25rem; }
+    .body p b { font-weight: 600; color: var(--ink); }
+
+    .tweet-wrap { margin: 2rem 0 0; }
     .tweet-wrap .twitter-tweet { margin-left: 0 !important; margin-right: 0 !important; }
 
-    .links { margin-top: 2.4rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.92em; }
-    .links a { color: var(--ink); }
-    .back { display: inline-block; margin-top: 2rem; color: var(--muted); }
-    .back:hover { color: var(--ink); }
+    /* the pop-in animation when arriving from the homepage */
+    ::view-transition-old(root) { animation: vtOut 0.28s ease both; }
+    ::view-transition-new(root) { animation: vtIn 0.42s cubic-bezier(0.2,0.7,0.2,1) both; }
+    @keyframes vtOut { to { opacity: 0; transform: scale(1.01); } }
+    @keyframes vtIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
 
-    @media (min-width: 1000px) { body { font-size: 16px; } }
-    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 16.5px; } }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="page">
 
-    <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-    </nav>
+    <a class="back" href="index.html" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
 
-    <p class="dateline">New Delhi, Rashtrapati Bhavan &middot; 1 January 2026</p>
-    <h1>Awarded by the President of India</h1>
-
-    <figure>
-      <img width="1600" height="1067" loading="lazy" decoding="async" src="hero_president.jpg" alt="Being awarded by the President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan">
-      <figcaption>Being awarded by the President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan. (the one wearing glasses at the right end, grinning like an idiot, is me :))</figcaption>
-    </figure>
-
-    <div class="tweet-wrap">
-      <blockquote class="twitter-tweet" data-theme="light">
-        <p lang="en" dir="ltr">President Droupadi Murmu participated in AI for Beginners module and launched the <a href="https://twitter.com/hashtag/SkilltheNation?src=hash&amp;ref_src=twsrc%5Etfw">#SkilltheNation</a> challenge at a function held at Rashtrapati Bhavan. She also virtually inaugurated the IGNOU Regional Centre and Skill Centre at Rairangpur, Odisha.<br><br>The President said that in the… <a href="https://t.co/baT66lGIwQ">pic.twitter.com/baT66lGIwQ</a></p>
-        President of India (@rashtrapatibhvn) <a href="https://twitter.com/rashtrapatibhvn/status/2006647290505867332?ref_src=twsrc%5Etfw">January 1, 2026</a>
-      </blockquote>
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="frame">
+      <img width="1600" height="1067" decoding="async" src="hero_president.jpg" alt="Being awarded by the President of India, Smt. Droupadi Murmu, at Rashtrapati Bhavan">
     </div>
 
-    <p>Completing Microsoft's 20-hour <b>"AI to be Aware"</b> course under the Government of India's SOAR initiative felt like I was getting a structured language for questions I had been asking about Artificial Intelligence and its potential use in fighting financial illiteracy.</p>
+    <h1>Awarded by the President of India</h1>
+    <p class="role">SOAR Initiative, Government of India &middot; Rashtrapati Bhavan &middot; 2026</p>
 
-    <p>Applying those modules, I prototyped simple chatbots that translated basic tax concepts into Hinglish, testing them on classmates who'd never heard of "TDS" or "Section 80C." The work wasn't about building perfect technology; it was about meeting people where they are, in the language they speak, with concepts that matter to their lives.</p>
+    <ul class="links">
+      <li><a href="https://www.linkedin.com/posts/aksbhaskar_skillthenation-soar-ai-ugcPost-7414517732764729345-epBj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEjuWBIBPjmSKnCDjpd5v77jLQIYvSacp4g" target="_blank" rel="noopener">read more on LinkedIn</a></li>
+      <li><a rel="me" href="https://x.com/aksbhaskar/status/2006653278646682090?s=20" target="_blank">follow on X</a></li>
+    </ul>
 
-    <p>Being selected as <b>one of 17 students nationwide</b> to be felicitated by the President of India at the Rashtrapati Bhavan made the work feel real in a way that no paper or accolade ever could. Standing alongside Members of Parliament and Union Ministers of Education, Skill Development and Entrepreneurship, I heard the President speak about AI's role in India's GDP and employment. Then came the moment, brief, surreal, when I got to briefly talk with her about scams, digital literacy, and the gap between technology and trust. This experience made me view AI as a <b>civic responsibility</b>, not just another useful tool.</p>
+    <div class="body">
+      <p>Completing Microsoft's 20-hour <b>"AI to be Aware"</b> course under the Government of India's SOAR initiative felt like I was getting a structured language for questions I had been asking about Artificial Intelligence and its potential use in fighting financial illiteracy.</p>
 
-    <p>Walking out of that ceremony, I realized something fundamental: the same mathematical thinking I apply to TaxCity, the same patient listening I do in conversations with workers and classmates, the same rigor I bring to research, all of it matters when the stakes are real. Millions of households in India are navigating financial decisions in a landscape full of predatory apps and misinformation. If I can build tools that demystify that landscape, even slightly, that becomes urgent work.</p>
+      <p>Applying those modules, I prototyped simple chatbots that translated basic tax concepts into Hinglish, testing them on classmates who'd never heard of "TDS" or "Section 80C." The work wasn't about building perfect technology; it was about meeting people where they are, in the language they speak, with concepts that matter to their lives.</p>
 
-    <p>After the event, I also had the opportunity to meet Shri Jayant Chaudhary, Union Minister of State (Independent Charge) for Skill Development and Entrepreneurship, discussing the role of AI in increasing skill development in the country.</p>
+      <p>Being selected as <b>one of 17 students nationwide</b> to be felicitated by the President of India at the Rashtrapati Bhavan made the work feel real in a way that no paper or accolade ever could. Standing alongside Members of Parliament and Union Ministers of Education, Skill Development and Entrepreneurship, I heard the President speak about AI's role in India's GDP and employment. Then came the moment, brief, surreal, when I got to briefly talk with her about scams, digital literacy, and the gap between technology and trust. This experience made me view AI as a <b>civic responsibility</b>, not just another useful tool.</p>
 
-    <p class="links">
-      <a href="https://www.linkedin.com/posts/aksbhaskar_skillthenation-soar-ai-ugcPost-7414517732764729345-epBj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEjuWBIBPjmSKnCDjpd5v77jLQIYvSacp4g" target="_blank" rel="noopener">read more on LinkedIn</a> &middot; <a rel="me" href="https://x.com/aksbhaskar/status/2006653278646682090?s=20" target="_blank">follow on X</a>
-    </p>
+      <p>Walking out of that ceremony, I realized something fundamental: the same mathematical thinking I apply to TaxCity, the same patient listening I do in conversations with workers and classmates, the same rigor I bring to research, all of it matters when the stakes are real. Millions of households in India are navigating financial decisions in a landscape full of predatory apps and misinformation. If I can build tools that demystify that landscape, even slightly, that becomes urgent work.</p>
 
-    <p><a class="back" href="index.html">&larr; back home</a></p>
+      <p>After the event, I also had the opportunity to meet Shri Jayant Chaudhary, Union Minister of State (Independent Charge) for Skill Development and Entrepreneurship, discussing the role of AI in increasing skill development in the country.</p>
+
+      <div class="tweet-wrap">
+        <blockquote class="twitter-tweet" data-theme="light">
+          <p lang="en" dir="ltr">President Droupadi Murmu participated in AI for Beginners module and launched the <a href="https://twitter.com/hashtag/SkilltheNation?src=hash&amp;ref_src=twsrc%5Etfw">#SkilltheNation</a> challenge at a function held at Rashtrapati Bhavan. She also virtually inaugurated the IGNOU Regional Centre and Skill Centre at Rairangpur, Odisha.<br><br>The President said that in the… <a href="https://t.co/baT66lGIwQ">pic.twitter.com/baT66lGIwQ</a></p>
+          President of India (@rashtrapatibhvn) <a href="https://twitter.com/rashtrapatibhvn/status/2006647290505867332?ref_src=twsrc%5Etfw">January 1, 2026</a>
+        </blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div>
 
   </div>
   <script>
