@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>August 2nd 2026 | Akshat Bhaskar</title>
+  <meta name="description" content="August 2nd 2026 — an update from Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/update-aug-2.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-size: 15px; line-height: 1.66; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    .u-date { color: var(--muted); font-style: italic; margin: 0 0 0.3rem; }
+    .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0 0 1.3rem; }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.8rem; }
+    .frame { margin: 1.4rem 0 0.4rem; max-width: 100%; }
+    .frame.tall { max-width: 340px; }
+    .frame img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    .u-cap { color: var(--muted); font-style: italic; font-size: 0.86rem; margin: 0 0 1.6rem; }
+    iframe { display: block; max-width: 100%; border: 0; margin: 1.4rem 0; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+      <p class="u-date">August 2nd, 2026</p>
+      <p>I keep meaning to be more active on here, so I'm finally doing it! Here's what the last month or so has actually looked like:</p>
+      <p>I've started a new research study on how financial misinformation spreads across Indian social media. I'm using two NLP models, MuRIL and XLM-RoBERTa, to analyze multilingual and code-mixed content (the Hindi–English mix most Indians actually post in, which most models handle poorly). Alongside that, I'm using two validated psychological measures, the BFI-2-XS personality inventory and the Fear of Missing Out scale, to identify which individual traits predict whether someone shares misinformation. I'm doing this under the guidance of a professor at the Indian School of Business (ISB), and I'm really excited about where it's heading.</p>
+      <p>Back to Edunomix India! I'm fully back to running the India Chapter of the fiscally-sponsored 501(c)(3) nonprofit organization, the Edunomix Institute, as founder and president. I'd stepped back for a while due to other time commitments, and it feels good to be in it day to day again. Some exciting things are coming (more on that soon)!</p>
+      <p>I've completely redesigned my website, akshatb.com. It's built to read like an academic paper, with an abstract, keywords, and footnotes. The format is very deliberate, and I'm really happy with how it turned out. Have a look if you're curious.</p>
+      <p>I'm recording a new episode of the Decoded Podcast, my podcast where I sit down with people I find fascinating and ask the questions I really want answered. This one has been a lot of fun to put together!</p>
+      <p>I've started reading Amartya Sen's Development as Freedom. His central argument, that development should be measured by the real freedoms people have rather than by income alone, is already shifting how I think about my own work. I'll share fuller thoughts soon.</p>
+      <p>And on the personal side, I ran my first half marathon!</p>
+      <p>That's the update for now! Honestly, if you're building anything at all, I want to hear about it. Whether you're into quantitative research, working in the nonprofit space, building a podcast, chasing some wild idea nobody else believes in yet, or you just want to talk number theory, markets, or Amartya Sen, please reach out! Drop a comment or send me a message. I love meeting people doing interesting things, and I'm always up for a good conversation!</p>
+  </div>
+  <script>
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ["come back :(", "hello? :(", "i'll wait...", "still here :)"];
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { clearTimeout(idleTimer); clearInterval(awaySpin); var i = 0; setTitle(awayMsgs[0]); awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400); }
+      else { clearInterval(awaySpin); awaySpin = null; document.title = "yay, you came back :)"; titleTemp = true; setTimeout(restoreTitle, 1700); scheduleIdle(); }
+    });
+    function scheduleIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!document.hidden) setTitle("still there? :)"); }, 60000); }
+    ["mousemove","scroll","keydown","click","touchstart"].forEach(function (ev) { window.addEventListener(ev, function () { if (titleTemp && !document.hidden && document.title === "still there? :)") restoreTitle(); scheduleIdle(); }, { passive: true }); });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call For Volunteers | Akshat Bhaskar</title>
+  <meta name="description" content="Call For Volunteers — an update from Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/update-sep-18.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-size: 15px; line-height: 1.66; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    .u-date { color: var(--muted); font-style: italic; margin: 0 0 0.3rem; }
+    .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0 0 1.3rem; }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.8rem; }
+    .frame { margin: 1.4rem 0 0.4rem; max-width: 100%; }
+    .frame.tall { max-width: 340px; }
+    .frame img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    .u-cap { color: var(--muted); font-style: italic; font-size: 0.86rem; margin: 0 0 1.6rem; }
+    iframe { display: block; max-width: 100%; border: 0; margin: 1.4rem 0; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+      <p class="u-date">September 18th, 2026</p>
+      <h2 class="u-title">Call For Volunteers</h2>
+      <p>I'm trying something new.</p>
+      <p>We are starting a small initiative to help middle school students build a foundation in olympiad mathematics, training I would have loved to receive in 6th grade. The students are currently in Classes 6–8, working toward competitions like SOF IMO and NMTC, and eventually IOQM and RMO as they reach Class 8 and beyond.</p>
+      <p>I'm looking for talented Class 11 and 12 students and mathematics undergraduates who enjoy solving problems and, more importantly, enjoy thinking about how to explain them. The idea is to have volunteers teach these students regularly, introduce them to olympiad-style problem solving, and help them develop the mathematical maturity that comes from wrestling with problems rather than simply learning procedures.</p>
+      <p>This is completely volunteer-based. You do not need to be a professional teacher or have formal teaching experience. If you have a strong mathematical background, have participated in olympiads yourself, or simply spend an unreasonable amount of time thinking about mathematics, I'd love to hear from you.</p>
+      <p>I'm especially interested in people who can make mathematics feel intellectually exciting to a 12-year-old. There is a huge difference between teaching someone how to solve a particular problem and teaching them how to look at a problem.</p>
+      <p>If you'd like to volunteer as a tutor, email us at <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a> with a short introduction and your mathematical background.</p>
+      <p>We're keeping this small to begin with, and I'm curious to see what we can build from it.</p>
+  </div>
+  <script>
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ["come back :(", "hello? :(", "i'll wait...", "still here :)"];
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { clearTimeout(idleTimer); clearInterval(awaySpin); var i = 0; setTitle(awayMsgs[0]); awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400); }
+      else { clearInterval(awaySpin); awaySpin = null; document.title = "yay, you came back :)"; titleTemp = true; setTimeout(restoreTitle, 1700); scheduleIdle(); }
+    });
+    function scheduleIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!document.hidden) setTitle("still there? :)"); }, 60000); }
+    ["mousemove","scroll","keydown","click","touchstart"].forEach(function (ev) { window.addEventListener(ev, function () { if (titleTemp && !document.hidden && document.title === "still there? :)") restoreTitle(); scheduleIdle(); }, { passive: true }); });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>

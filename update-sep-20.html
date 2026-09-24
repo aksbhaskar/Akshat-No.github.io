@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Started Project Fermat | Akshat Bhaskar</title>
+  <meta name="description" content="Started Project Fermat — an update from Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/update-sep-20.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-size: 15px; line-height: 1.66; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    .u-date { color: var(--muted); font-style: italic; margin: 0 0 0.3rem; }
+    .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0 0 1.3rem; }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.8rem; }
+    .frame { margin: 1.4rem 0 0.4rem; max-width: 100%; }
+    .frame.tall { max-width: 340px; }
+    .frame img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    .u-cap { color: var(--muted); font-style: italic; font-size: 0.86rem; margin: 0 0 1.6rem; }
+    iframe { display: block; max-width: 100%; border: 0; margin: 1.4rem 0; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+      <p class="u-date">September 20th, 2026</p>
+      <h2 class="u-title">Started Project Fermat</h2>
+      <ul>
+        <li>I have formally started Project Fermat, with Ishaan Harish, a longtime friend, as a small initiative to help Class 6–8 students build a real foundation in olympiad mathematics before they get near IOQM or RMO. We built a website too: <a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener">projectfermat.vercel.app</a></li>
+        <li>We're still looking for volunteer tutors for Project Fermat. If you enjoy solving problems and explaining how you got there, email us at <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a>. We could also use help with outreach for Project Fermat. If that's more your speed than teaching, we would love to hear from you!</li>
+        <li>I have been talking to Adarsh Kumar regarding a potential collaboration with Skillzo, which could turn into a pretty interesting event. More on this soon.</li>
+        <li>We had a great conversation with Sagar Shrivastava sir this week about where Project Fermat could go next. I can't thank him enough for the advice, as it has given us a lot to think about.</li>
+        <li>I recently onboarded Aaryaveer Jatia, a 14 y/o with great research experience in the economics of sports, to the Edunomix Institute India research team. Looking forward to have you with us!</li>
+        <li>We're in the middle of interviewing three more people for Edunomix and Decoded, so both teams are about to grow :)</li>
+        <li>The Decoded Podcast Newsletter team is still hiring writers. If you're interested, email Anya, our Head of Newsletter, at <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a>.</li>
+      </ul>
+      <p>If any of this overlaps with something you're building, reach out. Always happy to talk!</p>
+  </div>
+  <script>
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ["come back :(", "hello? :(", "i'll wait...", "still here :)"];
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { clearTimeout(idleTimer); clearInterval(awaySpin); var i = 0; setTitle(awayMsgs[0]); awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400); }
+      else { clearInterval(awaySpin); awaySpin = null; document.title = "yay, you came back :)"; titleTemp = true; setTimeout(restoreTitle, 1700); scheduleIdle(); }
+    });
+    function scheduleIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!document.hidden) setTitle("still there? :)"); }, 60000); }
+    ["mousemove","scroll","keydown","click","touchstart"].forEach(function (ev) { window.addEventListener(ev, function () { if (titleTemp && !document.hidden && document.title === "still there? :)") restoreTitle(); scheduleIdle(); }, { passive: true }); });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>

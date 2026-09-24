@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I organized a national event | Akshat Bhaskar</title>
+  <meta name="description" content="I organized a national event — an update from Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/update-aug-9.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-size: 15px; line-height: 1.66; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    .u-date { color: var(--muted); font-style: italic; margin: 0 0 0.3rem; }
+    .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0 0 1.3rem; }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.8rem; }
+    .frame { margin: 1.4rem 0 0.4rem; max-width: 100%; }
+    .frame.tall { max-width: 340px; }
+    .frame img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    .u-cap { color: var(--muted); font-style: italic; font-size: 0.86rem; margin: 0 0 1.6rem; }
+    iframe { display: block; max-width: 100%; border: 0; margin: 1.4rem 0; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+      <p class="u-date">August 9th, 2026</p>
+      <h2 class="u-title">I organized a national event</h2>
+      <p>Today, I had the opportunity to help organise the Ashoka University Thinkers of Tomorrow Masterclass in Delhi, featuring Prof. Mukesh Sud on the question: Can You Build a Start-up Without a Perfect Plan?</p>
+      <p>I'm not an Ashoka student, but I've been associated with the university for the past two years through the Lodha Genius Programme, so it was great to be back and contribute from the other side of the room.</p>
+      <p>The highlight, of course, was getting to meet Prof. Mukesh Sud.</p>
+      <p>Prof. Sud has had an incredible career across academia, entrepreneurship, and management education, with experience at institutions including Indian Institute of Management Ahmedabad and Indian Institute of Technology, Delhi, and currently teaches at Ashoka. He is also the author of three Penguin Books bestsellers, which made the conversation around building companies without having every step figured out particularly interesting.</p>
+      <p>He was an incredibly warm and generous person to speak with. We ended up having a great conversation about startups, education, and the importance of taking action before you have a perfect plan.</p>
+      <p>He even gave me two of his books, both personally autographed.</p>
+      <p>And, perhaps most excitingly, he agreed to come on the Decoded Podcast for a conversation soon.</p>
+      <p>I reached out about the possibility of having him as a guest, and he was kind enough to agree to join us for a conversation. Given his experience across entrepreneurship, academia, and institution-building, I'm really looking forward to sitting down with him at Ashoka University and hearing more about the lessons he's picked up along the way.</p>
+      <p>A really rewarding way to spend a Sunday, and a good reminder of why I value being involved with communities even when I'm not formally a student there. Simply reaching out to the organising team opened the door to an opportunity I otherwise wouldn't have had. Sometimes, you really do just have to ask.</p>
+  </div>
+  <script>
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ["come back :(", "hello? :(", "i'll wait...", "still here :)"];
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { clearTimeout(idleTimer); clearInterval(awaySpin); var i = 0; setTitle(awayMsgs[0]); awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400); }
+      else { clearInterval(awaySpin); awaySpin = null; document.title = "yay, you came back :)"; titleTemp = true; setTimeout(restoreTitle, 1700); scheduleIdle(); }
+    });
+    function scheduleIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!document.hidden) setTitle("still there? :)"); }, 60000); }
+    ["mousemove","scroll","keydown","click","touchstart"].forEach(function (ev) { window.addEventListener(ev, function () { if (titleTemp && !document.hidden && document.title === "still there? :)") restoreTitle(); scheduleIdle(); }, { passive: true }); });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights from my ISB Research Project | Akshat Bhaskar</title>
+  <meta name="description" content="Insights from my ISB Research Project — an update from Akshat Bhaskar." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/update-aug-6.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666; --rule: #e2e2e2; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; font-size: 15px; line-height: 1.66; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    .u-date { color: var(--muted); font-style: italic; margin: 0 0 0.3rem; }
+    .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0 0 1.3rem; }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.8rem; }
+    .frame { margin: 1.4rem 0 0.4rem; max-width: 100%; }
+    .frame.tall { max-width: 340px; }
+    .frame img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+    .u-cap { color: var(--muted); font-style: italic; font-size: 0.86rem; margin: 0 0 1.6rem; }
+    iframe { display: block; max-width: 100%; border: 0; margin: 1.4rem 0; }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+      <p class="u-date">August 6th, 2026</p>
+      <h2 class="u-title">Insights from my ISB Research Project on Financial Misinformation</h2>
+      <p>I'm halfway through a research study on financial misinformation in India, and it's made me realize how little we actually know about who falls for it.</p>
+      <p>Most research on misinformation stops at identifying false posts. It tells you what's wrong, but not who's susceptible to it. I wanted to flip that and ask the second half: what individual traits predict whether someone shares misinformation they've encountered?</p>
+      <p>So I'm pairing personality data with the content.</p>
+      <p>On the personality side, I'm using the BFI-2-XS, a 15-item version of the Big Five Inventory (Soto and John, 2017) measuring extraversion, agreeableness, conscientiousness, negative emotionality, and open-mindedness (thanks Colby College for the form!).</p>
+      <p>Alongside that, I'm using Przybylski et al.'s Fear of Missing Out scale, a 10-item measure of how much someone worries others are having experiences they're missing. Developed at the University of Oxford, published 2013 in Computers in Human Behavior, it's an established, validated instrument, not something I wrote myself, which matters when you're trying to say something real about who shares what.</p>
+      <p>On the content side, I'm running actual financial misinformation posts from Indian social media through two NLP models: MuRIL, which Google built specifically for Indian languages including Hindi–English code-mixed text, and XLM-RoBERTa, Meta's more general multilingual model trained across 100 languages. Most models are trained on English-dominant web text and fall apart on the way Indians actually write online, mixing Hindi and English in the same sentence. Comparing the two tells me whether India-specific pretraining earns its keep.</p>
+      <p>I'm doing this under a professor at the Indian School of Business, and we're targeting around 300 respondents for a mixed-effects model in R.</p>
+      <p>The part I keep turning over is conscientiousness. The obvious prediction is that conscientious people, careful, organized, rule-following, should be less likely to spread something false. But financial misinformation in India shows up dressed in way more ways than just as an 'opportunity'. It shows up as a warning: your bank account will be frozen, RBI just changed this rule, act now. A conscientious person's instinct is to protect the people around them, and that same instinct might be exactly what makes them forward the warning without checking it first. If that holds, "slow down and verify" is aimed at the wrong lever for a chunk of the people spreading this stuff. You're not fighting carelessness. You're fighting a sense of duty. That's the hypothesis I want the data to either confirm or kill.</p>
+      <p>Data collection is slow. Most people don't want to sit through a survey that asks them to read misinformation and rate their own personality. But what's coming back so far is cleaner than I expected.</p>
+      <p>If you work in fintech, or you're into financial markets in general, I'd love to talk! Drop me a message.</p>
+      <div class="frame"><img width="800" height="305" loading="lazy" decoding="async" src="bfi2_colby.jpeg" alt="BFI-2 personality inventory from Colby College"></div>
+      <p class="u-cap">The BFI-2 personality inventory, from Colby College.</p>
+  </div>
+  <script>
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ["come back :(", "hello? :(", "i'll wait...", "still here :)"];
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { clearTimeout(idleTimer); clearInterval(awaySpin); var i = 0; setTitle(awayMsgs[0]); awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400); }
+      else { clearInterval(awaySpin); awaySpin = null; document.title = "yay, you came back :)"; titleTemp = true; setTimeout(restoreTitle, 1700); scheduleIdle(); }
+    });
+    function scheduleIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!document.hidden) setTitle("still there? :)"); }, 60000); }
+    ["mousemove","scroll","keydown","click","touchstart"].forEach(function (ev) { window.addEventListener(ev, function () { if (titleTemp && !document.hidden && document.title === "still there? :)") restoreTitle(); scheduleIdle(); }, { passive: true }); });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>
