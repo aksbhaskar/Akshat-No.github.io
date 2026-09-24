@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Updates | Akshat Bhaskar</title>
+  <meta name="description" content="Running updates from Akshat Bhaskar — what he's building, writing, and thinking about, most recent first." />
+  <meta name="author" content="Akshat Bhaskar" />
+  <link rel="canonical" href="https://akshatb.com/updates" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Updates" />
+  <meta property="og:description" content="Running updates, most recent first." />
+  <meta property="og:url" content="https://akshatb.com/updates" />
+  <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap">
+  <style>
+    :root { --ink: #141414; --bg: #fff; --muted: #666;
+            --warm: #faf6f2; --warm-ink: #23201c; --warm-body: #3d372e; --brown: #73574a; --warm-border: #e5dbd7; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 15px; line-height: 1.62; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 620px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 2.2rem; max-width: 46ch; }
+
+    .u-list { }
+    .u-list a { display: block; margin: 0 0 1.5rem; line-height: 1.5; }
+    .u-list .m { color: var(--muted); }
+
+    /* ── popup overlay ── */
+    .overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(35,32,28,0.42); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+      opacity: 0; transition: opacity 0.28s ease;
+      overflow-y: auto; padding: 4vh 1rem; display: block;
+    }
+    .overlay.open { opacity: 1; }
+    .overlay[hidden] { display: none; }
+    .sheet {
+      background: var(--warm); color: var(--warm-ink);
+      max-width: 560px; width: 100%; margin: 0 auto;
+      border: 1px solid var(--warm-border); border-radius: 10px;
+      box-shadow: 0 40px 90px -40px rgba(60,40,25,0.55);
+      padding: 1.5rem 1.6rem 2.4rem;
+      transform: translateY(16px) scale(0.985); opacity: 0;
+      transition: transform 0.42s cubic-bezier(0.2,0.7,0.2,1), opacity 0.3s ease;
+    }
+    .overlay.open .sheet { transform: none; opacity: 1; }
+
+    .back {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--warm-border); color: var(--brown);
+      box-shadow: 0 8px 22px -12px rgba(60,40,25,0.45);
+      cursor: pointer; padding: 0; margin: 0 0 1.4rem;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .back:hover { transform: translateX(-2px); color: var(--warm-ink); }
+
+    .sheet .u-date { font-style: italic; color: var(--brown); font-size: 0.85rem; margin: 0 0 0.2rem; }
+    .sheet .u-title { font-style: italic; font-weight: 400; font-size: 1.3rem; line-height: 1.22; color: var(--warm-ink); margin: 0 0 1.2rem; }
+    .sheet p { font-size: 0.95rem; line-height: 1.75; color: var(--warm-body); margin: 0 0 1rem; }
+    .sheet ul { margin: 0 0 1rem; padding-left: 1.15rem; }
+    .sheet li { font-size: 0.95rem; line-height: 1.7; color: var(--warm-body); margin: 0 0 0.75rem; }
+    .sheet a { color: var(--warm-ink); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    .sheet a:hover { color: var(--brown); }
+    .sheet .frame {
+      background: #fff; padding: 10px; border: 1px solid var(--warm-border); border-radius: 7px;
+      box-shadow: 0 20px 46px -28px rgba(60,40,25,0.4); max-width: 100%; margin: 1.2rem 0 0.5rem;
+    }
+    .sheet .frame.tall { max-width: 300px; }
+    .sheet .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
+    .sheet .u-cap { font-style: italic; color: var(--brown); font-size: 0.8rem; margin: 0 0 1.4rem; }
+    .sheet iframe { display: block; max-width: 100%; border: 0; margin: 1.2rem 0; border-radius: 6px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .overlay, .sheet { transition: none; }
+    }
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } .sheet { padding: 1.3rem 1.2rem 2rem; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <nav>
+      <a href="index.html">home</a>
+      <a href="professionalism.html">better website?</a>
+      <a href="photos.html">corpus delicti</a>
+      <a href="updates.html">updates</a>
+    </nav>
+
+    <h1>updates</h1>
+    <p class="sub">what i've been up to, most recent first. tap any entry to read it.</p>
+
+    <nav class="u-list">
+      <a href="#u-sep-20">September 20th 2026: <span class="m">Started Project Fermat</span></a>
+      <a href="#u-sep-18">September 18th 2026: <span class="m">Call For Volunteers</span></a>
+      <a href="#u-sep-15">September 15th 2026: <span class="m">A HUGE Week</span></a>
+      <a href="#u-sep-13">September 13th 2026: <span class="m">I became a guest speaker!</span></a>
+      <a href="#u-sep-6">September 6th 2026: <span class="m">Fall 2026 Ukraine Seminars</span></a>
+      <a href="#u-aug-31">August 31st 2026</a>
+      <a href="#u-aug-22">August 22nd 2026</a>
+      <a href="#u-aug-16">August 16th 2026: <span class="m">I Reached Out!</span></a>
+      <a href="#u-aug-11">August 11th 2026: <span class="m">Reach Out to People!</span></a>
+      <a href="#u-aug-9">August 9th 2026: <span class="m">I organized a national event</span></a>
+      <a href="#u-aug-6">August 6th 2026: <span class="m">Insights from my ISB Research Project</span></a>
+      <a href="#u-aug-2">August 2nd 2026</a>
+      <a href="#u-jul-10">July 10th 2026: <span class="m">Research Apprentice at ISI Delhi</span></a>
+      <a href="#u-jul-8">July 8th 2026: <span class="m">Undergraduate Teaching Assistant at Ashoka</span></a>
+    </nav>
+
+  </div>
+
+  <!-- ── popup ── -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true">
+      <button class="back" id="closeBtn" type="button" aria-label="Back">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sheet-body" id="sheetBody"></div>
+    </div>
+  </div>
+
+  <!-- ── sources (hidden) ── -->
+  <div id="sources" hidden>
+
+    <div class="src" id="u-sep-20">
+      <p class="u-date">September 20th, 2026</p>
+      <h2 class="u-title">Started Project Fermat</h2>
+      <ul>
+        <li>I have formally started Project Fermat, with Ishaan Harish, a longtime friend, as a small initiative to help Class 6–8 students build a real foundation in olympiad mathematics before they get near IOQM or RMO. We built a website too: <a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener">projectfermat.vercel.app</a></li>
+        <li>We're still looking for volunteer tutors for Project Fermat. If you enjoy solving problems and explaining how you got there, email us at <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a>. We could also use help with outreach for Project Fermat. If that's more your speed than teaching, we would love to hear from you!</li>
+        <li>I have been talking to Adarsh Kumar regarding a potential collaboration with Skillzo, which could turn into a pretty interesting event. More on this soon.</li>
+        <li>We had a great conversation with Sagar Shrivastava sir this week about where Project Fermat could go next. I can't thank him enough for the advice, as it has given us a lot to think about.</li>
+        <li>I recently onboarded Aaryaveer Jatia, a 14 y/o with great research experience in the economics of sports, to the Edunomix Institute India research team. Looking forward to have you with us!</li>
+        <li>We're in the middle of interviewing three more people for Edunomix and Decoded, so both teams are about to grow :)</li>
+        <li>The Decoded Podcast Newsletter team is still hiring writers. If you're interested, email Anya, our Head of Newsletter, at <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a>.</li>
+      </ul>
+      <p>If any of this overlaps with something you're building, reach out. Always happy to talk!</p>
+    </div>
+
+    <div class="src" id="u-sep-18">
+      <p class="u-date">September 18th, 2026</p>
+      <h2 class="u-title">Call For Volunteers</h2>
+      <p>I'm trying something new.</p>
+      <p>We are starting a small initiative to help middle school students build a foundation in olympiad mathematics, training I would have loved to receive in 6th grade. The students are currently in Classes 6–8, working toward competitions like SOF IMO and NMTC, and eventually IOQM and RMO as they reach Class 8 and beyond.</p>
+      <p>I'm looking for talented Class 11 and 12 students and mathematics undergraduates who enjoy solving problems and, more importantly, enjoy thinking about how to explain them. The idea is to have volunteers teach these students regularly, introduce them to olympiad-style problem solving, and help them develop the mathematical maturity that comes from wrestling with problems rather than simply learning procedures.</p>
+      <p>This is completely volunteer-based. You do not need to be a professional teacher or have formal teaching experience. If you have a strong mathematical background, have participated in olympiads yourself, or simply spend an unreasonable amount of time thinking about mathematics, I'd love to hear from you.</p>
+      <p>I'm especially interested in people who can make mathematics feel intellectually exciting to a 12-year-old. There is a huge difference between teaching someone how to solve a particular problem and teaching them how to look at a problem.</p>
+      <p>If you'd like to volunteer as a tutor, email us at <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a> with a short introduction and your mathematical background.</p>
+      <p>We're keeping this small to begin with, and I'm curious to see what we can build from it.</p>
+    </div>
+
+    <div class="src" id="u-sep-15">
+      <p class="u-date">September 15th, 2026</p>
+      <h2 class="u-title">A HUGE Week!</h2>
+      <p>On Wednesday, I was at Ashoka University to interview Professor Sandeep Juneja, Professor of Computer Science and Founding Director of the Safexpress Centre for Data, Learning and Decision Sciences at Ashoka University, with Amaira Akbar.</p>
+      <p>The conversation is now out on Spotify. We spoke about risk, uncertainty, decision-making, mathematics, computer science, and a lot more. It was a great experience, and I also got to meet Hamreet while I was there.</p>
+      <p>The rest of the week was filled with some equally interesting conversations.</p>
+      <p>I had a long conversation with Cheryl (Jingxing) Luo, an undergraduate studying Biology at the University of Oxford. We ended up discussing education, financial literacy, AI governance, biosecurity, startups, university admissions, India and China, and what we both want to do over the next few years.</p>
+      <p>I especially enjoyed comparing our experiences building education projects. We also discussed possible collaborations between her work and Edunomix.</p>
+      <p>I also spoke with Adarsh Kumar, Founder of Skillzo, Global Student Prize Laureate, studying at Georgetown University in Qatar, about a potential partnership between Skillzo and the Decoded Podcast for events and competitions. Exciting updates coming soon :)</p>
+      <p>On the Decoded side, we officially onboarded our newsletter team this week. We had our first meeting and are now getting the team properly off the ground. We are also looking for writers and designers who would like to join us. If you're interested, email me at <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>.</p>
+      <p>And then came the biggest thing of the week: the Decoded Podcast × HERizon student session with Cary S. Krosinsky on sustainable finance and the future of climate action.</p>
+      <p>We initially planned to cap registrations at 100. We forgot to turn the cap on, and ended up with 160+ registrations before we stopped them.</p>
+      <p>The event went extremely well. We had a great turnout, covered a huge range of ideas around sustainable finance, climate action, investing, and the future, and received a lot of incredibly positive feedback afterwards.</p>
+      <p>You can read some of the feedback <a href="https://lnkd.in/g5zqJjQk" target="_blank" rel="noopener">here</a>.</p>
+      <p>Finally, the Edunomix Institute India Economics Essay Competition is still open. We've received a ton of entries already, and the quality has been genuinely exciting to see. If you haven't submitted yours yet, please get it in soon. It's a pretty great competition, and I'd love to see more students take a shot at it. <a href="https://lnkd.in/gBDGmvRg" target="_blank" rel="noopener">Learn more</a>.</p>
+      <p>A lot happened this week, but what I enjoyed most was simply getting to have so many conversations with people building interesting things in completely different areas. There is always something new to learn when you put enough curious people in the same week.</p>
+    </div>
+
+    <div class="src" id="u-sep-13">
+      <p class="u-date">September 13th, 2026</p>
+      <h2 class="u-title">I became a guest speaker!</h2>
+      <p>Got to hop into the conversation Farees Fathima led on The Future of AI: Who Gets to Shape It, and it was such a pleasure addressing your audience. Wonderful session you all put together!</p>
+      <p>And the timing could not have been better because right as we wrapped, we locked in what's next. Decoded Podcast × HERizon are teaming up for a student conversation on Sustainable Finance &amp; the Future of Climate Action, with Cary S. Krosinsky joining us live. He teaches at Yale University, Harvard University, Brown University, and New York University and works right at the intersection of finance and climate strategy, so this is going to be a great one.</p>
+      <p>September 14, 7:30 PM IST, on Google Meet, and it's free. Everyone who attends gets a certificate from HERizon × Decoded Podcast.</p>
+      <p>If climate, STEM, economics, finance, tech, or the systems behind the sustainability transition interest you even a little, come join us! Link to register is in the original post below :)</p>
+      <p>See you there!</p>
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7504591567350009856" height="600" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+    </div>
+
+    <div class="src" id="u-sep-6">
+      <p class="u-date">September 6th, 2026</p>
+      <h2 class="u-title">Fall 2026 Ukraine Seminars</h2>
+      <p>It's been a huge few days for Decoded and Edunomix both.</p>
+      <p>Edunomix Institute partnered with Learn and Teach UA again this season through the Ukraine Speaks English initiative, giving students across Ukraine free financial education while so much of their normal schooling has been disrupted. More than 40 students of all ages showed up for the first class of the cycle. Every time this program runs, I'm reminded why we started it: students halfway across the world, logging on every week just to learn how money actually works.</p>
+      <p>The Decoded Podcast episode with Professor M. Ram Murty of Queen's University is finally live, and it took weeks of back and forth to make happen! We talked prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think, no phone, no distractions. This might be the best conversation we've recorded on the show. 44 minutes, link in the comments!</p>
+      <p>After dozens of interviews, we picked our new Head of the Decoded Newsletter, and I could not be more excited about what's coming next. More on who that is soon. A few newsletter roles are still open too, so if you want in, email me at <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>.</p>
+      <p>The Edunomix Institute India Essay Competition 2026 is officially open, deadline September 30! Applicants get judged by economics scholars from Harvard University, University of California, Berkeley, Cornell University, and University of Warwick, a panel most national competitions would kill for. We have already received a few dozen essays, and top entries walk straight onto the Edunomix India research team. Pick a prompt and start writing :)</p>
+      <p>One more thing! We at the Decoded Podcast have just finalized a partnership with HERizon, and I promise it's worth the wait. Details soon.</p>
+      <p>If any of this overlaps with what you're building, whether it's a podcast, a research team, or your own version of the essay competition, reach out. Always happy to talk!</p>
+      <div class="frame"><img width="1920" height="883" loading="lazy" decoding="async" src="ukraine_seminars_fall2026.png" alt="Edunomix Institute Fall 2026 Ukraine Seminars in partnership with Learn and Teach UA"></div>
+      <p class="u-cap">Edunomix Institute Fall 2026 Ukraine Seminars, in partnership with Learn and Teach UA.</p>
+    </div>
+
+    <div class="src" id="u-aug-31">
+      <p class="u-date">August 31st, 2026</p>
+      <p>Been off LinkedIn for a few days, out traveling and meeting family, so here's what happened while I was gone:</p>
+      <p>The second edition of the Edunomix Institute India Essay Competition is officially live, and submissions are open! It's a national essay competition for students in Classes 6 to 12, as well as first year university students and gap year students, with five prompts on questions that matter for India right now. The top essays are judged by economics scholars from Harvard University, University of California, Berkeley, Cornell University, and University of Warwick. Deadline is September 30. Link in the comments, pick a prompt and write something you'd want to defend :)</p>
+      <p>I also just registered for The New York Academy of Sciences 208th Annual Meeting this November, as a Member and Fellow. If any of you are NYAS alumni or current members, get registered too, it's worth being part of.</p>
+      <p>And if NYAS is new to you: I recently completed my Junior Academy Fellowship with them, working on an energy infrastructure project under Dr. Nandhini Sivakumar, Postdoctoral Research Scientist at the Motor Neuron Center, Columbia University. Apply if you're a student looking for real research mentorship, it's a great opportunity!</p>
+      <p>I onboarded two new research associates for the Decoded Podcast this week: Aly Muhammad Dadwani, incoming at George Mason University's Honors College for political science, already a three-time Model UN Best Delegate and a TEDx speaker, and Vidyanshi Mittal, studying cognitive science at Thapar Institute of Engineering &amp; Technology, who just wrapped an experimental methods workshop at Indian Institute of Technology Kanpur. Welcome to the team, both of you!</p>
+      <p>Edunomix India's research team grew too, with Divyansh Makwana joining us, a B. Com Hons student at Delhi University and an MVPP gold medalist. Welcome aboard Divyansh!</p>
+      <p>Also caught the Cafe Cursor event in Delhi this week, a good reset from the usual routine :)</p>
+      <p>If any of this overlaps with what you're building, the essay competition, the fellowship, growing a podcast or a research team, reach out. Always happy to talk!</p>
+    </div>
+
+    <div class="src" id="u-aug-22">
+      <p class="u-date">August 22nd, 2026</p>
+      <p>This week had a lot going on.</p>
+      <p>On Monday I got on a call with Akshay Datt, who hosts the Founder Thesis podcast and puts out two new episodes a week. I run the Decoded Podcast, my own podcast on economics, tech, AI, entrepreneurship, and public policy, and I wanted to know what actually changes once a show goes from episode ten to episode three hundred. I sent him a cold message a few weeks ago and honestly didn't expect a reply. He wrote back the same day! The call was completely worth the wait, and was really insightful as I move forward recording my own podcast.</p>
+      <p>Also finished building out the first real team around the Decoded Podcast. Hired more than ten new research associates and social media and outreach associates, on top of me and Amaira. Ran more interviews for Edunomix Institute India too, it's been a full week of conversations!</p>
+      <p>P.S. If you are interested in joining the Decoded Podcast, email me at <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>!</p>
+      <p>Had a great chat with Arjun Mohan from Standard about the work they do in venture and blockchain infrastructure, and about my own journey so far. I always learn something new talking to people who invest for a living!</p>
+      <p>And I finally recorded my podcast interview with M. Ram Murty at Queen's University. He's one of the greatest number theory and philosophy brains of our generation, and I have been trying to make this happen for weeks. Releasing soon, and I cannot wait for you all to hear it!</p>
+      <p>That's the update for now! Honestly, if you're building anything at all, whether it's a startup, a podcast, a research project, or some wild idea nobody else believes in yet, I want to hear about it. Drop a comment or send me a message. See you next week!</p>
+    </div>
+
+    <div class="src" id="u-aug-16">
+      <p class="u-date">August 16th, 2026</p>
+      <h2 class="u-title">I Reached Out!</h2>
+      <p>Last week I said I'd spend the week reaching out to people whose work I admire, and I'd come back and share what happened.</p>
+      <p>Here's the recap:</p>
+      <p>I started with M. Ram Murty, a number theorist at Queen's University, the Queen's Research Chair who is also cross-appointed as a professor of philosophy, specializing in Indian philosophy. He's a Fellow of the Royal Society of Canada, won the Coxeter–James Prize from the Canadian Mathematical Society, and did his PhD at Massachusetts Institute of Technology. I came across his work recently, and with college starting in 2027 and my own attention split across math, economics, AI policy, and financial literacy, I wanted to know how someone builds a serious career in more than one field. I emailed him, and he replied within hours and said yes without hesitation. I was thrilled someone at that level would even respond. The call ran long, and most of it turned into him talking about Indian Philosophy. I've been thinking about that conversation all week.</p>
+      <p>Earlier in the week, I got real time with Prof. Mukesh Sud, who spent three decades moving between entrepreneurship and academia. He now teaches at Indian Institute of Management Ahmedabad and Ashoka, and is a visiting fellow at the Cambridge Judge Business School. He sent me home with two signed copies of his bestseller and agreed to come on the Decoded Podcast, all because I asked the organizing team if I could help out.</p>
+      <p>I also spent weeks stuck on a real problem for my research project in financial misinformation regarding code-mixed text. I emailed Professor Monojit Choudhury at MBZUAI, who connected me to Prashant Kodali, a postdoctoral researcher at Microsoft Research India who did his PhD on code-mixed text at IIIT Hyderabad and won the Microsoft Research India PhD Award for it in 2024. We finally got on a call this week, and he walked me through why a generic pipeline covering English, Hindi, and code-mixed text together will likely beat something narrowly built for code-mixing, since code-mixed text turned out to be a much smaller share of my dataset than I'd assumed. He also handed me a normalization tool his lab built and a reading list I'm still working through.</p>
+      <p>Talked twice this week with Aarush Chhatwal, an incoming freshman at Harvard University, about our shared pull toward economics, math, computer science, and startups.</p>
+      <p>Also sat down with Kai Goodall, from the University of Waterloo. He's a part of the team at Bagel Fund, one of the grant programs I've been talking to about a project that's close to my heart.</p>
+      <p>On top of all of that, I ran over ten interviews this week for people looking to join the various departments across my initiatives. Turning strangers into a team is its own kind of reaching out.</p>
+      <p>A week ago I said more people should try this. Send the email. Ask for the twenty minutes. The worst answer is silence, and that costs you nothing.</p>
+      <p>See you guys next week!</p>
+    </div>
+
+    <div class="src" id="u-aug-11">
+      <p class="u-date">August 11th, 2026</p>
+      <h2 class="u-title">Reach Out to People!</h2>
+      <p>There is so much power in reaching out.</p>
+      <p>Over the years, some of the most interesting conversations I've had have started with a simple message to someone whose work I admired.</p>
+      <p>This week, I'm going to make a conscious effort to do more of that.</p>
+      <p>I'll be reaching out to people I look up to, people whose work I've been following, and people doing things I find interesting. Some I've never spoken to before. Some I've wanted to speak to for a long time.</p>
+      <p>And at the end of the week, I'll share who I spoke to, what I learned, and how those conversations came about.</p>
+      <p>I think more people should do this. If there's someone whose work inspires you, reach out.</p>
+      <p>Ask them about their work. Ask how they got there. Ask about something they've written or built. Tell them why you found it interesting.</p>
+      <p>You might get no response. That's fine.</p>
+      <p>But you might also end up having a conversation that changes how you think about something, introduces you to an entirely new field, or leads to an opportunity you never expected.</p>
+      <p>You'll never know unless you ask. So this week, I'm going to ask.</p>
+      <p>You should too.</p>
+      <div class="frame"><img width="800" height="600" loading="lazy" decoding="async" src="swiss_embassy_event.jpeg" alt="Event at the Swiss Embassy"></div>
+      <p class="u-cap">Event at the Swiss Embassy, where I got into the room simply by emailing someone about it.</p>
+    </div>
+
+    <div class="src" id="u-aug-9">
+      <p class="u-date">August 9th, 2026</p>
+      <h2 class="u-title">I organized a national event</h2>
+      <p>Today, I had the opportunity to help organise the Ashoka University Thinkers of Tomorrow Masterclass in Delhi, featuring Prof. Mukesh Sud on the question: Can You Build a Start-up Without a Perfect Plan?</p>
+      <p>I'm not an Ashoka student, but I've been associated with the university for the past two years through the Lodha Genius Programme, so it was great to be back and contribute from the other side of the room.</p>
+      <p>The highlight, of course, was getting to meet Prof. Mukesh Sud.</p>
+      <p>Prof. Sud has had an incredible career across academia, entrepreneurship, and management education, with experience at institutions including Indian Institute of Management Ahmedabad and Indian Institute of Technology, Delhi, and currently teaches at Ashoka. He is also the author of three Penguin Books bestsellers, which made the conversation around building companies without having every step figured out particularly interesting.</p>
+      <p>He was an incredibly warm and generous person to speak with. We ended up having a great conversation about startups, education, and the importance of taking action before you have a perfect plan.</p>
+      <p>He even gave me two of his books, both personally autographed.</p>
+      <p>And, perhaps most excitingly, he agreed to come on the Decoded Podcast for a conversation soon.</p>
+      <p>I reached out about the possibility of having him as a guest, and he was kind enough to agree to join us for a conversation. Given his experience across entrepreneurship, academia, and institution-building, I'm really looking forward to sitting down with him at Ashoka University and hearing more about the lessons he's picked up along the way.</p>
+      <p>A really rewarding way to spend a Sunday, and a good reminder of why I value being involved with communities even when I'm not formally a student there. Simply reaching out to the organising team opened the door to an opportunity I otherwise wouldn't have had. Sometimes, you really do just have to ask.</p>
+    </div>
+
+    <div class="src" id="u-aug-6">
+      <p class="u-date">August 6th, 2026</p>
+      <h2 class="u-title">Insights from my ISB Research Project on Financial Misinformation</h2>
+      <p>I'm halfway through a research study on financial misinformation in India, and it's made me realize how little we actually know about who falls for it.</p>
+      <p>Most research on misinformation stops at identifying false posts. It tells you what's wrong, but not who's susceptible to it. I wanted to flip that and ask the second half: what individual traits predict whether someone shares misinformation they've encountered?</p>
+      <p>So I'm pairing personality data with the content.</p>
+      <p>On the personality side, I'm using the BFI-2-XS, a 15-item version of the Big Five Inventory (Soto and John, 2017) measuring extraversion, agreeableness, conscientiousness, negative emotionality, and open-mindedness (thanks Colby College for the form!).</p>
+      <p>Alongside that, I'm using Przybylski et al.'s Fear of Missing Out scale, a 10-item measure of how much someone worries others are having experiences they're missing. Developed at the University of Oxford, published 2013 in Computers in Human Behavior, it's an established, validated instrument, not something I wrote myself, which matters when you're trying to say something real about who shares what.</p>
+      <p>On the content side, I'm running actual financial misinformation posts from Indian social media through two NLP models: MuRIL, which Google built specifically for Indian languages including Hindi–English code-mixed text, and XLM-RoBERTa, Meta's more general multilingual model trained across 100 languages. Most models are trained on English-dominant web text and fall apart on the way Indians actually write online, mixing Hindi and English in the same sentence. Comparing the two tells me whether India-specific pretraining earns its keep.</p>
+      <p>I'm doing this under a professor at the Indian School of Business, and we're targeting around 300 respondents for a mixed-effects model in R.</p>
+      <p>The part I keep turning over is conscientiousness. The obvious prediction is that conscientious people, careful, organized, rule-following, should be less likely to spread something false. But financial misinformation in India shows up dressed in way more ways than just as an 'opportunity'. It shows up as a warning: your bank account will be frozen, RBI just changed this rule, act now. A conscientious person's instinct is to protect the people around them, and that same instinct might be exactly what makes them forward the warning without checking it first. If that holds, "slow down and verify" is aimed at the wrong lever for a chunk of the people spreading this stuff. You're not fighting carelessness. You're fighting a sense of duty. That's the hypothesis I want the data to either confirm or kill.</p>
+      <p>Data collection is slow. Most people don't want to sit through a survey that asks them to read misinformation and rate their own personality. But what's coming back so far is cleaner than I expected.</p>
+      <p>If you work in fintech, or you're into financial markets in general, I'd love to talk! Drop me a message.</p>
+      <div class="frame"><img width="800" height="305" loading="lazy" decoding="async" src="bfi2_colby.jpeg" alt="BFI-2 personality inventory from Colby College"></div>
+      <p class="u-cap">The BFI-2 personality inventory, from Colby College.</p>
+    </div>
+
+    <div class="src" id="u-aug-2">
+      <p class="u-date">August 2nd, 2026</p>
+      <p>I keep meaning to be more active on here, so I'm finally doing it! Here's what the last month or so has actually looked like:</p>
+      <p>I've started a new research study on how financial misinformation spreads across Indian social media. I'm using two NLP models, MuRIL and XLM-RoBERTa, to analyze multilingual and code-mixed content (the Hindi–English mix most Indians actually post in, which most models handle poorly). Alongside that, I'm using two validated psychological measures, the BFI-2-XS personality inventory and the Fear of Missing Out scale, to identify which individual traits predict whether someone shares misinformation. I'm doing this under the guidance of a professor at the Indian School of Business (ISB), and I'm really excited about where it's heading.</p>
+      <p>Back to Edunomix India! I'm fully back to running the India Chapter of the fiscally-sponsored 501(c)(3) nonprofit organization, the Edunomix Institute, as founder and president. I'd stepped back for a while due to other time commitments, and it feels good to be in it day to day again. Some exciting things are coming (more on that soon)!</p>
+      <p>I've completely redesigned my website, akshatb.com. It's built to read like an academic paper, with an abstract, keywords, and footnotes. The format is very deliberate, and I'm really happy with how it turned out. Have a look if you're curious.</p>
+      <p>I'm recording a new episode of the Decoded Podcast, my podcast where I sit down with people I find fascinating and ask the questions I really want answered. This one has been a lot of fun to put together!</p>
+      <p>I've started reading Amartya Sen's Development as Freedom. His central argument, that development should be measured by the real freedoms people have rather than by income alone, is already shifting how I think about my own work. I'll share fuller thoughts soon.</p>
+      <p>And on the personal side, I ran my first half marathon!</p>
+      <p>That's the update for now! Honestly, if you're building anything at all, I want to hear about it. Whether you're into quantitative research, working in the nonprofit space, building a podcast, chasing some wild idea nobody else believes in yet, or you just want to talk number theory, markets, or Amartya Sen, please reach out! Drop a comment or send me a message. I love meeting people doing interesting things, and I'm always up for a good conversation!</p>
+    </div>
+
+    <div class="src" id="u-jul-10">
+      <p class="u-date">July 10th, 2026</p>
+      <h2 class="u-title">My experience as a paid Research Apprentice at ISI Delhi</h2>
+      <p>This year, alongside my Teaching Assistant role, I also returned to the Lodha Genius Programme as their Undergraduate Mathematics Research Apprentice, even though I hadn't technically started my undergraduate degree yet.</p>
+      <p>The programme made an exception for me to join before having started my undergraduate degree, and I'm grateful they did. It was a paid undergraduate research position, which provided a ₹10,000 research stipend to all undergraduate apprentices, along with accommodation and access to all Ashoka University facilities.</p>
+      <p>For four weeks, I worked under Professor Shanta Laishram of the Indian Statistical Institute (ISI), New Delhi, exploring advanced number theory and getting a real sense of what advanced mathematics looks like outside usual lectures.</p>
+      <p>The Lodha Genius Programme is built for gifted high schoolers, so its regular courses run at the undergraduate level. The apprenticeship is built for advanced undergraduates, so its lecture series sometimes runs at the graduate level. Alongside my research, I sat in on:</p>
+      <ul>
+        <li>"Modern Cryptography" by Professor Sourav Mukhopadhyay, Indian Institute of Technology, Kharagpur</li>
+        <li>"Modular Forms: An Introduction to 'Non-Abelian' Symmetry" by Manodeep Raha, Tata Institute of Fundamental Research, Mumbai</li>
+        <li>"Statistical Modeling, the Foundation of Generative AI" by Professor Sarvesh Ravichandran Iyer, Ashoka University</li>
+      </ul>
+      <p>Some weeks I was teaching sixteen-year-olds to solve a Rubik's cube. Other weeks I was sitting in an advanced lecture on modular forms. Few programmes let you do both in the same month.</p>
+      <p>Thank you to Professor Shanta Laishram for taking me on as his apprentice, to Manodeep Raha, Professor Iyer, and Professor Mukhopadhyay for the lectures, and to Ambika Ma'am at Ashoka and to Eshita Ma'am and Satyam Sir at the Lodha Foundation for making all of it possible. Thank you also to Professor Sagar Shrivastava for his guidance throughout the entire programme.</p>
+      <div class="frame"><img width="1170" height="878" loading="lazy" decoding="async" src="media_cryptography.jpg" alt="A lecture on Modern Cryptography during the apprenticeship"></div>
+      <p class="u-cap">A lecture on Modern Cryptography during the apprenticeship.</p>
+      <div class="frame"><img width="1170" height="878" loading="lazy" decoding="async" src="mathapprentice1.jpg" alt="LG-AUP 2026 Math Apprenticeship"></div>
+      <p class="u-cap">LG-AUP 2026 Math Apprenticeship.</p>
+    </div>
+
+    <div class="src" id="u-jul-8">
+      <p class="u-date">July 8th, 2026</p>
+      <h2 class="u-title">Being an Undergraduate Teaching Assistant at Ashoka University</h2>
+      <p>Last year, I attended the Lodha Genius Programme as a student, studying pure mathematics under some of the best professors in India. It's actually the reason I chose to study mathematics at university.</p>
+      <p>This year, I got to return, but on the other side of the classroom.</p>
+      <p>After finishing high school, the Lodha Genius Programme brought me back for their 2026 edition as a Teaching Assistant. It was an undergraduate teaching position at Lodha Genius, which made an exception to include me to be a part of the programme. I also worked as a Mathematics Undergraduate Research Apprentice over the duration of the four weeks (separate post above).</p>
+      <p>Over four weeks, I was housed completely at Ashoka University, and I worked across four completely different courses.</p>
+      <p>Week 1, with the Junior Track: "Fundamentals of Investing: Actualizing Financial Independence," under Professor Raghuveer Nath of SFI Wealth (University of Oxford, New York University). We covered investing fundamentals, PE ratios, and quantitative approaches to markets.</p>
+      <p>Week 2, with the Senior Science Track: "Rubik's Cube and Group Theory," under Professor Ramprasad Saptharishi of the Tata Institute of Fundamental Research. In a week, we took students from never having touched a cube to solving a 3x3, a 2x2, and even solving blindfolded using the Old Pochmann Method.</p>
+      <p>Week 3: "Basic but Essential Mechanics," under Professor Bhas Bhamre of the Ramanujan Academy. This one let me indulge my own long-standing love for physics while teaching it to others.</p>
+      <p>Week 4: "Origami and Advanced Geometry," under Professor Sagar Shrivastava of Iowa State University, working through complex origami models and the geometry behind every fold and crease.</p>
+      <p>Four weeks, four subjects, and four professors who taught me nearly as much as they taught the students.</p>
+      <p>Thank you to Eshita Ma'am and Satyam Sir at the Lodha Foundation for bringing me back, Anupama Ambika Ma'am for all the support, and to Professor Nath, Professor Saptharishi, Professor Bhamre, and Professor Shrivastava for letting me learn alongside you.</p>
+      <div class="frame tall"><img width="600" height="800" loading="lazy" decoding="async" src="ma_ta_2026.jpg" alt="Teaching at the Lodha Genius Programme 2026"></div>
+      <p class="u-cap">Teaching at the Lodha Genius Programme 2026.</p>
+      <div class="frame"><img width="1170" height="878" loading="lazy" decoding="async" src="ma_origami.jpg" alt="Origami and Advanced Geometry, Week 4"></div>
+      <p class="u-cap">Origami and Advanced Geometry, Week 4.</p>
+    </div>
+
+  </div>
+
+  <script>
+  /* ── Popup: open on hash, close on back/esc/backdrop ── */
+  (function () {
+    var overlay = document.getElementById('overlay');
+    var body = document.getElementById('sheetBody');
+    var closeBtn = document.getElementById('closeBtn');
+    var closeTimer = null;
+
+    function openSheet(src) {
+      clearTimeout(closeTimer);
+      body.innerHTML = src.innerHTML;
+      overlay.hidden = false;
+      overlay.scrollTop = 0;
+      requestAnimationFrame(function () { overlay.classList.add('open'); });
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeSheet() {
+      overlay.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      closeTimer = setTimeout(function () { overlay.hidden = true; body.innerHTML = ''; }, 340);
+    }
+    function route() {
+      var id = location.hash.slice(1);
+      var src = id ? document.getElementById(id) : null;
+      if (src && src.classList.contains('src')) openSheet(src);
+      else closeSheet();
+    }
+    function goBack() {
+      if (history.length > 1) history.back();
+      else { history.replaceState(null, '', location.pathname); route(); }
+    }
+    window.addEventListener('hashchange', route);
+    closeBtn.addEventListener('click', goBack);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) goBack(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && location.hash) goBack(); });
+    route();
+  })();
+
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
+    });
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
+</body>
+</html>
