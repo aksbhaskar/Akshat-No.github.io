@@ -14,8 +14,8 @@
        opt-in, and once chosen it sticks across pages and visits. */
     var stored = null;
     try { stored = localStorage.getItem('theme'); } catch (e) {}
-    if (stored === 'dark') root.classList.add('dark');
-    else root.classList.remove('dark');
+    if (stored === 'light') root.classList.remove('dark');
+    else root.classList.add('dark');
 
     /* Keep the browser chrome in step with the page: the theme-color
        meta names each page's paper, so tint it ink at night. */
