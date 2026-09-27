@@ -1,11 +1,10 @@
 /* ─────────────────────────────────────────────────────────────
-   A little dog companion.
+   A little pixel dog companion (black, lean, lavender outline).
    - sleeps after 5s of not being touched
    - opens its eyes when the cursor is over it (desktop)
-   - wakes up and stretches when clicked / tapped
-   - desktop: move it around with a RIGHT-CLICK drag
-   - phone:  stays asleep; tap to wake + stretch; sleeps 5s after a tap;
-             long-press then drag to move it around
+   - click / tap: wakes up, stretches, says something silly
+   - drag it anywhere (mouse or finger, no long-press needed)
+   - phone: stays asleep until tapped; naps again 5s after each tap
    Self-contained: injects its own styles and markup.
    ───────────────────────────────────────────────────────────── */
 (function () {
@@ -13,200 +12,320 @@
 
   var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  /* sprites: '#' fur, 'o' lavender detail (eyes, tail line), '.' empty.
+     the lavender outline is added automatically around the fur. */
+  var FRAMES = {
+    sleep: [
+      '......................................',
+      '......................................',
+      '......................................',
+      '......................................',
+      '..........#...........................',
+      '..........#...........................',
+      '.........###..........................',
+      '.........###..........................',
+      '.......######.........................',
+      '.....########.........................',
+      '....##########........................',
+      '....############....##########........',
+      '...##############################.....',
+      '.####ooo##########################....',
+      '###################################...',
+      '####################################..',
+      '#####################################.',
+      '.####################################.',
+      '........############################..',
+      '.oooooooooo##.######################..',
+      '.############.#####o#############oo...',
+      '####################ooooooooooooo#....',
+      '#################.##############......',
+      '......................#####...........',
+    ],
+    peek: [
+      '......................................',
+      '......................................',
+      '......................................',
+      '......................................',
+      '..........#...........................',
+      '..........#...........................',
+      '.........###..........................',
+      '.........###..........................',
+      '.......######.........................',
+      '.....########.........................',
+      '....##########........................',
+      '....############....##########........',
+      '...###o##########################.....',
+      '.####o#o##########################....',
+      '###################################...',
+      '####################################..',
+      '#####################################.',
+      '.####################################.',
+      '........############################..',
+      '.oooooooooo##.######################..',
+      '.############.#####o#############oo...',
+      '####################ooooooooooooo#....',
+      '#################.##############......',
+      '......................#####...........',
+    ],
+    stretch: [
+      '...................................#..',
+      '.........#........................##..',
+      '.........##.......................##..',
+      '.........##......................##...',
+      '........####.....................##...',
+      '........####....................##....',
+      '......######................##.##.....',
+      '....#########.............#######.....',
+      '...##########..........#########......',
+      '.#####o######........###########......',
+      '#####o#o#####......#############......',
+      '#############....################.....',
+      '#################################.....',
+      '....#########################.###.....',
+      '.....####################..##..##.....',
+      '.......################....##..##.....',
+      '.........###########.......##..##.....',
+      '.........########..........###.##.....',
+      '.........#######...........###.##.....',
+      '.........#####.............###.##.....',
+      '.......#######.............###.###....',
+      '##############.............###.###....',
+      '##############.............###.###....',
+      '............................#...#.....',
+    ],
+    stand: [
+      '.........#............................',
+      '........###...........................',
+      '.......#####..........................',
+      '.....#######..........................',
+      '...####o####........................#.',
+      '######o#o###.......................##.',
+      '############......................##..',
+      '.###########.....................##...',
+      '.....#######....................##....',
+      '.......##########################.....',
+      '........#########################.....',
+      '.........########################.....',
+      '..........######################......',
+      '...........#######.......#######......',
+      '............######........#####.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '...........###.##........###.##.......',
+    ],
+    stand2: [
+      '.........#............................',
+      '........###...........................',
+      '.......#####..........................',
+      '.....#######..........................',
+      '...####o####..........................',
+      '######o#o###..........................',
+      '############..........................',
+      '.###########........................##',
+      '.....#######......................###.',
+      '.......############################...',
+      '........#########################.....',
+      '.........########################.....',
+      '..........######################......',
+      '...........#######.......#######......',
+      '............######........#####.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '............##.##.........##.##.......',
+      '...........###.##........###.##.......',
+    ]
+  };
+
+  var QUIPS = [
+    "woof. that's the whole message.",
+    "i was NOT sleeping. i was resting my eyes.",
+    "who's a good visitor? you are.",
+    "404: treat not found",
+    "i guard this website. mostly by napping.",
+    "bark-driven development",
+    "akshat says i'm not allowed on the couch. so i live here now.",
+    "is that a squirrel?!",
+    "pet me again. i dare you.",
+    "i read all of akshat's updates. understood none. loved them all.",
+    "five more minutes...",
+    "ruff day? me too.",
+    "i'd fetch you something but the internet is very big",
+    "this is my good side.",
+    "there's a letter at the bottom of the home page. i can't write, no thumbs.",
+    "i'm technically the ceo of naps here",
+    "boop.",
+    "sit. stay. read the timeline.",
+    "you smell like someone who clicks on dogs",
+    "my pixels are hand-reared, thank you"
+  ];
+
+  var PAD = 1, CELL = 3;
+  var GW = FRAMES.sleep[0].length, GH = FRAMES.sleep.length;
+  var VW = GW + PAD * 2, VH = GH + PAD * 2;
+
+  /* turn a sprite into two svg paths: fur + lavender (outline & details) */
+  function build(rows) {
+    var fur = '', lav = '';
+    function at(x, y) { return (y >= 0 && y < GH && x >= 0 && x < GW) ? rows[y][x] : '.'; }
+    for (var y = -PAD; y < GH + PAD; y++) {
+      for (var x = -PAD; x < GW + PAD; x++) {
+        var c = at(x, y), cell = 'M' + (x + PAD) + ' ' + (y + PAD) + 'h1v1h-1z';
+        if (c === '#') { fur += cell; continue; }
+        if (c === 'o') { lav += cell; continue; }
+        var edge = false;
+        for (var dy = -1; dy <= 1 && !edge; dy++)
+          for (var dx = -1; dx <= 1; dx++) if (at(x + dx, y + dy) === '#') { edge = true; break; }
+        if (edge) lav += cell;
+      }
+    }
+    return { fur: fur, lav: lav };
+  }
+  var BUILT = {};
+  for (var k in FRAMES) BUILT[k] = build(FRAMES[k]);
+
   /* ── styles ── */
   var css = document.createElement('style');
   css.textContent = `
   #dogCompanion{
-    position:fixed; right:22px; bottom:18px; width:124px; height:88px;
-    z-index:9998; cursor:pointer; -webkit-user-select:none; user-select:none;
-    touch-action:none; -webkit-tap-highlight-color:transparent;
-    /* dark drop shadow + faint light rim so the black wolf reads on any bg */
-    filter: drop-shadow(0 7px 9px rgba(0,0,0,.45)) drop-shadow(0 0 1.4px rgba(255,255,255,.45));
+    position:fixed; right:20px; bottom:16px; width:${VW * CELL}px; height:${VH * CELL}px;
+    z-index:9998; cursor:grab; -webkit-user-select:none; user-select:none;
+    touch-action:none; -webkit-tap-highlight-color:transparent; outline:none;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,.35));
   }
-  #dogCompanion svg{ width:100%; height:100%; overflow:visible; display:block; }
   #dogCompanion.dragging{ cursor:grabbing; }
+  #dogCompanion svg{ width:100%; height:100%; display:block; shape-rendering:crispEdges; overflow:visible; }
+  #dogCompanion .fur{ fill:#0b0b0e; }
+  #dogCompanion .lav{ fill:#cbbcf2; }
+  #dogCompanion:focus-visible .lav{ fill:#fff; }
+  /* slow pixel breathing while asleep */
+  #dogCompanion[data-state="sleep"] svg{ transform-origin:50% 100%; animation:dogBreathe 3.2s steps(1) infinite; }
+  @keyframes dogBreathe{ 0%,100%{ transform:none; } 50%{ transform:scaleY(.96); } }
+  #dogCompanion.hop svg{ animation:dogHop .32s steps(3); }
+  @keyframes dogHop{ 0%,100%{ transform:none; } 50%{ transform:translateY(-6px); } }
 
-  /* breathing while asleep */
-  #dogRoot{ transform-box:fill-box; transform-origin:50% 92%; }
-  #dogCompanion[data-state="sleep"] #dogRoot{ animation:dogBreathe 3.4s ease-in-out infinite; }
-  @keyframes dogBreathe{ 0%,100%{ transform:scaleY(1) scaleX(1); } 50%{ transform:scaleY(.965) scaleX(1.02); } }
+  #dogZ{ position:absolute; left:22px; top:4px; pointer-events:none; opacity:0; transition:opacity .3s; }
+  #dogCompanion[data-state="sleep"] #dogZ{ opacity:1; }
+  #dogZ span{ position:absolute; font:700 13px/1 'Courier New',monospace; color:#cbbcf2;
+    text-shadow:1px 1px 0 #0b0b0e; opacity:0; }
+  #dogCompanion[data-state="sleep"] #dogZ span{ animation:dogZz 3s steps(6) infinite; }
+  #dogCompanion[data-state="sleep"] #dogZ span:nth-child(2){ animation-delay:1s; }
+  #dogCompanion[data-state="sleep"] #dogZ span:nth-child(3){ animation-delay:2s; }
+  @keyframes dogZz{ 0%{ opacity:0; transform:translate(0,0); } 20%{ opacity:1; }
+    100%{ opacity:0; transform:translate(-12px,-24px); } }
 
-  /* eyes: open ellipses; squished flat when asleep */
-  .dogEye{ transform-box:fill-box; transform-origin:center; transition:transform .25s ease; }
-  #dogCompanion[data-state="sleep"] .dogEye{ transform:scaleY(.1); }
-
-  /* ears perk up when awake */
-  #earF,#earB{ transform-box:fill-box; transform-origin:70% 15%; transition:transform .3s ease; }
-  #dogCompanion[data-state="awake"] #earF,
-  #dogCompanion[data-state="stretch"] #earF{ transform:rotate(-16deg); }
-  #dogCompanion[data-state="awake"] #earB,
-  #dogCompanion[data-state="stretch"] #earB{ transform:rotate(-9deg); }
-
-  /* tail wags when awake */
-  #tail{ transform-box:fill-box; transform-origin:8% 92%; }
-  #dogCompanion[data-state="awake"] #tail{ animation:dogWag .48s ease-in-out infinite; }
-  #dogCompanion[data-state="stretch"] #tail{ animation:dogWag .38s ease-in-out infinite; }
-  @keyframes dogWag{ 0%,100%{ transform:rotate(4deg); } 50%{ transform:rotate(-22deg); } }
-
-  /* stretch: whole body leans + elongates, front legs reach, a little yawn */
-  #dogCompanion[data-state="stretch"] #dogRoot{ animation:dogStretch .95s ease; }
-  @keyframes dogStretch{
-    0%{ transform:none; }
-    35%{ transform:translateY(3px) scaleX(1.05); }
-    60%{ transform:translateY(2px) scaleX(1.13) skewX(-5deg); }
-    100%{ transform:none; }
+  #dogSay{
+    position:absolute; bottom:calc(100% + 10px); right:6px; width:max-content; max-width:210px;
+    background:#fffdf7; color:#1a1612; border:2px solid #0b0b0e; border-radius:3px;
+    box-shadow:3px 3px 0 #cbbcf2;
+    font:600 13px/1.35 'Courier New',ui-monospace,monospace; padding:7px 10px;
+    opacity:0; transform:translateY(6px); transition:opacity .18s, transform .18s steps(3);
+    pointer-events:none; white-space:normal; text-align:left;
   }
-  #frontLegs{ transform-box:fill-box; transform-origin:center; }
-  #dogCompanion[data-state="stretch"] #frontLegs{ animation:dogReach .95s ease; }
-  @keyframes dogReach{ 0%,100%{ transform:none; } 55%{ transform:translate(17px,5px); } }
-  #mouth{ transform-box:fill-box; transform-origin:20% 50%; }
-  #dogCompanion[data-state="stretch"] #mouth{ animation:dogYawn .95s ease; }
-  @keyframes dogYawn{ 0%,100%{ transform:scaleY(1); } 45%{ transform:scaleY(3.4) translateY(.5px); } }
+  #dogSay::after{ content:""; position:absolute; top:100%; right:30px; border:7px solid transparent;
+    border-top-color:#0b0b0e; }
+  #dogSay.show{ opacity:1; transform:none; }
+  #dogCompanion.flip #dogSay{ right:auto; left:6px; }
+  #dogCompanion.flip #dogSay::after{ right:auto; left:30px; }
+  #dogCompanion.below #dogSay{ bottom:auto; top:calc(100% + 10px); }
+  #dogCompanion.below #dogSay::after{ top:auto; bottom:100%; border-top-color:transparent; border-bottom-color:#0b0b0e; }
 
-  /* zzz while asleep */
-  #zzz{ opacity:0; transition:opacity .3s ease; }
-  #dogCompanion[data-state="sleep"] #zzz{ opacity:1; }
-  #zzz text{ font:700 13px 'Inconsolata','Courier New',monospace; fill:#fff;
-    stroke:rgba(0,0,0,.35); stroke-width:.4px; paint-order:stroke; }
-  #dogCompanion[data-state="sleep"] #z1{ animation:zfloat 3s ease-in-out infinite; }
-  #dogCompanion[data-state="sleep"] #z2{ animation:zfloat 3s ease-in-out infinite .9s; }
-  #dogCompanion[data-state="sleep"] #z3{ animation:zfloat 3s ease-in-out infinite 1.8s; }
-  @keyframes zfloat{ 0%{ opacity:0; transform:translate(0,4px) scale(.6); }
-    30%{ opacity:1; } 100%{ opacity:0; transform:translate(6px,-16px) scale(1.1); } }
-
-  @media (prefers-reduced-motion: reduce){
-    #dogCompanion *{ animation:none !important; }
-  }`;
+  @media (prefers-reduced-motion: reduce){ #dogCompanion *, #dogCompanion svg{ animation:none !important; } }`;
   document.head.appendChild(css);
 
-  /* ── markup ── a cute side-view dog, facing right ── */
+  /* ── markup ── */
   var wrap = document.createElement('div');
   wrap.id = 'dogCompanion';
-  wrap.setAttribute('role', 'img');
-  wrap.setAttribute('aria-label', 'A little wolf. Click to wake it up.');
-  wrap.setAttribute('data-state', 'sleep');
-  wrap.innerHTML = `
-  <svg viewBox="0 0 130 92" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <style>
-        .body{ fill:#1f1f25; } .body2{ fill:#151519; } .patch{ fill:#0e0e12; }
-        .ear-in{ fill:#3a3a44; }
-        .out{ stroke:#000; stroke-width:3; stroke-linejoin:round; stroke-linecap:round; }
-      </style>
-    </defs>
-    <!-- ground shadow -->
-    <ellipse cx="66" cy="86" rx="52" ry="6" fill="rgba(0,0,0,.22)"/>
-    <g id="dogRoot">
-      <!-- bushy tail -->
-      <path id="tail" class="patch out" d="M22 62 C2 60 -2 38 12 34 C7 44 10 52 20 55 C18 47 22 43 27 44 C30 50 30 58 26 60 Z"/>
-      <!-- rear haunch -->
-      <ellipse class="body2 out" cx="40" cy="60" rx="22" ry="18"/>
-      <!-- back leg -->
-      <rect class="body2 out" x="30" y="69" width="15" height="15" rx="6"/>
-      <!-- body -->
-      <ellipse class="body out" cx="66" cy="62" rx="40" ry="17"/>
-      <!-- front legs -->
-      <g id="frontLegs">
-        <rect class="body out" x="84" y="67" width="14" height="17" rx="6"/>
-        <rect class="body2 out" x="96" y="67" width="14" height="17" rx="6"/>
-      </g>
-      <!-- back ear (pointy, behind head) -->
-      <path id="earB" class="patch out" d="M103 34 L113 12 L118 35 Z"/>
-      <!-- head -->
-      <circle class="body out" cx="99" cy="48" r="16"/>
-      <!-- long wolf snout -->
-      <path class="body2 out" d="M108 43 L129 51 L110 59 Q104 51 108 43 Z"/>
-      <!-- nose -->
-      <path d="M126 48 L131 51 L126 54 Z" fill="#050508" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
-      <!-- mouth / yawn -->
-      <path id="mouth" d="M114 57 q5 3 10 0" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-      <!-- amber eye -->
-      <ellipse class="dogEye" cx="100" cy="46" rx="3.2" ry="4" fill="#f0b23a" stroke="#000" stroke-width="1"/>
-      <!-- front ear (pointy) with inner -->
-      <g id="earF">
-        <path class="patch out" d="M92 34 L98 9 L108 32 Z"/>
-        <path class="ear-in" d="M96 31 L99 17 L104 30 Z"/>
-      </g>
-      <!-- zzz -->
-      <g id="zzz">
-        <text id="z1" x="120" y="26">z</text>
-        <text id="z2" x="126" y="18">z</text>
-        <text id="z3" x="132" y="10">z</text>
-      </g>
-    </g>
-  </svg>`;
+  wrap.setAttribute('role', 'button');
+  wrap.setAttribute('tabindex', '0');
+  wrap.setAttribute('aria-label', 'A little black dog. Click to wake it up. Drag to move it.');
+  wrap.innerHTML =
+    '<svg viewBox="0 0 ' + VW + ' ' + VH + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<path class="lav"/><path class="fur"/></svg>' +
+    '<div id="dogZ" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>' +
+    '<div id="dogSay" aria-live="polite"></div>';
   document.body.appendChild(wrap);
+  var pFur = wrap.querySelector('.fur'), pLav = wrap.querySelector('.lav'), say = wrap.querySelector('#dogSay');
+
+  function show(frame) { var b = BUILT[frame]; pFur.setAttribute('d', b.fur); pLav.setAttribute('d', b.lav); }
 
   /* ── state machine ── */
-  var state = 'sleep', sleepTimer = null, stretchTimer = null;
-  function set(s){ state = s; wrap.setAttribute('data-state', s); }
-  function armSleep(){ clearTimeout(sleepTimer); sleepTimer = setTimeout(function(){ set('sleep'); }, 5000); }
-  function touch(){ armSleep(); }               // any interaction delays sleep
-  function peek(){ if (state === 'sleep') set('awake'); touch(); }  // eyes open on hover
-  function wake(){                              // full wake + stretch
+  var state = '', sleepTimer = null, stretchTimer = null, wagTimer = null, sayTimer = null, wagFlip = false;
+  function set(s) {
+    state = s; wrap.setAttribute('data-state', s);
+    clearInterval(wagTimer);
+    if (s === 'awake') {
+      show('stand');
+      wagTimer = setInterval(function () { wagFlip = !wagFlip; show(wagFlip ? 'stand2' : 'stand'); }, 190);
+    } else show(s);
+  }
+  function armSleep() { clearTimeout(sleepTimer); sleepTimer = setTimeout(function () { set('sleep'); hideSay(); }, 5000); }
+  function peek() { if (state === 'sleep') set('peek'); armSleep(); }
+  function wake() {
     clearTimeout(stretchTimer);
     set('stretch');
-    stretchTimer = setTimeout(function(){ if (state === 'stretch') set('awake'); }, 950);
-    touch();
+    wrap.classList.remove('hop'); void wrap.offsetWidth; wrap.classList.add('hop');
+    stretchTimer = setTimeout(function () { if (state === 'stretch') set('awake'); }, 900);
+    quip(); armSleep();
   }
-
-  /* ── dragging ── */
-  var dragging = false, moved = false, offX = 0, offY = 0, downX = 0, downY = 0;
-
-  function startDrag(clientX, clientY){
+  var lastQ = -1;
+  function quip() {
+    var i; do { i = Math.floor(Math.random() * QUIPS.length); } while (i === lastQ);
+    lastQ = i; say.textContent = QUIPS[i];
     var r = wrap.getBoundingClientRect();
-    offX = clientX - r.left; offY = clientY - r.top;
-    downX = clientX; downY = clientY;
-    // switch to top/left positioning
+    wrap.classList.toggle('flip', r.left < 200);
+    wrap.classList.toggle('below', r.top < 100);
+    say.classList.add('show');
+    clearTimeout(sayTimer); sayTimer = setTimeout(hideSay, 3400);
+  }
+  function hideSay() { say.classList.remove('show'); }
+
+  /* ── dragging: mouse left-button or a finger, straight away (no long-press) ── */
+  var pid = null, moved = false, offX = 0, offY = 0, downX = 0, downY = 0;
+  wrap.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    var r = wrap.getBoundingClientRect();
+    offX = e.clientX - r.left; offY = e.clientY - r.top; downX = e.clientX; downY = e.clientY;
     wrap.style.left = r.left + 'px'; wrap.style.top = r.top + 'px';
     wrap.style.right = 'auto'; wrap.style.bottom = 'auto';
-    dragging = true; moved = false;
-  }
-  function moveDrag(clientX, clientY){
-    if (!dragging) return;
-    if (!moved && Math.abs(clientX - downX) < 4 && Math.abs(clientY - downY) < 4) return; // ignore jitter
-    moved = true; wrap.classList.add('dragging');
-    var w = wrap.offsetWidth, h = wrap.offsetHeight;
-    var x = Math.max(0, Math.min(window.innerWidth  - w, clientX - offX));
-    var y = Math.max(0, Math.min(window.innerHeight - h, clientY - offY));
+    pid = e.pointerId; moved = false;
+    try { wrap.setPointerCapture(pid); } catch (err) {}
+  });
+  wrap.addEventListener('pointermove', function (e) {
+    if (pid === null || e.pointerId !== pid) { if (canHover && e.pointerType === 'mouse') armSleep(); return; }
+    if (!moved && Math.abs(e.clientX - downX) < 5 && Math.abs(e.clientY - downY) < 5) return;
+    if (!moved) { moved = true; wrap.classList.add('dragging'); hideSay(); }
+    var x = Math.max(0, Math.min(window.innerWidth - wrap.offsetWidth, e.clientX - offX));
+    var y = Math.max(0, Math.min(window.innerHeight - wrap.offsetHeight, e.clientY - offY));
     wrap.style.left = x + 'px'; wrap.style.top = y + 'px';
-  }
-  function endDrag(){ if (!dragging) return; dragging = false; wrap.classList.remove('dragging'); touch(); }
-
-  /* ── desktop mouse ── (LEFT button drags to move) */
-  wrap.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-  wrap.addEventListener('mousedown', function(e){
-    if (e.button === 0){ e.preventDefault(); startDrag(e.clientX, e.clientY); }
   });
-  window.addEventListener('mousemove', function(e){ if (dragging) moveDrag(e.clientX, e.clientY); });
-  window.addEventListener('mouseup', function(e){ if (e.button === 0) endDrag(); });
-
-  if (canHover){
-    wrap.addEventListener('mouseenter', peek);
-    wrap.addEventListener('mousemove', function(){ if (!dragging) touch(); });
+  function up(e) {
+    if (pid === null || e.pointerId !== pid) return;
+    pid = null; wrap.classList.remove('dragging');
+    if (!moved && e.type === 'pointerup') wake(); else armSleep();
   }
-  wrap.addEventListener('click', function(){ if (!moved) wake(); }); // left click = wake + stretch
+  wrap.addEventListener('pointerup', up);
+  wrap.addEventListener('pointercancel', up);
+  wrap.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wake(); } });
+  if (canHover) wrap.addEventListener('mouseenter', peek);
 
-  /* ── touch (phone) ── */
-  var lpTimer = null, tStartX = 0, tStartY = 0, tStartT = 0, touchDrag = false;
-  wrap.addEventListener('touchstart', function(e){
-    var t = e.touches[0]; tStartX = t.clientX; tStartY = t.clientY; tStartT = Date.now();
-    touchDrag = false;
-    lpTimer = setTimeout(function(){ touchDrag = true; startDrag(tStartX, tStartY); }, 420); // long-press
-  }, { passive:true });
-  wrap.addEventListener('touchmove', function(e){
-    var t = e.touches[0];
-    if (touchDrag){ e.preventDefault(); moveDrag(t.clientX, t.clientY); return; }
-    if (Math.abs(t.clientX - tStartX) > 12 || Math.abs(t.clientY - tStartY) > 12){
-      clearTimeout(lpTimer); // moved before long-press: not a drag, not a tap
-    }
-  }, { passive:false });
-  wrap.addEventListener('touchend', function(){
-    clearTimeout(lpTimer);
-    if (touchDrag){ endDrag(); touchDrag = false; return; }
-    if (Date.now() - tStartT < 420){ wake(); } // quick tap wakes + stretches
+  /* keep it on screen if the window shrinks */
+  window.addEventListener('resize', function () {
+    if (!wrap.style.left) return;
+    wrap.style.left = Math.max(0, Math.min(parseFloat(wrap.style.left), window.innerWidth - wrap.offsetWidth)) + 'px';
+    wrap.style.top = Math.max(0, Math.min(parseFloat(wrap.style.top), window.innerHeight - wrap.offsetHeight)) + 'px';
   });
 
-  /* start asleep; nothing wakes it until touched */
   set('sleep');
 })();
