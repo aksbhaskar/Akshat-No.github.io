@@ -14,14 +14,14 @@
   <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
   <style>
-    :root { --ink: #ffffff; --bg: #000000; }
+    :root { --ink: #1a1a1a; --bg: #ffffff; --muted: #666666; }
     @view-transition { navigation: auto; }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
@@ -48,7 +48,8 @@
     .tight { margin: 0 0 0.2rem; }
 
     details.disc { margin-top: 0.5rem; }
-    .disc-line { margin: 0.5rem 0 0; }
+    .disc-line { margin: 0.4rem 0 0; padding-left: 1.3rem; position: relative; }
+    .disc-line::before { content: "•"; position: absolute; left: 0.2rem; color: var(--ink); }
     details.disc.spaced { margin-top: 1.9rem; }
     details.disc > summary {
       cursor: pointer;
@@ -61,10 +62,10 @@
     details.disc > summary::marker { content: ''; }
     details.disc[open] > summary { margin-bottom: 1.3rem; }
     .disc-body p:last-child { margin-bottom: 0; }
-    .disc-body img { width: 100%; height: auto; display: block; margin: 1.4rem 0 0.2rem; border: 0.5px solid #2a2a2a; }
+    .disc-body img { width: 100%; height: auto; display: block; margin: 1.4rem 0 0.2rem; border: 0.5px solid #e2e2e2; }
     .disc-body figure { margin: 1.4rem 0 0.2rem; }
     .disc-body figure img { margin: 0; }
-    .disc-body figcaption { font-size: 0.8rem; font-style: italic; color: #b3b3b3; margin-top: 0.5rem; line-height: 1.5; }
+    .disc-body figcaption { font-size: 0.8rem; font-style: italic; color: #666666; margin-top: 0.5rem; line-height: 1.5; }
 
     @media (min-width: 1000px) { body { font-size: 18px; } }
     @media (max-width: 640px) { body { font-size: 18px; line-height: 1.58; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
@@ -87,15 +88,15 @@
 
     <p class="gap">some interesting things about me:</p>
 
-    <p class="disc-line">- <a href="president.html">awarded by the Hon'ble President of India</a> at the age of 17.</p>
+    <p class="disc-line"><a href="president.html">awarded by the Hon'ble President of India</a> at the age of 17.</p>
 
-    <p class="disc-line">- i'm really interested in the mission of <a href="financialliteracy.html">financial literacy</a></p>
+    <p class="disc-line">i'm really interested in the mission of <a href="financialliteracy.html">financial literacy</a></p>
 
-    <p class="disc-line">- took a <a href="gapyear.html">gap year</a> after high school.</p>
+    <p class="disc-line">took a <a href="gapyear.html">gap year</a> after high school.</p>
 
-    <p class="disc-line">- <a href="researchstory.html">got into research, published and presented</a></p>
+    <p class="disc-line"><a href="researchstory.html">got into research, published and presented</a></p>
 
-    <p class="disc-line">- always doing a <a href="now.html">LOT of stuff</a></p>
+    <p class="disc-line">always doing a <a href="now.html">LOT of stuff</a></p>
 
     <p class="gap"><a href="resume.pdf" target="_blank" rel="noopener">checkout my resume</a></p>
 
