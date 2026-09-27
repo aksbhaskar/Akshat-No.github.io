@@ -13,8 +13,17 @@ body {
   background-attachment: fixed !important;
 }
 
-/* the content column becomes a frosted card floating on the wash */
-.wrap, .page {
+/* the reading column is a transparent container; the nav sits on the wash */
+.wrap {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* popup pages keep a single frosted card */
+.page {
   background: rgba(255,255,255,0.7) !important;
   -webkit-backdrop-filter: blur(16px) saturate(1.12);
   backdrop-filter: blur(16px) saturate(1.12);
@@ -24,29 +33,61 @@ body {
   margin: 2.4rem auto 3.6rem !important;
 }
 
+/* the frosted card used for grouped content and per-item clouds */
+.bubble, .gallery figure {
+  background: rgba(255,255,255,0.7);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+  backdrop-filter: blur(16px) saturate(1.12);
+  border: 1px solid rgba(255,255,255,0.72);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px -28px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
+  padding: 1.5rem 1.7rem;
+  margin: 0 0 1.1rem;
+}
+
 /* links: dark, bold, underlined */
 a { color: #23201c !important; text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
 a:visited { color: #23201c !important; }
 
-/* top nav sits at the top of the card, plain (not underlined) */
-.wrap > nav:first-of-type a, .page > nav:first-of-type a {
-  text-decoration: none; font-weight: 600; opacity: 0.8;
-}
-.wrap > nav:first-of-type a:hover, .page > nav:first-of-type a:hover { opacity: 1; }
+/* top nav sits on the wash, plain (not underlined) */
+.wrap > nav:first-of-type { text-align: center; margin: 0 0 1.6rem; }
+.wrap > nav:first-of-type a { text-decoration: none; font-weight: 600; opacity: 0.82; }
+.wrap > nav:first-of-type a:hover { opacity: 1; }
 
 /* headings + emphasis */
 h1, h2, .u-title, .hi, b, strong { color: #23201c !important; }
 
 /* muted / secondary text, readable on the light card */
 .sub, .u-cap, .label, figcaption, .u-date, .meta, .note, .cap,
-.by, .r, .d, .reading .by, .reading .lbl,
-.disc-body figcaption {
+.by, .r, .d, .reading .by, .reading .lbl, .disc-body figcaption {
   color: #6a655c !important;
 }
 
 /* body copy inside popup pages was light; darken it */
 .body p, .colophon { color: #2a2620 !important; }
 .colophon a { color: #23201c !important; }
+
+/* ── galleries: one cloud per photo (photos + photography) ── */
+.gallery figure { max-width: 100% !important; padding: 0.8rem !important; margin: 0 0 1.1rem !important; }
+.gallery figure img { width: 100%; height: auto; display: block; border: 0 !important; border-radius: 13px; }
+.gallery figcaption { margin: 0.65rem 0.25rem 0.15rem !important; color: #6a655c !important; font-style: normal; font-size: 1rem; line-height: 1.5; }
+
+/* ── updates: one cloud per entry ── */
+.u-list a {
+  display: block; text-decoration: none !important; font-weight: 700 !important; color: #23201c !important;
+  background: rgba(255,255,255,0.7);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+  backdrop-filter: blur(16px) saturate(1.12);
+  border: 1px solid rgba(255,255,255,0.72);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px -30px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
+  padding: 1rem 1.3rem; margin: 0 0 0.9rem;
+  transition: transform 0.16s ease;
+}
+.u-list a:hover { transform: translateY(-2px); }
+.u-list a .m { color: #6a655c !important; font-weight: 600; }
+.u-list a.hi { color: #9a6a12 !important; }
+.u-list a.hi .m { color: #9a6a12 !important; }
 
 /* images / frames on the light card */
 img { border-color: rgba(50,40,25,0.18) !important; }
@@ -61,7 +102,3 @@ img { border-color: rgba(50,40,25,0.18) !important; }
 
 /* connect form send button */
 .send { background: #23201c !important; color: #fff !important; }
-
-/* keep the gold highlight on the updates list */
-.u-list a.hi { color: #9a6a12 !important; }
-.u-list a.hi .m { color: #9a6a12 !important; }
