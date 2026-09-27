@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Display&display=swap">
   <style>
     :root { --ink: #23201c; --muted: #6a655c; }
     @view-transition { navigation: auto; }
@@ -33,18 +33,13 @@
       font-size: 17px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      background:
-        radial-gradient(60% 55% at 18% 8%, #ffcf9c 0%, rgba(255,207,156,0) 58%),
-        radial-gradient(70% 68% at 0% 46%, #4fa4e8 0%, rgba(79,164,232,0) 60%),
-        radial-gradient(90% 80% at 100% 100%, #86a75a 0%, rgba(134,167,90,0) 66%),
-        radial-gradient(55% 45% at 90% 6%, #ffe1b6 0%, rgba(255,225,182,0) 58%),
-        linear-gradient(155deg, #f7c088 0%, #6cbceb 40%, #a4c7d0 58%, #93ad6a 100%);
+      background: #2a2620 url('alexander.webp') center center / cover no-repeat;
       background-attachment: fixed;
     }
     .wrap { max-width: 640px; margin: 0 auto; padding: 3.4rem 1.4rem 6rem; }
 
     nav { margin-bottom: 2rem; text-align: center; }
-    nav a { margin: 0 0.6rem; color: var(--ink); text-decoration: none; font-weight: 600; opacity: 0.78; }
+    nav a { margin: 0 0.6rem; color: #fff; text-decoration: none; font-weight: 600; opacity: 0.92; text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 2px rgba(0,0,0,0.5); }
     nav a:hover { opacity: 1; }
 
     .bubble {
@@ -64,6 +59,28 @@
     a:hover { text-decoration-thickness: 2px; }
     b, strong { font-weight: 700; }
     .hi { font-size: 1.25rem; }
+
+    /* Greeting set in Caslon, justified, with an illuminated drop-cap initial */
+    .greet { font-family: 'Libre Caslon Text', 'EB Garamond', Georgia, serif; }
+    .greet-lead {
+      font-size: 1.55rem; line-height: 1.25; font-weight: 700;
+      letter-spacing: 0.005em; margin: 0 0 0.55rem;
+    }
+    .greet-body {
+      text-align: justify; hyphens: auto;
+      font-size: 1.08rem; line-height: 1.7; margin: 0;
+    }
+    .greet .dropcap {
+      float: left;
+      font-family: 'Libre Caslon Display', 'Libre Caslon Text', Georgia, serif;
+      font-weight: 400; font-size: 4.1rem; line-height: 0.7;
+      color: var(--ink);
+      margin: 0.06em 0.32rem -0.02em 0;
+      padding: 0.14em 0.18em 0.1em;
+      border: 1px solid rgba(35,32,28,0.55);
+      box-shadow: inset 0 0 0 3px rgba(35,32,28,0.09);
+      text-transform: lowercase;
+    }
 
     .label { color: var(--muted); font-style: italic; margin: 0 0 0.7rem; }
     ul.list { list-style: none; margin: 0; padding: 0; }
@@ -86,9 +103,9 @@
       <a href="photography.html">photography</a>
     </nav>
 
-    <div class="bubble">
-      <p class="hi">hi, i'm <b>Akshat</b>!</p>
-      <p>i love building things and dragging good ideas out into the open where people can use them.</p>
+    <div class="bubble greet">
+      <p class="greet-lead"><span class="dropcap">h</span>i, i'm <b>Akshat</b>!</p>
+      <p class="greet-body">i love building things and dragging good ideas out into the open where people can use them.</p>
     </div>
 
     <div class="bubble">
