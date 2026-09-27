@@ -17,10 +17,11 @@
   var css = document.createElement('style');
   css.textContent = `
   #dogCompanion{
-    position:fixed; right:22px; bottom:18px; width:122px; height:86px;
+    position:fixed; right:22px; bottom:18px; width:124px; height:88px;
     z-index:9998; cursor:pointer; -webkit-user-select:none; user-select:none;
     touch-action:none; -webkit-tap-highlight-color:transparent;
-    filter: drop-shadow(0 8px 10px rgba(0,0,0,.28));
+    /* dark drop shadow + faint light rim so the black wolf reads on any bg */
+    filter: drop-shadow(0 7px 9px rgba(0,0,0,.45)) drop-shadow(0 0 1.4px rgba(255,255,255,.45));
   }
   #dogCompanion svg{ width:100%; height:100%; overflow:visible; display:block; }
   #dogCompanion.dragging{ cursor:grabbing; }
@@ -82,47 +83,50 @@
   var wrap = document.createElement('div');
   wrap.id = 'dogCompanion';
   wrap.setAttribute('role', 'img');
-  wrap.setAttribute('aria-label', 'A little dog. Click to wake it up.');
+  wrap.setAttribute('aria-label', 'A little wolf. Click to wake it up.');
   wrap.setAttribute('data-state', 'sleep');
   wrap.innerHTML = `
   <svg viewBox="0 0 130 92" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <style>
-        .body{ fill:#e8cfa6; } .body2{ fill:#dcbf92; }
-        .patch{ fill:#a9713d; } .out{ stroke:#4a3524; stroke-width:3;
-          stroke-linejoin:round; stroke-linecap:round; }
+        .body{ fill:#1f1f25; } .body2{ fill:#151519; } .patch{ fill:#0e0e12; }
+        .ear-in{ fill:#3a3a44; }
+        .out{ stroke:#000; stroke-width:3; stroke-linejoin:round; stroke-linecap:round; }
       </style>
     </defs>
     <!-- ground shadow -->
-    <ellipse cx="66" cy="86" rx="52" ry="6" fill="rgba(0,0,0,.16)"/>
+    <ellipse cx="66" cy="86" rx="52" ry="6" fill="rgba(0,0,0,.22)"/>
     <g id="dogRoot">
-      <!-- tail -->
-      <path id="tail" class="patch out" d="M20 62 C4 58 6 44 15 44 C14 52 22 54 26 58 Z"/>
+      <!-- bushy tail -->
+      <path id="tail" class="patch out" d="M22 62 C2 60 -2 38 12 34 C7 44 10 52 20 55 C18 47 22 43 27 44 C30 50 30 58 26 60 Z"/>
       <!-- rear haunch -->
       <ellipse class="body2 out" cx="40" cy="60" rx="22" ry="18"/>
       <!-- back leg -->
-      <rect class="body2 out" x="30" y="68" width="16" height="16" rx="7"/>
+      <rect class="body2 out" x="30" y="69" width="15" height="15" rx="6"/>
       <!-- body -->
-      <ellipse class="body out" cx="66" cy="61" rx="40" ry="18"/>
+      <ellipse class="body out" cx="66" cy="62" rx="40" ry="17"/>
       <!-- front legs -->
       <g id="frontLegs">
-        <rect class="body out" x="84" y="66" width="15" height="18" rx="7"/>
-        <rect class="body2 out" x="96" y="66" width="15" height="18" rx="7"/>
+        <rect class="body out" x="84" y="67" width="14" height="17" rx="6"/>
+        <rect class="body2 out" x="96" y="67" width="14" height="17" rx="6"/>
       </g>
-      <!-- back ear (behind head) -->
-      <path id="earB" class="patch out" d="M92 33 C86 24 90 18 98 20 C98 28 98 32 100 36 Z"/>
+      <!-- back ear (pointy, behind head) -->
+      <path id="earB" class="patch out" d="M103 34 L113 12 L118 35 Z"/>
       <!-- head -->
-      <circle class="body out" cx="100" cy="47" r="17"/>
-      <!-- snout -->
-      <path class="body2 out" d="M112 44 q16 2 14 11 q-2 8 -15 6 q-4 -9 1 -17 Z"/>
+      <circle class="body out" cx="99" cy="48" r="16"/>
+      <!-- long wolf snout -->
+      <path class="body2 out" d="M108 43 L129 51 L110 59 Q104 51 108 43 Z"/>
       <!-- nose -->
-      <circle cx="124" cy="49" r="3.2" fill="#2e2116"/>
+      <path d="M126 48 L131 51 L126 54 Z" fill="#050508" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
       <!-- mouth / yawn -->
-      <path id="mouth" d="M116 56 q4 3 8 1" fill="none" stroke="#4a3524" stroke-width="2" stroke-linecap="round"/>
-      <!-- eyes -->
-      <ellipse class="dogEye" cx="102" cy="45" rx="3" ry="4" fill="#2e2116"/>
-      <!-- front ear -->
-      <path id="earF" class="patch out" d="M98 32 C92 21 98 14 107 17 C106 26 104 31 106 36 Z"/>
+      <path id="mouth" d="M114 57 q5 3 10 0" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      <!-- amber eye -->
+      <ellipse class="dogEye" cx="100" cy="46" rx="3.2" ry="4" fill="#f0b23a" stroke="#000" stroke-width="1"/>
+      <!-- front ear (pointy) with inner -->
+      <g id="earF">
+        <path class="patch out" d="M92 34 L98 9 L108 32 Z"/>
+        <path class="ear-in" d="M96 31 L99 17 L104 30 Z"/>
+      </g>
       <!-- zzz -->
       <g id="zzz">
         <text id="z1" x="120" y="26">z</text>
@@ -147,19 +151,21 @@
   }
 
   /* ── dragging ── */
-  var dragging = false, moved = false, offX = 0, offY = 0;
+  var dragging = false, moved = false, offX = 0, offY = 0, downX = 0, downY = 0;
 
   function startDrag(clientX, clientY){
     var r = wrap.getBoundingClientRect();
     offX = clientX - r.left; offY = clientY - r.top;
+    downX = clientX; downY = clientY;
     // switch to top/left positioning
     wrap.style.left = r.left + 'px'; wrap.style.top = r.top + 'px';
     wrap.style.right = 'auto'; wrap.style.bottom = 'auto';
-    dragging = true; moved = false; wrap.classList.add('dragging');
+    dragging = true; moved = false;
   }
   function moveDrag(clientX, clientY){
     if (!dragging) return;
-    moved = true;
+    if (!moved && Math.abs(clientX - downX) < 4 && Math.abs(clientY - downY) < 4) return; // ignore jitter
+    moved = true; wrap.classList.add('dragging');
     var w = wrap.offsetWidth, h = wrap.offsetHeight;
     var x = Math.max(0, Math.min(window.innerWidth  - w, clientX - offX));
     var y = Math.max(0, Math.min(window.innerHeight - h, clientY - offY));
@@ -167,13 +173,13 @@
   }
   function endDrag(){ if (!dragging) return; dragging = false; wrap.classList.remove('dragging'); touch(); }
 
-  /* ── desktop mouse ── */
-  wrap.addEventListener('contextmenu', function(e){ e.preventDefault(); }); // right-click = drag, no menu
+  /* ── desktop mouse ── (LEFT button drags to move) */
+  wrap.addEventListener('contextmenu', function(e){ e.preventDefault(); });
   wrap.addEventListener('mousedown', function(e){
-    if (e.button === 2){ e.preventDefault(); startDrag(e.clientX, e.clientY); } // right button drags
+    if (e.button === 0){ e.preventDefault(); startDrag(e.clientX, e.clientY); }
   });
   window.addEventListener('mousemove', function(e){ if (dragging) moveDrag(e.clientX, e.clientY); });
-  window.addEventListener('mouseup', function(e){ if (e.button === 2) endDrag(); });
+  window.addEventListener('mouseup', function(e){ if (e.button === 0) endDrag(); });
 
   if (canHover){
     wrap.addEventListener('mouseenter', peek);
