@@ -41,16 +41,17 @@
   <link rel="stylesheet" href="bubbles.css">
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap bare">
 
     <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-      <a href="updates.html">updates</a>
-      <a href="photography.html">photography</a>
-    </nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
+</nav>
 
+    <div class="bubble">
       <p class="u-date">July 10th, 2026</p>
       <h2 class="u-title">My experience as a paid Research Apprentice at ISI Delhi</h2>
       <p>This year, alongside my Teaching Assistant role, I also returned to the Lodha Genius Programme as their Undergraduate Mathematics Research Apprentice, even though I hadn't technically started my undergraduate degree yet.</p>
@@ -58,17 +59,26 @@
       <p>For four weeks, I worked under Professor Shanta Laishram of the Indian Statistical Institute (ISI), New Delhi, exploring advanced number theory and getting a real sense of what advanced mathematics looks like outside usual lectures.</p>
       <p>The Lodha Genius Programme is built for gifted high schoolers, so its regular courses run at the undergraduate level. The apprenticeship is built for advanced undergraduates, so its lecture series sometimes runs at the graduate level. Alongside my research, I sat in on:</p>
       <ul>
-        <li>"Modern Cryptography" by Professor Sourav Mukhopadhyay, Indian Institute of Technology, Kharagpur</li>
-        <li>"Modular Forms: An Introduction to 'Non-Abelian' Symmetry" by Manodeep Raha, Tata Institute of Fundamental Research, Mumbai</li>
-        <li>"Statistical Modeling, the Foundation of Generative AI" by Professor Sarvesh Ravichandran Iyer, Ashoka University</li>
-      </ul>
+<li>"Modern Cryptography" by Professor Sourav Mukhopadhyay, Indian Institute of Technology, Kharagpur</li>
+<li>"Modular Forms: An Introduction to 'Non-Abelian' Symmetry" by Manodeep Raha, Tata Institute of Fundamental Research, Mumbai</li>
+<li>"Statistical Modeling, the Foundation of Generative AI" by Professor Sarvesh Ravichandran Iyer, Ashoka University</li>
+</ul>
       <p>Some weeks I was teaching sixteen-year-olds to solve a Rubik's cube. Other weeks I was sitting in an advanced lecture on modular forms. Few programmes let you do both in the same month.</p>
       <p>Thank you to Professor Shanta Laishram for taking me on as his apprentice, to Manodeep Raha, Professor Iyer, and Professor Mukhopadhyay for the lectures, and to Ambika Ma'am at Ashoka and to Eshita Ma'am and Satyam Sir at the Lodha Foundation for making all of it possible. Thank you also to Professor Sagar Shrivastava for his guidance throughout the entire programme.</p>
-      <div class="frame"><img width="1170" height="878" loading="lazy" decoding="async" src="media_cryptography.jpg" alt="A lecture on Modern Cryptography during the apprenticeship"></div>
+      </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame"><img alt="A lecture on Modern Cryptography during the apprenticeship" decoding="async" height="878" loading="lazy" src="media_cryptography.jpg" width="1170"/></div>
       <p class="u-cap">A lecture on Modern Cryptography during the apprenticeship.</p>
-      <div class="frame"><img width="1280" height="568" loading="lazy" decoding="async" src="ma_euler_presentation.jpg" alt="At the whiteboard during the apprenticeship"></div>
+    </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame"><img alt="At the whiteboard during the apprenticeship" decoding="async" height="568" loading="lazy" src="ma_euler_presentation.jpg" width="1280"/></div>
       <p class="u-cap">At the whiteboard, working through number theory during the apprenticeship.</p>
+    </div>
+
   </div>
+
   <script>
   (function () {
     var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;

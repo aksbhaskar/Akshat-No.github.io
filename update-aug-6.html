@@ -41,16 +41,17 @@
   <link rel="stylesheet" href="bubbles.css">
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap bare">
 
     <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-      <a href="updates.html">updates</a>
-      <a href="photography.html">photography</a>
-    </nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
+</nav>
 
+    <div class="bubble">
       <p class="u-date">August 6th, 2026</p>
       <h2 class="u-title">Insights from my ISB Research Project on Financial Misinformation</h2>
       <p>I'm halfway through a research study on financial misinformation in India, and it's made me realize how little we actually know about who falls for it.</p>
@@ -63,9 +64,15 @@
       <p>The part I keep turning over is conscientiousness. The obvious prediction is that conscientious people, careful, organized, rule-following, should be less likely to spread something false. But financial misinformation in India shows up dressed in way more ways than just as an 'opportunity'. It shows up as a warning: your bank account will be frozen, RBI just changed this rule, act now. A conscientious person's instinct is to protect the people around them, and that same instinct might be exactly what makes them forward the warning without checking it first. If that holds, "slow down and verify" is aimed at the wrong lever for a chunk of the people spreading this stuff. You're not fighting carelessness. You're fighting a sense of duty. That's the hypothesis I want the data to either confirm or kill.</p>
       <p>Data collection is slow. Most people don't want to sit through a survey that asks them to read misinformation and rate their own personality. But what's coming back so far is cleaner than I expected.</p>
       <p>If you work in fintech, or you're into financial markets in general, I'd love to talk! Drop me a message.</p>
-      <div class="frame"><img width="800" height="305" loading="lazy" decoding="async" src="bfi2_colby.jpeg" alt="BFI-2 personality inventory from Colby College"></div>
+      </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame"><img alt="BFI-2 personality inventory from Colby College" decoding="async" height="305" loading="lazy" src="bfi2_colby.jpeg" width="800"/></div>
       <p class="u-cap">The BFI-2 personality inventory, from Colby College.</p>
+    </div>
+
   </div>
+
   <script>
   (function () {
     var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;

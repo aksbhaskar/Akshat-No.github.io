@@ -100,6 +100,13 @@ h1, h2, .u-title, .hi, b, strong { color: #23201c !important; }
 .gallery figure img { width: 100%; height: auto; display: block; border: 0 !important; border-radius: 13px; }
 .gallery figcaption { margin: 0.65rem 0.25rem 0.15rem !important; color: #6a655c !important; font-style: normal; font-size: 1rem; line-height: 1.5; }
 
+/* ── update pages: images / embeds get their own centred cloud ── */
+.media-cloud { text-align: center; }
+.media-cloud .frame { margin-left: auto !important; margin-right: auto !important; }
+.media-cloud .frame img { margin: 0 auto; }
+.media-cloud iframe { max-width: 100%; }
+.media-cloud .u-cap { text-align: center !important; }
+
 /* ── updates: one cloud per entry ── */
 .u-list a {
   display: block; text-decoration: none !important; font-weight: 700 !important; color: #23201c !important;

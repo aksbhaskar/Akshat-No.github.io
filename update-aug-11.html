@@ -41,16 +41,17 @@
   <link rel="stylesheet" href="bubbles.css">
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap bare">
 
     <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-      <a href="updates.html">updates</a>
-      <a href="photography.html">photography</a>
-    </nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
+</nav>
 
+    <div class="bubble">
       <p class="u-date">August 11th, 2026</p>
       <h2 class="u-title">Reach Out to People!</h2>
       <p>There is so much power in reaching out.</p>
@@ -64,9 +65,15 @@
       <p>But you might also end up having a conversation that changes how you think about something, introduces you to an entirely new field, or leads to an opportunity you never expected.</p>
       <p>You'll never know unless you ask. So this week, I'm going to ask.</p>
       <p>You should too.</p>
-      <div class="frame"><img width="800" height="600" loading="lazy" decoding="async" src="swiss_embassy_event.jpeg" alt="Event at the Swiss Embassy"></div>
+      </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame"><img alt="Event at the Swiss Embassy" decoding="async" height="600" loading="lazy" src="swiss_embassy_event.jpeg" width="800"/></div>
       <p class="u-cap">Event at the Swiss Embassy, where I got into the room simply by emailing someone about it.</p>
+    </div>
+
   </div>
+
   <script>
   (function () {
     var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;

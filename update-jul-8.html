@@ -41,16 +41,17 @@
   <link rel="stylesheet" href="bubbles.css">
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap bare">
 
     <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-      <a href="updates.html">updates</a>
-      <a href="photography.html">photography</a>
-    </nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
+</nav>
 
+    <div class="bubble">
       <p class="u-date">July 8th, 2026</p>
       <h2 class="u-title">Being an Undergraduate Teaching Assistant at Ashoka University</h2>
       <p>Last year, I attended the Lodha Genius Programme as a student, studying pure mathematics under some of the best professors in India. It's actually the reason I chose to study mathematics at university.</p>
@@ -63,11 +64,20 @@
       <p>Week 4: "Origami and Advanced Geometry," under Professor Sagar Shrivastava of Iowa State University, working through complex origami models and the geometry behind every fold and crease.</p>
       <p>Four weeks, four subjects, and four professors who taught me nearly as much as they taught the students.</p>
       <p>Thank you to Eshita Ma'am and Satyam Sir at the Lodha Foundation for bringing me back, Anupama Ambika Ma'am for all the support, and to Professor Nath, Professor Saptharishi, Professor Bhamre, and Professor Shrivastava for letting me learn alongside you.</p>
-      <div class="frame tall"><img width="600" height="800" loading="lazy" decoding="async" src="ma_ta_2026.jpg" alt="Teaching at the Lodha Genius Programme 2026"></div>
+      </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame tall"><img alt="Teaching at the Lodha Genius Programme 2026" decoding="async" height="800" loading="lazy" src="ma_ta_2026.jpg" width="600"/></div>
       <p class="u-cap">Teaching at the Lodha Genius Programme 2026.</p>
-      <div class="frame"><img width="1170" height="878" loading="lazy" decoding="async" src="ma_origami.jpg" alt="Origami and Advanced Geometry, Week 4"></div>
+    </div>
+
+    <div class="bubble media-cloud">
+      <div class="frame"><img alt="Origami and Advanced Geometry, Week 4" decoding="async" height="878" loading="lazy" src="ma_origami.jpg" width="1170"/></div>
       <p class="u-cap">Origami and Advanced Geometry, Week 4.</p>
+    </div>
+
   </div>
+
   <script>
   (function () {
     var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
