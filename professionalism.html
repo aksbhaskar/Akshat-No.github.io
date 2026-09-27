@@ -25,7 +25,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
   <!-- The hero is the LCP. Start it before the parser reaches the markup,
        and let the phone take the 80KB copy instead of the 285KB one. -->
-  <link rel="preload" as="image" href="splash-bg.webp" fetchpriority="high">
   <link rel="preload" as="image" href="hero_president.jpg"
         imagesrcset="hero_president_800.jpg 800w, hero_president_1200.jpg 1200w, hero_president.jpg 1600w"
         imagesizes="(max-width: 760px) 100vw, 56vw" fetchpriority="high">
@@ -41,49 +40,6 @@
   </script>
   <link rel="stylesheet" href="theme.css">
 
-  <!-- ─── SPLASH: shown once per session while the page settles ───
-       Decide before first paint so returning / reduced-motion
-       visitors never catch a flash of it. -->
-  <script>(function(){try{
-    var seen = sessionStorage.getItem('splashSeen');
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.documentElement.classList.add((seen || reduce) ? 'splash-off' : 'splash-active');
-  }catch(e){document.documentElement.classList.add('splash-off');}})();</script>
-  <style>
-    html.splash-off #splash { display: none !important; }
-    html.splash-active { overflow: hidden; }
-    @media (prefers-reduced-motion: reduce) { #splash { display: none !important; } }
-
-    /* Full-bleed blue hero splash. */
-    #splash {
-      position: fixed; inset: 0; z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-      background: #1d1edb center center / cover no-repeat;
-      background-image: url('splash-bg.webp');
-      will-change: transform;
-      transition: transform .82s cubic-bezier(.76,0,.24,1), opacity .82s ease;
-    }
-    html.dark #splash { background-color: #1d1edb; }
-    /* The panel lifts away, revealing the site beneath. */
-    #splash.sp-done { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-    .sp-inner { text-align: center; padding: 2rem; max-width: 96vw; cursor: default; }
-
-    .sp-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.6rem, 9vw, 7rem);
-      letter-spacing: -0.03em; line-height: 1;
-      color: #ffffff; white-space: nowrap;
-      opacity: 0; transform: translateY(0.18em) scale(0.99);
-      animation: spTitle .9s cubic-bezier(.2,.8,.2,1) forwards .1s;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.12);
-    }
-    @keyframes spTitle { to { opacity: 1; transform: translateY(0) scale(1); } }
-
-    @media (max-width: 520px) {
-      .sp-title { white-space: normal; }
-    }
-  </style>
 
   <script type="application/ld+json">
   {
@@ -1061,52 +1017,6 @@
   <script>(function(){try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}})();</script>
 </head>
 <body class="paper">
-
-<!-- ─── SPLASH ───────────────────────────────────────────────── -->
-<div id="splash" role="status" aria-label="Loading akshatb.com">
-  <div class="sp-inner">
-    <h1 class="sp-title">Akshat Bhaskar</h1>
-  </div>
-</div>
-<script>
-(function(){
-  var s = document.getElementById('splash');
-  if (!s) return;
-  var html = document.documentElement;
-  if (html.classList.contains('splash-off')) { s.remove(); return; }
-  var quips = [
-    'hey there :)',
-    'good to see you',
-    'putting the kettle on…',
-    'dusting off the good chair…',
-    'straightening the picture frames…',
-    'unlocking the front door…',
-    'almost ready…',
-    'come on in :)'
-  ];
-  var q = s.querySelector('.sp-quip');
-  if (q) q.textContent = quips[Math.floor(Math.random() * quips.length)];
-  try { sessionStorage.setItem('splashSeen', '1'); } catch (e) {}
-  var start = Date.now(), gone = false;
-  function done() {
-    if (gone) return; gone = true;
-    clearTimeout(cap);
-    s.classList.add('sp-done');
-    html.classList.remove('splash-active');
-    setTimeout(function(){ if (s && s.parentNode) s.remove(); }, 900);
-  }
-  // Leave as soon as the page is ready, but hold long enough for the
-  // reveal to read (min ~1.2s); never linger past ~1.9s.
-  function finish() { setTimeout(done, Math.max(0, 1200 - (Date.now() - start))); }
-  if (document.readyState === 'complete') finish();
-  else window.addEventListener('load', finish);
-  var cap = setTimeout(done, 1900);
-  // let an impatient visitor skip straight in
-  s.addEventListener('click', done);
-  window.addEventListener('keydown', done, { once: true });
-  window.addEventListener('wheel', done, { once: true, passive: true });
-})();
-</script>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
