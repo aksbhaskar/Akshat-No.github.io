@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
   <style>
     :root { --ink: #ffffff; --bg: #000000; }
     @view-transition { navigation: auto; }
@@ -29,21 +29,17 @@
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 1.62;
+      font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     .wrap { max-width: 600px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
-    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
     a:visited { color: var(--ink); }
     a:hover { text-decoration-thickness: 2px; }
+    b, strong { font-weight: 700; }
     p { margin: 0 0 1.2rem; }
-
-    .hero { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 1.4rem; }
-    .avatar { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; display: block; flex: 0 0 auto; }
-    .hi { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
 
     nav { margin-bottom: 2.6rem; text-align: center; }
     nav a { margin: 0 0.7rem; }
@@ -60,7 +56,7 @@
       width: max-content;
       max-width: 100%;
     }
-    details.disc > summary .tog { text-decoration: underline; text-underline-offset: 2px; }
+    details.disc > summary .tog { text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
     details.disc > summary::-webkit-details-marker { display: none; }
     details.disc > summary::marker { content: ''; }
     details.disc[open] > summary { margin-bottom: 1.3rem; }
@@ -70,8 +66,8 @@
     .disc-body figure img { margin: 0; }
     .disc-body figcaption { font-size: 0.8rem; font-style: italic; color: #b3b3b3; margin-top: 0.5rem; line-height: 1.5; }
 
-    @media (min-width: 1000px) { body { font-size: 16px; } }
-    @media (max-width: 640px) { body { font-size: 16.5px; line-height: 1.6; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+    @media (min-width: 1000px) { body { font-size: 18px; } }
+    @media (max-width: 640px) { body { font-size: 18px; line-height: 1.58; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
   </style>
 </head>
 <body>
@@ -85,10 +81,7 @@
       <a href="photography.html">photography</a>
     </nav>
 
-    <div class="hero">
-      <img class="avatar" width="46" height="46" decoding="async" src="akshat.jpg" alt="Akshat Bhaskar">
-      <span class="hi">hi, i'm Akshat!</span>
-    </div>
+    <p>hi, i'm <b>Akshat</b>!</p>
 
     <p>i love building things and dragging good ideas out into the open where people can use them.</p>
 
