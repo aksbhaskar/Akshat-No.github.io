@@ -14,61 +14,65 @@
   <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#f3c79a" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
   <style>
-    :root { --ink: #1a1a1a; --bg: #ffffff; --muted: #666666; }
+    :root { --ink: #23201c; --muted: #6a655c; }
     @view-transition { navigation: auto; }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      background: var(--bg);
+      min-height: 100vh;
       color: var(--ink);
       font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif;
       font-size: 17px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(60% 55% at 18% 8%, #ffcf9c 0%, rgba(255,207,156,0) 58%),
+        radial-gradient(70% 68% at 0% 46%, #4fa4e8 0%, rgba(79,164,232,0) 60%),
+        radial-gradient(90% 80% at 100% 100%, #86a75a 0%, rgba(134,167,90,0) 66%),
+        radial-gradient(55% 45% at 90% 6%, #ffe1b6 0%, rgba(255,225,182,0) 58%),
+        linear-gradient(155deg, #f7c088 0%, #6cbceb 40%, #a4c7d0 58%, #93ad6a 100%);
+      background-attachment: fixed;
     }
-    .wrap { max-width: 600px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 3.4rem 1.4rem 6rem; }
+
+    nav { margin-bottom: 2rem; text-align: center; }
+    nav a { margin: 0 0.6rem; color: var(--ink); text-decoration: none; font-weight: 600; opacity: 0.78; }
+    nav a:hover { opacity: 1; }
+
+    .bubble {
+      background: rgba(255,255,255,0.66);
+      -webkit-backdrop-filter: blur(16px) saturate(1.1);
+      backdrop-filter: blur(16px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px -28px rgba(60,50,35,0.45), 0 2px 8px -4px rgba(0,0,0,0.08);
+      padding: 1.5rem 1.7rem;
+      margin: 0 0 1.1rem;
+    }
+    .bubble p { margin: 0 0 0.9rem; }
+    .bubble p:last-child { margin-bottom: 0; }
     a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
     a:visited { color: var(--ink); }
     a:hover { text-decoration-thickness: 2px; }
     b, strong { font-weight: 700; }
-    p { margin: 0 0 1.2rem; }
+    .hi { font-size: 1.25rem; }
 
-    nav { margin-bottom: 2.6rem; text-align: center; }
-    nav a { margin: 0 0.7rem; }
-
-    .gap { margin-top: 1.7rem; }
-    .tight { margin: 0 0 0.2rem; }
-
-    details.disc { margin-top: 0.5rem; }
-    .disc-line { margin: 0.4rem 0 0; padding-left: 1.3rem; position: relative; }
-    .disc-line::before { content: "•"; position: absolute; left: 0.2rem; color: var(--ink); }
-    details.disc.spaced { margin-top: 1.9rem; }
-    details.disc > summary {
-      cursor: pointer;
-      list-style: none;
-      width: max-content;
-      max-width: 100%;
-    }
-    details.disc > summary .tog { text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
-    details.disc > summary::-webkit-details-marker { display: none; }
-    details.disc > summary::marker { content: ''; }
-    details.disc[open] > summary { margin-bottom: 1.3rem; }
-    .disc-body p:last-child { margin-bottom: 0; }
-    .disc-body img { width: 100%; height: auto; display: block; margin: 1.4rem 0 0.2rem; border: 0.5px solid #e2e2e2; }
-    .disc-body figure { margin: 1.4rem 0 0.2rem; }
-    .disc-body figure img { margin: 0; }
-    .disc-body figcaption { font-size: 0.8rem; font-style: italic; color: #666666; margin-top: 0.5rem; line-height: 1.5; }
+    .label { color: var(--muted); font-style: italic; margin: 0 0 0.7rem; }
+    ul.list { list-style: none; margin: 0; padding: 0; }
+    ul.list li { position: relative; padding-left: 1.3rem; margin: 0 0 0.7rem; }
+    ul.list li:last-child { margin-bottom: 0; }
+    ul.list li::before { content: "•"; position: absolute; left: 0.2rem; }
 
     @media (min-width: 1000px) { body { font-size: 18px; } }
-    @media (max-width: 640px) { body { font-size: 18px; line-height: 1.58; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+    @media (max-width: 640px) { body { font-size: 18px; line-height: 1.58; } .wrap { padding: 2.6rem 1.1rem 5rem; } }
   </style>
 </head>
 <body>
@@ -82,48 +86,43 @@
       <a href="photography.html">photography</a>
     </nav>
 
-    <p>hi, i'm <b>Akshat</b>!</p>
+    <div class="bubble">
+      <p class="hi">hi, i'm <b>Akshat</b>!</p>
+      <p>i love building things and dragging good ideas out into the open where people can use them.</p>
+    </div>
 
-    <p>i love building things and dragging good ideas out into the open where people can use them.</p>
+    <div class="bubble">
+      <p class="label">some interesting things about me:</p>
+      <ul class="list">
+        <li><a href="president.html">awarded by the Hon'ble President of India</a> at the age of 17.</li>
+        <li>i'm really interested in the mission of <a href="financialliteracy.html">financial literacy</a></li>
+        <li>took a <a href="gapyear.html">gap year</a> after high school.</li>
+        <li><a href="researchstory.html">got into research, published and presented</a></li>
+        <li>always doing a <a href="now.html">LOT of stuff</a></li>
+      </ul>
+    </div>
 
-    <p class="gap">some interesting things about me:</p>
+    <div class="bubble">
+      <p><a href="resume.pdf" target="_blank" rel="noopener">checkout my resume</a></p>
+      <p><a href="timeline.html">read about how my life went (timeline style)</a></p>
+    </div>
 
-    <p class="disc-line"><a href="president.html">awarded by the Hon'ble President of India</a> at the age of 17.</p>
-
-    <p class="disc-line">i'm really interested in the mission of <a href="financialliteracy.html">financial literacy</a></p>
-
-    <p class="disc-line">took a <a href="gapyear.html">gap year</a> after high school.</p>
-
-    <p class="disc-line"><a href="researchstory.html">got into research, published and presented</a></p>
-
-    <p class="disc-line">always doing a <a href="now.html">LOT of stuff</a></p>
-
-    <p class="gap"><a href="resume.pdf" target="_blank" rel="noopener">checkout my resume</a></p>
-
-    <p class="tight"><a href="timeline.html">read about how my life went (timeline style)</a></p>
-
-    <details class="disc spaced">
-      <summary><span class="tog">reach me</span></summary>
-      <div class="disc-body">
-        <p>if any of this overlaps with what you're building, a startup, a podcast, a research project, a nonprofit, whatever it is, I'd like to hear about it! write to me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
-
-        <p>or reach the things I run directly:</p>
-
-        <p>
-          <b>Edunomix</b><br>
-          Join or Enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
-          Learn More: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
-        </p>
-
-        <p>
-          <b>Decoded</b><br>
-          Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
-          Guests &amp; Ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
-          Everything Else: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
-          Learn More: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
-        </p>
-      </div>
-    </details>
+    <div class="bubble">
+      <p>if any of this overlaps with what you're building, a startup, a podcast, a research project, a nonprofit, whatever it is, I'd like to hear about it! write to me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
+      <p>or reach the things I run directly:</p>
+      <p>
+        <b>Edunomix</b><br>
+        Join or Enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
+        Learn More: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">edunomixinstitute.com</a>
+      </p>
+      <p>
+        <b>Decoded</b><br>
+        Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
+        Guests &amp; Ideas: <a href="mailto:outreach@thedecodedpodcast.com">outreach@thedecodedpodcast.com</a><br>
+        Everything Else: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
+        Learn More: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>
+      </p>
+    </div>
 
   </div>
   <script>
