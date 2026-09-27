@@ -22,7 +22,7 @@
     var metaTheme = document.querySelector('meta[name="theme-color"]');
     var dayColor = metaTheme ? metaTheme.getAttribute('content') : null;
     function paintChrome() {
-      if (metaTheme) metaTheme.setAttribute('content', root.classList.contains('dark') ? '#16150f' : dayColor);
+      if (metaTheme) metaTheme.setAttribute('content', root.classList.contains('dark') ? '#000000' : dayColor);
     }
     paintChrome();
 

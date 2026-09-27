@@ -30,24 +30,24 @@
    Scoped to body.paper: only the standard manuscript pages flip.
    Bespoke pages (awards hall, gym, budget...) own their palettes. */
 html.dark body.paper {
-  --paper:      #16150f;
-  --ink:        #f0ead9;
-  --ink-med:    #cbc6b6;
-  --ink-soft:   #969184;
-  --ink-faint:  #868273;   /* 4.7:1 on the dark paper; #6f6b5c was 3.4 */
-  --ink-ghost:  #4c4940;
-  --rule:       #3a3830;
-  --rule-light: #2a2822;
+  --paper:      #000000;
+  --ink:        #ffffff;
+  --ink-med:    #dddddd;
+  --ink-soft:   #b3b3b3;
+  --ink-faint:  #8a8a8a;   /* 4.7:1 on the dark paper; #6f6b5c was 3.4 */
+  --ink-ghost:  #444444;
+  --rule:       #2a2a2a;
+  --rule-light: #1c1c1c;
   background: var(--paper); color: var(--ink);
 }
 
 /* Bits that hardcode the light paper colour need a hand in the dark. */
 html.dark body.paper .topbar {
-  background: rgba(22, 21, 15, 0.9);
+  background: rgba(0, 0, 0, 0.9);
   border-bottom-color: rgba(240, 234, 217, 0.08);
 }
 html.dark body.paper .hero-caption {
-  background: linear-gradient(to top, rgba(22,21,15,0.9) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
 }
 html.dark body.paper .hero-president,
 html.dark body.paper .hero-img-wrap { background: var(--paper); }
