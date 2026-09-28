@@ -49,21 +49,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
   <link rel="stylesheet" href="bubbles.css">
   <style>
-    /* same background as the home page: the Alexander painting */
+    /* same background as the home page: the blue sky */
     body {
-      background: #2a2620 url('alexander.webp') center center / cover no-repeat !important;
+      background: #bfe9fb url('sky.webp') center center / cover no-repeat !important;
       background-attachment: fixed !important;
     }
     @media (orientation: portrait) {
-      body { background-image: url('alexander-vertical.webp') !important; }
+      body { background-image: url('sky-vertical.webp') !important; }
     }
-    /* soft top scrim so the nav stays readable on the painting */
-    body::before {
-      content: ""; position: fixed; top: 0; left: 0; right: 0; height: 170px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
-      pointer-events: none; z-index: 0;
-    }
-    .wrap { position: relative; z-index: 1; }
   </style>
 </head>
 <body>

@@ -216,7 +216,7 @@
 
   #dogZ{ position:absolute; left:22px; top:4px; pointer-events:none; opacity:0; transition:opacity .3s; }
   #dogCompanion[data-state="sleep"] #dogZ{ opacity:1; }
-  #dogZ span{ position:absolute; font:700 13px/1 'Courier New',monospace; color:#cbbcf2;
+  #dogZ span{ position:absolute; font:700 13px/1 'Courier New',monospace !important; color:#cbbcf2 !important;
     text-shadow:1px 1px 0 #0b0b0e; opacity:0; }
   #dogCompanion[data-state="sleep"] #dogZ span{ animation:dogZz 3s steps(6) infinite; }
   #dogCompanion[data-state="sleep"] #dogZ span:nth-child(2){ animation-delay:1s; }
@@ -226,9 +226,9 @@
 
   #dogSay{
     position:absolute; bottom:calc(100% + 10px); right:6px; width:max-content; max-width:210px;
-    background:#fffdf7; color:#1a1612; border:2px solid #0b0b0e; border-radius:3px;
+    background:#fffdf7; color:#000 !important; border:2px solid #0b0b0e; border-radius:3px;
     box-shadow:3px 3px 0 #cbbcf2;
-    font:600 13px/1.35 'Courier New',ui-monospace,monospace; padding:7px 10px;
+    font:600 13px/1.35 'Courier New',ui-monospace,monospace !important; padding:7px 10px;
     opacity:0; transform:translateY(6px); transition:opacity .18s, transform .18s steps(3);
     pointer-events:none; white-space:normal; text-align:left;
   }
