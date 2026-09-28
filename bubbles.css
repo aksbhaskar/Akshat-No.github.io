@@ -1,126 +1,110 @@
-/* Shared "watercolour + bubble" theme for the minimal pages.
+/* Shared theme for the minimal pages, matching the home page:
+   the Alexander painting behind a single #f8f8f8 card, and inside it a
+   31rem column set in the Alembic "serif white" style (EB Garamond 400,
+   #0a0a0a, 1.25rem, line-height 1, balanced lines, floral drop caps).
    Linked after each page's own <style>, so these rules win. */
 
+html { -webkit-text-size-adjust: 100%; }
 body {
-  color: #23201c !important;
-  font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif !important;
-  background: #d9f4fd !important;
-}
-/* the light watercolour wash (colours of the blue-sky painting) lives on a
-   fixed layer, so scrolling doesn't have to repaint it */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(55% 48% at 18% 12%, #c6eefc 0%, rgba(198,238,252,0) 62%),
-    radial-gradient(50% 45% at 86% 18%, #ffffff 0%, rgba(255,255,255,0) 60%),
-    radial-gradient(60% 55% at 90% 88%, #bdebfb 0%, rgba(189,235,251,0) 62%),
-    radial-gradient(55% 50% at 8% 86%, #f4fcff 0%, rgba(244,252,255,0) 60%),
-    radial-gradient(48% 42% at 50% 50%, #d9f4fd 0%, rgba(217,244,253,0) 70%),
-    linear-gradient(155deg, #e3f6fe 0%, #d2f1fd 45%, #e9f8fe 72%, #cdeffc 100%);
-}
-
-/* Default: the reading column is a light frosted card so text stays
-   readable on the dark wash. */
-.wrap {
-  background: rgba(255,255,255,0.76) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  border-radius: 24px !important;
-  box-shadow: 0 26px 64px -30px rgba(0,0,0,0.7), 0 2px 8px -4px rgba(0,0,0,0.25) !important;
-  margin: 2.2rem auto 3rem !important;
-}
-
-/* Gallery / updates pages carry their own per-item clouds, so their
-   column stays transparent and the nav sits on the wash. */
-.wrap.gallery, .wrap.bare {
+  margin: 0 !important; min-height: 100vh;
+  color: #0a0a0a !important;
+  font: 1.25rem/1 "EB Garamond", Garamond, Georgia, serif !important;
+  font-kerning: normal; font-variant-ligatures: common-ligatures;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
   background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  margin: 0 auto !important;
+}
+/* the painting lives on a fixed layer, so scrolling never repaints it */
+html { background: #2a2620 !important; }
+body::before {
+  content: "" !important; position: fixed !important; z-index: -1 !important; pointer-events: none;
+  top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+  width: auto !important; height: auto !important;
+  background: #2a2620 url('alexander.webp') center center / cover no-repeat !important;
+}
+@media (orientation: portrait) { body::before { background-image: url('alexander-vertical.webp') !important; } }
+
+/* the card, with the text column centred inside it */
+.wrap, .page {
+  box-sizing: border-box !important;
+  width: min(64rem, 100% - 3rem) !important; max-width: none !important;
+  margin: 4.5rem auto !important;
+  padding: 6rem max(1.5rem, calc((min(64rem, 100vw - 3rem) - 31rem) / 2)) !important;
+  background: #f8f8f8 !important; border: 0 !important; border-radius: 0.5rem !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55) !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  position: relative;
+}
+@media (max-width: 640px) {
+  .wrap, .page { width: calc(100% - 1.5rem) !important; margin: 0.75rem auto !important; padding: 3.5rem 1.5rem !important; }
 }
 
-/* popup pages keep a single frosted card */
-.page {
-  background: rgba(255,255,255,0.7) !important;
-  border: 1px solid rgba(255,255,255,0.72) !important;
-  border-radius: 24px !important;
-  box-shadow: 0 26px 64px -30px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08) !important;
-  margin: 2.4rem auto 3.6rem !important;
+/* everything is plain text on the card: no clouds, no boxes */
+.bubble, .gallery figure, .u-list a, .tl-cloud, .frame, .media-cloud {
+  background: transparent !important; border: 0 !important; border-radius: 0 !important;
+  box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  padding: 0 !important;
+}
+.bubble { margin: 0 0 1.6rem !important; }
+
+/* one ink colour, one face, one size */
+body :where(:not(svg, svg *, #dogCompanion, #dogCompanion *)) {
+  color: #0a0a0a !important; font-family: "EB Garamond", Garamond, Georgia, serif !important;
+}
+p, li, figcaption, blockquote, dd, dt, td, th, label, .sub, .u-cap, .label, .meta, .note, .cap, .u-date {
+  font-size: 1.25rem !important; line-height: 1 !important; font-weight: 400 !important;
+  text-wrap: balance; -webkit-hyphens: manual; hyphens: manual; letter-spacing: 0 !important;
+}
+p { margin: 0 0 0.8lh !important; }
+.sub, .meta, .u-date, .label { font-style: italic; }
+h1, h2, h3, h4 { font-weight: 400 !important; line-height: 1 !important; letter-spacing: 0 !important; text-transform: none !important; }
+h1 { font-size: 1.6rem !important; margin: 0 0 0.6rem !important; }
+h2, h3, h4 { font-size: 1.25rem !important; font-style: italic; margin: 1.6rem 0 0.6rem !important; }
+b, strong { font-weight: 600 !important; }
+small { font-size: 1rem !important; }
+
+/* links: same ink, fine underline (as on the home page) */
+a, a:visited { color: inherit !important; font-weight: inherit !important; text-decoration: underline !important;
+  text-decoration-color: rgba(10,10,10,0.3) !important; text-decoration-thickness: 1px !important; text-underline-offset: .15em; }
+a:hover { text-decoration-color: currentColor !important; }
+
+/* top nav: plain EB Garamond links, like the list on the home page */
+.wrap > nav:first-of-type, .page > nav:first-of-type { text-align: left !important; margin: 0 0 3rem !important; }
+.wrap > nav:first-of-type a, .page > nav:first-of-type a {
+  display: inline-block; margin: 0 1.1rem 0.3rem 0 !important; font-size: 1.25rem !important;
+  text-shadow: none !important; opacity: 1 !important;
 }
 
-/* the frosted card used for grouped content and per-item clouds */
-.bubble, .gallery figure {
-  background: rgba(255,255,255,0.74);
-  border: 1px solid rgba(255,255,255,0.72);
-  border-radius: 22px;
-  box-shadow: 0 24px 60px -28px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
-  padding: 1.5rem 1.7rem;
-  margin: 0 0 1.1rem;
+/* the floral drop cap: three lines, top on the cap height of line 1,
+   bottom on the baseline of line 3; rest of the first word run in capitals */
+p.al .initial {
+  float: left; width: auto !important; height: 2.65em !important; margin: 0.2em 0.27em 0 0 !important;
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important; display: block;
 }
+p.al .run { text-transform: uppercase; letter-spacing: 0.02em; }
+p.al { display: flow-root; }
 
-/* links: dark, bold, underlined */
-a { color: #23201c !important; text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
-a:visited { color: #23201c !important; }
-
-/* top nav: black EB Garamond, not underlined, same on every page */
-.wrap > nav:first-of-type { text-align: center; margin: 0 0 1.6rem; }
-.wrap > nav:first-of-type a,
-.wrap > nav:first-of-type a:visited {
-  text-decoration: none; font-family: 'EB Garamond', Georgia, serif; font-weight: 500;
-  color: #000 !important; opacity: 1; text-shadow: none;
-}
-.wrap > nav:first-of-type a:hover { text-decoration: underline; }
-
-
-/* headings + emphasis */
-h1, h2, .u-title, .hi, b, strong { color: #23201c !important; }
-
-/* muted / secondary text, readable on the light card */
-.sub, .u-cap, .label, figcaption, .u-date, .meta, .note, .cap,
-.by, .r, .d, .reading .by, .reading .lbl, .disc-body figcaption {
-  color: #6a655c !important;
-}
-
-/* body copy inside popup pages was light; darken it */
-.body p, .colophon { color: #2a2620 !important; }
-.colophon a { color: #23201c !important; }
-
-/* ── galleries: one cloud per photo (photos + photography) ── */
-.gallery figure { max-width: 100% !important; padding: 0.8rem !important; margin: 0 0 1.1rem !important; }
-.gallery figure img { width: 100%; height: auto; display: block; border: 0 !important; border-radius: 13px; }
-.gallery figcaption { margin: 0.65rem 0.25rem 0.15rem !important; color: #6a655c !important; font-style: normal; font-size: 1rem; line-height: 1.5; }
-
-/* ── update pages: images / embeds get their own centred cloud ── */
-.media-cloud { text-align: center; }
+/* images sit in the column */
+img { max-width: 100%; height: auto; border: 0 !important; border-radius: 2px; box-shadow: none !important; }
+.gallery figure { max-width: 100% !important; margin: 0 0 2.4rem !important; }
+.gallery figure img { width: 100%; display: block; }
+figcaption { margin: 0.5rem 0 0 !important; font-style: italic; }
+.media-cloud { text-align: center; margin: 0 0 1.6rem !important; }
 .media-cloud .frame { margin-left: auto !important; margin-right: auto !important; }
-.media-cloud .frame img { margin: 0 auto; }
 .media-cloud iframe { max-width: 100%; }
-.media-cloud .u-cap { text-align: center !important; }
 
-/* ── updates: one cloud per entry ── */
-.u-list a {
-  display: block; text-decoration: none !important; font-weight: 700 !important; color: #23201c !important;
-  background: rgba(255,255,255,0.74);
-  border: 1px solid rgba(255,255,255,0.72);
-  border-radius: 18px;
-  box-shadow: 0 20px 50px -30px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
-  padding: 1rem 1.3rem; margin: 0 0 0.9rem;
-  transition: transform 0.16s ease;
+/* updates list: one plain line per entry */
+.u-list a { display: block; margin: 0 0 0.55rem !important; }
+.u-list a .m, .u-list a .badge { font-style: italic; }
+
+/* timeline entries: plain, spaced */
+.tl { margin: 0 0 1.6rem !important; }
+
+/* popup pages' round back button, and the connect form */
+.back { background: #f8f8f8 !important; border: 1px solid rgba(10,10,10,0.25) !important; box-shadow: none !important; }
+input, textarea, select {
+  font: 1.25rem/1.2 "EB Garamond", Garamond, Georgia, serif !important; color: #0a0a0a !important;
+  background: transparent !important; border: 0 !important; border-bottom: 1px solid rgba(10,10,10,0.35) !important;
+  border-radius: 0 !important; box-shadow: none !important;
 }
-.u-list a:hover { transform: translateY(-2px); }
-.u-list a .m { color: #6a655c !important; font-weight: 600; }
-.u-list a.hi { color: #9a6a12 !important; }
-.u-list a.hi .m { color: #9a6a12 !important; }
-
-/* images / frames on the light card */
-img { border-color: rgba(50,40,25,0.18) !important; }
-.frame {
-  background: rgba(255,255,255,0.55) !important;
-  border-color: rgba(50,40,25,0.18) !important;
-  box-shadow: 0 16px 38px -22px rgba(50,40,25,0.45) !important;
-}
-
-/* the round back button on popup pages */
-.back { background: rgba(255,255,255,0.9) !important; border-color: rgba(50,40,25,0.2) !important; color: #6a4a2a !important; }
-
-/* connect form send button */
-.send { background: #23201c !important; color: #fff !important; }
+.send, button[type="submit"] { background: #0a0a0a !important; color: #f8f8f8 !important; border: 0 !important; border-radius: 999px !important; }
+.send, .send *, button[type="submit"], button[type="submit"] * { color: #f8f8f8 !important; }

@@ -1,25 +1,26 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Now | Akshat Bhaskar</title>
-  <meta name="description" content="What Akshat Bhaskar is working on, reading, and thinking about right now. A dated dispatch from a desk in New Delhi." />
-  <meta name="author" content="Akshat Bhaskar" />
-  <link rel="canonical" href="https://akshatb.com/now.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="What Akshat Bhaskar is doing now" />
-  <meta property="og:description" content="A dated dispatch: what I am building, reading, and thinking about right now." />
-  <meta property="og:url" content="https://akshatb.com/now.html" />
-  <meta property="og:image" content="https://akshatb.com/og_now.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://akshatb.com/og_now.jpg" />
-  <meta name="theme-color" content="#000000" />
-  <link rel="icon" type="image/jpeg" href="akshat.jpg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Now | Akshat Bhaskar</title>
+<meta content="What Akshat Bhaskar is working on, reading, and thinking about right now. A dated dispatch from a desk in New Delhi." name="description"/>
+<meta content="Akshat Bhaskar" name="author"/>
+<link href="https://akshatb.com/now.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="What Akshat Bhaskar is doing now" property="og:title"/>
+<meta content="A dated dispatch: what I am building, reading, and thinking about right now." property="og:description"/>
+<meta content="https://akshatb.com/now.html" property="og:url"/>
+<meta content="https://akshatb.com/og_now.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://akshatb.com/og_now.jpg" name="twitter:image"/>
+<meta content="#000000" name="theme-color"/>
+<link href="akshat.jpg" rel="icon" type="image/jpeg"/>
+<link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<style>
     :root { --ink: #ffffff; --bg: #000000; --muted: #b3b3b3; }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
@@ -63,105 +64,89 @@
     @media (min-width: 1000px) { body { font-size: 16px; } }
     @media (max-width: 640px) { body { font-size: 16.5px; line-height: 1.6; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
   </style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
-  <link rel="stylesheet" href="bubbles.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="bubbles.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="wrap">
-
-    <nav>
-      <a href="index.html">home</a>
-      <a href="professionalism.html">better website?</a>
-      <a href="photos.html">corpus delicti</a>
-      <a href="updates.html">updates</a>
-      <a href="photography.html">photography</a>
-    </nav>
-
-    <h1>now</h1>
-    <p class="sub">what has my attention at the moment.</p>
-    <p class="meta">updated <span id="updated">6 September 2026</span> &middot; <span id="freshness">today</span> &middot; New Delhi <span class="clock" id="clock">··:··</span></p>
-
-    <section class="sec">
-      <h2>where i'll be</h2>
-      <p>where to find me over the next few months. if any of it lines up with where you are, come say hi :)</p>
-      <ul class="list">
-        <li>9 September: Ashoka University (interviewing professors for <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">the podcast</a>)</li>
-        <li>14 September: Decoded &times; HERizon Special Event with <a href="https://www.stern.nyu.edu/faculty/bio/cary-krosinsky" target="_blank" rel="noopener">Cary S. Krosinsky</a> (Yale, Brown, NYU) (a student session on sustainable finance and climate action)</li>
-        <li>23 September: <a href="https://shadowthescientists.ucsc.edu/" target="_blank" rel="noopener">Shadow the Scientists</a>, UCSC Lecture (Exploring the Deep-Sea Habitats of the Hawaiian Archipelago with the E/V Nautilus)</li>
-        <li>26 September: Lodha Genius Roundtable Discussion Session (as should all LGP alums!)</li>
-        <li>3&ndash;5 October: Hack Nation Global AI Hackathon (i also have an organiser's referral code for people i think are amazing, so message me if you want it)</li>
-        <li>5&ndash;15 October: Andaman &amp; Nicobar Islands (travelling)</li>
-        <li>18 November: NYAS 208th Annual Meeting (as a Member and Fellow)</li>
-      </ul>
-    </section>
-
-    <section class="sec">
-      <h2>researching</h2>
-      <p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
-      <p>The content is multilingual and code-mixed, Hindi and English inside the same sentence, which is what most off-the-shelf models fall over on. So it runs through <a href="https://huggingface.co/google/muril-base-cased" target="_blank" rel="noopener">MuRIL</a>, pretrained on Indian languages, and <a href="https://huggingface.co/FacebookAI/xlm-roberta-base" target="_blank" rel="noopener">XLM-RoBERTa</a>, to see whether the India-specific training earns its keep.</p>
-      <p>The other half is psychological. Using the BFI-2-XS personality inventory and the Fear of Missing Out scale, I am working out which traits predict whether someone forwards a claim they never checked. The interesting question was never what the false posts look like. It is who passes them on.</p>
-    </section>
-
-    <section class="sec">
-      <h2>building</h2>
-      <p>back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter i founded to teach economics to students who are never offered it. i'd stepped back for a while under other commitments (don't worry guys i aced my board exams), and it is good to be in it properly again.</p>
-      <p>right now that mostly means the <a href="https://edunomixinstitute.com/india-essay-competition" target="_blank" rel="noopener">second</a> edition of our nationwide essay competition, which is live and open for submissions. it is open to students in Classes 6 to 12, along with first-year university and gap-year students, with five prompts on questions that matter for India. entries close on 30th September, a few dozen are already in, and the top entries walk straight onto the Edunomix India research team!</p>
-      <p>we have also partnered again with Learn and Teach UA for this season's <a href="https://x.com/aksbhaskar/status/2096799687399690405?s=20" target="_blank" rel="noopener">Ukraine Speaks English seminars</a>, free financial education for students across Ukraine whose schooling has been disrupted.</p>
-    </section>
-
-    <section class="sec">
-      <h2>writing</h2>
-      <p>most of my writing now goes into the financial misinformation study above, which is a different craft from an essay. fewer adjectives, more error bars, and a much longer wait before you are allowed to claim anything.</p>
-      <p>shorter pieces land on <a href="articles.html">the articles page</a> when they are ready.</p>
-    </section>
-
-    <section class="sec">
-      <h2>recording</h2>
-      <p><a href="podcast.html"><i>Decoded</i></a> is the podcast i started with a friend in December 2024 to drag good conversations in economics, technology, and policy out of the papers and conference halls they usually die in. it has since passed three hundred listening hours on Spotify and picked up three Spotify for Creators awards in 2025 :)</p>
-      <p>the conversation I chased for weeks, with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" target="_blank" rel="noopener">M. Ram Murty</a> at Queen's University, one of the sharpest minds in number theory and philosophy, is now live: forty-four minutes on prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think. it may be the best thing we have recorded, with more interesting people lined up behind him.</p>
-      <p>i also coded a new home for the show at <a href="https://decodedpodcast.vercel.app" target="_blank" rel="noopener">decodedpodcast.vercel.app</a>. it started as just the two of us researching, recording, editing, and shipping every episode, so we have been building a team: our first twenty-plus hires across research, social media, and outreach, and, after dozens of interviews, a new Head of the Decoded Newsletter (more on who soon). a few newsletter roles are still open, so if you would like to join, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>, or just <a href="connect.html">say hello</a>.</p>
-    </section>
-
-    <section class="sec">
-      <h2>reading</h2>
-      <ul class="list">
-        <li><i>Development as Freedom</i><span class="by">Amartya Sen &mdash; the one quietly rearranging how I judge my own work</span></li>
-        <li><i>A Song of Ice and Fire</i><span class="by">George R. R. Martin &mdash; i love fiction!</span></li>
-      </ul>
-      <p style="margin-top:0.9rem">Halfway through Sen's <i>Development as Freedom</i> now, and it is quietly rearranging how I judge my own work. His claim, that development is the real freedoms people have rather than income alone, reframes what I am actually doing: the misinformation study is about one such freedom, the capability to tell a true claim from a false one, and Edunomix is about another, treating economic literacy as something owed to a student rather than optional. Before it I finished Ray Dalio's <i>Principles for Dealing with the Changing World Order</i>. The whole shelf lives <a href="bookshelf.html">here</a>.</p>
-    </section>
-
-    <section class="sec">
-      <h2>thinking about</h2>
-      <p>whether the most conscientious people spread financial misinformation fastest, forwarding a warning out of duty rather than carelessness. whether AI governance can ever be written faster than the thing it regulates. and why economics is taught as a subject to be examined rather than a lens for seeing the world.</p>
-    </section>
-
-    <section class="sec">
-      <h2>learning</h2>
-      <p>to be technical. i came to this from economics, where it is easy to treat the modelling as somebody else's department. that stops being an option the moment your research question is a fine-tune. so: Python, the transformers stack, and a concerning amount of statistics.</p>
-      <p>number theory, still, slowly. <a href="mathapprenticeship.html">the apprenticeship</a> ended but the habit did not.</p>
-    </section>
-
-    <section class="sec">
-      <h2>off the desk</h2>
-      <p>i ran my first half marathon this year!</p>
-    </section>
-
-    <section class="sec">
-      <h2>reaching out</h2>
-      <p>deliberately talking to more people, researchers, writers, anyone building something they care about. the most useful hour in my week is usually a conversation I did not strictly have to have. researching something? <a href="connect.html">talk to me!</a></p>
-    </section>
-
-    <section class="sec">
-      <h2>saying no to</h2>
-      <p>most things. it took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
-    </section>
-
-    <p class="colophon">this is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>, an idea I stole from Derek Sivers. the premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. if we have spoken before and this is out of date, that is on me. <a href="connect.html">nudge me</a>.</p>
-
-  </div>
-
-  <script>
+<div class="wrap">
+<nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
+</nav>
+<h1>now</h1>
+<p class="sub al"><img alt="W" class="initial" height="640" src="initials/W.svg" width="640"/><span class="run">hat</span> has my attention at the moment.</p>
+<p class="meta">updated <span id="updated">6 September 2026</span> · <span id="freshness">today</span> · New Delhi <span class="clock" id="clock">··:··</span></p>
+<section class="sec">
+<h2>where i'll be</h2>
+<p>where to find me over the next few months. if any of it lines up with where you are, come say hi :)</p>
+<ul class="list">
+<li>9 September: Ashoka University (interviewing professors for <a href="https://decodedpodcast.vercel.app/" rel="noopener" target="_blank">the podcast</a>)</li>
+<li>14 September: Decoded × HERizon Special Event with <a href="https://www.stern.nyu.edu/faculty/bio/cary-krosinsky" rel="noopener" target="_blank">Cary S. Krosinsky</a> (Yale, Brown, NYU) (a student session on sustainable finance and climate action)</li>
+<li>23 September: <a href="https://shadowthescientists.ucsc.edu/" rel="noopener" target="_blank">Shadow the Scientists</a>, UCSC Lecture (Exploring the Deep-Sea Habitats of the Hawaiian Archipelago with the E/V Nautilus)</li>
+<li>26 September: Lodha Genius Roundtable Discussion Session (as should all LGP alums!)</li>
+<li>3–5 October: Hack Nation Global AI Hackathon (i also have an organiser's referral code for people i think are amazing, so message me if you want it)</li>
+<li>5–15 October: Andaman &amp; Nicobar Islands (travelling)</li>
+<li>18 November: NYAS 208th Annual Meeting (as a Member and Fellow)</li>
+</ul>
+</section>
+<section class="sec">
+<h2>researching</h2>
+<p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
+<p>The content is multilingual and code-mixed, Hindi and English inside the same sentence, which is what most off-the-shelf models fall over on. So it runs through <a href="https://huggingface.co/google/muril-base-cased" rel="noopener" target="_blank">MuRIL</a>, pretrained on Indian languages, and <a href="https://huggingface.co/FacebookAI/xlm-roberta-base" rel="noopener" target="_blank">XLM-RoBERTa</a>, to see whether the India-specific training earns its keep.</p>
+<p>The other half is psychological. Using the BFI-2-XS personality inventory and the Fear of Missing Out scale, I am working out which traits predict whether someone forwards a claim they never checked. The interesting question was never what the false posts look like. It is who passes them on.</p>
+</section>
+<section class="sec">
+<h2>building</h2>
+<p>back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter i founded to teach economics to students who are never offered it. i'd stepped back for a while under other commitments (don't worry guys i aced my board exams), and it is good to be in it properly again.</p>
+<p>right now that mostly means the <a href="https://edunomixinstitute.com/india-essay-competition" rel="noopener" target="_blank">second</a> edition of our nationwide essay competition, which is live and open for submissions. it is open to students in Classes 6 to 12, along with first-year university and gap-year students, with five prompts on questions that matter for India. entries close on 30th September, a few dozen are already in, and the top entries walk straight onto the Edunomix India research team!</p>
+<p>we have also partnered again with Learn and Teach UA for this season's <a href="https://x.com/aksbhaskar/status/2096799687399690405?s=20" rel="noopener" target="_blank">Ukraine Speaks English seminars</a>, free financial education for students across Ukraine whose schooling has been disrupted.</p>
+</section>
+<section class="sec">
+<h2>writing</h2>
+<p>most of my writing now goes into the financial misinformation study above, which is a different craft from an essay. fewer adjectives, more error bars, and a much longer wait before you are allowed to claim anything.</p>
+<p>shorter pieces land on <a href="articles.html">the articles page</a> when they are ready.</p>
+</section>
+<section class="sec">
+<h2>recording</h2>
+<p><a href="podcast.html"><i>Decoded</i></a> is the podcast i started with a friend in December 2024 to drag good conversations in economics, technology, and policy out of the papers and conference halls they usually die in. it has since passed three hundred listening hours on Spotify and picked up three Spotify for Creators awards in 2025 :)</p>
+<p>the conversation I chased for weeks, with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" rel="noopener" target="_blank">M. Ram Murty</a> at Queen's University, one of the sharpest minds in number theory and philosophy, is now live: forty-four minutes on prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think. it may be the best thing we have recorded, with more interesting people lined up behind him.</p>
+<p>i also coded a new home for the show at <a href="https://decodedpodcast.vercel.app" rel="noopener" target="_blank">decodedpodcast.vercel.app</a>. it started as just the two of us researching, recording, editing, and shipping every episode, so we have been building a team: our first twenty-plus hires across research, social media, and outreach, and, after dozens of interviews, a new Head of the Decoded Newsletter (more on who soon). a few newsletter roles are still open, so if you would like to join, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>, or just <a href="connect.html">say hello</a>.</p>
+</section>
+<section class="sec">
+<h2>reading</h2>
+<ul class="list">
+<li><i>Development as Freedom</i><span class="by">Amartya Sen — the one quietly rearranging how I judge my own work</span></li>
+<li><i>A Song of Ice and Fire</i><span class="by">George R. R. Martin — i love fiction!</span></li>
+</ul>
+<p style="margin-top:0.9rem">Halfway through Sen's <i>Development as Freedom</i> now, and it is quietly rearranging how I judge my own work. His claim, that development is the real freedoms people have rather than income alone, reframes what I am actually doing: the misinformation study is about one such freedom, the capability to tell a true claim from a false one, and Edunomix is about another, treating economic literacy as something owed to a student rather than optional. Before it I finished Ray Dalio's <i>Principles for Dealing with the Changing World Order</i>. The whole shelf lives <a href="bookshelf.html">here</a>.</p>
+</section>
+<section class="sec">
+<h2>thinking about</h2>
+<p>whether the most conscientious people spread financial misinformation fastest, forwarding a warning out of duty rather than carelessness. whether AI governance can ever be written faster than the thing it regulates. and why economics is taught as a subject to be examined rather than a lens for seeing the world.</p>
+</section>
+<section class="sec">
+<h2>learning</h2>
+<p>to be technical. i came to this from economics, where it is easy to treat the modelling as somebody else's department. that stops being an option the moment your research question is a fine-tune. so: Python, the transformers stack, and a concerning amount of statistics.</p>
+<p>number theory, still, slowly. <a href="mathapprenticeship.html">the apprenticeship</a> ended but the habit did not.</p>
+</section>
+<section class="sec">
+<h2>off the desk</h2>
+<p>i ran my first half marathon this year!</p>
+</section>
+<section class="sec">
+<h2>reaching out</h2>
+<p>deliberately talking to more people, researchers, writers, anyone building something they care about. the most useful hour in my week is usually a conversation I did not strictly have to have. researching something? <a href="connect.html">talk to me!</a></p>
+</section>
+<section class="sec">
+<h2>saying no to</h2>
+<p>most things. it took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
+</section>
+<p class="colophon">this is a <a href="https://nownownow.com/about" rel="noopener" target="_blank">now page</a>, an idea I stole from Derek Sivers. the premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. if we have spoken before and this is out of date, that is on me. <a href="connect.html">nudge me</a>.</p>
+</div>
+<script>
   /* Dateline: the one line to touch when refreshing this page. */
   (function () {
     var LAST_UPDATED = '2026-09-06';
@@ -218,6 +203,6 @@
     scheduleIdle();
   })();
   </script>
-  <script defer src="dog.js"></script>
+<script defer="" src="dog.js"></script>
 </body>
 </html>
