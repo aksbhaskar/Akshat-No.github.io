@@ -67,12 +67,29 @@ a, a:visited { color: inherit !important; font-weight: inherit !important; text-
   text-decoration-color: rgba(10,10,10,0.3) !important; text-decoration-thickness: 1px !important; text-underline-offset: .15em; }
 a:hover { text-decoration-color: currentColor !important; }
 
-/* top nav: plain EB Garamond links, like the list on the home page */
-.wrap > nav:first-of-type, .page > nav:first-of-type { text-align: left !important; margin: 0 0 3rem !important; }
-.wrap > nav:first-of-type a, .page > nav:first-of-type a {
-  display: inline-block; margin: 0 1.1rem 0.3rem 0 !important; font-size: 1.25rem !important;
-  text-shadow: none !important; opacity: 1 !important;
+/* top nav: one centred line of EB Garamond, separated by small dots,
+   no underlines until you hover, with a fine rule underneath */
+.wrap > nav:first-of-type, .page > nav:first-of-type {
+  display: flex !important; flex-wrap: wrap; justify-content: center; align-items: baseline;
+  gap: 0.2rem 0; text-align: center !important;
+  margin: 0 0 3.2rem !important; padding: 0 0 1.1rem !important;
+  border-bottom: 1px solid rgba(10,10,10,0.18);
 }
+.wrap > nav:first-of-type a, .page > nav:first-of-type a {
+  display: inline-block; margin: 0 !important; font-size: 1.1rem !important; white-space: nowrap;
+  text-decoration: none !important; text-shadow: none !important; opacity: 1 !important;
+}
+.wrap > nav:first-of-type a:hover, .page > nav:first-of-type a:hover {
+  text-decoration: underline !important; text-decoration-color: rgba(10,10,10,0.45) !important;
+}
+.wrap > nav:first-of-type a:not(:last-child)::after, .page > nav:first-of-type a:not(:last-child)::after {
+  content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; text-decoration: none;
+}
+
+/* a page title with a floral initial (e.g. Updates): the initial spans two lines' height */
+h1.al-title { display: flow-root; font-size: 2.1rem !important; line-height: 1 !important; margin: 0 0 1.4rem !important; }
+h1.al-title .initial { float: left; width: auto !important; height: 1.65em !important; margin: 0.2em 0.2em 0 0 !important; border-radius: 0 !important; }
+h1.al-title .run { text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* the floral drop cap: three lines, top on the cap height of line 1,
    bottom on the baseline of line 3; rest of the first word run in capitals */
