@@ -111,11 +111,18 @@
 </style>
   <link rel="stylesheet" href="theme.css">
   <script>(function(){try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}})();</script>
+  <style>
+    /* hand-drawn arrow back to home, instead of the round button */
+    a.back { display: inline-block !important; width: auto !important; height: auto !important; padding: 0.4rem 0 !important;
+      background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+    a.back img { display: block; width: 112px; height: auto; }
+    a.back:hover { transform: translateX(-5px); }
+  </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
   <div class="sheet" role="main" id="main">
-    <a class="back" href="index.html">&larr; akshatb.com</a>
+    <a class="back" href="index.html"><img src="back-arrow.webp" alt="" width="659" height="95"></a>
 
     <div class="circle-head">
       <svg viewBox="0 0 130 130" aria-hidden="true">

@@ -32,16 +32,25 @@
       margin: 0; min-height: 100vh; color: #0a0a0a;
       font: 1.25rem/1.3 "EB Garamond", Garamond, Georgia, serif;
       font-kerning: normal; font-variant-ligatures: common-ligatures;
-      background: #2a2620;
+      background: #d2f1fd;
     }
-    /* the Alexander painting, full-bleed behind the card (fixed layer: no scroll repaint) */
-    body::before {
-      content: ""; position: fixed; inset: 0; z-index: -1;
+    :root { --ink: #0a0a0a; --muted: #0a0a0a; }
+    /* The page is a "sheet" carrying the Alexander painting (card + the space below it).
+       It scrolls up like a card and reveals the desk footer fixed underneath. */
+    .sheet {
+      position: relative; z-index: 2;
+      padding: 1px 0;   /* keeps the card's margins inside the sheet */
+      margin-bottom: 100vh; margin-bottom: 100svh;
+      clip-path: inset(0 0 0 0 round 0 0 34px 34px);   /* also clips the fixed painting below */
+    }
+    .sheet-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: #2a2620 url('alexander.webp') center center / cover no-repeat;
     }
-    @media (orientation: portrait) { body::before { background-image: url('alexander-vertical.webp'); } }
+    @media (orientation: portrait) { .sheet-bg { background-image: url('alexander-vertical.webp'); } }
 
     .card {
+      position: relative; z-index: 1;
       width: min(64rem, 100% - 3rem); margin: 4.5rem auto;
       background: #f8f8f8; border-radius: 0.5rem;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55);
@@ -71,9 +80,256 @@
       .card { width: calc(100% - 1.5rem); margin: 0.75rem auto; }
       main { padding: 3.5rem 0; }
     }
+
+    /* ───────── the desk (footer) ───────── */
+    .desk {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 1;
+      height: 100vh; height: 100svh; overflow: hidden;
+      color: #f3e9da;
+      background:
+        radial-gradient(55% 48% at 18% 12%, #c6eefc 0%, rgba(198,238,252,0) 62%),
+        radial-gradient(50% 45% at 86% 18%, #ffffff 0%, rgba(255,255,255,0) 60%),
+        radial-gradient(60% 55% at 90% 88%, #bdebfb 0%, rgba(189,235,251,0) 62%),
+        radial-gradient(55% 50% at 8% 86%, #f4fcff 0%, rgba(244,252,255,0) 60%),
+        radial-gradient(48% 42% at 50% 50%, #d9f4fd 0%, rgba(217,244,253,0) 70%),
+        linear-gradient(155deg, #e3f6fe 0%, #d2f1fd 45%, #e9f8fe 72%, #cdeffc 100%);
+    }
+    .desk-hint {
+      position: absolute; left: 0; right: 0; bottom: 1.1rem; text-align: center;
+      font-style: italic; font-size: 1rem; color: var(--ink); pointer-events: none;
+      padding: 0 1rem;
+    }
+    .item {
+      position: absolute; left: var(--x); top: var(--y);
+      transform: rotate(var(--r, 0deg)); transform-origin: 50% 50%;
+      touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+      cursor: grab; transition: transform .25s ease, filter .25s ease;
+      filter: drop-shadow(0 14px 18px rgba(0,0,0,0.45));
+    }
+    .item:hover { filter: drop-shadow(0 20px 24px rgba(0,0,0,0.5)); }
+    .item.dragging { cursor: grabbing; transform: rotate(var(--r, 0deg)) scale(1.04); transition: filter .25s ease; }
+    .item img { display: block; -webkit-user-drag: none; pointer-events: none; }
+    @media (max-width: 700px) { .item { left: var(--mx); top: var(--my); } }
+
+    /* record player */
+    .player { --x: 5%; --y: 11%; --mx: 4%; --my: 5%; --r: 0deg; display: flex; align-items: center; }
+    .vinyl {
+      width: 132px; height: 132px; border-radius: 50%; flex: none; position: relative; z-index: 1;
+      background:
+        radial-gradient(circle, #d9a441 0 15%, #b8322a 15.5% 29%, #111 29.5% 31%, transparent 31.5%),
+        repeating-radial-gradient(circle, #151515 0 2px, #232323 2.5px 3.5px);
+      box-shadow: 0 0 0 5px #0b0b0b, inset 0 0 20px rgba(255,255,255,0.06);
+    }
+    .vinyl::before {                 /* sheen */
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: conic-gradient(from 30deg, transparent 0 10%, rgba(255,255,255,0.13) 16%, transparent 24% 60%, rgba(255,255,255,0.1) 66%, transparent 74%);
+    }
+    .vinyl::after {                  /* spindle */
+      content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
+      border-radius: 50%; background: #1a1a1a; box-shadow: 0 0 0 2px #e7c46a;
+    }
+    .player.playing .vinyl { animation: spin 2.2s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .p-card {
+      margin-left: -26px; padding: 0.7rem 0.95rem 0.75rem 2.2rem; width: 196px;
+      background: #fffdf8; color: #0a0a0a; border-radius: 16px;
+      font-family: 'EB Garamond', Georgia, serif; line-height: 1.2;
+    }
+    .p-title { font-weight: 400; font-size: 1.15rem; }
+    .p-artist { font-size: 0.86rem; color: #0a0a0a; margin-bottom: 0.35rem; }
+    .p-ctrls { display: flex; align-items: center; gap: 0.35rem; }
+    .p-ctrls button {
+      border: 0; background: none; padding: 4px; margin: 0; cursor: pointer; color: #0a0a0a;
+      display: grid; place-items: center; border-radius: 50%;
+    }
+    .p-ctrls button:hover { background: rgba(0,0,0,0.07); }
+    .p-ctrls .p-play { width: 30px; height: 30px; background: #1d1a16; color: #fffdf8; }
+    .p-ctrls .p-play:hover { background: #3a342c; }
+    .p-bar { flex: 1; height: 3px; border-radius: 3px; background: rgba(0,0,0,0.12); margin-left: 0.3rem; overflow: hidden; }
+    .p-bar i { display: block; height: 100%; width: 0; background: #1db954; transition: width .4s linear; }
+    .p-note { font-size: 0.72rem; color: #0a0a0a; margin-top: 0.3rem; font-style: italic; }
+    .p-embed {
+      position: absolute; left: 0; top: calc(100% + 10px); width: 320px; max-width: 86vw;
+      opacity: 0; pointer-events: none; transition: opacity .3s ease;
+    }
+    .p-embed.show { opacity: 1; pointer-events: auto; }
+    .p-embed iframe { display: block; border-radius: 12px; }
+
+    /* camera */
+    .camera { --x: 36%; --y: 7%; --mx: 52%; --my: 47%; --r: 4deg; }
+    .camera img { width: 250px; height: auto; }
+    .camera:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
+    .flash { position: fixed; inset: 0; background: #fff; z-index: 10001; pointer-events: none; opacity: 0; }
+    .flash.go { animation: flash .45s ease-out forwards; }
+    @keyframes flash { 0% { opacity: 0; } 15% { opacity: 0.95; } 100% { opacity: 0; } }
+
+    /* macbook lid with stickers */
+    .mac { --x: 63%; --y: 10%; --mx: 6%; --my: 25%; --r: -2deg; }
+    .lid {
+      position: relative; width: 330px; height: 218px; border-radius: 16px;
+      background:
+        radial-gradient(120% 90% at 30% 10%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%),
+        linear-gradient(160deg, #e4e5e7 0%, #c9cbce 55%, #b4b7bb 100%);
+      box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.6), inset 0 -3px 6px rgba(0,0,0,0.12);
+    }
+    .lid .apple { position: absolute; left: 50%; top: 50%; width: 34px; height: 40px; transform: translate(-50%, -52%); fill: #9a9da2; filter: drop-shadow(0 1px 0 rgba(255,255,255,0.7)); }
+    .sticker { position: absolute; filter: drop-shadow(0 0 0 #fff) drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff) drop-shadow(0 2px 2px rgba(0,0,0,0.25)); }
+    .sticker img { width: 100%; height: auto; }
+    .s-claude   { left: 22px;  top: 20px;  width: 44px; transform: rotate(-8deg); }
+    .s-linkedin { left: 26px;  top: 128px; width: 42px; transform: rotate(6deg); }
+    .s-notion   { left: 150px; top: 150px; width: 44px; transform: rotate(-4deg); }
+    .s-substack { left: 250px; top: 36px;  width: 44px; transform: rotate(10deg); }
+    .s-spotify  { left: 212px; top: 160px; width: 96px; transform: rotate(-6deg); }
+
+    /* the letter */
+    .letter { --x: 10%; --y: 50%; --mx: 5%; --my: 54%; --r: -7deg; border: 0; padding: 0; background: none; }
+    .letter .float { animation: bob 4.5s ease-in-out infinite; }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-9px) rotate(1.2deg); } }
+    .letter img { width: 280px; height: auto; border-radius: 3px; }
+    .letter:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
+
+    /* date beads */
+    .date { --x: 45%; --y: 60%; --mx: 34%; --my: 79%; --r: -4deg; display: flex; gap: 3px; }
+    .bead {
+      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 30%, #ffffff, #efe9df 60%, #d8d0c2);
+      color: #0a0a0a; font: 400 16px/1 'EB Garamond', Georgia, serif;
+      box-shadow: inset 0 -2px 3px rgba(0,0,0,0.15);
+    }
+    .bead:nth-child(odd) { transform: translateY(-5px) rotate(-6deg); }
+    .bead:nth-child(even) { transform: translateY(3px) rotate(5deg); }
+    .bead.gap { width: 10px; background: none; box-shadow: none; }
+
+    @media (min-width: 701px) and (max-width: 1050px) {
+      .player { --x: 4%; --y: 7%; }   .mac { --x: 54%; --y: 9%; }
+      .camera { --x: 8%; --y: 42%; }  .letter { --x: 50%; --y: 50%; }
+      .date { --x: 36%; --y: 80%; }
+      .lid { width: 290px; height: 192px; }
+      .s-substack { left: 222px; } .s-spotify { left: 186px; top: 138px; width: 86px; } .s-notion { left: 128px; top: 132px; } .s-linkedin { top: 112px; }
+    }
+    @media (max-width: 700px) {
+      .vinyl { width: 104px; height: 104px; }
+      .p-card { width: 178px; }
+      .camera img { width: 160px; }
+      .lid { width: 236px; height: 156px; border-radius: 13px; }
+      .lid .apple { width: 26px; height: 30px; }
+      .s-claude { left: 14px; top: 14px; width: 34px; }
+      .s-linkedin { left: 18px; top: 92px; width: 32px; }
+      .s-notion { left: 104px; top: 106px; width: 33px; }
+      .s-substack { left: 180px; top: 24px; width: 33px; }
+      .s-spotify { left: 150px; top: 114px; width: 72px; }
+      .letter img { width: 176px; }
+      .bead { width: 26px; height: 26px; font-size: 13px; }
+    }
+
+    /* ───────── the letter, opened ───────── */
+    .lt-modal { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 1rem; }
+    .lt-modal[hidden] { display: none; }
+    .lt-backdrop { position: absolute; inset: 0; background: rgba(12,8,4,0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; transition: opacity .35s ease; }
+    .lt-modal.in .lt-backdrop { opacity: 1; }
+    .lt-stage { position: relative; width: min(520px, 100%); height: min(640px, calc(100svh - 2rem)); perspective: 1400px; }
+
+    .lt-env {
+      position: absolute; left: 50%; bottom: 4%; width: min(440px, 92%); aspect-ratio: 16 / 10;
+      transform: translate(-50%, 30px) scale(.7); opacity: 0;
+      transition: transform .5s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease;
+    }
+    .lt-modal.in .lt-env { transform: translate(-50%, 0) scale(1); opacity: 1; }
+    .lt-modal.away .lt-env { transform: translate(-50%, 70%) scale(.95); opacity: 0; transition: transform .6s ease-in, opacity .5s ease-in .1s; }
+    /* the envelope is drawn in layers that all share one box, so the paper can
+       slide out from between the back and the front pocket */
+    .lt-back { z-index: 1; background: #d9c7a3; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
+    .lt-front {
+      z-index: 3; border-radius: 6px;
+      background: linear-gradient(170deg, #f1e4c6, #e6d3ab);
+      clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+    }
+    .lt-front::after {
+      content: "to: akshat"; position: absolute; left: 0; right: 0; bottom: 14%; text-align: center;
+      font: italic 400 1.25rem 'EB Garamond', Georgia, serif; color: #0a0a0a;
+    }
+    .lt-flapbox { z-index: 4; perspective: 900px; }
+    .lt-modal.opened .lt-flapbox { z-index: 1; transition: transform .5s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease, z-index 0s .27s; }
+    .lt-flap {
+      position: absolute; left: 0; right: 0; top: 0; height: 60%;
+      transform-origin: 50% 0; transition: transform .55s ease;
+      background: linear-gradient(180deg, #e9d8b3, #dcc497);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+    .lt-modal.opened .lt-flap { transform: rotateX(180deg); }
+    .lt-seal {
+      position: absolute; left: 50%; top: 52%; z-index: 5; width: 42px; height: 42px; margin-left: -21px;
+      border-radius: 50%; background: radial-gradient(circle at 35% 35%, #c2403a, #8e1f1a 70%);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.35), inset 0 0 0 4px rgba(0,0,0,0.12);
+      display: grid; place-items: center; color: #f6d9c9; font: italic 400 1.15rem 'EB Garamond', serif;
+      transition: opacity .25s ease, transform .3s ease;
+    }
+    .lt-modal.opened .lt-seal { opacity: 0; transform: scale(1.4); }
+
+    .lt-paper {
+      position: absolute; left: 50%; bottom: 7%; z-index: 2;
+      width: min(400px, 84%); height: 36%;
+      transform: translate(-50%, 0); opacity: 0; overflow: hidden;
+      background:
+        repeating-linear-gradient(to bottom, transparent 0 29px, rgba(90,120,170,0.18) 29px 30px),
+        #fffdf6;
+      border-radius: 4px; box-shadow: 0 20px 50px -18px rgba(0,0,0,0.55);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1), height .6s cubic-bezier(.2,.8,.2,1), bottom .6s cubic-bezier(.2,.8,.2,1), width .6s ease, opacity .2s ease;
+      color: #0a0a0a; font-family: 'EB Garamond', Georgia, serif;
+    }
+    .lt-modal.opened .lt-paper { opacity: 1; transform: translate(-50%, -58%); }
+    .lt-modal.away .lt-paper { z-index: 6; bottom: 0; height: 100%; width: 100%; transform: translate(-50%, 0) rotate(-1deg); }
+    .lt-form { padding: 1.5rem 1.6rem 1.3rem; height: 100%; display: flex; flex-direction: column; opacity: 0; transition: opacity .35s ease .35s; }
+    .lt-modal.away .lt-form { opacity: 1; }
+    .lt-form h2 { margin: 0 0 0.2rem; font: italic 400 1.7rem/1 'EB Garamond', Georgia, serif; }
+    .lt-form .lt-sub { margin: 0 0 0.9rem; color: #0a0a0a; font-size: 0.98rem; }
+    .lt-form label { display: block; font-size: 0.82rem; color: #0a0a0a; letter-spacing: 0.02em; }
+    .lt-form input, .lt-form textarea {
+      width: 100%; margin: 0 0 0.7rem; padding: 0.35rem 0.1rem; border: 0; border-bottom: 1.5px solid rgba(42,36,28,0.35);
+      background: transparent; color: #0a0a0a; font: 1.08rem 'EB Garamond', Georgia, serif; outline: none; border-radius: 0;
+    }
+    .lt-form input:focus, .lt-form textarea:focus { border-bottom-color: #8e1f1a; }
+    .lt-form textarea { flex: 1; min-height: 110px; resize: none; line-height: 30px; }
+    .lt-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.3rem; }
+    .lt-send {
+      border: 0; cursor: pointer; padding: 0.55rem 1.2rem; border-radius: 999px;
+      background: #8e1f1a; color: #fbeee6; font: italic 400 1.1rem 'EB Garamond', Georgia, serif;
+      box-shadow: 0 6px 14px -6px rgba(142,31,26,0.7);
+    }
+    .lt-send:hover { background: #a42821; }
+    .lt-send:disabled { opacity: .6; cursor: default; }
+    .lt-status { font-size: 0.92rem; font-style: italic; color: #0a0a0a; }
+    .lt-status.err { color: #a42821; }
+    .lt-close {
+      position: absolute; right: 0.7rem; top: 0.5rem; z-index: 7; border: 0; background: none; cursor: pointer;
+      font: 1.6rem/1 'EB Garamond', serif; color: #0a0a0a; padding: 0.3rem 0.5rem; opacity: 0; transition: opacity .3s ease .5s;
+    }
+    .lt-modal.away .lt-close { opacity: 1; }
+    .hp { position: absolute; left: -9999px; }
+    /* sending: the paper folds back in and the envelope flies off */
+    .lt-modal.sending .lt-paper { bottom: 7%; height: 36%; width: min(400px, 84%); transform: translate(-50%, 0); z-index: 2; transition-duration: .5s; }
+    .lt-modal.sending .lt-form { opacity: 0; transition-delay: 0s; }
+    .lt-modal.sending .lt-env { transform: translate(-50%, 0) scale(1); opacity: 1; transition: transform .45s ease, opacity .3s ease; }
+    .lt-modal.sealed .lt-flap { transform: none; transition: transform .45s ease; }
+    .lt-modal.sealed .lt-flapbox { z-index: 4; transition: z-index 0s; }
+    .lt-modal.sealed .lt-seal { opacity: 1; transform: none; transition-delay: .35s; }
+    .lt-modal.sealed .lt-paper { opacity: 0; transition: opacity .1s ease .2s; }
+    .lt-modal.flying .lt-env { transform: translate(40%, -140%) rotate(-14deg) scale(.5); opacity: 0; transition: transform .8s cubic-bezier(.5,0,.8,.4), opacity .6s ease .25s; }
+    .lt-thanks {
+      position: absolute; left: 0; right: 0; top: 42%; text-align: center; z-index: 8; color: #f3e9da;
+      font: italic 400 1.6rem 'EB Garamond', Georgia, serif; opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
+      pointer-events: none;
+    }
+    .lt-thanks small { display: block; font-size: 1rem; opacity: .75; margin-top: .3rem; }
+    .lt-modal.thanks .lt-thanks { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .player.playing .vinyl, .letter .float { animation: none; }
+    }
   </style>
 </head>
 <body>
+<div class="sheet">
+<div class="sheet-bg" aria-hidden="true"></div>
 <div class="card">
 <main>
   <p class="al"><img class="initial" src="initials/M.svg" alt="M" width="646" height="638"><span class="run">y</span> name is Akshat Bhaskar. I love building things and dragging good ideas out into the open where people can use them. I would love to talk about Economics, Mathematics, Public Policy, Anthropology, and Philosophy: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>!</p>
@@ -119,6 +375,87 @@
   </ul>
 </main>
 </div>
+</div>
+
+  <footer class="desk" id="desk">
+
+    <div class="item player" id="player" aria-label="Music player: The Boxer by Simon &amp; Garfunkel">
+      <div class="vinyl" id="vinyl"></div>
+      <div class="p-card">
+        <div class="p-title">The Boxer</div>
+        <div class="p-artist">Simon &amp; Garfunkel</div>
+        <div class="p-ctrls">
+          <button type="button" class="p-back" data-nodrag aria-label="Restart song">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+          </button>
+          <button type="button" class="p-play" data-nodrag aria-label="Play">
+            <svg class="i-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+            <svg class="i-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <button type="button" class="p-fwd" data-nodrag aria-label="Skip ahead 15 seconds">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+          </button>
+          <span class="p-bar"><i id="pBar"></i></span>
+        </div>
+        <div class="p-note" id="pNote">on spotify</div>
+      </div>
+      <div class="p-embed" id="pEmbed" data-nodrag><div id="spEmbed"></div></div>
+    </div>
+
+    <a class="item camera" id="camera" href="photography.html" aria-label="Camera: see my photography" draggable="false">
+      <img src="camera-cut.webp" alt="" width="500" height="345" draggable="false">
+    </a>
+
+    <div class="item mac" aria-label="A laptop covered in stickers">
+      <div class="lid">
+        <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span class="sticker s-claude"><img src="Claude_AI_symbol.svg.webp" alt="Claude" draggable="false"></span>
+        <span class="sticker s-linkedin"><img src="LinkedIn_icon.svg.webp" alt="LinkedIn" draggable="false"></span>
+        <span class="sticker s-notion"><img src="Notion-logo.svg.webp" alt="Notion" draggable="false"></span>
+        <span class="sticker s-substack"><img src="substack.webp" alt="Substack" draggable="false"></span>
+        <span class="sticker s-spotify"><img src="Spotify_logo_with_text.svg.webp" alt="Spotify" draggable="false"></span>
+      </div>
+    </div>
+
+    <button type="button" class="item letter" id="letter" aria-label="Open the letter and write to me">
+      <span class="float" style="display:block"><img src="letter-cut.webp" alt="" width="560" height="313" draggable="false"></span>
+    </button>
+
+    <div class="item date" id="date" aria-label="Today's date"></div>
+
+    <p class="desk-hint">psst, everything down here moves. drag it around.</p>
+  </footer>
+
+  <!-- the letter, opened -->
+  <div class="lt-modal" id="ltModal" hidden role="dialog" aria-modal="true" aria-label="Write me a letter">
+    <div class="lt-backdrop" data-close></div>
+    <div class="lt-stage">
+      <div class="lt-env lt-back"></div>
+      <div class="lt-paper">
+        <button type="button" class="lt-close" data-close aria-label="Close">&times;</button>
+        <form class="lt-form" id="ltForm">
+          <h2>Dear Akshat,</h2>
+          <p class="lt-sub">write me anything. it lands straight in my inbox.</p>
+          <label for="ltName">your name</label>
+          <input id="ltName" name="name" type="text" autocomplete="name">
+          <label for="ltEmail">your email (so i can write back)</label>
+          <input id="ltEmail" name="email" type="email" autocomplete="email" required>
+          <label for="ltMsg">your letter</label>
+          <textarea id="ltMsg" name="message" required></textarea>
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" value="a letter from akshatb.com">
+          <div class="lt-row">
+            <span class="lt-status" id="ltStatus"></span>
+            <button type="submit" class="lt-send" id="ltSend">seal &amp; send</button>
+          </div>
+        </form>
+      </div>
+      <div class="lt-env lt-front"></div>
+      <div class="lt-env lt-flapbox"><div class="lt-flap"></div><div class="lt-seal">A</div></div>
+      <div class="lt-thanks">sent! <small>i'll write back soon.</small></div>
+    </div>
+  </div>
+  <div class="flash" id="flash"></div>
   <script>
   /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
   (function () {
@@ -150,5 +487,7 @@
     scheduleIdle();
   })();
   </script>
+  <script defer src="desk.js"></script>
+  <script defer src="dog.js"></script>
 </body>
 </html>

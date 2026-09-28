@@ -83,14 +83,25 @@ p.al .initial {
 p.al .run { text-transform: uppercase; letter-spacing: 0.02em; }
 p.al { display: flow-root; }
 
-/* images sit in the column */
+/* photos: centred in the card and allowed wider than the text column,
+   so they use the card's space instead of hugging the left edge */
 img { max-width: 100%; height: auto; border: 0 !important; border-radius: 2px; box-shadow: none !important; }
-.gallery figure { max-width: 100% !important; margin: 0 0 2.4rem !important; }
-.gallery figure img { width: 100%; display: block; }
-figcaption { margin: 0.5rem 0 0 !important; font-style: italic; }
-.media-cloud { text-align: center; margin: 0 0 1.6rem !important; }
-.media-cloud .frame { margin-left: auto !important; margin-right: auto !important; }
-.media-cloud iframe { max-width: 100%; }
+.frame, .gallery figure, .media-cloud, .tweet-wrap, figure {
+  box-sizing: border-box;
+  width: min(44rem, 100vw - 7.5rem) !important; max-width: none !important;
+  margin: 0 0 2.4rem 50% !important; transform: translateX(-50%);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .frame, .gallery figure, .media-cloud, .tweet-wrap, figure { width: calc(100vw - 4.5rem) !important; }
+}
+.frame img, figure img, .media-cloud img { width: 100% !important; max-width: none !important; display: block; margin: 0 auto; }
+.frame + .cap, .cap, .u-cap, figcaption { text-align: center !important; max-width: none !important; font-style: italic; }
+figcaption { margin: 0.6rem 0 0 !important; }
+.frame + .cap { margin-top: -1.6rem !important; margin-bottom: 2.4rem !important; }
+.media-cloud .frame { width: 100% !important; margin: 0 !important; transform: none; }
+.media-cloud iframe, .tweet-wrap iframe { max-width: 100%; margin: 0 auto !important; }
+.tweet-wrap .twitter-tweet { margin: 0 auto !important; }
 
 /* updates list: one plain line per entry */
 .u-list a { display: block; margin: 0 0 0.55rem !important; }
@@ -108,3 +119,9 @@ input, textarea, select {
 }
 .send, button[type="submit"] { background: #0a0a0a !important; color: #f8f8f8 !important; border: 0 !important; border-radius: 999px !important; }
 .send, .send *, button[type="submit"], button[type="submit"] * { color: #f8f8f8 !important; }
+
+/* hand-drawn arrow back to home, instead of the round button */
+a.back { display: inline-block !important; width: auto !important; height: auto !important; padding: 0.4rem 0 !important; margin: 0 0 2.4rem !important;
+  background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; text-decoration: none !important; }
+a.back img { display: block; width: 112px; height: auto; border-radius: 0; }
+a.back:hover { transform: translateX(-5px); }
