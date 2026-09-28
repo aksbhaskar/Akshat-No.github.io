@@ -17,6 +17,8 @@
   <meta name="theme-color" content="#f3c79a" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="preload" as="image" href="sky.webp" media="(orientation: landscape)">
+  <link rel="preload" as="image" href="sky-vertical.webp" media="(orientation: portrait)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
@@ -50,16 +52,11 @@
     @media (orientation: portrait) {
       .sheet-bg { background-image: url('sky-vertical.webp'); }
     }
-    /* a soft dark scrim at the very top keeps the nav readable on any painting */
-    .sheet-bg::after {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 170px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
-    }
     .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 3.4rem 1.4rem 7rem; }
 
     nav { margin-bottom: 2rem; text-align: center; }
-    nav a, nav a:visited { margin: 0 0.6rem; color: #fff; text-decoration: none; font-weight: 700; opacity: 0.96; text-shadow: 0 1px 8px rgba(0,0,0,0.7), 0 0 3px rgba(0,0,0,0.65); }
-    nav a:hover { opacity: 1; }
+    nav a, nav a:visited { margin: 0 0.6rem; color: #000; text-decoration: none; font-family: 'EB Garamond', Georgia, serif; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
 
     .bubble {
       background: rgba(255,255,255,0.66);
@@ -436,7 +433,7 @@
     </div>
 
     <a class="item camera" id="camera" href="photography.html" aria-label="Camera: see my photography" draggable="false">
-      <img src="camera-cut.webp" alt="" width="700" height="483" draggable="false">
+      <img src="camera-cut.webp" alt="" width="500" height="345" draggable="false">
     </a>
 
     <div class="item mac" aria-label="A laptop covered in stickers">
@@ -445,13 +442,13 @@
         <span class="sticker s-claude"><img src="Claude_AI_symbol.svg.webp" alt="Claude" draggable="false"></span>
         <span class="sticker s-linkedin"><img src="LinkedIn_icon.svg.webp" alt="LinkedIn" draggable="false"></span>
         <span class="sticker s-notion"><img src="Notion-logo.svg.webp" alt="Notion" draggable="false"></span>
-        <span class="sticker s-substack"><img src="substack.png" alt="Substack" draggable="false"></span>
+        <span class="sticker s-substack"><img src="substack.webp" alt="Substack" draggable="false"></span>
         <span class="sticker s-spotify"><img src="Spotify_logo_with_text.svg.webp" alt="Spotify" draggable="false"></span>
       </div>
     </div>
 
     <button type="button" class="item letter" id="letter" aria-label="Open the letter and write to me">
-      <span class="float" style="display:block"><img src="letter-cut.webp" alt="" width="700" height="391" draggable="false"></span>
+      <span class="float" style="display:block"><img src="letter-cut.webp" alt="" width="560" height="313" draggable="false"></span>
     </button>
 
     <div class="item date" id="date" aria-label="Today's date"></div>

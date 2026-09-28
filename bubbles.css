@@ -4,23 +4,25 @@
 body {
   color: #23201c !important;
   font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif !important;
-  /* light watercolour wash in the colours of the blue-sky painting */
+  background: #d9f4fd !important;
+}
+/* the light watercolour wash (colours of the blue-sky painting) lives on a
+   fixed layer, so scrolling doesn't have to repaint it */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
     radial-gradient(55% 48% at 18% 12%, #c6eefc 0%, rgba(198,238,252,0) 62%),
     radial-gradient(50% 45% at 86% 18%, #ffffff 0%, rgba(255,255,255,0) 60%),
     radial-gradient(60% 55% at 90% 88%, #bdebfb 0%, rgba(189,235,251,0) 62%),
     radial-gradient(55% 50% at 8% 86%, #f4fcff 0%, rgba(244,252,255,0) 60%),
     radial-gradient(48% 42% at 50% 50%, #d9f4fd 0%, rgba(217,244,253,0) 70%),
-    linear-gradient(155deg, #e3f6fe 0%, #d2f1fd 45%, #e9f8fe 72%, #cdeffc 100%) !important;
-  background-attachment: fixed !important;
+    linear-gradient(155deg, #e3f6fe 0%, #d2f1fd 45%, #e9f8fe 72%, #cdeffc 100%);
 }
 
 /* Default: the reading column is a light frosted card so text stays
    readable on the dark wash. */
 .wrap {
-  background: rgba(255,255,255,0.72) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(1.12) !important;
-  backdrop-filter: blur(16px) saturate(1.12) !important;
+  background: rgba(255,255,255,0.76) !important;
   border: 1px solid rgba(255,255,255,0.7) !important;
   border-radius: 24px !important;
   box-shadow: 0 26px 64px -30px rgba(0,0,0,0.7), 0 2px 8px -4px rgba(0,0,0,0.25) !important;
@@ -33,16 +35,12 @@ body {
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
   margin: 0 auto !important;
 }
 
 /* popup pages keep a single frosted card */
 .page {
   background: rgba(255,255,255,0.7) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(1.12);
-  backdrop-filter: blur(16px) saturate(1.12);
   border: 1px solid rgba(255,255,255,0.72) !important;
   border-radius: 24px !important;
   box-shadow: 0 26px 64px -30px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08) !important;
@@ -51,9 +49,7 @@ body {
 
 /* the frosted card used for grouped content and per-item clouds */
 .bubble, .gallery figure {
-  background: rgba(255,255,255,0.7);
-  -webkit-backdrop-filter: blur(16px) saturate(1.12);
-  backdrop-filter: blur(16px) saturate(1.12);
+  background: rgba(255,255,255,0.74);
   border: 1px solid rgba(255,255,255,0.72);
   border-radius: 22px;
   box-shadow: 0 24px 60px -28px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
@@ -65,21 +61,15 @@ body {
 a { color: #23201c !important; text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
 a:visited { color: #23201c !important; }
 
-/* top nav plain (not underlined); dark inside a card page… */
+/* top nav: black EB Garamond, not underlined, same on every page */
 .wrap > nav:first-of-type { text-align: center; margin: 0 0 1.6rem; }
 .wrap > nav:first-of-type a,
-.wrap > nav:first-of-type a:visited { text-decoration: none; font-weight: 600; opacity: 0.82; color: #23201c; }
-.wrap > nav:first-of-type a:hover { opacity: 1; }
-
-/* …but white with a shadow on the transparent gallery/updates pages,
-   where it sits directly on the dark wash */
-.wrap.gallery > nav:first-of-type a,
-.wrap.gallery > nav:first-of-type a:visited,
-.wrap.bare > nav:first-of-type a,
-.wrap.bare > nav:first-of-type a:visited {
-  color: #fff !important; font-weight: 700; opacity: 0.96;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.7), 0 0 3px rgba(0,0,0,0.65);
+.wrap > nav:first-of-type a:visited {
+  text-decoration: none; font-family: 'EB Garamond', Georgia, serif; font-weight: 500;
+  color: #000 !important; opacity: 1; text-shadow: none;
 }
+.wrap > nav:first-of-type a:hover { text-decoration: underline; }
+
 
 /* headings + emphasis */
 h1, h2, .u-title, .hi, b, strong { color: #23201c !important; }
@@ -109,9 +99,7 @@ h1, h2, .u-title, .hi, b, strong { color: #23201c !important; }
 /* ── updates: one cloud per entry ── */
 .u-list a {
   display: block; text-decoration: none !important; font-weight: 700 !important; color: #23201c !important;
-  background: rgba(255,255,255,0.7);
-  -webkit-backdrop-filter: blur(16px) saturate(1.12);
-  backdrop-filter: blur(16px) saturate(1.12);
+  background: rgba(255,255,255,0.74);
   border: 1px solid rgba(255,255,255,0.72);
   border-radius: 18px;
   box-shadow: 0 20px 50px -30px rgba(50,40,25,0.5), 0 2px 8px -4px rgba(0,0,0,0.08);
