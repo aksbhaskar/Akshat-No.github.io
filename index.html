@@ -57,6 +57,15 @@
     }
     main { width: min(31rem, 100% - 3rem); margin: 0 auto; padding: 6rem 0; }
 
+    /* top nav, same as the other pages: one centred line, dot separators, fine rule */
+    .topnav {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
+      gap: 0.2rem 0; margin: 0 0 3.2rem; padding: 0 0 1.1rem;
+      border-bottom: 1px solid rgba(10,10,10,0.18);
+    }
+    .topnav a { font-size: 1.1rem; white-space: nowrap; color: inherit; text-decoration: none; }
+    .topnav a:hover { text-decoration: underline; text-decoration-color: rgba(10,10,10,0.45); text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    .topnav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
     .al {
       margin: 0 0 3rem; line-height: 1; text-wrap: balance; hyphens: manual;
       font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
@@ -298,6 +307,13 @@
 <div class="sheet-bg" aria-hidden="true"></div>
 <div class="card">
 <main>
+  <nav class="topnav">
+    <a href="index.html">home</a>
+    <a href="professionalism.html">better website?</a>
+    <a href="photos.html">corpus delicti</a>
+    <a href="updates.html">updates</a>
+    <a href="photography.html">photography</a>
+  </nav>
   <p class="al"><img class="initial" src="initials/M.svg" alt="M" width="646" height="638"><span class="run">y</span> name is Akshat Bhaskar. I love building things and dragging good ideas out into the open where people can use them. I would love to talk about Economics, Mathematics, Public Policy, Anthropology, and Philosophy: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>!</p>
 
   <p class="al"><img class="initial" src="initials/S.svg" alt="S" width="626" height="640"><span class="run">ome</span> interesting things about me are:<br>
