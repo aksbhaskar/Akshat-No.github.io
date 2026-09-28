@@ -82,7 +82,6 @@
     }
 
     /* ───────── the desk (footer) ───────── */
-    @media (orientation: portrait) { .desk { background-image: url('alexander-vertical.webp'); } }
     .desk, .desk *, .lt-modal, .lt-modal * { box-sizing: border-box; }
     /* every piece of type in the footer (and the letter) is the home page's EB Garamond */
     .desk, .desk *:not(svg):not(svg *), .lt-modal, .lt-modal *:not(svg):not(svg *) {
@@ -92,8 +91,18 @@
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 1;
       height: 100vh; height: 100svh; overflow: hidden;
       color: #0a0a0a;
-      /* the same Alexander painting as the page above, so the desk continues it */
-      background: #2a2620 url('alexander.webp') center center / cover no-repeat;
+      /* a colour wash in the Alexander painting's palette, laid out like the painting:
+         slate grey-green sky, warm ochre and gold in the middle, the crimson cloak
+         on the right, and near-black shadow along the bottom */
+      background:
+        radial-gradient(60% 45% at 22% 8%, #61665f 0%, rgba(97,102,95,0) 70%),
+        radial-gradient(45% 40% at 78% 6%, #424a4a 0%, rgba(66,74,74,0) 70%),
+        radial-gradient(55% 45% at 45% 48%, #866c4e 0%, rgba(134,108,78,0) 68%),
+        radial-gradient(40% 38% at 18% 45%, #776147 0%, rgba(119,97,71,0) 70%),
+        radial-gradient(38% 34% at 58% 40%, #c69248 0%, rgba(198,146,72,0) 60%),
+        radial-gradient(42% 45% at 88% 55%, #6e2a22 0%, rgba(110,42,34,0) 70%),
+        radial-gradient(70% 40% at 50% 100%, #1e1d21 0%, rgba(30,29,33,0) 75%),
+        linear-gradient(180deg, #4d5450 0%, #6d6857 30%, #664d3d 60%, #322a25 85%, #221d1e 100%);
     }
     .item {
       position: absolute; left: var(--x); top: var(--y);
