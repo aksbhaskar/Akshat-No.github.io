@@ -82,22 +82,18 @@
     }
 
     /* ───────── the desk (footer) ───────── */
+    @media (orientation: portrait) { .desk { background-image: url('alexander-vertical.webp'); } }
+    .desk, .desk *, .lt-modal, .lt-modal * { box-sizing: border-box; }
+    /* every piece of type in the footer (and the letter) is the home page's EB Garamond */
+    .desk, .desk *:not(svg):not(svg *), .lt-modal, .lt-modal *:not(svg):not(svg *) {
+      font-family: "EB Garamond", Garamond, Georgia, serif;
+    }
     .desk {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 1;
       height: 100vh; height: 100svh; overflow: hidden;
-      color: #f3e9da;
-      background:
-        radial-gradient(55% 48% at 18% 12%, #c6eefc 0%, rgba(198,238,252,0) 62%),
-        radial-gradient(50% 45% at 86% 18%, #ffffff 0%, rgba(255,255,255,0) 60%),
-        radial-gradient(60% 55% at 90% 88%, #bdebfb 0%, rgba(189,235,251,0) 62%),
-        radial-gradient(55% 50% at 8% 86%, #f4fcff 0%, rgba(244,252,255,0) 60%),
-        radial-gradient(48% 42% at 50% 50%, #d9f4fd 0%, rgba(217,244,253,0) 70%),
-        linear-gradient(155deg, #e3f6fe 0%, #d2f1fd 45%, #e9f8fe 72%, #cdeffc 100%);
-    }
-    .desk-hint {
-      position: absolute; left: 0; right: 0; bottom: 1.1rem; text-align: center;
-      font-style: italic; font-size: 1rem; color: var(--ink); pointer-events: none;
-      padding: 0 1rem;
+      color: #0a0a0a;
+      /* the same Alexander painting as the page above, so the desk continues it */
+      background: #2a2620 url('alexander.webp') center center / cover no-repeat;
     }
     .item {
       position: absolute; left: var(--x); top: var(--y);
@@ -116,38 +112,36 @@
     .vinyl {
       width: 132px; height: 132px; border-radius: 50%; flex: none; position: relative; z-index: 1;
       background:
-        radial-gradient(circle, #d9a441 0 15%, #b8322a 15.5% 29%, #111 29.5% 31%, transparent 31.5%),
-        repeating-radial-gradient(circle, #151515 0 2px, #232323 2.5px 3.5px);
+        radial-gradient(circle, #f8f8f8 0 30%, #0a0a0a 30.5% 31.5%, transparent 32%),
+        repeating-radial-gradient(circle, #141414 0 2px, #222 2.5px 3.5px);
       box-shadow: 0 0 0 5px #0b0b0b, inset 0 0 20px rgba(255,255,255,0.06);
     }
     .vinyl::before {                 /* sheen */
       content: ""; position: absolute; inset: 0; border-radius: 50%;
       background: conic-gradient(from 30deg, transparent 0 10%, rgba(255,255,255,0.13) 16%, transparent 24% 60%, rgba(255,255,255,0.1) 66%, transparent 74%);
     }
-    .vinyl::after {                  /* spindle */
-      content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
-      border-radius: 50%; background: #1a1a1a; box-shadow: 0 0 0 2px #e7c46a;
-    }
+    /* the label: a floral woodcut B, turning with the record */
+    .vinyl .v-init { position: absolute; left: 50%; top: 50%; width: 34%; height: auto; transform: translate(-50%, -50%); pointer-events: none; }
     .player.playing .vinyl { animation: spin 2.2s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .p-card {
-      margin-left: -26px; padding: 0.7rem 0.95rem 0.75rem 2.2rem; width: 196px;
-      background: #fffdf8; color: #0a0a0a; border-radius: 16px;
-      font-family: 'EB Garamond', Georgia, serif; line-height: 1.2;
+      margin-left: -26px; padding: 0.9rem 1.1rem 0.85rem 2.4rem; width: 222px;
+      background: #f8f8f8; color: #0a0a0a; border-radius: 0.5rem;
+      line-height: 1;
     }
-    .p-title { font-weight: 400; font-size: 1.15rem; }
-    .p-artist { font-size: 0.86rem; color: #0a0a0a; margin-bottom: 0.35rem; }
-    .p-ctrls { display: flex; align-items: center; gap: 0.35rem; }
+    .p-title { font-size: 1.35rem; }
+    .p-artist { font-size: 1.05rem; font-style: italic; margin: 0.2rem 0 0.6rem; }
+    .p-ctrls { display: flex; align-items: center; gap: 0.4rem; }
     .p-ctrls button {
-      border: 0; background: none; padding: 4px; margin: 0; cursor: pointer; color: #0a0a0a;
+      border: 0; background: none; padding: 3px; margin: 0; cursor: pointer; color: #0a0a0a;
       display: grid; place-items: center; border-radius: 50%;
     }
-    .p-ctrls button:hover { background: rgba(0,0,0,0.07); }
-    .p-ctrls .p-play { width: 30px; height: 30px; background: #1d1a16; color: #fffdf8; }
-    .p-ctrls .p-play:hover { background: #3a342c; }
-    .p-bar { flex: 1; height: 3px; border-radius: 3px; background: rgba(0,0,0,0.12); margin-left: 0.3rem; overflow: hidden; }
-    .p-bar i { display: block; height: 100%; width: 0; background: #1db954; transition: width .4s linear; }
-    .p-note { font-size: 0.72rem; color: #0a0a0a; margin-top: 0.3rem; font-style: italic; }
+    .p-ctrls button:hover { background: rgba(10,10,10,0.07); }
+    .p-ctrls .p-play { width: 32px; height: 32px; border: 1px solid #0a0a0a; }
+    .p-ctrls .p-play:hover { background: #0a0a0a; color: #f8f8f8; }
+    .p-bar { flex: 1; height: 1px; background: rgba(10,10,10,0.3); margin-left: 0.35rem; position: relative; }
+    .p-bar i { display: block; height: 1px; width: 0; background: #0a0a0a; transition: width .4s linear; }
+    .p-note { font-size: 0.95rem; margin-top: 0.55rem; font-style: italic; }
     .p-embed {
       position: absolute; left: 0; top: calc(100% + 10px); width: 320px; max-width: 86vw;
       opacity: 0; pointer-events: none; transition: opacity .3s ease;
@@ -188,22 +182,10 @@
     .letter img { width: 280px; height: auto; border-radius: 3px; }
     .letter:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
 
-    /* date beads */
-    .date { --x: 45%; --y: 60%; --mx: 34%; --my: 79%; --r: -4deg; display: flex; gap: 3px; }
-    .bead {
-      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
-      background: radial-gradient(circle at 35% 30%, #ffffff, #efe9df 60%, #d8d0c2);
-      color: #0a0a0a; font: 400 16px/1 'EB Garamond', Georgia, serif;
-      box-shadow: inset 0 -2px 3px rgba(0,0,0,0.15);
-    }
-    .bead:nth-child(odd) { transform: translateY(-5px) rotate(-6deg); }
-    .bead:nth-child(even) { transform: translateY(3px) rotate(5deg); }
-    .bead.gap { width: 10px; background: none; box-shadow: none; }
 
     @media (min-width: 701px) and (max-width: 1050px) {
       .player { --x: 4%; --y: 7%; }   .mac { --x: 54%; --y: 9%; }
       .camera { --x: 8%; --y: 42%; }  .letter { --x: 50%; --y: 50%; }
-      .date { --x: 36%; --y: 80%; }
       .lid { width: 290px; height: 192px; }
       .s-substack { left: 222px; } .s-spotify { left: 186px; top: 138px; width: 86px; } .s-notion { left: 128px; top: 132px; } .s-linkedin { top: 112px; }
     }
@@ -219,7 +201,6 @@
       .s-substack { left: 180px; top: 24px; width: 33px; }
       .s-spotify { left: 150px; top: 114px; width: 72px; }
       .letter img { width: 176px; }
-      .bead { width: 26px; height: 26px; font-size: 13px; }
     }
 
     /* ───────── the letter, opened ───────── */
@@ -270,39 +251,47 @@
       position: absolute; left: 50%; bottom: 7%; z-index: 2;
       width: min(400px, 84%); height: 36%;
       transform: translate(-50%, 0); opacity: 0; overflow: hidden;
-      background:
-        repeating-linear-gradient(to bottom, transparent 0 29px, rgba(90,120,170,0.18) 29px 30px),
-        #fffdf6;
-      border-radius: 4px; box-shadow: 0 20px 50px -18px rgba(0,0,0,0.55);
+      /* plain page-white paper inside a double ruled frame, like an old book page */
+      background: #f8f8f8;
+      box-shadow:
+        inset 0 0 0 12px #f8f8f8, inset 0 0 0 13px rgba(10,10,10,0.55),
+        inset 0 0 0 16px #f8f8f8, inset 0 0 0 17px rgba(10,10,10,0.3),
+        0 20px 50px -18px rgba(0,0,0,0.55);
+      border-radius: 3px;
       transition: transform .6s cubic-bezier(.2,.8,.2,1), height .6s cubic-bezier(.2,.8,.2,1), bottom .6s cubic-bezier(.2,.8,.2,1), width .6s ease, opacity .2s ease;
-      color: #0a0a0a; font-family: 'EB Garamond', Georgia, serif;
+      color: #0a0a0a;
     }
     .lt-modal.opened .lt-paper { opacity: 1; transform: translate(-50%, -58%); }
     .lt-modal.away .lt-paper { z-index: 6; bottom: 0; height: 100%; width: 100%; transform: translate(-50%, 0) rotate(-1deg); }
-    .lt-form { padding: 1.5rem 1.6rem 1.3rem; height: 100%; display: flex; flex-direction: column; opacity: 0; transition: opacity .35s ease .35s; }
+    .lt-form { padding: 2.4rem 2.3rem 1.9rem; height: 100%; display: flex; flex-direction: column; opacity: 0; transition: opacity .35s ease .35s; }
     .lt-modal.away .lt-form { opacity: 1; }
-    .lt-form h2 { margin: 0 0 0.2rem; font: italic 400 1.7rem/1 'EB Garamond', Georgia, serif; }
-    .lt-form .lt-sub { margin: 0 0 0.9rem; color: #0a0a0a; font-size: 0.98rem; }
-    .lt-form label { display: block; font-size: 0.82rem; color: #0a0a0a; letter-spacing: 0.02em; }
+    /* opening line, set like the home page: floral D dropped over three lines */
+    .lt-open { display: flow-root; margin: 0 0 1.2rem; font-size: 1.3rem; line-height: 1; text-wrap: balance; }
+    .lt-open .initial { float: left; width: auto; height: 2.65em; margin: 0.2em 0.27em 0 0; }
+    .lt-open .run { text-transform: uppercase; letter-spacing: 0.02em; }
+    .lt-form label { display: block; font-size: 1.05rem; font-style: italic; }
     .lt-form input, .lt-form textarea {
-      width: 100%; margin: 0 0 0.7rem; padding: 0.35rem 0.1rem; border: 0; border-bottom: 1.5px solid rgba(42,36,28,0.35);
-      background: transparent; color: #0a0a0a; font: 1.08rem 'EB Garamond', Georgia, serif; outline: none; border-radius: 0;
+      width: 100%; margin: 0.1rem 0 0.9rem; padding: 0.25rem 0; border: 0; border-bottom: 1px solid rgba(10,10,10,0.4);
+      background: transparent; color: #0a0a0a; font-size: 1.2rem; line-height: 1.15; outline: none; border-radius: 0;
     }
-    .lt-form input:focus, .lt-form textarea:focus { border-bottom-color: #8e1f1a; }
-    .lt-form textarea { flex: 1; min-height: 110px; resize: none; line-height: 30px; }
-    .lt-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.3rem; }
+    .lt-form input:focus, .lt-form textarea:focus { border-bottom-color: #0a0a0a; }
+    .lt-form textarea { flex: 1; min-height: 56px; resize: none; }
+    .lt-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.4rem; }
+    /* the send button is a blob of sealing wax */
     .lt-send {
-      border: 0; cursor: pointer; padding: 0.55rem 1.2rem; border-radius: 999px;
-      background: #8e1f1a; color: #fbeee6; font: italic 400 1.1rem 'EB Garamond', Georgia, serif;
-      box-shadow: 0 6px 14px -6px rgba(142,31,26,0.7);
+      border: 0; cursor: pointer; padding: 0.6rem 1.25rem;
+      border-radius: 46% 54% 49% 51% / 55% 47% 53% 45%;
+      background: radial-gradient(circle at 35% 30%, #b3342d, #7e1b16 72%); color: #f8f8f8;
+      font-size: 1.15rem; font-style: italic;
+      box-shadow: 0 5px 12px -5px rgba(126,27,22,0.7), inset 0 0 0 3px rgba(0,0,0,0.1);
     }
-    .lt-send:hover { background: #a42821; }
+    .lt-send:hover { filter: brightness(1.08); }
     .lt-send:disabled { opacity: .6; cursor: default; }
     .lt-status { font-size: 0.92rem; font-style: italic; color: #0a0a0a; }
     .lt-status.err { color: #a42821; }
     .lt-close {
-      position: absolute; right: 0.7rem; top: 0.5rem; z-index: 7; border: 0; background: none; cursor: pointer;
-      font: 1.6rem/1 'EB Garamond', serif; color: #0a0a0a; padding: 0.3rem 0.5rem; opacity: 0; transition: opacity .3s ease .5s;
+      position: absolute; right: 1.3rem; top: 1.1rem; z-index: 7; border: 0; background: none; cursor: pointer;
+      font-size: 1.6rem; line-height: 1; color: #0a0a0a; padding: 0.3rem 0.5rem; opacity: 0; transition: opacity .3s ease .5s;
     }
     .lt-modal.away .lt-close { opacity: 1; }
     .hp { position: absolute; left: -9999px; }
@@ -380,7 +369,7 @@
   <footer class="desk" id="desk">
 
     <div class="item player" id="player" aria-label="Music player: The Boxer by Simon &amp; Garfunkel">
-      <div class="vinyl" id="vinyl"></div>
+      <div class="vinyl" id="vinyl"><img class="v-init" src="initials/B.svg" alt="" width="649" height="641" draggable="false"></div>
       <div class="p-card">
         <div class="p-title">The Boxer</div>
         <div class="p-artist">Simon &amp; Garfunkel</div>
@@ -397,7 +386,7 @@
           </button>
           <span class="p-bar"><i id="pBar"></i></span>
         </div>
-        <div class="p-note" id="pNote">on spotify</div>
+        <div class="p-note" id="pNote">~ on spotify</div>
       </div>
       <div class="p-embed" id="pEmbed" data-nodrag><div id="spEmbed"></div></div>
     </div>
@@ -421,9 +410,6 @@
       <span class="float" style="display:block"><img src="letter-cut.webp" alt="" width="560" height="313" draggable="false"></span>
     </button>
 
-    <div class="item date" id="date" aria-label="Today's date"></div>
-
-    <p class="desk-hint">psst, everything down here moves. drag it around.</p>
   </footer>
 
   <!-- the letter, opened -->
@@ -434,8 +420,7 @@
       <div class="lt-paper">
         <button type="button" class="lt-close" data-close aria-label="Close">&times;</button>
         <form class="lt-form" id="ltForm">
-          <h2>Dear Akshat,</h2>
-          <p class="lt-sub">write me anything. it lands straight in my inbox.</p>
+          <p class="lt-open"><img class="initial" src="initials/D.svg" alt="D" width="641" height="641"><span class="run">ear</span> Akshat, write me anything you like. It lands straight in my inbox.</p>
           <label for="ltName">your name</label>
           <input id="ltName" name="name" type="text" autocomplete="name">
           <label for="ltEmail">your email (so i can write back)</label>

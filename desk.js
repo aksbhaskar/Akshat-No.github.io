@@ -5,24 +5,10 @@
    - camera -> photography (with a little flash)
    - letter -> opens into a writable letter, sent via Formspree
    - record player plays The Boxer through Spotify's embed API
-   - the date beads always spell today's date
    ───────────────────────────────────────────────────────────── */
 (function () {
   var desk = document.getElementById('desk');
   if (!desk) return;
-
-  /* ── today's date as beads ── */
-  var dateEl = document.getElementById('date');
-  var now = new Date();
-  var txt = now.toLocaleString('en-US', { month: 'short' }).toUpperCase() + ' ' + now.getDate();
-  dateEl.setAttribute('aria-label', 'Today: ' + now.toDateString());
-  txt.split('').forEach(function (ch) {
-    var b = document.createElement('span');
-    b.className = ch === ' ' ? 'bead gap' : 'bead';
-    b.textContent = ch === ' ' ? '' : ch;
-    b.setAttribute('aria-hidden', 'true');
-    dateEl.appendChild(b);
-  });
 
   /* ── dragging, clamped to the desk ── */
   var topZ = 10, EDGE = 14;   // keep rotated corners fully inside the desk
