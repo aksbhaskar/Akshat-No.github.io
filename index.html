@@ -14,47 +14,98 @@
   <meta property="og:image" content="https://akshatb.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://akshatb.com/og-image.jpg" />
-  <meta name="theme-color" content="#f8f8f8" />
+  <meta name="theme-color" content="#2a2620" />
   <link rel="icon" type="image/jpeg" href="akshat.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap">
-  <link rel="preload" as="image" href="dropcap-m.webp">
+  <link rel="preload" as="image" href="alexander.webp" media="(orientation: landscape)">
+  <link rel="preload" as="image" href="alexander-vertical.webp" media="(orientation: portrait)">
   <style>
-    html { background: #f8f8f8; color: #000; -webkit-text-size-adjust: 100%; }
-    body { margin: 0; font: 1.25rem/1.3 "EB Garamond", Garamond, Georgia, serif; font-kerning: normal; font-variant-ligatures: common-ligatures; }
-    main { width: min(23rem, 100% - 3rem); margin: 0 auto; padding: 6rem 0; }
-    ul { list-style: none; margin: 3rem 0 0; padding: 0; }
-    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .15em; }
-    a:hover { text-decoration: none; }
+    /* Alembic "serif white" theme, set as live text:
+       EB Garamond 400, #0a0a0a on #f8f8f8, 1.25rem, line-height 1,
+       0.8lh paragraph spacing, balanced lines, no hyphenation,
+       three-line ornamental drop caps with the rest of the first word run in capitals */
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100vh; color: #0a0a0a;
+      font: 1.25rem/1.3 "EB Garamond", Garamond, Georgia, serif;
+      font-kerning: normal; font-variant-ligatures: common-ligatures;
+      background: #2a2620;
+    }
+    /* the Alexander painting, full-bleed behind the card (fixed layer: no scroll repaint) */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1;
+      background: #2a2620 url('alexander.webp') center center / cover no-repeat;
+    }
+    @media (orientation: portrait) { body::before { background-image: url('alexander-vertical.webp'); } }
 
-    /* the text block, typeset the way Alembic does it: justified, hyphenated,
-       tight leading, with an ornamental woodcut initial dropped into the text */
-    .typeset {
-      margin: 0; font-size: 1.5rem; line-height: 1.05;
-      text-align: justify; -webkit-hyphens: auto; hyphens: auto;
+    .card {
+      width: min(64rem, 100% - 3rem); margin: 4.5rem auto;
+      background: #f8f8f8; border-radius: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55);
+    }
+    main { width: min(31rem, 100% - 3rem); margin: 0 auto; padding: 6rem 0; }
+
+    .al {
+      margin: 0 0 3rem; line-height: 1; text-wrap: balance; hyphens: manual;
       font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
     }
-    .typeset .initial {
+    .al .initial {
       float: left; width: auto;
-      /* spans N lines: top meets the cap height of line 1, bottom sits on the
-         baseline of line N (EB Garamond: baseline ~0.88em into a 1.05 line) */
-      --n: 4;
-      height: calc((var(--n) - 1) * 1.05em + 0.65em);
-      margin: 0.23em 0.1em 0 0;
+      /* top meets the cap height of line 1, bottom sits on the baseline of line 3
+         (same geometry Alembic uses: 0.2em down, (lines-1) x 1lh + 0.65em tall) */
+      height: 2.65em; margin: 0.2em 0.27em 0 0;
     }
-    .sign { margin: 1.05em 0 0; font-size: 1.5rem; line-height: 1.05; text-align: right; }
+    .al .run { text-transform: uppercase; letter-spacing: 0.02em; }
+    .al a { color: inherit; text-decoration: underline; text-decoration-color: rgba(10,10,10,0.3); text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    .al a:hover { text-decoration-color: currentColor; }
+
+    .sign { margin: 0 0 0; line-height: 1; text-align: right; }
+    ul { list-style: none; margin: 3rem 0 0; padding: 0; }
+    ul a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    ul a:hover { text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .card { width: calc(100% - 1.5rem); margin: 0.75rem auto; }
+      main { padding: 3.5rem 0; }
+    }
   </style>
 </head>
 <body>
+<div class="card">
 <main>
-  <p class="typeset"><img class="initial" src="dropcap-m.webp" alt="M" width="366" height="368">Y name is Akshat Bhaskar. I love building things and dragging good ideas out into the open where people can use them.</p>
+  <p class="al"><img class="initial" src="initials/M.svg" alt="M" width="646" height="638"><span class="run">y</span> name is Akshat Bhaskar. I love building things and dragging good ideas out into the open where people can use them. I would love to talk about Economics, Mathematics, Public Policy, Anthropology, and Philosophy: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>!</p>
+
+  <p class="al"><img class="initial" src="initials/S.svg" alt="S" width="626" height="640"><span class="run">ome</span> interesting things about me are:<br>
+  &nbsp;&nbsp;- I was once <a href="president.html">awarded by the President of India</a>.<br>
+  &nbsp;&nbsp;- I am really interested in the mission of <a href="financialliteracy.html">financial literacy</a>.<br>
+  &nbsp;&nbsp;- I took a <a href="gapyear.html">gap year</a> after high school.<br>
+  &nbsp;&nbsp;- I have <a href="researchstory.html">conducted research, published and presented</a>.<br>
+  &nbsp;&nbsp;- I am always doing a <a href="now.html">LOT of things</a>.</p>
+
+  <p class="al"><img class="initial" src="initials/I.svg" alt="I" width="652" height="651"><span class="run">f</span> any of this resonates with you, I would love to learn more about you! Reach me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>. Or just book a time with me using my <a href="https://calendly.com/akshatbhaskar/30min" target="_blank" rel="noopener">Calendly</a>!</p>
+
+  <p class="al"><img class="initial" src="initials/R.svg" alt="R" width="651" height="641"><span class="run">each</span> the things that I run directly. I would love to tell you more about my initiatives and would love to have you join us!<br>
+  &nbsp;&nbsp;<br>
+  Edunomix:<br>
+  &nbsp;&nbsp;- Join or Enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
+  &nbsp;&nbsp;- Learn More: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">https://edunomixinstitute.com/</a><br>
+  &nbsp;&nbsp;<br>
+  Decoded:<br>
+  &nbsp;&nbsp;- Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
+  &nbsp;&nbsp;- Enquire: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
+  &nbsp;&nbsp;- Apply for our Newsletter Position: <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a> (our Head of the Newsletter Department!)<br>
+  &nbsp;&nbsp;- Learn More: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">https://decodedpodcast.vercel.app/</a><br>
+  &nbsp;&nbsp;<br>
+  Project Fermat:<br>
+  &nbsp;&nbsp;- Join or Enquire: <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a><br>
+  &nbsp;&nbsp;- Learn More: <a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener">https://projectfermat.vercel.app/</a></p>
+
   <p class="sign" aria-hidden="true">( ^▽^)ψ__</p>
+
   <ul>
-    <li><a href="https://edunomixinstitute.com/" target="_blank" rel="noopener"><i>Edunomix</i></a></li>
-    <li><a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener"><i>Decoded</i></a></li>
-    <li><a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener"><i>Project Fermat</i></a></li>
     <li><a href="professionalism.html">better website?</a></li>
     <li><a href="photos.html">corpus delicti</a></li>
     <li><a href="updates.html">updates</a></li>
@@ -65,9 +116,9 @@
     <li><a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&amp;hl=en">Google Scholar</a></li>
     <li><a href="https://www.linkedin.com/in/aksbhaskar/">LinkedIn</a></li>
     <li><a href="https://x.com/aksbhaskar">X</a></li>
-    <li><a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></li>
   </ul>
 </main>
+</div>
   <script>
   /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
   (function () {
