@@ -83,12 +83,12 @@ p.al .initial {
 p.al .run { text-transform: uppercase; letter-spacing: 0.02em; }
 p.al { display: flow-root; }
 
-/* photos: centred in the card and allowed wider than the text column,
-   so they use the card's space instead of hugging the left edge */
+/* photos: centred in the card, a little narrower than the text column,
+   so they sit in the middle instead of hugging the left edge */
 img { max-width: 100%; height: auto; border: 0 !important; border-radius: 2px; box-shadow: none !important; }
 .frame, .gallery figure, .media-cloud, .tweet-wrap, figure {
   box-sizing: border-box;
-  width: min(44rem, 100vw - 7.5rem) !important; max-width: none !important;
+  width: min(26rem, 100vw - 7.5rem) !important; max-width: none !important;
   margin: 0 0 2.4rem 50% !important; transform: translateX(-50%);
   text-align: center;
 }
