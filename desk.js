@@ -4,7 +4,7 @@
      inside the desk: nothing can be pulled up over the page above
    - camera -> photography (with a little flash)
    - letter -> opens into a writable letter, sent via Formspree
-   - record player plays The Boxer through Spotify's embed API
+   - The Boxer plays in Spotify's own embed
    ───────────────────────────────────────────────────────────── */
 (function () {
   var desk = document.getElementById('desk');
@@ -125,60 +125,4 @@
     }
   });
 
-  /* ── the record player (Spotify embed iFrame API) ── */
-  var player = document.getElementById('player');
-  var playBtn = player.querySelector('.p-play'), iPlay = player.querySelector('.i-play'), iPause = player.querySelector('.i-pause');
-  var bar = document.getElementById('pBar'), note = document.getElementById('pNote'), embedBox = document.getElementById('pEmbed');
-  var TRACK = 'spotify:track:76TZCvJ8GitQ2FA1q5dKu0';
-  var ctrl = null, ready = false, playing = false, pos = 0, dur = 0, wantPlay = false, fallbackTimer = null, apiLoaded = false;
-
-  function setPlaying(p) {
-    playing = p;
-    player.classList.toggle('playing', p);
-    iPlay.style.display = p ? 'none' : ''; iPause.style.display = p ? '' : 'none';
-    playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play');
-  }
-  function loadApi() {
-    if (apiLoaded) return; apiLoaded = true;
-    window.onSpotifyIframeApiReady = function (IFrameAPI) {
-      IFrameAPI.createController(document.getElementById('spEmbed'),
-        { uri: TRACK, width: '100%', height: 80 },
-        function (c) {
-          ctrl = c;
-          c.addListener('ready', function () { ready = true; if (wantPlay) { c.play(); armFallback(); } });
-          c.addListener('playback_update', function (ev) {
-            var d = ev.data || {};
-            dur = d.duration || dur; pos = d.position || 0;
-            if (dur) bar.style.width = Math.min(100, pos / dur * 100) + '%';
-            if (!d.isPaused && !d.isBuffering) { clearTimeout(fallbackTimer); embedBox.classList.remove('show'); note.textContent = 'playing on spotify'; }
-            setPlaying(!d.isPaused);
-          });
-        });
-    };
-    var s = document.createElement('script');
-    s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true;
-    document.head.appendChild(s);
-  }
-  // if the browser won't let us start it remotely, show Spotify's own player
-  function armFallback() {
-    clearTimeout(fallbackTimer);
-    fallbackTimer = setTimeout(function () {
-      if (!playing) { embedBox.classList.add('show'); note.textContent = 'tap play on the spotify player below'; }
-    }, 3500);
-  }
-  function toggle() {
-    if (!ctrl || !ready) { wantPlay = true; loadApi(); note.textContent = 'loading…'; return; }
-    if (playing) ctrl.pause(); else { if (pos > 0) ctrl.resume(); else ctrl.play(); armFallback(); }
-  }
-  playBtn.addEventListener('click', toggle);
-  player.querySelector('.p-back').addEventListener('click', function () { if (ctrl && ready) { ctrl.seek(0); if (!playing) toggle(); } else toggle(); });
-  player.querySelector('.p-fwd').addEventListener('click', function () { if (ctrl && ready && dur) ctrl.seek(Math.min(dur / 1000 - 1, pos / 1000 + 15)); });
-  // tapping the record itself also plays / pauses (unless it was dragged)
-  document.getElementById('vinyl').addEventListener('click', toggle);
-  // warm the API up as you get near the bottom of the page
-  window.addEventListener('scroll', function onS() {
-    if (window.innerHeight + window.scrollY > document.documentElement.scrollHeight - window.innerHeight * 1.5) {
-      loadApi(); window.removeEventListener('scroll', onS);
-    }
-  }, { passive: true });
 })();

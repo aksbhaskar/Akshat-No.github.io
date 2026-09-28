@@ -116,50 +116,19 @@
     .item img { display: block; -webkit-user-drag: none; pointer-events: none; }
     @media (max-width: 700px) { .item { left: var(--mx); top: var(--my); } }
 
-    /* record player */
-    .player { --x: 5%; --y: 11%; --mx: 4%; --my: 5%; --r: 0deg; display: flex; align-items: center; }
-    .vinyl {
-      width: 132px; height: 132px; border-radius: 50%; flex: none; position: relative; z-index: 1;
-      background:
-        radial-gradient(circle, #f8f8f8 0 30%, #0a0a0a 30.5% 31.5%, transparent 32%),
-        repeating-radial-gradient(circle, #141414 0 2px, #222 2.5px 3.5px);
-      box-shadow: 0 0 0 5px #0b0b0b, inset 0 0 20px rgba(255,255,255,0.06);
+    /* the song: Spotify's own embed, on a small grab handle so it can be dragged */
+    .song { --x: 5%; --y: 9%; --mx: 5%; --my: 3%; --r: 0deg; width: 320px; }
+    .song .grip {
+      display: block; width: 46px; height: 5px; margin: 0 auto 7px; border-radius: 3px;
+      background: rgba(248,248,248,0.85); box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     }
-    .vinyl::before {                 /* sheen */
-      content: ""; position: absolute; inset: 0; border-radius: 50%;
-      background: conic-gradient(from 30deg, transparent 0 10%, rgba(255,255,255,0.13) 16%, transparent 24% 60%, rgba(255,255,255,0.1) 66%, transparent 74%);
-    }
-    /* the label: a floral woodcut B, turning with the record */
-    .vinyl .v-init { position: absolute; left: 50%; top: 50%; width: 34%; height: auto; transform: translate(-50%, -50%); pointer-events: none; }
-    .player.playing .vinyl { animation: spin 2.2s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .p-card {
-      margin-left: -26px; padding: 0.9rem 1.1rem 0.85rem 2.4rem; width: 222px;
-      background: #f8f8f8; color: #0a0a0a; border-radius: 0.5rem;
-      line-height: 1;
-    }
-    .p-title { font-size: 1.35rem; }
-    .p-artist { font-size: 1.05rem; font-style: italic; margin: 0.2rem 0 0.6rem; }
-    .p-ctrls { display: flex; align-items: center; gap: 0.4rem; }
-    .p-ctrls button {
-      border: 0; background: none; padding: 3px; margin: 0; cursor: pointer; color: #0a0a0a;
-      display: grid; place-items: center; border-radius: 50%;
-    }
-    .p-ctrls button:hover { background: rgba(10,10,10,0.07); }
-    .p-ctrls .p-play { width: 32px; height: 32px; border: 1px solid #0a0a0a; }
-    .p-ctrls .p-play:hover { background: #0a0a0a; color: #f8f8f8; }
-    .p-bar { flex: 1; height: 1px; background: rgba(10,10,10,0.3); margin-left: 0.35rem; position: relative; }
-    .p-bar i { display: block; height: 1px; width: 0; background: #0a0a0a; transition: width .4s linear; }
-    .p-note { font-size: 0.95rem; margin-top: 0.55rem; font-style: italic; }
-    .p-embed {
-      position: absolute; left: 0; top: calc(100% + 10px); width: 320px; max-width: 86vw;
-      opacity: 0; pointer-events: none; transition: opacity .3s ease;
-    }
-    .p-embed.show { opacity: 1; pointer-events: auto; }
-    .p-embed iframe { display: block; border-radius: 12px; }
+    .song .grip-area { padding: 6px 0 2px; }
+    .song iframe { display: block; border: 0; }
+    /* while dragging, the iframe must not swallow the pointer */
+    .song.dragging iframe { pointer-events: none; }
 
     /* camera */
-    .camera { --x: 36%; --y: 7%; --mx: 52%; --my: 47%; --r: 4deg; }
+    .camera { --x: 36%; --y: 7%; --mx: 54%; --my: 75%; --r: 4deg; }
     .camera img { width: 250px; height: auto; }
     .camera:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
     .flash { position: fixed; inset: 0; background: #fff; z-index: 10001; pointer-events: none; opacity: 0; }
@@ -167,7 +136,7 @@
     @keyframes flash { 0% { opacity: 0; } 15% { opacity: 0.95; } 100% { opacity: 0; } }
 
     /* macbook lid with stickers */
-    .mac { --x: 63%; --y: 10%; --mx: 6%; --my: 25%; --r: -2deg; }
+    .mac { --x: 63%; --y: 10%; --mx: 6%; --my: 52%; --r: -2deg; }
     .lid {
       position: relative; width: 330px; height: 218px; border-radius: 16px;
       background:
@@ -185,7 +154,7 @@
     .s-spotify  { left: 212px; top: 160px; width: 96px; transform: rotate(-6deg); }
 
     /* the letter */
-    .letter { --x: 10%; --y: 50%; --mx: 5%; --my: 54%; --r: -7deg; border: 0; padding: 0; background: none; }
+    .letter { --x: 36%; --y: 52%; --mx: 4%; --my: 77%; --r: -7deg; border: 0; padding: 0; background: none; }
     .letter .float { animation: bob 4.5s ease-in-out infinite; }
     @keyframes bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-9px) rotate(1.2deg); } }
     .letter img { width: 280px; height: auto; border-radius: 3px; }
@@ -193,14 +162,13 @@
 
 
     @media (min-width: 701px) and (max-width: 1050px) {
-      .player { --x: 4%; --y: 7%; }   .mac { --x: 54%; --y: 9%; }
+      .song { --x: 4%; --y: 7%; }   .mac { --x: 54%; --y: 9%; }
       .camera { --x: 8%; --y: 42%; }  .letter { --x: 50%; --y: 50%; }
       .lid { width: 290px; height: 192px; }
       .s-substack { left: 222px; } .s-spotify { left: 186px; top: 138px; width: 86px; } .s-notion { left: 128px; top: 132px; } .s-linkedin { top: 112px; }
     }
     @media (max-width: 700px) {
-      .vinyl { width: 104px; height: 104px; }
-      .p-card { width: 178px; }
+      .song { width: min(300px, 88vw); }
       .camera img { width: 160px; }
       .lid { width: 236px; height: 156px; border-radius: 13px; }
       .lid .apple { width: 26px; height: 30px; }
@@ -321,7 +289,7 @@
     .lt-thanks small { display: block; font-size: 1rem; opacity: .75; margin-top: .3rem; }
     .lt-modal.thanks .lt-thanks { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .player.playing .vinyl, .letter .float { animation: none; }
+      .letter .float { animation: none; }
     }
   </style>
 </head>
@@ -377,27 +345,9 @@
 
   <footer class="desk" id="desk">
 
-    <div class="item player" id="player" aria-label="Music player: The Boxer by Simon &amp; Garfunkel">
-      <div class="vinyl" id="vinyl"><img class="v-init" src="initials/B.svg" alt="" width="649" height="641" draggable="false"></div>
-      <div class="p-card">
-        <div class="p-title">The Boxer</div>
-        <div class="p-artist">Simon &amp; Garfunkel</div>
-        <div class="p-ctrls">
-          <button type="button" class="p-back" data-nodrag aria-label="Restart song">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
-          </button>
-          <button type="button" class="p-play" data-nodrag aria-label="Play">
-            <svg class="i-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
-            <svg class="i-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
-          </button>
-          <button type="button" class="p-fwd" data-nodrag aria-label="Skip ahead 15 seconds">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
-          </button>
-          <span class="p-bar"><i id="pBar"></i></span>
-        </div>
-        <div class="p-note" id="pNote">~ on spotify</div>
-      </div>
-      <div class="p-embed" id="pEmbed" data-nodrag><div id="spEmbed"></div></div>
+    <div class="item song" aria-label="The Boxer by Simon &amp; Garfunkel on Spotify (drag by the handle)">
+      <div class="grip-area"><span class="grip" aria-hidden="true"></span></div>
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/76TZCvJ8GitQ2FA1q5dKu0?utm_source=generator&amp;si=f50ed4f0bf324521" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="The Boxer by Simon &amp; Garfunkel on Spotify"></iframe>
     </div>
 
     <a class="item camera" id="camera" href="photography.html" aria-label="Camera: see my photography" draggable="false">
