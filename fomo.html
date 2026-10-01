@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FOMO and Financial Misinformation | Akshat Bhaskar</title>
+<meta content="A study at the Indian School of Business on who shares financial misinformation in India: how fear of missing out and conscientiousness interact, measured with validated psychological instruments and multilingual language models (MuRIL and XLM-RoBERTa)." name="description"/>
+<meta content="Akshat Bhaskar" name="author"/>
+<link href="https://akshatb.com/fomo" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="FOMO and Financial Misinformation | Akshat Bhaskar" property="og:title"/>
+<meta content="A study at the Indian School of Business on who shares financial misinformation in India: how fear of missing out and conscientiousness interact, measured with validated psychological instruments and multilingual language models (MuRIL and XLM-RoBERTa)." property="og:description"/>
+<meta content="https://akshatb.com/fomo" property="og:url"/>
+<meta content="https://akshatb.com/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://akshatb.com/og-image.jpg" name="twitter:image"/>
+<meta content="#000000" name="theme-color"/>
+<link href="akshat.jpg" rel="icon" type="image/jpeg"/>
+<link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<style>
+    :root {
+      --bg: #000000;
+      --ink: #ffffff;
+      --body: #dddddd;
+      --brown: #d0a878;
+      --border: #2a2a2a;
+    }
+    @view-transition { navigation: auto; }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 14px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 520px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
+
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--brown); }
+
+    .back {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #111111; border: 1px solid var(--border); color: var(--brown);
+      box-shadow: 0 8px 22px -12px rgba(60,40,25,0.45);
+      text-decoration: none; margin: 0 0 1.8rem;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .back:hover { transform: translateX(-2px); color: var(--ink); }
+
+    .body p { font-size: 0.95rem; line-height: 1.75; color: var(--body); margin: 0 0 1.2rem; }
+
+    .frame {
+      background: #111111;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      box-shadow: 0 22px 50px -30px rgba(60,40,25,0.4), 0 5px 14px -10px rgba(0,0,0,0.12);
+      max-width: 420px;
+      margin: 1.4rem 0 0.7rem;
+    }
+    .frame.tall { max-width: 300px; }
+    .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
+    .cap { max-width: 420px; margin: 0 0 2rem; font-style: italic; color: var(--brown); font-size: 0.8rem; line-height: 1.5; }
+
+    /* the pop-in animation when arriving from the homepage */
+    ::view-transition-old(root) { animation: vtOut 0.28s ease both; }
+    ::view-transition-new(root) { animation: vtIn 0.42s cubic-bezier(0.2,0.7,0.2,1) both; }
+    @keyframes vtOut { to { opacity: 0; transform: scale(1.01); } }
+    @keyframes vtIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
+
+    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 15px; } .frame, .cap { max-width: 100%; } .frame.tall { max-width: 300px; } }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="bubbles.css" rel="stylesheet"/>
+<style>.role { font-style: italic; margin: 0 0 2.4rem !important; } ul.method { padding-left: 1.2rem; } ul.method li { margin: 0 0 0.6rem !important; }</style>
+</head>
+<body>
+<div class="page">
+<a aria-label="Back to home" class="back" href="index.html"><img alt="" height="95" src="back-arrow.webp" width="659"/></a>
+<div class="body">
+<h1>FOMO, Conscientiousness, and Financial Misinformation</h1>
+<p class="role">A study at the Indian School of Business, with Professor Hemant Kakkar · 2026</p>
+<p class="al"><img alt="M" class="initial" height="640" src="initials/M.svg" width="640"/><span class="run">ost</span> research on misinformation stops at identifying false posts. It tells you what is wrong, but not who is susceptible to it. This study asks the second half of the question: what individual traits predict whether someone shares financial misinformation they have come across?</p>
+<p>It grew out of my work in financial literacy. I had assumed ignorance was the disease and information the cure, but I had started to see that literacy is only one part of the story. Whether someone falls for a scam, or forwards one, often has less to do with what they know and more to do with how they feel.</p>
+<h2>The question</h2>
+<p>The study tests whether fear of missing out (FOMO) and conscientiousness interact to predict financial misinformation sharing. It extends Professor Kakkar's framework on political ideology, conscientiousness, and fake news sharing into a financial context, with FOMO taking the place of ideology.</p>
+<h2>The hypothesis</h2>
+<p>The obvious prediction is that conscientious people, careful, organised, rule-following, should be less likely to spread something false. But financial misinformation in India shows up dressed in far more ways than just as an opportunity. It shows up as a warning: your bank account will be frozen, RBI just changed this rule, act now. A conscientious person's instinct is to protect the people around them, and that same instinct might be exactly what makes them forward the warning without checking it first.</p>
+<p>If that holds, "slow down and verify" is aimed at the wrong lever for a chunk of the people spreading this stuff. You are not fighting carelessness. You are fighting a sense of duty. That is the hypothesis I want the data to either confirm or kill.</p>
+<h2>How it works</h2>
+<ul class="method">
+<li>Conscientiousness, measured with the BFI-2-XS, a 15-item version of the Big Five Inventory (Soto and John, 2017).</li>
+<li>FOMO, measured with Przybylski et al.'s 10-item Fear of Missing Out scale, developed at the University of Oxford (2013).</li>
+<li>Five financial misinformation vignettes, each rated for how likely the respondent is to share it and how true they believe it is.</li>
+<li>A mixed-effects model in R, with ratings nested within each respondent.</li>
+</ul>
+<p>These are established, validated instruments rather than questions I wrote myself, which matters when you are trying to say something real about who shares what.</p>
+<h2>The language side</h2>
+<p>On the content side, I am running real financial misinformation posts from Indian social media through two language models: MuRIL, which Google built specifically for Indian languages including Hindi–English code-mixed text, and XLM-RoBERTa, Meta's more general multilingual model trained across 100 languages. Most models are trained on English-dominant web text and fall apart on the way Indians actually write online, mixing Hindi and English in the same sentence. Comparing the two tells me whether India-specific pretraining earns its keep.</p>
+<h2>Where it stands</h2>
+<p>The data collection phase is now complete, with 300 responses collected, and I am moving on to the analysis and the NLP component of the study. The raw responses are not public: human subjects data needs separate handling and advisor sign-off before anything goes out.</p>
+<div class="frame"><a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank"><img alt="GitHub repository: aksbhaskar/fomo-misinformation-study" decoding="async" height="600" loading="lazy" src="research_fomo_github.jpg" width="1200"/></a></div>
+<p>The study design and code live on <a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank">GitHub</a>. If you work in fintech, behavioural science, or misinformation research, I would love to talk: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>.</p>
+</div>
+</div>
+<script>
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
+    });
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
+<script defer="" src="dog.js"></script>
+</body>
+</html>
