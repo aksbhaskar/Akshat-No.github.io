@@ -1,584 +1,180 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bookshelf | Akshat Bhaskar</title>
-  <meta name="description" content="Akshat Bhaskar's bookshelf, currently reading Development as Freedom by Amartya Sen, Principles by Ray Dalio, A Song of Ice and Fire, and The Policy Pivot. Click any book to read the notes." />
-  <meta name="keywords" content="Akshat Bhaskar bookshelf, Ray Dalio Principles, George R.R. Martin, Indian policy books, reading list" />
-  <meta name="author" content="Akshat Bhaskar" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://akshatb.com/bookshelf.html" />
-  <meta name="theme-color" content="#f9f4e6">
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Bookshelf | Akshat Bhaskar" />
-  <meta property="og:description" content="What I'm reading, and what shaped me. Currently reading Dalio, Martin, and Khanna & Sharma." />
-  <meta property="og:url" content="https://akshatb.com/bookshelf.html" />
-  <meta property="og:image" content="https://akshatb.com/og_bookshelf.jpg" />
-  <meta name="twitter:image" content="https://akshatb.com/og_bookshelf.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:creator" content="@aksbhaskar" />
-  <link rel="icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-  <link rel="shortcut icon" type="image/jpeg" href="akshat.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
-  <style>
-    /* ─── VARIABLES ────────────────────────────────────────────
-       The reading room: library cream under a warm lamp, with a
-       walnut shelf the books actually stand on. */
-    :root {
-      --paper:      #f9f4e6;
-      --ink:        #241d12;
-      --ink-med:    #43392a;
-      --ink-soft:   #6f6551;
-      --ink-faint:  #766d5b;
-      --ink-ghost:  #c9bfa8;
-      --rule:       #d6cbb0;
-      --rule-light: #e6ddc8;
-      --accent:     #7a4a24;
-      --lamp:       rgba(255,196,110,0.16);
-      --wood-hi:    #c39a63;
-      --wood:       #ac824f;
-      --wood-lo:    #8a6338;
-      --wood-edge:  #6f4e2b;
-      --wood-shadow:rgba(60,38,14,0.34);
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(22px, 4vw, 48px);
-      --measure:    720px;
-    }
-    html.dark { --accent: #d19a6a; }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-
-    body {
-      background: var(--paper);
-      background-image: radial-gradient(760px 360px at 50% -80px, var(--lamp), transparent 74%);
-      background-repeat: no-repeat;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.72;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-
-    /* ─── PROGRESS ─────────────────────────────────────────── */
-    .progress-rule {
-      position: fixed; top: 0; left: 0; height: 1px; width: 0%;
-      background: var(--accent); z-index: 999; transition: width 0.1s linear;
-    }
-
-    /* ─── TOPBAR ───────────────────────────────────────────── */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(249,244,230,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(214,203,176,0.5);
-    }
-    .topbar-logo {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .topbar-logo:hover { color: var(--ink); }
-
-    .hamburger {
-      background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
-    }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-
-    /* ─── NAV OVERLAY ──────────────────────────────────────── */
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 190;
-      background: rgba(36,29,18,0.95); backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.5rem, 3.3vw, 2.3rem);
-      font-weight: 400; font-style: italic;
-      color: rgba(249,244,230,0.5); line-height: 1.32;
-      opacity: 0; transform: translateX(-10px);
-      transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none; display: block;
-    }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
-    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
-    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
-    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
-    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
-    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
-    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
-    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
-    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
-    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
-    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: rgba(249,244,230,0.95); }
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(249,244,230,0.15);
-      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(249,244,230,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(249,244,230,0.9); }
-
-    /* ─── PAGE ─────────────────────────────────────────────── */
-    .shelf-page { max-width: var(--measure); margin: 0 auto; padding: 0 var(--outer) 5rem; }
-
-    /* ─── HEADER ───────────────────────────────────────────── */
-    .shelf-head { padding-top: 116px; text-align: center; }
-    .ex-libris {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-bottom: 1rem;
-    }
-    h1.shelf-title {
-      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.2rem);
-      font-weight: 400; letter-spacing: 0.02em; line-height: 1.05; color: var(--ink);
-    }
-    .shelf-sub {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.05rem; color: var(--ink-soft); margin-top: 0.7rem;
-    }
-
-    .section-line {
-      display: flex; align-items: baseline; gap: 1rem;
-      margin: 3rem 0 0.5rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 0.5px solid var(--ink);
-    }
-    .section-line .sn { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-faint); }
-    .section-line .st { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); }
-    .section-line .sh { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--ink-ghost); margin-left: auto; }
-
-    /* ─── THE BOOKCASE ─────────────────────────────────────── */
-    .bookcase { margin-top: 3.2rem; }
-
-    .shelf { position: relative; }
-
-    .shelf-books {
-      display: flex; align-items: flex-end; justify-content: center;
-      flex-wrap: wrap;
-      gap: clamp(1.4rem, 5vw, 3rem);
-      padding: 0 1.4rem 0;
-    }
-
-    .book {
-      position: relative;
-      width: clamp(96px, 24vw, 128px);
-      aspect-ratio: 2 / 3;
-      padding: 0; border: none; background: none; cursor: pointer;
-      transition: transform 0.34s cubic-bezier(0.34, 1.3, 0.64, 1);
-      transform-origin: bottom center;
-    }
-    .book img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      border-radius: 1px 3px 3px 1px;
-      border: 0.5px solid rgba(90,60,30,0.35);
-      box-shadow:
-        0 8px 14px -5px rgba(45,29,10,0.4),
-        inset -3px 0 6px rgba(0,0,0,0.14),
-        inset 2px 0 2px rgba(255,255,255,0.16);
-      filter: grayscale(6%);
-      transition: filter 0.3s ease;
-    }
-    /* the spine, a shaded edge down the left */
-    .book::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.24), transparent);
-      border-radius: 1px 0 0 1px; z-index: 2; pointer-events: none;
-    }
-    .book:hover, .book:focus-visible { transform: translateY(-12px); outline: none; }
-    .book:hover img, .book.selected img { filter: grayscale(0%); }
-    .book.selected { transform: translateY(-16px); }
-    .book.selected img {
-      box-shadow:
-        0 16px 22px -8px rgba(45,29,10,0.45),
-        0 0 0 1.5px var(--accent),
-        inset -3px 0 6px rgba(0,0,0,0.14);
-    }
-
-    .ribbon {
-      position: absolute; top: 7px; right: 7px; z-index: 3;
-      font-family: var(--mono); font-size: 0.5rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      background: var(--accent); color: #fff;
-      padding: 0.13rem 0.4rem; border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-
-    /* the walnut plank the books rest on */
-    .shelf-plank {
-      position: relative;
-      height: 18px; margin-top: -1px;
-      border-radius: 2px 2px 1px 1px;
-      background:
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 8px),
-        linear-gradient(180deg, var(--wood-hi) 0%, var(--wood) 55%, var(--wood-lo) 100%);
-      box-shadow: 0 14px 22px -10px var(--wood-shadow), inset 0 1px 0 rgba(255,255,255,0.18);
-    }
-    /* the front lip of the shelf, catching a little shadow */
-    .shelf-plank::after {
-      content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
-      background: var(--wood-edge);
-      border-radius: 0 0 2px 2px;
-      box-shadow: 0 4px 8px -2px var(--wood-shadow);
-    }
-
-    /* the second shelf, sitting a level down the case */
-    .shelf-lower { margin-top: 4.2rem; }
-
-    .shelf-hint {
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.82rem; color: var(--ink-soft);
-      text-align: center; margin-top: 2.4rem;
-      transition: opacity 0.3s ease;
-    }
-    .shelf-hint.gone { opacity: 0; }
-
-    /* ─── READING PANEL ────────────────────────────────────── */
-    .reading-panel {
-      margin-top: 2.2rem;
-      border: 0.5px solid var(--rule);
-      border-top: 2px solid var(--ink);
-      background: var(--paper);
-      display: grid; grid-template-rows: 0fr;
-      transition: grid-template-rows 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
-      opacity: 0;
-    }
-    .reading-panel.open { grid-template-rows: 1fr; opacity: 1; }
-    .rp-clip { overflow: hidden; }
-    .rp-inner {
-      display: flex; gap: 1.8rem;
-      padding: 1.9rem 1.8rem 1.7rem;
-      position: relative;
-    }
-    .rp-inner::before {
-      content: '"'; position: absolute; top: 0.2rem; left: 1rem;
-      font-family: var(--serif); font-size: 4rem; color: var(--ink);
-      opacity: 0.07; line-height: 1; pointer-events: none;
-    }
-    .rp-cover { flex: 0 0 92px; }
-    .rp-cover img {
-      width: 100%; aspect-ratio: 2 / 3; object-fit: cover; display: block;
-      border-radius: 1px 3px 3px 1px;
-      border: 0.5px solid rgba(90,60,30,0.3);
-      box-shadow: 0 5px 12px -3px rgba(45,29,10,0.34), inset -2px 0 5px rgba(0,0,0,0.12);
-    }
-    .rp-body { flex: 1; min-width: 0; }
-    .rp-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); line-height: 1.3; }
-    .rp-author {
-      font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
-      display: block; margin-top: 0.35rem;
-    }
-    .rp-prog-label {
-      display: flex; justify-content: space-between;
-      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em;
-      text-transform: uppercase; color: var(--ink-faint);
-      margin: 1.1rem 0 0.35rem;
-    }
-    .rp-prog-bar { height: 3px; background: var(--rule-light); border-radius: 2px; overflow: hidden; }
-    .rp-prog-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.6s ease; }
-    .rp-blurb {
-      font-family: var(--serif); font-size: 0.94rem; color: var(--ink-med);
-      line-height: 1.8; margin-top: 1.1rem; text-align: justify; hyphens: auto;
-    }
-    .rp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.1rem; }
-    .rp-tag {
-      font-family: var(--mono); font-size: 0.56rem; font-weight: 600;
-      letter-spacing: 0.07em; text-transform: uppercase;
-      padding: 0.14rem 0.45rem; border-radius: 2px;
-      background: var(--rule-light); color: var(--ink-soft); border: 0.5px solid var(--rule);
-    }
-
-    /* ─── FOOTER / BACK ────────────────────────────────────── */
-    .back-link {
-      display: inline-block; margin-top: 3rem;
-      font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.07em;
-      color: var(--ink-faint); text-decoration: none; transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--ink); }
-
-    .doc-footer {
-      max-width: var(--measure); margin: 3rem auto 0;
-      padding: 1.3rem var(--outer) 4rem;
-      border-top: 0.5px solid var(--ink);
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-    }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--ink-med); }
-
-    /* ─── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 560px) {
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
-      .rp-inner { flex-direction: column; gap: 1.2rem; }
-      .rp-cover { flex-basis: auto; width: 40%; }
-      .section-line .sh { display: none; }
-    }
-  </style>
-<!-- print styles + reduced motion -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookshelf | Akshat Bhaskar</title>
+<meta content="What Akshat Bhaskar is reading, and what shaped him: Ray Dalio, Amartya Sen, George R.R. Martin, and more." name="description"/>
+<meta content="Akshat Bhaskar" name="author"/>
+<link href="https://akshatb.com/bookshelf" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Bookshelf | Akshat Bhaskar" property="og:title"/>
+<meta content="What Akshat Bhaskar is reading, and what shaped him: Ray Dalio, Amartya Sen, George R.R. Martin, and more." property="og:description"/>
+<meta content="https://akshatb.com/bookshelf" property="og:url"/>
+<meta content="https://akshatb.com/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://akshatb.com/og-image.jpg" name="twitter:image"/>
+<meta content="#000000" name="theme-color"/>
+<link href="akshat.jpg" rel="icon" type="image/jpeg"/>
+<link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
+    :root {
+      --bg: #000000;
+      --ink: #ffffff;
+      --body: #dddddd;
+      --brown: #d0a878;
+      --border: #2a2a2a;
+    }
+    @view-transition { navigation: auto; }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 14px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 520px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
+
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--brown); }
+
+    .back {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #111111; border: 1px solid var(--border); color: var(--brown);
+      box-shadow: 0 8px 22px -12px rgba(60,40,25,0.45);
+      text-decoration: none; margin: 0 0 1.8rem;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .back:hover { transform: translateX(-2px); color: var(--ink); }
+
+    .body p { font-size: 0.95rem; line-height: 1.75; color: var(--body); margin: 0 0 1.2rem; }
+
+    .frame {
+      background: #111111;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      box-shadow: 0 22px 50px -30px rgba(60,40,25,0.4), 0 5px 14px -10px rgba(0,0,0,0.12);
+      max-width: 420px;
+      margin: 1.4rem 0 0.7rem;
+    }
+    .frame.tall { max-width: 300px; }
+    .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
+    .cap { max-width: 420px; margin: 0 0 2rem; font-style: italic; color: var(--brown); font-size: 0.8rem; line-height: 1.5; }
+
+    /* the pop-in animation when arriving from the homepage */
+    ::view-transition-old(root) { animation: vtOut 0.28s ease both; }
+    ::view-transition-new(root) { animation: vtIn 0.42s cubic-bezier(0.2,0.7,0.2,1) both; }
+    @keyframes vtOut { to { opacity: 0; transform: scale(1.01); } }
+    @keyframes vtIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+    }
+
+    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 15px; } .frame, .cap { max-width: 100%; } .frame.tall { max-width: 300px; } }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="bubbles.css" rel="stylesheet"/>
+<style>
+  :root { --rubric: #7e1b16; }
+  .regal { text-align: center; }
+  .eyebrow { font-variant-caps: all-small-caps; letter-spacing: 0.14em; font-size: 1.05rem !important; margin: 0 0 0.9rem !important; }
+  h1.al-title.shelf-title { display: flex; justify-content: center; align-items: flex-end; gap: 0.08em; float: none;
+    font-size: 2.6rem !important; line-height: 1 !important; margin: 0 0 1rem !important; letter-spacing: 0.04em !important; }
+  h1.shelf-title img { float: none !important; height: 1.45em !important; width: auto !important; margin: 0 !important; display: block; }
+  h1.shelf-title span { padding-bottom: 0.05em; text-transform: none !important; }
+  .tally { font-style: italic; margin: 0 0 0.6rem !important; }
+  .fleuron { display: flex; align-items: center; gap: 0.9rem; margin: 2.6rem 0; }
+  .fleuron::before, .fleuron::after { content: ""; flex: 1; border-top: 1px solid rgba(10,10,10,0.28); }
+  .fleuron span { font-size: 1.15rem; line-height: 1; color: var(--rubric) !important; }
+
+  /* one book */
+  .book { display: flow-root; }
+  .book .cover { float: left; width: 6.2rem !important; height: auto; margin: 0.3rem 1.3rem 0.6rem 0;
+    border-radius: 1px 3px 3px 1px !important;
+    box-shadow: inset 3px 0 0 rgba(255,255,255,0.18), 0 1px 1px rgba(0,0,0,0.25), 0 10px 18px -8px rgba(0,0,0,0.5) !important; }
+  .book h2 { font-style: normal !important; font-size: 1.45rem !important; line-height: 1.05 !important; margin: 0 0 0.3rem !important; }
+  .book .by { font-style: italic; margin: 0 0 0.9rem !important; }
+  .book .prog { display: flex; align-items: center; gap: 0.7rem; margin: 0 0 1.1rem; }
+  .book .bar { flex: 1; height: 1px; background: rgba(10,10,10,0.2); position: relative; }
+  .book .bar i { position: absolute; left: 0; top: -1px; height: 3px; background: var(--rubric); }
+  .book .prog span { font-style: italic; font-size: 1.05rem; white-space: nowrap; }
+  .book .blurb { clear: left; margin: 0 0 0.9rem !important; }
+  .book .tags { margin: 0 !important; font-variant-caps: all-small-caps; letter-spacing: 0.08em; font-size: 1.05rem !important; opacity: 0.85; }
+  @media (max-width: 640px) { h1.shelf-title { font-size: 2.1rem !important; } .book .cover { width: 5rem !important; } }
 </style>
-  <script>
-    /* Light by default; only a saved choice turns the lights off.
-       Runs before paint so the theme never flashes. */
-    (function(){try{if(localStorage.getItem('theme')==='dark')
-    document.documentElement.classList.add('dark');}catch(e){}})();
-  </script>
-  <link rel="stylesheet" href="theme.css">
-  <script>(function(){try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}})();</script>
 </head>
-<body class="paper">
-<a class="skip-link" href="#main">Skip to content</a>
-
-<div class="progress-rule" id="prog"></div>
-
-<!-- NAV -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">akshatb.com</a>
-  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</div>
-
-<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
-  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
-  <a class="nav-link" href="professionalism.html">Better Website?</a>
-  <a class="nav-link" href="now.html">Now</a>
-  <a class="nav-link" href="education.html">Education</a>
-  <a class="nav-link" href="experience.html">Experience</a>
-  <a class="nav-link" href="awards.html">Awards</a>
-  <a class="nav-link" href="research.html">Research</a>
-  <a class="nav-link" href="articles.html">Articles</a>
-  <a class="nav-link" href="media.html">Media</a>
-  <a class="nav-link" href="podcast.html">Podcast</a>
-  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a></div>
-  <div class="nav-hr"></div>
-  <div class="nav-socials-row">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-  </div>
+<body>
+<div class="wrap">
+<nav>
+<a href="index.html">home</a>
+<a href="professionalism.html">better website?</a>
+<a href="photos.html">corpus delicti</a>
+<a href="updates.html">updates</a>
+<a href="photography.html">photography</a>
 </nav>
-
-<!-- ══════════════════════════════════════════════════════ -->
-<div class="shelf-page">
-
-  <!-- HEADER -->
-  <header class="shelf-head">
-    <span class="ex-libris">Ex Libris · Akshat Bhaskar</span>
-    <h1 class="shelf-title">Bookshelf</h1>
-    <p class="shelf-sub">What I'm reading, and what shaped me.</p>
-  </header>
-
-  <div class="section-line">
-    <span class="sn">§1</span>
-    <span class="st">Currently Reading</span>
-    <span class="sh">pick a book for my notes</span>
-  </div>
-
-  <!-- THE BOOKCASE -->
-  <div class="bookcase">
-    <div class="shelf" role="main" id="main">
-      <div class="shelf-books" id="shelf-books">
-        <button class="book" data-i="0" aria-label="Open notes on Principles for Dealing with the Changing World Order">
-          <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/71-WJgHWC1L.jpg" alt="Principles for Dealing with the Changing World Order by Ray Dalio" />
-          <span class="ribbon">Reading</span>
-        </button>
-        <button class="book" data-i="1" aria-label="Open notes on A Song of Ice and Fire">
-          <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/81dMAyw4kjL._AC_UF1000,1000_QL80_.jpg" alt="A Song of Ice and Fire by George R.R. Martin" />
-          <span class="ribbon">Reading</span>
-        </button>
-        <button class="book" data-i="2" aria-label="Open notes on Development as Freedom">
-          <img loading="lazy" decoding="async" src="https://covers.openlibrary.org/b/isbn/9780385720274-L.jpg" alt="Development as Freedom by Amartya Sen" />
-          <span class="ribbon">Reading</span>
-        </button>
-      </div>
-      <div class="shelf-plank"></div>
-    </div>
-
-    <div class="shelf shelf-lower">
-      <div class="shelf-books">
-        <button class="book" data-i="3" aria-label="Open notes on The Policy Pivot">
-          <img loading="lazy" decoding="async" src="https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg" alt="The Policy Pivot by Ajay Khanna and Rahul Sharma" />
-          <span class="ribbon">Reading</span>
-        </button>
-      </div>
-      <div class="shelf-plank"></div>
-    </div>
-  </div>
-
-  <!-- READING PANEL (filled on click) -->
-  <div class="reading-panel" id="reading-panel" aria-live="polite">
-    <div class="rp-clip"><div class="rp-inner" id="rp-inner"></div></div>
-  </div>
-
-  <p class="shelf-hint" id="shelf-hint">Pick a book off the shelf to read what I made of it.</p>
-
-  <a href="index.html" class="back-link">← Back to Home</a>
-
+<div class="regal">
+<p class="eyebrow">On the Shelf</p>
+<h1 class="al-title shelf-title"><img src="initials/B.svg" alt="B" width="649" height="641"/><span>OOKSHELF</span></h1>
+<p class="tally">What I&#8217;m reading, and what shaped me.</p>
 </div>
-
-<!-- FOOTER -->
-<footer class="doc-footer">
-  <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-  <div class="footer-socials">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="icons.svg#researchgate"/></svg></a>
-  </div>
-</footer>
-
-<script>
-  /* progress */
-  const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  }, { passive: true });
-
-  /* nav */
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('nav-overlay');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false; hamburger.classList.remove('open'); overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-
-  /* the shelf: pick a book, read the notes below */
-  const BOOKS = [
-    {
-      cover: "https://m.media-amazon.com/images/I/71-WJgHWC1L.jpg",
-      title: "Principles for Dealing with the Changing World Order",
-      author: "Ray Dalio",
-      prog: "~40%", pct: 40,
-      blurb: "Dalio studies the rise and fall of reserve currencies and economic systems over 500 years of history. The core argument, that the US is at a late-stage debt cycle similar to previous great powers before their decline, is both unsettling and fascinating. He traces how the same confluence of conditions, massive debt, political polarisation, and a rising challenger power, has preceded every major imperial transition in the past five centuries. Essential reading for anyone thinking seriously about global economics and geopolitics.",
-      tags: ["Macroeconomics", "History", "Geopolitics", "Investing"]
-    },
-    {
-      cover: "https://m.media-amazon.com/images/I/81dMAyw4kjL._AC_UF1000,1000_QL80_.jpg",
-      title: "A Song of Ice and Fire",
-      author: "George R.R. Martin",
-      prog: "Book 5 of 7", pct: 71.5,
-      blurb: "The series that made fantasy feel like political science. Martin's world is a masterclass in how power and consequence actually work, far more honest about human nature than most non-fiction. No character is purely good or evil; everyone is navigating incentives and the constraints of the institutions around them. The politics of Westeros have genuinely taught me much about how power corrupts and how alliances form and fracture. Chaos is a ladder.",
-      tags: ["Fiction", "Fantasy", "Political Theory", "Power"]
-    },
-    {
-      cover: "https://covers.openlibrary.org/b/isbn/9780385720274-L.jpg",
-      title: "Development as Freedom",
-      author: "Amartya Sen",
-      prog: "~15%", pct: 15,
-      blurb: "Sen's central argument is that development should be measured by the real freedoms people actually enjoy, the capability to be educated, healthy, heard, and free from want, rather than by income or GDP alone. Recasting poverty as a deprivation of capabilities, and not merely a shortage of cash, has quietly rearranged how I judge my own work, from Edunomix to the research. It is the rare economics book that reads like moral philosophy without ever going soft on the economics.",
-      tags: ["Development", "Economics", "Ethics", "Welfare"]
-    },
-    {
-      cover: "https://m.media-amazon.com/images/I/71-0WNy+B-L.jpg",
-      title: "The Policy Pivot",
-      author: "Ajay Khanna & Rahul Sharma",
-      prog: "~25%", pct: 25,
-      blurb: "Published to mark eighteen years of the Public Affairs Forum of India (PAFI), this is a collection of 25 essays from leading voices across Indian business, government, academia, and civil society. Contributors examine the shifting dynamics of India's policy ecosystem, where governance is becoming more participatory and public affairs more central to democratic accountability. A timely and insightful read given my own work at the intersection of policy and finance.",
-      tags: ["Policy", "India", "Governance", "Public Affairs"]
-    }
-  ];
-
-  const panel = document.getElementById('reading-panel');
-  const rpInner = document.getElementById('rp-inner');
-  const hint = document.getElementById('shelf-hint');
-  const books = [...document.querySelectorAll('.book')];
-  let current = -1;
-
-  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-
-  function render(b) {
-    rpInner.innerHTML =
-      '<div class="rp-cover"><img src="' + b.cover + '" alt="' + esc(b.title) + '"></div>' +
-      '<div class="rp-body">' +
-        '<div class="rp-title">' + esc(b.title) + '</div>' +
-        '<span class="rp-author">' + esc(b.author) + '</span>' +
-        '<div class="rp-prog-label"><span>Progress</span><span>' + esc(b.prog) + '</span></div>' +
-        '<div class="rp-prog-bar"><div class="rp-prog-fill" style="width:0%"></div></div>' +
-        '<p class="rp-blurb">' + esc(b.blurb) + '</p>' +
-        '<div class="rp-tags">' + b.tags.map(t => '<span class="rp-tag">' + esc(t) + '</span>').join('') + '</div>' +
-      '</div>';
-    requestAnimationFrame(() => {
-      const fill = rpInner.querySelector('.rp-prog-fill');
-      if (fill) fill.style.width = b.pct + '%';
-    });
-  }
-
-  function select(i) {
-    if (current === i) {           // clicking the open book closes it
-      current = -1;
-      panel.classList.remove('open');
-      books[i].classList.remove('selected');
-      hint.classList.remove('gone');
-      return;
-    }
-    current = i;
-    books.forEach((el, j) => el.classList.toggle('selected', j === i));
-    render(BOOKS[i]);
-    panel.classList.add('open');
-    hint.classList.add('gone');
-  }
-
-  books.forEach((el, i) => el.addEventListener('click', () => select(i)));
-</script>
-<script src="site.js" defer></script>
-  <script defer src="dog.js"></script>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<div class="book">
+<img class="cover" src="cover_penguin_history.webp" alt="Cover of The Penguin History of the World" loading="lazy" decoding="async"/>
+<h2>The Penguin History of the World</h2>
+<p class="by">J. M. Roberts &amp; Odd Arne Westad (sixth edition)</p>
+<div class="prog"><span class="bar" aria-hidden="true"><i style="width:3%"></i></span><span>currently reading</span></div>
+<p class="blurb">J. M. Roberts' single-volume history of humankind, from our earliest ancestors to the present day, revised and extended by Odd Arne Westad for the latest edition. It follows how civilisations, empires, ideas, and economies rose, met, and reshaped one another across every continent.</p>
+<p class="tags">History &middot; World History &middot; Civilisation &middot; Empires</p>
+</div>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<div class="book">
+<img class="cover" src="cover_dalio.webp" alt="Cover of Principles for Dealing with the Changing World Order" loading="lazy" decoding="async"/>
+<h2>Principles for Dealing with the Changing World Order</h2>
+<p class="by">Ray Dalio</p>
+<div class="prog"><span class="bar" aria-hidden="true"><i style="width:40%"></i></span><span>~40% read</span></div>
+<p class="blurb">Dalio studies the rise and fall of reserve currencies and economic systems over 500 years of history. The core argument, that the US is at a late-stage debt cycle similar to previous great powers before their decline, is both unsettling and fascinating. He traces how the same confluence of conditions, massive debt, political polarisation, and a rising challenger power, has preceded every major imperial transition in the past five centuries. Essential reading for anyone thinking seriously about global economics and geopolitics.</p>
+<p class="tags">Macroeconomics &middot; History &middot; Geopolitics &middot; Investing</p>
+</div>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<div class="book">
+<img class="cover" src="cover_asoiaf.webp" alt="Cover of A Song of Ice and Fire" loading="lazy" decoding="async"/>
+<h2>A Song of Ice and Fire</h2>
+<p class="by">George R.R. Martin</p>
+<div class="prog"><span class="bar" aria-hidden="true"><i style="width:71.5%"></i></span><span>Book 5 of 7</span></div>
+<p class="blurb">The series that made fantasy feel like political science. Martin's world is a masterclass in how power and consequence actually work, far more honest about human nature than most non-fiction. No character is purely good or evil; everyone is navigating incentives and the constraints of the institutions around them. The politics of Westeros have genuinely taught me much about how power corrupts and how alliances form and fracture. Chaos is a ladder.</p>
+<p class="tags">Fiction &middot; Fantasy &middot; Political Theory &middot; Power</p>
+</div>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<div class="book">
+<img class="cover" src="cover_sen.webp" alt="Cover of Development as Freedom" loading="lazy" decoding="async"/>
+<h2>Development as Freedom</h2>
+<p class="by">Amartya Sen</p>
+<div class="prog"><span class="bar" aria-hidden="true"><i style="width:15%"></i></span><span>~15% read</span></div>
+<p class="blurb">Sen's central argument is that development should be measured by the real freedoms people actually enjoy, the capability to be educated, healthy, heard, and free from want, rather than by income or GDP alone. Recasting poverty as a deprivation of capabilities, and not merely a shortage of cash, has quietly rearranged how I judge my own work, from Edunomix to the research. It is the rare economics book that reads like moral philosophy without ever going soft on the economics.</p>
+<p class="tags">Development &middot; Economics &middot; Ethics &middot; Welfare</p>
+</div>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<div class="book">
+<img class="cover" src="cover_policy_pivot.webp" alt="Cover of The Policy Pivot" loading="lazy" decoding="async"/>
+<h2>The Policy Pivot</h2>
+<p class="by">Ajay Khanna &amp; Rahul Sharma</p>
+<div class="prog"><span class="bar" aria-hidden="true"><i style="width:25%"></i></span><span>~25% read</span></div>
+<p class="blurb">Published to mark eighteen years of the Public Affairs Forum of India (PAFI), this is a collection of 25 essays from leading voices across Indian business, government, academia, and civil society. Contributors examine the shifting dynamics of India's policy ecosystem, where governance is becoming more participatory and public affairs more central to democratic accountability. A timely and insightful read given my own work at the intersection of policy and finance.</p>
+<p class="tags">Policy &middot; India &middot; Governance &middot; Public Affairs</p>
+</div>
+<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<p class="tally" style="text-align:center">for the books and films I&#8217;ve finished, see <a href="books.html">books</a> and <a href="movies.html">movies</a>.</p>
+</div>
+<script defer src="dog.js"></script>
 </body>
 </html>
