@@ -1,31 +1,69 @@
-# akshatbhaskar.ninja
+# akshatb.com
 
-My personal site. It's where I keep the things I've actually worked on (research, NGO, financial literacy initiatives, advanced mathematics) along with a few side pages I built because I wanted them to exist, like a budget tool.
+The personal website of **Akshat Bhaskar**: research on financial misinformation, financial literacy work with Edunomix and TaxCity, the Decoded podcast, mathematics, and updates on what I am up to.
 
-I wrote it by hand. No framework, nothing to install. Just HTML, CSS, and a bit of vanilla JavaScript on the pages that needed it. The whole thing is meant to read like an academic paper, abstract and footnotes and all, because I figured a portfolio that looks like a journal article would stick in your head longer than yet another card grid.
+**Live at [akshatb.com](https://akshatb.com)**
 
-## Running it
+## About the site
 
-There's nothing to build. Open `index.html` in a browser and it just works. If you want the links between pages to behave properly, serve the folder with any static server:
+Hand-written HTML, CSS, and a little vanilla JavaScript. No framework and no build step: every page is a plain HTML file you can open directly.
+
+The design is meant to feel like a page from an old book: the pages sit on a card over *Alexander Cutting the Gordian Knot*, set in EB Garamond, with woodcut-style ornamental initials opening the first paragraph of each page.
+
+A few small things to find:
+
+- a desk at the bottom of the home page, where everything can be dragged around: a record player, a camera that opens the photography page, and a letter you can write to me
+- a little pixel dog that naps in the corner of every page
+- a second, more formal version of the site behind **better website?**
+
+## Pages
+
+| Page | What it is |
+| --- | --- |
+| [Home](https://akshatb.com) | who I am, what I run, and how to reach me |
+| [Updates](https://akshatb.com/updates) | a running log of what I have been working on |
+| [FOMO study](https://akshatb.com/fomo) | my research on who shares financial misinformation, at the Indian School of Business |
+| [Gap year](https://akshatb.com/gapyear) | mathematics, teaching, research, and the podcast |
+| [Awards](https://akshatb.com/awards) | honours and distinctions, 2022 to 2026 |
+| [Timeline](https://akshatb.com/timeline) | everything, in dated order |
+| [Photography](https://akshatb.com/photography) and [Corpus Delicti](https://akshatb.com/photos.html) | photographs, and the photographic record of the work |
+| [Now](https://akshatb.com/now.html) | what has my attention at the moment |
+| [Bookshelf](https://akshatb.com/bookshelf) | what I am reading |
+
+## Repository layout
 
 ```
-python -m http.server
+.
+├── *.html          one file per page (index.html is the home page)
+├── css/            bubbles.css (the shared minimal theme), theme.css
+├── js/             desk.js (the home-page desk), dog.js (the dog), site.js
+├── images/         photographs, covers, and illustrations
+│   └── initials/   ornamental drop-cap initials
+├── docs/           documents linked from the site
+├── resume.pdf
+├── sitemap.xml, robots.txt, humans.txt
+└── CNAME           custom domain for GitHub Pages
 ```
 
-Then open `http://localhost:8000`.
+## Running it locally
 
-## How it's put together
+Nothing to install. Serve the folder with any static file server:
 
-- One HTML file per page. Most of the styling lives in each page's own `<style>` block, so a page is basically self-contained. `style.css` has the shared bits.
-- Fonts are EB Garamond and Inconsolata, pulled from Google Fonts.
-- Font Awesome for the social icons.
-- The contact form on the homepage posts to Formspree.
-- It's hosted on GitHub Pages with a custom domain (that's what `CNAME` is for).
+```bash
+python -m http.server 8000
+```
 
-## The pages
+and open <http://localhost:8000>.
 
-`index.html` is the front door. From there you can reach education, experience, awards, research, the AI policy paper, and write-ups for the individual projects. Everything else is smaller stuff I made for fun.
+## Credits
+
+- Ornamental initials from the [Alembic](https://alembic.space) editor's floral and wiggly sets, vectorised from books printed between 1510 and 1900.
+- Type: [EB Garamond](https://fonts.google.com/specimen/EB+Garamond).
+- Background: *Alexander Cutting the Gordian Knot*, Jean-Simon Berthélemy (public domain).
+- Hosted on GitHub Pages.
 
 ## Contact
 
-akshatbhaskar.ninja, or just email me at bhaskarakshat22@gmail.com.
+[bhaskarakshat22@gmail.com](mailto:bhaskarakshat22@gmail.com) &middot; [LinkedIn](https://www.linkedin.com/in/aksbhaskar/) &middot; [X](https://x.com/aksbhaskar) &middot; [GitHub](https://github.com/aksbhaskar)
+
+&copy; 2026 Akshat Bhaskar. The writing and photographs on this site are mine; please ask before reusing them.

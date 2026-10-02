@@ -12,12 +12,12 @@
 <meta content="FOMO and Financial Misinformation | Akshat Bhaskar" property="og:title"/>
 <meta content="A study at the Indian School of Business on who shares financial misinformation in India: how fear of missing out and conscientiousness interact, measured with validated psychological instruments and multilingual language models (MuRIL and XLM-RoBERTa)." property="og:description"/>
 <meta content="https://akshatb.com/fomo" property="og:url"/>
-<meta content="https://akshatb.com/og-image.jpg" property="og:image"/>
+<meta content="https://akshatb.com/images/og-image.jpg" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="https://akshatb.com/og-image.jpg" name="twitter:image"/>
+<meta content="https://akshatb.com/images/og-image.jpg" name="twitter:image"/>
 <meta content="#000000" name="theme-color"/>
-<link href="akshat.jpg" rel="icon" type="image/jpeg"/>
-<link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="images/akshat.jpg" rel="icon" type="image/jpeg"/>
+<link href="images/icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <style>
@@ -83,20 +83,20 @@
     @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 15px; } .frame, .cap { max-width: 100%; } .frame.tall { max-width: 300px; } }
   </style>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
-<link href="bubbles.css" rel="stylesheet"/>
+<link href="css/bubbles.css" rel="stylesheet"/>
 <style>.role { font-style: italic; margin: 0 0 2.4rem !important; } ul.method { padding-left: 1.2rem; } ul.method li { margin: 0 0 0.6rem !important; }</style>
 </head>
 <body>
 <div class="page">
-<a aria-label="Back to home" class="back" href="index.html"><img alt="" height="95" src="back-arrow.webp" width="659"/></a>
+<a aria-label="Back to home" class="back" href="index.html"><img alt="" height="95" src="images/back-arrow.webp" width="659"/></a>
 <div class="body">
 <h1>FOMO, Conscientiousness, and Financial Misinformation</h1>
 <p class="role">A study at the Indian School of Business, under the guidance of Professor Hemant Kakkar · 2026</p>
-<p class="al"><img alt="M" class="initial" height="640" src="initials/M.svg" width="640"/><span class="run">ost</span> research on misinformation stops at identifying false posts. It tells you what is wrong, but not who is susceptible to it. This study asks the second half of the question: what individual traits predict whether someone shares financial misinformation they have come across?</p>
+<p class="al"><img alt="M" class="initial" height="640" src="images/initials/M.svg" width="640"/><span class="run">ost</span> research on misinformation stops at identifying false posts. It tells you what is wrong, but not who is susceptible to it. This study asks the second half of the question: what individual traits predict whether someone shares financial misinformation they have come across?</p>
 <p>It grew out of my work in financial literacy. I had started to see that literacy is only one part of the story. Whether someone falls for a scam, or forwards one, often has less to do with what they know and more to do with how they feel.</p>
 <h2>The question</h2>
 <p>The study tests whether fear of missing out (FOMO) and conscientiousness interact to predict financial misinformation sharing. It extends <a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank">Professor Kakkar's framework</a> on political ideology, conscientiousness, and fake news sharing into a financial context, with FOMO taking the place of ideology.</p>
-<div class="frame"><a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank"><img alt="Of pandemics, politics, and personality: The role of conscientiousness and political ideology in the sharing of fake news, by M Asher Lawson and Hemant Kakkar" decoding="async" height="799" loading="lazy" src="kakkar_paper.webp" width="913"/></a></div>
+<div class="frame"><a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank"><img alt="Of pandemics, politics, and personality: The role of conscientiousness and political ideology in the sharing of fake news, by M Asher Lawson and Hemant Kakkar" decoding="async" height="799" loading="lazy" src="images/kakkar_paper.webp" width="913"/></a></div>
 <p class="cap">Lawson and Kakkar (2022), <i>Journal of Experimental Psychology: General</i>.</p>
 <p>I emailed Professor Kakkar back in July, and he graciously agreed to guide me throughout this project on the same.</p>
 <h2>The hypothesis</h2>
@@ -114,14 +114,14 @@
 <p>On the content side, I am running real financial misinformation posts from Indian social media through two language models: MuRIL, which Google built specifically for Indian languages including Hindi&ndash;English code-mixed text, and XLM-RoBERTa, Meta's more general multilingual model trained across 100 languages. Most models are trained on English-dominant web text and fall apart on the way Indians write online, mixing Hindi and English in the same sentence. Comparing the two tells me whether India-specific pretraining earns its keep.</p>
 <p>I was quite confused about how code-mixing usually works, since I am not that technical, but I have received quite a lot of help since then. I emailed <a href="http://mbzuai.ac.ae/academics/faculty-directory/monojit-choudhury" rel="noopener" target="_blank">Monojit Choudhury</a>, Professor @ Natural Language Processing, MBZUAI, and he graciously connected me to <a href="https://www.microsoft.com/en-us/research/people/t-prakodali/" rel="noopener" target="_blank">Dr. Prashant Kodali</a>, Post Doctoral Researcher @ Microsoft Research India, who works on multilingual and multicultural AI &mdash; building language technologies that serve speakers of low- and mid-resource Indian languages as well as they serve English speakers, without flattening how those communities actually talk, write, and think.</p>
 <p>More importantly, Dr. Prashant is very relevant to my specific problem. He has directly published research involving XLM-R and code-mixed text. For example, his 2024 paper on English-Hindi code-mixing found that fine-tuned XLM-RoBERTa performed strongly on code-mixing acceptability, and his 2025 work on adapting multilingual models to code-mixed tasks explicitly experiments with XLM-R.</p>
-<div class="frame"><img alt="Video call with Dr. Prashant Kodali, who is presenting a survey paper on code-switching" decoding="async" height="582" loading="lazy" src="prashant_kodali_call.webp" width="1280"/></div>
+<div class="frame"><img alt="Video call with Dr. Prashant Kodali, who is presenting a survey paper on code-switching" decoding="async" height="582" loading="lazy" src="images/prashant_kodali_call.webp" width="1280"/></div>
 <p class="cap">On a call with Dr. Prashant Kodali.</p>
 <p>Dr. Prashant kindly agreed to a call, and our discussion focused on a key challenge in the project: reliably detecting misinformation in Hindi-English code-mixed social media content. The call helped shape the technical direction of the project. He recommended a translation-to-English baseline, discussed model and evaluation strategies, and demonstrated and subsequently shared his own token-level normalization tool (a HUGE help), which identifies language at the token level and converts Romanized Hindi into Devanagari. He also advised on constructing an evaluation set that reflects the real distribution of monolingual and code-mixed content, and shared relevant papers and a chapter from his thesis for further study.</p>
 <p>The conversation gave me concrete preprocessing methods, model baselines, evaluation criteria, research literature, and a technical tool that I could directly incorporate into the study.</p>
 <p>He also sent over a whole stack of documents, papers, and PDFs on code-mixing in case I wanted to go deeper, and I have been working through them since. Out of that, I am putting together a starter resource for anyone who wants to get into code-mixing: where to begin, what to read and in what order, and the tools that actually help, written for people who are not that technical either. I will make it freely available here on my website once it is ready.</p>
 <h2>Where it stands</h2>
 <p>The data collection phase is now complete, with 300 responses collected, and I am moving on to the analysis and the NLP component of the study. The raw responses are not public: human subjects data needs separate handling and advisor sign-off before anything goes out.</p>
-<div class="frame"><a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank"><img alt="GitHub repository: aksbhaskar/fomo-misinformation-study" decoding="async" height="600" loading="lazy" src="research_fomo_github.jpg" width="1200"/></a></div>
+<div class="frame"><a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank"><img alt="GitHub repository: aksbhaskar/fomo-misinformation-study" decoding="async" height="600" loading="lazy" src="images/research_fomo_github.jpg" width="1200"/></a></div>
 <p>The study design and code live on <a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank">GitHub</a>. If you work in fintech, behavioural science, or misinformation research, I would love to talk: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>.</p>
 </div>
 </div>
@@ -156,6 +156,6 @@
     scheduleIdle();
   })();
   </script>
-<script defer="" src="dog.js"></script>
+<script defer="" src="js/dog.js"></script>
 </body>
 </html>

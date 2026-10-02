@@ -1,3 +1,8 @@
+# OS clutter
 desktop.ini
 .DS_Store
 Thumbs.db
+
+# local-only folders (originals and editor settings, never published)
+_archive/
+.claude/

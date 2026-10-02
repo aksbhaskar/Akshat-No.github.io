@@ -19,9 +19,9 @@ body::before {
   content: "" !important; position: fixed !important; z-index: -1 !important; pointer-events: none;
   top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
   width: auto !important; height: auto !important;
-  background: #2a2620 url('alexander.webp') center center / cover no-repeat !important;
+  background: #2a2620 url('../images/alexander.webp') center center / cover no-repeat !important;
 }
-@media (orientation: portrait) { body::before { background-image: url('alexander-vertical.webp') !important; } }
+@media (orientation: portrait) { body::before { background-image: url('../images/alexander-vertical.webp') !important; } }
 
 /* the card, with the text column centred inside it */
 .wrap, .page {
