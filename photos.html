@@ -74,6 +74,9 @@
   .clouds figure img { width: 100% !important; border-radius: 3px !important; }
   /* tall (portrait) photos are kept short enough to see whole in one screen */
   .clouds figure.tall img { width: auto !important; max-width: 100% !important; max-height: 58vh; margin: 0 auto; }
+  .clouds figure.tall { width: min-content !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; }
+  .clouds figure.tall img { max-width: none !important; }
+  @media (max-width: 640px) { .clouds figure.tall img { max-width: calc(100vw - 4.5rem) !important; } }
   .clouds figcaption { margin: 0.8rem 0 0.1rem !important; }
   @media (max-width: 640px) { .wrap.clouds { padding-top: 1rem !important; } .clouds .cloud.top { padding: 2rem 1.3rem 1.5rem !important; } }
 </style>
