@@ -24,8 +24,8 @@ body.paper .theme-toggle, body.paper .hamburger, body.paper .doc-footer, body.pa
 /* the document becomes the card */
 body.paper .document {
   box-sizing: border-box;
-  width: min(68rem, 100% - 3rem) !important; max-width: none !important;
-  margin: 4.5rem auto !important; padding: 4.5rem clamp(1.5rem, 5vw, 4.5rem) 5rem !important;
+  width: min(64rem, 100% - 3rem) !important; max-width: none !important;
+  margin: 4.5rem auto !important; padding: 6rem clamp(1.5rem, 5vw, 4.5rem) 6rem !important;
   background: #f8f8f8 !important; border-radius: 0.5rem;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55);
 }
@@ -53,3 +53,21 @@ body.paper .document > .topnav a:not(:last-child)::after { content: "\00b7"; dis
 
 /* the first block under the navbar no longer needs room for the old fixed menu bar */
 body.paper .document > .topnav + * { padding-top: 0 !important; margin-top: 0 !important; }
+
+/* research: the same type scale as the other minimal pages
+   (1.25rem EB Garamond with tight Alembic leading; labels a step smaller) */
+body.page-research .document { font-size: 1.25rem; }
+body.page-research .statement-block p, body.page-research .paper-desc { font-size: 1.25rem !important; line-height: 1.1 !important; text-wrap: pretty; }
+body.page-research .paper-title { font-size: 1.35rem !important; line-height: 1.05 !important; }
+body.page-research h1 { font-size: 2.6rem !important; line-height: 1 !important; }
+body.page-research .section-rule, body.page-research .section-rule * { font-size: 1.25rem !important; }
+body.page-research .margin-note { font-size: 1.05rem !important; line-height: 1.15 !important; }
+body.page-research .paper-venue, body.page-research .page-meta, body.page-research .page-header a,
+body.page-research .page-header span, body.page-research .mn-label, body.page-research .timeline-strip,
+body.page-research .timeline-strip * { font-size: 1rem !important; line-height: 1.25 !important; }
+body.page-research .chip, body.page-research .paper-cat { font-size: 0.95rem !important; line-height: 1.4 !important; }
+body.page-research .statement-block h2, body.page-research .statement-block .label { font-size: 1.1rem !important; }
+body.page-research .statement-eq { font-size: 1.4rem !important; }
+body.page-research .statement-eq .eq-num { font-size: 1rem !important; }
+body.page-research .statement-block .statement-caption { font-size: 1rem !important; line-height: 1.2 !important; letter-spacing: 0 !important; font-style: italic; }
+body.page-research .statement-head { font-size: 1.05rem !important; }
