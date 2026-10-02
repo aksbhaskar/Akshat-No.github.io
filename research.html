@@ -394,43 +394,9 @@
       transition: color 0.2s, border-color 0.2s;
     }
     .paper-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
-    .cite-toggle {
-      font-family: var(--mono); font-size: 0.6rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      background: none; border: none; cursor: pointer;
-      border-bottom: 0.5px dashed var(--ink-ghost); padding: 0 0 1px;
-      transition: color 0.2s;
-    }
-    .cite-toggle:hover { color: var(--accent); }
 
     /* ─── BIBTEX (the signature) ────────────────────────────── */
-    .bibtex {
-      display: none;
-      margin-top: 0.9rem;
-      position: relative;
-      background: rgba(43,90,140,0.04);
-      border: 0.5px solid var(--rule);
-      border-left: 2px solid var(--accent);
-      padding: 0.85rem 1rem;
-    }
-    .bibtex.open { display: block; animation: bibIn 0.3s ease; }
     @keyframes bibIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-    .bibtex pre {
-      font-family: var(--mono); font-size: 0.66rem;
-      line-height: 1.65; color: var(--ink-med);
-      white-space: pre; overflow-x: auto;
-    }
-    .bibtex .bib-key { color: var(--accent); }
-    .bib-copy {
-      position: absolute; top: 0.5rem; right: 0.6rem;
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-faint); background: var(--paper);
-      border: 0.5px solid var(--rule); border-radius: 2px;
-      padding: 0.18rem 0.55rem; cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .bib-copy:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ─── MARGIN COLUMN ─────────────────────────────────────── */
     .margin-col {
@@ -636,20 +602,6 @@
         <p class="paper-desc">Research conducted under Professor Surbhi Goel (University of Pennsylvania) on AI policy and existential risk, examining the dual nature of transformative technology through an economic and governance lens. Presented at the NYC STEM Research Conference; I was the only high school student in the room.</p>
         <div class="paper-links">
           <a href="aipolicy.html" class="paper-link">Full paper →</a>
-          <button class="cite-toggle" data-bib="bib-1">\cite</button>
-        </div>
-        <div class="bibtex" id="bib-1">
-          <button class="bib-copy" data-bib="bib-1">copy</button>
-          <pre><span class="bib-key">@article</span>{bhaskar2025twofaces,
-  author  = {Bhaskar, Akshat},
-  title   = {The Two Faces of Progress: A Look at the
-             Socio-Economic Challenges and Opportunities
-             Presented by Artificial Intelligence},
-  journal = {IJRASET},
-  volume  = {13},
-  number  = {7},
-  year    = {2025}
-}</pre>
         </div>
       </div>
     </div>
@@ -816,23 +768,6 @@
     });
   }, { threshold: 0.05 });
   document.querySelectorAll('.pub, .margin-note, .tl-node').forEach(el => obs.observe(el));
-
-  /* BibTeX: toggle + copy */
-  document.querySelectorAll('.cite-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const box = document.getElementById(btn.dataset.bib);
-      box.classList.toggle('open');
-    });
-  });
-  document.querySelectorAll('.bib-copy').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const text = document.querySelector('#' + btn.dataset.bib + ' pre').innerText;
-      const done = () => { btn.textContent = 'copied'; setTimeout(() => { btn.textContent = 'copy'; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(done);
-      } else { done(); }
-    });
-  });
 </script>
 <script src="js/site.js" defer></script>
 </body>

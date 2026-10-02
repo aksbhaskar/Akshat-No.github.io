@@ -275,7 +275,7 @@
   }
 
   /* ══ Discovery / completionist stamp ══════════════════════════ */
-  var DISCOVERIES = ['konami', 'palette', 'cite', 'night'];
+  var DISCOVERIES = ['konami', 'palette', 'night'];
   function discover(key, quiet) {
     var found;
     try { found = JSON.parse(localStorage.getItem('found') || '[]'); } catch (e) { found = []; }
@@ -413,42 +413,6 @@
     }
     if (e.key === '/' && !typing && !palOpen) { e.preventDefault(); openPalette(); }
   });
-
-  /* ══ Cite on select ═══════════════════════════════════════════ */
-  var chip = null, chipText = '';
-  function showCite() {
-    var sel = window.getSelection();
-    var text = sel ? sel.toString().trim() : '';
-    if (!text || text.length < 12 || sel.rangeCount === 0) { hideCite(); return; }
-    var r = sel.getRangeAt(0).getBoundingClientRect();
-    if (!r.width && !r.height) { hideCite(); return; }
-    if (!chip) {
-      chip = document.createElement('div'); chip.className = 'cite-chip'; chip.textContent = 'cite';
-      document.body.appendChild(chip);
-      chip.addEventListener('mousedown', function (e) { e.preventDefault(); });
-      chip.addEventListener('click', doCite);
-    }
-    chipText = text;
-    chip.style.left = Math.max(8, Math.min(r.right - 10, window.innerWidth - 96)) + 'px';
-    chip.style.top = Math.max(8, r.top - 34) + 'px';
-    chip.classList.add('show');
-  }
-  function hideCite() { if (chip) chip.classList.remove('show'); }
-  function doCite() {
-    var quote = chipText.replace(/\s+/g, ' ');
-    var citation = '"' + quote + '", Akshat Bhaskar, ' + docTitle() + '. ' + location.href.split('#')[0];
-    copyText(citation);
-    chip.textContent = 'copied ✓';
-    discover('cite');
-    setTimeout(function () { chip.textContent = 'cite'; hideCite(); }, 1500);
-  }
-  document.addEventListener('mouseup', function () { setTimeout(showCite, 10); });
-  document.addEventListener('touchend', function () { setTimeout(showCite, 10); }, { passive: true });
-  document.addEventListener('selectionchange', function () {
-    var s = window.getSelection();
-    if (!s || !s.toString().trim()) hideCite();
-  });
-  window.addEventListener('scroll', hideCite, { passive: true });
 
   /* ══ Welcome back, resume where you left off ══════════════════ */
   (function () {

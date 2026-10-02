@@ -187,22 +187,7 @@ html.dark .palette-item.active, html.dark .palette-item:hover { background: rgba
 }
 @media print { .palette, .palette-veil { display: none !important; } }
 
-/* ── Cite-on-select chip ────────────────────────────────────── */
-.cite-chip {
-  position: fixed; z-index: 380;
-  font-family: var(--mono, monospace); font-size: 0.6rem;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink, #111110); background: var(--paper, #fffff8);
-  border: 0.5px solid var(--ink-faint, #999990);
-  padding: 0.28rem 0.6rem; cursor: pointer;
-  box-shadow: 0 0 14px 4px var(--paper, #fffff8);
-  opacity: 0; transform: translateY(4px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-  pointer-events: none;
-}
-.cite-chip.show { opacity: 1; transform: translateY(0); pointer-events: all; }
-.cite-chip:hover { border-color: var(--ink, #111110); }
-@media print { .cite-chip { display: none !important; } }
+/* ── Cite-on-select chip ────────────────────────────────────── */ }
 
 /* ── Soft page transitions ──────────────────────────────────── */
 html.page-fade body { transition: opacity 0.15s ease; }
