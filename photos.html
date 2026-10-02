@@ -50,9 +50,36 @@
   </style>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="bubbles.css" rel="stylesheet"/>
+<style>
+  /* corpus delicti: each photo floats in its own cloud on the painting */
+  .wrap.clouds {
+    width: min(34rem, 100% - 2rem) !important; padding: 4.5rem 0 3rem !important; margin: 0 auto !important;
+    background: transparent !important; box-shadow: none !important; border-radius: 0 !important;
+  }
+  .clouds .cloud, .clouds figure {
+    box-sizing: border-box; width: 100% !important; transform: none !important;
+    margin: 0 0 1.8rem !important; padding: 1.1rem 1.1rem 1rem !important;
+    background: #f8f8f8 !important; border-radius: 0.5rem !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55) !important;
+  }
+  .clouds .cloud.top { padding: 2.4rem 2rem 1.8rem !important; margin-bottom: 2.4rem !important; }
+  .clouds .cloud.top .bubble { margin: 0 !important; }
+  .clouds .cloud.top > nav {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.2rem 0;
+    margin: 0 0 2rem; padding: 0 0 1.1rem; border-bottom: 1px solid rgba(10,10,10,0.18);
+  }
+  .clouds .cloud.top > nav a { margin: 0 !important; font-size: 1.1rem; white-space: nowrap; text-decoration: none !important; }
+  .clouds .cloud.top > nav a:hover { text-decoration: underline !important; }
+  .clouds .cloud.top > nav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
+  .clouds figure img { width: 100% !important; border-radius: 3px !important; }
+  .clouds figcaption { margin: 0.8rem 0 0.1rem !important; }
+  @media (max-width: 640px) { .wrap.clouds { padding-top: 1rem !important; } .clouds .cloud.top { padding: 2rem 1.3rem 1.5rem !important; } }
+</style>
+
 </head>
 <body>
-<div class="wrap gallery">
+<div class="wrap gallery clouds">
+<div class="cloud top">
 <nav>
 <a href="index.html">home</a>
 <a href="professionalism.html">better website?</a>
@@ -63,6 +90,7 @@
 <div class="bubble">
 <h1>Corpus Delicti</h1>
 <p class="sub al" style="margin-bottom:0"><img alt="I" class="initial" height="640" src="initials/I.svg" width="640"/><span class="run">t's</span> Latin for "the body of the crime" — the evidence that something happened. consider this the evidence.</p>
+</div>
 </div>
 <figure>
 <img alt="TaxCity, an award-winning card-based tax simulation game" decoding="async" height="800" loading="lazy" src="taxcity_impact.jpg" width="599"/>
