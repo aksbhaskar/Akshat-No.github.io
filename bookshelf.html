@@ -85,32 +85,16 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="bubbles.css" rel="stylesheet"/>
 <style>
-  :root { --rubric: #7e1b16; }
-  .regal { text-align: center; }
-  .eyebrow { font-variant-caps: all-small-caps; letter-spacing: 0.14em; font-size: 1.05rem !important; margin: 0 0 0.9rem !important; }
-  h1.al-title.shelf-title { display: flex; justify-content: center; align-items: flex-end; gap: 0.08em; float: none;
-    font-size: 2.6rem !important; line-height: 1 !important; margin: 0 0 1rem !important; letter-spacing: 0.04em !important; }
-  h1.shelf-title img { float: none !important; height: 1.45em !important; width: auto !important; margin: 0 !important; display: block; }
-  h1.shelf-title span { padding-bottom: 0.05em; text-transform: none !important; }
-  .tally { font-style: italic; margin: 0 0 0.6rem !important; }
-  .fleuron { display: flex; align-items: center; gap: 0.9rem; margin: 2.6rem 0; }
-  .fleuron::before, .fleuron::after { content: ""; flex: 1; border-top: 1px solid rgba(10,10,10,0.28); }
-  .fleuron span { font-size: 1.15rem; line-height: 1; color: var(--rubric) !important; }
-
-  /* one book */
-  .book { display: flow-root; }
-  .book .cover { float: left; width: 6.2rem !important; height: auto; margin: 0.3rem 1.3rem 0.6rem 0;
-    border-radius: 1px 3px 3px 1px !important;
-    box-shadow: inset 3px 0 0 rgba(255,255,255,0.18), 0 1px 1px rgba(0,0,0,0.25), 0 10px 18px -8px rgba(0,0,0,0.5) !important; }
-  .book h2 { font-style: normal !important; font-size: 1.45rem !important; line-height: 1.05 !important; margin: 0 0 0.3rem !important; }
-  .book .by { font-style: italic; margin: 0 0 0.9rem !important; }
-  .book .prog { display: flex; align-items: center; gap: 0.7rem; margin: 0 0 1.1rem; }
-  .book .bar { flex: 1; height: 1px; background: rgba(10,10,10,0.2); position: relative; }
-  .book .bar i { position: absolute; left: 0; top: -1px; height: 3px; background: var(--rubric); }
-  .book .prog span { font-style: italic; font-size: 1.05rem; white-space: nowrap; }
-  .book .blurb { clear: left; margin: 0 0 0.9rem !important; }
-  .book .tags { margin: 0 !important; font-variant-caps: all-small-caps; letter-spacing: 0.08em; font-size: 1.05rem !important; opacity: 0.85; }
-  @media (max-width: 640px) { h1.shelf-title { font-size: 2.1rem !important; } .book .cover { width: 5rem !important; } }
+  h1.shelf { font-size: 1.6rem !important; margin: 0 0 0.4rem !important; }
+  .intro { font-style: italic; margin: 0 0 2.6rem !important; }
+  .book { display: flow-root; padding: 0 0 2.2rem; margin: 0 0 2.2rem; border-bottom: 1px solid rgba(10,10,10,0.12); }
+  .book:last-of-type { border-bottom: 0; }
+  .book .cover { float: left; width: 4.2rem !important; height: auto; margin: 0.2rem 1.1rem 0.4rem 0;
+    border-radius: 2px !important; box-shadow: 0 1px 3px rgba(0,0,0,0.25) !important; }
+  .book h2 { font-style: normal !important; font-size: 1.25rem !important; margin: 0 0 0.25rem !important; }
+  .book .by { font-style: italic; margin: 0 !important; }
+  .book .blurb { clear: left; margin: 1rem 0 0 !important; }
+  .foot { font-style: italic; margin: 0 !important; }
 </style>
 </head>
 <body>
@@ -122,58 +106,39 @@
 <a href="updates.html">updates</a>
 <a href="photography.html">photography</a>
 </nav>
-<div class="regal">
-<p class="eyebrow">On the Shelf</p>
-<h1 class="al-title shelf-title"><img src="initials/B.svg" alt="B" width="649" height="641"/><span>OOKSHELF</span></h1>
-<p class="tally">What I&#8217;m reading, and what shaped me.</p>
-</div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
+<h1 class="shelf">Bookshelf</h1>
+<p class="intro">What I&#8217;m reading, and what shaped me.</p>
 <div class="book">
 <img class="cover" src="cover_penguin_history.webp" alt="Cover of The Penguin History of the World" loading="lazy" decoding="async"/>
 <h2>The Penguin History of the World</h2>
-<p class="by">J. M. Roberts &amp; Odd Arne Westad (sixth edition)</p>
-<div class="prog"><span class="bar" aria-hidden="true"><i style="width:3%"></i></span><span>currently reading</span></div>
+<p class="by">J. M. Roberts &amp; Odd Arne Westad (sixth edition) &middot; currently reading</p>
 <p class="blurb">J. M. Roberts' single-volume history of humankind, from our earliest ancestors to the present day, revised and extended by Odd Arne Westad for the latest edition. It follows how civilisations, empires, ideas, and economies rose, met, and reshaped one another across every continent.</p>
-<p class="tags">History &middot; World History &middot; Civilisation &middot; Empires</p>
 </div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
 <div class="book">
 <img class="cover" src="cover_dalio.webp" alt="Cover of Principles for Dealing with the Changing World Order" loading="lazy" decoding="async"/>
 <h2>Principles for Dealing with the Changing World Order</h2>
-<p class="by">Ray Dalio</p>
-<div class="prog"><span class="bar" aria-hidden="true"><i style="width:40%"></i></span><span>~40% read</span></div>
+<p class="by">Ray Dalio &middot; ~40% read</p>
 <p class="blurb">Dalio studies the rise and fall of reserve currencies and economic systems over 500 years of history. The core argument, that the US is at a late-stage debt cycle similar to previous great powers before their decline, is both unsettling and fascinating. He traces how the same confluence of conditions, massive debt, political polarisation, and a rising challenger power, has preceded every major imperial transition in the past five centuries. Essential reading for anyone thinking seriously about global economics and geopolitics.</p>
-<p class="tags">Macroeconomics &middot; History &middot; Geopolitics &middot; Investing</p>
 </div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
 <div class="book">
 <img class="cover" src="cover_asoiaf.webp" alt="Cover of A Song of Ice and Fire" loading="lazy" decoding="async"/>
 <h2>A Song of Ice and Fire</h2>
-<p class="by">George R.R. Martin</p>
-<div class="prog"><span class="bar" aria-hidden="true"><i style="width:71.5%"></i></span><span>Book 5 of 7</span></div>
+<p class="by">George R.R. Martin &middot; Book 5 of 7</p>
 <p class="blurb">The series that made fantasy feel like political science. Martin's world is a masterclass in how power and consequence actually work, far more honest about human nature than most non-fiction. No character is purely good or evil; everyone is navigating incentives and the constraints of the institutions around them. The politics of Westeros have genuinely taught me much about how power corrupts and how alliances form and fracture. Chaos is a ladder.</p>
-<p class="tags">Fiction &middot; Fantasy &middot; Political Theory &middot; Power</p>
 </div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
 <div class="book">
 <img class="cover" src="cover_sen.webp" alt="Cover of Development as Freedom" loading="lazy" decoding="async"/>
 <h2>Development as Freedom</h2>
-<p class="by">Amartya Sen</p>
-<div class="prog"><span class="bar" aria-hidden="true"><i style="width:15%"></i></span><span>~15% read</span></div>
+<p class="by">Amartya Sen &middot; ~15% read</p>
 <p class="blurb">Sen's central argument is that development should be measured by the real freedoms people actually enjoy, the capability to be educated, healthy, heard, and free from want, rather than by income or GDP alone. Recasting poverty as a deprivation of capabilities, and not merely a shortage of cash, has quietly rearranged how I judge my own work, from Edunomix to the research. It is the rare economics book that reads like moral philosophy without ever going soft on the economics.</p>
-<p class="tags">Development &middot; Economics &middot; Ethics &middot; Welfare</p>
 </div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
 <div class="book">
 <img class="cover" src="cover_policy_pivot.webp" alt="Cover of The Policy Pivot" loading="lazy" decoding="async"/>
 <h2>The Policy Pivot</h2>
-<p class="by">Ajay Khanna &amp; Rahul Sharma</p>
-<div class="prog"><span class="bar" aria-hidden="true"><i style="width:25%"></i></span><span>~25% read</span></div>
+<p class="by">Ajay Khanna &amp; Rahul Sharma &middot; ~25% read</p>
 <p class="blurb">Published to mark eighteen years of the Public Affairs Forum of India (PAFI), this is a collection of 25 essays from leading voices across Indian business, government, academia, and civil society. Contributors examine the shifting dynamics of India's policy ecosystem, where governance is becoming more participatory and public affairs more central to democratic accountability. A timely and insightful read given my own work at the intersection of policy and finance.</p>
-<p class="tags">Policy &middot; India &middot; Governance &middot; Public Affairs</p>
 </div>
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
-<p class="tally" style="text-align:center">for the books and films I&#8217;ve finished, see <a href="books.html">books</a> and <a href="movies.html">movies</a>.</p>
+<p class="foot">for the books and films I&#8217;ve finished, see <a href="books.html">books</a> and <a href="movies.html">movies</a>.</p>
 </div>
 <script defer src="dog.js"></script>
 </body>
