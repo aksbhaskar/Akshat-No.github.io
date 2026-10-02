@@ -49,13 +49,17 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bubbles.css" rel="stylesheet"/>
 <style>
-  /* writing pages: unlinked list items look like the linked ones; section heads; "learn more" */
-  .u-list .u-item { display: block; margin: 0 0 0.55rem; }
-  .u-list .u-item .m { font-style: italic; }
-  .u-list a, .u-list .u-item { line-height: 1.2 !important; }
-  .w-head { font-size: 1.45rem !important; font-style: normal !important; margin: 0 0 1.4rem !important; }
-  .w-sec { margin: 0 0 3.4rem; }
-  .w-more { display: inline-block; margin-top: 0.3rem; font-style: italic; }
+  /* writing pages: the home page's type (1.25rem, tight Alembic leading), a "-" before each entry */
+  .u-list a, .u-list .u-item {
+    position: relative; display: block; padding: 0 0 0 0.85em !important; margin: 0 0 0.8rem !important;
+    font-size: 1.25rem !important; line-height: 1 !important; font-weight: 400 !important;
+  }
+  .u-list a::before, .u-list .u-item::before { content: "-"; position: absolute; left: 0; top: 0; }
+  .u-list a .m, .u-list .u-item .m { font-style: italic; font-weight: 400 !important; }
+  .w-head { font-size: 1.25rem !important; line-height: 1 !important; font-style: italic !important; margin: 0 0 1.2rem !important; }
+  .w-sec { margin: 0 0 3rem; }
+  .w-sec .u-list { margin: 0 0 0.5rem !important; }
+  .w-more { display: inline-block; margin-top: 0.2rem; font-size: 1.25rem; font-style: italic; }
   .soon { font-style: italic; }
 </style>
 
@@ -71,30 +75,32 @@
 </nav>
 <div class="w-sec">
 <h2 class="w-head">thoughts</h2>
-<p class="soon">coming soon</p>
-<a class="w-more" href="thoughts.html">&hellip; learn more</a>
+<nav class="u-list">
+<a href="update-sep-25.html">Why I started Project Fermat <span class="m">(September 25th, 2026)</span></a>
+</nav>
+<a class="w-more" href="thoughts.html">&hellip; read more</a>
 </div>
 <div class="w-sec">
 <h2 class="w-head">academic</h2>
 <nav class="u-list">
-<a href="aipolicy.html">IJRASET, 2025: <span class="m">The Two Faces of Progress: A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</span></a>
-<span class="u-item">Arbitrage, 2024: <span class="m">How Economics Runs the World</span></span>
-<span class="u-item">Global Priorities Institute, University of Oxford, 2023: <span class="m">On AI Policy and Existential Risk</span></span>
-<span class="u-item">Northeastern University International Essay Competition, 2025: <span class="m">The Economic and Social Effects of Artificial Intelligence on the Global Economy</span></span>
-<a href="https://edunomixinstitute.com/articles/669fa826494345109d06cd9860ae914b" rel="noopener" target="_blank">Edunomix Institute, 2024: <span class="m">Effects of Overvaluation on Competition and the Broader Economic Landscape</span></a>
+<a href="https://edunomixinstitute.com/articles/669fa826494345109d06cd9860ae914b" rel="noopener" target="_blank">Effects of Overvaluation on Competition and the Broader Economic Landscape <span class="m">(Edunomix Institute, 2026)</span></a>
+<a href="aipolicy.html">The Two Faces of Progress: A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence <span class="m">(IJRASET, 2025)</span></a>
+<a href="https://edunomixinstitute.com/articles/d84ccc6f9da14da0b2a3aab6564f1a31" rel="noopener" target="_blank">Bangladesh in 2024: What's Next? <span class="m">(Edunomix Institute, 2025)</span></a>
+<span class="u-item">How Economics Runs the World <span class="m">(Arbitrage, IIM Rohtak, 2024)</span></span>
+<span class="u-item">On AI Policy and Existential Risk <span class="m">(Pivotal Essay Contest, Global Priorities Institute, University of Oxford, 2023)</span></span>
 </nav>
-<a class="w-more" href="articles.html">&hellip; learn more</a>
+<a class="w-more" href="articles.html">&hellip; read more</a>
 </div>
 <div class="w-sec">
 <h2 class="w-head">general updates on my life</h2>
 <nav class="u-list">
 <a href="update-sep-29.html">September 29th 2026: <span class="m">Cary S. Krosinsky on Decoded</span></a>
 <a href="update-sep-27.html">September 27th 2026</a>
-<a class="hi" href="update-sep-25.html">September 25th 2026: <span class="m">why I started Project Fermat</span></a>
 <a href="update-sep-20.html">September 20th 2026: <span class="m">Started Project Fermat</span></a>
 <a href="update-sep-18.html">September 18th 2026: <span class="m">Call For Volunteers</span></a>
+<a href="update-sep-15.html">September 15th 2026: <span class="m">A HUGE Week</span></a>
 </nav>
-<a class="w-more" href="updates.html">&hellip; learn more</a>
+<a class="w-more" href="updates.html">&hellip; read more</a>
 </div>
 </div>
 <script>
