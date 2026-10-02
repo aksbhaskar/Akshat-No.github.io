@@ -95,3 +95,20 @@ body.page-research .paper-title { font-weight: 400 !important; }
 body.page-research .sec-num { opacity: 0.5; }
 body.page-research .tl-node, body.page-research .timeline-strip [class*="legend"] *,
 body.page-research .timeline-strip [class*="key"] * { border-color: #0a0a0a !important; }
+
+/* research: tighter, single centred column, home-page type */
+body.page-research .document * { letter-spacing: 0 !important; font-variant-caps: normal !important; }
+body.page-research .page-header { padding: 0 0 1.3rem !important; margin: 0 !important; }
+body.page-research .doc-crumbs { margin-bottom: 0.9rem !important; }
+body.page-research .subject-tags { margin-top: 0.7rem !important; }
+body.page-research .statement-block { padding: 1.4rem 0 1.5rem !important; }
+body.page-research .statement-head { margin-bottom: 0.6rem !important; }
+body.page-research .statement-text { text-align: left !important; hyphens: manual !important; }
+body.page-research .statement-eq { margin-top: 0.9rem !important; }
+body.page-research .timeline-strip { padding: 1rem 0 1.1rem !important; }
+body.page-research .section-rule { padding-top: 1.8rem !important; padding-bottom: 0.5rem !important; }
+body.page-research .pub { padding: 1.2rem 0 !important; }
+/* no side notes; the entries sit in one centred column */
+body.page-research .margin-col { display: none !important; }
+body.page-research .papers-col { grid-column: 1 / -1 !important; width: min(36rem, 100%); margin: 0 auto; padding-top: 0.6rem !important; }
+body.page-research .paper-desc { text-align: left !important; hyphens: manual !important; }
