@@ -81,3 +81,17 @@ body.page-research .paper-status-row .chip {
   font-weight: 400 !important; font-style: italic !important;
 }
 body.page-research .paper-status-row { gap: 0.6rem !important; align-items: baseline !important; }
+
+/* research, quieter: hairline rules only, no column divider, plain labels */
+body.page-research .document * { border-color: rgba(10,10,10,0.12) !important; }
+body.page-research .page-header, body.page-research .statement-block, body.page-research .timeline-strip,
+body.page-research .section-rule { border-width: 0 0 1px 0 !important; border-style: solid !important; }
+body.page-research .margin-col { border: 0 !important; }
+body.page-research .mn-label, body.page-research .statement-head {
+  text-transform: none !important; letter-spacing: 0 !important; font-weight: 400 !important; font-style: italic !important;
+}
+body.page-research .margin-note strong, body.page-research .paper-desc strong { font-weight: 400 !important; }
+body.page-research .paper-title { font-weight: 400 !important; }
+body.page-research .sec-num { opacity: 0.5; }
+body.page-research .tl-node, body.page-research .timeline-strip [class*="legend"] *,
+body.page-research .timeline-strip [class*="key"] * { border-color: #0a0a0a !important; }
