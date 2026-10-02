@@ -1,774 +1,134 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Research | Akshat Bhaskar</title>
-  <meta name="author" content="Akshat Bhaskar" />
-  <meta name="description" content="The research index of Akshat Bhaskar: peer-reviewed papers, an Indian School of Business study on financial misinformation, and work across economics, AI, and public policy." />
-  <link rel="canonical" href="https://akshatb.com/research.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Research" />
-  <meta property="og:description" content="Akshat Bhaskar: student researcher in economics, AI, and public policy." />
-  <meta property="og:url" content="https://akshatb.com/research.html" />
-  <meta property="og:image" content="https://akshatb.com/images/og_research.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://akshatb.com/images/og_research.jpg" />
-  <meta name="theme-color" content="#fbfcfa">
-  <link rel="icon" type="image/jpeg" href="images/akshat.jpg">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/icon-180.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
-  <style>
-    /* ─── VARIABLES ─────────────────────────────────────────── */
-    :root {
-      --paper:      #fbfcfa;   /* cool lab white, not the warm cream of home */
-      --ink:        #14161a;
-      --ink-med:    #363a42;
-      --ink-soft:   #646a76;
-      --ink-faint:  #6c717a;
-      --ink-ghost:  #c8ccd4;
-      --rule:       #ccd2da;
-      --rule-light: #e0e4ea;
-      --accent:     #2b5a8c;   /* blue-black annotation ink */
-      --grid:       rgba(43,90,140,0.055);
-      --pub-green:  #3d7a52;
-      --serif:      'EB Garamond', 'Palatino Linotype', Georgia, serif;
-      --mono:       'Inconsolata', 'Courier New', monospace;
-      --outer:      clamp(22px, 4vw, 60px);
-      --col-main:   500px;
-      --col-gutter: 32px;
-      --max-doc:    900px;
-    }
-    html.dark {
-      --accent: #8db2dc;
-      --grid: rgba(150,185,225,0.05);
-      --pub-green: #7dbb95;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--paper);
-      /* faint graph paper, the desk this work happens on */
-      background-image:
-        linear-gradient(var(--grid) 0.5px, transparent 0.5px),
-        linear-gradient(90deg, var(--grid) 0.5px, transparent 0.5px);
-      background-size: 28px 28px;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      line-height: 1.74;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    html.dark body.paper.page-research {
-      background-color: var(--paper);
-      background-image:
-        linear-gradient(var(--grid) 0.5px, transparent 0.5px),
-        linear-gradient(90deg, var(--grid) 0.5px, transparent 0.5px);
-      background-size: 28px 28px;
-    }
-
-    /* ─── PROGRESS BAR ──────────────────────────────────────── */
-    #prog {
-      position: fixed; top: 0; left: 0; height: 1px;
-      width: 0%; background: var(--accent); z-index: 999;
-      transition: width 0.1s linear;
-    }
-
-    /* ─── TOPBAR ────────────────────────────────────────────── */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(251,252,250,0.93);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(204,210,218,0.4);
-    }
-    html.dark .topbar { background: rgba(22,21,15,0.9); border-bottom-color: rgba(240,234,217,0.08); }
-    .topbar-logo {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.07em;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .topbar-logo:hover { color: var(--ink); }
-
-    .hamburger {
-      background: none; border: none; cursor: pointer;
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; padding: 4px; min-width: 24px; min-height: 24px;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 0.5px;
-      background: var(--ink-faint); transition: all 0.3s ease; transform-origin: center;
-    }
-    .hamburger:hover span { background: var(--ink); }
-    .hamburger.open span { background: var(--paper); }
-    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-
-    /* ─── NAV OVERLAY ───────────────────────────────────────── */
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 190;
-      background: rgba(20,22,26,0.95); backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 5rem 4rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; pointer-events: all; }
-    .nav-overlay a.nav-link {
-      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 400; font-style: italic;
-      color: rgba(251,252,250,0.5); line-height: 1.35;
-      opacity: 0; transform: translateX(-10px);
-      transition: color 0.25s, transform 0.35s, opacity 0.35s;
-      text-decoration: none; display: block;
-    }
-    .nav-overlay.open a.nav-link { opacity: 1; transform: translateX(0); }
-    .nav-overlay.open a.nav-link:nth-child(1){transition-delay:.03s}
-    .nav-overlay.open a.nav-link:nth-child(2){transition-delay:.06s}
-    .nav-overlay.open a.nav-link:nth-child(3){transition-delay:.09s}
-    .nav-overlay.open a.nav-link:nth-child(4){transition-delay:.12s}
-    .nav-overlay.open a.nav-link:nth-child(5){transition-delay:.15s}
-    .nav-overlay.open a.nav-link:nth-child(6){transition-delay:.18s}
-    .nav-overlay.open a.nav-link:nth-child(7){transition-delay:.21s}
-    .nav-overlay.open a.nav-link:nth-child(8){transition-delay:.24s}
-    .nav-overlay.open a.nav-link:nth-child(9){transition-delay:.27s}
-    .nav-overlay.open a.nav-link:nth-child(10){transition-delay:.30s}
-    .nav-overlay.open a.nav-link:nth-child(11){transition-delay:.33s}
-    .nav-overlay.open a.nav-link:nth-child(12){transition-delay:.36s}
-    .nav-overlay a.nav-link:hover { color: rgba(251,252,250,0.95); }
-    .nav-hr {
-      width: 28px; height: 0.5px; background: rgba(251,252,250,0.15);
-      margin: 1.3rem 0; opacity: 0; transition: opacity 0.35s ease 0.22s;
-    }
-    .nav-overlay.open .nav-hr { opacity: 1; }
-    .nav-socials-row {
-      display: flex; gap: 1.2rem;
-      opacity: 0; transform: translateX(-6px);
-      transition: opacity 0.35s 0.26s, transform 0.35s 0.26s;
-    }
-    .nav-overlay.open .nav-socials-row { opacity: 1; transform: translateX(0); }
-    .nav-socials-row a { font-size: 0.82rem; color: rgba(251,252,250,0.35); transition: color 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .nav-socials-row a:hover { color: rgba(251,252,250,0.9); }
-
-    /* ─── DOCUMENT GRID ─────────────────────────────────────── */
-    .document {
-      max-width: var(--max-doc);
-      margin: 0 auto;
-      padding: 0 var(--outer);
-      display: grid;
-      grid-template-columns: var(--col-main) var(--col-gutter) 1fr;
-    }
-
-    .doc-full,
-    .page-header,
-    .statement-block,
-    .timeline-strip,
-    .section-rule,
-    .doc-footer { grid-column: 1 / -1; }
-
-    .papers-col { grid-column: 1 / 2; }
-    .margin-col { grid-column: 3 / 4; }
-
-    /* ─── PAGE HEADER ───────────────────────────────────────── */
-    .page-header {
-      padding-top: 100px;
-      padding-bottom: 2.4rem;
-      border-bottom: 0.5px solid var(--ink);
-    }
-
-    .doc-crumbs {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      margin-bottom: 2.4rem;
-      display: flex; gap: 0.6rem; align-items: center;
-    }
-    .doc-crumbs a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
-    .doc-crumbs a:hover { color: var(--ink); }
-    .doc-crumbs .sep { color: var(--ink-ghost); }
-
-    .page-title-row {
-      display: flex; align-items: baseline;
-      justify-content: space-between; gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    h1.page-title {
-      font-family: var(--serif); font-size: 2.2rem;
-      font-weight: 400; letter-spacing: 0.01em;
-      color: var(--ink); line-height: 1.1;
-    }
-
-    .page-meta {
-      font-family: var(--mono); font-size: 0.64rem;
-      color: var(--ink-faint); letter-spacing: 0.06em;
-      text-align: right; flex-shrink: 0;
-      line-height: 1.9;
-    }
-    .page-meta .ident { color: var(--accent); }
-
-    /* arXiv-style subject tags under the title */
-    .subject-tags {
-      margin-top: 1.1rem;
-      display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: baseline;
-    }
-    .subject-tags .st-label {
-      font-family: var(--serif); font-style: italic;
-      font-size: 0.9rem; color: var(--ink-soft); margin-right: 0.2rem;
-    }
-    .stag {
-      font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.04em; color: var(--accent);
-      border: 0.5px solid var(--rule); border-radius: 2px;
-      padding: 0.12rem 0.45rem;
-      background: var(--paper);
-    }
-
-    /* ─── RESEARCH STATEMENT (abstract of the page) ─────────── */
-    .statement-block {
-      padding: 2.2rem 0 2.4rem;
-      border-bottom: 0.5px solid var(--ink);
-    }
-    .statement-inner { max-width: 560px; margin: 0 auto; }
-    .statement-head {
-      font-family: var(--serif); font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.09em; text-transform: uppercase;
-      text-align: center; display: block; margin-bottom: 0.9rem;
-    }
-    .statement-text {
-      font-size: 0.93rem; line-height: 1.78; color: var(--ink-med);
-      text-align: justify; hyphens: auto;
-    }
-    .statement-eq {
-      text-align: center;
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.02rem; color: var(--ink-med);
-      margin-top: 1.3rem;
-      display: flex; align-items: baseline; justify-content: center; gap: 1.4rem;
-    }
-    .statement-eq .eq-num {
-      font-family: var(--mono); font-style: normal;
-      font-size: 0.62rem; color: var(--ink-faint);
-    }
-    .statement-eq sub, .statement-eq sup { font-size: 0.62em; }
-    .statement-caption {
-      font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint);
-      letter-spacing: 0.05em; text-align: center; margin-top: 0.55rem;
-    }
-
-    /* ─── PUBLICATION TIMELINE ──────────────────────────────── */
-    .timeline-strip {
-      padding: 1.5rem 0 1.6rem;
-      border-bottom: 0.5px solid var(--ink);
-    }
-    .tl-track {
-      position: relative; height: 1px; background: var(--rule);
-      margin: 1.4rem 0.5rem 0;
-    }
-    .tl-node {
-      position: absolute; top: 50%;
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--paper); border: 1.5px solid var(--accent);
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.4s cubic-bezier(.2,1.4,.4,1);
-    }
-    .tl-node.is-pub { background: var(--accent); }
-    .tl-node.visible { transform: translate(-50%, -50%) scale(1); }
-    .tl-node:hover::after {
-      content: attr(data-tip);
-      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.03em;
-      color: var(--ink-med); background: var(--paper);
-      border: 0.5px solid var(--rule); padding: 0.18rem 0.5rem;
-      white-space: nowrap; z-index: 5;
-    }
-    .tl-years {
-      display: flex; justify-content: space-between;
-      font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint);
-      letter-spacing: 0.06em; margin-top: 0.7rem; padding: 0 0.2rem;
-    }
-    .tl-legend {
-      font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint);
-      letter-spacing: 0.05em;
-    }
-    .tl-legend .dot {
-      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-      border: 1.5px solid var(--accent); vertical-align: baseline; margin-right: 0.3rem;
-    }
-    .tl-legend .dot.f { background: var(--accent); }
-
-    /* ─── SECTION RULE ──────────────────────────────────────── */
-    .section-rule {
-      padding-top: 2.8rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 0.5px solid var(--ink);
-      display: flex; align-items: baseline; gap: 1rem;
-    }
-    .sec-glyph { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); flex-shrink: 0; }
-    .sec-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--ink); }
-    .sec-count { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-ghost); margin-left: auto; }
-
-    /* ─── PAPERS LIST ───────────────────────────────────────── */
-    .papers-col { padding-top: 1.8rem; }
-
-    .pub {
-      padding: 1.8rem 0;
-      border-bottom: 0.5px solid var(--rule-light);
-      display: grid;
-      grid-template-columns: 2rem 1fr;
-      gap: 0 1rem;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .pub:last-child { border-bottom: none; }
-    .pub.visible { opacity: 1; transform: translateY(0); }
-
-    .paper-num {
-      font-family: var(--mono); font-size: 0.66rem;
-      color: var(--ink-faint); padding-top: 0.28rem;
-      text-align: right; flex-shrink: 0;
-    }
-
-    .paper-status-row {
-      display: flex; align-items: center; gap: 0.5rem;
-      margin-bottom: 0.45rem; flex-wrap: wrap;
-    }
-
-    .chip {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.15rem 0.55rem; border-radius: 2px;
-      font-weight: 600; flex-shrink: 0;
-    }
-    .chip-published { background: rgba(61,122,82,0.08); color: var(--pub-green); border: 0.5px solid rgba(61,122,82,0.3); }
-    .chip-ongoing   { background: rgba(43,90,140,0.07); color: var(--accent); border: 0.5px solid rgba(43,90,140,0.3); }
-    .chip-upcoming  { background: rgba(100,100,170,0.08); color: #5a5aaa; border: 0.5px solid rgba(100,100,170,0.25); }
-    .chip-completed { background: rgba(60,60,60,0.06); color: var(--ink-soft); border: 0.5px solid var(--rule); }
-    html.dark .chip-upcoming { color: #a3a3e0; }
-
-    .paper-year { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-ghost); letter-spacing: 0.04em; }
-
-    .paper-cat {
-      font-family: var(--mono); font-size: 0.6rem;
-      color: var(--accent); letter-spacing: 0.03em;
-    }
-
-    .paper-title {
-      font-family: var(--serif); font-size: 1.08rem;
-      font-weight: 400; color: var(--ink); line-height: 1.35;
-      text-decoration: none; display: block;
-    }
-    .paper-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 0.5px; }
-    .paper-title em { font-style: italic; }
-
-    .paper-venue {
-      font-family: var(--mono); font-size: 0.62rem;
-      color: var(--ink-faint); letter-spacing: 0.04em;
-      margin-top: 0.35rem; margin-bottom: 0.45rem;
-      display: block;
-    }
-
-    .paper-desc {
-      font-family: var(--serif); font-size: 0.88rem;
-      color: var(--ink-soft); line-height: 1.75;
-      text-align: justify; hyphens: auto;
-    }
-
-    .paper-links { margin-top: 0.6rem; display: flex; gap: 1.1rem; align-items: baseline; }
-    .paper-link {
-      font-family: var(--mono); font-size: 0.6rem;
-      color: var(--accent); letter-spacing: 0.06em;
-      text-decoration: none; display: inline-block;
-      border-bottom: 0.5px solid rgba(43,90,140,0.3);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .paper-link:hover { color: var(--ink); border-color: var(--ink-ghost); }
-
-    /* ─── BIBTEX (the signature) ────────────────────────────── */
-    @keyframes bibIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-
-    /* ─── MARGIN COLUMN ─────────────────────────────────────── */
-    .margin-col {
-      padding-top: 1.8rem;
-      border-left: 0.5px solid var(--rule-light);
-      padding-left: 1.8rem;
-    }
-
-    .margin-note {
-      font-family: var(--serif); font-size: 0.75rem;
-      line-height: 1.65; color: var(--ink-soft);
-      margin-bottom: 2.4rem;
-      opacity: 0; transition: opacity 0.6s ease;
-    }
-    .margin-note.visible { opacity: 1; }
-    .margin-note .mn-label {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 0.07em; color: var(--ink-ghost);
-      text-transform: uppercase; display: block;
-      margin-bottom: 0.3rem;
-    }
-    .margin-note strong { font-weight: 600; color: var(--ink-med); }
-    .margin-note a { color: var(--ink-med); text-underline-offset: 2px; }
-
-    /* ─── FOOTER ────────────────────────────────────────────── */
-    .doc-footer {
-      border-top: 0.5px solid var(--ink);
-      padding: 1.3rem 0 4rem;
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 1rem;
-    }
-    .footer-text { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
-    .footer-socials { display: flex; gap: 1.1rem; }
-    .footer-socials a { font-size: 0.78rem; color: var(--ink-ghost); transition: color 0.2s; display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
-    .footer-socials a:hover { color: var(--ink-med); }
-
-    /* ─── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 720px) {
-      :root { --outer: 20px; }
-      .document { grid-template-columns: 1fr; }
-      .papers-col { grid-column: 1 / -1; }
-      .margin-col { display: none; }
-      .topbar { padding: 1.1rem 1.4rem; }
-      .nav-overlay { padding: 4rem 1.8rem; }
-      h1.page-title { font-size: 1.75rem; }
-      .page-title-row { flex-direction: column; gap: 0.6rem; }
-      .page-meta { text-align: left; }
-      .statement-eq { flex-direction: column; gap: 0.3rem; }
-    }
-  </style>
-<!-- print styles + reduced motion -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Research | Akshat Bhaskar</title>
+<meta content="Research by Akshat Bhaskar: financial misinformation, AI policy, systemic risk, and number theory." name="description"/>
+<meta content="Akshat Bhaskar" name="author"/>
+<link href="https://akshatb.com/research" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Research" property="og:title"/>
+<meta content="Research by Akshat Bhaskar: financial misinformation, AI policy, systemic risk, and number theory." property="og:description"/>
+<meta content="https://akshatb.com/research" property="og:url"/>
+<meta content="https://akshatb.com/images/og_research.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://akshatb.com/images/og_research.jpg" name="twitter:image"/>
+<meta content="#000000" name="theme-color"/>
+<link href="images/akshat.jpg" rel="icon" type="image/jpeg"/>
+<link href="images/icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <style>
-@media print {
-  .topbar, .hamburger, .nav-overlay, .progress-rule, .footer-socials { display: none !important; }
-  body { background: #fff !important; color: #000 !important; }
-  a { color: #000 !important; text-decoration: underline; }
-  img { max-width: 100% !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
+    :root { --ink: #ffffff; --bg: #000000; --muted: #b3b3b3; }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 15px; line-height: 1.62; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 620px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 2.2rem; max-width: 46ch; }
+    .u-list a { display: block; margin: 0 0 1.5rem; line-height: 1.5; }
+    .u-list .m { color: var(--muted); }
+    .u-list a.hi { color: #e7c14e; }
+    .u-list a.hi .m { color: #cdb35c; }
+    .u-list a.hi .badge { font-style: italic; font-size: 0.82em; color: #e7c14e; }
+
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+    /* awards: plain lists, a "-" before each, same size as the writing pages */
+  ul.aw { list-style: none; margin: 0; padding: 0; }
+  ul.aw li { position: relative; padding: 0 0 0 0.85em !important; margin: 0 0 0.55rem !important;
+    font-size: 1.1rem !important; line-height: 1.05 !important; }
+  ul.aw li::before { content: "-"; position: absolute; left: 0; top: 0; }
+  ul.aw li { text-wrap: pretty !important; }
+  .w-sec { margin: 0 0 2.4rem; }
+  .statement { margin: 0 0 2.6rem !important; font-size: 1.1rem !important; line-height: 1.1 !important; text-wrap: pretty !important; }
+  ul.aw li .m { font-style: italic; }
 </style>
-  <link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/paper.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="css/bubbles.css" rel="stylesheet"/>
+<style>
+  /* writing pages: the home page's type (1.25rem, tight Alembic leading), a "-" before each entry */
+  .u-list a, .u-list .u-item {
+    position: relative; display: block; padding: 0 0 0 0.85em !important; margin: 0 0 0.8rem !important;
+    font-size: 1.1rem !important; line-height: 1.05 !important; font-weight: 400 !important;
+  }
+  .u-list a::before, .u-list .u-item::before { content: "-"; position: absolute; left: 0; top: 0; }
+  .u-list a .m, .u-list .u-item .m { font-style: italic; font-weight: 400 !important; }
+  .w-head { font-size: 1.25rem !important; line-height: 1 !important; font-style: italic !important; margin: 0 0 1.2rem !important; }
+  .w-sec { margin: 0 0 3rem; }
+  .w-more { display: inline-block; margin-top: 0.2rem; font-size: 1.1rem; font-style: italic; }
+  .soon { font-style: italic; }
+</style>
+
 </head>
-<body class="paper page-research">
-<a class="skip-link" href="#main">Skip to content</a>
-
-<div id="prog"></div>
-
-<!-- NAV -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">akshatb.com</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</div>
-
-<nav class="nav-overlay" aria-label="Site navigation" id="nav-overlay" aria-hidden="true">
-  <div class="nav-cols"><a class="nav-link" href="index.html">Home</a>
-  <a class="nav-link" href="professionalism.html">Better Website?</a>
-  <a class="nav-link" href="now.html">Now</a>
-  <a class="nav-link" href="education.html">Education</a>
-  <a class="nav-link" href="experience.html">Experience</a>
-  <a class="nav-link" href="awards.html">Awards</a>
-  <a class="nav-link" href="research.html">Research</a>
-  <a class="nav-link" href="articles.html">Articles</a>
-  <a class="nav-link" href="media.html">Media</a>
-  <a class="nav-link" href="podcast.html">Podcast</a>
-  <a class="nav-link" href="bookshelf.html">Bookshelf</a>
-  <a class="nav-link" href="connect.html">Connect</a></div>
-  <div class="nav-hr"></div>
-  <div class="nav-socials-row">
-    <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#x-twitter"/></svg></a>
-    <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#linkedin"/></svg></a>
-    <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#google-scholar"/></svg></a>
-    <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#researchgate"/></svg></a>
-  </div>
+<body>
+<div class="wrap bare">
+<nav>
+<a href="index.html">home</a>
+<a href="research.html">research</a>
+<a href="photos.html">corpus delicti</a>
+<a href="writing.html">writing</a>
+<a href="photography.html">photography</a>
 </nav>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="document" role="main" id="main">
-<nav class="topnav">
-  <a href="index.html">home</a>
-  <a href="research.html">research</a>
-  <a href="photos.html">corpus delicti</a>
-  <a href="writing.html">writing</a>
-  <a href="photography.html">photography</a>
-</nav>
-
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="doc-crumbs">
-      <a href="index.html">Akshat Bhaskar</a>
-      <span class="sep">/</span>
-      <span>Research</span>
-    </div>
-    <div class="page-title-row">
-      <h1 class="page-title">Research</h1>
-      <div class="page-meta">
-        <span class="ident">index: AKB.2026-01</span><br>
-        New Delhi, India · rev. 2026
-      </div>
-    </div>
-    <div class="subject-tags">
-      <span class="st-label">Subject areas:</span>
-      <span class="stag">econ.GN</span>
-      <span class="stag">q-fin.RM</span>
-      <span class="stag">math.NT</span>
-      <span class="stag">cs.CY</span>
-    </div>
-  </div>
-
-  <!-- RESEARCH STATEMENT -->
-  <div class="statement-block">
-    <div class="statement-inner">
-      <span class="statement-head">Research Statement</span>
-      <p class="statement-text">
-        Akshat is interested in the economics of information and governance: how institutions encode knowledge, how policy alters incentive structures, and where rigorous mathematical tools can illuminate questions that prose alone cannot. Current work spans AI policy, tail risk in financial markets, education policy, and algebraic number theory.
-      </p>
-      <div class="statement-eq">
-        <span>W(&pi;) = max<sub>a&thinsp;&isin;&thinsp;A</sub> &Sigma;<sub>s</sub> &pi;(s)&thinsp;u(a, s)</span>
-        <span class="eq-num">(1)</span>
-      </div>
-      <p class="statement-caption">Eq. 1 · the value of information, as the envelope of expected utility over actions</p>
-    </div>
-  </div>
-
-  <!-- PUBLICATION TIMELINE -->
-  <div class="timeline-strip">
-    <span class="tl-legend"><span class="dot f"></span>published &nbsp;&nbsp;<span class="dot"></span>programme / in progress</span>
-    <div class="tl-track" id="tl-track">
-      <span class="tl-node is-pub" style="left: 52%" data-tip="[2] IJRASET · 2025"></span>
-      <span class="tl-node" style="left: 44%" data-tip="[6] Lodha Genius Programme · 2025"></span>
-      <span class="tl-node" style="left: 63%" data-tip="[5] NYAS Junior Academy · Fall 2025"></span>
-      <span class="tl-node" style="left: 84%" data-tip="[4] LG-AUP Math Apprenticeship · 2026"></span>
-      <span class="tl-node" style="left: 97%" data-tip="[1] Financial misinformation, ISB · ongoing"></span>
-    </div>
-    <div class="tl-years"><span>2024</span><span>2025</span><span>2026</span></div>
-  </div>
-
-  <!-- §1, PAPERS & PUBLICATIONS -->
-  <div class="section-rule">
-    <span class="sec-glyph">§1</span>
-    <span class="sec-name">Papers &amp; Publications</span>
-    <span class="sec-count">3 entries</span>
-  </div>
-
-  <div class="papers-col">
-
-    <!-- P1 -->
-    <div class="pub">
-      <span class="paper-num">[1]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-ongoing">Ongoing</span>
-          <span class="paper-year">2026</span>
-          <span class="paper-cat">[cs.CL]</span>
-        </div>
-        <span class="paper-title">Financial Misinformation on Indian Social Media: Multilingual Detection and the Traits That Predict Sharing</span>
-        <span class="paper-venue">Indian School of Business · Under Prof. Hemant Kakkar</span>
-        <p class="paper-desc">Examining how financial misinformation spreads across Indian social media. The corpus is multilingual and code-mixed, so detection runs on MuRIL and XLM-RoBERTa rather than the usual English-only models. Paired with validated psychological instruments, the BFI-2-XS personality inventory and the Fear of Missing Out scale, to identify which individual traits predict sharing behaviour rather than only which posts are false.</p>
-        <div class="pic-set one">
-          <figure>
-            <img width="1200" height="600" loading="lazy" decoding="async" src="images/research_fomo_github.jpg" alt="fomo-misinformation-study GitHub repository">
-            <figcaption><b><a href="https://github.com/aksbhaskar/fomo-misinformation-study" target="_blank" rel="noopener">github.com/aksbhaskar/fomo-misinformation-study</a></b> — tests whether FOMO and conscientiousness interact to predict financial-misinformation sharing, extending Prof. Hemant Kakkar's framework on conscientiousness and fake-news sharing into a financial context.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-    <!-- P2 -->
-    <div class="pub">
-      <span class="paper-num">[2]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-published">Published</span>
-          <span class="paper-year">2025</span>
-          <span class="paper-cat">[econ.GN]</span>
-        </div>
-        <a href="aipolicy.html" class="paper-title"><em>The Two Faces of Progress:</em> A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence</a>
-        <span class="paper-venue">IJRASET · Vol. 13, Issue 7, 2025 · Peer-reviewed</span>
-        <p class="paper-desc">Research conducted under Professor Surbhi Goel (University of Pennsylvania) on AI policy and existential risk, examining the dual nature of transformative technology through an economic and governance lens. Presented at the NYC STEM Research Conference; I was the only high school student in the room.</p>
-        <div class="paper-links">
-          <a href="aipolicy.html" class="paper-link">Full paper →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- P3 -->
-    <div class="pub">
-      <span class="paper-num">[3]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-completed">Completed, not published</span>
-          <span class="paper-cat">[q-fin.RM]</span>
-        </div>
-        <span class="paper-title">Financial Economics &amp; Systemic Risk: Black Swan Events</span>
-        <span class="paper-venue">Indian School of Business and Finance · Under Prof. Kritika Soni</span>
-        <p class="paper-desc">Research in financial economics and systemic risk into the propagation of extreme, low-probability, high-impact shocks across global markets, modelling systemic contagion and cross-market spillover through historical crises and tail-risk frameworks. Culminated in a first-author research paper.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- MARGIN: Papers -->
-  <div class="margin-col" id="margin-papers">
-    <div class="margin-note">
-      <span class="mn-label">Note [1]</span>
-      <strong>MuRIL</strong> and <strong>XLM-RoBERTa</strong> are multilingual language models. Indian social media is heavily code-mixed, with Hindi and English inside a single sentence, which English-only models handle poorly. <strong>BFI-2-XS</strong> is a 15-item personality inventory; the <strong>FoMO</strong> scale measures fear of missing out.
-    </div>
-
-    <div class="margin-note">
-      <span class="mn-label">Note [2]</span>
-      <strong>Prof. Surbhi Goel</strong> is a faculty member at the University of Pennsylvania. The paper appears in IJRASET (Vol. 13, Issue 7, 2025) and was presented in New York.
-    </div>
-
-    <div class="margin-note">
-      <span class="mn-label">Note [3]</span>
-      Research mentored by <strong>Prof. Kritika Soni</strong> at the India School of Business and Finance.
-    </div>
-
-  </div>
-
-  <!-- §2, PROGRAMMES & FELLOWSHIPS -->
-  <div class="section-rule">
-    <span class="sec-glyph">§2</span>
-    <span class="sec-name">Programmes &amp; Fellowships</span>
-    <span class="sec-count">3 entries</span>
-  </div>
-
-  <div class="papers-col">
-
-    <!-- F1 -->
-    <div class="pub">
-      <span class="paper-num">[4]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-upcoming">Concluded · 15th May – 20th Jun 2026</span>
-          <span class="paper-cat">[math.NT]</span>
-        </div>
-        <a href="mathapprenticeship.html" class="paper-title">Number Theory Research, Lodha Genius Undergraduate Research Mathematics Apprenticeship</a>
-        <span class="paper-venue">Ashoka University · LG-AUP · Paid research programme</span>
-        <p class="paper-desc">Original research in algebraic number theory under Professor Shanta Laishram (Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi).</p>
-        <div class="paper-links">
-          <a href="mathapprenticeship.html" class="paper-link">Programme details →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- F2 -->
-    <div class="pub">
-      <span class="paper-num">[5]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-completed">Completed Fall 2025</span>
-          <span class="paper-cat">[cs.CY]</span>
-        </div>
-        <a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" target="_blank" rel="noopener" class="paper-title">New York Academy of Sciences, Junior Academy</a>
-        <span class="paper-venue">NYAS Junior Academy · Fall 2025 Challenge · Energy Infrastructure</span>
-        <p class="paper-desc">Selected into the NYAS Junior Academy in August 2025. Completed the Fall 2025 Challenge on Energy Infrastructure in collaboration with a global cohort of secondary students, developing science-backed policy and engineering solutions. Worked under Dr. Nandhini Sivakumar, Postdoctoral Research Scientist in Neurodegenerative Diseases at the Motor Neuron Center, Columbia University, on the energy infrastructure project.</p>
-        <div class="pic-set one">
-          <figure>
-            <img width="1287" height="994" loading="lazy" decoding="async" src="images/research_nyas.png" alt="NYAS Junior Academy, Fall 2025 Cohort">
-            <figcaption><b>NYAS Junior Academy, Fall 2025 Cohort</b> — a global, project-based programme (~10% acceptance) drawing secondary students from 100+ countries into mentor-guided research teams.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-    <!-- F3 -->
-    <div class="pub">
-      <span class="paper-num">[6]</span>
-      <div class="paper-body">
-        <div class="paper-status-row">
-          <span class="chip chip-completed">Completed</span>
-          <span class="paper-year">2025</span>
-          <span class="paper-cat">[math.HO]</span>
-        </div>
-        <a href="lgp.html" class="paper-title">Lodha Genius Programme, Pure Mathematics</a>
-        <span class="paper-venue">Ashoka University · ≈3.2% acceptance · Fully funded residential</span>
-        <p class="paper-desc">Completed university-level pure mathematics, Number Theory, Group Theory, Linear Algebra, and Geometry, alongside Great Ideas Seminars with Nobel laureates. One of fewer than 30 students admitted nationwide.</p>
-        <div class="paper-links">
-          <a href="lgp.html" class="paper-link">Read more →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- MARGIN: Programmes -->
-  <div class="margin-col">
-
-    <div class="margin-note" style="margin-top:1.8rem;">
-      <span class="mn-label">Note [4]</span>
-      <strong>Prof. Shanta Laishram</strong> is the Head of the Theoretical Statistics and Mathematics Unit (Stat-Math Unit) at Indian Statistical Institute (ISI), Delhi, working in algebraic number theory.
-    </div>
-
-    <div class="margin-note">
-      <span class="mn-label">Note [5]</span>
-      The <strong>NYAS Junior Academy</strong> is a global STEM research programme for exceptional secondary students. <a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" target="_blank">nyas.org</a>
-    </div>
-
-    <div class="margin-note">
-      <span class="mn-label">Note [6]</span>
-      The <strong>Lodha Genius Programme</strong> at Ashoka University is India's most selective mathematics enrichment programme for school students.
-    </div>
-
-  </div>
-
-  <!-- FOOTER -->
-
+<p class="statement">Akshat is interested in the economics of information and governance: how institutions encode knowledge, how policy alters incentive structures, and where rigorous mathematical tools can illuminate questions that prose alone cannot. Current work spans AI policy, tail risk in financial markets, education policy, and algebraic number theory.</p>
+<div class="w-sec">
+<h2 class="w-head">papers</h2>
+<ul class="aw">
+<li><a href="fomo.html">Financial Misinformation on Indian Social Media: Multilingual Detection and the Traits That Predict Sharing <span class="m">(Indian School of Business, under Prof. Hemant Kakkar · ongoing)</span></a></li>
+<li><a href="aipolicy.html">The Two Faces of Progress: A Look at the Socio-Economic Challenges and Opportunities Presented by Artificial Intelligence <span class="m">(IJRASET, 2025 · published)</span></a></li>
+<li>Financial Economics &amp; Systemic Risk: Black Swan Events <span class="m">(Indian School of Business and Finance, under Prof. Kritika Soni · completed, not published)</span></li>
+</ul>
 </div>
-
+<div class="w-sec">
+<h2 class="w-head">programmes</h2>
+<ul class="aw">
+<li><a href="mathapprenticeship.html">Number Theory Research, Lodha Genius Undergraduate Research Mathematics Apprenticeship <span class="m">(Ashoka University, under Prof. Shanta Laishram · 2026)</span></a></li>
+<li><a href="https://www.nyas.org/learning/high-school-research-programs/the-junior-academy/" rel="noopener" target="_blank">New York Academy of Sciences, Junior Academy <span class="m">(Fall 2025 Challenge, Energy Infrastructure)</span></a></li>
+<li><a href="lgp.html">Lodha Genius Programme, Pure Mathematics <span class="m">(Ashoka University, 2025)</span></a></li>
+</ul>
+</div>
+</div>
 <script>
-  /* Progress */
-  const prog = document.getElementById('prog');
-  window.addEventListener('scroll', () => {
-    prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  }, { passive: true });
-
-  /* Nav */
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('nav-overlay');
-  let menuOpen = false;
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
-    overlay.setAttribute('aria-hidden', !menuOpen);
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a.nav-link').forEach(l => l.addEventListener('click', () => {
-    menuOpen = false;
-    hamburger.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
-
-  /* Scroll-in animations */
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
-        obs.unobserve(e.target);
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
       }
     });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.pub, .margin-note, .tl-node').forEach(el => obs.observe(el));
-</script>
-<script src="js/site.js" defer></script>
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
 </body>
 </html>
