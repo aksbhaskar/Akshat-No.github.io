@@ -56,23 +56,23 @@ body.paper .document > .topnav + * { padding-top: 0 !important; margin-top: 0 !i
 
 /* research: the same type scale as the other minimal pages
    (1.25rem EB Garamond with tight Alembic leading; labels a step smaller) */
-body.page-research .document { font-size: 1.25rem; }
-body.page-research .statement-block p, body.page-research .paper-desc { font-size: 1.25rem !important; line-height: 1.1 !important; text-wrap: pretty; }
-body.page-research .paper-title { font-size: 1.35rem !important; line-height: 1.05 !important; }
-body.page-research h1 { font-size: 2.6rem !important; line-height: 1 !important; }
-body.page-research .section-rule, body.page-research .section-rule * { font-size: 1.25rem !important; }
-body.page-research .margin-note { font-size: 1.05rem !important; line-height: 1.15 !important; }
+body.page-research .document { font-size: 1.05rem; }
+body.page-research .statement-block p, body.page-research .paper-desc { font-size: 1.05rem !important; line-height: 1.2 !important; text-wrap: pretty; }
+body.page-research .paper-title { font-size: 1.15rem !important; line-height: 1.1 !important; }
+body.page-research h1 { font-size: 2.2rem !important; line-height: 1 !important; }
+body.page-research .section-rule, body.page-research .section-rule * { font-size: 1.05rem !important; }
+body.page-research .margin-note { font-size: 0.9rem !important; line-height: 1.25 !important; }
 body.page-research .paper-venue, body.page-research .page-meta, body.page-research .page-header a,
 body.page-research .page-header span, body.page-research .mn-label, body.page-research .timeline-strip,
-body.page-research .timeline-strip * { font-size: 1rem !important; line-height: 1.25 !important; }
-body.page-research .chip, body.page-research .paper-cat { font-size: 0.95rem !important; line-height: 1.4 !important; }
-body.page-research .statement-block h2, body.page-research .statement-block .label { font-size: 1.1rem !important; }
-body.page-research .statement-eq { font-size: 1.4rem !important; }
-body.page-research .statement-eq .eq-num { font-size: 1rem !important; }
-body.page-research .statement-block .statement-caption { font-size: 1rem !important; line-height: 1.2 !important; letter-spacing: 0 !important; font-style: italic; }
-body.page-research .statement-head { font-size: 1.05rem !important; }
-body.page-research .paper-num { font-size: 1rem !important; }
-body.page-research .paper-status-row, body.page-research .paper-status-row * { font-size: 0.95rem !important; line-height: 1.4 !important; }
+body.page-research .timeline-strip * { font-size: 0.85rem !important; line-height: 1.3 !important; }
+body.page-research .chip, body.page-research .paper-cat { font-size: 0.82rem !important; line-height: 1.4 !important; }
+body.page-research .statement-block h2, body.page-research .statement-block .label { font-size: 0.95rem !important; }
+body.page-research .statement-eq { font-size: 1.15rem !important; }
+body.page-research .statement-eq .eq-num { font-size: 0.82rem !important; }
+body.page-research .statement-block .statement-caption { font-size: 0.85rem !important; line-height: 1.25 !important; letter-spacing: 0 !important; font-style: italic; }
+body.page-research .statement-head { font-size: 0.9rem !important; }
+body.page-research .paper-num { font-size: 0.85rem !important; }
+body.page-research .paper-status-row, body.page-research .paper-status-row * { font-size: 0.85rem !important; line-height: 1.4 !important; }
 
 /* research: the status above each title is plain italic text, not a box */
 body.page-research .paper-status-row .chip {
