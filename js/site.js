@@ -124,27 +124,8 @@
     });
   }
 
-  /* ── A little whisper toast, bottom-left ──────────────────── */
-  var whisperBusy = false;
-  function whisper(msg, dur, onClick) {
-    if (whisperBusy) return;
-    whisperBusy = true;
-    var w = document.createElement('div');
-    w.className = 'whisper';
-    w.textContent = msg;
-    if (onClick) {
-      w.style.pointerEvents = 'auto';
-      w.style.cursor = 'pointer';
-      w.addEventListener('click', function () { onClick(); w.classList.remove('show'); });
-    }
-    document.body.appendChild(w);
-    void w.offsetWidth;
-    w.classList.add('show');
-    setTimeout(function () {
-      w.classList.remove('show');
-      setTimeout(function () { w.remove(); whisperBusy = false; }, 500);
-    }, dur || 5000);
-  }
+  /* (the little pop-up messages were removed; kept as a no-op so callers stay valid) */
+  function whisper() {}
 
   /* Fire something at most once per browsing session */
   function once(key) {
@@ -165,34 +146,6 @@
     clearTimeout(bubbleTimer);
     bubbleTimer = setTimeout(function () { if (sharedBubble) sharedBubble.classList.remove('show'); }, dur || 1900);
   }
-
-  /* ── Per-page flavour, keyed off the file name ────────────── */
-  var pageKey = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
-  var PAGES = {
-    index:        { end: 'you read the whole thing. that means a lot.' },
-    now:          { end: 'that was true when i wrote it, anyway.' },
-    education:    { end: 'yes, i do actually attend class.' },
-    experience:   { end: "and that's just the paper trail." },
-    awards:       { end: "ok, that's enough flexing. probably." },
-    research:     { end: 'the footnotes are the best part.' },
-    media:        { end: 'a thousand words each. you do the math.' },
-    aipolicy:     { end: 'peer-reviewed and everything.' },
-    goi:          { end: 'policy is more fun than it sounds. sometimes.' },
-    lgp:          { end: '3.2% acceptance. still feels unreal.' },
-    greatideasseminar: { end: 'turns out nobel laureates are pretty chill.' },
-    mathapprenticeship: { end: 'proofs over vibes.' },
-    president:    { end: "still can't quite believe that one." },
-    edunomix:     { end: 'built this before i could drive.' },
-    taxcity:      { end: 'yes. taxes. thrilling, i know.' },
-    podcast:      { end: 'give it a listen sometime?' },
-    press:        { end: 'hi to any journalists reading this.' },
-    bookshelf:    { end: 'found your next read yet?' },
-    yc:           { end: 'startup school was a trip.' },
-    dpsrkp:       { end: 'best years, cheesy as that sounds.' },
-    pi:           { end: '3.14159 26535... ok i will stop.' },
-    '404':        { end: 'lost? happens to the best of us.' }
-  };
-  function pageBit(name, fallback) { var p = PAGES[pageKey]; return (p && p[name]) || fallback; }
 
   /* ── The title reacts to the visitor (the "come back :(" vibe) ── */
   var realTitle = document.title;
@@ -228,24 +181,6 @@
   });
   scheduleIdle();
 
-  /* Browsing in the small hours? Say hi. */
-  var hr = new Date().getHours();
-  if (hr >= 0 && hr < 5) setTimeout(function () { whisper('up late? me too.'); }, 3500);
-
-  /* Reward finishing a page, with a line tailored to that page */
-  var endMsg = pageBit('end', 'you read the whole thing. that means a lot.');
-  var endShown = false;
-  function showEnd() { if (!endShown && once('end_' + pageKey)) { endShown = true; whisper(endMsg, 6000); } }
-  window.addEventListener('scroll', function () {
-    if (endShown) return;
-    var scrollable = document.body.scrollHeight - window.innerHeight;
-    if (scrollable < 400) return;
-    if (window.scrollY >= scrollable - 40) showEnd();
-  }, { passive: true });
-  // Short pages can't scroll to a bottom, so offer the line after a beat instead
-  setTimeout(function () {
-    if (!endShown && (document.body.scrollHeight - window.innerHeight) < 400) showEnd();
-  }, 4500);
 
   /* Poke the author photo (homepage) */
   var photo = document.querySelector('.author-photo');
@@ -260,15 +195,6 @@
     });
   }
 
-  /* Trying to right-click / save a photo? */
-  document.addEventListener('contextmenu', function (e) {
-    if (e.target && e.target.tagName === 'IMG' && once('rc')) whisper('trying to save that? bold move.');
-  });
-
-  /* A quiet nod for sticking around a few minutes */
-  setTimeout(function () {
-    if (!document.hidden && once('stay')) whisper("you've been here a while. flattered, honestly.");
-  }, 180000);
 
   /* Wink from the footer */
   var footer = document.querySelector('.footer-text');
