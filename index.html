@@ -54,22 +54,22 @@
     .topnav a:hover { text-decoration: underline; text-decoration-color: rgba(10,10,10,0.45); text-decoration-thickness: 1px; text-underline-offset: .15em; }
     .topnav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
 
-    /* paragraphs: roomy lines, balanced, with the occasional floral initial */
+    /* paragraphs: tight Alembic leading, balanced, with floral initials */
     .al {
-      margin: 0 0 2.4rem; line-height: 1.45; text-wrap: balance; hyphens: manual;
+      margin: 0 0 3rem; line-height: 1; text-wrap: balance; hyphens: manual;
       font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
     }
     .al .initial {
       float: left; width: auto;
       /* three lines: top on the cap height of line 1, bottom on the baseline of line 3
-         (EB Garamond in a 1.45 line: baseline ~1.08em down, caps ~0.65em tall) */
-      height: 3.55em; margin: 0.43em 0.27em 0 0;
+         (same geometry Alembic uses: 0.2em down, (lines-1) x 1lh + 0.65em tall) */
+      height: 2.65em; margin: 0.2em 0.27em 0 0;
     }
     .al .run { text-transform: uppercase; letter-spacing: 0.02em; }
     a { color: inherit; text-decoration: underline; text-decoration-color: rgba(10,10,10,0.3); text-decoration-thickness: 1px; text-underline-offset: .15em; }
     a:hover { text-decoration-color: currentColor; }
 
-    .sign { margin: -1.2rem 0 3rem; text-align: right; }
+    .sign { margin: 0 0 3rem; line-height: 1; text-align: right; }
 
     /* contact lists and links: flush left, one per line */
     ul { list-style: none; margin: 0 0 1.6rem; padding: 0; }
