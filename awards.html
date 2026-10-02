@@ -5,12 +5,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Awards | Akshat Bhaskar</title>
-<meta content="Honours and distinctions of Akshat Bhaskar, 2022 to 2026: felicitated by the President of India, the Lodha Genius Programme, MIT LaunchX, HPAIR, Oxford GPI, and more." name="description"/>
+<meta content="Awards and honours of Akshat Bhaskar, by category." name="description"/>
 <meta content="Akshat Bhaskar" name="author"/>
 <link href="https://akshatb.com/awards" rel="canonical"/>
 <meta content="website" property="og:type"/>
-<meta content="Awards | Akshat Bhaskar" property="og:title"/>
-<meta content="Honours and distinctions of Akshat Bhaskar, 2022 to 2026: felicitated by the President of India, the Lodha Genius Programme, MIT LaunchX, HPAIR, Oxford GPI, and more." property="og:description"/>
+<meta content="Awards" property="og:title"/>
+<meta content="Awards and honours of Akshat Bhaskar, by category." property="og:description"/>
 <meta content="https://akshatb.com/awards" property="og:url"/>
 <meta content="https://akshatb.com/images/og_awards.jpg" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -21,119 +21,57 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <style>
-    :root {
-      --bg: #000000;
-      --ink: #ffffff;
-      --body: #dddddd;
-      --brown: #d0a878;
-      --border: #2a2a2a;
-    }
-    @view-transition { navigation: auto; }
-
+    :root { --ink: #ffffff; --bg: #000000; --muted: #b3b3b3; }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
+      margin: 0; background: var(--bg); color: var(--ink);
       font-family: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-      font-size: 14px;
-      line-height: 1.62;
-      -webkit-font-smoothing: antialiased;
+      font-size: 15px; line-height: 1.62; -webkit-font-smoothing: antialiased;
     }
-    .page { max-width: 520px; margin: 0 auto; padding: 2.6rem 1.5rem 6rem; }
-
+    .wrap { max-width: 620px; margin: 0 auto; padding: 3.2rem 1.4rem 6rem; }
     a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
-    a:hover { color: var(--brown); }
+    a:visited { color: var(--ink); }
+    a:hover { text-decoration-thickness: 2px; }
+    nav { margin-bottom: 2.6rem; }
+    nav a { margin-right: 1.4rem; }
+    h1 { font-size: 1em; font-weight: normal; margin: 0 0 0.4rem; }
+    .sub { color: var(--muted); font-style: italic; margin: 0 0 2.2rem; max-width: 46ch; }
+    .u-list a { display: block; margin: 0 0 1.5rem; line-height: 1.5; }
+    .u-list .m { color: var(--muted); }
+    .u-list a.hi { color: #e7c14e; }
+    .u-list a.hi .m { color: #cdb35c; }
+    .u-list a.hi .badge { font-style: italic; font-size: 0.82em; color: #e7c14e; }
 
-    .back {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #111111; border: 1px solid var(--border); color: var(--brown);
-      box-shadow: 0 8px 22px -12px rgba(60,40,25,0.45);
-      text-decoration: none; margin: 0 0 1.8rem;
-      transition: transform 0.18s ease, color 0.18s ease;
-    }
-    .back:hover { transform: translateX(-2px); color: var(--ink); }
-
-    .body p { font-size: 0.95rem; line-height: 1.75; color: var(--body); margin: 0 0 1.2rem; }
-
-    .frame {
-      background: #111111;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      box-shadow: 0 22px 50px -30px rgba(60,40,25,0.4), 0 5px 14px -10px rgba(0,0,0,0.12);
-      max-width: 420px;
-      margin: 1.4rem 0 0.7rem;
-    }
-    .frame.tall { max-width: 300px; }
-    .frame img { width: 100%; height: auto; display: block; border-radius: 3px; }
-    .cap { max-width: 420px; margin: 0 0 2rem; font-style: italic; color: var(--brown); font-size: 0.8rem; line-height: 1.5; }
-
-    /* the pop-in animation when arriving from the homepage */
-    ::view-transition-old(root) { animation: vtOut 0.28s ease both; }
-    ::view-transition-new(root) { animation: vtIn 0.42s cubic-bezier(0.2,0.7,0.2,1) both; }
-    @keyframes vtOut { to { opacity: 0; transform: scale(1.01); } }
-    @keyframes vtIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) {
-      ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
-    }
-
-    @media (max-width: 560px) { .page { padding: 2rem 1.2rem 5rem; } body { font-size: 15px; } .frame, .cap { max-width: 100%; } .frame.tall { max-width: 300px; } }
-  </style>
+    @media (min-width: 1000px) { body { font-size: 16px; } }
+    @media (max-width: 640px) { body { font-size: 16.5px; } .wrap { padding: 2.6rem 1.3rem 5rem; } }
+    /* awards: plain lists, a "-" before each, same size as the writing pages */
+  ul.aw { list-style: none; margin: 0; padding: 0; }
+  ul.aw li { position: relative; padding: 0 0 0 0.85em !important; margin: 0 0 0.55rem !important;
+    font-size: 1.1rem !important; line-height: 1.05 !important; }
+  ul.aw li::before { content: "-"; position: absolute; left: 0; top: 0; }
+  ul.aw li { text-wrap: pretty !important; }
+  .w-sec { margin: 0 0 2.4rem; }
+</style>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bubbles.css" rel="stylesheet"/>
 <style>
-  /* ── the honours roll ── */
-  :root { --rubric: #7e1b16; }
-  .regal { text-align: center; }
-  .eyebrow { font-variant-caps: all-small-caps; letter-spacing: 0.14em; font-size: 1.05rem !important; margin: 0 0 0.9rem !important; }
-  h1.regal-title { display: flex; justify-content: center; align-items: flex-end; gap: 0.08em;
-    font-size: 2.6rem !important; line-height: 1 !important; margin: 0 0 1rem !important; letter-spacing: 0.04em !important; }
-  h1.regal-title img { height: 1.45em; width: auto; display: block; border-radius: 0 !important; }
-  h1.regal-title span { padding-bottom: 0.05em; }
-  .tally { font-style: italic; margin: 0 0 1.6rem !important; }
-  .fleuron { display: flex; align-items: center; gap: 0.9rem; margin: 2.4rem 0; color: var(--rubric) !important; }
-  .fleuron::before, .fleuron::after { content: ""; flex: 1; border-top: 1px solid rgba(10,10,10,0.28); }
-  .fleuron span { font-size: 1.15rem; line-height: 1; color: var(--rubric) !important; }
-
-  /* the citation */
-  .citation { position: relative; margin: 2.4rem 0 0.6rem; padding: 2.4rem 2rem 2.2rem; text-align: center;
-    box-shadow: inset 0 0 0 1px rgba(10,10,10,0.55), inset 0 0 0 5px #f8f8f8, inset 0 0 0 6px rgba(10,10,10,0.3); }
-  .citation .order { font-variant-caps: all-small-caps; letter-spacing: 0.16em; color: var(--rubric) !important; margin: 0 0 0.9rem !important; }
-  .citation h2 { font-size: 1.75rem !important; font-style: normal !important; margin: 0 0 0.9rem !important; }
-  .citation h2 a { text-decoration: none !important; }
-  .citation .for { font-style: italic; margin: 0 0 1.4rem !important; }
-  .citation .frame { width: min(22rem, 100vw - 9rem) !important; margin: 0 0 1.2rem 50% !important; }
-  .citation .place { font-variant-caps: all-small-caps; letter-spacing: 0.1em; margin: 0 0 0.9rem !important; }
-  .citation .more { margin: 0 !important; font-style: italic; }
-
-  /* sections */
-  .roll-head { text-align: center; margin: 3.4rem 0 1.8rem; }
-  .roll-head .num { display: block; font-size: 1.05rem; letter-spacing: 0.2em; color: var(--rubric) !important; margin: 0 0 0.35rem; }
-  .roll-head h2 { font-variant-caps: all-small-caps; letter-spacing: 0.12em; font-style: normal !important; font-size: 1.45rem !important; margin: 0 !important; }
-  .roll-head .note { display: block; font-style: italic; font-size: 1.05rem; margin-top: 0.35rem; }
-
-  /* one honour: title ……… year, then the citation, then the issuer */
-  .honour { margin: 0 0 1.35rem; }
-  .honour .line { display: flex; align-items: baseline; gap: 0.5rem; }
-  .honour .t { font-size: 1.25rem; line-height: 1.1; }
-  .honour .lead { flex: 1; min-width: 1.5rem; border-bottom: 1px dotted rgba(10,10,10,0.45); transform: translateY(-0.28em); }
-  .honour .y { font-size: 1.15rem; white-space: nowrap; font-variant-numeric: oldstyle-nums; }
-  .honour .c { margin: 0.25rem 0 0.15rem !important; font-style: italic; font-size: 1.1rem !important; line-height: 1.08 !important; }
-  .honour .i { margin: 0 !important; font-variant-caps: all-small-caps; letter-spacing: 0.07em; font-size: 1.05rem !important; line-height: 1.1 !important; opacity: 0.85; }
-  .honour.star .t::before { content: "\2726\00a0"; color: var(--rubric); font-size: 0.8em; vertical-align: 0.12em; }
-  .colophon { text-align: center; font-style: italic; margin: 3rem 0 0 !important; }
-  @media (max-width: 640px) {
-    h1.regal-title { font-size: 2.1rem !important; }
-    .citation { padding: 2rem 1.1rem 1.8rem; }
-    .citation .frame { width: calc(100vw - 7rem) !important; }
+  /* writing pages: the home page's type (1.25rem, tight Alembic leading), a "-" before each entry */
+  .u-list a, .u-list .u-item {
+    position: relative; display: block; padding: 0 0 0 0.85em !important; margin: 0 0 0.8rem !important;
+    font-size: 1.1rem !important; line-height: 1.05 !important; font-weight: 400 !important;
   }
+  .u-list a::before, .u-list .u-item::before { content: "-"; position: absolute; left: 0; top: 0; }
+  .u-list a .m, .u-list .u-item .m { font-style: italic; font-weight: 400 !important; }
+  .w-head { font-size: 1.25rem !important; line-height: 1 !important; font-style: italic !important; margin: 0 0 1.2rem !important; }
+  .w-sec { margin: 0 0 3rem; }
+  .w-more { display: inline-block; margin-top: 0.2rem; font-size: 1.1rem; font-style: italic; }
+  .soon { font-style: italic; }
 </style>
+
 </head>
 <body>
-<div class="wrap">
+<div class="wrap bare">
 <nav>
 <a href="index.html">home</a>
 <a href="research.html">research</a>
@@ -141,218 +79,156 @@
 <a href="writing.html">writing</a>
 <a href="photography.html">photography</a>
 </nav>
-<div class="regal">
-<p class="eyebrow">Honours &amp; Distinctions</p>
-<h1 class="regal-title"><img src="images/initials/A.svg" alt="A" width="640" height="640"/><span>WARDS</span></h1>
-<p class="tally">thirty-eight honours &middot; 2022&ndash;2026 &middot; one felicitation by the Head of State</p>
+<div class="w-sec">
+<h2 class="w-head">honours</h2>
+<ul class="aw">
+<li><a href="president.html">Felicitated by the President of India | SOAR initiative, Rashtrapati Bhavan, January 2026</a></li>
+</ul>
 </div>
-
-<div class="citation">
-<p class="order">By order of the President of India</p>
-<h2><a href="president.html">Felicitated by President Droupadi Murmu</a></h2>
-<p class="for">cited as one of seventeen students nationwide for work on Artificial Intelligence and financial literacy under the Government of India's SOAR initiative</p>
-<div class="frame"><a href="president.html"><img alt="Felicitation at Rashtrapati Bhavan" decoding="async" src="images/hero_president.webp" width="1600" height="1067"/></a></div>
-<p class="place">Rashtrapati Bhavan &middot; New Delhi &middot; January 2026</p>
-<p class="more"><a href="president.html">the full account</a></p>
+<div class="w-sec">
+<h2 class="w-head">research</h2>
+<ul class="aw">
+<li>Research Presenter | National Youth Conference on STEM 2025</li>
+<li><a href="aipolicy.html">Published AI Policy Paper in the International Journal for Research in Applied Science &amp; Engineering Technology</a></li>
+<li>AI Policy Research Paper Recommended by 7 Faculty Members and Professors</li>
+<li>Research Interest Score of 3.5 on ResearchGate</li>
+<li>600+ Reads by Academics</li>
+</ul>
 </div>
-
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
-
-<div class="roll-head"><span class="num">I</span><h2>National Honours</h2><span class="note">from the Government of India and national bodies</span></div>
-<div class="honour star">
-<div class="line"><span class="t">MVPP Scholar, Rank 44 of 67,000+</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for placing in the top 0.06% of the Delhi Government Science Talent Examination, with scholarship</p>
-<p class="i">Directorate of Education, Delhi</p>
+<div class="w-sec">
+<h2 class="w-head">mathematics</h2>
+<ul class="aw">
+<li>Lodha Genius Programme (3% Acceptance Rate) | Pure Mathematics</li>
+<li>Indian Olympiad Qualifier in Mathematics (IOQM) 2025 | National Merit List</li>
+<li>Indian Olympiad Qualifier in Mathematics (IOQM) 2025 | Regional Merit List</li>
+<li>Qualifier | Regional Mathematical Olympiad (RMO)</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">IOQM 2025, National Merit List</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for placing on the national merit list of the Indian Olympiad Qualifier in Mathematics</p>
-<p class="i">Mathematics Teachers' Association (India)</p>
+<div class="w-sec">
+<h2 class="w-head">summer programmes</h2>
+<ul class="aw">
+<li>Lodha Genius Programme (3% Acceptance Rate) | Pure Mathematics | Fully Funded (Merit) by the Lodha Foundation</li>
+<li>The Knowledge Society (TKS) (10% Acceptance Rate) | Full Ride Merit Scholarship</li>
+<li>LaunchX MIT Entrepreneurship Program Acceptance</li>
+<li>Northeastern University Accelerate Pre-College Summer Program with US$500 Merit Scholarship</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">IOQM 2025, Regional Merit List</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for placing on the regional merit list of the Indian Olympiad Qualifier in Mathematics</p>
-<p class="i">Mathematics Teachers' Association (India)</p>
+<div class="w-sec">
+<h2 class="w-head">conferences</h2>
+<ul class="aw">
+<li>Y Combinator Startup School San Francisco ($25,000 compute)</li>
+<li>Y Combinator Startup School India ($25,000 compute)</li>
+<li><a href="docs/Bhaskar_Akshat_ACONF_2026_Acceptance_Letter.pdf" rel="noopener" target="_blank">Harvard College Project for Asian and International Relations (HPAIR) Asia Conference 2026 (ACONF) | India Delegate | Hanoi, Vietnam</a></li>
+<li>Harvard College Project for Asian and International Relations (HPAIR) Virtual Conference 2026 (VCONF) | India Delegate</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">National Space Innovation Challenge</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for successful completion of the national challenge led by the Atal Innovation Mission (NITI Aayog) in collaboration with ISRO</p>
-<p class="i">Atal Innovation Mission · NITI Aayog · ISRO</p>
+<div class="w-sec">
+<h2 class="w-head">entrepreneurship</h2>
+<ul class="aw">
+<li>Winner | Masters' Union National StartUp Weekend</li>
+<li>National Finalist, Eureka! 2023 | IIT Bombay</li>
+<li>National Finalist | IIT Bombay Action Plan 2023</li>
+<li>Pitched to Jared Friedman (Managing Director at YC)</li>
+<li>Captain | Wharton Global Youth Investment Competition 2025</li>
+</ul>
 </div>
-<div class="roll-head"><span class="num">II</span><h2>Selective Programmes</h2><span class="note">chosen from many</span></div>
-<div class="honour star">
-<div class="line"><span class="t">Lodha Genius Programme, 3% acceptance rate</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for a full-ride selection (travel, stay, and tuition all included) into the programme at Ashoka University, specialising in Pure Mathematics</p>
-<p class="i">Lodha Foundation &amp; Ashoka University</p>
+<div class="w-sec">
+<h2 class="w-head">essay competitions</h2>
+<ul class="aw">
+<li>Top 1% Internationally | Pivotal International Essay Competition</li>
+<li>Finalist | Northeastern International Essay Competition</li>
+<li>High Commendation | John Locke Institute Global Essay Prize</li>
+</ul>
 </div>
-<div class="honour star">
-<div class="line"><span class="t">LaunchX at MIT</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for admission to the main LaunchX entrepreneurship programme at MIT</p>
-<p class="i">LaunchX · Massachusetts Institute of Technology</p>
+<div class="w-sec">
+<h2 class="w-head">space</h2>
+<ul class="aw">
+<li>Runner Up, Volatus UAV National Challenge | CelesteCon '24</li>
+<li>National Space Innovation Challenge 2023 | Atal Innovation Mission (NITI Aayog) × ISRO</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">HPAIR Asia Conference 2026 (ACONF), Delegate</span><span class="lead" aria-hidden="true"></span><span class="y">2026</span></div>
-<p class="c">for selection as a delegate to the Harvard College Project for Asian and International Relations Asia Conference, held at VinUniversity, Hanoi (<a href="docs/Bhaskar_Akshat_ACONF_2026_Acceptance_Letter.pdf" rel="noopener" target="_blank">acceptance letter</a>)</p>
-<p class="i">Harvard College Project for Asian &amp; International Relations</p>
+<div class="w-sec">
+<h2 class="w-head">quizzing</h2>
+<ul class="aw">
+<li>Honorary President | Quizzing Club of Delhi Public School, R.K. Puram</li>
+<li>Winner, Quizonomics | ComAstitva '24</li>
+<li>Received the First-Position Award from WION News Anchor Molly Gambhir</li>
+<li>1st Prize, ComQuest | Arthashastra &amp; Confest 2025, Delhi Public School, Vasant Kunj</li>
+<li>Overall Rolling Trophy | Comonomics 3.0, Mount Carmel School, Dwarka</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">HPAIR Virtual Conference 2026 (VCONF), Delegate</span><span class="lead" aria-hidden="true"></span><span class="y">2026</span></div>
-<p class="c">for selection as a delegate to the Harvard College Project for Asian and International Relations Virtual Conference</p>
-<p class="i">Harvard College Project for Asian &amp; International Relations</p>
+<div class="w-sec">
+<h2 class="w-head">football</h2>
+<ul class="aw">
+<li>Captain of the Delhi Public School Football Squad, Class of '26</li>
+<li>Full Back in U-19 Football Team</li>
+<li>2 X District Champions</li>
+<li>Winner, Delhi U-17 Football Zonal Championship 2024</li>
+<li>Winner, Delhi U-17 Football Zonal Championship 2023</li>
+<li>Represented District at the Delhi State Championship 2023</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">The Knowledge Society (TKS)</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for admission to the global innovation programme</p>
-<p class="i">The Knowledge Society</p>
+<div class="w-sec">
+<h2 class="w-head">academic honours, Delhi Public School, R.K. Puram</h2>
+<ul class="aw">
+<li>President Student Council, Class of '26</li>
+<li>Mukhyamantri Vigyan Pratibha Pariksha (MVPP) | Rank 44 out of 67,000+ Students</li>
+<li>Principal's Gold Medal for Excellence in Academics (MVPP) 2022–23</li>
+<li>INR 5000 Scholarship | MVPP</li>
+<li>Principal's Blue Blazer for Academic Excellence 2024–25</li>
+<li>Principal's Red Tie for Extra Curricular Excellence 2024–25</li>
+<li>2 X Principal's Red Pin for Extra Curricular Excellence 2024–25</li>
+<li>Principal's Scholar Badge for Academic Excellence 2023–24</li>
+<li>Principal's Scholar Badge for Academic Excellence 2022–23</li>
+<li>Student Council, Class 11th, 2024–25</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">Accelerate Pre-College Program, Northeastern University</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for admission to the main programme, with a merit scholarship of USD 500</p>
-<p class="i">Northeastern University</p>
+<div class="w-sec">
+<h2 class="w-head">social media &amp; podcasting</h2>
+<ul class="aw">
+<li>Spotify for Creators 2025 Awards for Decoded: Marathon Show Award, Instant Hit Show Award, Most Shared Show Award</li>
+<li>350+ Listener Hours on Spotify</li>
+<li>10,000+ Followers Across Platforms</li>
+</ul>
 </div>
-<div class="honour">
-<div class="line"><span class="t">Featured by the Lodha Group &amp; Lodha Foundation</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">profiled on selection to the Lodha Genius Programme, before a combined LinkedIn audience of over 500,000</p>
-<p class="i">Lodha Group &amp; Lodha Foundation</p>
+<div class="w-sec">
+<h2 class="w-head">other</h2>
+<ul class="aw">
+<li>Recognised by Prof. ShyamSunder Jyani | Familial Forestry</li>
+<li>Top 200 | TOI Young Rangers Contest 2023</li>
+</ul>
 </div>
-<div class="roll-head"><span class="num">III</span><h2>Research & Letters</h2><span class="note">papers, conferences, and essays</span></div>
-<div class="honour">
-<div class="line"><span class="t">Research publication, IJRASET</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for "The Two Faces of Progress", peer-reviewed, published internationally, and presented at a national STEM research conference · DOI: 10.22214/ijraset.2025.73146</p>
-<p class="i">International Journal for Research in Applied Science &amp; Engineering Technology</p>
 </div>
-<div class="honour">
-<div class="line"><span class="t">National Youth Conference on STEM, research presented</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for presenting a research paper at the conference on 8 November 2025, as the only high schooler in the room</p>
-<p class="i">National Youth Conference on STEM</p>
-</div>
-<div class="honour star">
-<div class="line"><span class="t">Top 1%, Pivotal International Essay Competition</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for an essay on AI policy and existential risk</p>
-<p class="i">Global Priorities Institute, Oxford University</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Finalist, Northeastern University International Essay Competition</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for an essay on the economic and social effects of artificial intelligence on the global economy</p>
-<p class="i">Northeastern University</p>
-</div>
-<div class="roll-head"><span class="num">IV</span><h2>Competitions</h2><span class="note">won, placed, and captained</span></div>
-<div class="honour star">
-<div class="line"><span class="t">National Winner, Masters' Union Startup Weekend</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for "CycleCare", placed first nationwide before a jury of CXOs and industry experts</p>
-<p class="i">Masters' Union</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Captain, Wharton Global Youth Investment Competition</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for captaining a team in the international investment competition run by the Wharton School</p>
-<p class="i">The Wharton School, University of Pennsylvania</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">IIT Bombay Action Plan '23, Nationals</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for "FinKid", a national finalist at the E-Cell, IIT Bombay competition</p>
-<p class="i">E-Cell, IIT Bombay</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">IIT Bombay Eureka!, Nationals</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for "FinKid", advancing to the national round of IIT Bombay’s flagship business-plan competition</p>
-<p class="i">E-Cell, IIT Bombay</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Winner, Quizzonomics, ComAstitva</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for the national economics quiz championship, contested by 30+ schools; presented by WION anchor Molly Gambhir</p>
-<p class="i">ComAstitva</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">1st Prize, ComQuest, Arthashastra &amp; Confest</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for placing first in the interschool commerce and economics event at DPS Vasant Kunj, contested across Delhi NCR</p>
-<p class="i">Delhi Public School, Vasant Kunj</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Overall Rolling Trophy, Comonomics 3.0</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for the strongest cumulative performance at the interschool commerce and economics festival hosted by Mount Carmel School, Dwarka, representing DPS R.K. Puram</p>
-<p class="i">Mount Carmel School, Dwarka</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Runner-Up, Volatus UAV Challenge, CelesteCon</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for the design of scalable drone delivery solutions</p>
-<p class="i">Aeross, the Aerospace Society of DPS R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Top 200, TOI Young Rangers Contest</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for a winning entry with national recognition and a cash award of INR 1,000</p>
-<p class="i">The Times of India</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">IIT Bombay Eureka! Juniors, Skill Development Programme</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for completing the high-school entrepreneurship programme of E-Cell, IIT Bombay</p>
-<p class="i">E-Cell, IIT Bombay</p>
-</div>
-<div class="roll-head"><span class="num">V</span><h2>Service</h2></div>
-<div class="honour">
-<div class="line"><span class="t">Recognised by Prof. ShyamSunder Jyani, Familial Forestry</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for volunteer work with Familial Forestry, the community reforestation movement recognised by the UN Land for Life Award; now working to open a chapter at school</p>
-<p class="i">Prof. ShyamSunder Jyani · Familial Forestry</p>
-</div>
-<div class="roll-head"><span class="num">VI</span><h2>School Honours</h2><span class="note">Delhi Public School, R.K. Puram</span></div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Gold Medal for Academic Excellence</span><span class="lead" aria-hidden="true"></span><span class="y">2023</span></div>
-<p class="c">for outstanding academic performance</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Blue Blazer for Academic Excellence</span><span class="lead" aria-hidden="true"></span><span class="y">2024–25</span></div>
-<p class="c">for academic excellence in the 2024–25 session</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Scholar Badge for Academic Excellence</span><span class="lead" aria-hidden="true"></span><span class="y">2022–25</span></div>
-<p class="c">for academic excellence across three consecutive years</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Red Tie for National Achievements</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for national achievements in extra-curricular activities</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Red Pin for National Achievements (quizzing)</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for national achievements in quizzing</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Principal's Red Pin for National Achievements (football)</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for national achievements in football</p>
-<p class="i">Delhi Public School, R.K. Puram</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">U-17 Football Zonals, 1st Position (2024–25)</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for a district zonal championship in the U-17 category</p>
-<p class="i">Directorate of Education, Delhi</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">U-17 Football Zonals, 1st Position (2023–24)</span><span class="lead" aria-hidden="true"></span><span class="y">2024</span></div>
-<p class="c">for a district zonal championship in the U-17 category</p>
-<p class="i">Directorate of Education, Delhi</p>
-</div>
-<div class="roll-head"><span class="num">VII</span><h2>Also on the Record</h2><span class="note">unofficial, but true</span></div>
-<div class="honour">
-<div class="line"><span class="t">7,000+ followers on LinkedIn</span><span class="lead" aria-hidden="true"></span><span class="y">2026</span></div>
-<p class="c">for an audience that keeps turning up for economics, policy, and the occasional proof</p>
-<p class="i">LinkedIn</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">Spotify for Creators 2025 Awards, Decoded</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">named a 2025 Marathon Show, a 2025 Instant Hit Show, and a 2025 Most Shared Show</p>
-<p class="i">Spotify for Creators</p>
-</div>
-<div class="honour">
-<div class="line"><span class="t">300+ hours of Decoded, listened on Spotify</span><span class="lead" aria-hidden="true"></span><span class="y">2025</span></div>
-<p class="c">for time spent in listeners' ears, one conversation at a time; a distinction of dubious academic value, but a distinction nonetheless</p>
-<p class="i">Spotify · Decoded</p>
-</div>
-
-<div class="fleuron" aria-hidden="true"><span>&#10086;</span></div>
-<p class="colophon">thank you to every teacher, mentor, and friend behind each line on this page.</p>
-</div>
+<script>
+  /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
+  (function () {
+    var realTitle = document.title, titleTemp = false, awaySpin = null, idleTimer = null;
+    function setTitle(m) { document.title = m; titleTemp = true; }
+    function restoreTitle() { if (titleTemp) { document.title = realTitle; titleTemp = false; } }
+    var awayMsgs = ['come back :(', 'hello? :(', "i'll wait...", 'still here :)'];
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearTimeout(idleTimer); clearInterval(awaySpin);
+        var i = 0; setTitle(awayMsgs[0]);
+        awaySpin = setInterval(function () { i = (i + 1) % awayMsgs.length; document.title = awayMsgs[i]; }, 2400);
+      } else {
+        clearInterval(awaySpin); awaySpin = null;
+        document.title = 'yay, you came back :)'; titleTemp = true;
+        setTimeout(restoreTitle, 1700); scheduleIdle();
+      }
+    });
+    function scheduleIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { if (!document.hidden) setTitle('still there? :)'); }, 60000);
+    }
+    ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        if (titleTemp && !document.hidden && document.title === 'still there? :)') restoreTitle();
+        scheduleIdle();
+      }, { passive: true });
+    });
+    scheduleIdle();
+  })();
+  </script>
 </body>
 </html>
