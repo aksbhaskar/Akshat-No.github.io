@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akshat Bhaskar</title>
-  <meta name="description" content="Akshat Bhaskar — building across financial literacy, research, and mathematics. Founder of Edunomix India, host of the Decoded Podcast, and a gap-year researcher." />
+  <meta name="description" content="Akshat Bhaskar studies how information, incentives, and technology shape economic decisions. Researcher, nonprofit chapter founder, podcaster, and mathematics apprentice." />
   <meta name="author" content="Akshat Bhaskar" />
   <link rel="canonical" href="https://akshatb.com/" />
   <meta property="og:type" content="website" />
@@ -23,41 +23,28 @@
   <link rel="preload" as="image" href="images/alexander.webp" media="(orientation: landscape)">
   <link rel="preload" as="image" href="images/alexander-vertical.webp" media="(orientation: portrait)">
   <style>
-    /* Alembic "serif white" theme, set as live text:
-       EB Garamond 400, #0a0a0a on #f8f8f8, 1.25rem, line-height 1,
-       0.8lh paragraph spacing, balanced lines, no hyphenation,
-       three-line ornamental drop caps with the rest of the first word run in capitals */
-    html { -webkit-text-size-adjust: 100%; }
+    /* Alembic "serif white" type on a card over the Alexander painting */
+    html { -webkit-text-size-adjust: 100%; background: #2a2620; }
     body {
       margin: 0; min-height: 100vh; color: #0a0a0a;
       font: 1.25rem/1.3 "EB Garamond", Garamond, Georgia, serif;
       font-kerning: normal; font-variant-ligatures: common-ligatures;
-      background: #d2f1fd;
     }
-    :root { --ink: #0a0a0a; --muted: #0a0a0a; }
-    /* The page is a "sheet" carrying the Alexander painting (card + the space below it).
-       It scrolls up like a card and reveals the desk footer fixed underneath. */
-    .sheet {
-      position: relative; z-index: 2;
-      padding: 1px 0;   /* keeps the card's margins inside the sheet */
-      margin-bottom: 100vh; margin-bottom: 100svh;
-      clip-path: inset(0 0 0 0 round 0 0 34px 34px);   /* also clips the fixed painting below */
-    }
-    .sheet-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    /* the painting sits on a fixed layer, so scrolling never repaints it */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
       background: #2a2620 url('images/alexander.webp') center center / cover no-repeat;
     }
-    @media (orientation: portrait) { .sheet-bg { background-image: url('images/alexander-vertical.webp'); } }
+    @media (orientation: portrait) { body::before { background-image: url('images/alexander-vertical.webp'); } }
 
     .card {
-      position: relative; z-index: 1;
       width: min(64rem, 100% - 3rem); margin: 4.5rem auto;
       background: #f8f8f8; border-radius: 0.5rem;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55);
     }
     main { width: min(31rem, 100% - 3rem); margin: 0 auto; padding: 6rem 0; }
 
-    /* top nav, same as the other pages: one centred line, dot separators, fine rule */
+    /* top nav: one centred line, dot separators, fine rule */
     .topnav {
       display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
       gap: 0.2rem 0; margin: 0 0 3.2rem; padding: 0 0 1.1rem;
@@ -66,257 +53,50 @@
     .topnav a { font-size: 1.1rem; white-space: nowrap; color: inherit; text-decoration: none; }
     .topnav a:hover { text-decoration: underline; text-decoration-color: rgba(10,10,10,0.45); text-decoration-thickness: 1px; text-underline-offset: .15em; }
     .topnav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
+
+    /* paragraphs: roomy lines, balanced, with the occasional floral initial */
     .al {
-      margin: 0 0 3rem; line-height: 1; text-wrap: balance; hyphens: manual;
+      margin: 0 0 2.4rem; line-height: 1.45; text-wrap: balance; hyphens: manual;
       font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
     }
     .al .initial {
       float: left; width: auto;
-      /* top meets the cap height of line 1, bottom sits on the baseline of line 3
-         (same geometry Alembic uses: 0.2em down, (lines-1) x 1lh + 0.65em tall) */
-      height: 2.65em; margin: 0.2em 0.27em 0 0;
+      /* three lines: top on the cap height of line 1, bottom on the baseline of line 3
+         (EB Garamond in a 1.45 line: baseline ~1.08em down, caps ~0.65em tall) */
+      height: 3.55em; margin: 0.43em 0.27em 0 0;
     }
     .al .run { text-transform: uppercase; letter-spacing: 0.02em; }
-    .al a { color: inherit; text-decoration: underline; text-decoration-color: rgba(10,10,10,0.3); text-decoration-thickness: 1px; text-underline-offset: .15em; }
-    .al a:hover { text-decoration-color: currentColor; }
+    a { color: inherit; text-decoration: underline; text-decoration-color: rgba(10,10,10,0.3); text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    a:hover { text-decoration-color: currentColor; }
 
-    .sign { margin: 0 0 0; line-height: 1; text-align: right; }
-    ul { list-style: none; margin: 3rem 0 0; padding: 0; }
-    ul a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .15em; }
-    ul a:hover { text-decoration: none; }
+    .sign { margin: -1.2rem 0 3rem; text-align: right; }
+
+    /* contact lists and links: flush left, one per line */
+    ul { list-style: none; margin: 0 0 1.6rem; padding: 0; }
+    ul.links { margin-top: 3rem; }
 
     @media (max-width: 640px) {
       .card { width: calc(100% - 1.5rem); margin: 0.75rem auto; }
       main { padding: 3.5rem 0; }
     }
-
-    /* ───────── the desk (footer) ───────── */
-    .desk, .desk *, .lt-modal, .lt-modal * { box-sizing: border-box; }
-    /* every piece of type in the footer (and the letter) is the home page's EB Garamond */
-    .desk, .desk *:not(svg):not(svg *), .lt-modal, .lt-modal *:not(svg):not(svg *) {
-      font-family: "EB Garamond", Garamond, Georgia, serif;
-    }
-    .desk {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 1;
-      height: 100vh; height: 100svh; overflow: hidden;
-      color: #0a0a0a;
-      /* a colour wash in the Alexander painting's palette, laid out like the painting:
-         slate grey-green sky, warm ochre and gold in the middle, the crimson cloak
-         on the right, and near-black shadow along the bottom */
-      background:
-        radial-gradient(60% 45% at 22% 8%, #61665f 0%, rgba(97,102,95,0) 70%),
-        radial-gradient(45% 40% at 78% 6%, #424a4a 0%, rgba(66,74,74,0) 70%),
-        radial-gradient(55% 45% at 45% 48%, #866c4e 0%, rgba(134,108,78,0) 68%),
-        radial-gradient(40% 38% at 18% 45%, #776147 0%, rgba(119,97,71,0) 70%),
-        radial-gradient(38% 34% at 58% 40%, #c69248 0%, rgba(198,146,72,0) 60%),
-        radial-gradient(42% 45% at 88% 55%, #6e2a22 0%, rgba(110,42,34,0) 70%),
-        radial-gradient(70% 40% at 50% 100%, #1e1d21 0%, rgba(30,29,33,0) 75%),
-        linear-gradient(180deg, #4d5450 0%, #6d6857 30%, #664d3d 60%, #322a25 85%, #221d1e 100%);
-    }
-    .item {
-      position: absolute; left: var(--x); top: var(--y);
-      transform: rotate(var(--r, 0deg)); transform-origin: 50% 50%;
-      touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
-      cursor: grab; transition: transform .25s ease, filter .25s ease;
-      filter: drop-shadow(0 14px 18px rgba(0,0,0,0.45));
-    }
-    .item:hover { filter: drop-shadow(0 20px 24px rgba(0,0,0,0.5)); }
-    .item.dragging { cursor: grabbing; transform: rotate(var(--r, 0deg)) scale(1.04); transition: filter .25s ease; }
-    .item img { display: block; -webkit-user-drag: none; pointer-events: none; }
-    @media (max-width: 700px) { .item { left: var(--mx); top: var(--my); } }
-
-    /* the song: Spotify's own embed, on a small grab handle so it can be dragged */
-    .song { --x: 5%; --y: 9%; --mx: 5%; --my: 3%; --r: 0deg; width: 320px; }
-    .song .grip {
-      display: block; width: 46px; height: 5px; margin: 0 auto 7px; border-radius: 3px;
-      background: rgba(248,248,248,0.85); box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    }
-    .song .grip-area { padding: 6px 0 2px; }
-    .song iframe { display: block; border: 0; }
-    /* while dragging, the iframe must not swallow the pointer */
-    .song.dragging iframe { pointer-events: none; }
-
-    /* camera */
-    .camera { --x: 36%; --y: 7%; --mx: 54%; --my: 75%; --r: 4deg; }
-    .camera img { width: 250px; height: auto; }
-    .camera:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
-    .flash { position: fixed; inset: 0; background: #fff; z-index: 10001; pointer-events: none; opacity: 0; }
-    .flash.go { animation: flash .45s ease-out forwards; }
-    @keyframes flash { 0% { opacity: 0; } 15% { opacity: 0.95; } 100% { opacity: 0; } }
-
-    /* macbook lid with stickers */
-    .mac { --x: 63%; --y: 10%; --mx: 6%; --my: 52%; --r: -2deg; }
-    .lid {
-      position: relative; width: 330px; height: 218px; border-radius: 16px;
-      background:
-        radial-gradient(120% 90% at 30% 10%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%),
-        linear-gradient(160deg, #e4e5e7 0%, #c9cbce 55%, #b4b7bb 100%);
-      box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.6), inset 0 -3px 6px rgba(0,0,0,0.12);
-    }
-    .lid .apple { position: absolute; left: 50%; top: 50%; width: 34px; height: 40px; transform: translate(-50%, -52%); fill: #9a9da2; filter: drop-shadow(0 1px 0 rgba(255,255,255,0.7)); }
-    .sticker { position: absolute; filter: drop-shadow(0 0 0 #fff) drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff) drop-shadow(0 2px 2px rgba(0,0,0,0.25)); }
-    .sticker img { width: 100%; height: auto; }
-    .s-spark   { left: 22px;  top: 20px;  width: 44px; transform: rotate(-8deg); }
-    .s-linkedin { left: 26px;  top: 128px; width: 42px; transform: rotate(6deg); }
-    .s-notion   { left: 150px; top: 150px; width: 44px; transform: rotate(-4deg); }
-    .s-substack { left: 250px; top: 36px;  width: 44px; transform: rotate(10deg); }
-    .s-spotify  { left: 212px; top: 160px; width: 96px; transform: rotate(-6deg); }
-
-    /* the letter */
-    .letter { --x: 36%; --y: 52%; --mx: 4%; --my: 77%; --r: -7deg; border: 0; padding: 0; background: none; }
-    .letter .float { animation: bob 4.5s ease-in-out infinite; }
-    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-9px) rotate(1.2deg); } }
-    .letter img { width: 280px; height: auto; border-radius: 3px; }
-    .letter:focus-visible { outline: 2px dashed #f3e9da; outline-offset: 6px; }
-
-
-    @media (min-width: 701px) and (max-width: 1050px) {
-      .song { --x: 4%; --y: 7%; }   .mac { --x: 54%; --y: 9%; }
-      .camera { --x: 8%; --y: 42%; }  .letter { --x: 50%; --y: 50%; }
-      .lid { width: 290px; height: 192px; }
-      .s-substack { left: 222px; } .s-spotify { left: 186px; top: 138px; width: 86px; } .s-notion { left: 128px; top: 132px; } .s-linkedin { top: 112px; }
-    }
-    @media (max-width: 700px) {
-      .song { width: min(300px, 88vw); }
-      .camera img { width: 160px; }
-      .lid { width: 236px; height: 156px; border-radius: 13px; }
-      .lid .apple { width: 26px; height: 30px; }
-      .s-spark { left: 14px; top: 14px; width: 34px; }
-      .s-linkedin { left: 18px; top: 92px; width: 32px; }
-      .s-notion { left: 104px; top: 106px; width: 33px; }
-      .s-substack { left: 180px; top: 24px; width: 33px; }
-      .s-spotify { left: 150px; top: 114px; width: 72px; }
-      .letter img { width: 176px; }
-    }
-
-    /* ───────── the letter, opened ───────── */
-    .lt-modal { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 1rem; }
-    .lt-modal[hidden] { display: none; }
-    .lt-backdrop { position: absolute; inset: 0; background: rgba(12,8,4,0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; transition: opacity .35s ease; }
-    .lt-modal.in .lt-backdrop { opacity: 1; }
-    .lt-stage { position: relative; width: min(520px, 100%); height: min(640px, calc(100svh - 2rem)); perspective: 1400px; }
-
-    .lt-env {
-      position: absolute; left: 50%; bottom: 4%; width: min(440px, 92%); aspect-ratio: 16 / 10;
-      transform: translate(-50%, 30px) scale(.7); opacity: 0;
-      transition: transform .5s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease;
-    }
-    .lt-modal.in .lt-env { transform: translate(-50%, 0) scale(1); opacity: 1; }
-    .lt-modal.away .lt-env { transform: translate(-50%, 70%) scale(.95); opacity: 0; transition: transform .6s ease-in, opacity .5s ease-in .1s; }
-    /* the envelope is drawn in layers that all share one box, so the paper can
-       slide out from between the back and the front pocket */
-    .lt-back { z-index: 1; background: #d9c7a3; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
-    .lt-front {
-      z-index: 3; border-radius: 6px;
-      background: linear-gradient(170deg, #f1e4c6, #e6d3ab);
-      clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
-    }
-    .lt-front::after {
-      content: "to: akshat"; position: absolute; left: 0; right: 0; bottom: 14%; text-align: center;
-      font: italic 400 1.25rem 'EB Garamond', Georgia, serif; color: #0a0a0a;
-    }
-    .lt-flapbox { z-index: 4; perspective: 900px; }
-    .lt-modal.opened .lt-flapbox { z-index: 1; transition: transform .5s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease, z-index 0s .27s; }
-    .lt-flap {
-      position: absolute; left: 0; right: 0; top: 0; height: 60%;
-      transform-origin: 50% 0; transition: transform .55s ease;
-      background: linear-gradient(180deg, #e9d8b3, #dcc497);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-    }
-    .lt-modal.opened .lt-flap { transform: rotateX(180deg); }
-    .lt-seal {
-      position: absolute; left: 50%; top: 52%; z-index: 5; width: 42px; height: 42px; margin-left: -21px;
-      border-radius: 50%; background: radial-gradient(circle at 35% 35%, #c2403a, #8e1f1a 70%);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.35), inset 0 0 0 4px rgba(0,0,0,0.12);
-      display: grid; place-items: center; color: #f6d9c9; font: italic 400 1.15rem 'EB Garamond', serif;
-      transition: opacity .25s ease, transform .3s ease;
-    }
-    .lt-modal.opened .lt-seal { opacity: 0; transform: scale(1.4); }
-
-    .lt-paper {
-      position: absolute; left: 50%; bottom: 7%; z-index: 2;
-      width: min(400px, 84%); height: 36%;
-      transform: translate(-50%, 0); opacity: 0; overflow: hidden;
-      /* plain page-white paper inside a double ruled frame, like an old book page */
-      background: #f8f8f8;
-      box-shadow:
-        inset 0 0 0 12px #f8f8f8, inset 0 0 0 13px rgba(10,10,10,0.55),
-        inset 0 0 0 16px #f8f8f8, inset 0 0 0 17px rgba(10,10,10,0.3),
-        0 20px 50px -18px rgba(0,0,0,0.55);
-      border-radius: 3px;
-      transition: transform .6s cubic-bezier(.2,.8,.2,1), height .6s cubic-bezier(.2,.8,.2,1), bottom .6s cubic-bezier(.2,.8,.2,1), width .6s ease, opacity .2s ease;
-      color: #0a0a0a;
-    }
-    .lt-modal.opened .lt-paper { opacity: 1; transform: translate(-50%, -58%); }
-    .lt-modal.away .lt-paper { z-index: 6; bottom: 0; height: 100%; width: 100%; transform: translate(-50%, 0) rotate(-1deg); }
-    .lt-form { padding: 2.4rem 2.3rem 1.9rem; height: 100%; display: flex; flex-direction: column; opacity: 0; transition: opacity .35s ease .35s; }
-    .lt-modal.away .lt-form { opacity: 1; }
-    /* opening line, set like the home page: floral D dropped over three lines */
-    .lt-open { display: flow-root; margin: 0 0 1.2rem; font-size: 1.3rem; line-height: 1; text-wrap: balance; }
-    .lt-open .initial { float: left; width: auto; height: 2.65em; margin: 0.2em 0.27em 0 0; }
-    .lt-open .run { text-transform: uppercase; letter-spacing: 0.02em; }
-    .lt-form label { display: block; font-size: 1.05rem; font-style: italic; }
-    .lt-form input, .lt-form textarea {
-      width: 100%; margin: 0.1rem 0 0.9rem; padding: 0.25rem 0; border: 0; border-bottom: 1px solid rgba(10,10,10,0.4);
-      background: transparent; color: #0a0a0a; font-size: 1.2rem; line-height: 1.15; outline: none; border-radius: 0;
-    }
-    .lt-form input:focus, .lt-form textarea:focus { border-bottom-color: #0a0a0a; }
-    .lt-form textarea { flex: 1; min-height: 56px; resize: none; }
-    .lt-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.4rem; }
-    /* the send button is a blob of sealing wax */
-    .lt-send {
-      border: 0; cursor: pointer; padding: 0.6rem 1.25rem;
-      border-radius: 46% 54% 49% 51% / 55% 47% 53% 45%;
-      background: radial-gradient(circle at 35% 30%, #b3342d, #7e1b16 72%); color: #f8f8f8;
-      font-size: 1.15rem; font-style: italic;
-      box-shadow: 0 5px 12px -5px rgba(126,27,22,0.7), inset 0 0 0 3px rgba(0,0,0,0.1);
-    }
-    .lt-send:hover { filter: brightness(1.08); }
-    .lt-send:disabled { opacity: .6; cursor: default; }
-    .lt-status { font-size: 0.92rem; font-style: italic; color: #0a0a0a; }
-    .lt-status.err { color: #a42821; }
-    .lt-close {
-      position: absolute; right: 1.3rem; top: 1.1rem; z-index: 7; border: 0; background: none; cursor: pointer;
-      font-size: 1.6rem; line-height: 1; color: #0a0a0a; padding: 0.3rem 0.5rem; opacity: 0; transition: opacity .3s ease .5s;
-    }
-    .lt-modal.away .lt-close { opacity: 1; }
-    .hp { position: absolute; left: -9999px; }
-    /* sending: the paper folds back in and the envelope flies off */
-    .lt-modal.sending .lt-paper { bottom: 7%; height: 36%; width: min(400px, 84%); transform: translate(-50%, 0); z-index: 2; transition-duration: .5s; }
-    .lt-modal.sending .lt-form { opacity: 0; transition-delay: 0s; }
-    .lt-modal.sending .lt-env { transform: translate(-50%, 0) scale(1); opacity: 1; transition: transform .45s ease, opacity .3s ease; }
-    .lt-modal.sealed .lt-flap { transform: none; transition: transform .45s ease; }
-    .lt-modal.sealed .lt-flapbox { z-index: 4; transition: z-index 0s; }
-    .lt-modal.sealed .lt-seal { opacity: 1; transform: none; transition-delay: .35s; }
-    .lt-modal.sealed .lt-paper { opacity: 0; transition: opacity .1s ease .2s; }
-    .lt-modal.flying .lt-env { transform: translate(40%, -140%) rotate(-14deg) scale(.5); opacity: 0; transition: transform .8s cubic-bezier(.5,0,.8,.4), opacity .6s ease .25s; }
-    .lt-thanks {
-      position: absolute; left: 0; right: 0; top: 42%; text-align: center; z-index: 8; color: #f3e9da;
-      font: italic 400 1.6rem 'EB Garamond', Georgia, serif; opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
-      pointer-events: none;
-    }
-    .lt-thanks small { display: block; font-size: 1rem; opacity: .75; margin-top: .3rem; }
-    .lt-modal.thanks .lt-thanks { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .letter .float { animation: none; }
-    }
   </style>
 </head>
 <body>
-<div class="sheet">
-<div class="sheet-bg" aria-hidden="true"></div>
 <div class="card">
 <main>
   <nav class="topnav">
     <a href="index.html">home</a>
-    <a href="professionalism.html">better website?</a>
+    <a href="research.html">research</a>
     <a href="photos.html">corpus delicti</a>
-    <a href="updates.html">updates</a>
+    <a href="writing.html">writing</a>
     <a href="photography.html">photography</a>
   </nav>
-  <p class="al"><img class="initial" src="images/initials/M.svg" alt="M" width="646" height="638"><span class="run">y</span> name is Akshat Bhaskar. I love building things and dragging good ideas out into the open where people can use them. I would love to talk about Economics, Mathematics, Public Policy, Anthropology, and Philosophy: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>!</p>
 
-  <p class="al"><img class="initial" src="images/initials/S.svg" alt="S" width="626" height="640"><span class="run">ome</span> interesting things about me are:<br>
+  <p class="al"><img class="initial" src="images/initials/M.svg" alt="M" width="646" height="638"><span class="run">y</span> name is Akshat Bhaskar. I study how information, incentives, and technology shape economic decisions. I love building things and dragging good ideas out into the open where people can use them. I am a <a href="research.html">researcher</a>, <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">non profit chapter founder</a>, <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">podcaster</a>, and <a href="mathapprenticeship.html">mathematics apprentice</a>.</p>
+
+  <p class="al">I would love to talk about Economics, Mathematics, Public Policy, Anthropology, and Philosophy: <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>!</p>
+
+  <p class="al">Some interesting things about me are:<br>
   &nbsp;&nbsp;- I was once <a href="president.html">awarded by the President of India</a>.<br>
   &nbsp;&nbsp;- I am really interested in the mission of <a href="financialliteracy.html">financial literacy</a>.<br>
   &nbsp;&nbsp;- I took a <a href="gapyear.html">gap year</a> after high school.<br>
@@ -325,25 +105,27 @@
 
   <p class="al"><img class="initial" src="images/initials/I.svg" alt="I" width="652" height="651"><span class="run">f</span> any of this resonates with you, I would love to learn more about you! Reach me at <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a>. Or just book a time with me using my <a href="https://calendly.com/akshatbhaskar/30min" target="_blank" rel="noopener">Calendly</a>!</p>
 
-  <p class="al"><img class="initial" src="images/initials/R.svg" alt="R" width="651" height="641"><span class="run">each</span> the things that I run directly. I would love to tell you more about my initiatives and would love to have you join us!<br>
-  &nbsp;&nbsp;<br>
-  Edunomix:<br>
-  &nbsp;&nbsp;- Join or Enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a><br>
-  &nbsp;&nbsp;- Learn More: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">https://edunomixinstitute.com/</a><br>
-  &nbsp;&nbsp;<br>
-  Decoded:<br>
-  &nbsp;&nbsp;- Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a><br>
-  &nbsp;&nbsp;- Enquire: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a><br>
-  &nbsp;&nbsp;- Apply for our Newsletter Position: <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a> (our Head of the Newsletter Department!)<br>
-  &nbsp;&nbsp;- Learn More: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">https://decodedpodcast.vercel.app/</a><br>
-  &nbsp;&nbsp;<br>
-  Project Fermat:<br>
-  &nbsp;&nbsp;- Join or Enquire: <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a><br>
-  &nbsp;&nbsp;- Learn More: <a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener">https://projectfermat.vercel.app/</a></p>
-
   <p class="sign">- Akshat :D</p>
 
   <ul>
+    <li>Edunomix:</li>
+    <li>Join or Enquire: <a href="mailto:edunomixinstitute@gmail.com">edunomixinstitute@gmail.com</a></li>
+    <li>Learn More: <a href="https://edunomixinstitute.com/" target="_blank" rel="noopener">https://edunomixinstitute.com/</a></li>
+  </ul>
+  <ul>
+    <li>Decoded:</li>
+    <li>Join: <a href="mailto:team@thedecodedpodcast.com">team@thedecodedpodcast.com</a></li>
+    <li>Enquire: <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a></li>
+    <li>Apply for our Newsletter Position: <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a> (our Head of the Newsletter Department!)</li>
+    <li>Learn More: <a href="https://decodedpodcast.vercel.app/" target="_blank" rel="noopener">https://decodedpodcast.vercel.app/</a></li>
+  </ul>
+  <ul>
+    <li>Project Fermat:</li>
+    <li>Join or Enquire: <a href="mailto:theprojectfermat@gmail.com">theprojectfermat@gmail.com</a></li>
+    <li>Learn More: <a href="https://projectfermat.vercel.app/" target="_blank" rel="noopener">https://projectfermat.vercel.app/</a></li>
+  </ul>
+
+  <ul class="links">
     <li><a href="timeline.html">timeline</a></li>
     <li><a href="resume.pdf" target="_blank" rel="noopener">resume</a></li>
     <li><a href="https://github.com/aksbhaskar">GitHub</a></li>
@@ -353,65 +135,6 @@
   </ul>
 </main>
 </div>
-</div>
-
-  <footer class="desk" id="desk">
-
-    <div class="item song" aria-label="The Boxer by Simon &amp; Garfunkel on Spotify (drag by the handle)">
-      <div class="grip-area"><span class="grip" aria-hidden="true"></span></div>
-      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/76TZCvJ8GitQ2FA1q5dKu0?utm_source=generator&amp;si=f50ed4f0bf324521" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="The Boxer by Simon &amp; Garfunkel on Spotify"></iframe>
-    </div>
-
-    <a class="item camera" id="camera" href="photography.html" aria-label="Camera: see my photography" draggable="false">
-      <img src="images/camera-cut.webp" alt="" width="500" height="345" draggable="false">
-    </a>
-
-    <div class="item mac" aria-label="A laptop covered in stickers">
-      <div class="lid">
-        <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-        <span class="sticker s-spark"><img src="images/sticker-spark.webp" alt="" draggable="false"></span>
-        <span class="sticker s-linkedin"><img src="images/LinkedIn_icon.svg.webp" alt="LinkedIn" draggable="false"></span>
-        <span class="sticker s-notion"><img src="images/Notion-logo.svg.webp" alt="Notion" draggable="false"></span>
-        <span class="sticker s-substack"><img src="images/substack.webp" alt="Substack" draggable="false"></span>
-        <span class="sticker s-spotify"><img src="images/Spotify_logo_with_text.svg.webp" alt="Spotify" draggable="false"></span>
-      </div>
-    </div>
-
-    <button type="button" class="item letter" id="letter" aria-label="Open the letter and write to me">
-      <span class="float" style="display:block"><img src="images/letter-cut.webp" alt="" width="560" height="313" draggable="false"></span>
-    </button>
-
-  </footer>
-
-  <!-- the letter, opened -->
-  <div class="lt-modal" id="ltModal" hidden role="dialog" aria-modal="true" aria-label="Write me a letter">
-    <div class="lt-backdrop" data-close></div>
-    <div class="lt-stage">
-      <div class="lt-env lt-back"></div>
-      <div class="lt-paper">
-        <button type="button" class="lt-close" data-close aria-label="Close">&times;</button>
-        <form class="lt-form" id="ltForm">
-          <p class="lt-open"><img class="initial" src="images/initials/D.svg" alt="D" width="641" height="641"><span class="run">ear</span> Akshat, write me anything you like. It lands straight in my inbox.</p>
-          <label for="ltName">your name</label>
-          <input id="ltName" name="name" type="text" autocomplete="name">
-          <label for="ltEmail">your email (so i can write back)</label>
-          <input id="ltEmail" name="email" type="email" autocomplete="email" required>
-          <label for="ltMsg">your letter</label>
-          <textarea id="ltMsg" name="message" required></textarea>
-          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="hidden" name="_subject" value="a letter from akshatb.com">
-          <div class="lt-row">
-            <span class="lt-status" id="ltStatus"></span>
-            <button type="submit" class="lt-send" id="ltSend">seal &amp; send</button>
-          </div>
-        </form>
-      </div>
-      <div class="lt-env lt-front"></div>
-      <div class="lt-env lt-flapbox"><div class="lt-flap"></div><div class="lt-seal">A</div></div>
-      <div class="lt-thanks">sent! <small>i'll write back soon.</small></div>
-    </div>
-  </div>
-  <div class="flash" id="flash"></div>
   <script>
   /* The tab title reacts when you leave, come back, or go idle. Nothing else. */
   (function () {
@@ -443,7 +166,5 @@
     scheduleIdle();
   })();
   </script>
-  <script defer src="js/desk.js"></script>
-  <script defer src="js/dog.js"></script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+/* Minimal skin for the "document" pages (research, mathematics apprenticeship).
+   Keeps their layout (main column, margin notes, timeline, chips) but sets
+   them like the rest of the site: black EB Garamond on a light card over the
+   Alexander painting, with the shared top navbar. Loaded last, so it wins. */
+
+html, html.dark { background: #2a2620 !important; }
+html body.paper, html.dark body.paper {
+  --paper: #f8f8f8; --ink: #0a0a0a; --ink-med: #0a0a0a; --ink-soft: #0a0a0a;
+  --ink-faint: #0a0a0a; --ink-ghost: rgba(10,10,10,0.22); --rule: rgba(10,10,10,0.2);
+  --accent: #0a0a0a;
+  background: transparent !important; color: #0a0a0a !important;
+  margin: 0 !important; padding: 0 !important;
+}
+body.paper::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: #2a2620 url('../images/alexander.webp') center center / cover no-repeat;
+}
+@media (orientation: portrait) { body.paper::before { background-image: url('../images/alexander-vertical.webp'); } }
+
+/* the old chrome is gone: menu bar, overlay, progress line, theme switch, footer */
+body.paper .topbar, body.paper .nav-overlay, body.paper #prog, body.paper .progress-rule,
+body.paper .theme-toggle, body.paper .hamburger, body.paper .doc-footer, body.paper .skip-link { display: none !important; }
+
+/* the document becomes the card */
+body.paper .document {
+  box-sizing: border-box;
+  width: min(68rem, 100% - 3rem) !important; max-width: none !important;
+  margin: 4.5rem auto !important; padding: 4.5rem clamp(1.5rem, 5vw, 4.5rem) 5rem !important;
+  background: #f8f8f8 !important; border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55);
+}
+
+/* one face, one ink */
+body.paper .document, body.paper .document *:not(svg):not(svg *) {
+  font-family: "EB Garamond", Garamond, Georgia, serif !important;
+  color: #0a0a0a !important;
+}
+body.paper .document a { text-decoration-color: rgba(10,10,10,0.35) !important; }
+
+/* the shared top navbar */
+body.paper .document > .topnav {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.2rem 0;
+  margin: 0 0 3.2rem; padding: 0 0 1.1rem; border-bottom: 1px solid rgba(10,10,10,0.18);
+}
+body.paper .document > .topnav a { font-size: 1.1rem !important; white-space: nowrap; text-decoration: none !important; letter-spacing: 0 !important; text-transform: none !important; }
+body.paper .document > .topnav a:hover { text-decoration: underline !important; }
+body.paper .document > .topnav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
+
+@media (max-width: 640px) {
+  body.paper .document { width: calc(100% - 1.5rem) !important; margin: 0.75rem auto !important; padding: 3rem 1.25rem 3.5rem !important; }
+}
+
+/* the first block under the navbar no longer needs room for the old fixed menu bar */
+body.paper .document > .topnav + * { padding-top: 0 !important; margin-top: 0 !important; }

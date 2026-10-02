@@ -633,7 +633,7 @@
     document.documentElement.classList.add('dark');}catch(e){}})();
   </script>
   <link rel="stylesheet" href="css/theme.css">
-  <script>(function(){try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}})();</script>
+<link rel="stylesheet" href="css/paper.css">
 </head>
 <body class="paper">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -672,6 +672,13 @@
 
 <!-- ══════════════════════════════════════════════════════ -->
 <div class="document" role="main" id="main">
+<nav class="topnav">
+  <a href="index.html">home</a>
+  <a href="research.html">research</a>
+  <a href="photos.html">corpus delicti</a>
+  <a href="writing.html">writing</a>
+  <a href="photography.html">photography</a>
+</nav>
 
   <!-- TITLE PAGE -->
   <div class="titlepage">
@@ -964,15 +971,6 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="doc-footer">
-    <span class="footer-text">© 2026 Akshat Bhaskar &nbsp;·&nbsp; New Delhi, India</span>
-    <div class="footer-socials">
-      <a rel="me" href="https://x.com/aksbhaskar" target="_blank" aria-label="X"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#x-twitter"/></svg></a>
-      <a rel="me" href="https://www.linkedin.com/in/aksbhaskar/" target="_blank" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#linkedin"/></svg></a>
-      <a rel="me" href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#google-scholar"/></svg></a>
-      <a rel="me" href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" target="_blank" aria-label="ResearchGate"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#researchgate"/></svg></a>
-    </div>
-  </footer>
 
 </div>
 <!-- ══════════════════════════════════════════════════════ -->
@@ -1016,6 +1014,5 @@
   document.querySelectorAll('.sidenote').forEach(el => obs.observe(el));
 </script>
 <script src="js/site.js" defer></script>
-  <script defer src="js/dog.js"></script>
 </body>
 </html>

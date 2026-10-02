@@ -72,6 +72,8 @@
   .clouds .cloud.top > nav a:hover { text-decoration: underline !important; }
   .clouds .cloud.top > nav a:not(:last-child)::after { content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; }
   .clouds figure img { width: 100% !important; border-radius: 3px !important; }
+  /* tall (portrait) photos are kept short enough to see whole in one screen */
+  .clouds figure.tall img { width: auto !important; max-width: 100% !important; max-height: 58vh; margin: 0 auto; }
   .clouds figcaption { margin: 0.8rem 0 0.1rem !important; }
   @media (max-width: 640px) { .wrap.clouds { padding-top: 1rem !important; } .clouds .cloud.top { padding: 2rem 1.3rem 1.5rem !important; } }
 </style>
@@ -82,17 +84,17 @@
 <div class="cloud top">
 <nav>
 <a href="index.html">home</a>
-<a href="professionalism.html">better website?</a>
+<a href="research.html">research</a>
 <a href="photos.html">corpus delicti</a>
-<a href="updates.html">updates</a>
+<a href="writing.html">writing</a>
 <a href="photography.html">photography</a>
 </nav>
 <div class="bubble">
 <h1>Corpus Delicti</h1>
-<p class="sub al" style="margin-bottom:0"><img alt="I" class="initial" height="640" src="images/initials/I.svg" width="640"/><span class="run">t's</span> Latin for "the body of the crime" — the evidence that something happened. consider this the evidence.</p>
+<p class="sub al" style="margin-bottom:0"><img alt="I" class="initial" height="640" src="images/initials/I.svg" width="640"/><span class="run">t's</span> Latin for "the body of the crime", meaning the evidence that something happened. consider this the evidence, and feel free to follow up with any questions regarding the pictures you see here.</p>
 </div>
 </div>
-<figure>
+<figure class="tall">
 <img alt="TaxCity, an award-winning card-based tax simulation game" decoding="async" height="800" loading="lazy" src="images/taxcity_impact.jpg" width="599"/>
 <figcaption>TaxCity, an award winning card tax simulation game.</figcaption>
 </figure>
@@ -100,7 +102,7 @@
 <img alt="Fall 2026 Ukraine seminars, first session" decoding="async" height="736" loading="lazy" src="images/ukraine_seminars_fall2026.webp" width="1600"/>
 <figcaption>Fall 2026 Ukraine seminars, our first session.</figcaption>
 </figure>
-<figure>
+<figure class="tall">
 <img alt="TaxCity at TETR Disrupt, DPS R.K. Puram" decoding="async" height="800" loading="lazy" src="images/taxcity_tetr.jpg" width="600"/>
 <figcaption>TaxCity at TETR Disrupt, DPS R.K. Puram.</figcaption>
 </figure>
@@ -108,7 +110,7 @@
 <img alt="Being awarded by the President of India" decoding="async" height="1067" loading="lazy" src="images/hero_president.webp" width="1600"/>
 <figcaption>Being awarded by the President of India.<br/>(The one wearing glasses at the right end, grinning like an idiot, is me :))</figcaption>
 </figure>
-<figure>
+<figure class="tall">
 <img alt="Letter of recommendation from the Government of India" decoding="async" height="1079" loading="lazy" src="images/hero_goi.jpg" width="766"/>
 <figcaption>Internship Certificate from the Government of India.</figcaption>
 </figure>
@@ -116,7 +118,7 @@
 <img alt="With Nobel laureate Sir Paul Nurse at the Lodha Genius Programme" decoding="async" height="220" loading="lazy" src="images/gis_paul_nurse.jpg" width="303"/>
 <figcaption>With Nobel laureate Sir Paul Nurse at the Lodha Genius Programme.</figcaption>
 </figure>
-<figure>
+<figure class="tall">
 <img alt="On the school Hall of Fame" decoding="async" height="800" loading="lazy" src="images/dps_wall_of_fame.jpg" width="598"/>
 <figcaption>On the school Hall of Fame.</figcaption>
 </figure>
@@ -168,6 +170,5 @@
     scheduleIdle();
   })();
   </script>
-<script defer="" src="js/dog.js"></script>
 </body>
 </html>

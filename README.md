@@ -10,18 +10,15 @@ Hand-written HTML, CSS, and a little vanilla JavaScript. No framework and no bui
 
 The design is meant to feel like a page from an old book: the pages sit on a card over *Alexander Cutting the Gordian Knot*, set in EB Garamond, with woodcut-style ornamental initials opening the first paragraph of each page.
 
-A few small things to find:
-
-- a desk at the bottom of the home page, where everything can be dragged around: a record player, a camera that opens the photography page, and a letter you can write to me
-- a little pixel dog that naps in the corner of every page
-- a second, more formal version of the site behind **better website?**
+There is also a second, more formal version of the site at [/professionalism](https://akshatb.com/professionalism.html).
 
 ## Pages
 
 | Page | What it is |
 | --- | --- |
 | [Home](https://akshatb.com) | who I am, what I run, and how to reach me |
-| [Updates](https://akshatb.com/updates) | a running log of what I have been working on |
+| [Writing](https://akshatb.com/writing) | thoughts, academic writing, and updates on my life |
+| [Research](https://akshatb.com/research.html) | papers, programmes, and fellowships |
 | [FOMO study](https://akshatb.com/fomo) | my research on who shares financial misinformation, at the Indian School of Business |
 | [Gap year](https://akshatb.com/gapyear) | mathematics, teaching, research, and the podcast |
 | [Awards](https://akshatb.com/awards) | honours and distinctions, 2022 to 2026 |
@@ -35,8 +32,8 @@ A few small things to find:
 ```
 .
 ├── *.html          one file per page (index.html is the home page)
-├── css/            bubbles.css (the shared minimal theme), theme.css
-├── js/             desk.js (the home-page desk), dog.js (the dog), site.js
+├── css/            bubbles.css (the shared minimal theme), paper.css, theme.css
+├── js/             site.js
 ├── images/         photographs, covers, and illustrations
 │   └── initials/   ornamental drop-cap initials
 ├── docs/           documents linked from the site
