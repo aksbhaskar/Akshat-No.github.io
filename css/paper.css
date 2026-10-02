@@ -73,3 +73,11 @@ body.page-research .statement-block .statement-caption { font-size: 1rem !import
 body.page-research .statement-head { font-size: 1.05rem !important; }
 body.page-research .paper-num { font-size: 1rem !important; }
 body.page-research .paper-status-row, body.page-research .paper-status-row * { font-size: 0.95rem !important; line-height: 1.4 !important; }
+
+/* research: the status above each title is plain italic text, not a box */
+body.page-research .paper-status-row .chip {
+  background: none !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+  padding: 0 !important; text-transform: none !important; letter-spacing: 0 !important;
+  font-weight: 400 !important; font-style: italic !important;
+}
+body.page-research .paper-status-row { gap: 0.6rem !important; align-items: baseline !important; }
