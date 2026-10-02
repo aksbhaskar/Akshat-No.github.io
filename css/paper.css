@@ -71,3 +71,5 @@ body.page-research .statement-eq { font-size: 1.4rem !important; }
 body.page-research .statement-eq .eq-num { font-size: 1rem !important; }
 body.page-research .statement-block .statement-caption { font-size: 1rem !important; line-height: 1.2 !important; letter-spacing: 0 !important; font-style: italic; }
 body.page-research .statement-head { font-size: 1.05rem !important; }
+body.page-research .paper-num { font-size: 1rem !important; }
+body.page-research .paper-status-row, body.page-research .paper-status-row * { font-size: 0.95rem !important; line-height: 1.4 !important; }
