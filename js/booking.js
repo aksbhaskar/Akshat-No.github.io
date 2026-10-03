@@ -32,7 +32,7 @@
   if (fallback) fallback.remove();
   root.hidden = false;
   root.innerHTML =
-    '<p class="bk-head">' + LENGTH + ' minutes, on a video call. times are shown in your time zone (' + tz.replace(/_/g, ' ') + ').</p>' +
+    '<p class="bk-head">' + LENGTH + ' minutes &middot; video call &middot; ' + tz.split('/').pop().replace(/_/g, ' ').toLowerCase() + ' time</p>' +
     '<div class="bk-cal">' +
       '<div class="bk-month">' +
         '<button type="button" class="bk-nav bk-prev" aria-label="previous month">&larr;</button>' +
@@ -48,9 +48,9 @@
       '<div class="bk-times" role="listbox" aria-label="time"></div>' +
     '</div>' +
     '<form class="bk-form" hidden>' +
-      '<div class="field"><label for="bk-name">name</label><input id="bk-name" name="name" type="text" placeholder="your name" autocomplete="name" required></div>' +
-      '<div class="field"><label for="bk-email">email</label><input id="bk-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>' +
-      '<div class="field"><label for="bk-notes">what is it about?</label><input id="bk-notes" name="notes" type="text" placeholder="optional"></div>' +
+      '<div class="field"><label for="bk-name">name</label><input id="bk-name" name="name" type="text" placeholder="name" autocomplete="name" required></div>' +
+      '<div class="field"><label for="bk-email">email</label><input id="bk-email" name="email" type="email" placeholder="email" autocomplete="email" required></div>' +
+      '<div class="field"><label for="bk-notes">what is it about?</label><input id="bk-notes" name="notes" type="text" placeholder="what is it about? (optional)"></div>' +
       '<div class="bk-row"><button type="submit" class="bk-go"></button><span class="bk-err" aria-live="polite"></span></div>' +
     '</form>' +
     '<div class="bk-done" hidden aria-live="polite"></div>';

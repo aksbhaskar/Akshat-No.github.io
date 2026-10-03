@@ -143,6 +143,45 @@
   .bk-booked { font-size: 1.2rem !important; }
   .bk-sub { opacity: 0.7; margin-top: 0.4rem !important; font-size: 1.05rem !important; }
 </style>
+<style>
+  /* connect, pared right back: one centred column, lots of air */
+  body .wrap > section.sec { text-align: center; margin: 6.5rem auto 0 !important; max-width: 22rem; }
+  body .wrap > section.sec:first-of-type { margin-top: 4.5rem !important; }
+  body .wrap section.sec h2 { font-size: 1.25rem !important; letter-spacing: 0 !important; text-transform: none !important;
+    color: #0a0a0a !important; opacity: 0.45; margin: 0 0 2.2rem !important; font-weight: 400 !important; }
+  #contact-form { margin: 0 !important; display: grid; gap: 1.1rem; }
+  #contact-form input, #contact-form textarea { display: block; width: 100%; background: transparent !important; border: 0 !important;
+    border-bottom: 1px solid rgba(10,10,10,0.18) !important; border-radius: 0 !important; padding: 0.45rem 0 !important;
+    font: inherit; font-size: 1.1rem !important; color: #0a0a0a !important; text-align: center; outline: none; resize: none; box-shadow: none !important; }
+  #contact-form input:focus, #contact-form textarea:focus { border-bottom-color: #0a0a0a !important; }
+  #contact-form ::placeholder { color: rgba(10,10,10,0.38) !important; font-style: normal !important; }
+  .wrap .send, .booker .bk-go { justify-self: center; margin: 1rem auto 0 !important; background: none !important; color: #0a0a0a !important;
+    border: 0 !important; padding: 0 0 2px !important; border-bottom: 1px solid #0a0a0a !important; border-radius: 0 !important; font: inherit; font-size: 1.1rem !important; cursor: pointer; }
+  .wrap .send:hover, .booker .bk-go:hover { opacity: 0.55 !important; }
+  .wrap .status { margin: 0 !important; min-height: 1.2em; font-size: 1rem !important; opacity: 0.6; }
+  .wrap .status.err { color: #8e1f1a !important; opacity: 1; }
+  .wrap p.links { margin: 0 0 0.9rem !important; font-size: 1.1rem !important; line-height: 1.6 !important; }
+  .wrap p.links a { text-decoration: none !important; border-bottom: 1px solid rgba(10,10,10,0.25); }
+  .wrap p.links a:hover { border-bottom-color: #0a0a0a; }
+  /* the booker, centred */
+  .booker .bk-head { font-size: 1rem !important; opacity: 0.45; margin: -1.4rem 0 2rem !important; }
+  .booker .bk-cal, .booker .bk-times, .booker .bk-form { margin-left: auto !important; margin-right: auto !important; }
+  .booker .bk-slots { margin-top: 2.6rem; }
+  .booker .bk-times { justify-content: center; }
+  .booker .bk-form { display: grid; gap: 1.1rem; margin-top: 2.6rem !important; }
+  .booker .bk-form .field { margin: 0; }
+  .booker .bk-form label { display: none !important; }
+  .booker .bk-form input { width: 100%; background: transparent !important; border: 0 !important; border-bottom: 1px solid rgba(10,10,10,0.18) !important;
+    border-radius: 0 !important; padding: 0.45rem 0 !important; font: inherit; font-size: 1.1rem !important; text-align: center; outline: none; box-shadow: none !important; }
+  .booker .bk-form input:focus { border-bottom-color: #0a0a0a !important; }
+  .booker .bk-form ::placeholder { color: rgba(10,10,10,0.38) !important; font-style: normal !important; }
+  .booker .bk-row { flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; }
+  .booker .bk-done { margin-top: 0.5rem; }
+  .booker [hidden] { display: none !important; }
+  .booker .bk-t { opacity: 0.7; }
+  .booker .bk-t:hover { opacity: 1; }
+  .booker .bk-t.on, .booker .bk-t.on:hover { background: none !important; color: #0a0a0a !important; opacity: 1; border-bottom-color: #0a0a0a !important; }
+</style>
 <style>/* connect: plain, upright type throughout */ body .wrap, body .wrap * { font-style: normal !important; }</style>
 </head>
 <body>
@@ -154,98 +193,27 @@
 <a href="writing.html">writing</a>
 <a href="photography.html">photography</a>
 </nav>
-<p class="intro">For collaborations, research, media, or a simple hello. book a time that suits you, write directly, or find me wherever you already are. every message is read.</p>
 <section class="sec">
 <h2>book a call</h2>
 <div id="booker" class="booker" hidden></div>
-<div id="cal-fallback" class="cal-frame">
-<div class="calendly-inline-widget" data-url="https://calendly.com/akshatbhaskar/30min" id="calendly"></div>
-</div>
 </section>
 <section class="sec">
 <h2>write to me</h2>
 <form id="contact-form">
-<div class="field">
-<label for="name">name</label>
-<input id="name" name="name" placeholder="your name" type="text"/>
-</div>
-<div class="field">
-<label for="email">email</label>
-<input id="email" name="email" placeholder="your@email.com" required="" type="email"/>
-</div>
-<div class="field">
-<label for="message">message</label>
-<textarea id="message" name="message" placeholder="write your message here…" required=""></textarea>
-</div>
-<div style="display:flex;align-items:center;">
+<input aria-label="name" id="name" name="name" placeholder="name" type="text"/>
+<input aria-label="email" id="email" name="email" placeholder="email" required="" type="email"/>
+<textarea aria-label="message" id="message" name="message" placeholder="message" required="" rows="3"></textarea>
 <button class="send" id="submit-btn" type="submit">send</button>
-<span class="status" id="form-status"></span>
-</div>
+<p class="status" id="form-status"></p>
 </form>
 </section>
 <section class="sec">
-<h2>find me elsewhere</h2>
-<div class="grp">
-<h3>social</h3>
-<ul class="list">
-<li><a href="https://x.com/aksbhaskar" rel="me noopener" target="_blank">X (Twitter)</a> <span class="h">@aksbhaskar</span></li>
-<li><a href="https://www.linkedin.com/in/aksbhaskar/" rel="me noopener" target="_blank">LinkedIn</a> <span class="h">8,000+ followers</span></li>
-<li><a href="https://github.com/aksbhaskar" rel="me noopener" target="_blank">GitHub</a> <span class="h">@aksbhaskar</span></li>
-</ul>
-</div>
-<div class="grp">
-<h3>scholarly</h3>
-<ul class="list">
-<li><a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar</a> <span class="h">citations</span></li>
-<li><a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" rel="me noopener" target="_blank">ResearchGate</a> <span class="h">profile</span></li>
-</ul>
-</div>
-<div class="grp">
-<h3>decoded, the podcast</h3>
-<ul class="list">
-<li><a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" rel="me noopener" target="_blank">Spotify</a> <span class="h">listen</span></li>
-<li><a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" rel="noopener" target="_blank">Apple Podcasts</a> <span class="h">listen</span></li>
-<li><a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" rel="noopener" target="_blank">Amazon Music</a> <span class="h">listen</span></li>
-</ul>
-</div>
+<h2>elsewhere</h2>
+<p class="links"><a href="https://x.com/aksbhaskar" rel="me noopener" target="_blank">x</a> &middot; <a href="https://www.linkedin.com/in/aksbhaskar/" rel="me noopener" target="_blank">linkedin</a> &middot; <a href="https://github.com/aksbhaskar" rel="me noopener" target="_blank">github</a> &middot; <a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&amp;hl=en" rel="me noopener" target="_blank">scholar</a> &middot; <a href="https://www.researchgate.net/profile/Akshat-Bhaskar-2" rel="me noopener" target="_blank">researchgate</a></p>
+<p class="links">decoded: <a href="https://open.spotify.com/show/35iC8pkOthYJmbufeb78Xs" rel="me noopener" target="_blank">spotify</a> &middot; <a href="https://podcasts.apple.com/us/podcast/decoded/id1829278052" rel="noopener" target="_blank">apple</a> &middot; <a href="https://music.amazon.co.uk/podcasts/85fa723d-dd21-4d8e-b1cc-e0d88ece092b/decoded" rel="noopener" target="_blank">amazon</a></p>
 </section>
 </div>
 <script>
-  /* copy email */
-  (function () {
-    var b = document.getElementById('copy-email');
-    if (!b) return;
-    b.addEventListener('click', function () {
-      var text = 'bhaskarakshat22@gmail.com';
-      var done = function () { b.textContent = 'copied ✓'; setTimeout(function () { b.textContent = 'copy'; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
-      else done();
-    });
-  })();
-
-  /* copy press bio */
-  (function () {
-    var b = document.getElementById('pk-copy');
-    if (!b) return;
-    b.addEventListener('click', async function () {
-      var t = document.getElementById('pk-bio').textContent.trim();
-      try { await navigator.clipboard.writeText(t); }
-      catch (e) {
-        var r = document.createRange(); r.selectNodeContents(document.getElementById('pk-bio'));
-        var s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges();
-      }
-      b.textContent = 'copied ✓';
-      setTimeout(function () { b.textContent = 'copy bio'; }, 1600);
-    });
-  })();
-
-  /* Calendly, themed light to match the page */
-  (function () {
-    var el = document.getElementById('calendly');
-    if (el) el.setAttribute('data-url',
-      'https://calendly.com/akshatbhaskar/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=141414&primary_color=141414');
-  })();
-
   /* contact form -> Formspree */
   (function () {
     var form = document.getElementById('contact-form');
@@ -297,7 +265,6 @@
     scheduleIdle();
   })();
   </script>
-<script async="" src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 <script defer src="js/booking.js"></script>
 </body>
 </html>
