@@ -103,6 +103,38 @@
   </style>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bubbles.css" rel="stylesheet"/>
+<style>
+  /* the booking flow: same ink, face and fields as the rest of /connect */
+  .booker { margin: 0.4rem 0 0; }
+  .booker p { margin: 0 !important; }
+  .bk-head { font-size: 1.1rem !important; font-style: italic !important; opacity: 0.75; }
+  .bk-len { opacity: 0.55; margin-left: 0.35rem; }
+  .bk-status, .bk-note { opacity: 0.7; margin: 0.6rem 0 1rem !important; font-size: 1.05rem !important; }
+  .bk-dots i { font-style: normal !important; animation: bkdot 1.2s infinite; opacity: 0; }
+  .bk-dots i:nth-child(2) { animation-delay: .2s; } .bk-dots i:nth-child(3) { animation-delay: .4s; }
+  @keyframes bkdot { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
+  .bk-days { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0 0 0.2rem; scrollbar-width: none; }
+  .bk-days::-webkit-scrollbar { display: none; }
+  .bk-times { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.4rem, 1fr)); gap: 0.4rem; margin: 0.7rem 0 1.2rem; }
+  .bk-pill {
+    font: inherit; font-size: 0.95rem !important; line-height: 1.1; color: #0a0a0a !important; cursor: pointer;
+    background: transparent !important; border: 1px solid rgba(10,10,10,0.22) !important; border-radius: 999px !important;
+    padding: 0.35rem 0.6rem; transition: border-color .15s, background .15s;
+  }
+  .bk-pill:hover { border-color: #0a0a0a !important; }
+  .bk-pill.on { background: #0a0a0a !important; border-color: #0a0a0a !important; color: #f8f8f8 !important; }
+  .bk-pill.on * { color: #f8f8f8 !important; }
+  .bk-day { flex: none; display: flex; flex-direction: column; align-items: center; padding: 0.35rem 0.75rem; border-radius: 0.9rem !important; }
+  .bk-day small { font-size: 0.78rem !important; opacity: 0.75; }
+  .bk-form { display: grid; gap: 0.55rem; }
+  .bk-form input { width: 100%; padding: 0.45rem 0 !important; }
+  .bk-go { margin-top: 0.4rem; justify-self: start; padding: 0.55rem 1.3rem; border: 0; border-radius: 999px; cursor: pointer;
+    background: #0a0a0a !important; color: #f8f8f8 !important; font: inherit; font-size: 1.1rem !important; }
+  .bk-go:disabled { opacity: 0.55; cursor: default; }
+  .bk-err { color: #8e1f1a !important; font-size: 1rem !important; }
+  .bk-booked { font-size: 1.25rem !important; }
+  .bk-sub { opacity: 0.75; margin-top: 0.3rem !important; font-size: 1.05rem !important; }
+</style>
 <style>/* connect: plain, upright type throughout */ body .wrap, body .wrap * { font-style: normal !important; }</style>
 </head>
 <body>
@@ -117,7 +149,8 @@
 <p class="intro">For collaborations, research, media, or a simple hello. book a time that suits you, write directly, or find me wherever you already are. every message is read.</p>
 <section class="sec">
 <h2>book a call</h2>
-<div class="cal-frame">
+<div id="booker" class="booker" hidden></div>
+<div id="cal-fallback" class="cal-frame">
 <div class="calendly-inline-widget" data-url="https://calendly.com/akshatbhaskar/30min" id="calendly"></div>
 </div>
 </section>
@@ -257,5 +290,6 @@
   })();
   </script>
 <script async="" src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+<script defer src="js/booking.js"></script>
 </body>
 </html>
