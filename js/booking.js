@@ -8,8 +8,8 @@
    keeps showing the Calendly calendar as before.
    ───────────────────────────────────────────────────────────── */
 (function () {
-  var CAL_USER = '';          // e.g. 'akshatbhaskar'
-  var CAL_EVENT = '30min';    // the event type's slug
+  var CAL_USER = 'aksbhaskar';
+  var CAL_EVENT = '30mins';    // cal.com/aksbhaskar/30mins
   var LENGTH = 30;            // minutes, for the heading
   var DAYS_AHEAD = 21;
 
