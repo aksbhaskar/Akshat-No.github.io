@@ -76,6 +76,13 @@
   .clouds figure.tall img { width: auto !important; max-width: 100% !important; max-height: 58vh; margin: 0 auto; }
   .clouds figure.tall { width: min-content !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; }
   .clouds figure.tall img { max-width: none !important; }
+  /* a pair of tall photos: side by side on wide screens, stacked on phones */
+  .clouds .pair { display: contents; }
+  @media (orientation: landscape) and (min-width: 700px) {
+    .clouds .pair { display: flex; justify-content: center; align-items: flex-start; gap: 1.8rem; margin: 0 auto 1.8rem; }
+    .clouds .pair figure.tall { margin: 0 !important; }
+    .clouds .pair figure.tall img { max-height: min(58vh, 26rem); }
+  }
   @media (max-width: 640px) { .clouds figure.tall img { max-width: calc(100vw - 4.5rem) !important; } }
   .wrap.clouds, .wrap.clouds * { font-style: normal !important; }
   .clouds .cloud.top .sub { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
@@ -99,17 +106,19 @@
 <p class="sub" style="margin-bottom:0">It's Latin for "the body of the crime", meaning the evidence that something happened. consider this the evidence, and feel free to follow up with any questions regarding the pictures you see here.</p>
 </div>
 </div>
+<div class="pair">
 <figure class="tall">
 <img alt="TaxCity, an award-winning card-based tax simulation game" decoding="async" height="800" loading="lazy" src="images/taxcity_impact.jpg" width="599"/>
 <figcaption>TaxCity, an award winning card tax simulation game.</figcaption>
 </figure>
-<figure>
-<img alt="Fall 2026 Ukraine seminars, first session" decoding="async" height="736" loading="lazy" src="images/ukraine_seminars_fall2026.webp" width="1600"/>
-<figcaption>Fall 2026 Ukraine seminars, our first session.</figcaption>
-</figure>
 <figure class="tall">
 <img alt="TaxCity at TETR Disrupt, DPS R.K. Puram" decoding="async" height="800" loading="lazy" src="images/taxcity_tetr.jpg" width="600"/>
 <figcaption>TaxCity at TETR Disrupt, DPS R.K. Puram.</figcaption>
+</figure>
+</div>
+<figure>
+<img alt="Fall 2026 Ukraine seminars, first session" decoding="async" height="736" loading="lazy" src="images/ukraine_seminars_fall2026.webp" width="1600"/>
+<figcaption>Fall 2026 Ukraine seminars, our first session.</figcaption>
 </figure>
 <figure>
 <img alt="Being awarded by the President of India" decoding="async" height="1067" loading="lazy" src="images/hero_president.webp" width="1600"/>
