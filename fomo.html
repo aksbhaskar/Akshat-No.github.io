@@ -84,6 +84,21 @@
   </style>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bubbles.css" rel="stylesheet"/>
+<style>
+  /* the "send me the resource" sign-up: one quiet line under the paragraph */
+  .notify { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; margin: -0.2rem 0 1.6rem; }
+  .notify[hidden] { display: none; }
+  .notify input[type=email] { flex: 1 1 14rem; min-width: 0; background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.25);
+    border-radius: 0; padding: 0.3rem 0; font: inherit; font-size: 1.15rem; color: #0a0a0a; outline: none; }
+  .notify input[type=email]:focus { border-bottom-color: #0a0a0a; }
+  .notify input::placeholder { color: rgba(10,10,10,0.4); }
+  .notify button { font: inherit; font-size: 1.15rem !important; color: #0a0a0a !important; background: none !important; border: 0 !important;
+    padding: 0 0 1px !important; border-bottom: 1px solid #0a0a0a !important; border-radius: 0 !important; box-shadow: none !important; cursor: pointer; }
+  .notify button:hover { opacity: 0.55; }
+  .notify button:disabled { opacity: 0.45; cursor: default; }
+  .notify .notify-msg { flex-basis: 100%; margin: 0 !important; font-size: 1.05rem !important; opacity: 0.7; }
+  .notify .notify-msg:empty { display: none; }
+</style>
 <style>.role { font-style: italic; margin: 0 0 2.4rem !important; } ul.method { padding-left: 1.2rem; } ul.method li { margin: 0 0 0.6rem !important; }</style>
 </head>
 <body>
@@ -116,7 +131,14 @@
 <p class="cap">On a call with Dr. Prashant Kodali.</p>
 <p>Dr. Prashant kindly agreed to a call, and our discussion focused on a key challenge in the project: reliably detecting misinformation in Hindi-English code-mixed social media content. The call helped shape the technical direction of the project. He recommended a translation-to-English baseline, discussed model and evaluation strategies, and demonstrated and subsequently shared his own token-level normalization tool (a HUGE help), which identifies language at the token level and converts Romanized Hindi into Devanagari. He also advised on constructing an evaluation set that reflects the real distribution of monolingual and code-mixed content, and shared relevant papers and a chapter from his thesis for further study.</p>
 <p>The conversation gave me concrete preprocessing methods, model baselines, evaluation criteria, research literature, and a technical tool that I could directly incorporate into the study.</p>
-<p>He also sent over a whole stack of documents, papers, and PDFs on code-mixing in case I wanted to go deeper, and I have been working through them since. Out of that, I am putting together a starter resource for anyone who wants to get into code-mixing: where to begin, what to read and in what order, and the tools that actually help, written for people who are not that technical either. I will make it freely available here on my website once it is ready.</p>
+<p>He also sent over a whole stack of documents, papers, and PDFs on code-mixing in case I wanted to go deeper, and I have been working through them since. Out of that, I am putting together a starter resource for anyone who wants to get into code-mixing: where to begin, what to read and in what order, and the tools that actually help, written for people who are not that technical either. I will make it freely available here on my website once it is ready. Lemme know <a href="#notify" id="notify-open">here</a> if you want the resource!</p>
+<form class="notify" hidden id="notify">
+<input name="list" type="hidden" value="code-mixing starter resource"/>
+<input name="_subject" type="hidden" value="Code-mixing resource: someone wants it"/>
+<input aria-label="your email" autocomplete="email" name="email" placeholder="your email" required="" type="email"/>
+<button type="submit">send it to me</button>
+<p class="notify-msg" aria-live="polite"></p>
+</form>
 <h2>Where it stands</h2>
 <p>The data collection phase is now complete, with 300 responses collected, and I am moving on to the analysis and the NLP component of the study. The raw responses are not public: human subjects data needs separate handling and advisor sign-off before anything goes out.</p>
 <div class="frame"><a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank"><img alt="GitHub repository: aksbhaskar/fomo-misinformation-study" decoding="async" height="600" loading="lazy" src="images/research_fomo_github.jpg" width="1200"/></a></div>
@@ -154,5 +176,29 @@
     scheduleIdle();
   })();
   </script>
+<script>
+  /* "lemme know here": open a one-field email form, send it to Formspree */
+  (function () {
+    var link = document.getElementById('notify-open'), form = document.getElementById('notify');
+    if (!link || !form) return;
+    var input = form.querySelector('input[type=email]'), btn = form.querySelector('button'), msg = form.querySelector('.notify-msg');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      form.hidden = false;
+      input.focus({ preventScroll: true });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true; msg.textContent = '';
+      fetch('https://formspree.io/f/xpqokanp', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          input.remove(); btn.remove();
+          msg.textContent = 'got it, thank you! I’ll email it to you when it’s ready.';
+        })
+        .catch(function () { btn.disabled = false; msg.textContent = 'that didn’t go through. try again in a moment?'; });
+    });
+  })();
+</script>
 </body>
 </html>
