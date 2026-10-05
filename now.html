@@ -146,8 +146,8 @@
 <section class="sec">
 <h2>reading</h2>
 <p><a href="https://www.goodreads.com/book/show/17449365-the-penguin-history-of-the-world" rel="noopener" target="_blank"><i>The Penguin History of the World</i>, by J. M. Roberts &amp; Odd Arne Westad (Sixth Edition)</a></p>
-<p class="ask">suggest me a book!</p>
-<form class="mini" data-kind="book">
+<p class="ask"><a href="#book" id="book-open">suggest me a book!</a></p>
+<form class="mini" data-kind="book" hidden id="book">
 <input name="_subject" type="hidden" value="Book suggestion from the now page"/>
 <input aria-label="book" name="book" placeholder="book" required="" type="text"/>
 <input aria-label="author" name="author" placeholder="author" required="" type="text"/>
@@ -240,11 +240,13 @@
   })();
   </script>
 <script>
-  /* "nudge me" opens its form; both small forms send through Formspree */
+  /* "suggest me a book!" and "nudge me" open their forms; both small forms send through Formspree */
   (function () {
-    var open = document.getElementById('nudge-open'), nudge = document.getElementById('nudge');
-    if (open && nudge) open.addEventListener('click', function (e) {
-      e.preventDefault(); nudge.hidden = false; nudge.querySelector('input[name=name]').focus({ preventScroll: true });
+    [['nudge-open', 'nudge'], ['book-open', 'book']].forEach(function (pair) {
+      var link = document.getElementById(pair[0]), form = document.getElementById(pair[1]);
+      if (link && form) link.addEventListener('click', function (e) {
+        e.preventDefault(); form.hidden = false; form.querySelector('input:not([type=hidden])').focus({ preventScroll: true });
+      });
     });
     document.querySelectorAll('form.mini').forEach(function (form) {
       var btn = form.querySelector('button'), msg = form.querySelector('.mini-msg');
