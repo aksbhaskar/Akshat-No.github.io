@@ -74,6 +74,21 @@
   .soon { font-style: italic; }
 </style>
 
+<style>
+  /* the "send me the resource" sign-up: one quiet line under the paragraph */
+  .notify { display: flex; margin-top: 0.7rem !important; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; margin: -0.2rem 0 1.6rem; }
+  .notify[hidden] { display: none; }
+  .notify input[type=email] { flex: 1 1 14rem; min-width: 0; background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.25);
+    border-radius: 0; padding: 0.3rem 0; font: inherit; font-size: 1.1rem; color: #0a0a0a; outline: none; }
+  .notify input[type=email]:focus { border-bottom-color: #0a0a0a; }
+  .notify input::placeholder { color: rgba(10,10,10,0.4); }
+  .notify button { font: inherit; font-size: 1.1rem !important; color: #0a0a0a !important; background: none !important; border: 0 !important;
+    padding: 0 0 1px !important; border-bottom: 1px solid #0a0a0a !important; border-radius: 0 !important; box-shadow: none !important; cursor: pointer; }
+  .notify button:hover { opacity: 0.55; }
+  .notify button:disabled { opacity: 0.45; cursor: default; }
+  .notify .notify-msg { flex-basis: 100%; margin: 0 !important; font-size: 1.05rem !important; opacity: 0.7; }
+  .notify .notify-msg:empty { display: none; }
+</style>
 </head>
 <body>
 <div class="wrap bare">
@@ -87,7 +102,7 @@
 <div class="w-sec">
 <h2 class="w-head">projects</h2>
 <ul class="aw">
-<li><span class="e-title"><a href="fomo.html">Financial Misinformation on Indian Social Media</a></span><p class="e-desc">I am currently working on a study that tests whether fear of missing out (FOMO) and conscientiousness interact to predict financial misinformation sharing. It extends <a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank">Professor Kakkar&#8217;s framework</a> on political ideology, conscientiousness, and fake news sharing into a financial context, with FOMO taking the place of ideology.</p></li>
+<li><span class="e-title"><a href="fomo.html">Financial Misinformation on Indian Social Media</a></span><p class="e-desc">I am currently working on a study that tests whether fear of missing out (FOMO) and conscientiousness interact to predict financial misinformation sharing. It extends <a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank">Professor Kakkar&#8217;s framework</a> on political ideology, conscientiousness, and fake news sharing into a financial context, with FOMO taking the place of ideology.</p><p class="e-desc">While working on my financial misinformation research, I found myself having to learn a lot about code-mixing and how language models handle the way people communicate online in India. After speaking with researchers working directly in this area, including <a href="http://mbzuai.ac.ae/academics/faculty-directory/monojit-choudhury" rel="noopener" target="_blank">Prof. Monojit Choudhury at MBZUAI</a> and <a href="https://www.microsoft.com/en-us/research/people/t-prakodali/" rel="noopener" target="_blank">Dr. Prashant Kodali at Microsoft Research India</a>, I ended up with a collection of papers, tools, and practical resources that helped me understand the field from scratch. I&#8217;m now putting these together into a beginner-friendly starter resource on code-mixing, covering where to start, what to read and in what order, and which tools are actually useful, especially if you&#8217;re coming from a non-technical background. I&#8217;ll make it freely available here once it&#8217;s ready. If you want the resource, let me know <a href="#notify" id="notify-open">here</a>.</p><form class="notify" hidden id="notify"><input name="list" type="hidden" value="code-mixing starter resource"/><input name="_subject" type="hidden" value="Code-mixing resource: someone wants it"/><input aria-label="your email" autocomplete="email" name="email" placeholder="your email" required="" type="email"/><button type="submit">send it to me</button><p class="notify-msg" aria-live="polite"></p></form></li>
 <li><span class="e-title"><a href="https://www.researchgate.net/publication/393986547_The_Two_Faces_of_Progress_A_Look_at_the_Socio-Economic_Challenges_and_Opportunities_Presented_by_Artificial_Intelligence" rel="noopener" target="_blank">Policy guiding Artificial Intelligence</a></span><p class="e-desc">I recently published a paper on the socioeconomic effects of AI and the policy surrounding it in July 2025 in the International Journal for Research in Applied Science and Engineering Technology, and recently presented it in November 2025 at the NYC STEM Research Conference. I conducted this research project under the guidance of Prof. Surbhi Goel from the University of Pennsylvania, and it stemmed from my interests in AI Safety.</p></li>
 <li><span class="e-title">Financial Economics &amp; Systemic Risk: Black Swan Events</span><p class="e-desc">I had conducted research on Black Swan Events under the guidance of Prof. Kritika Soni of the Indian School of Business and Finance (ISBF), working on the financial and systemic risk side of economics. This resulted in a research report that I co-authored with Amaira Akbar and Ishaan Harish, exploring major Black Swan events throughout history and their economic and financial consequences. The report examined the underlying conditions that allowed these events to emerge, their effects on financial markets and broader economic systems, and the challenges involved in anticipating and managing systemic risks arising from highly unpredictable events. This project officially came to an end in December 2025, and the report was not published or formally disseminated beyond the research team and faculty supervision.</p></li>
 </ul>
@@ -133,5 +148,29 @@
     scheduleIdle();
   })();
   </script>
+<script>
+  /* "lemme know here": open a one-field email form, send it to Formspree */
+  (function () {
+    var link = document.getElementById('notify-open'), form = document.getElementById('notify');
+    if (!link || !form) return;
+    var input = form.querySelector('input[type=email]'), btn = form.querySelector('button'), msg = form.querySelector('.notify-msg');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      form.hidden = false;
+      input.focus({ preventScroll: true });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true; msg.textContent = '';
+      fetch('https://formspree.io/f/xpqokanp', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          input.remove(); btn.remove();
+          msg.textContent = 'got it, thank you! I’ll email it to you when it’s ready.';
+        })
+        .catch(function () { btn.disabled = false; msg.textContent = 'that didn’t go through. try again in a moment?'; });
+    });
+  })();
+</script>
 </body>
 </html>
