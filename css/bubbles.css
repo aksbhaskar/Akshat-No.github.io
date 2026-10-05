@@ -55,6 +55,8 @@ p, li, figcaption, blockquote, dd, dt, td, th, label, .sub, .u-cap, .label, .met
   text-wrap: balance; -webkit-hyphens: manual; hyphens: manual; letter-spacing: 0 !important;
 }
 p { margin: 0 0 0.8lh !important; }
+/* running text fills the column; only short lines like captions are balanced */
+p, li { text-wrap: pretty; }
 .sub, .meta, .u-date, .label { font-style: italic; }
 h1, h2, h3, h4 { font-weight: 400 !important; line-height: 1 !important; letter-spacing: 0 !important; text-transform: none !important; }
 h1 { font-size: 1.6rem !important; margin: 0 0 0.6rem !important; }
