@@ -67,6 +67,28 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="css/bubbles.css" rel="stylesheet"/>
 <style>ul.dates li { margin-bottom: 0.9rem !important; }</style>
+<style>
+  /* upcoming episodes, numbered like the list they were sent as */
+  ol.eps { list-style: none; counter-reset: ep; margin: 0.3rem 0 1.1rem; padding: 0; }
+  ol.eps li { counter-increment: ep; position: relative; padding-left: 1.6em; margin: 0 0 0.6rem !important; }
+  ol.eps li::before { content: counter(ep) ")"; position: absolute; left: 0; }
+  /* the two small forms: suggest a book, nudge me */
+  .ask { margin: 1.6rem 0 0.4rem !important; }
+  form.mini { display: grid; gap: 0.7rem; margin: 0.2rem 0 0; max-width: 24rem; }
+  form.mini[hidden] { display: none; }
+  #nudge { margin-top: 1.2rem; }
+  form.mini input { width: 100%; background: transparent !important; border: 0 !important; border-bottom: 1px solid rgba(10,10,10,0.22) !important;
+    border-radius: 0 !important; padding: 0.35rem 0 !important; font: inherit; font-size: 1.1rem !important; color: #0a0a0a !important; outline: none; box-shadow: none !important; }
+  form.mini input:focus { border-bottom-color: #0a0a0a !important; }
+  form.mini input::placeholder { color: rgba(10,10,10,0.4) !important; font-style: normal !important; }
+  form.mini button { justify-self: start; margin-top: 0.3rem; font: inherit; font-size: 1.1rem !important; color: #0a0a0a !important; background: none !important;
+    border: 0 !important; border-bottom: 1px solid #0a0a0a !important; border-radius: 0 !important; padding: 0 0 1px !important; cursor: pointer; box-shadow: none !important; }
+  form.mini button:hover { opacity: 0.55; }
+  form.mini button:disabled { opacity: 0.45; cursor: default; }
+  form.mini .mini-msg { margin: 0 !important; font-size: 1rem !important; opacity: 0.7; }
+  form.mini .mini-msg:empty { display: none; }
+  form.mini, form.mini * { font-style: normal !important; }
+</style>
 <link href="css/dark.css" rel="stylesheet"/>
 <script src="js/theme.js"></script>
 </head>
@@ -79,9 +101,7 @@
 <a href="writing.html">writing</a>
 <a href="photography.html">photography</a>
 </nav>
-<h1>now</h1>
-<p class="sub al"><img alt="W" class="initial" height="640" src="images/initials/W.svg" width="640"/><span class="run">hat</span> has my attention at the moment.</p>
-<p class="meta">updated <span id="updated">6 September 2026</span> · <span id="freshness">today</span> · New Delhi <span class="clock" id="clock">··:··</span></p>
+<p class="meta">New Delhi <span class="clock" id="clock">··:··</span> · last updated <span id="updated">5 October 2026</span></p>
 <section class="sec">
 <h2>where i'll be</h2>
 <p>where to find me over the next few months. if any of it lines up with where you are, come say hi :)</p>
@@ -97,44 +117,48 @@
 </ul>
 </section>
 <section class="sec">
-<h2>researching</h2>
-<p>I am about halfway through a study on how financial misinformation spreads across Indian social media, under Professor Hemant Kakkar at the Indian School of Business, aiming for around three hundred respondents and a mixed-effects model in R.</p>
-<p>The content is multilingual and code-mixed, Hindi and English inside the same sentence, which is what most off-the-shelf models fall over on. So it runs through <a href="https://huggingface.co/google/muril-base-cased" rel="noopener" target="_blank">MuRIL</a>, pretrained on Indian languages, and <a href="https://huggingface.co/FacebookAI/xlm-roberta-base" rel="noopener" target="_blank">XLM-RoBERTa</a>, to see whether the India-specific training earns its keep.</p>
-<p>The other half is psychological. Using the BFI-2-XS personality inventory and the Fear of Missing Out scale, I am working out which traits predict whether someone forwards a claim they never checked. The interesting question was never what the false posts look like. It is who passes them on.</p>
+<h2>research</h2>
+<p>I am currently working on a study that tests whether fear of missing out (FOMO) and conscientiousness interact to predict financial misinformation sharing. It extends <a href="https://pubmed.ncbi.nlm.nih.gov/34694858/" rel="noopener" target="_blank">Professor Kakkar&#8217;s framework</a> on political ideology, conscientiousness, and fake news sharing into a financial context, with FOMO taking the place of ideology. checkout more details <a href="fomo.html">here</a>, and the GitHub <a href="https://github.com/aksbhaskar/fomo-misinformation-study" rel="noopener" target="_blank">here</a>.</p>
 </section>
 <section class="sec">
 <h2>building</h2>
-<p>back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter i founded to teach economics to students who are never offered it. i'd stepped back for a while under other commitments (don't worry guys i aced my board exams), and it is good to be in it properly again.</p>
-<p>right now that mostly means the <a href="https://edunomixinstitute.com/india-essay-competition" rel="noopener" target="_blank">second</a> edition of our nationwide essay competition, which is live and open for submissions. it is open to students in Classes 6 to 12, along with first-year university and gap-year students, with five prompts on questions that matter for India. entries close on 30th September, a few dozen are already in, and the top entries walk straight onto the Edunomix India research team!</p>
+<p>back to running the <a href="edunomix.html">Edunomix India Chapter</a> day to day, the 501(c)(3) chapter i founded to teach economics to students who need it. i'd stepped back for a while under other commitments (don't worry guys i aced my board exams), and it is good to be in it properly again.</p>
+<p>right now, that mostly means reviewing entries for the <a href="https://edunomixinstitute.com/india-essay-competition" rel="noopener" target="_blank">second edition</a> of our nationwide essay competition. the submission deadline has now passed, and I&#8217;m mostly spending my time reading and evaluating essays from students in Classes 6 to 12, as well as first-year university and gap-year students, responding to five prompts on questions that matter for India, along with our other judges from our wonderful panel. the top entries will go on to join the Edunomix India research team, and I am really excited to soon announce the winners :)</p>
 <p>we have also partnered again with Learn and Teach UA for this season's <a href="https://x.com/aksbhaskar/status/2096799687399690405?s=20" rel="noopener" target="_blank">Ukraine Speaks English seminars</a>, free financial education for students across Ukraine whose schooling has been disrupted.</p>
 </section>
 <section class="sec">
 <h2>writing</h2>
-<p>most of my writing now goes into the financial misinformation study above, which is a different craft from an essay. fewer adjectives, more error bars, and a much longer wait before you are allowed to claim anything.</p>
-<p>shorter pieces land on <a href="articles.html">the articles page</a> when they are ready.</p>
+<p>most of my writing now goes into the financial misinformation study above, which is a different craft from an essay. for my shorter pieces, checkout the <a href="writing.html">writing page</a>!</p>
 </section>
 <section class="sec">
 <h2>recording</h2>
-<p><a href="podcast.html"><i>Decoded</i></a> is the podcast i started with a friend in December 2024 to drag good conversations in economics, technology, and policy out of the papers and conference halls they usually die in. it has since passed three hundred listening hours on Spotify and picked up three Spotify for Creators awards in 2025 :)</p>
-<p>the conversation I chased for weeks, with <a href="https://en.wikipedia.org/wiki/M._Ram_Murty" rel="noopener" target="_blank">M. Ram Murty</a> at Queen's University, one of the sharpest minds in number theory and philosophy, is now live: forty-four minutes on prime numbers, the Gita, Star Trek, and why he still guards three uninterrupted hours a day just to think. it may be the best thing we have recorded, with more interesting people lined up behind him.</p>
-<p>i also coded a new home for the show at <a href="https://decodedpodcast.vercel.app" rel="noopener" target="_blank">decodedpodcast.vercel.app</a>. it started as just the two of us researching, recording, editing, and shipping every episode, so we have been building a team: our first twenty-plus hires across research, social media, and outreach, and, after dozens of interviews, a new Head of the Decoded Newsletter (more on who soon). a few newsletter roles are still open, so if you would like to join, email <a href="mailto:akshat@thedecodedpodcast.com">akshat@thedecodedpodcast.com</a>, or just <a href="connect.html">say hello</a>.</p>
+<p>upcoming episodes for the <a href="https://decodedpodcast.vercel.app/" rel="noopener" target="_blank">Decoded Podcast</a>:</p>
+<ol class="eps">
+<li>Ram Sewak Sharma, CEO @ National Health Authority and the Innovator @ Aadhar Card (Date: Not Confirmed)</li>
+<li>Ashok Kantha, Former Ambassador of India to the People&#8217;s Republic of China (Date: 10th November)</li>
+<li>Eduard Talam&agrave;s, Professor @ IESE Business School and PhD @ Harvard University (Date: 25th November)</li>
+<li>Sundar Sarukkai, World Famous Philosopher (Date: Not Confirmed)</li>
+<li>Dr Mahendra Kumar Singh, Professor Ph.D., Assistant Professor @ DDU Gorakhpur University (Date: 9th October)</li>
+<li>Dr. Ajay Shah, Professor @ National Law School of India University, PhD @ USC, BTech @ IIT Bombay</li>
+</ol>
+<p>we have also been building our team, and are actively hiring newsletter associates, so if you would like to join, email Anya (our Head of the Newsletter department) at <a href="mailto:anya@thedecodedpodcast.com">anya@thedecodedpodcast.com</a>!</p>
 </section>
 <section class="sec">
 <h2>reading</h2>
-<ul class="list">
-<li><i>Development as Freedom</i><span class="by">Amartya Sen — the one quietly rearranging how I judge my own work</span></li>
-<li><i>A Song of Ice and Fire</i><span class="by">George R. R. Martin — i love fiction!</span></li>
-</ul>
-<p style="margin-top:0.9rem">Halfway through Sen's <i>Development as Freedom</i> now, and it is quietly rearranging how I judge my own work. His claim, that development is the real freedoms people have rather than income alone, reframes what I am actually doing: the misinformation study is about one such freedom, the capability to tell a true claim from a false one, and Edunomix is about another, treating economic literacy as something owed to a student rather than optional. Before it I finished Ray Dalio's <i>Principles for Dealing with the Changing World Order</i>. The whole shelf lives <a href="bookshelf.html">here</a>.</p>
-</section>
-<section class="sec">
-<h2>thinking about</h2>
-<p>whether the most conscientious people spread financial misinformation fastest, forwarding a warning out of duty rather than carelessness. whether AI governance can ever be written faster than the thing it regulates. and why economics is taught as a subject to be examined rather than a lens for seeing the world.</p>
+<p><a href="https://www.goodreads.com/book/show/17449365-the-penguin-history-of-the-world" rel="noopener" target="_blank"><i>The Penguin History of the World</i>, by J. M. Roberts &amp; Odd Arne Westad (Sixth Edition)</a></p>
+<p class="ask">suggest me a book!</p>
+<form class="mini" data-kind="book">
+<input name="_subject" type="hidden" value="Book suggestion from the now page"/>
+<input aria-label="book" name="book" placeholder="book" required="" type="text"/>
+<input aria-label="author" name="author" placeholder="author" required="" type="text"/>
+<input aria-label="why? (optional)" name="why" placeholder="why? (optional)" type="text"/>
+<button type="submit">send</button>
+<p class="mini-msg" aria-live="polite"></p>
+</form>
 </section>
 <section class="sec">
 <h2>learning</h2>
-<p>to be technical. i came to this from economics, where it is easy to treat the modelling as somebody else's department. that stops being an option the moment your research question is a fine-tune. so: Python, the transformers stack, and a concerning amount of statistics.</p>
-<p>number theory, still, slowly. <a href="mathapprenticeship.html">the apprenticeship</a> ended but the habit did not.</p>
+<p><a href="research.html">code mixing</a>, <a href="https://cs50.harvard.edu/x/" rel="noopener" target="_blank">how to be technical</a>, and <a href="mathapprenticeship.html">even more number theory</a></p>
 </section>
 <section class="sec">
 <h2>off the desk</h2>
@@ -142,18 +166,26 @@
 </section>
 <section class="sec">
 <h2>reaching out</h2>
-<p>deliberately talking to more people, researchers, writers, anyone building something they care about. the most useful hour in my week is usually a conversation I did not strictly have to have. researching something? <a href="connect.html">talk to me!</a></p>
+<p>deliberately talking to more people, researchers, writers, anyone building something they care about. the most useful hour in my week is usually a conversation I did not strictly have to have. researching something? <a href="https://calendly.com/akshatbhaskar/30min" rel="noopener" target="_blank">talk to me!</a></p>
 </section>
 <section class="sec">
 <h2>saying no to</h2>
 <p>most things. it took me a while to learn that a calendar with no gaps in it is not a sign of ambition, it is a sign of poor editing.</p>
 </section>
-<p class="colophon">this is a <a href="https://nownownow.com/about" rel="noopener" target="_blank">now page</a>, an idea I stole from Derek Sivers. the premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. if we have spoken before and this is out of date, that is on me. <a href="connect.html">nudge me</a>.</p>
+<p class="colophon">this is a <a href="https://nownownow.com/about" rel="noopener" target="_blank">now page</a>, an idea I stole from Derek Sivers. the premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. if we have spoken before and this is out of date, that is on me. <a href="#nudge" id="nudge-open">nudge me</a>.</p>
+<form class="mini" data-kind="nudge" hidden id="nudge">
+<input name="_subject" type="hidden" value="Nudge from the now page"/>
+<input aria-label="name" autocomplete="name" name="name" placeholder="name" required="" type="text"/>
+<input aria-label="email" autocomplete="email" name="email" placeholder="email" required="" type="email"/>
+<input aria-label="message" name="message" placeholder="message" required="" type="text"/>
+<button type="submit">send</button>
+<p class="mini-msg" aria-live="polite"></p>
+</form>
 </div>
 <script>
   /* Dateline: the one line to touch when refreshing this page. */
   (function () {
-    var LAST_UPDATED = '2026-09-06';
+    var LAST_UPDATED = '2026-10-05';
     var upd = new Date(LAST_UPDATED + 'T12:00:00+05:30');
     var u = document.getElementById('updated');
     if (u) u.textContent = upd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -207,5 +239,28 @@
     scheduleIdle();
   })();
   </script>
+<script>
+  /* "nudge me" opens its form; both small forms send through Formspree */
+  (function () {
+    var open = document.getElementById('nudge-open'), nudge = document.getElementById('nudge');
+    if (open && nudge) open.addEventListener('click', function (e) {
+      e.preventDefault(); nudge.hidden = false; nudge.querySelector('input[name=name]').focus({ preventScroll: true });
+    });
+    document.querySelectorAll('form.mini').forEach(function (form) {
+      var btn = form.querySelector('button'), msg = form.querySelector('.mini-msg');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true; msg.textContent = '';
+        fetch('https://formspree.io/f/xpqokanp', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error(r.status);
+            form.querySelectorAll('input:not([type=hidden]), button').forEach(function (x) { x.remove(); });
+            msg.textContent = form.getAttribute('data-kind') === 'book' ? 'thank you! adding it to the list :)' : 'got it, thank you! i\u2019ll get back to you.';
+          })
+          .catch(function () { btn.disabled = false; msg.textContent = 'that didn\u2019t go through. try again in a moment?'; });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
