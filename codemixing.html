@@ -26,6 +26,16 @@
   p { margin: 0; }
   a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1px; }
   a:hover { text-decoration-color: var(--ink); }
+  .notify { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-top: 16px; }
+  .notify[hidden] { display: none; }
+  .notify input[type=email] { flex: 1 1 220px; min-width: 0; font: inherit; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 2px 0; outline: none; }
+  .notify input[type=email]:focus { border-bottom-color: var(--ink); }
+  .notify input::placeholder { color: var(--muted); }
+  .notify button { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .notify button:hover { text-decoration-color: var(--ink); }
+  .notify button:disabled { color: var(--muted); cursor: default; }
+  .notify-msg { flex-basis: 100%; color: var(--muted); }
+  .notify-msg:empty { display: none; }
 </style>
 </head>
 <body>
@@ -33,7 +43,36 @@
   <h1>Code Mixing</h1>
   <p class="site"><a href="/">Akshat Bhaskar</a></p>
 
-  <p>While working on my financial misinformation research, I found myself having to learn a lot about code-mixing and how language models handle the way people communicate online in India. After speaking with researchers working directly in this area, including <a href="http://mbzuai.ac.ae/academics/faculty-directory/monojit-choudhury">Prof. Monojit Choudhury at MBZUAI</a> and <a href="https://www.microsoft.com/en-us/research/people/t-prakodali/">Dr. Prashant Kodali at Microsoft Research India</a>, I ended up with a collection of papers, tools, and practical resources that helped me understand the field from scratch. I’m now putting these together into a beginner-friendly starter resource on code-mixing, covering where to start, what to read and in what order, and which tools are useful, especially if you’re coming from a non-technical background. I’ll make it freely available here once it’s ready.</p>
+  <p>While working on my financial misinformation research, I found myself having to learn a lot about code-mixing and how language models handle the way people communicate online in India. After speaking with researchers working directly in this area, including <a href="http://mbzuai.ac.ae/academics/faculty-directory/monojit-choudhury">Prof. Monojit Choudhury at MBZUAI</a> and <a href="https://www.microsoft.com/en-us/research/people/t-prakodali/">Dr. Prashant Kodali at Microsoft Research India</a>, I ended up with a collection of papers, tools, and practical resources that helped me understand the field from scratch. I’m now putting these together into a beginner-friendly starter resource on code-mixing, covering where to start, what to read and in what order, and which tools are useful, especially if you’re coming from a non-technical background. I’ll make it freely available here once it’s ready. If you want to be notified, let me know <a href="#notify" id="notify-open">here</a>.</p>
+  <form class="notify" id="notify" hidden>
+    <input type="hidden" name="list" value="code-mixing starter resource">
+    <input type="hidden" name="_subject" value="Code-mixing resource: someone wants to be notified">
+    <input type="email" name="email" placeholder="your email" aria-label="your email" autocomplete="email" required>
+    <button type="submit">notify me</button>
+    <p class="notify-msg" aria-live="polite"></p>
+  </form>
 </main>
+<script>
+  (function () {
+    var link = document.getElementById('notify-open'), form = document.getElementById('notify');
+    var input = form.querySelector('input[type=email]'), btn = form.querySelector('button'), msg = form.querySelector('.notify-msg');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      form.hidden = false;
+      input.focus({ preventScroll: true });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true; msg.textContent = '';
+      fetch('https://formspree.io/f/xpqokanp', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          input.remove(); btn.remove();
+          msg.textContent = 'Got it, thank you. I’ll email you when it’s ready.';
+        })
+        .catch(function () { btn.disabled = false; msg.textContent = 'That didn’t go through. Try again in a moment?'; });
+    });
+  })();
+</script>
 </body>
 </html>
