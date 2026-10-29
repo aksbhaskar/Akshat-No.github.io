@@ -7,7 +7,7 @@
 
   var CW = 3, CH = 5, FONT_PX = 7.2, FAMILY = "px Newsreader, Georgia, serif";
   var SIM = 4, NS = 16, STEP = 1 / 60;
-  var SCALE = 0.63; // the scene is laid out in world units and drawn at this size, so the pond reads larger than the canvas
+  var SCALE = 0.504; // the scene is laid out in world units and drawn at this size, so the pond reads larger than the canvas
   var KOI_RAMP = [":", "+", "*", "o", "O", "8", "%", "#", "@"];
   var STONE_RAMP = [".", ":", "-", "+", "o", "O"];
   var RIPPLE_LIT = ["-", "~", "~", "="];
