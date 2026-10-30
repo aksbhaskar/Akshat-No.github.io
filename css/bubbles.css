@@ -1,0 +1,146 @@
+/* Shared theme for the minimal pages, matching the home page:
+   the Alexander painting behind a single #f8f8f8 card, and inside it a
+   31rem column set in the Alembic "serif white" style (EB Garamond 400,
+   #0a0a0a, 1.25rem, line-height 1, balanced lines, floral drop caps).
+   Linked after each page's own <style>, so these rules win. */
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0 !important; min-height: 100vh;
+  color: #0a0a0a !important;
+  font: 1.25rem/1 "EB Garamond", Garamond, Georgia, serif !important;
+  font-kerning: normal; font-variant-ligatures: common-ligatures;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  background: transparent !important;
+}
+/* the painting lives on a fixed layer, so scrolling never repaints it */
+html { background: #2a2620 !important; }
+body::before {
+  content: "" !important; position: fixed !important; z-index: -1 !important; pointer-events: none;
+  top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important;
+  width: auto !important; height: auto !important;
+  background: #2a2620 url('../images/alexander.webp') center center / cover no-repeat !important;
+}
+@media (orientation: portrait) { body::before { background-image: url('../images/alexander-vertical.webp') !important; } }
+
+/* the card, with the text column centred inside it */
+.wrap, .page {
+  box-sizing: border-box !important;
+  width: min(64rem, 100% - 3rem) !important; max-width: none !important;
+  margin: 4.5rem auto !important;
+  padding: 6rem max(1.5rem, calc((min(64rem, 100vw - 3rem) - 31rem) / 2)) !important;
+  background: #f8f8f8 !important; border: 0 !important; border-radius: 0.5rem !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 30px 70px -30px rgba(0,0,0,0.55) !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  position: relative;
+}
+@media (max-width: 640px) {
+  .wrap, .page { width: calc(100% - 1.5rem) !important; margin: 0.75rem auto !important; padding: 3.5rem 1.5rem !important; }
+}
+
+/* everything is plain text on the card: no clouds, no boxes */
+.bubble, .gallery figure, .u-list a, .tl-cloud, .frame, .media-cloud {
+  background: transparent !important; border: 0 !important; border-radius: 0 !important;
+  box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  padding: 0 !important;
+}
+.bubble { margin: 0 0 1.6rem !important; }
+
+/* one ink colour, one face, one size */
+body :where(:not(svg, svg *, #dogCompanion, #dogCompanion *)) {
+  color: #0a0a0a !important; font-family: "EB Garamond", Garamond, Georgia, serif !important;
+}
+p, li, figcaption, blockquote, dd, dt, td, th, label, .sub, .u-cap, .label, .meta, .note, .cap, .u-date {
+  font-size: 1.25rem !important; line-height: 1 !important; font-weight: 400 !important;
+  text-wrap: balance; -webkit-hyphens: manual; hyphens: manual; letter-spacing: 0 !important;
+}
+p { margin: 0 0 0.8lh !important; }
+/* running text fills the column; only short lines like captions are balanced */
+p, li { text-wrap: pretty; }
+.sub, .meta, .u-date, .label { font-style: italic; }
+h1, h2, h3, h4 { font-weight: 400 !important; line-height: 1 !important; letter-spacing: 0 !important; text-transform: none !important; }
+h1 { font-size: 1.6rem !important; margin: 0 0 0.6rem !important; }
+h2, h3, h4 { font-size: 1.25rem !important; font-style: italic; margin: 1.6rem 0 0.6rem !important; }
+b, strong { font-weight: 600 !important; }
+small { font-size: 1rem !important; }
+
+/* links: same ink, fine underline (as on the home page) */
+a, a:visited { color: inherit !important; font-weight: inherit !important; text-decoration: underline !important;
+  text-decoration-color: rgba(10,10,10,0.3) !important; text-decoration-thickness: 1px !important; text-underline-offset: .15em; }
+a:hover { text-decoration-color: currentColor !important; }
+
+/* top nav: one centred line of EB Garamond, separated by small dots,
+   no underlines until you hover, with a fine rule underneath */
+.wrap > nav:first-of-type, .page > nav:first-of-type {
+  display: flex !important; flex-wrap: wrap; justify-content: center; align-items: baseline;
+  gap: 0.2rem 0; text-align: center !important;
+  margin: 0 0 3.2rem !important; padding: 0 0 1.1rem !important;
+  border-bottom: 1px solid rgba(10,10,10,0.18);
+}
+.wrap > nav:first-of-type a, .page > nav:first-of-type a {
+  display: inline-block; margin: 0 !important; font-size: 1.1rem !important; white-space: nowrap;
+  text-decoration: none !important; text-shadow: none !important; opacity: 1 !important;
+}
+.wrap > nav:first-of-type a:hover, .page > nav:first-of-type a:hover {
+  text-decoration: underline !important; text-decoration-color: rgba(10,10,10,0.45) !important;
+}
+.wrap > nav:first-of-type a:not(:last-child)::after, .page > nav:first-of-type a:not(:last-child)::after {
+  content: "\00b7"; display: inline-block; margin: 0 0.7rem; opacity: 0.55; text-decoration: none;
+}
+
+/* a page title with a floral initial (e.g. Updates): the initial spans two lines' height */
+h1.al-title { display: flow-root; font-size: 2.1rem !important; line-height: 1 !important; margin: 0 0 1.4rem !important; }
+h1.al-title .initial { float: left; width: auto !important; height: 1.65em !important; margin: 0.2em 0.2em 0 0 !important; border-radius: 0 !important; }
+h1.al-title .run { text-transform: uppercase; letter-spacing: 0.03em; }
+
+/* the floral drop cap: three lines, top on the cap height of line 1,
+   bottom on the baseline of line 3; rest of the first word run in capitals */
+p.al .initial {
+  float: left; width: auto !important; height: 2.65em !important; margin: 0.2em 0.27em 0 0 !important;
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important; display: block;
+}
+p.al .run { text-transform: uppercase; letter-spacing: 0.02em; }
+p.al { display: flow-root; }
+
+/* photos: centred in the card, a little narrower than the text column,
+   so they sit in the middle instead of hugging the left edge */
+img { max-width: 100%; height: auto; border: 0 !important; border-radius: 2px; box-shadow: none !important; }
+.frame, .gallery figure, .media-cloud, .tweet-wrap, figure {
+  box-sizing: border-box;
+  width: min(26rem, 100vw - 7.5rem) !important; max-width: none !important;
+  margin: 0 0 2.4rem 50% !important; transform: translateX(-50%);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .frame, .gallery figure, .media-cloud, .tweet-wrap, figure { width: calc(100vw - 4.5rem) !important; }
+}
+.frame img, figure img, .media-cloud img { width: 100% !important; max-width: none !important; display: block; margin: 0 auto; }
+.frame + .cap, .cap, .u-cap, figcaption { text-align: center !important; max-width: none !important; font-style: italic; }
+figcaption { margin: 0.6rem 0 0 !important; }
+.frame + .cap { margin-top: -1.6rem !important; margin-bottom: 2.4rem !important; }
+.media-cloud .frame { width: 100% !important; margin: 0 !important; transform: none; }
+.media-cloud iframe, .tweet-wrap iframe { max-width: 100%; margin: 0 auto !important; }
+.tweet-wrap .twitter-tweet { margin: 0 auto !important; }
+
+/* updates list: one plain line per entry */
+.u-list a { display: block; margin: 0 0 0.55rem !important; }
+.u-list a .m, .u-list a .badge { font-style: italic; }
+
+/* timeline entries: plain, spaced */
+.tl { margin: 0 0 1.6rem !important; }
+
+/* popup pages' round back button, and the connect form */
+.back { background: #f8f8f8 !important; border: 1px solid rgba(10,10,10,0.25) !important; box-shadow: none !important; }
+input, textarea, select {
+  font: 1.25rem/1.2 "EB Garamond", Garamond, Georgia, serif !important; color: #0a0a0a !important;
+  background: transparent !important; border: 0 !important; border-bottom: 1px solid rgba(10,10,10,0.35) !important;
+  border-radius: 0 !important; box-shadow: none !important;
+}
+.send, button[type="submit"] { background: #0a0a0a !important; color: #f8f8f8 !important; border: 0 !important; border-radius: 999px !important; }
+.send, .send *, button[type="submit"], button[type="submit"] * { color: #f8f8f8 !important; }
+
+/* hand-drawn arrow back to home, instead of the round button */
+a.back { display: inline-block !important; width: auto !important; height: auto !important; padding: 0.4rem 0 !important; margin: 0 0 2.4rem !important;
+  background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; text-decoration: none !important; }
+a.back img { display: block; width: 112px; height: auto; border-radius: 0; }
+a.back:hover { transform: translateX(-5px); }
