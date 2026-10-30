@@ -8,7 +8,7 @@ The personal website of **Akshat Bhaskar**: research on financial misinformation
 
 Hand-written HTML, CSS, and a little vanilla JavaScript. No framework and no build step: every page is a plain HTML file you can open directly.
 
-The design is meant to feel like a page from an old book: the pages sit on a card over *Alexander Cutting the Gordian Knot*, set in EB Garamond, with woodcut-style ornamental initials opening the first paragraph of each page.
+The design is deliberately minimal: white paper, a single 560px column set in Newsreader, grey section headings and fine grey underlines, with a dark mode switch in the corner. One shared stylesheet, `css/minimal.css`, lays this style over every page.
 
 There is also a second, more formal version of the site at [/professionalism](https://akshatb.com/professionalism.html).
 
@@ -32,7 +32,7 @@ There is also a second, more formal version of the site at [/professionalism](ht
 ```
 .
 ├── *.html          one file per page (index.html is the home page)
-├── css/            bubbles.css (the shared minimal theme), paper.css, theme.css
+├── css/            minimal.css (the shared minimal style), paper.css, theme.css
 ├── js/             site.js
 ├── images/         photographs, covers, and illustrations
 │   └── initials/   ornamental drop-cap initials
@@ -55,7 +55,7 @@ and open <http://localhost:8000>.
 ## Credits
 
 - Ornamental initials from the [Alembic](https://alembic.space) editor's floral and wiggly sets, vectorised from books printed between 1510 and 1900.
-- Type: [EB Garamond](https://fonts.google.com/specimen/EB+Garamond).
+- Type: [Newsreader](https://fonts.google.com/specimen/Newsreader).
 - Background: *Alexander Cutting the Gordian Knot*, Jean-Simon Berthélemy (public domain).
 - Hosted on GitHub Pages.
 
