@@ -10,28 +10,12 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="css/bubbles.css" rel="stylesheet"/>
 <style>
-  :root { --bg: #fff; --ink: #111; --muted: #888; --line: #ccc; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 400 18px/1.7 "Newsreader", Georgia, serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  main { max-width: 560px; margin: 0 auto; padding: 168px 20px 10vh; }
-  @media (max-width: 640px) { main { padding-top: 68px; } }
-  h1 { font-size: 18px; font-weight: 400; margin: 0; }
-  .site { margin: 0 0 48px; }
-  .topnav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin: 0 0 48px; }
-  .intro { margin: 0 0 48px; }
-  .intro p + p { margin-top: 16px; }
-  .intro .hint { color: var(--muted); }
-  p { margin: 0; }
-  a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-  a:hover { text-decoration-color: var(--ink); }
+  :root { --ink: #0a0a0a; --bg: #f8f8f8; --muted: rgba(10,10,10,0.55); }
+  .intro { margin: 0 0 2.4rem; }
+  .wrap .intro .hint { color: var(--muted) !important; }
   .shots { display: flex; flex-direction: column; gap: 32px; }
   .row { display: flex; gap: 12px; align-items: flex-start; }
   .shot { flex: var(--r) 1 0; min-width: 0; margin: 0; }
@@ -65,11 +49,23 @@
     .lb { padding: 48px 12px 24px; }
     .lb .prev, .lb .next { top: auto; bottom: 8px; transform: none; }
   }
+  /* the shared theme centres and narrows every figure; photo rows keep their own sizes */
+  .wrap .shots figure.shot { width: auto !important; max-width: none !important; margin: 0 !important; transform: none !important; text-align: left !important; }
+  .wrap .shots figure.shot img { border-radius: 3px !important; }
+  .wrap .shots figcaption { font-size: 1rem !important; line-height: 1.2 !important; text-align: left !important; font-style: normal !important; margin: 0.45rem 0 0 !important; color: var(--muted) !important; }
+  #lb { z-index: 100 !important; }
+  #lb, #lb * { font-family: "EB Garamond", Garamond, Georgia, serif !important; }
+  #lb p { color: #aaa !important; font-size: 1.05rem !important; line-height: 1.35 !important; margin: 0 !important; }
+  #lb .count { color: #777 !important; }
+  #lb button { color: #bbb !important; }
+  #lb button:hover { color: #fff !important; }
 </style>
+<link href="css/dark.css" rel="stylesheet"/>
+<script src="js/theme.js"></script>
 </head>
 <body>
-<main>
-  <nav class="topnav">
+<div class="wrap">
+  <nav>
     <a href="index.html">home</a>
     <a href="research.html">research</a>
     <a href="photos.html">corpus delicti</a>
@@ -173,7 +169,7 @@
       </figure>
     </div>
   </div>
-</main>
+</div>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
   <span class="count" id="lb-count"></span>
   <button type="button" class="close" aria-label="Close">close</button>
