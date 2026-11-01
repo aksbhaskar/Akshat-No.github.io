@@ -38,6 +38,7 @@
   .shot.side .open { flex: 0 0 38%; }
   .shot.side figcaption { flex: 1; margin: 0; }
   .shot.side.flip { flex-direction: row-reverse; }
+  .wrap .shots .shot.side.flip figcaption { text-align: right !important; }
   .shot.side:not(.flip) .open { flex-basis: 48%; }
   .open { display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 4px; cursor: zoom-in; }
   .open img { transition: opacity .2s ease; }
@@ -187,6 +188,12 @@
       <figure class="shot" style="--r: 1.333">
         <button type="button" class="open"><img src="images/natural_coral_bridge_howrah_bridge_at_neil_island.webp" width="1600" height="1200" alt="Natural Coral Bridge (Howrah Bridge) at Neil Island" loading="lazy"></button>
         <figcaption>Natural Coral Bridge (Howrah Bridge) at Neil Island</figcaption>
+      </figure>
+    </div>
+    <div class="row">
+      <figure class="shot side flip" style="--r: 0.750">
+        <button type="button" class="open"><img src="images/landscape_out_of_a_painting.webp" width="701" height="935" alt="the landscape looks out of a painting, really" loading="lazy"></button>
+        <figcaption>the landscape looks out of a painting, really</figcaption>
       </figure>
     </div>
     <div class="row">
