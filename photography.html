@@ -21,10 +21,11 @@
     font: 400 18px/1.7 "Newsreader", Georgia, serif;
     -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 560px; margin: 0 auto; padding: 14vh 20px 10vh; }
+  main { max-width: 560px; margin: 0 auto; padding: 168px 20px 10vh; }
+  @media (max-width: 640px) { main { padding-top: 68px; } }
   h1 { font-size: 18px; font-weight: 400; margin: 0; }
   .site { margin: 0 0 48px; }
-  .topnav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 48px; }
+  .topnav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin: 0 0 48px; }
   .intro { margin: 0 0 48px; }
   .intro p + p { margin-top: 16px; }
   .intro .hint { color: var(--muted); }
