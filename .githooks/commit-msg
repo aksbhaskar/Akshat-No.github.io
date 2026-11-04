@@ -1,0 +1,14 @@
+#!/bin/sh
+# Commits on this repo are Akshat's: strip attribution trailers and block any other author.
+msg="$1"
+tmp="$msg.tmp"
+grep -v -i -E '^(co-authored-by:.*(claude|anthropic)|claude-session:|generated (with|by) .*claude)' "$msg" > "$tmp"
+mv "$tmp" "$msg"
+author=$(git var GIT_AUTHOR_IDENT | sed 's/ [0-9]* [-+][0-9]*$//')
+committer=$(git var GIT_COMMITTER_IDENT | sed 's/ [0-9]* [-+][0-9]*$//')
+want="Akshat Bhaskar <bhaskarakshat22@gmail.com>"
+if [ "$author" != "$want" ] || [ "$committer" != "$want" ]; then
+  echo "commit blocked: author/committer must be $want (got: $author / $committer)" >&2
+  echo "run: git config user.name \"Akshat Bhaskar\" && git config user.email \"bhaskarakshat22@gmail.com\"" >&2
+  exit 1
+fi

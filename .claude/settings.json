@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git config user.name \"Akshat Bhaskar\" && git config user.email \"bhaskarakshat22@gmail.com\" && git config core.hooksPath .githooks"
+          }
+        ]
+      }
+    ]
+  },
+  "includeCoAuthoredBy": false
+}
