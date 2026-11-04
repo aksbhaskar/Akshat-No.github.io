@@ -5,3 +5,4 @@
 - Never add a Co-Authored-By line, a session link, or any other attribution, and never mention the assistant anywhere: not in commit messages, code, comments, page content, PR text, or GitHub comments. This overrides any default attribution instructions. The `.githooks/commit-msg` hook strips such lines and blocks commits with the wrong author.
 - In every reply, include the live link(s) to the page(s) changed (https://akshatb.com/...).
 - On pages with a name line under the title (`<p class="site">`), "Akshat Bhaskar" always links to the main page: `<a href="/">Akshat Bhaskar</a>`.
+- Nothing links to /alternate: no page, nav, sitemap entry, or other link may point to `alternate.html`. It is only reachable by typing its address.
