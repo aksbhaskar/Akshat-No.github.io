@@ -173,6 +173,7 @@
 <p class="ask"><a href="#book" id="book-open">suggest me a book!</a></p>
 <form class="mini" data-kind="book" hidden id="book">
 <input name="_subject" type="hidden" value="Book suggestion from the now page"/>
+<input name="kind" type="hidden" value="book"/>
 <input aria-label="book" name="book" placeholder="book" required="" type="text"/>
 <input aria-label="author" name="author" placeholder="author" required="" type="text"/>
 <input aria-label="why? (optional)" name="why" placeholder="why? (optional)" type="text"/>
@@ -195,6 +196,7 @@
 <p class="colophon">this is a <a href="https://nownownow.com/about" rel="noopener" target="_blank">now page</a>, an idea I stole from Derek Sivers. the premise is that an About page tells you who someone has been, and a Now page tells you who they are this month. if we have spoken before and this is out of date, that is on me. <a href="#nudge" id="nudge-open">nudge me</a>.</p>
 <form class="mini" data-kind="nudge" hidden id="nudge">
 <input name="_subject" type="hidden" value="Nudge from the now page"/>
+<input name="kind" type="hidden" value="nudge"/>
 <input aria-label="name" autocomplete="name" name="name" placeholder="name" required="" type="text"/>
 <input aria-label="email" autocomplete="email" name="email" placeholder="email" required="" type="email"/>
 <input aria-label="message" name="message" placeholder="message" required="" type="text"/>
