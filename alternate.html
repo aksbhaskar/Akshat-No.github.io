@@ -48,27 +48,24 @@
   .gh i.l2 { background: color-mix(in srgb, var(--ink) 45%, var(--bg)); }
   .gh i.l3 { background: color-mix(in srgb, var(--ink) 70%, var(--bg)); }
   .gh i.l4 { background: var(--ink); }
-  html { scroll-behavior: smooth; }
-  .group { scroll-margin-top: 32px; }
-  /* section navbar: a quiet column on the left; a sticky row on narrow screens */
-  .side { position: fixed; top: 14vh; left: max(20px, calc(50% - 280px - 190px)); width: 150px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+  /* navbar: a quiet column on the left, centred vertically; a row at the top on narrow screens */
+  .side { position: fixed; top: 50%; transform: translateY(-50%); left: max(20px, calc(50% - 280px - 190px)); width: 150px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
   .side a { color: var(--muted); text-decoration: none; width: fit-content; transition: color .15s ease; }
-  .side a:hover, .side a.on { color: var(--ink); }
-  .side a.on { text-decoration: underline; text-decoration-color: var(--line); }
+  .side a:hover, .side a[aria-current="page"] { color: var(--ink); }
+  .side a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--line); }
   @media (max-width: 960px) {
-    .side { position: sticky; top: 0; left: auto; width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 18px;
-      padding: 10px 20px; background: color-mix(in srgb, var(--bg) 92%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 16px; }
-    .group { scroll-margin-top: 64px; }
+    .side { position: static; transform: none; width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 18px; padding: 16px 20px 0; font-size: 16px; }
+    main { padding-top: 8vh; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-<nav class="side" aria-label="Sections">
-  <a href="#research">Research</a>
-  <a href="#experience">Experience</a>
-  <a href="#recognition">Recognition</a>
-  <a href="#contact">Contact</a>
+<nav class="side" aria-label="Pages">
+  <a href="alternate.html" aria-current="page">About</a>
+  <a href="alternate-research.html">Research</a>
+  <a href="alternate-experience.html">Experience</a>
+  <a href="alternate-recognition.html">Recognition</a>
+  <a href="alternate-contact.html">Contact</a>
 </nav>
 <main>
   <h1>Akshat Bhaskar</h1>
@@ -84,110 +81,7 @@
     <p>You can contact me at: bhaskarakshat22 [at] gmail [dot] com, or <a href="https://cal.com/aksbhaskar/">book a call</a> with me.</p>
   </section>
 
-  <div class="group" id="research">
-  <section>
-    <h2>Research</h2>
-    <p class="exp"><a href="https://github.com/aksbhaskar/fomo-misinformation-study">Financial Misinformation</a> under Prof. Hemant Kakkar (ISB)</p>
-    <p class="exp"><a href="https://www.researchgate.net/publication/393986547_The_Two_Faces_of_Progress_A_Look_at_the_Socio-Economic_Challenges_and_Opportunities_Presented_by_Artificial_Intelligence">AI Policy</a> under UPenn <span class="t d">(Published, July 2025)</span></p>
-    <p class="exp">Number Theory under Prof. Shanta Laishram (ISI Delhi), ₹10K Research Stipend <span class="t d">(May – July 2026)</span></p>
-    <p class="exp">Energy Infrastructure and Human Centered AI at the <a href="https://www.nyas.org/">New York Academy of Sciences</a> <span class="t d">(Fall 2025 and Spring 2026)</span></p>
-    <p class="exp">Pure Mathematics at the <a href="https://www.lodhageniusprogramme.com/">Lodha Genius Programme</a> <span class="t d">(May – June 2025)</span></p>
-    <h3 class="sub">Conferences</h3>
-    <p class="exp"><a href="https://www.conf-ai.in/">ConfAI 2026</a> at Plaksha University <span class="t d">(November 2026)</span></p>
-    <p class="exp">Presented, National Youth Conference on STEM 2025 <span class="t d">(November 2025)</span></p>
-    <p class="scholar"><a href="https://scholar.google.com/citations?user=32Yg4ZsAAAAJ&amp;hl=en">Google Scholar</a></p>
-  </section>
-  </div>
-
-  <div class="group" id="experience">
-  <section>
-    <h2>Experience</h2>
-    <p class="exp">Teaching Assistant at Ashoka University <span class="t d">(Apr – Jun 2026)</span></p>
-    <p class="exp">CFO, TaxCity <span class="t d">(Acquired Jan 2026)</span></p>
-    <p class="exp">Policy Intern, Office of Mr. Rahul Pachori (Director at the Ministry of Education, Government of India) <span class="t d">(Jun 2025)</span></p>
-  </section>
-
-  <section>
-    <h2>Side Projects</h2>
-    <p>
-      FinKid (Raised $25K Compute),
-      <a href="https://github.com/nothariharan/forge">Forge</a>,
-      <a href="https://github.com/nothariharan/scout">Scout</a>,
-      <a href="https://github.com/aksbhaskar/Sensitivity-Model-for-Multi-Credit-Calibration">Multi-Credit Calibration Research</a>
-    </p>
-  </section>
-  </div>
-
-  <div class="group" id="recognition">
-  <section>
-    <h2>Recognition</h2>
-    <p>Awarded by the President of India (SOAR Initiative, January 2026), Lodha Genius Programme, Y Combinator Startup School, Spotify for Creators 2025 Awards for <a href="decoded.html">Decoded</a></p>
-  </section>
-
-  <section>
-    <h2>Interests</h2>
-    <p>Financial Misinformation, <a href="codemixing.html">Code Mixing</a>, Number Theory, AI Safety, Behavioural Economics, Public Policy, Philosophy of Mind, Anthropology, History of Ideas</p>
-  </section>
-  </div>
-
-  <div class="group" id="contact">
-  <section>
-    <h2>Contact</h2>
-    <p>
-      <a href="https://calendly.com/akshatbhaskar/30min">Book a Call</a>,
-      <a href="mailto:bhaskarakshat22@gmail.com">Email</a>,
-      <a href="https://x.com/aksbhaskar">Twitter</a>,
-      <a href="https://www.linkedin.com/in/aksbhaskar/">LinkedIn</a>,
-      <a href="https://github.com/aksbhaskar">GitHub</a>
-    </p>
-  </section>
-
-  <section id="gh-section">
-    <div class="gh" id="gh" aria-hidden="true"></div>
-    <p class="gh-count"><a href="https://github.com/aksbhaskar" id="gh-count">Contributions</a></p>
-  </section>
-  </div>
-
 </main>
 <script src="js/pond.js"></script>
-<script>
-  (function () {
-    var grid = document.getElementById("gh"), count = document.getElementById("gh-count");
-    fetch("https://github-contributions-api.jogruber.de/v4/aksbhaskar?y=last", { cache: "no-store" })
-      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
-      .then(function (data) {
-        var days = data.contributions || [];
-        if (!days.length) throw 0;
-        var total = data.total && data.total.lastYear != null ? data.total.lastYear
-          : days.reduce(function (n, d) { return n + d.count; }, 0);
-        count.textContent = "contributions in the last year: " + total.toLocaleString("en-US");
-        var pad = new Date(days[0].date + "T00:00:00").getDay();
-        grid.style.gridTemplateColumns = "repeat(" + Math.ceil((days.length + pad) / 7) + ", 1fr)";
-        var html = "";
-        for (var i = 0; i < pad; i++) html += '<i class="pad"></i>';
-        days.forEach(function (d) {
-          html += '<i class="l' + d.level + '" title="' + d.count + " on " + d.date + '"></i>';
-        });
-        grid.innerHTML = html;
-      })
-      .catch(function () { grid.style.display = "none"; });
-  })();
-</script>
-<script>
-  /* highlight the section you are reading in the navbar */
-  (function () {
-    var links = [].slice.call(document.querySelectorAll('.side a'));
-    var groups = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    function mark() {
-      var y = window.innerHeight * 0.35, cur = -1;
-      groups.forEach(function (g, i) { if (g && g.getBoundingClientRect().top <= y) cur = i; });
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) cur = groups.length - 1;
-      links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
-    }
-    window.addEventListener('scroll', mark, { passive: true });
-    window.addEventListener('resize', mark);
-    mark();
-  })();
-</script>
 </body>
 </html>
