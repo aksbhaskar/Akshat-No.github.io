@@ -6,3 +6,4 @@
 - In every reply, include the live link(s) to the page(s) changed (https://akshatb.com/...).
 - On pages with a name line under the title (`<p class="site">`), "Akshat Bhaskar" always links to the main page: `<a href="/">Akshat Bhaskar</a>`.
 - Nothing links to /alternate: no page, nav, sitemap entry, or other link may point to `alternate.html`. It is only reachable by typing its address.
+- `alternate-decoded.html` is a copy of `decoded.html` with the /alternate navbar. Whenever `decoded.html` changes, make the same change in `alternate-decoded.html`.
