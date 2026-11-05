@@ -33,9 +33,26 @@
   .d { color: var(--muted); }
   h2 + .ep { margin-top: 14px; }
   .ep + .ep { margin-top: 22px; }
+  /* navbar: a quiet column on the left, centred vertically; a row at the top on narrow screens */
+  .side { position: fixed; top: 50%; transform: translateY(-50%); left: max(20px, calc(50% - 280px - 190px)); width: 150px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+  .side a { color: var(--muted); text-decoration: none; width: fit-content; transition: color .15s ease; }
+  .side a:hover, .side a[aria-current="page"] { color: var(--ink); }
+  .side a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--line); }
+  @media (max-width: 960px) {
+    .side { position: static; transform: none; width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 18px; padding: 16px 20px 0; font-size: 16px; }
+    main { padding-top: 8vh; }
+  }
 </style>
 </head>
 <body>
+<nav class="side" aria-label="Pages">
+  <a href="alternate.html">About</a>
+  <a href="alternate-research.html">Research</a>
+  <a href="alternate-experience.html">Experience</a>
+  <a href="decoded.html" aria-current="page">Decoded</a>
+  <a href="recognition.html">Recognition</a>
+  <a href="contact.html">Contact</a>
+</nav>
 <main>
   <h1>Decoded</h1>
   <p class="site"><a href="/">Akshat Bhaskar</a></p>
