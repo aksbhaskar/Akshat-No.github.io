@@ -18,7 +18,7 @@ There is also a second, more formal version of the site at [/professionalism](ht
 | --- | --- |
 | [Home](https://akshatb.com) | who I am, what I run, and how to reach me |
 | [Writing](https://akshatb.com/writing) | thoughts, academic writing, and updates on my life |
-| [Research](https://akshatb.com/research.html) | papers, programmes, and fellowships |
+| [Research](https://akshatb.com/researcher) | papers, programmes, and fellowships |
 | [FOMO study](https://akshatb.com/fomo) | my research on who shares financial misinformation, at the Indian School of Business |
 | [Gap year](https://akshatb.com/gapyear) | mathematics, teaching, research, and the podcast |
 | [Awards](https://akshatb.com/awards) | honours and distinctions, 2022 to 2026 |
