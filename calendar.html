@@ -87,6 +87,9 @@
 
   .days { display: flex; flex: none; padding-right: var(--sb, 0px); border-bottom: 1px solid var(--line); }
   .tz { width: var(--gutter); flex: none; color: var(--muted); font-size: 10px; display: flex; align-items: center; justify-content: flex-end; padding: 0 8px 6px 0; }
+  .hwrap, .cwrap { flex: 1; min-width: 0; overflow: hidden; position: relative; }
+  .cwrap { height: 100%; }
+  .track { display: flex; height: 100%; will-change: transform; }
   .dh { flex: 1; min-width: 0; height: 34px; display: flex; align-items: center; justify-content: center; gap: 5px; color: var(--ink2); font-weight: 500; font-size: 13px; border: 0; background: none; padding: 0 0 6px; }
   .dh:hover { color: var(--ink); }
   .dh.past { color: var(--muted); }
@@ -185,7 +188,7 @@
     <h2>bhaskarakshat22@gmail.com</h2>
     <label style="--c:#4e86b0"><input type="checkbox" data-kind="busy" checked>Busy</label>
     <label style="--c:#7a6ad6"><input type="checkbox" data-kind="sleep" checked>Sleeping</label>
-    <label style="--c:#5a5a58"><input type="checkbox" data-kind="off" checked>Off hours &amp; weekends</label>
+    <label style="--c:#5a5a58"><input type="checkbox" data-kind="off" checked>Weekends</label>
     <p class="note">The empty spaces are when I’m free. Click or drag on one to book a 30 minute coffee chat on Google Meet. Times are in your time zone.<br><br>Prefer email? <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
   </div>
 </aside>
@@ -245,7 +248,9 @@
   var $ = function (id) { return document.getElementById(id); };
 
   var view = innerWidth < 560 ? 1 : innerWidth < 900 ? 4 : 7;
-  var anchor = startOfDay(new Date());
+  function sunday(d) { return addDays(d, -d.getDay()); }
+  var anchor = view === 7 ? sunday(startOfDay(new Date())) : startOfDay(new Date());   // first visible day
+  var off = 0, snapT = null;   // sideways swipe offset in px
   var miniMonth = new Date(anchor.getFullYear(), anchor.getMonth(), 1);
   var show = { busy: true, sleep: true, off: true };
   var cache = {}, fetched = {}, booked = {}, picked = null;
@@ -259,7 +264,7 @@
     t.setUTCDate(t.getUTCDate() + 4 - day);
     return Math.ceil(((t - Date.UTC(t.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
   }
-  function rangeStart() { return view === 7 ? addDays(anchor, -anchor.getDay()) : anchor; }
+  function rangeStart() { return anchor; }
   function visibleDays() { var s = rangeStart(), out = []; for (var i = 0; i < view; i++) out.push(addDays(s, i)); return out; }
 
   function hhmm(d) { return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
@@ -277,14 +282,13 @@
     var p = homeParts(ms), h = p.h + p.m / 60;
     if (h < 6.5) return 'sleep';
     if (p.wd === 'Sat' || p.wd === 'Sun') return 'weekend';
-    if (h >= 9 && h < 17) return 'busy';
-    return 'off';
+    return 'busy';
   }
-  var LABEL = { busy: 'Busy', sleep: 'Sleep', off: 'Off hours', weekend: 'Weekend' };
+  var LABEL = { busy: 'Busy', sleep: 'Sleep', off: 'Busy', weekend: 'Weekend' };
 
   /* availability from cal.com */
   function load() {
-    var days = visibleDays(), s = addDays(days[0], -1), e = addDays(days[days.length - 1], 1), key = ymd(s) + '_' + ymd(e);
+    var days = visibleDays(), s = sunday(addDays(days[0], -1)), e = addDays(sunday(addDays(days[days.length - 1], 1)), 6), key = ymd(s) + '_' + ymd(e);
     if (fetched[key] === 'ok' || fetched[key] === 'loading') return;
     fetched[key] = 'loading'; $('bar').classList.add('on');
     fetch(API + '/slots?username=' + USER + '&eventTypeSlug=' + EVENT + '&start=' + ymd(s) + '&end=' + ymd(e) + '&timeZone=' + encodeURIComponent(tz), { headers: { 'cal-api-version': '2024-09-04' } })
@@ -313,20 +317,21 @@
     document.title = t + ' · Calendar · Akshat Bhaskar';
     $('viewName').textContent = view === 1 ? 'Day' : view === 4 ? '4 days' : 'Week';
 
-    var head = '<div class="tz">' + gmtLabel() + '</div>';
-    days.forEach(function (d) {
+    var all = [addDays(first, -1)].concat(days, [addDays(last, 1)]), N = all.length, trackW = 'width:' + (N / view * 100).toFixed(4) + '%';
+    var head = '<div class="tz">' + gmtLabel() + '</div><div class="hwrap" id="hwrap"><div class="track" id="htrack" style="' + trackW + '">';
+    all.forEach(function (d) {
       var cls = sameDay(d, today) ? ' today' : d < today ? ' past' : '';
       head += '<button class="dh' + cls + '" data-day="' + ymd(d) + '" aria-label="' + d.toDateString() + '">' + d.toLocaleString('en-US', { weekday: 'short' }) + ' <b>' + d.getDate() + '</b></button>';
     });
-    $('days').innerHTML = head;
+    $('days').innerHTML = head + '</div></div>';
 
     var html = '<div class="hours">';
     var showsToday = days.some(function (d) { return sameDay(d, today); });
     var nowTop = ((now - today.getTime()) / 36e5).toFixed(4);
     for (var h = 1; h < 24; h++) if (!showsToday || Math.abs(h - nowTop) > .3) html += '<span style="top:calc(var(--row) * ' + h + ')">' + String(h).padStart(2, '0') + ':00</span>';
     if (showsToday) html += '<span class="nowpill" style="top:calc(var(--row) * ' + nowTop + ')">' + hhmm(new Date()) + '</span>';
-    html += '</div>';
-    days.forEach(function (d) {
+    html += '</div><div class="cwrap" id="cwrap"><div class="track" id="ctrack" style="' + trackW + '">';
+    all.forEach(function (d) {
       html += '<div class="col" data-day="' + ymd(d) + '">';
       var freeSet = {}; (cache[ymd(d)] || []).forEach(function (ms) { freeSet[ms] = 1; });
       var have = known(d), runKind = null, runStart = 0;
@@ -345,6 +350,7 @@
       flush(new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime());
       html += '</div>';
     });
+    html += '</div></div>';
     if (showsToday) html += '<div class="nowline" style="top:calc(var(--row) * ' + nowTop + ')"></div>';
     $('grid').innerHTML = html;
     if (showsToday) {
@@ -353,9 +359,44 @@
     }
     $('days').style.setProperty('--sb', ($('scroll').offsetWidth - $('scroll').clientWidth) + 'px');
     if (picked) placeDraft(picked);
+    applyOff(false);
     renderMini();
     load();
   }
+
+  /* sideways scrolling between days, from a trackpad swipe or a finger, like a native calendar */
+  function colW() { var w = $('cwrap'); return w ? w.clientWidth / view : 100; }
+  function applyOff(anim) {
+    ['htrack', 'ctrack'].forEach(function (id) {
+      var t = $(id); if (!t) return;
+      t.style.transition = anim ? 'transform .24s cubic-bezier(.2,.7,.2,1)' : 'none';
+      t.style.transform = 'translateX(' + (off - colW()) + 'px)';
+    });
+  }
+  function shiftBy(dx) {
+    var w = colW(), moved = false;
+    off += dx;
+    while (off <= -w) { anchor = addDays(anchor, 1); off += w; moved = true; }
+    while (off >= w) { anchor = addDays(anchor, -1); off -= w; moved = true; }
+    if (moved) { syncMini(); render(); } else applyOff(false);
+  }
+  function snap() {
+    var w = colW();
+    if (off < -w / 2) { anchor = addDays(anchor, 1); off += w; syncMini(); render(); }
+    else if (off > w / 2) { anchor = addDays(anchor, -1); off -= w; syncMini(); render(); }
+    off = 0; requestAnimationFrame(function () { applyOff(true); });
+  }
+  document.querySelector('main').addEventListener('wheel', function (e) {
+    if (e.ctrlKey) return;
+    var dx = e.deltaX, dy = e.deltaY;
+    if (e.shiftKey && !dx) { dx = dy; dy = 0; }
+    if (Math.abs(dx) <= Math.abs(dy) || !dx) return;
+    e.preventDefault();
+    if ($('card').classList.contains('on')) closeCard();
+    if (e.deltaMode === 1) dx *= 16;
+    shiftBy(-dx);
+    clearTimeout(snapT); snapT = setTimeout(snap, 140);
+  }, { passive: false });
   function pos(s, e) {
     var a = new Date(s), base = new Date(a.getFullYear(), a.getMonth(), a.getDate()).getTime();
     return 'top:calc(var(--row) * ' + ((s - base) / 36e5).toFixed(4) + ' + 1px);height:calc(var(--row) * ' + ((e - s) / 36e5).toFixed(4) + ' - 2px)';
@@ -386,11 +427,11 @@
   }
 
   /* navigation */
-  function go(n) { anchor = addDays(anchor, n * (view === 7 ? 7 : view)); syncMini(); closeCard(); render(); }
-  function goDay(str) { var p = str.split('-'); anchor = new Date(+p[0], +p[1] - 1, +p[2]); syncMini(); closeCard(); render(); }
-  function syncMini() { miniMonth = new Date(anchor.getFullYear(), anchor.getMonth(), 1); }
-  function setView(v) { view = v; $('viewMenu').classList.remove('on'); $('viewBtn').setAttribute('aria-expanded', 'false'); closeCard(); render(); }
-  $('todayBtn').onclick = function () { anchor = startOfDay(new Date()); syncMini(); closeCard(); render(); scrollToNow(); };
+  function go(n) { off = 0; anchor = addDays(anchor, n * view); syncMini(); closeCard(); render(); }
+  function goDay(str) { var p = str.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]); off = 0; anchor = view === 7 ? sunday(d) : d; syncMini(); closeCard(); render(); }
+  function syncMini() { var m = addDays(anchor, Math.floor(view / 2)); miniMonth = new Date(m.getFullYear(), m.getMonth(), 1); }
+  function setView(v) { if (v === 7 && view !== 7) anchor = sunday(anchor); off = 0; view = v; $('viewMenu').classList.remove('on'); $('viewBtn').setAttribute('aria-expanded', 'false'); closeCard(); render(); }
+  $('todayBtn').onclick = function () { off = 0; anchor = view === 7 ? sunday(startOfDay(new Date())) : startOfDay(new Date()); syncMini(); closeCard(); render(); scrollToNow(); };
   $('prevBtn').onclick = function () { go(-1); };
   $('nextBtn').onclick = function () { go(1); };
   $('miniPrev').onclick = function () { miniMonth = new Date(miniMonth.getFullYear(), miniMonth.getMonth() - 1, 1); renderMini(); };
@@ -408,7 +449,7 @@
     document.body.classList.remove('openside');
     if (!all.length) { go(1); snack('Looking for the next free time…'); return; }
     var d = startOfDay(new Date(all[0]));
-    if (!visibleDays().some(function (v) { return sameDay(v, d); })) { anchor = d; syncMini(); render(); }
+    if (!visibleDays().some(function (v) { return sameDay(v, d); })) { off = 0; anchor = view === 7 ? sunday(d) : d; syncMini(); render(); }
     placeDraft(all[0]); var el = $('draft');
     if (el) { el.scrollIntoView({ block: 'center' }); openCard(all[0]); }
   }
@@ -427,7 +468,7 @@
   });
   var lastW = innerWidth;
   addEventListener('resize', function () {
-    if ((lastW < 560) !== (innerWidth < 560) || (lastW < 900) !== (innerWidth < 900)) view = innerWidth < 560 ? 1 : innerWidth < 900 ? 4 : 7;
+    if ((lastW < 560) !== (innerWidth < 560) || (lastW < 900) !== (innerWidth < 900)) { view = innerWidth < 560 ? 1 : innerWidth < 900 ? 4 : 7; if (view === 7) anchor = sunday(anchor); }
     lastW = innerWidth; render();
   });
   setInterval(render, 60000);
@@ -452,7 +493,7 @@
   var drag = null;
   $('grid').addEventListener('pointerdown', function (e) {
     var col = e.target.closest('.col'); if (!col || e.button > 0) return;
-    if (e.pointerType === 'touch') { drag = { col: col, touch: true, x: e.clientX, y: e.clientY }; return; }
+    if (e.pointerType === 'touch') { clearTimeout(snapT); drag = { col: col, touch: true, x: e.clientX, y: e.clientY, lx: e.clientX }; return; }
     e.preventDefault();
     var ms = cellAt(col, e.clientY);
     drag = { col: col, ms: ms, ok: isFree(ms) };
@@ -460,15 +501,24 @@
     if (drag.ok) { picked = ms; placeDraft(ms); }
   });
   addEventListener('pointermove', function (e) {
-    if (!drag || drag.touch) return;
+    if (!drag) return;
+    if (drag.touch) {
+      var tx = e.clientX - drag.x, ty = e.clientY - drag.y;
+      if (!drag.swipe && Math.abs(tx) > 10 && Math.abs(tx) > Math.abs(ty) * 1.2) drag.swipe = true;
+      if (drag.swipe) { shiftBy(e.clientX - drag.lx); }
+      drag.lx = e.clientX;
+      return;
+    }
     var col = document.elementsFromPoint(e.clientX, e.clientY).map(function (x) { return x.closest && x.closest('.col'); }).filter(Boolean)[0] || drag.col;
     var ms = cellAt(col, e.clientY);
     if (ms !== drag.ms && isFree(ms)) { drag.ms = ms; drag.ok = true; drag.col = col; picked = ms; placeDraft(ms); }
   });
+  addEventListener('pointercancel', function () { if (drag && drag.swipe) snap(); drag = null; });
   addEventListener('pointerup', function (e) {
     if (!drag) return;
     var d = drag; drag = null;
     if (d.touch) {
+      if (d.swipe) { snap(); return; }
       if (Math.abs(e.clientY - d.y) > 8 || Math.abs(e.clientX - d.x) > 8) return;
       d.ms = cellAt(d.col, e.clientY); d.ok = isFree(d.ms);
       if (d.ok) { picked = d.ms; placeDraft(d.ms); }
