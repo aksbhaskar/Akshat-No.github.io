@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calendar · Akshat Bhaskar</title>
-<meta name="description" content="Akshat Bhaskar's public calendar. Pick a free slot and book a 30 minute coffee chat.">
+<meta name="description" content="Akshat Bhaskar's public calendar. Click any empty time to book a 30 minute coffee chat.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Calendar">
-<meta property="og:description" content="Pick a free slot and book a 30 minute coffee chat with me.">
+<meta property="og:description" content="Click any empty time to book a 30 minute coffee chat with me.">
 <meta property="og:url" content="https://akshatb.com/calendar">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://akshatb.com/calendar">
@@ -31,7 +31,7 @@
   .icon { width: 24px; height: 24px; fill: currentColor; display: block; }
   .ibtn { width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; display: grid; place-items: center; color: var(--ink2); flex: none; }
   .ibtn:hover { background: var(--hover); }
-  .ibtn:focus-visible, .pill:focus-visible, .slot:focus-visible, .mini td button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .ibtn:focus-visible, .pill:focus-visible, .mini td button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
   /* top bar */
   header { height: var(--head); display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; }
@@ -114,10 +114,10 @@
   .ev.sleep { background: var(--sleep-bg); color: var(--sleep-ink); }
   .ev.off, .ev.weekend { background: var(--off-bg); color: var(--off-ink); }
   .ev.past { opacity: .55; }
-  .slot { background: var(--free); color: #fff; cursor: pointer; }
-  .slot:hover { filter: brightness(.94); box-shadow: 0 0 0 1px var(--surface), 0 1px 3px rgba(60,64,67,.35); z-index: 2; }
-  .slot.picked { background: #0b57d0; box-shadow: 0 0 0 1px var(--surface), 0 6px 10px 4px rgba(60,64,67,.15), 0 2px 3px rgba(60,64,67,.3); z-index: 3; }
-  .slot.mine { background: #33b679; cursor: default; }
+  .col { cursor: default; touch-action: pan-y; }
+  .draft { background: var(--free); color: #fff; z-index: 5; pointer-events: none; box-shadow: 0 0 0 1px var(--surface), 0 6px 10px 4px rgba(60,64,67,.15), 0 2px 3px rgba(60,64,67,.3); }
+  .mine { background: #33b679; color: #fff; }
+  .ev.busy, .ev.sleep, .ev.off, .ev.weekend { cursor: not-allowed; }
   .now { position: absolute; left: -1px; right: 0; height: 2px; background: var(--now); z-index: 4; pointer-events: none; }
   .now::before { content: ""; position: absolute; left: -6px; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--now); }
 
@@ -213,12 +213,11 @@
     </div>
     <div class="cals">
       <h2>Akshat's calendar</h2>
-      <label style="--c: var(--free)"><input type="checkbox" data-kind="free" checked>Free to book</label>
-      <label style="--c: #8e918f"><input type="checkbox" data-kind="busy" checked>Busy</label>
+            <label style="--c: #8e918f"><input type="checkbox" data-kind="busy" checked>Busy</label>
       <label style="--c: #7986cb"><input type="checkbox" data-kind="sleep" checked>Sleeping</label>
       <label style="--c: #bdc1c6"><input type="checkbox" data-kind="off" checked>Off hours &amp; weekends</label>
     </div>
-    <p class="note">Every blue slot is a free 30 minute coffee chat on Google Meet. Click one to book it. Times are shown in your time zone.<br><br>Prefer email? <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
+    <p class="note">The empty spaces are when I’m free. Click or drag on one to book a 30 minute coffee chat on Google Meet. Times are shown in your time zone.<br><br>Prefer email? <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
   </aside>
 
   <main>
@@ -382,7 +381,7 @@
         var k = kindAt(ms, freeSet);
         if (k === 'free') {
           flush(ms);
-          if (show.free) html += slot(ms, booked[ms]);
+          if (booked[ms]) html += mine(ms);
           continue;
         }
         if (k !== runKind) { flush(ms); runKind = k; runStart = Math.max(ms, now - (now % CELL)); }
@@ -397,7 +396,7 @@
     $('grid').innerHTML = html;
     var sb = $('scroll').offsetWidth - $('scroll').clientWidth;
     $('days').style.setProperty('--sb', sb + 'px');
-    if (picked) { var el = document.querySelector('.slot[data-ms="' + picked + '"]'); if (el) el.classList.add('picked'); }
+    if (picked) placeDraft(picked);
     renderMini();
     load();
   }
@@ -411,10 +410,13 @@
     var text = '<b>' + LABEL[kind] + '</b>' + (short ? ', ' : '<br>') + span(a, b);
     return '<div class="ev ' + kind + (short ? ' short' : '') + (past ? ' past' : '') + '" style="' + pos(s, e) + '" title="' + LABEL[kind] + ', ' + span(a, b) + '">' + text + '</div>';
   }
-  function slot(ms, mine) {
+  function mine(ms) {
     var a = new Date(ms), b = new Date(ms + CELL);
-    var label = mine ? 'Coffee chat (booked)' : 'Free';
-    return '<button class="ev slot short' + (mine ? ' mine' : '') + '" data-ms="' + ms + '" style="' + pos(ms, ms + CELL) + '" aria-label="' + label + ', ' + a.toDateString() + ' ' + span(a, b) + '"><b>' + label + '</b>, ' + span(a, b) + '</button>';
+    return '<div class="ev short mine" style="' + pos(ms, ms + CELL) + '"><b>Coffee chat</b>, ' + span(a, b) + '</div>';
+  }
+  function draftHtml(ms) {
+    var a = new Date(ms), b = new Date(ms + CELL);
+    return '<div class="ev short draft" id="draft" style="' + pos(ms, ms + CELL) + '"><b>Coffee chat with Akshat</b>, ' + span(a, b) + '</div>';
   }
 
   function renderMini() {
@@ -458,8 +460,8 @@
     if (!all.length) { go(1); snack('Looking for the next free slot…'); return; }
     var d = startOfDay(new Date(all[0]));
     if (!visibleDays().some(function (v) { return sameDay(v, d); })) { anchor = d; syncMini(); render(); }
-    var el = document.querySelector('.slot[data-ms="' + all[0] + '"]');
-    if (el) { el.scrollIntoView({ block: 'center' }); openCard(all[0], el); }
+    placeDraft(all[0]); var el = $('draft');
+    if (el) { el.scrollIntoView({ block: 'center' }); openCard(all[0]); }
   };
   document.addEventListener('keydown', function (e) {
     if (e.target.closest('input, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -480,14 +482,54 @@
   setInterval(render, 60000);
 
   /* booking card */
-  $('grid').onclick = function (e) {
-    var el = e.target.closest('.slot');
-    if (!el || el.classList.contains('mine')) return;
-    openCard(+el.dataset.ms, el);
-  };
-  function openCard(ms, el) {
-    document.querySelectorAll('.slot.picked').forEach(function (x) { x.classList.remove('picked'); });
-    picked = ms; el.classList.add('picked');
+  /* click or drag on empty time to place a meeting, like any calendar */
+  function isFree(ms) { var k = ymd(new Date(ms)); return !!(cache[k] && cache[k].indexOf(ms) >= 0) && !booked[ms] && ms > Date.now(); }
+  function cellAt(col, clientY) {
+    var r = col.getBoundingClientRect(), row = r.height / 24;
+    var idx = Math.max(0, Math.min(47, Math.floor((clientY - r.top) / (row / 2))));
+    var p = col.dataset.day.split('-');
+    return new Date(+p[0], +p[1] - 1, +p[2], 0, idx * 30).getTime();
+  }
+  function placeDraft(ms) {
+    var old = $('draft'); if (old) old.remove();
+    var col = document.querySelector('.col[data-day="' + ymd(new Date(ms)) + '"]');
+    if (col) col.insertAdjacentHTML('beforeend', draftHtml(ms));
+  }
+  function whyNot(ms) {
+    if (ms <= Date.now()) return 'That time has already passed.';
+    if (booked[ms]) return 'You’ve already booked that slot.';
+    var k = kindAt(ms, {});
+    return k === 'sleep' ? 'Akshat is asleep then.' : k === 'busy' ? 'Akshat is busy then.' : 'Akshat isn’t taking meetings then.';
+  }
+  var drag = null;
+  $('grid').addEventListener('pointerdown', function (e) {
+    var col = e.target.closest('.col'); if (!col || e.button > 0) return;
+    if (e.pointerType === 'touch') { drag = { col: col, touch: true, y: e.clientY, x: e.clientX }; return; }
+    e.preventDefault();
+    var ms = cellAt(col, e.clientY);
+    drag = { col: col, ms: ms, ok: isFree(ms) };
+    closeCard(true);
+    if (drag.ok) { picked = ms; placeDraft(ms); }
+  });
+  addEventListener('pointermove', function (e) {
+    if (!drag || drag.touch) return;
+    var col = document.elementsFromPoint(e.clientX, e.clientY).map(function (x) { return x.closest && x.closest('.col'); }).filter(Boolean)[0] || drag.col;
+    var ms = cellAt(col, e.clientY);
+    if (ms !== drag.ms && isFree(ms)) { drag.ms = ms; drag.ok = true; drag.col = col; picked = ms; placeDraft(ms); }
+  });
+  addEventListener('pointerup', function (e) {
+    if (!drag) return;
+    var d = drag; drag = null;
+    if (d.touch) {
+      if (Math.abs(e.clientY - d.y) > 8 || Math.abs(e.clientX - d.x) > 8) return;   // that was a scroll
+      d.ms = cellAt(d.col, e.clientY); d.ok = isFree(d.ms);
+      if (d.ok) { picked = d.ms; placeDraft(d.ms); }
+    }
+    if (d.ok) openCard(d.ms);
+    else { closeCard(); snack(whyNot(d.ms)); }
+  });
+  function openCard(ms) {
+    picked = ms; var el = $('draft');
     var a = new Date(ms), b = new Date(ms + CELL), card = $('card');
     card.classList.remove('ok');
     $('cardWhen').textContent = a.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + ' · ' + span(a, b);
@@ -500,9 +542,9 @@
     card.style.left = left + 'px'; card.style.top = top + 'px';
     setTimeout(function () { $('bookForm').elements.name.focus({ preventScroll: true }); }, 0);
   }
-  function closeCard() { $('card').classList.remove('on'); picked = null; document.querySelectorAll('.slot.picked').forEach(function (x) { x.classList.remove('picked'); }); }
-  $('cardClose').onclick = closeCard;
-  document.addEventListener('mousedown', function (e) { if ($('card').classList.contains('on') && !e.target.closest('#card, .slot, #createBtn')) closeCard(); });
+  function closeCard(keepDraft) { $('card').classList.remove('on'); if (!keepDraft) { picked = null; var d = $('draft'); if (d) d.remove(); } }
+  $('cardClose').onclick = function () { closeCard(); };
+  document.addEventListener('mousedown', function (e) { if ($('card').classList.contains('on') && !e.target.closest('#card, .col, #createBtn')) closeCard(); });
 
   $('bookForm').onsubmit = function (e) {
     e.preventDefault();
@@ -519,8 +561,7 @@
         booked[ms] = true;
         $('cardDone').textContent = 'You’re booked. A calendar invite with the Google Meet link is on its way to ' + email + '.';
         $('card').classList.add('ok');
-        render();
-        var el = document.querySelector('.slot[data-ms="' + ms + '"]'); if (el) el.classList.add('picked');
+        picked = null; render();
       })
       .catch(function () {
         var d = new Date(ms);
