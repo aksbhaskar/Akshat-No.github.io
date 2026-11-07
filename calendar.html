@@ -188,7 +188,6 @@
     <h2>bhaskarakshat22@gmail.com</h2>
     <label style="--c:#4e86b0"><input type="checkbox" data-kind="busy" checked>Busy</label>
     <label style="--c:#7a6ad6"><input type="checkbox" data-kind="sleep" checked>Sleeping</label>
-    <label style="--c:#5a5a58"><input type="checkbox" data-kind="off" checked>Weekends</label>
     <p class="note">The empty spaces are when I’m free. Click or drag on one to book a 30 minute coffee chat on Google Meet. Times are in your time zone.<br><br>Prefer email? <a href="mailto:bhaskarakshat22@gmail.com">bhaskarakshat22@gmail.com</a></p>
   </div>
 </aside>
@@ -281,7 +280,6 @@
     if (freeSet[ms]) return 'free';
     var p = homeParts(ms), h = p.h + p.m / 60;
     if (h < 6.5) return 'sleep';
-    if (p.wd === 'Sat' || p.wd === 'Sun') return 'weekend';
     return 'busy';
   }
   var LABEL = { busy: 'Busy', sleep: 'Sleep', off: 'Busy', weekend: 'Weekend' };
