@@ -159,6 +159,7 @@
     body:not(.openside) aside { margin-left: -260px; box-shadow: none; }
     .top .showside { display: grid; }
     :root { --gutter: 52px; }
+    .tz { font-size: 9px; padding-right: 4px; white-space: nowrap; }
   }
   @media (max-width: 560px) {
     .heading { padding: 0 14px 8px; }
@@ -246,7 +247,7 @@
   var CELL = LEN * 6e4;
   var $ = function (id) { return document.getElementById(id); };
 
-  var view = innerWidth < 560 ? 1 : innerWidth < 900 ? 4 : 7;
+  var view = innerWidth < 900 ? 4 : 7;
   function sunday(d) { return addDays(d, -d.getDay()); }
   var anchor = view === 7 ? sunday(startOfDay(new Date())) : startOfDay(new Date());   // first visible day
   var off = 0, snapT = null;   // sideways swipe offset in px
@@ -466,7 +467,7 @@
   });
   var lastW = innerWidth;
   addEventListener('resize', function () {
-    if ((lastW < 560) !== (innerWidth < 560) || (lastW < 900) !== (innerWidth < 900)) { view = innerWidth < 560 ? 1 : innerWidth < 900 ? 4 : 7; if (view === 7) anchor = sunday(anchor); }
+    if ((lastW < 560) !== (innerWidth < 560) || (lastW < 900) !== (innerWidth < 900)) { view = innerWidth < 900 ? 4 : 7; if (view === 7) anchor = sunday(anchor); }
     lastW = innerWidth; render();
   });
   setInterval(render, 60000);
