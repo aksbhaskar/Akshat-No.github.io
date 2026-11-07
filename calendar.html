@@ -275,7 +275,7 @@
   function kindAt(ms, freeSet) {
     if (freeSet[ms]) return 'free';
     var p = homeParts(ms), h = p.h + p.m / 60;
-    if (h >= 23 || h < 7) return 'sleep';
+    if (h < 6.5) return 'sleep';
     if (p.wd === 'Sat' || p.wd === 'Sun') return 'weekend';
     if (h >= 9 && h < 17) return 'busy';
     return 'off';
